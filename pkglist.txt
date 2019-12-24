@@ -1,6 +1,8 @@
 accountsservice
 acpi
 acpid
+adobe-source-han-sans-tw-fonts
+adobe-source-han-serif-tw-fonts
 alsa-firmware
 alsa-plugins
 alsa-utils
@@ -13,6 +15,7 @@ avahi
 b43-fwcutter
 bash-completion
 bauh
+biber
 binutils
 bison
 blueman
@@ -45,6 +48,10 @@ epdfview
 exfat-utils
 f2fs-tools
 fakeroot
+fcitx
+fcitx-googlepinyin
+fcitx-im
+fcitx-configtool
 ffmpeg
 ffmpegthumbnailer
 file
@@ -189,17 +196,8 @@ systemd-sysvcompat
 tar
 terminus-font
 texinfo
-texlive-bibtexextra
-texlive-bin
-texlive-core
-texlive-fontsextra
-texlive-formatsextra
-texlive-humanities
-texlive-langextra
-texlive-latexextra
-texlive-pictures
-texlive-publishers
-texlive-science
+texlive-most
+texlive-localmanager-git
 thunderbird
 tlp
 tree
@@ -209,6 +207,9 @@ ttf-droid
 ttf-inconsolata
 ttf-indic-otf
 ttf-liberation
+ttf-linux-libertine
+ttf-ms-fonts
+ttf-vista-fonts
 upower
 usbutils
 util-linux
