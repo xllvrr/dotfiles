@@ -175,6 +175,7 @@ powertop
 procps-ng
 psmisc
 pygtk
+pycharm-community-edition
 qt5-styleplugins
 qt5ct
 r
