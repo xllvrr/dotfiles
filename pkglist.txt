@@ -138,6 +138,7 @@ mhwd
 mhwd-db
 mkinitcpio-openswap
 mlocate
+miniconda
 mobile-broadband-provider-info
 moc
 modemmanager
