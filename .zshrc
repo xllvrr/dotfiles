@@ -4,6 +4,9 @@ export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=’vim’
 export LANG=en_US.UTF-8
 
+# neofetch on start
+neofetch
+
 # powerlevel configuration
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
