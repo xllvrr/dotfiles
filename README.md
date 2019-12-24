@@ -5,3 +5,4 @@ This is a storage of my dotfiles. Currently in this VCM is:
 - zsh
 - bash
 - package list
+- fresh install shell script
