@@ -166,7 +166,6 @@ poppler-data
 powertop
 procps-ng
 psmisc
-pycharm-community-edition
 pygtk
 qt5-styleplugins
 qt5ct
