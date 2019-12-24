@@ -159,7 +159,6 @@ pamac-gtk
 patch
 patchutils
 pciutils
-pcmanfm
 perl
 perl-file-mimeinfo
 pkgconf
