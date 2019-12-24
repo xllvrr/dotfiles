@@ -1,0 +1,44 @@
+From 
+FCC: imap://dtsa.tan%40gmail.com@imap.gmail.com/[Gmail]/Sent Mail
+X-Identity-Key: id1
+X-Account-Key: account1
+Subject: Re: pre-processed data
+To: sumit pandey <sumitieee007@gmail.com>,
+ Krishna Loganathan <loganathanmk123@gmail.com>,
+ Cher Ming Tan <cherming@ieee.org>
+References: <CAG51Fk0PY_Gs5h-bBUqx1ACaMb+iYUVF7UXOEeoXB4-G_OCf2A@mail.gmail.com>
+From: Daniel Tan <dtsa.tan@gmail.com>
+Message-ID: <75ea90d3-2e6a-8123-b4d7-42b875783a7a@gmail.com>
+Date: Fri, 20 Dec 2019 17:17:40 +0800
+X-Mozilla-Draft-Info: internal/draft; vcard=0; receipt=0; DSN=0; uuencode=0;
+ attachmentreminder=0; deliveryformat=4
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
+MIME-Version: 1.0
+In-Reply-To: <CAG51Fk0PY_Gs5h-bBUqx1ACaMb+iYUVF7UXOEeoXB4-G_OCf2A@mail.gmail.com>
+Content-Type: text/html; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Hi Sumit,</p>
+    <p>Negative values are expected since it's centered on the mean. But
+      the processing needs to be repeated on the data including and
+      beyond November 2017 as well, otherwise the limits won't make
+      sense on the data.<br>
+    </p>
+    <div class="moz-cite-prefix">On 12/20/19 1:27 AM, sumit pandey
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAG51Fk0PY_Gs5h-bBUqx1ACaMb+iYUVF7UXOEeoXB4-G_OCf2A@mail.gmail.com">
+      <div>3. At last (For Temperature sensors only) I subtract the mean
+        of every month with that month's data. (filtered temperature
+        data - mean )</div>
+    </blockquote>
+  </body>
+</html>

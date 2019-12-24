@@ -1,0 +1,239 @@
+// <!-- <mdb:mork:z v="1.4"/> -->
+< <(a=c)> // (f=iso-8859-1)
+  (B8=imapFlags)(B9=charSetOverride)(BA=charSet)(BB=highestRecordedUID)
+  (BC=ns:msg:db:row:scope:pending:all)(BD=ns:msg:db:table:kind:pending)
+  (BE=dateReceived)(BF=ProtoThreadFlags)(C0=X-GM-MSGID)(C1=X-GM-THRID)
+  (C2=X-GM-LABELS)(C3=junkscore)(C4=junkscoreorigin)(C5=keywords)
+  (C6=replyTo)(C7=imageSize)(C8=sender_name)(C9=folderName)
+  (CA=storeToken)(CB=gloda-id)(CC=gloda-dirty)(CD=retainBy)
+  (CE=daysToKeepHdrs)(CF=numHdrsToKeep)(D0=daysToKeepBodies)
+  (D1=useServerDefaults)(D2=cleanupBodies)(D3=applyToFlaggedMessages)
+  (D4=useServerRetention)(D5=ns:msg:db:row:scope:ops:all)
+  (D6=ns:msg:db:table:kind:ops)(D7=customSortCol)(D8=preview)
+  (D9=notAPhishMessage)(DA=remoteContentPolicy)(DB=op)(DC=msgKey)
+  (DD=opFlags)(DE=newFlags)(DF=moveDest)(E0=msgSize)(E1=inPlayback)
+  (E2=account)(E3=pendingRemoval)(80=ns:msg:db:row:scope:msgs:all)
+  (81=subject)(82=sender)(83=message-id)(84=references)(85=recipients)
+  (86=date)(87=size)(88=flags)(89=priority)(8A=label)(8B=statusOfset)
+  (8C=numLines)(8D=ccList)(8E=bccList)(8F=msgThreadId)(90=threadId)
+  (91=threadFlags)(92=threadNewestMsgDate)(93=children)
+  (94=unreadChildren)(95=threadSubject)(96=msgCharSet)
+  (97=ns:msg:db:table:kind:msgs)(98=ns:msg:db:table:kind:thread)
+  (99=ns:msg:db:table:kind:allthreads)
+  (9A=ns:msg:db:row:scope:threads:all)(9B=threadParent)(9C=threadRoot)
+  (9D=msgOffset)(9E=offlineMsgSize)
+  (9F=ns:msg:db:row:scope:dbfolderinfo:all)
+  (A0=ns:msg:db:table:kind:dbfolderinfo)(A1=numMsgs)(A2=numNewMsgs)
+  (A3=folderSize)(A4=expungedBytes)(A5=folderDate)(A6=highWaterKey)
+  (A7=mailboxName)(A8=UIDValidity)(A9=totPendingMsgs)
+  (AA=unreadPendingMsgs)(AB=expiredMark)(AC=version)(AD=forceReparse)
+  (AE=fixedBadRefThreading)(AF=onlineName)(B0=MRUTime)(B1=sortType)
+  (B2=sortOrder)(B3=viewFlags)(B4=viewType)(B5=sortColumns)
+  (B6=columnStates)(B7=highestModSeq)>
+<(3C3=cef)(3DE=5e00ed2b)(81=0)(379=2)>
+[21:m(^9C=cef)(^90=cef)(^92^3DE)(^91=0)(^93=2)(^94=0)]
+<(3D7=cf3)(3D5=5e00d15e)(80=1)>[22:m(^9C=cf3)(^90=cf3)(^92^3D5)(^91=0)
+    (^93=1)]
+<(3EB=cfe)(3E9=5e017135)>[23:m(^9C=cfe)(^90=cfe)(^92^3E9)(^91=0)(^93=1)
+    (^94=1)]
+<(36D=ce6)(36B=5dfe9f40)>[1D:m(^9C=ce6)(^90=ce6)(^92^36B)(^91=0)(^93=1)]
+<(378=cea)(37F=5dff1c0a)>[1E:m(^9C=cea)(^90=cea)(^92^37F)(^91=0)(^93=2)
+    (^94=0)]
+
+<(3CB=83)(36F=Krishna Loganathan <loganathanmk123@gmail.com>)(3BE
+    =Daniel Tan <dtsa.tan@gmail.com>)(3BF=sampling)(3C0
+    =CABZoXgcvxJ0c0CX0-JtR-EnpLe+R46VjgYBXgAYuvPJWfLp0KQ@mail.gmail.com)
+  (3C1=5e0063d1)(3C2=1361)(92=ffffffff)(3C5=1653692296578765950)(37B
+    ="\\\\Important")(3CC=13|Krishna Loganathan)(3C6=5051e0)(3C7=5263840)
+  (3C8=13b4)(3C9=54)(86=)(3CA=3e9)(3F6=10000093)(3DA
+    =Yash Jain <yash.jn101@gmail.com>, sumit pandey <sumitieee007@gmail.com>, \
+sumit pandey <sumit.pandey.tech@outlook.com>, =?UTF-8?B?6Zmz5aeL5piO?= <cmtan@\
+cgu.edu.tw>)(3DC
+    =CABZoXgdP=MYn2CUO57VtgHNvGt=VfuP0Qi7DNEck0ggqFiTjDQ@mail.gmail.com)
+  (3DD
+    =<CABZoXgcvxJ0c0CX0-JtR-EnpLe+R46VjgYBXgAYuvPJWfLp0KQ@mail.gmail.com> <9f0\
+e55a4-98a7-4ebf-bce4-d4a8cddbaebe@gmail.com> <CABZoXgdDHtYTWDOtJhrVbUO6ErD9U5D\
+WMHtC+aqV4UQke-JyUQ@mail.gmail.com> <CABZoXgcFovy_7--JPUQjPHXcpNrPCdg=YnDHdTZD\
+qs7vWEmR3A@mail.gmail.com>)(3E0=28cd)(3E4=1653729167855837099)(3F4=508ee4)
+  (3F5=5279460)(3F7=2920)(3F8=be)>
+{CEF:^80 {(k^98:c)(s=9)21:m } [CEF(^88=83)(^8B=0)(^82^36F)(^85^3BE)(^81^3BF)
+    (^83^3C0)(^BE^3C1)(^86^3C1)(^89=1)(^87^3C2)(^9B^92)(^8F=cef)(^BF=0)
+    (^C0^3C5)(^C1^3C5)(^C2^37B)(^C8^3CC)(^9D^3C6)(^CA^3C7)(^9E^3C8)
+    (^8C=54)(^D8=)(^CB=3e9)(^CC=0)(^8A=0)(^C5=)]
+  [CF6(^88^3F6)(^8B=0)(^82^36F)(^85^3BE)(^8D^3DA)(^81^3BF)(^83^3DC)
+    (^84^3DD)(^BE^3DE)(^86^3DE)(^89=1)(^87^3E0)(^9B=cef)(^8F=cef)(^BF=0)
+    (^C0^3E4)(^C1^3C5)(^C2^37B)(^9D^3F4)(^CA^3F5)(^9E^3F7)(^8C=be)]}
+
+<(39E=81)(367=noreply@medium.com)(368
+    ="Medium Daily Digest" <noreply@medium.com>)(29F=dtsa.tan@gmail.com)
+  (369
+    =10 Python Pandas tricks that make your work more efficient | Shiu-Tang Li\
+ in Towards Data Science)(36A
+    =nj4GTTY-SGexoHvsdG5W3Q@ismtpd0004p1iad1.sendgrid.net)(36C=1be62)
+  (36E=1653570810405613977)(3CD=13|Medium Daily Digest)(39C=4ce677)
+  (39D=5039735)(39F=1beb5)(3A0=72b)(3A4=3e7)(399=10000081)(370
+    =sumit pandey <sumitieee007@gmail.com>, sumit pandey <sumit.pandey.tech@ou\
+tlook.com>, Yash Jain <yash.jn101@gmail.com>)(371
+    ==?UTF-8?B?6Zmz5aeL5piO?= <cmtan@cgu.edu.tw>, Daniel Tan <dtsa.tan@gmail.c\
+om>)(372=Flow Chart for the PdM methodology)(373
+    =CABZoXgc3bFu=gvFBM9=CZ9evNpKCYkcWCrH03PpJ_D3Cgh9g-Q@mail.gmail.com)
+  (374=5dff19b9)(376=14a0c)(37A=1653603687321144097)(397=4b9c18)(398
+    =4955160)(39A=14a5f)(39B=45a)(3A1=3e4)(3AC=91)(37D
+    =CABZoXgffoqLvOxbDnUTxH5fFf3ei_r1Kz-YDXMBMpCG1ziLvZw@mail.gmail.com)
+  (37E
+    =<CABZoXgc3bFu=gvFBM9=CZ9evNpKCYkcWCrH03PpJ_D3Cgh9g-Q@mail.gmail.com>)
+  (380=1dd2)(384=1653604309867880188)(364=4b4c0d)(390=4934669)(392=1e25)
+  (327=80)(3A2=3e5)(3D0=Jia Ying Lim <limjiaying23@gmail.com>)(3D1
+    ="Jia Ying Lim (via Google Drive\)" <limjiaying23@gmail.com>)(3D2
+    =Milk.pdf)(3D3=000000000000b9c2c8059a5ffad2@google.com)(3D4
+    =<077215c5-60dc-4457-8c69-56bc29dd9e35@docs-share.google.com>)(3D6
+    =28fd)(3D9=1653721690513019887)(3EE=13|Jia Ying Lim (via Google Drive\))
+  (3F0=506594)(3F1=5268884)(3F2=2950)(3F3=9c)(3E5=bibles@e.zondervan.com)
+  (3E6=Zondervan Bibles <bibles@e.zondervan.com>)(3E7
+    =NIV Kids Visual Bible + NIV Blog: The Challenge of Giving vs. Spending)
+  (3E8=1653885569.977027611577152821482.JavaMail.app@rbg41.atlis1)(3EA
+    =11d60)(3ED=1653764977083918266)(3EF=13|Zondervan Bibles)(3F9=50b804)
+  (3FA=5289988)(3FB=11db3)(3FC=4be)>
+{1:^80 {(k^97:c)(s=9)} 
+  [CE6(^88=81)(^C6^367)(^8B=0)(^82^368)(^85^29F)(^81^369)(^83^36A)(^BE^36B)
+    (^86^36B)(^89=1)(^87^36C)(^9B^92)(^8F=ce6)(^BF=0)(^C0^36E)(^C1^36E)
+    (^C2=)(^C8^3CD)(^9D^39C)(^CA^39D)(^9E^39F)(^8C=72b)(^CB=3e7)(^C5=)
+    (^8A=0)]
+  [CEA(^88^399)(^8B=0)(^82^36F)(^85^370)(^8D^371)(^81^372)(^83^373)
+    (^BE^374)(^86^374)(^89=1)(^87^376)(^9B^92)(^8F=cea)(^BF=0)(^C0^37A)
+    (^C1^37A)(^C2^37B)(^C8^3CC)(^9D^397)(^CA^398)(^9E^39A)(^8C=45a)
+    (^CB=3e4)(^C5=)(^8A=0)]
+  [CEB(^88=91)(^8B=0)(^82^36F)(^85^370)(^8D^371)(^81^372)(^83^37D)(^84^37E)
+    (^BE^37F)(^86^37F)(^89=1)(^87^380)(^9B=cea)(^8F=cea)(^BF=0)(^C0^384)
+    (^C1^37A)(^C2^37B)(^9D^364)(^CA^390)(^9E^392)(^8C=80)(^D8=)(^CB=3e5)
+    (^C5=)(^8A=0)(^C8^3CC)(^CC=0)]CEF 
+  [CF3(^88=81)(^C6^3D0)(^8B=0)(^82^3D1)(^85^29F)(^81^3D2)(^83^3D3)(^84^3D4)
+    (^BE^3D5)(^86^3D5)(^89=1)(^87^3D6)(^9B^92)(^8F=cf3)(^BF=0)(^C0^3D9)
+    (^C1^3D9)(^C2^37B)(^C8^3EE)(^9D^3F0)(^CA^3F1)(^9E^3F2)(^8C=9c)]
+  CF6 
+  [CFE(^88=80)(^C6^3E5)(^8B=0)(^82^3E6)(^85^29F)(^81^3E7)(^83^3E8)(^BE^3E9)
+    (^86^3E9)(^89=1)(^87^3EA)(^9B^92)(^8F=cfe)(^BF=0)(^C0^3ED)(^C1^3ED)
+    (^C2=)(^C8^3EF)(^9D^3F9)(^CA^3FA)(^9E^3FB)(^8C=4be)]}
+{CE6:^80 {(k^98:c)(s=9)1D:m } CE6 }
+{CFE:^80 {(k^98:c)(s=9)23:m } CFE }
+{CF3:^80 {(k^98:c)(s=9)22:m } CF3 }
+{CEA:^80 {(k^98:c)(s=9)1E:m } CEA CEB }
+{FFFFFFFD:^9A {(k^99:c)(s=9)} [CE6(^95^369)]
+  [CEA(^95^372)]
+  [CEF(^95^3BF)]
+  [CF3(^95^3D2)]
+  [CFE(^95^3E7)]}
+
+<(82=INBOX)(83=88083014)(3CE=1577182576)(85=12)(1CA=$121)(87
+    ={"threadCol":{"visible":true,"ordinal":""},"flaggedCol":{"visible":true,"\
+ordinal":""},"attachmentCol":{"visible":true,"ordinal":""},"subjectCol":{"visi\
+ble":true,"ordinal":""},"unreadButtonColHeader":{"visible":true,"ordinal":""},\
+"senderCol":{"visible":false,"ordinal":""},"recipientCol":{"visible":false,"or\
+dinal":""},"correspondentCol":{"visible":true,"ordinal":""},"junkStatusCol":{"\
+visible":true,"ordinal":""},"receivedCol":{"visible":false,"ordinal":""},"date\
+Col":{"visible":true,"ordinal":""},"statusCol":{"visible":false,"ordinal":""},\
+"sizeCol":{"visible":false,"ordinal":""},"tagsCol":{"visible":false,"ordinal":\
+""},"accountCol":{"visible":false,"ordinal":""},"priorityCol":{"visible":false\
+,"ordinal":""},"unreadCol":{"visible":false,"ordinal":""},"totalCol":{"visible\
+":false,"ordinal":""},"locationCol":{"visible":false,"ordinal":""},"idCol":{"v\
+isible":false,"ordinal":""}})(3CF=675021)(89=ee00)(3EC=7)(3BD=4d2aa7)>
+{1:^9F {(k^A0:c)(s=9)} 
+  [1(^AC=1)(^AD=0)(^AE=1)(^AF^82)(^A7^82)(^88^83)(^B0^3CE)(^B1=12)(^B2=1)
+    (^B3=1)(^B4=0)(^B5^1CA)(^B6^87)(^B7^3CF)(^B8^89)(^A8=1)(^BB=cfe)
+    (^A1=7)(^A6=cfe)(^A2=1)(^D4=1)(^A4^3BD)]}
+
+@$${187{@
+<(3FD=1577182583)>[1:^9F(^B0^3FD)]
+@$$}187}@
+
+@$${188{@
+@$$}188}@
+
+@$${189{@
+@$$}189}@
+
+@$${18A{@
+<(400=3f0)>[CFE:^80(^CB=3f0)]
+<(3FE=3ec)>[CF3:^80(^CB=3ec)]
+<(3FF=3ef)>[CF6:^80(^CB=3ef)]
+@$$}18A}@
+
+@$${18B{@
+@$$}18B}@
+
+@$${18C{@
+@$$}18C}@
+
+@$${18D{@
+@$$}18D}@
+
+@$${18E{@
+[CFE:^80(^D8=)]
+@$$}18E}@
+
+@$${18F{@
+[23:m(^94=0)]
+[-CFE:^80(^88=81)(^C6^3E5)(^8B=0)(^82^3E6)(^85^29F)(^81^3E7)(^83^3E8)
+    (^BE^3E9)(^86^3E9)(^89=1)(^87^3EA)(^9B^92)(^8F=cfe)(^BF=0)(^C0^3ED)
+    (^C1^3ED)(^C2=)(^C8^3EF)(^9D^3F9)(^CA^3FA)(^9E^3FB)(^8C=4be)(^CB=3f0)
+    (^D8=)(^CC=1)]
+[1:^9F(^A2=0)]
+@$$}18F}@
+
+@$${190{@
+[CFE:^80(^DA=1)]
+@$$}190}@
+
+@$${191{@
+@$$}191}@
+
+@$${192{@
+[-CFE:^80(^88=81)(^C6^3E5)(^8B=0)(^82^3E6)(^85^29F)(^81^3E7)(^83^3E8)
+    (^BE^3E9)(^86^3E9)(^89=1)(^87^3EA)(^9B^92)(^8F=cfe)(^BF=0)(^C0^3ED)
+    (^C1^3ED)(^C2=)(^C8^3EF)(^9D^3F9)(^CA^3FA)(^9E^3FB)(^8C=4be)(^CB=3f0)
+    (^D8=)(^CC=1)(^DA=1)(^8A=0)(^C5=)]
+@$$}192}@
+
+@$${193{@
+<(401=98083014)>[1:^9F(^88^401)]
+{-1:^D5 {(k^D6:c)(s=9)} 
+  [-CFE(^DC=cfe)(^DE=81)]}
+@$$}193}@
+
+@$${194{@
+[-FFFFFFEF:^80(^88=81)(^C6^3E5)(^8B=0)(^82^3E6)(^85^29F)(^81^3E7)(^83^3E8)
+    (^BE^3E9)(^86^3E9)(^89=1)(^87^3EA)(^9B^92)(^8F=cfe)(^BF=0)(^C0^3ED)
+    (^C1^3ED)(^C2=)(^C8^3EF)(^9D^3F9)(^CA^3FA)(^9E^3FB)(^8C=4be)(^CB=3f0)
+    (^D8=)(^CC=1)(^DA=1)(^8A=0)(^C5=)]
+<(402=imap://dtsa.tan%40gmail.com@imap.gmail.com/[Gmail]/Trash)>
+[-CFE:^D5(^DC=cfe)(^DE=1)(^DF^402)(^DB=2)(^E0^3EA)]
+@$$}194}@
+
+@$${195{@
+[-23:m(^9C=cfe)(^90=cfe)(^92=0)(^91=0)(^93=0)(^94=0)]
+{1:^80 {(k^97:c)(s=9)} -
+  [-CFE]}
+{-CFE:^80 {(k^98:c)(s=9)23:m } }
+{FFFFFFFD:^9A {(k^99:c)(s=9)} -CFE }
+<(3E2=6)(404=4e485a)>[-1:^9F(^AC=1)(^AD=0)(^AE=1)(^AF^82)(^A7^82)(^88^401)
+    (^B0^3FD)(^B1=12)(^B2=1)(^B3=1)(^B4=0)(^B5^1CA)(^B6^87)(^B7^3CF)
+    (^B8^89)(^A8=1)(^BB=cfe)(^A1=6)(^A6=cfe)(^A2=0)(^D4=1)(^A4^404)]
+@$$}195}@
+
+@$${196{@
+[1:^9F(^88^83)]
+{-1:^D5 {(k^D6:c)(s=9)} }
+[-CFE:^D5]
+@$$}196}@
+
+@$${197{@
+[CFE:^80(^CB=3f0)]
+[-CF3:^80(^88=81)(^C6^3D0)(^8B=0)(^82^3D1)(^85^29F)(^81^3D2)(^83^3D3)
+    (^84^3D4)(^BE^3D5)(^86^3D5)(^89=1)(^87^3D6)(^9B^92)(^8F=cf3)(^BF=0)
+    (^C0^3D9)(^C1^3D9)(^C2^37B)(^C8^3EE)(^9D^3F0)(^CA^3F1)(^9E^3F2)
+    (^8C=9c)(^CB=3ec)(^C5=)(^8A=0)]
+[-CF6:^80(^88^3F6)(^8B=0)(^82^36F)(^85^3BE)(^8D^3DA)(^81^3BF)(^83^3DC)
+    (^84^3DD)(^BE^3DE)(^86^3DE)(^89=1)(^87^3E0)(^9B=cef)(^8F=cef)(^BF=0)
+    (^C0^3E4)(^C1^3C5)(^C2^37B)(^9D^3F4)(^CA^3F5)(^9E^3F7)(^8C=be)(^CB=3ef)
+    (^C5=)(^8A=0)]
+@$$}197}@

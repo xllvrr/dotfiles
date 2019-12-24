@@ -1,0 +1,481 @@
+From - Tue Dec 17 19:29:05 2019
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+Delivered-To: dtsa.tan@gmail.com
+Received: by 2002:a92:4644:0:0:0:0:0 with SMTP id t65csp8038777ila;
+        Wed, 7 Aug 2019 18:20:55 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqw3umF7sn/yecU7GU2S7eTy/s3Eql/nVAIxNV1ODk1BzchNrPokxGA0bxKnNJR32AnPrYyf
+X-Received: by 2002:adf:dfc4:: with SMTP id q4mr13016242wrn.54.1565227255486;
+        Wed, 07 Aug 2019 18:20:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1565227255; cv=none;
+        d=google.com; s=arc-20160816;
+        b=kc1IAOATMAx6rsbB4NxxoFZQXGhXmsSCwDPy3i1ycFdFw2MydvbaRI62R9LQ6vIw5h
+         P2Wr4V0p8B5RWTwJhhRowVGhrdSWRXeQ7K1xd9nbF36qDsQ3iTjDXrLUr+Zv2Q3GgHvf
+         D36/Bk3lY7ZQpGenEfwvhOFKgeHGqfks81YLLCgo/mxlJfYvgXvbcqBsTnDRC7Tq3ayb
+         SlHdUTkvknKTgaP5MH3irLrsnpCHAYrs/6849hRZSE0E205o7/So4fLa7tLZzroJW56s
+         iHaA5uHYEQzhnOcshbwkUEc3BsNzAEMyNygjUOpa8Yo18qY56x4NkDyIPJHQSDR0UFWU
+         jSFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:mime-version:date:content-transfer-encoding:message-id
+         :subject:to:from:dkim-signature:dkim-signature;
+        bh=9NQMUOmZGJJmRGhPK4v4o73iiYWpRscnhidFFUlyG3s=;
+        b=EM7YtVFXm3Xf2gcWD++iLtQKWggjjcodR7vQualE9mkoHTt/Owiox+0b2zVFj6Zr1L
+         /1JQ6ST8GwaS/fOQmoRTFpqi9YoFOMRToagWm9JYYKNxnQW4aORQfnDbM8/L3EtcseUC
+         BsCWSDeUrFTB6A90znTDmG1j6kM6jJi6fEBWmGUJ7ph9pJ6HB0o1GZ7+yVRf6Tdj0wr/
+         iE70mPcRCLlRPJcB+IWv9vgNueRspU2rWyc5Bi2vukKujBao6hIjuGlQZmEdaclqmn5j
+         DMGgx+bihp8bVqVKkypiFg3a35xzDpo2DxdwrRzXNh0/9o60qZCw0mkb9JcZqgYZ0zTs
+         89Bw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@circles.life header.s=pfyhunhjfjn5fhh5xy3uuuiye4jescmu header.b="E/ye06CE";
+       dkim=pass header.i=@amazonses.com header.s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn header.b=dc7zflnE;
+       spf=pass (google.com: domain of 0102016c6ed084fb-1622ea48-f408-439d-9d45-a13223896b7c-000000@eu-west-1.amazonses.com designates 54.240.3.16 as permitted sender) smtp.mailfrom=0102016c6ed084fb-1622ea48-f408-439d-9d45-a13223896b7c-000000@eu-west-1.amazonses.com
+Return-Path: <0102016c6ed084fb-1622ea48-f408-439d-9d45-a13223896b7c-000000@eu-west-1.amazonses.com>
+Received: from a3-16.smtp-out.eu-west-1.amazonses.com (a3-16.smtp-out.eu-west-1.amazonses.com. [54.240.3.16])
+        by mx.google.com with ESMTPS id 22si497328wmf.117.2019.08.07.18.20.55
+        for <dtsa.tan@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Wed, 07 Aug 2019 18:20:55 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 0102016c6ed084fb-1622ea48-f408-439d-9d45-a13223896b7c-000000@eu-west-1.amazonses.com designates 54.240.3.16 as permitted sender) client-ip=54.240.3.16;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@circles.life header.s=pfyhunhjfjn5fhh5xy3uuuiye4jescmu header.b="E/ye06CE";
+       dkim=pass header.i=@amazonses.com header.s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn header.b=dc7zflnE;
+       spf=pass (google.com: domain of 0102016c6ed084fb-1622ea48-f408-439d-9d45-a13223896b7c-000000@eu-west-1.amazonses.com designates 54.240.3.16 as permitted sender) smtp.mailfrom=0102016c6ed084fb-1622ea48-f408-439d-9d45-a13223896b7c-000000@eu-west-1.amazonses.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=pfyhunhjfjn5fhh5xy3uuuiye4jescmu; d=circles.life; t=1565227255;
+	h=Content-Type:From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version;
+	bh=8Ta9ZZIzFZ/wj1OaEcPDsfxKyid9Sfn63SJbrhDbL9E=;
+	b=E/ye06CE7df/W7dkFBN0gzcfp6lRaI6vfZZh4QQFGqzf4TNOlohbo+H16ptnbqg3
+	AkGWvBuBRpEIx6KJ2uGgZhNUgNkzRj318owR65qpGovgd/A28YxZYhFkGn4q7/iyc/i
+	2kQn5lLdCjCB9/Vin+Wz0KUOPHdsXArRJIpu90rU=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn; d=amazonses.com; t=1565227255;
+	h=Content-Type:From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version:Feedback-ID;
+	bh=8Ta9ZZIzFZ/wj1OaEcPDsfxKyid9Sfn63SJbrhDbL9E=;
+	b=dc7zflnEC7qDtbljIMOR2Y4t/KnxrxliLrwZN63pFqSePrfqSQgtQl56X4Q26CMW
+	kYnzSkhWnqV78GtzVIkRwvTRzu3j/HKuNFvX/4mrTuYwyqHBecBg/8KCJLNlWu08kkl
+	Bq5tNbpY2gQiAFfrIecBv8r6l3F3WF32iIR6qk6U=
+Content-Type: text/html; charset=utf-8
+From: "Circles.Life" <happiness@circles.life>
+To: dtsa.tan@gmail.com
+Subject: You are now subscribed to an addon.
+Message-ID: <0102016c6ed084fb-1622ea48-f408-439d-9d45-a13223896b7c-000000@eu-west-1.amazonses.com>
+X-Mailer: nodemailer (2.7.2; +https://nodemailer.com/; SES/1.5.1)
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 8 Aug 2019 01:20:55 +0000
+MIME-Version: 1.0
+X-SES-Outgoing: 2019.08.08-54.240.3.16
+Feedback-ID: 1.eu-west-1.9SQrKlXohIas/5qlRq6pL0dPu/FHN5BV4uSX1pPS3UA=:AmazonSES
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    =
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html =
+xmlns=3D"http://www.w3.org/1999/xhtml" xml:lang=3D"en" style=3D"margin:0; =
+padding:0"><head>  <meta http-equiv=3D"Content-Type" =
+content=3D"text/html;charset=3DUTF-8"/>  <meta name=3D"viewport" =
+content=3D"width=3Ddevice-width" />  <title>A Message from Circles.=
+Life</title></head><body style=3D"margin: 0; padding: 8px; background: =
+#efefef;">  <table style=3D"font-family: 'Open Sans', 'Lato', 'Calibri'; =
+width: 100%; background: #efefef; text-align: center;">	  <tr>      <td>   =
+     <table style=3D"text-align: center; margin: 0 auto;">    		<tr>    			=
+<td style=3D"padding: 0px;">    				<table style=3D"border: none; =
+border-collapse: collapse; max-width: 600px; margin: 0 auto; text-align: =
+left; overflow: hidden">    					<thead>                <tr colspan=3D"2" =
+height=3D"80px">    			        <td scope=3D"col" width=3D"25%">            =
+        <a href=3D"http://circles.life"><img alt=3D"" =
+src=3D"https://s3-ap-southeast-1.amazonaws.com/circles-marketing/marketing/=
+logo_small_dark100.png" align=3D"left" height=3D"30%" max-width=3D"100%" =
+/></a>                  </td>                  <td scope=3D"col" =
+width=3D"75%">                    <div class=3D"header-links" =
+style=3D"text-align: right; font-family: 'Open Sans', 'Lato', 'Calibri', =
+sans-serif; font-size:12px; font-weight: 600;">                      <a =
+style=3D"color:#0099ff; text-decoration:none;" href=3D"https://circlescare.=
+app.link/dashboard">APP</a><span style=3D"margin: 0 12px;">|</span><a =
+style=3D"color:#0099ff; text-decoration:none;" href=3D"https://circlescare.=
+app.link/bonus">BONUS</a><span style=3D"margin: 0 12px;">|</span><a =
+style=3D"color:#0099ff; text-decoration:none;" href=3D"https://circlescare.=
+app.link/pastusage">BILLS</a>                    </div>                  =
+</td>    			      </tr>    			    </thead>    					<tbody>    						<tr>   =
+ 							<td colspan=3D"2">    								<div id=3D"block1" class=3D"block"  =
+style=3D"background: #ffffff; color: #000000; font-family: 'Open Sans', =
+'Lato', 'Calibri', sans-serif; font-size: 16px; font-weight: 400; =
+line-height: 25px; padding: 20px; border-radius: 8px; margin-bottom: =
+12px;"><h2 style=3D"font-weight: 600;">Hi Tan Shao An Daniel .,</h2><p>You =
+just subscribed an Addon</p>                    </div>                  =
+</td>                </tr>              </tbody>              <tfoot>      =
+          <tr>                  <td colspan=3D"2" style=3D"padding: 0;">   =
+                 <div style=3D"background: #f7f7f7; border-radius: 8px;">  =
+                    <p style=3D"color: #666666; font-size: 12px; =
+font-family: 'Open Sans', 'Lato', 'Calibri', sans-serif; margin: 0; =
+padding: 20px; text-align: center; margin-bottom: 12px;">                  =
+      <b> This email is about your Circles.Life account under number =
+88176361. </b><br />                        If you have any questions, =
+simply reply to this email (<a href=3D"mailto://happiness@circles.life" =
+style=3D"color: #0099ff;">happiness@circles.life</a>). <br />              =
+          You may also drop us a message on our <a href=3D"http://circles.=
+life" style=3D"color: #0099ff;">website</a> or on <a href=3D"http://circles=
+.life/apps" style=3D"color: #0099ff;">the CirclesLife app</a>.             =
+          </p>                    </div>                  </td>            =
+    </tr>                <tr>                  <td colspan=3D"2" =
+style=3D"color: #666666; padding: 0px 30px 15px; text-align: center;" =
+height=3D"100px">                    <p style=3D"color: #666666; font-size:=
+ 12px;font-family: 'Open Sans', 'Lato', 'Calibri', sans-serif;">2019 =C2=A9=
+ Circles.Life / Circles Asia<br><br>                      <font =
+style=3D"font-style: italic; font-size: 12px;font-family: 'Open Sans', =
+'Lato', 'Calibri', sans-serif;">Terms and Conditions apply.</font>         =
+           </p>                  </td>                </tr>              =
+</tfoot>            </table>          </td>        </tr>      </table>     =
+ </td>    </tr>  </table></body></html>
+From - Tue Dec 17 19:29:05 2019
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+Delivered-To: dtsa.tan@gmail.com
+Received: by 2002:a92:4644:0:0:0:0:0 with SMTP id t65csp8038874ila;
+        Wed, 7 Aug 2019 18:21:01 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzxrCv5zjxXB4RoK7/fn6sI6PIRTkdrF/hXxM4srpJwQK9DVKVGxTix4UNXuEMawvit0Ore
+X-Received: by 2002:a1c:be05:: with SMTP id o5mr901965wmf.52.1565227261151;
+        Wed, 07 Aug 2019 18:21:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1565227261; cv=none;
+        d=google.com; s=arc-20160816;
+        b=DZrUt2HgITxrBtBtct759buPP7XbBNaoZvPRTQ6MmYzb94zJygZGyYWMut+R1km+QJ
+         NwkChHBbltmUwBTF0tgPJEUcFGHT/j+gWBL+KEJWmabvfrqf9JPaGlmwjJN2JoyotjO3
+         lsUGywNbRyZVrxLxqCUCk2fQUegPvvNOmDxXfQ6rgfZLRHBvqK+QsPAjhV4+wWxle7td
+         y9Lqlp9+BYMVrMg6+VXxaGyI2e0sfipO+Nocmb1qvDq6zxjlndBJ0ssyLXh4v5vLFc4G
+         t25G/m+GLsT1HKk9rZiubtMAtG4WIdwvEXpN/d3GCh2M84dA7JvrogDLso4KH/PAdQh0
+         lO6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:mime-version:date:content-transfer-encoding:message-id
+         :subject:to:from:dkim-signature:dkim-signature;
+        bh=OEHVXqM2Q3rX+1c2HL5RikGDq9+N7MbruF0HUBRyheg=;
+        b=OhBWYTFK8DBN9cPXgGEDFCFvdsJYrly+ZFvf785RfWoPwSmx0OeIbmEJ45xoZoTxWQ
+         gBkAUfPoP4X7lEStI/OH+fdyhQMKU5EHlfi9vvj1zrE4g2KqcR3d9SBKgwwRsw/G5Zcw
+         eoWtwyZPw717tPB3Lc8beoNe6ZcTVLJM+P1zgCuXtdPUjwgUSa/K+XJGEuBeKOVLxr5p
+         4wLnB7AwPNAaU78kpwldaWC5E+19XNJgiBREbGnTE2kFOLo6GpYsLU7UTLnveODSWZ+6
+         k/bF3PmSrZ3N3LVDYUryhj59u3pUXPF/cgVPbTMsZw+O+nfW+3LiBMb/nA6cJgQTNM1/
+         pUEw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@circles.life header.s=pfyhunhjfjn5fhh5xy3uuuiye4jescmu header.b=Po7e0E0u;
+       dkim=pass header.i=@amazonses.com header.s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn header.b=SVuhMv5k;
+       spf=pass (google.com: domain of 0102016c6ed09b19-b83d4a9f-298a-4096-ab33-87010a0316b5-000000@eu-west-1.amazonses.com designates 54.240.3.12 as permitted sender) smtp.mailfrom=0102016c6ed09b19-b83d4a9f-298a-4096-ab33-87010a0316b5-000000@eu-west-1.amazonses.com
+Return-Path: <0102016c6ed09b19-b83d4a9f-298a-4096-ab33-87010a0316b5-000000@eu-west-1.amazonses.com>
+Received: from a3-12.smtp-out.eu-west-1.amazonses.com (a3-12.smtp-out.eu-west-1.amazonses.com. [54.240.3.12])
+        by mx.google.com with ESMTPS id y22si503072wmj.16.2019.08.07.18.21.00
+        for <dtsa.tan@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Wed, 07 Aug 2019 18:21:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 0102016c6ed09b19-b83d4a9f-298a-4096-ab33-87010a0316b5-000000@eu-west-1.amazonses.com designates 54.240.3.12 as permitted sender) client-ip=54.240.3.12;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@circles.life header.s=pfyhunhjfjn5fhh5xy3uuuiye4jescmu header.b=Po7e0E0u;
+       dkim=pass header.i=@amazonses.com header.s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn header.b=SVuhMv5k;
+       spf=pass (google.com: domain of 0102016c6ed09b19-b83d4a9f-298a-4096-ab33-87010a0316b5-000000@eu-west-1.amazonses.com designates 54.240.3.12 as permitted sender) smtp.mailfrom=0102016c6ed09b19-b83d4a9f-298a-4096-ab33-87010a0316b5-000000@eu-west-1.amazonses.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=pfyhunhjfjn5fhh5xy3uuuiye4jescmu; d=circles.life; t=1565227260;
+	h=Content-Type:From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version;
+	bh=5Np3bGYPhCTAiLu5HuTbqUq+TkQAG0jTi19wJifWPQ4=;
+	b=Po7e0E0ur/+xnofAHJHmV4KIYHV9S3E64YrdOZh0Wa0+3HVP7QQzVRmusr72rQ23
+	4QHVtCP9fBVoP4OIqgk+jhmycJKIvsE/3Sd6cr21Ib5PO9WwGKumXI08CW3bAza1k1g
+	9uMB7abnjHsNgLKQwNo5Uge36kwu5yJW4M01Vu/8=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn; d=amazonses.com; t=1565227260;
+	h=Content-Type:From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version:Feedback-ID;
+	bh=5Np3bGYPhCTAiLu5HuTbqUq+TkQAG0jTi19wJifWPQ4=;
+	b=SVuhMv5kugTwKIMfJrNFmoxkRix9wL6SLgdP/4QKRO3UQk8N0SSLliUOq9BfqHcO
+	JU89sy61Xvdtwj7BVE3E0QXkNPqQ4m2DNsz6bjTDOYKCCPiV9UtbWvArDFX0kwzcWb3
+	s1ez6A/9xVIAqpgDS+rWxjN16ANFsdwCW8MsQohQ=
+Content-Type: text/html; charset=utf-8
+From: "Circles.Life" <happiness@circles.life>
+To: dtsa.tan@gmail.com
+Subject: [Circles.Life Order] Here is a reminder of your delivery details!
+Message-ID: <0102016c6ed09b19-b83d4a9f-298a-4096-ab33-87010a0316b5-000000@eu-west-1.amazonses.com>
+X-Mailer: nodemailer (2.7.2; +https://nodemailer.com/; SES/1.5.1)
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 8 Aug 2019 01:21:00 +0000
+MIME-Version: 1.0
+X-SES-Outgoing: 2019.08.08-54.240.3.12
+Feedback-ID: 1.eu-west-1.9SQrKlXohIas/5qlRq6pL0dPu/FHN5BV4uSX1pPS3UA=:AmazonSES
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    =
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html =
+xmlns=3D"http://www.w3.org/1999/xhtml" xml:lang=3D"en" style=3D"margin:0; =
+padding:0"><head>  <meta http-equiv=3D"Content-Type" =
+content=3D"text/html;charset=3DUTF-8"/>  <meta name=3D"viewport" =
+content=3D"width=3Ddevice-width" />  <title>A Message from Circles.=
+Life</title></head><body style=3D"margin: 0; padding: 8px; background: =
+#efefef;">  <table style=3D"font-family: 'Open Sans', 'Lato', 'Calibri'; =
+width: 100%; background: #efefef; text-align: center;">	  <tr>      <td>   =
+     <table style=3D"text-align: center; margin: 0 auto;">    		<tr>    			=
+<td style=3D"padding: 0px;">    				<table style=3D"border: none; =
+border-collapse: collapse; max-width: 600px; margin: 0 auto; text-align: =
+left; overflow: hidden">    					<thead>                <tr colspan=3D"2" =
+height=3D"80px">    			        <td scope=3D"col" width=3D"25%">            =
+        <a href=3D"http://circles.life"><img alt=3D"" =
+src=3D"https://s3-ap-southeast-1.amazonaws.com/circles-marketing/marketing/=
+logo_small_dark100.png" align=3D"left" height=3D"30%" max-width=3D"100%" =
+/></a>                  </td>                  <td scope=3D"col" =
+width=3D"75%">                    <div class=3D"header-links" =
+style=3D"text-align: right; font-family: 'Open Sans', 'Lato', 'Calibri', =
+sans-serif; font-size:12px; font-weight: 600;">                      <a =
+style=3D"color:#0099ff; text-decoration:none;" href=3D"https://circlescare.=
+app.link/dashboard">APP</a><span style=3D"margin: 0 12px;">|</span><a =
+style=3D"color:#0099ff; text-decoration:none;" href=3D"https://circlescare.=
+app.link/bonus">BONUS</a><span style=3D"margin: 0 12px;">|</span><a =
+style=3D"color:#0099ff; text-decoration:none;" href=3D"https://circlescare.=
+app.link/pastusage">BILLS</a>                    </div>                  =
+</td>    			      </tr>    			    </thead>    					<tbody>    						<tr>   =
+ 							<td colspan=3D"2">    								<div id=3D"block1" class=3D"block"  =
+style=3D"background: #ffffff; color: #000000; font-family: 'Open Sans', =
+'Lato', 'Calibri', sans-serif; font-size: 16px; font-weight: 400; =
+line-height: 25px; padding: 20px; border-radius: 8px; margin-bottom: =
+12px;"><h2 style=3D"font-weight: 600;">Hi Tan Shao An Daniel,</h2><p>Here =
+is a reminder of your delivery details!</p><table cellpadding=3D"10" =
+style=3D"border: 0px; background-color: #d9efff;" width=3D"100%"><tbody><tr=
+ style=3D"text-align: center;"><td style=3D"font-family: 'Open Sans', Lato,=
+ Calibri, sans-serif; padding: 10px;" valign=3D"top" width=3D"100%"><img =
+alt=3D"" data-pin-nopin=3D"true" data-cke-saved-src=3D"https://s3-ap-southe=
+ast-1.amazonaws.com/kirk.circles.asia/assets/delivery_info/delivery.png" =
+src=3D"https://s3-ap-southeast-1.amazonaws.com/kirk.circles.=
+asia/assets/delivery_info/delivery.png" style=3D"width: 100px; height: =
+100px;"><br><span style=3D"font-size: 20px; font-weight: 600;">Day and time=
+ of delivery&nbsp;</span><br><br>August 08 Thursday between 2:00PM and =
+6:00PM</td></tr></tbody></table><table cellpadding=3D"10" style=3D"border: =
+0px; background-color: #d9efff;" width=3D"100%"><tbody><tr =
+style=3D"text-align: center;"><td style=3D"font-family: 'Open Sans', Lato, =
+Calibri, sans-serif; padding: 10px;" valign=3D"top" =
+width=3D"100%"><strong><strong><a data-cke-saved-href=3D"https://shop.=
+circles.life/pre_delivery_changes?token=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1N=
+iJ9.eyJpZCI6Nzk5MDQzfQ.ZmsTYbt3DJUZ3tVakHBpInoRW-bAkc4w6RtlghcPu6g" =
+href=3D"https://shop.circles.life/pre_delivery_changes?=
+token=3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nzk5MDQzfQ.=
+ZmsTYbt3DJUZ3tVakHBpInoRW-bAkc4w6RtlghcPu6g"><img alt=3D"rescheduleyourdeli=
+very.png" caption=3D"false" data-constrained=3D"true" =
+data-pin-nopin=3D"true" data-cke-saved-src=3D"https://s3-ap-southeast-1.=
+amazonaws.com/kirk.circles.asia/assets/delivery_info/Reschedule(2).png" =
+src=3D"https://s3-ap-southeast-1.amazonaws.com/kirk.circles.=
+asia/assets/delivery_info/Reschedule(2).png" style=3D"width: 300px; height:=
+ 44px;" title=3D"rescheduleyourdelivery.png"></a></strong></strong><br><sma=
+ll>You can reschedule your delivery 3 more time(s).</small></td></tr></tbod=
+y></table><center><br></center><center><table cellpadding=3D"10px" =
+style=3D"border: 0px; background-color: #e0f7e0;" width=3D"100%"><tbody><tr=
+ style=3D"text-align: center;"><td style=3D"font-family: 'Open Sans', Lato,=
+ Calibri, sans-serif; padding: 10px;" valign=3D"top" width=3D"25%"><p><span=
+ style=3D"font-size: 16px;"><span style=3D"color: #39b54a;"><strong>Importa=
+nt!</strong></span></span></p><p><span style=3D"font-family: &quot;Open =
+Sans&quot;, Lato, Calibri, sans-serif; font-size: 16px; text-align: center;=
+ background-color: rgb(224, 247, 224);">You or your authorized =
+person</span><span style=3D"font-size: 16px;"> needs to be present =
+at</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt;text-align: center;"><span id=3D"docs-internal-guid-732b4066-7f=
+ff-e3cb-b469-9a5e6385c38d"><span style=3D"font-size: 12pt; font-family: =
+&quot;Open Sans&quot;; background-color: transparent; font-weight: 700; =
+font-variant-numeric: normal; font-variant-east-asian: normal; =
+vertical-align: baseline; white-space: pre-wrap;">09-179, =
+926</span></span></p><p dir=3D"ltr" style=3D"line-height:1.=
+38;margin-top:0pt;margin-bottom:0pt;text-align: center;"><span =
+id=3D"docs-internal-guid-732b4066-7fff-e3cb-b469-9a5e6385c38d"><span =
+style=3D"font-size: 12pt; font-family: &quot;Open Sans&quot;; =
+background-color: transparent; font-weight: 700; font-variant-numeric: =
+normal; font-variant-east-asian: normal; vertical-align: baseline; =
+white-space: pre-wrap;">Yishun Central 1</span></span></p><p dir=3D"ltr" =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align: =
+center;"><span id=3D"docs-internal-guid-66ac45af-7fff-4bc7-5af5-0de504eb0fb=
+5"><span style=3D"font-size: 12pt; font-family: &quot;Open Sans&quot;; =
+background-color: transparent; font-weight: 700; font-variant-numeric: =
+normal; font-variant-east-asian: normal; vertical-align: baseline; =
+white-space: pre-wrap;">S760926 Singapore</span></span></p><div><br></div><=
+p><span style=3D"font-size: 16px;">during the indicated time slot to =
+receive the package.</span></p><p><span style=3D"font-size: =
+16px;"><strong><small>Read below for details.</small></strong></span></p></=
+td></tr></tbody></table><p><span style=3D"font-weight: 600;">Receiving your=
+ package&nbsp;yourself?</span><br>Keep your original NRIC&nbsp;on hand for =
+verification.</p><p style=3D"font-weight: 600; margin-bottom: 0;">Asking =
+someone else to receive it for you?</p><p style=3D"margin-top: 0;">Fill up =
+our <a color=3D'#0099ff' target=3D"_blank" href=3Dhttps://shop.circles.=
+life/my_order_list?redirectTo>online authorization form</a>. We'll then =
+send you a confirmation email with more details..</p></center><center><a =
+data-cke-saved-href=3D"https://shop.circles.life/my_order_list?redirectTo" =
+href=3D"https://shop.circles.life/my_order_list?redirectTo"><img alt=3D"" =
+data-cke-saved-src=3D"https://s3-ap-southeast-1.amazonaws.com/kirk.circles.=
+asia/assets/delivery_info/Track(2).png" src=3D"https://s3-ap-southeast-1.=
+amazonaws.com/kirk.circles.asia/assets/delivery_info/Track(2).png" =
+style=3D"opacity: 0.9; width: 200px; height: 44px;"></a></center><p>We =
+can't wait to get you started!</p><p><em>Your Customer Happiness =
+Experts</em></p><p><em><span style=3D"font-size: 13px;">If you requested to=
+ transfer your number to Circles.Life&nbsp;and would like to cancel it, you=
+ may do so up to 7.30am on the date of your scheduled porting. You can do =
+this by logging into your account <a data-cke-saved-href=3D"https://shop.=
+circles.life/login?redirectTo=3Dmy_order_list" href=3D"https://shop.circles=
+.life/login?redirectTo=3Dmy_order_list">here</a>.</span></em></p><center><p=
+ style=3D"color: #666666;"><span style=3D"font-size: 12px;">This email is =
+about your order number 000001565227201565</span></p></center>             =
+       </div>                  </td>                </tr>              =
+</tbody>              <tfoot>                <tr>                  <td =
+colspan=3D"2" style=3D"padding: 0;">                    <div =
+style=3D"background: #f7f7f7; border-radius: 8px;">                      <p=
+ style=3D"color: #666666; font-size: 12px; font-family: 'Open Sans', 'Lato'=
+, 'Calibri', sans-serif; margin: 0; padding: 20px; text-align: center; =
+margin-bottom: 12px;">                        <b> This email is about your =
+Circles.Life account under number 81619315. </b><br />                     =
+   If you have any questions, simply reply to this email (<a =
+href=3D"mailto://happiness@circles.life" style=3D"color: =
+#0099ff;">happiness@circles.life</a>). <br />                        You =
+may also drop us a message on our <a href=3D"http://circles.life" =
+style=3D"color: #0099ff;">website</a> or on <a href=3D"http://circles.=
+life/apps" style=3D"color: #0099ff;">the CirclesLife app</a>.              =
+         </p>                    </div>                  </td>             =
+   </tr>                <tr>                  <td colspan=3D"2" =
+style=3D"color: #666666; padding: 0px 30px 15px; text-align: center;" =
+height=3D"100px">                    <p style=3D"color: #666666; font-size:=
+ 12px;font-family: 'Open Sans', 'Lato', 'Calibri', sans-serif;">2019 =C2=A9=
+ Circles.Life / Circles Asia<br><br>                      <font =
+style=3D"font-style: italic; font-size: 12px;font-family: 'Open Sans', =
+'Lato', 'Calibri', sans-serif;">Terms and Conditions apply.</font>         =
+           </p>                  </td>                </tr>              =
+</tfoot>            </table>          </td>        </tr>      </table>     =
+ </td>    </tr>  </table></body></html>
+From - Tue Dec 17 19:29:05 2019
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+Delivered-To: dtsa.tan@gmail.com
+Received: by 2002:a05:6504:1089:0:0:0:0 with SMTP id l9csp10304790ltm;
+        Sat, 10 Aug 2019 02:03:58 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzm9iTUKX8qnBc0BOBCrZML8qpngvxoEiNY4ntkPqg+C5K3d3Fg7My9k+zuO+iFpYafey1I
+X-Received: by 2002:ac8:73d5:: with SMTP id v21mr3808884qtp.23.1565427838602;
+        Sat, 10 Aug 2019 02:03:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1565427838; cv=none;
+        d=google.com; s=arc-20160816;
+        b=jsPgoXgneznD0ytd67J64rgTj0BJCpciKbVTJ3CG4ps/snBLPx4zfthnO0DgBwa3MU
+         3LnunxLV1G7wG7O05UqRiZm4gaf4C4p3/t8ocBPHg7zYKKb3XUE1XdoNhdWi+k7nSmOG
+         TUq3xNnKKkBf4B9d4ro1Si52kgSd7M6HZ1bC0w+h4jDVTgoAqe4pr2IlvKjS1lJTQ7PK
+         SIUYbJEGbrOaBnp3AyLE3tXslJpBkKkQ+bLFgSAkUiK0IrvLS6Vjiy0rh4tMt0pmIQJK
+         giURQxt+PZFZboTd2acFNkJ0h/LKYYu6GEc7SzuyQpx9xh6wuiLYvmWNM9DzCTJGOV3v
+         1/nQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:mime-version:date:content-transfer-encoding:message-id
+         :subject:to:from:dkim-signature:dkim-signature;
+        bh=ucH4d+iy8QQicCr833OoxHSdqLgNnX1b4aCEkLT0Idk=;
+        b=y8uqQ2HxCfS/3RSQ7raXNCRJkEy0+rik6Mb5zbTttKxMGdxV9nZ4QVUVpaRb/8tUlN
+         oX5kYBPld1/HU8b54ctAb2keLL6h9jtdKmJOFts4na0sCVgGVtMDIxTBVCSDVRm/kcDL
+         2nAP9ON7TYlFPseGIWTxprMvMIvRdZ2ZzFQx10XPRGQT1MbjMNkPkLSdZ3O58PWQHak7
+         pHB2wtorwTm8yfHajkRXFte8wC/XjCZIcMAr06xQFblX8l14jB+R0Ll68CIiooohQY6O
+         4WU8QT+cfusiU8FQCP5sVBXrNmCHjXU8KmL1zqz7hB5+Nc1zpgHcfIdYyCgfe08p5L1D
+         sT7A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@circles.life header.s=yv6pb2gmkitev2qiorp737eraujwhxmc header.b=HcL8Bun3;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=crL1oCiT;
+       spf=pass (google.com: domain of 0100016c7ac52b12-331c917a-080e-4632-b801-63b03c1f61ec-000000@amazonses.com designates 54.240.9.39 as permitted sender) smtp.mailfrom=0100016c7ac52b12-331c917a-080e-4632-b801-63b03c1f61ec-000000@amazonses.com
+Return-Path: <0100016c7ac52b12-331c917a-080e-4632-b801-63b03c1f61ec-000000@amazonses.com>
+Received: from a9-39.smtp-out.amazonses.com (a9-39.smtp-out.amazonses.com. [54.240.9.39])
+        by mx.google.com with ESMTPS id i10si40644247qvj.189.2019.08.10.02.03.58
+        for <dtsa.tan@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sat, 10 Aug 2019 02:03:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 0100016c7ac52b12-331c917a-080e-4632-b801-63b03c1f61ec-000000@amazonses.com designates 54.240.9.39 as permitted sender) client-ip=54.240.9.39;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@circles.life header.s=yv6pb2gmkitev2qiorp737eraujwhxmc header.b=HcL8Bun3;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=crL1oCiT;
+       spf=pass (google.com: domain of 0100016c7ac52b12-331c917a-080e-4632-b801-63b03c1f61ec-000000@amazonses.com designates 54.240.9.39 as permitted sender) smtp.mailfrom=0100016c7ac52b12-331c917a-080e-4632-b801-63b03c1f61ec-000000@amazonses.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=yv6pb2gmkitev2qiorp737eraujwhxmc; d=circles.life; t=1565427837;
+	h=Content-Type:From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version;
+	bh=LOd34D95XQNyovk3xX6V3KL50BPIb/TLzHkpEsjLlJM=;
+	b=HcL8Bun3Zv9ZzGncNL+PrI+VxvuGvKpXLkDW0338Mgi1wJ5qJrkgTmsA0ew0xL0E
+	rmeX+pGMGehAt/5z2uf7qa20XyOdM8TTcDnssE1YEuXZalwa2ZOTmJ47+t90Z8Z8p9l
+	9RHNF8mBubNRXmqOU9rNRvhBcjKrMEmi+EfGgRw8=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1565427837;
+	h=Content-Type:From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version:Feedback-ID;
+	bh=LOd34D95XQNyovk3xX6V3KL50BPIb/TLzHkpEsjLlJM=;
+	b=crL1oCiT6b0+iIyc+iPCddIYst/TQBln/pEEZYjmM62JPKtVsXKFWgDq2tdsHXVN
+	/0OvuS6t++fnH8gNQzfUFiX7q/+Faz3PzPIkGzSWyJXokM4t3EM6CR9NJyL7JbKHVeb
+	khdAcHsG19Vc6VJLLtLfW4EtVrPOJoQgqzPhno7E=
+Content-Type: text/html; charset=utf-8
+From: "Circles.Life" <happiness@circles.life>
+To: dtsa.tan@gmail.com
+Subject: We got your porting request!
+Message-ID: <0100016c7ac52b12-331c917a-080e-4632-b801-63b03c1f61ec-000000@email.amazonses.com>
+X-Mailer: nodemailer (2.7.2; +https://nodemailer.com/; SES/1.5.1)
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 10 Aug 2019 09:03:57 +0000
+MIME-Version: 1.0
+X-SES-Outgoing: 2019.08.10-54.240.9.39
+Feedback-ID: 1.us-east-1.yAoGIBxWRCCcgH8q5Oc+4rA+U6yaZSNk7dDST00Ieug=:AmazonSES
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    =
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html =
+xmlns=3D"http://www.w3.org/1999/xhtml" xml:lang=3D"en" style=3D"margin:0; =
+padding:0"><head>  <meta http-equiv=3D"Content-Type" =
+content=3D"text/html;charset=3DUTF-8"/>  <meta name=3D"viewport" =
+content=3D"width=3Ddevice-width" />  <title>A Message from Circles.=
+Life</title></head><body style=3D"margin: 0; padding: 8px; background: =
+#efefef;">  <table style=3D"font-family: 'Open Sans', 'Lato', 'Calibri'; =
+width: 100%; background: #efefef; text-align: center;">	  <tr>      <td>   =
+     <table style=3D"text-align: center; margin: 0 auto;">    		<tr>    			=
+<td style=3D"padding: 0px;">    				<table style=3D"border: none; =
+border-collapse: collapse; max-width: 600px; margin: 0 auto; text-align: =
+left; overflow: hidden">    					<thead>                <tr colspan=3D"2" =
+height=3D"80px">    			        <td scope=3D"col" width=3D"25%">            =
+        <a href=3D"http://circles.life"><img alt=3D"" =
+src=3D"https://s3-ap-southeast-1.amazonaws.com/circles-marketing/marketing/=
+logo_small_dark100.png" align=3D"left" height=3D"30%" max-width=3D"100%" =
+/></a>                  </td>                  <td scope=3D"col" =
+width=3D"75%">                    <div class=3D"header-links" =
+style=3D"text-align: right; font-family: 'Open Sans', 'Lato', 'Calibri', =
+sans-serif; font-size:12px; font-weight: 600;">                      <a =
+style=3D"color:#0099ff; text-decoration:none;" href=3D"https://circlescare.=
+app.link/dashboard">APP</a><span style=3D"margin: 0 12px;">|</span><a =
+style=3D"color:#0099ff; text-decoration:none;" href=3D"https://circlescare.=
+app.link/bonus">BONUS</a><span style=3D"margin: 0 12px;">|</span><a =
+style=3D"color:#0099ff; text-decoration:none;" href=3D"https://circlescare.=
+app.link/pastusage">BILLS</a>                    </div>                  =
+</td>    			      </tr>    			    </thead>    					<tbody>    						<tr>   =
+ 							<td colspan=3D"2">    								<div id=3D"block1" class=3D"block"  =
+style=3D"background: #ffffff; color: #000000; font-family: 'Open Sans', =
+'Lato', 'Calibri', sans-serif; font-size: 16px; font-weight: 400; =
+line-height: 25px; padding: 20px; border-radius: 8px; margin-bottom: =
+12px;"><h2 style=3D"font-weight: 600;">Hi Tan Shao An Daniel,</h2><p>Thanks=
+ for requesting to transfer your number 81619315 from StarHub to Circles.=
+Life through the Circles.Life app.=E2=80=8B We will take care of the entire=
+ porting process&nbsp;for you!&nbsp;</p><ul><li>The porting process will be=
+ initiated <strong>on 13th August** in the late evening, close to =
+midnight</strong>.<br><br></li><li>In the meantime, you'll still be able to=
+ use your temporary number 88176361 on your Circles.Life SIM card.=
+<br><br></li><li>Please <strong>do not&nbsp;terminate</strong>&nbsp;your =
+contract with StarHub.&nbsp;We will&nbsp;do this for you&nbsp;once the =
+porting is successful (<a data-cke-saved-href=3D"https://circlesasiasupport=
+.zendesk.com/hc/en-us/articles/221624828" href=3D"https://circlesasiasuppor=
+t.zendesk.com/hc/en-us/articles/221624828">learn more</a>).=
+&nbsp;<em>=E2=80=8B</em></li></ul><center><p><a data-cke-saved-href=3D"http=
+s://circlesasiasupport.zendesk.com/hc/en-us/categories/115000018214" =
+href=3D"https://circlesasiasupport.zendesk.com/hc/en-us/categories/11500001=
+8214"><img alt=3D"" data-pin-nopin=3D"true" data-cke-saved-src=3D"https://s=
+3-ap-southeast-1.amazonaws.com/kirk.circles.asia/assets/port_in_request_reg=
+istered_with_docs/Read.png" src=3D"https://s3-ap-southeast-1.amazonaws.=
+com/kirk.circles.asia/assets/port_in_request_registered_with_docs/Read.png"=
+ style=3D"width: 300px; height: 44px;"></a></p></center><p>Thanks for your =
+patience - the porting process will complete very soon!</p><p><em>Your =
+Customer Happiness Experts</em></p><p><strong><em>**You will not be able to=
+ cancel your port-in after 3:00 PM, one business day before 13th August. =
+=E2=80=8BIf you need to cancel your porting, please send your request prior=
+.=E2=80=8B</em></strong></p>                    </div>                  =
+</td>                </tr>              </tbody>              <tfoot>      =
+          <tr>                  <td colspan=3D"2" style=3D"padding: 0;">   =
+                 <div style=3D"background: #f7f7f7; border-radius: 8px;">  =
+                    <p style=3D"color: #666666; font-size: 12px; =
+font-family: 'Open Sans', 'Lato', 'Calibri', sans-serif; margin: 0; =
+padding: 20px; text-align: center; margin-bottom: 12px;">                  =
+      <b> This email is about your Circles.Life account under number =
+81619315. </b><br />                        If you have any questions, =
+simply reply to this email (<a href=3D"mailto://happiness@circles.life" =
+style=3D"color: #0099ff;">happiness@circles.life</a>). <br />              =
+          You may also drop us a message on our <a href=3D"http://circles.=
+life" style=3D"color: #0099ff;">website</a> or on <a href=3D"http://circles=
+.life/apps" style=3D"color: #0099ff;">the CirclesLife app</a>.             =
+          </p>                    </div>                  </td>            =
+    </tr>                <tr>                  <td colspan=3D"2" =
+style=3D"color: #666666; padding: 0px 30px 15px; text-align: center;" =
+height=3D"100px">                    <p style=3D"color: #666666; font-size:=
+ 12px;font-family: 'Open Sans', 'Lato', 'Calibri', sans-serif;">2019 =C2=A9=
+ Circles.Life / Circles Asia<br><br>                      <font =
+style=3D"font-style: italic; font-size: 12px;font-family: 'Open Sans', =
+'Lato', 'Calibri', sans-serif;">Terms and Conditions apply.</font>         =
+           </p>                  </td>                </tr>              =
+</tfoot>            </table>          </td>        </tr>      </table>     =
+ </td>    </tr>  </table></body></html>

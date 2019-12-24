@@ -1,0 +1,127 @@
+// <!-- <mdb:mork:z v="1.4"/> -->
+< <(a=c)> // (f=iso-8859-1)
+  (B8=dateReceived)(B9=ProtoThreadFlags)(BA=folderName)(BB=X-GM-MSGID)
+  (BC=X-GM-THRID)(BD=X-GM-LABELS)(BE=ns:msg:db:row:scope:ops:all)
+  (BF=ns:msg:db:table:kind:ops)(C0=keywords)(C1=storeToken)
+  (80=ns:msg:db:row:scope:msgs:all)(81=subject)(82=sender)(83=message-id)
+  (84=references)(85=recipients)(86=date)(87=size)(88=flags)(89=priority)
+  (8A=label)(8B=statusOfset)(8C=numLines)(8D=ccList)(8E=bccList)
+  (8F=msgThreadId)(90=threadId)(91=threadFlags)(92=threadNewestMsgDate)
+  (93=children)(94=unreadChildren)(95=threadSubject)(96=msgCharSet)
+  (97=ns:msg:db:table:kind:msgs)(98=ns:msg:db:table:kind:thread)
+  (99=ns:msg:db:table:kind:allthreads)
+  (9A=ns:msg:db:row:scope:threads:all)(9B=threadParent)(9C=threadRoot)
+  (9D=msgOffset)(9E=offlineMsgSize)
+  (9F=ns:msg:db:row:scope:dbfolderinfo:all)
+  (A0=ns:msg:db:table:kind:dbfolderinfo)(A1=numMsgs)(A2=numNewMsgs)
+  (A3=folderSize)(A4=expungedBytes)(A5=folderDate)(A6=highWaterKey)
+  (A7=mailboxName)(A8=UIDValidity)(A9=totPendingMsgs)
+  (AA=unreadPendingMsgs)(AB=expiredMark)(AC=version)(AD=forceReparse)
+  (AE=fixedBadRefThreading)(AF=onlineName)(B0=useServerRetention)
+  (B1=highestModSeq)(B2=imapFlags)(B3=charSetOverride)(B4=charSet)
+  (B5=highestRecordedUID)(B6=ns:msg:db:row:scope:pending:all)
+  (B7=ns:msg:db:table:kind:pending)>
+<(80=1)(91=fffffffe)(8C=5d65b6ef)(81=0)>
+[1:m(^9C=1)(^90^91)(^92^8C)(^91=0)(^93=1)]
+<(98=2)(96=5d7050c5)>[2:m(^9C=2)(^90=2)(^92^96)(^91=0)(^93=1)]
+<(9F=3)(9D=5d842141)>[3:m(^9C=3)(^90=3)(^92^9D)(^91=0)(^93=1)]
+<(A9=4)(AF=5d8c54b2)>[4:m(^9C=4)(^90=4)(^92^AF)(^91=0)(^93=2)]
+<(B6=6)(B4=5d8817af)>[5:m(^9C=6)(^90=6)(^92^B4)(^91=0)(^93=1)]
+<(BE=7)(BC=5d918811)>[6:m(^9C=7)(^90=7)(^92^BC)(^91=0)(^93=1)]
+<(C6=8)(CB=5d915de3)>[7:m(^9C=8)(^90=8)(^92^CB)(^91=0)(^93=2)]
+
+<(E5=10000081)(88=Daniel Tan <dtsa.tan@gmail.com>)(89
+    =Gin Kai Chan <ginkai@silvermediagroup.com>)(8A
+    =Article for Week of 28th Aug)(8B
+    =5BA05A59-DB4E-4079-9748-4EDEC83F87A1@getmailspring.com)(8E=21214)
+  (90=ffffffff)(92=1643063083271755698)(93="Church Blog" "\\\\Sent")
+  (87=)(E8=2b75f)(E9=178015)(EA=21267)(EB=6e4)(94=New Article)(95
+    =43C47219-AD15-4F25-958A-24976D6D5EB0@getmailspring.com)(97=14ebc)
+  (99=1643791568820609999)(9A="\\\\Sent")(E3=16850)(E4=92240)(E6=14f0f)
+  (E7=463)(D4=81)(9B=Article)(9C
+    =8604D948-1EBC-49AD-AA60-969A585D5360@getmailspring.com)(9E=1890)
+  (A0=1645153194113771828)(D1=b465)(D3=46181)(D5=18e3)(D6=67)(D0=91)
+  (A1=DBSV Client Service <clientservices@dbsvickers.com>)(A3
+    =Application for DBS Vickers Securities Trading Account (Ref: S-240919\))
+  (A4
+    =MWHPR20MB1502E7FE16176EE3DAB04EEDAF870@MWHPR20MB1502.namprd20.prod.outloo\
+k.com)(A5
+    =<OF1A66365F.38DCC50A-ON48258480.0032572A-48258480.0032573B@LocalDomain>)
+  (A6=5d8b410c)(A7=3e35d)(AA=1645642772622436020)(AB=1645637893545028999)
+  (F0=7797b)(F1=489851)(F2=3e3b0)(F3=d92)(AC
+    =[External] Re: Application for DBS Vickers Securities Trading Account (Re\
+f: S-240919\))(AD
+    =CY4PR20MB14952ABB54E5A2AD4C5B99C4AF860@CY4PR20MB1495.namprd20.prod.outloo\
+k.com)(AE
+    =<OF1A66365F.38DCC50A-ON48258480.0032572A-48258480.0032573B@LocalDomain> <\
+MWHPR20MB1502E7FE16176EE3DAB04EEDAF870@MWHPR20MB1502.namprd20.prod.outlook.com\
+>,<OFB664107B.2B50560E-ON48258480.003B4E6A-48258480.003B9109@dbsvickers.com>)
+  (B0=2af62)(B2=1645716765687403005)(EC=4c9c6)(ED=313798)(EE=2afb5)
+  (EF=a3d)(B3=2A6B738F-FD89-4E57-8427-E9C51596E4A0@getmailspring.com)
+  (B5=1ba9)(B7=1645425501078799832)(D7=cd48)(D8=52552)(D9=1bfc)(DA=52)
+  (B8=SAFRA Energyone <energyone@safra.sg>)(B9
+    =Renewal of EnergyOne Membership. A100838163: TAN SHAO AN DANIEL)
+  (BA
+    =CY4PR20MB149509EBAE6287CE9A0FE229AF820@CY4PR20MB1495.namprd20.prod.outloo\
+k.com)(BB
+    =<SG2PR03MB30670C2E98A40363D56E9B23F1820@SG2PR03MB3067.apcprd03.prod.outlo\
+ok.com>,<SG2PR03MB3020FF97453948D2FDB81DAEC1820@SG2PR03MB3020.apcprd03.prod.ou\
+tlook.com>)(BD=b412)(BF=1646074152902216589)(C0=1646071350707852797)
+  (D2=3dd)(C1="=?utf-8?Q?mship=5Fsvc=40safra.sg?=" <mship_svc@safra.sg>)
+  (C2=Renewal of EnergyOne Membership)(C3
+    =50FDDC6D-F165-42FA-9E1F-F52DFD7CE011@getmailspring.com)(C4=5d8ea282)
+  (C5=57d)(C7=1645875084287079043)(DB=e944)(DC=59716)(DD=5d0)(DE=1f)
+  (C8=SAFRA Mship <mship_svc@safra.sg>)(C9
+    =CY4PR20MB1495DC535CF992EA992D2A0FAF820@CY4PR20MB1495.namprd20.prod.outloo\
+k.com)(CA
+    =<50FDDC6D-F165-42FA-9E1F-F52DFD7CE011@getmailspring.com>,<SG2PR03MB30673F\
+5BC8EF815A1D33D340F1820@SG2PR03MB3067.apcprd03.prod.outlook.com>)(CC=78e9)
+  (CE=1646062830751968669)(DF=ef14)(E0=61204)(E1=793c)(E2=28d)>
+{1:^80 {(k^97:c)(s=9)} 
+  [1(^88^E5)(^8B=0)(^82^88)(^85^89)(^81^8A)(^83^8B)(^B8^8C)(^86^8C)
+    (^89=1)(^87^8E)(^9B^90)(^8F^91)(^B9=0)(^BB^92)(^BC^92)(^BD^93)(^C0=)
+    (^8A=0)(^9D^E8)(^C1^E9)(^9E^EA)(^8C^EB)]
+  [2(^88^E5)(^8B=0)(^82^88)(^85^89)(^81^94)(^83^95)(^B8^96)(^86^96)
+    (^89=1)(^87^97)(^9B^90)(^8F=2)(^B9=0)(^BB^99)(^BC^99)(^BD^9A)(^C0=)
+    (^8A=0)(^9D^E3)(^C1^E4)(^9E^E6)(^8C^E7)]
+  [3(^88=81)(^8B=0)(^82^88)(^85^89)(^81^9B)(^83^9C)(^B8^9D)(^86^9D)
+    (^89=1)(^87^9E)(^9B^90)(^8F=3)(^B9=0)(^BB^A0)(^BC^A0)(^BD^9A)(^C0=)
+    (^8A=0)(^9D^D1)(^C1^D3)(^9E^D5)(^8C=67)]
+  [4(^88=91)(^8B=0)(^82^88)(^85^A1)(^81^A3)(^83^A4)(^84^A5)(^B8^A6)
+    (^86^A6)(^89=1)(^87^A7)(^9B^90)(^8F=4)(^B9=0)(^BB^AA)(^BC^AB)(^BD^9A)
+    (^C0=)(^8A=0)(^9D^F0)(^C1^F1)(^9E^F2)(^8C^F3)]
+  [5(^88=91)(^8B=0)(^82^88)(^85^A1)(^81^AC)(^83^AD)(^84^AE)(^B8^AF)
+    (^86^AF)(^89=1)(^87^B0)(^9B=4)(^8F=4)(^B9=0)(^BB^B2)(^BC^AB)(^BD^9A)
+    (^C0=)(^8A=0)(^9D^EC)(^C1^ED)(^9E^EE)(^8C^EF)]
+  [6(^88=81)(^8B=0)(^82^88)(^85^89)(^81^9B)(^83^B3)(^B8^B4)(^86^B4)
+    (^89=1)(^87^B5)(^9B^90)(^8F=6)(^B9=0)(^BB^B7)(^BC^B7)(^BD^9A)(^C0=)
+    (^8A=0)(^9D^D7)(^C1^D8)(^9E^D9)(^8C=52)]
+  [7(^88=91)(^8B=0)(^82^88)(^85^B8)(^81^B9)(^83^BA)(^84^BB)(^B8^BC)
+    (^86^BC)(^89=1)(^87^BD)(^9B^90)(^8F=7)(^B9=0)(^BB^BF)(^BC^C0)(^BD^9A)
+    (^C0=)(^8A=0)(^9D=0)(^C1=0)(^9E^D1)(^8C^D2)]
+  [8(^88=81)(^8B=0)(^82^88)(^85^C1)(^81^C2)(^83^C3)(^B8^C4)(^86^C4)
+    (^89=1)(^87^C5)(^9B^90)(^8F=8)(^B9=0)(^BB^C7)(^BC^C7)(^BD^9A)(^C0=)
+    (^8A=0)(^9D^DB)(^C1^DC)(^9E^DD)(^8C=1f)]
+  [9(^88=91)(^8B=0)(^82^88)(^85^C8)(^8D^B8)(^81^C2)(^83^C9)(^84^CA)
+    (^B8^CB)(^86^CB)(^89=1)(^87^CC)(^9B=8)(^8F=8)(^B9=0)(^BB^CE)(^BC^C7)
+    (^BD^9A)(^C0=)(^8A=0)(^9D^DF)(^C1^E0)(^9E^E1)(^8C^E2)]}
+{FFFFFFFE:^80 {(k^98:c)(s=9)1:m } 1 }
+{2:^80 {(k^98:c)(s=9)2:m } 2 }
+{3:^80 {(k^98:c)(s=9)3:m } 3 }
+{4:^80 {(k^98:c)(s=9)4:m } 4 5 }
+{6:^80 {(k^98:c)(s=9)5:m } 6 }
+{7:^80 {(k^98:c)(s=9)6:m } 7 }
+{8:^80 {(k^98:c)(s=9)7:m } 8 9 }
+{FFFFFFFD:^9A {(k^99:c)(s=9)} [FFFFFFFE(^95^8A)]
+  [2(^95^94)]
+  [3(^95^9B)]
+  [4(^95^A3)]
+  [6(^95^9B)]
+  [7(^95^B9)]
+  [8(^95^C2)]}
+
+<(82=[Gmail]/Trash/Newton/Doped)(83=8082014)(CF=660462)(85=ee00)(86=3a)
+  (CD=9)>
+{1:^9F {(k^A0:c)(s=9u)} 
+  [1(^AC=1)(^AD=0)(^AE=1)(^AF^82)(^88^83)(^A7^82)(^B0=1)(^B1^CF)(^B2^85)
+    (^A8=3a)(^B5=9)(^A1=9)(^A6=9)]}

@@ -1,0 +1,1512 @@
+From - Tue Dec 17 19:29:58 2019
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+Delivered-To: dtsa.tan+game@gmail.com
+Received: by 2002:a92:1d92:0:0:0:0:0 with SMTP id g18csp881545ile;
+        Thu, 3 Oct 2019 13:43:04 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx98cwCcWkDdMlFppkS6OSsFirQTxiFzlqXlzNRc991cbr7k8urB65Zk5tAb3vCl+AfF9Vq
+X-Received: by 2002:a02:9009:: with SMTP id w9mr11229351jaf.112.1570135384091;
+        Thu, 03 Oct 2019 13:43:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1570135384; cv=none;
+        d=google.com; s=arc-20160816;
+        b=itDuWIK5/fSaZS0MCooCC5PvJzkMI391XMaBTLBNZxzHZy1SFVKqHOQnVylu7eK58e
+         yY6zS6ioZV5mQY5fjjnr3/u3riM+iX0s3lk+05kbTN39zOm8GcWLSqUadpv3h0EAtiH5
+         hIgoeih/DCp4fusThzD0C+Kcs8l1dNmg5qEAk7yrMNAyzjDf9nKI2PRwEQpX+TGkoLG/
+         jFEt0rG7CiYYO/GYR2WiDjhblC3iGl/4P+zea48uifzrHv4WGOvO6fS0rGHiKSraeyHo
+         lpAy16ypeWAE2uuze2fv/1x86wnaer61DUzdz4+z0I6Pvk9VdRbRYuidOrCRUCUP/2CN
+         EhPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:message-id:subject:mime-version:errors-to:reply-to:from:to
+         :dkim-signature;
+        bh=gYAMX+CkrhV9B47YfWbk8+nfNbrSMFztbkZliXR9RTw=;
+        b=w0TEClkULvTVCNgj38qJDNPzQq6GHYI+7K57lK/u0nCW5vjqBhdgxJQKe8urSKvsoI
+         +Fue50gz0cebhpeCmD1FY2Bnd0sTnkrESI2MUdu5f2vKptlWYpnU8wRz/ad+I93Bm4io
+         9ElbLmfQl3IZamwB9lxjp8HsDIKb7K+DdQRQuXJSROmOHWpB2zDH2ZUCFPuvAN1LVzIf
+         z9bL5aC+LZX0MQTuRziI2zUwf/2X7sHa+QJXD+XixM/V2peBXfbCzT1eZcvH3/jpZOsx
+         v2p7PgSZ61HBoLV+pjn1QuvOQXgiXXjR+A2/gFhBIDH8B06Y+cN0yXM1odz5nQ80phYx
+         BTiA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=oYEbYzG+;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.57 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+Return-Path: <noreply@steampowered.com>
+Received: from smtp-57.steampowered.com ([208.64.202.57])
+        by mx.google.com with ESMTPS id c14si4472064ilm.111.2019.10.03.13.43.03
+        for <dtsa.tan+game@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 03 Oct 2019 13:43:04 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@steampowered.com designates 208.64.202.57 as permitted sender) client-ip=208.64.202.57;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=oYEbYzG+;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.57 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=steampowered.com; s=smtp; h=Date:Message-Id:Content-Type:Subject:
+	MIME-Version:Reply-To:From:To:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=gYAMX+CkrhV9B47YfWbk8+nfNbrSMFztbkZliXR9RTw=; b=oYEbYzG+TFHcY3Lu+ygyNVTRYf
+	n1HVNkhqy0VXh2oZlE46uFbvLakNhWwyp5xfft7adEFzy/SfQsU26zyAQzVl36AMhxY+rjWislSKg
+	xwcLv8BnfGe9K2zD6R4+RZRmsObmgGkpk89ESEcuzzUjs7y/VZDxrB+iKw3GWwX+gMYI=;
+Received: from [208.64.202.21] (helo=valvesoftware.com)
+	by smtp-03-tuk1.steampowered.com with smtp (Exim 4.90_1)
+	(envelope-from <noreply@steampowered.com>)
+	id 1iG7wE-0003UT-W5
+	for dtsa.tan+game@gmail.com; Thu, 03 Oct 2019 13:43:03 -0700
+To: dtsa.tan+game@gmail.com
+From: "Steam" <noreply@steampowered.com>
+Reply-To: <noreply@steampowered.com>
+Errors-To: <noreply@steampowered.com>
+X-Steam-Message-Type: CEmailWishlistItemOnSale
+MIME-Version: 1.0
+Subject: An item on your Steam wishlist is on sale!
+Content-Type: multipart/alternative;
+ boundary="np5d965d567ef4c"
+Message-Id: <E1iG7wE-0003UT-W5@smtp-03-tuk1.steampowered.com>
+Date: Thu, 03 Oct 2019 13:43:03 -0700
+
+This is a multi-part message in MIME format.
+--np5d965d567ef4c
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hello Xylvr!
+The following items on your wishlist are on sale:
+
+
+Sid Meier's Civilization® VI: Gathering Storm - 25% off!
+<https://store.steampowered.com/app/947510/Sid_Meiers_Civilization_VI_Gathering_Storm/>
+
+
+
+You're receiving this mail because the item(s) above are on your Steam Wishlist.
+ You can manage your Steam Wishlist at the following link:<https://store.steampowered.com/wishlist/#discount_any=1>
+If you prefer not to receive wishlist notification messages in the future, you
+can edit your email preferences by clicking the following link:
+https://store.steampowered.com/account/emailoptout?token=e82daedfb095a62feccb0b3c2a3a716eea188fee7f385f69c8f225d12db802af15e6294ac69dd08e4e7f126d8fd144d9
+
+
+© Valve Corporation.  PO Box 1688 Bellevue, WA 98009.
+All rights reserved. All trademarks are property of their respective owners in
+the US and other countries.
+
+
+
+
+--np5d965d567ef4c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>An item on your Steam wishlist is on sale!</title>
+		<style media="all" type="text/css">
+		td, p, h1, h3, a {
+			font-family: Helvetica, Arial, sans-serif;
+		}
+		a.bodylink {
+			color: #8f98a0;
+		}
+		a.bodylink:hover {
+			color: #ffffff;
+		}
+		.ds_flag {
+			font-size: 10px;
+			color: #111111;
+			height: 18px;
+			line-height: 19px;
+			padding: 4px 0 4px 18px;
+			white-space: nowrap;
+		}
+		.ds_flag.ds_wishlist_flag {
+			background: url('https://steamstore-a.akamaihd.net/public/images/v6/ds_wishlist.png') no-repeat 4px 4px #d3deea;
+			box-shadow: 0 0 6px 0 #000000;
+		}
+	</style>
+</head>
+<body bgcolor="" LINK="#e1e1e1" ALINK="#e1e1e1" VLINK="#e1e1e1" TEXT="#d7d7d7" style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #d7d7d7;">
+	<center style="color: #000000; font-size: 11px; margin-bottom: 4px;">Trouble viewing this message?  <a href="https://store.steampowered.com/email/WishlistItemOnSale?sparams=eJwtkEFuxCAMRe-SbatRIIFAV7ObA3TTXeRgMx01AQROq6jq3QujLHnvC3_7t1thD-6TMh-Jureu7167lCPujgNsjbwzwVZp2VOKmWmDx1rx-byWplP8oUx4cbElz1ChwDu7mhVq6sWgBiOr5fi0gJiplGqRC1wYwsu9Drzemzw_SpRLDHAW-TjW71xpTBx35vhFoVIyEoHQL71VoKUn55Z-GZyEASahiUAY44kmPxjltXXGS6lQSFxML8ELRVraEZy2iL2hsSaF1Gg8inFEWwdCSg9sTe04KdEu5OIeOB_tOrfnSgzr_KhrlzmGucDa-oru7x96J3I3">Click here</a>.</center>
+
+<table style="width: 800px; background-color: #1f2126;" align="center" cellspacing="0" cellpadding="0">
+    <tr>
+        <td bgcolor="#1f2126;">
+
+            <table style="width: 800px; background-color: #393836;" align="center" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style=" height: 65px; background-color: #171a21; border-bottom: 1px solid #4d4b48;">
+                        <img src="https://steamstore-a.akamaihd.net/public/images/email/email_header_logo.png?v=1" width="538" height="65" alt="Steam">
+                    </td>
+                </tr>
+            </table>
+
+
+			                <table id="check_out_more_ctn" style="width: 800px; background-color: #393836;" align="center" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td bgcolor="#1f2126">
+                            <table width="470" border="0" align="center" cellpadding="0" cellspacing="0" style="padding-left: 5px; padding-right: 5px;">
+                                <tr bgcolor="#1f2126">
+                                    <td style="padding-top: 32px;">
+                                        <span style="font-size: 24px; color: #06beff; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">
+                                            Hello Xylvr!                                        </span><br>
+                                        <span style="font-size: 17px; color: #c6d4df; font-family: Arial, Helvetica, sans-serif;">
+                                            The following items on your wishlist are on sale:                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+						<table style="width: 800px; background-color: #1f2126" align="center" cellspacing="0" cellpadding="0">
+    <tr>
+        <td bgcolor="#1f2126">
+            <table width="470" border="0" align="center" cellpadding="0" cellspacing="0" style="padding-left: 5px; padding-right: 5px;">
+                <tr>
+                    <td valign="top" bgcolor="#1f2126" style="padding-top: 10px;">
+                        <span style="font-size: 10px; color: #CCC8BF; font-family: Arial, Helvetica, sans-serif; text-transform: uppercase">
+                            <a href="https://store.steampowered.com/app/947510/Sid_Meiers_Civilization_VI_Gathering_Storm/?snr=1_620_4_1400_45"><img src="https://steamcdn-a.akamaihd.net/steam/apps/947510/header.jpg?t=1550120629" alt="Sid Meier's Civilization® VI: Gathering Storm" border="0" style="margin: 0; padding: 0;"></a>
+                        </span>
+                    </td>
+                </tr>
+
+
+
+                <tr valign="top" bgcolor="#1f2126" style="margin: 0; padding: 0;">
+                    <td>
+                        <table style="background-color: #2e3138; width: 100%;">
+                            <tr>
+                                <td style="padding-top: 13px; padding-left: 17px; padding-bottom: 2px;">
+                                    <p style="font-size: 20px; color: #e1e1e1; font-family: Arial, Helvetica, sans-serif; margin:0; padding:0;">
+                                        <a href="https://store.steampowered.com/app/947510/Sid_Meiers_Civilization_VI_Gathering_Storm/?snr=1_620_4_1400_46" style="text-decoration:none; color: #ffffff;">
+                                            Sid Meier's Civilization® VI: Gathering Storm                                        </a>
+                                    </p>
+                                                                                <p style="color: #7CB8E4; padding: 0; margin: 0; font-size: 12px;">
+                                                WEEKEND DEAL! Offer ends 8 Oct 1:00am +08                                            </p>
+                                                                                                                                                </td>
+                            </tr>
+                        </table>
+                        <table style="width: 100%" cellpadding="0" cellspacing="0">
+                            <tr height="14" style="background-color: #2e3138; line-height: 14px;">
+                                <td width="1"></td>
+                                <td height="14" style="height: 14px; overflow: hidden;">
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                </td>
+                                                                    <td width="172" height="40" rowspan="3" >
+                                        <table width="100%" style="border-radius: 3px; background-color: #3c3d3e;" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td style="padding: 3px;">
+                                                    <table width="100%" height="34" cellpadding="0" cellspacing="0">
+                                                        <tr height="34" style="background-color: #000000;">
+                                                            <td height="34" width="" style="background-color: #4c6b22; font-size: 25px; line-height: 34px; color: #FFFFFF; text-align: center; white-space: nowrap; overflow: hidden;">
+                                                                -25%
+                                                            </td>
+                                                            <td height="34" width="" style="padding-right: 12px; text-align: right; white-space: nowrap; overflow: hidden;">
+                                                                <span style="color: #626366; font-size: 11px; text-decoration:line-through;">S$49.90</span><br>
+                                                                <span style="color: #D6D7D8; font-size: 14px;">S$37.42</span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                                                <td width="12"></td>
+                                <td width="1"></td>
+                            </tr>
+                            <tr height="1">
+                                <td width="1"></td>
+                                <td></td>
+                                <td width="12"></td>
+                                <td width="1"></td>
+                            </tr>
+                            <tr height="25" style="background-color: #1f2126;">
+                                <td width="1"></td>
+                                <td></td>
+                                <td width="12"></td>
+                                <td width="1"></td>
+                            </tr>
+
+                        </table>
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+			                <table id="check_out_more_ctn" style="width: 800px; background-color: #393836;" align="center" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td bgcolor="#1f2126">
+                            <table width="470" border="0" align="center" cellpadding="0" cellspacing="0" style="padding-left: 5px; padding-right: 5px;">
+                                <tr>
+                                    <td style="padding-top: 40px; padding-bottom: 32px">
+                                        <p style="font-size: 12px; color: #61696d; font-family: Arial, Helvetica, sans-serif; padding:0;">
+                                            Specific pricing and discounts may be subject to change. Please check the Steam store page for details.<br>
+                                                                                            You're receiving this mail because the item(s) above are on your <a class="bodylink" href="https://store.steampowered.com/wishlist">Steam Wishlist</a>.<br>
+                                                                                        If you prefer not to receive wishlist notification mails in the future, you can <a class="bodylink" href="https://store.steampowered.com/account/emailoptout?token=e82daedfb095a62feccb0b3c2a3a716eea188fee7f385f69c8f225d12db802af15e6294ac69dd08e4e7f126d8fd144d9&snr=1_620_4_1400">modify your email preferences or unsubscribe</a>.<br>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+
+    <table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
+	<tr style="background-color: #000000;">
+		<td style="padding: 12px 24px;">
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="92">
+						<img src="https://steamstore-a.akamaihd.net/public/images/logo_valve_footer.jpg" width="92" height="26" alt="Valve&reg;">
+					</td>
+					<td style=" font-size: 11px; color: #595959; padding-left: 12px;">
+						© Valve Corporation.  PO Box 1688 Bellevue, WA 98009.<br>
+						All rights reserved. All trademarks are property of their respective owners in the US and other countries.					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+        </td>
+    </tr>
+</table>
+
+	<center style="color: #000000; font-size: 11px; margin-bottom: 4px;">Trouble viewing this message?  <a href="https://store.steampowered.com/email/WishlistItemOnSale?sparams=eJwtkEFuxCAMRe-SbatRIIFAV7ObA3TTXeRgMx01AQROq6jq3QujLHnvC3_7t1thD-6TMh-Jureu7167lCPujgNsjbwzwVZp2VOKmWmDx1rx-byWplP8oUx4cbElz1ChwDu7mhVq6sWgBiOr5fi0gJiplGqRC1wYwsu9Drzemzw_SpRLDHAW-TjW71xpTBx35vhFoVIyEoHQL71VoKUn55Z-GZyEASahiUAY44kmPxjltXXGS6lQSFxML8ELRVraEZy2iL2hsSaF1Gg8inFEWwdCSg9sTe04KdEu5OIeOB_tOrfnSgzr_KhrlzmGucDa-oru7x96J3I3">Click here</a>.</center>
+
+</body>
+</html>
+
+
+--np5d965d567ef4c--
+From - Tue Dec 17 19:29:58 2019
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+Delivered-To: dtsa.tan+game@gmail.com
+Received: by 2002:a92:1d92:0:0:0:0:0 with SMTP id g18csp6041337ile;
+        Tue, 8 Oct 2019 08:00:06 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx+ZxJ1qQgwMhm5tSHyZXSsrblkvZ68PHFEHR0tsi4H8m28L/8XmASc1MDOBiBg2wzQsQS5
+X-Received: by 2002:a65:5a84:: with SMTP id c4mr36766548pgt.261.1570546806321;
+        Tue, 08 Oct 2019 08:00:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1570546806; cv=none;
+        d=google.com; s=arc-20160816;
+        b=M1dKVoTMtEuoFufWJJmRC2/BTmVVyaCnq3gPhP+liIrUCeE84Msh7vDJs/4qUrH2tr
+         oE+QdqEE8Kb+9tpv0S0H7gdvkUc9XnhJmKJM2EMVnvCCJOLAVQQ0UV6X/f7T5Zq3F4ve
+         yXpYo3goYyd3JIu0BkbsrOmnfbQS+uD/2VEycFDrP2FoqjBcfn+3ctn/sVSSksm0X4fF
+         mHRNQJ9RXuBSowZm1OMycQ+4DaMzRC9JgSn48mJvOa+J7twOsyjPhLKEv/axhbXNWR2/
+         ewEyXqbRXH5qs1pWT5qNqg/pHOgv1h3WSfj5Efm5bUmUG+Af8NzsCgI+5fDJcGa2xPHP
+         B5IA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:message-id:subject:mime-version:errors-to:reply-to:from:to
+         :dkim-signature;
+        bh=gWxctmtwi/O/6UoDeyiZpaIMehba2sxqo0QVAWAfCzo=;
+        b=H4uge0yxoAQ79/e1e/OKIBArHXvWmo59eV+Z3z2e1uDiFy/W6EIRssMgfoQClZCEQc
+         pRG++3pijkXXOcIuEli4FD9Q+H7f3FymfJZgO/soCdWbAtR+ykhQcIEyYaPVpNtb4ddx
+         Bcqo3fYvl0dmS4G6A7zATau0mr5VBrhguxOlvUwATHirNCUXf4JxTVlXO/yAwIR/wnU3
+         jC5k22mJNlEn1F8VuWfINH5igKynG8G5eZQ4mVZQWYJJFZl1Xgj1czDKgZbNG+n1fFRW
+         cqPTHJmq0jPmPSd/DLS/CzD/HHyLPqQcR1Avc2OUMRv8Y5+xYRW0VkfackIlg5eK47ox
+         Ucaw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=phLzzd4O;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.37 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+Return-Path: <noreply@steampowered.com>
+Received: from smtp-01-tuk1.steampowered.com (smtp-01-tuk1.steampowered.com. [208.64.202.37])
+        by mx.google.com with ESMTPS id i5si10573040pfd.145.2019.10.08.08.00.06
+        for <dtsa.tan+game@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 08 Oct 2019 08:00:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@steampowered.com designates 208.64.202.37 as permitted sender) client-ip=208.64.202.37;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=phLzzd4O;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.37 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=steampowered.com; s=smtp; h=Date:Message-Id:Content-Type:Subject:
+	MIME-Version:Reply-To:From:To:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=gWxctmtwi/O/6UoDeyiZpaIMehba2sxqo0QVAWAfCzo=; b=phLzzd4O0svpAY1NDfyuiM3wca
+	cC++oNvabyaM3zwyluugaOphY0LPwecIYl65ILxHW9tHNE+/OFKiE/PgdoKv2eTbwe2VIbnRcxqR/
+	RFLJ0+gGJkDalFk8W3EJUIPEziLOjihZANgIZCIeYNdPtt7hZZcGsZA3Y9Ks/tRRBIw0=;
+Received: from [208.64.202.21] (helo=valvesoftware.com)
+	by smtp-01-tuk1.steampowered.com with smtp (Exim 4.90_1)
+	(envelope-from <noreply@steampowered.com>)
+	id 1iHqy5-00067p-Uu
+	for dtsa.tan+game@gmail.com; Tue, 08 Oct 2019 08:00:05 -0700
+To: dtsa.tan+game@gmail.com
+From: "Steam Support" <noreply@steampowered.com>
+Reply-To: <noreply@steampowered.com>
+Errors-To: <noreply@steampowered.com>
+X-Steam-Message-Type: CPurchaseReceipt
+MIME-Version: 1.0
+Subject: Thank you for your Steam purchase!
+Content-Type: multipart/alternative;
+ boundary="np5d9ca475df20f"
+Message-Id: <E1iHqy5-00067p-Uu@smtp-01-tuk1.steampowered.com>
+Date: Tue, 08 Oct 2019 08:00:05 -0700
+
+This is a multi-part message in MIME format.
+--np5d9ca475df20f
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hello kageroudeyz
+
+Thank you for your recent transaction on Steam.  To view the details, please
+visit
+https://store.steampowered.com/email/PurchaseReceipt?sparams=eJx9k9ty2yAQht-F60xHBx-UXvWuD5BLT4fZoo3NVAICS1K1k3cPCLAi2_Gl_m-PP6v_bACvxAktTQbZd1axB2as7r0gBWNUnghhDKrzxmhLOIIcgpw_f7iIjX5Di_03oWNkDnKoyJMIsfV2X203u67aBgpCaK9K9T9wRKt9j9O_wMiCcrKPKW3XVo9tVXV1s9nVTbfrCgdBUiveA-FSe99tC8-b1OEbwyqvskfLDUxjmIePSCcdG2wCls6i8NZKdcw8OxBFVGKaBwnfbzAMSBzGOPniUip9Vtv9polDaIKBy2ACF9rdBgR_c5kkupM0JoxRMm6QyxQ5Rv_5M-JKXrc8gQuri-hytuQViM8PYKecN0iFZdy0SL1Sk58HVur8-gzjYx1YW3VN26xJGuSQJlmReZND6H2pcju_6RUqHtxBXxT9bNLd3K9a9-iElSZeXKRr-EJTFOvrRZIta_23HIbYDY4WcT7G4uylE3JE7pWkG-zZ4otPp3nFzsd8Psk7IcuJ56Ay3nIcTz_ZIjtK_xt7_wDOqGuR.
+
+
+© Valve Corporation.  PO Box 1688 Bellevue, WA 98009.
+All rights reserved. All trademarks are property of their respective owners in
+the US and other countries.
+View this message on the web:
+<https://store.steampowered.com/email/PurchaseReceipt?sparams=eJx9k9ty2yAQht-F60xHBx-UXvWuD5BLT4fZoo3NVAICS1K1k3cPCLAi2_Gl_m-PP6v_bACvxAktTQbZd1axB2as7r0gBWNUnghhDKrzxmhLOIIcgpw_f7iIjX5Di_03oWNkDnKoyJMIsfV2X203u67aBgpCaK9K9T9wRKt9j9O_wMiCcrKPKW3XVo9tVXV1s9nVTbfrCgdBUiveA-FSe99tC8-b1OEbwyqvskfLDUxjmIePSCcdG2wCls6i8NZKdcw8OxBFVGKaBwnfbzAMSBzGOPniUip9Vtv9polDaIKBy2ACF9rdBgR_c5kkupM0JoxRMm6QyxQ5Rv_5M-JKXrc8gQuri-hytuQViM8PYKecN0iFZdy0SL1Sk58HVur8-gzjYx1YW3VN26xJGuSQJlmReZND6H2pcju_6RUqHtxBXxT9bNLd3K9a9-iElSZeXKRr-EJTFOvrRZIta_23HIbYDY4WcT7G4uylE3JE7pWkG-zZ4otPp3nFzsd8Psk7IcuJ56Ay3nIcTz_ZIjtK_xt7_wDOqGuR>
+
+
+--np5d9ca475df20f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Thank you for your Steam purchase!</title>
+		<style media="all" type="text/css">
+	td, p, h1, h3, a {
+		font-family: Helvetica, Arial, sans-serif;
+	}
+
+	a.bodylink {
+		color: #8f98a0;
+	}
+	a.bodylink:hover {
+		color: #ffffff;
+	}
+
+	.BodyText a {
+		color: #c6d4df;
+	}
+
+	.SubText a {
+		color: #8f98a0;
+	}
+</style>
+	
+</head>
+<body bgcolor="" LINK="#59a8d6" ALINK="#59a8d6" VLINK="#59a8d6" TEXT="#c6d4df" style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #c6d4df;">
+<table style="width: 538px; background-color: #393836;" align="center" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td style=" height: 65px; background-color: #000000; border-bottom: 1px solid #4d4b48;">
+			<img src="https://steamstore-a.akamaihd.net/public/images/email/email_header_logo.png?v=1" width="538" height="65" alt="Steam">
+		</td>
+	</tr>
+	<tr>
+	<td bgcolor="#17212e">
+		<table width="470" border="0" align="center" cellpadding="0" cellspacing="0" border="0" style="padding-left: 5px; padding-right: 5px; padding-bottom: 10px;">
+			<tr bgcolor="#17212e">
+				<td style="padding-top: 32px;">
+					<span style="font-family: Helvetica, Arial, sans-serif;font-size: 24px;color: #59a8d6;font-weight: bold;">
+						Hello kageroudeyz					</span><br>
+				</td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-top: 16px;">
+				  <h3 style="margin-bottom: 0px; color: #c6d4df; font-size: 15px;">Thank you for your recent transaction on Steam.</h3>
+				 	<span>The items below have been added to your Steam Library.</span>
+			   </td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-top: 16px;">
+				  If you are new to Steam, you can get the free Steam application <a href="http://www.steampowered.com/getsteam">here</a>.			   </td>
+			</tr>
+			<tr style="padding-top: 16px;">
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 25px;">
+				  Purchased DLC will automatically be added. You can find it on the Library page of the base game.			   </td>
+			</tr>
+
+
+
+
+			
+										
+			<tr><td style="padding-top: 10px;"></td></tr>
+			<tr>
+				<td>
+					<table width="470" border="0" align="center" cellpadding="0" cellspacing="0" border="0" style="padding-bottom: 10px;">
+						<thead>
+							<tr>
+								<td style="width: 140px;"></td>
+								<td style="width: 500px;"></td>
+								<td style="width: 130px;"></td>
+							</tr>
+						</thead>
+						<tbody>
+																		<tr><td style="padding-top: 5px;" colspan="3"></td></tr>
+																						<tr style="background-color: #111822;">
+											  <td style="padding: 10px;">
+													<div>
+														<img src="https://steamcdn-a.akamaihd.net/steam/apps/947510/capsule_sm_120.jpg?t=1550120629"/>
+													</div>
+												</td>
+												<td style="font-size: 12px; color: #c6d4df; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+												Sid Meier's Civilization VI: Gathering Storm																								</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-right: 15px;text-align: right; padding-top: 10px; padding-bottom: 10px;">S$37.42</td>
+											</tr>
+														   										<tr><td style="padding-top: 10px;" colspan="3"></td></tr>
+							<tr><td style="background-color: #111822; padding-top: 10px;" colspan="3"></td></tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Account name: kager&#8203;oudey&#8203;z&#8203;																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #59a8d6;width: 120px;text-align: right;padding-right: 5px;">Total:</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #59a8d6;padding-right: 15px;text-align: right;">S$37.42</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Invoice: 1383093008124612868																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;text-align: right; width: 120px; padding-right: 5px"></td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;padding-right: 15px; text-align: right;"></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Date issued: 8 Oct, 2019 @ 7:59am PDT																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;text-align: right; width: 120px; padding-right: 5px"></td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;padding-right: 15px; text-align: right;"></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Payment method: PayPal																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;text-align: right; width: 120px; padding-right: 5px"></td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;padding-right: 15px; text-align: right;"></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							
+							<tr><td style="background-color: #111822; padding-top: 10px;" colspan="3"></td></tr>
+
+														
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 10px;">
+				  This email message will serve as your receipt. You can also <a href="https://store.steampowered.com/account/history/">view your Purchase History</a> at any time.			   </td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 16px;">
+				  Refunds and/or returns may be granted for many products on Steam. Learn more about Steam refunds <a href="https://store.steampowered.com/steam_refunds/">here</a>, or request a refund <a href="https://help.steampowered.com/">here</a>.			   </td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 20px;">
+				  The Steam Support Team<br/>
+				  <a style="color: #8f98a0;" href="http://help.steampowered.com">http://help.steampowered.com</a>
+			   </td>
+			</tr>
+		</table>
+	</td>
+	</tr>
+	<tr style="background-color: #17212e;">
+	   <td style="padding-top: 50px;">
+	   </td>
+	</tr>			
+	<tr style="background-color: #000000;">
+		<td style="padding: 12px 24px;">
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="92">
+						<img src="https://steamstore-a.akamaihd.net/public/images/logo_valve_footer.jpg" width="92" height="26" alt="Valve&reg;">
+					</td>
+					<td style=" font-size: 11px; color: #595959; padding-left: 12px;">
+						© Valve Corporation.  PO Box 1688 Bellevue, WA 98009.<br>
+						All rights reserved. All trademarks are property of their respective owners in the US and other countries.					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+	<center style="color: #000000; font-size: 11px; margin-bottom: 4px;">Trouble viewing this message?  <a href="https://store.steampowered.com/email/PurchaseReceipt?sparams=eJx9k9ty2yAQht-F60xHBx-UXvWuD5BLT4fZoo3NVAICS1K1k3cPCLAi2_Gl_m-PP6v_bACvxAktTQbZd1axB2as7r0gBWNUnghhDKrzxmhLOIIcgpw_f7iIjX5Di_03oWNkDnKoyJMIsfV2X203u67aBgpCaK9K9T9wRKt9j9O_wMiCcrKPKW3XVo9tVXV1s9nVTbfrCgdBUiveA-FSe99tC8-b1OEbwyqvskfLDUxjmIePSCcdG2wCls6i8NZKdcw8OxBFVGKaBwnfbzAMSBzGOPniUip9Vtv9polDaIKBy2ACF9rdBgR_c5kkupM0JoxRMm6QyxQ5Rv_5M-JKXrc8gQuri-hytuQViM8PYKecN0iFZdy0SL1Sk58HVur8-gzjYx1YW3VN26xJGuSQJlmReZND6H2pcju_6RUqHtxBXxT9bNLd3K9a9-iElSZeXKRr-EJTFOvrRZIta_23HIbYDY4WcT7G4uylE3JE7pWkG-zZ4otPp3nFzsd8Psk7IcuJ56Ay3nIcTz_ZIjtK_xt7_wDOqGuR">Click here</a>.</center>
+</body>
+</html>
+
+
+--np5d9ca475df20f--
+From - Tue Dec 17 19:29:58 2019
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+Delivered-To: dtsa.tan+game@gmail.com
+Received: by 2002:ab3:75c6:0:0:0:0:0 with SMTP id o6csp3622945lti;
+        Mon, 28 Oct 2019 16:41:33 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzFP8Hn1acPOhhnkmQEMGU/T+fOFEXbOJz+cRsP/BfO86S23Xoc8pL041QBCuZMZkVgeUCf
+X-Received: by 2002:a62:58c2:: with SMTP id m185mr24138700pfb.10.1572306093586;
+        Mon, 28 Oct 2019 16:41:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1572306093; cv=none;
+        d=google.com; s=arc-20160816;
+        b=rBOc+USdEnbE9vKfqJiQNekOlg8UkpQn52OlvHA0s93PyQQHTPQdgH2vvGk63IXgUJ
+         OppRRtzcvyBu/6ZMseD8Euy2NdKxoF4mwIOEnDjQaRsC3tIfq0/SPthib7VB2GFbxpCa
+         VbWVu8EBE1puKZQGYnjxKPJ7KUXjoNxyh9ZjdydaKd8LwArTZ4UCiqj2YKQwYjQrzeC/
+         YKLcwDw4Liqg6wGJfK/Kph9aFarRkmcikQvLgG2O9AaJTezMwIlJ2twjlNJRDZ8nylxA
+         3r4I2e0WMuLwTeoZiqck2hFddP98mPE8NlarU+IrKtnzONtUmE+i9lnPMH4LALpNHTbe
+         pSnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:message-id:subject:mime-version:errors-to:reply-to:from:to
+         :dkim-signature;
+        bh=qefFUmzYHlZuEt6+Pa7ykkD5P1S3sBb3CrW4f08uc4c=;
+        b=XpjbSN2MjJVyBEQEvmwmNj9yhBAH9jy45FoNy0DIVjOiPq1BOzypvlfOFGq8WdRH18
+         A4N7XnZz2Qobjw0vsizwqltM/ImWHPPD4I2IkBGsaxkwoO5qNcEZTYbzCGOdCwMkAWKg
+         qtjalbgese9Kj0TmjzIlEz27SajDls5H/NmDI9wg47CFPp+2ot+cvngY7Ozr4/rz9zm0
+         zOZwwx48wyrZSCG3YXFeWH7HIeheNtH++TZsoBuB51SuarfqUkANxS0EcOQi1jUkmH2L
+         W40B0x1xHYpUAufQ007xYpL9KfSsT36HXX/UQ6ZRJjPslES7BwsSy6WOxWH6cmRP6/A8
+         JsTQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=KbSj9VuH;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.61 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+Return-Path: <noreply@steampowered.com>
+Received: from smtp-61.steampowered.com (smtp-61.steampowered.com. [208.64.202.61])
+        by mx.google.com with ESMTPS id d4si12266268pfr.146.2019.10.28.16.41.33
+        for <dtsa.tan+game@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 28 Oct 2019 16:41:33 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@steampowered.com designates 208.64.202.61 as permitted sender) client-ip=208.64.202.61;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=KbSj9VuH;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.61 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=steampowered.com; s=smtp; h=Date:Message-Id:Content-Type:Subject:
+	MIME-Version:Reply-To:From:To:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=qefFUmzYHlZuEt6+Pa7ykkD5P1S3sBb3CrW4f08uc4c=; b=KbSj9VuH/vN1qigS99g8OCVUsj
+	lj4lmEKSTLaFw8vehImuhphDvVt/bWqmqlWgMYb5aZ5kO4KJ5cLHF4EeKTrBf3sJy3ZWo1xxiof5s
+	LQ8CUzJggpHFmnCBR+DCJ6gA8dgiay8IkMO6/FvJaEvHfNmhxvntXgJfXGl74q18rfuo=;
+Received: from [208.64.202.21] (helo=valvesoftware.com)
+	by smtp-02-tuk1.steampowered.com with smtp (Exim 4.90_1)
+	(envelope-from <noreply@steampowered.com>)
+	id 1iPEdh-0002dO-3t
+	for dtsa.tan+game@gmail.com; Mon, 28 Oct 2019 16:41:33 -0700
+To: dtsa.tan+game@gmail.com
+From: "Steam Support" <noreply@steampowered.com>
+Reply-To: <noreply@steampowered.com>
+Errors-To: <noreply@steampowered.com>
+X-Steam-Message-Type: CPurchaseReceipt
+MIME-Version: 1.0
+Subject: Thank you for your Steam purchase!
+Content-Type: multipart/alternative;
+ boundary="np5db77cad10608"
+Message-Id: <E1iPEdh-0002dO-3t@smtp-02-tuk1.steampowered.com>
+Date: Mon, 28 Oct 2019 16:41:33 -0700
+
+This is a multi-part message in MIME format.
+--np5db77cad10608
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hello kageroudeyz
+
+Thank you for your recent transaction on Steam.  To view the details, please
+visit
+https://store.steampowered.com/email/PurchaseReceipt?sparams=eJyVVNtunDAQ_Reeq8p4gUCf-tYPyOOqshwz2bVqbMeXJKTqv9eDYVnSpLsrgYXPOTOei4ffheJRiyO4MFoovhWk-FJYZ_ooguYDIvcB-JBQH601LsDApUrwvP3ukbbmBRz0X4VB5SzyoEMMImnL-o7uSEM6mlguhIl68f6LH8CZ2MP4lrjguPayR5OqanfdXdlVLa3qjtS0XHgugjSa9TzAme-2Xvg5E9RDSuVZ9uCY5eOQ4mEDhKPBA6pES-9AROekPsz8XAEEQYsR3ezS_oUrBYHxASNfq5Rdn1CaAsEgTOCKyVQEJoz_mAj8dXaTQX-U1qYwFosPmPcmcsD6s0eADbw98sh9Sl1gleeSPPPApga4cbZTUsMSbk6k3qC5nvviIepeQaLyB3L_3Szn_jx3hs3dF7SlbVI0TTOVN_WQEPygXUWaCSkbUnVb05zZfoq5IbhWFFda4lqSBG30U8GyfPu-VzE3XaWL0qUVN0ivDOK8lzf5vjb0Hrxw0uLgoDoJ1mcjfAojCvCmbN9_ipY7-bmnB6kURskPDmCaveUiXeqIHIBFLcMV2kcHTzFP6kXtadZPE3uDyfpH-MRoSXedrfsfxQr7kH9XxZ-_JcmnVA.
+
+
+© Valve Corporation<br>PO Box 1688 Bellevue, WA 98009
+All rights reserved. All trademarks are property of their respective owners in
+the US and other countries.
+View this message on the web:
+<https://store.steampowered.com/email/PurchaseReceipt?sparams=eJyVVNtunDAQ_Reeq8p4gUCf-tYPyOOqshwz2bVqbMeXJKTqv9eDYVnSpLsrgYXPOTOei4ffheJRiyO4MFoovhWk-FJYZ_ooguYDIvcB-JBQH601LsDApUrwvP3ukbbmBRz0X4VB5SzyoEMMImnL-o7uSEM6mlguhIl68f6LH8CZ2MP4lrjguPayR5OqanfdXdlVLa3qjtS0XHgugjSa9TzAme-2Xvg5E9RDSuVZ9uCY5eOQ4mEDhKPBA6pES-9AROekPsz8XAEEQYsR3ezS_oUrBYHxASNfq5Rdn1CaAsEgTOCKyVQEJoz_mAj8dXaTQX-U1qYwFosPmPcmcsD6s0eADbw98sh9Sl1gleeSPPPApga4cbZTUsMSbk6k3qC5nvviIepeQaLyB3L_3Szn_jx3hs3dF7SlbVI0TTOVN_WQEPygXUWaCSkbUnVb05zZfoq5IbhWFFda4lqSBG30U8GyfPu-VzE3XaWL0qUVN0ivDOK8lzf5vjb0Hrxw0uLgoDoJ1mcjfAojCvCmbN9_ipY7-bmnB6kURskPDmCaveUiXeqIHIBFLcMV2kcHTzFP6kXtadZPE3uDyfpH-MRoSXedrfsfxQr7kH9XxZ-_JcmnVA>
+
+
+--np5db77cad10608
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Thank you for your Steam purchase!</title>
+		<style media="all" type="text/css">
+	td, p, h1, h3, a {
+		font-family: Helvetica, Arial, sans-serif;
+	}
+
+	a.bodylink {
+		color: #8f98a0;
+	}
+	a.bodylink:hover {
+		color: #ffffff;
+	}
+
+	.BodyText a {
+		color: #c6d4df;
+	}
+
+	.SubText a {
+		color: #8f98a0;
+	}
+</style>
+	
+</head>
+<body bgcolor="" LINK="#59a8d6" ALINK="#59a8d6" VLINK="#59a8d6" TEXT="#c6d4df" style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #c6d4df;">
+<table style="width: 538px; background-color: #393836;" align="center" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td style=" height: 65px; background-color: #000000; border-bottom: 1px solid #4d4b48;">
+			<img src="https://steamstore-a.akamaihd.net/public/images/email/email_header_logo.png?v=1" width="538" height="65" alt="Steam">
+		</td>
+	</tr>
+	<tr>
+	<td bgcolor="#17212e">
+		<table width="470" border="0" align="center" cellpadding="0" cellspacing="0" border="0" style="padding-left: 5px; padding-right: 5px; padding-bottom: 10px;">
+			<tr bgcolor="#17212e">
+				<td style="padding-top: 32px;">
+					<span style="font-family: Helvetica, Arial, sans-serif;font-size: 24px;color: #59a8d6;font-weight: bold;">
+						Hello kageroudeyz					</span><br>
+				</td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-top: 16px;">
+				  <h3 style="margin-bottom: 0px; color: #c6d4df; font-size: 15px;">Thank you for your recent transaction on Steam.</h3>
+				 	<span>The items below have been added to your Steam Library.</span>
+			   </td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-top: 16px;">
+				  If you are new to Steam, you can get the free Steam application <a href="http://www.steampowered.com/getsteam">here</a>.			   </td>
+			</tr>
+			<tr style="padding-top: 16px;">
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 25px;">
+				  Purchased DLC will automatically be added. You can find it on the Library page of the base game.			   </td>
+			</tr>
+
+
+
+
+			
+										
+			<tr><td style="padding-top: 10px;"></td></tr>
+			<tr>
+				<td>
+					<table width="470" border="0" align="center" cellpadding="0" cellspacing="0" border="0" style="padding-bottom: 10px;">
+						<thead>
+							<tr>
+								<td style="width: 140px;"></td>
+								<td style="width: 500px;"></td>
+								<td style="width: 130px;"></td>
+							</tr>
+						</thead>
+						<tbody>
+																		<tr><td style="padding-top: 5px;" colspan="3"></td></tr>
+											<tr style="background-color: #2d353f;">
+												  <td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding: 10px;">
+													<div style="float: left;">
+														<div style="padding-top: 10px; padding-bottom: 10px;">Hollow Knight &amp; Soundtracks</div>
+														<div style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 2px;">This bundle contains:</div>
+													</div>
+													</td>
+													<td style="padding: 10px;"></td>
+													<td style="padding: 10px;"></td>
+											</tr>
+															   														<tr style="background-color: #111822;">
+											  <td style="padding: 10px; padding-left: 30px;">
+													<div>
+														<img src="https://steamcdn-a.akamaihd.net/steam/apps/367520/capsule_sm_120.jpg?t=1569430762"/>
+													</div>
+												</td>
+												<td style="font-size: 12px; color: #c6d4df; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+												Hollow Knight																								</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-right: 15px;text-align: right; padding-top: 10px; padding-bottom: 10px;">S$6.00</td>
+											</tr>
+														   														<tr><td style="padding-top: 5px;" colspan="3"></td></tr>
+																						<tr style="background-color: #111822;">
+											  <td style="padding: 10px; padding-left: 30px;">
+													<div>
+														<img src="https://steamcdn-a.akamaihd.net/steam/apps/598190/capsule_sm_120.jpg?t=1533930949"/>
+													</div>
+												</td>
+												<td style="font-size: 12px; color: #c6d4df; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+												Hollow Knight - Official Soundtrack																								</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-right: 15px;text-align: right; padding-top: 10px; padding-bottom: 10px;">S$4.20</td>
+											</tr>
+														   														<tr><td style="padding-top: 5px;" colspan="3"></td></tr>
+																						<tr style="background-color: #111822;">
+											  <td style="padding: 10px; padding-left: 30px;">
+													<div>
+														<img src="https://steamcdn-a.akamaihd.net/steam/apps/916000/capsule_sm_120.jpg?t=1533930721"/>
+													</div>
+												</td>
+												<td style="font-size: 12px; color: #c6d4df; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+												Hollow Knight - Gods &amp; Nightmares																								</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-right: 15px;text-align: right; padding-top: 10px; padding-bottom: 10px;">S$2.10</td>
+											</tr>
+														   														<tr style="background-color: #2d353f;"><td style="padding-top: 3px;" colspan="3"></td></tr>
+																								<tr><td style="padding-top: 5px;" colspan="3"></td></tr>
+																						<tr style="background-color: #111822;">
+											  <td style="padding: 10px;">
+													<div>
+														<img src="https://steamcdn-a.akamaihd.net/steam/apps/504230/capsule_sm_120.jpg?t=1567740791"/>
+													</div>
+												</td>
+												<td style="font-size: 12px; color: #c6d4df; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+												Celeste																								</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-right: 15px;text-align: right; padding-top: 10px; padding-bottom: 10px;">S$10.00</td>
+											</tr>
+														   										<tr><td style="padding-top: 10px;" colspan="3"></td></tr>
+							<tr><td style="background-color: #111822; padding-top: 10px;" colspan="3"></td></tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Account name: kager&#8203;oudey&#8203;z&#8203;																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #59a8d6;width: 120px;text-align: right;padding-right: 5px;">Total:</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #59a8d6;padding-right: 15px;text-align: right;">S$22.30</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Invoice: 1448397194824590521																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;text-align: right; width: 120px; padding-right: 5px"></td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;padding-right: 15px; text-align: right;"></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Date issued: 28 Oct, 2019 @ 4:41pm PDT																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;text-align: right; width: 120px; padding-right: 5px"></td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;padding-right: 15px; text-align: right;"></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Payment method: PayPal																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;text-align: right; width: 120px; padding-right: 5px"></td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;padding-right: 15px; text-align: right;"></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							
+							<tr><td style="background-color: #111822; padding-top: 10px;" colspan="3"></td></tr>
+
+														
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 10px;">
+				  This email message will serve as your receipt. You can also <a href="https://store.steampowered.com/account/history/">view your Purchase History</a> at any time.			   </td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 16px;">
+				  Refunds and/or returns may be granted for many products on Steam. Learn more about Steam refunds <a href="https://store.steampowered.com/steam_refunds/">here</a>, or request a refund <a href="https://help.steampowered.com/">here</a>.			   </td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 20px;">
+				  The Steam Support Team<br/>
+				  <a style="color: #8f98a0;" href="http://help.steampowered.com">http://help.steampowered.com</a>
+			   </td>
+			</tr>
+		</table>
+	</td>
+	</tr>
+	<tr style="background-color: #17212e;">
+	   <td style="padding-top: 50px;">
+	   </td>
+	</tr>			
+	<tr style="background-color: #000000;">
+		<td style="padding: 12px 24px;">
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="92">
+						<img src="https://steamstore-a.akamaihd.net/public/images/logo_valve_footer.jpg" width="92" height="26" alt="Valve&reg;">
+					</td>
+					<td style=" font-size: 11px; color: #595959; padding-left: 12px;">
+						© Valve Corporation<br>PO Box 1688 Bellevue, WA 98009<br>
+						All rights reserved. All trademarks are property of their respective owners in the US and other countries.					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+	<center style="color: #000000; font-size: 11px; margin-bottom: 4px;">Trouble viewing this message? <a href="https://store.steampowered.com/email/PurchaseReceipt?sparams=eJyVVNtunDAQ_Reeq8p4gUCf-tYPyOOqshwz2bVqbMeXJKTqv9eDYVnSpLsrgYXPOTOei4ffheJRiyO4MFoovhWk-FJYZ_ooguYDIvcB-JBQH601LsDApUrwvP3ukbbmBRz0X4VB5SzyoEMMImnL-o7uSEM6mlguhIl68f6LH8CZ2MP4lrjguPayR5OqanfdXdlVLa3qjtS0XHgugjSa9TzAme-2Xvg5E9RDSuVZ9uCY5eOQ4mEDhKPBA6pES-9AROekPsz8XAEEQYsR3ezS_oUrBYHxASNfq5Rdn1CaAsEgTOCKyVQEJoz_mAj8dXaTQX-U1qYwFosPmPcmcsD6s0eADbw98sh9Sl1gleeSPPPApga4cbZTUsMSbk6k3qC5nvviIepeQaLyB3L_3Szn_jx3hs3dF7SlbVI0TTOVN_WQEPygXUWaCSkbUnVb05zZfoq5IbhWFFda4lqSBG30U8GyfPu-VzE3XaWL0qUVN0ivDOK8lzf5vjb0Hrxw0uLgoDoJ1mcjfAojCvCmbN9_ipY7-bmnB6kURskPDmCaveUiXeqIHIBFLcMV2kcHTzFP6kXtadZPE3uDyfpH-MRoSXedrfsfxQr7kH9XxZ-_JcmnVA">Click here.</a></center>
+</body>
+</html>
+
+
+--np5db77cad10608--
+From - Tue Dec 17 19:29:58 2019
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+Delivered-To: dtsa.tan+game@gmail.com
+Received: by 2002:ab3:6504:0:0:0:0:0 with SMTP id g4csp400964lte;
+        Tue, 13 Aug 2019 05:08:10 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzetVG0a0yUWU9BoROOhuS01YnPn1m1GnskWI+0SJRT94B8PBcWa1OYJ2MOJDAgdkXDizmD
+X-Received: by 2002:a17:90a:c086:: with SMTP id o6mr2004257pjs.2.1565698090239;
+        Tue, 13 Aug 2019 05:08:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1565698090; cv=none;
+        d=google.com; s=arc-20160816;
+        b=RXykpCQk/SaAlTTMPw3SNK8zeyxwaXXO34XpxsscaWhmEh8vPM5WEjuGYabYeNpisn
+         nuWSdWyFzUQL1taZr+y6ZkKjNQcbyCnvPSD87kMYb42rt+rce+kipEBxRRjR9M3Q93t9
+         24dDxwlnGe7P5XGHw2Otcbmofc4WGBH6sxiZf6tUJhPUGh6MEuhyB2TH05y5Om6D6wQR
+         HHQ5VuMx0u55mZrIV5vS89nqKedZR5S9DCW7k5oHY6fdt7b+K2eEdKgjS5gTIRq4I352
+         JRXamXUDKq6exaabYFUM8PH37aFsiy1sfLL4Djr8Av0COV9UIWQ6x10TFIF4yMgv5jFv
+         r3Nw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:message-id:subject:mime-version:errors-to:reply-to:from:to
+         :dkim-signature;
+        bh=41rNNloCJZeAAyFSmarKa/LV3OOXsiZUpRJQFWPo2ZI=;
+        b=iQGkYRUeQJ3Zk9uYgfBAPyyRtKO7PsJYxM2mx3vMhG/Qlfm/zSW6IUGEdC/fEqH6nR
+         Rq9T0zS6aGb1y6y5kvQxY3TAVcE7EKSRyC5dAJ90z5//Bj4QL+B3mh36vXDF1VzolbiS
+         qeY2L7cPzKFGlm+eG0s5t0EE5FUt3LjfK1fG7xUXCrZ+1dJdCI23FdgO5i8KEEXitI+0
+         QW0+cXFGTKO5l94HgfFJrXNVvxaO2T+Yw2Mrxg/G4El8aXIIZleolJOcIEX07eUOOJLB
+         kWlT3XTpgcm59bB3o2zPr9z+gNft+FE5eFEKa8mmgCsYDXtBiFsmcuGLHQ/DTX4VkWKY
+         QFog==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=uYrTCqvw;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.47 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+Return-Path: <noreply@steampowered.com>
+Received: from smtp-02-tuk1.steampowered.com (smtp-02-tuk1.steampowered.com. [208.64.202.47])
+        by mx.google.com with ESMTPS id w66si18457863pfw.65.2019.08.13.05.08.09
+        for <dtsa.tan+game@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 13 Aug 2019 05:08:10 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@steampowered.com designates 208.64.202.47 as permitted sender) client-ip=208.64.202.47;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=uYrTCqvw;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.47 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=steampowered.com; s=smtp; h=Date:Message-Id:Content-Type:Subject:
+	MIME-Version:Reply-To:From:To:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=41rNNloCJZeAAyFSmarKa/LV3OOXsiZUpRJQFWPo2ZI=; b=uYrTCqvwjspT6MlMoh79a5wdDT
+	/G3xi+Rkfyn4dhVChRi512oSWJcstyd9vHcJO+a5kY2haJE9fFjlf9beP9wISjMCCQKcmJFeM/oT4
+	2OHZFtHcYEWdZ8dmEEA4JvkAklzd4n1n18FNydL5e/yiJMESXw8adFl+yiVw2IhRSLBw=;
+Received: from [208.64.202.21] (helo=valvesoftware.com)
+	by smtp-02-tuk1.steampowered.com with smtp (Exim 4.90_1)
+	(envelope-from <noreply@steampowered.com>)
+	id 1hxVaz-0000bw-KX
+	for dtsa.tan+game@gmail.com; Tue, 13 Aug 2019 05:08:09 -0700
+To: dtsa.tan+game@gmail.com
+From: "Steam Support" <noreply@steampowered.com>
+Reply-To: <noreply@steampowered.com>
+Errors-To: <noreply@steampowered.com>
+X-Steam-Message-Type: CPurchaseReceipt
+MIME-Version: 1.0
+Subject: Thank you for your Steam purchase!
+Content-Type: multipart/alternative;
+ boundary="np5d52a8299052b"
+Message-Id: <E1hxVaz-0000bw-KX@smtp-02-tuk1.steampowered.com>
+Date: Tue, 13 Aug 2019 05:08:09 -0700
+
+This is a multi-part message in MIME format.
+--np5d52a8299052b
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hello kageroudeyz
+
+Thank you for your recent transaction on Steam.  To view the details, please
+visit
+https://store.steampowered.com/email/PurchaseReceipt?sparams=eJyNVNty2yAQ_ReeMx3Juhj1qW_9gDx6OgxBG5spAsIlqdrJv4cVkmWlrusZIYk9Z1dnD6A_RPGoxQlcGC2Qr6QgD8Q600cRNB8w8hiADynqo7XGBRi4VCk8T795hK15Awf9F2GQOZM86BCDSNyyaZu2owXtEsqFMFEv1X_yIzgTexh_Jyw4rr3sMaXq6qre72hV17StaNeUC85FkEaznge4qF3RBZ87QT6kVl5lD45ZPg5JDxsgnAx-oE6w9A5EdE7q44zPDmAQtBgnIWn-xpWCwPiAyleXculztKwaBIIJXDGZTGDC-OtA4L_mMjnoT9LaJGPJuIJ8TtnWPnGfehRo59z7Kw9sctqNc56SGhZdWXG9iWbjDuQp6l5BgvILYjcmPy5L4NodSLcr9olUUdo06blvyg7nu6ItabFNyF0cJn1pyc_3pt1tiVP7mbeOzwzmpk1xk7YYeiftjg9fUu9R0IMXTlrcxchMhPnasF7CiCgu5Tr-ajgb_o8ST1Ip1MWPDmDa_ssS37JRDsCiluE_vGcHLzEfkpu88xE7H5Q76eshvJKwtLbu8MfvZA37kP8O5P0DOjGFSQ.
+
+
+© Valve Corporation.  PO Box 1688 Bellevue, WA 98009.
+All rights reserved. All trademarks are property of their respective owners in
+the US and other countries.
+View this message on the web:
+<https://store.steampowered.com/email/PurchaseReceipt?sparams=eJyNVNty2yAQ_ReeMx3Juhj1qW_9gDx6OgxBG5spAsIlqdrJv4cVkmWlrusZIYk9Z1dnD6A_RPGoxQlcGC2Qr6QgD8Q600cRNB8w8hiADynqo7XGBRi4VCk8T795hK15Awf9F2GQOZM86BCDSNyyaZu2owXtEsqFMFEv1X_yIzgTexh_Jyw4rr3sMaXq6qre72hV17StaNeUC85FkEaznge4qF3RBZ87QT6kVl5lD45ZPg5JDxsgnAx-oE6w9A5EdE7q44zPDmAQtBgnIWn-xpWCwPiAyleXculztKwaBIIJXDGZTGDC-OtA4L_mMjnoT9LaJGPJuIJ8TtnWPnGfehRo59z7Kw9sctqNc56SGhZdWXG9iWbjDuQp6l5BgvILYjcmPy5L4NodSLcr9olUUdo06blvyg7nu6ItabFNyF0cJn1pyc_3pt1tiVP7mbeOzwzmpk1xk7YYeiftjg9fUu9R0IMXTlrcxchMhPnasF7CiCgu5Tr-ajgb_o8ST1Ip1MWPDmDa_ssS37JRDsCiluE_vGcHLzEfkpu88xE7H5Q76eshvJKwtLbu8MfvZA37kP8O5P0DOjGFSQ>
+
+
+--np5d52a8299052b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Thank you for your Steam purchase!</title>
+		<style media="all" type="text/css">
+	td, p, h1, h3, a {
+		font-family: Helvetica, Arial, sans-serif;
+	}
+
+	a.bodylink {
+		color: #8f98a0;
+	}
+	a.bodylink:hover {
+		color: #ffffff;
+	}
+
+	.BodyText a {
+		color: #c6d4df;
+	}
+
+	.SubText a {
+		color: #8f98a0;
+	}
+</style>
+	
+</head>
+<body bgcolor="" LINK="#59a8d6" ALINK="#59a8d6" VLINK="#59a8d6" TEXT="#c6d4df" style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #c6d4df;">
+<table style="width: 538px; background-color: #393836;" align="center" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td style=" height: 65px; background-color: #000000; border-bottom: 1px solid #4d4b48;">
+			<img src="https://steamstore-a.akamaihd.net/public/images/email/email_header_logo.png?v=1" width="538" height="65" alt="Steam">
+		</td>
+	</tr>
+	<tr>
+	<td bgcolor="#17212e">
+		<table width="470" border="0" align="center" cellpadding="0" cellspacing="0" border="0" style="padding-left: 5px; padding-right: 5px; padding-bottom: 10px;">
+			<tr bgcolor="#17212e">
+				<td style="padding-top: 32px;">
+					<span style="font-family: Helvetica, Arial, sans-serif;font-size: 24px;color: #59a8d6;font-weight: bold;">
+						Hello kageroudeyz					</span><br>
+				</td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-top: 16px;">
+				  <h3 style="margin-bottom: 0px; color: #c6d4df; font-size: 15px;">Thank you for your recent transaction on Steam.</h3>
+				 	<span>The items below have been added to your Steam Library.</span>
+			   </td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-top: 16px;">
+				  If you are new to Steam, you can get the free Steam application <a href="http://www.steampowered.com/getsteam">here</a>.			   </td>
+			</tr>
+			<tr style="padding-top: 16px;">
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 25px;">
+				  Purchased DLC will automatically be added. You can find it on the Library page of the base game.			   </td>
+			</tr>
+
+
+
+
+			
+										
+			<tr><td style="padding-top: 10px;"></td></tr>
+			<tr>
+				<td>
+					<table width="470" border="0" align="center" cellpadding="0" cellspacing="0" border="0" style="padding-bottom: 10px;">
+						<thead>
+							<tr>
+								<td style="width: 140px;"></td>
+								<td style="width: 500px;"></td>
+								<td style="width: 130px;"></td>
+							</tr>
+						</thead>
+						<tbody>
+																		<tr><td style="padding-top: 5px;" colspan="3"></td></tr>
+											<tr style="background-color: #2d353f;">
+												  <td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding: 10px;">
+													<div style="float: left;">
+														<div style="padding-top: 10px; padding-bottom: 10px;">Don't Starve Alone Pack Plus</div>
+														<div style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 2px;">This bundle contains:</div>
+													</div>
+													</td>
+													<td style="padding: 10px;"></td>
+													<td style="padding: 10px;"></td>
+											</tr>
+															   														<tr style="background-color: #111822;">
+											  <td style="padding: 10px; padding-left: 30px;">
+													<div>
+														<img src="https://steamcdn-a.akamaihd.net/steam/apps/282470/capsule_sm_120.jpg?t=1447360565"/>
+													</div>
+												</td>
+												<td style="font-size: 12px; color: #c6d4df; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+												Don't Starve - Reign of Giants																								</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-right: 15px;text-align: right; padding-top: 10px; padding-bottom: 10px;">S$3.94</td>
+											</tr>
+														   														<tr><td style="padding-top: 5px;" colspan="3"></td></tr>
+																						<tr style="background-color: #111822;">
+											  <td style="padding: 10px; padding-left: 30px;">
+													<div>
+														<img src="https://steamcdn-a.akamaihd.net/steam/apps/393010/capsule_sm_120.jpg?t=1459456906"/>
+													</div>
+												</td>
+												<td style="font-size: 12px; color: #c6d4df; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+												Don't Starve - Shipwrecked																								</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-right: 15px;text-align: right; padding-top: 10px; padding-bottom: 10px;">S$3.94</td>
+											</tr>
+														   														<tr><td style="padding-top: 5px;" colspan="3"></td></tr>
+																						<tr style="background-color: #111822;">
+											  <td style="padding: 10px; padding-left: 30px;">
+													<div>
+														<img src="https://steamcdn-a.akamaihd.net/steam/apps/712640/capsule_sm_120.jpg?t=1557855594"/>
+													</div>
+												</td>
+												<td style="font-size: 12px; color: #c6d4df; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+												Don't Starve: Hamlet																								</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #c6d4df; padding-right: 15px;text-align: right; padding-top: 10px; padding-bottom: 10px;">S$5.62</td>
+											</tr>
+														   										<tr><td style="padding-top: 10px;" colspan="3"></td></tr>
+							<tr><td style="background-color: #111822; padding-top: 10px;" colspan="3"></td></tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Account name: kager&#8203;oudey&#8203;z&#8203;																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #59a8d6;width: 120px;text-align: right;padding-right: 5px;">Total:</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #59a8d6;padding-right: 15px;text-align: right;">S$13.50</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Invoice: 1394347283448638951																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;text-align: right; width: 120px; padding-right: 5px"></td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;padding-right: 15px; text-align: right;"></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Date issued: 13 Aug, 2019 @ 5:07am PDT																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;text-align: right; width: 120px; padding-right: 5px"></td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;padding-right: 15px; text-align: right;"></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+															<tr style="background-color: #111822; vertical-align: top;" >
+									<td style="padding-left: 10px;" colspan="3">
+										<table style="width: 100%;" align="center" cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; width: 250px;">
+																									Payment method: PayPal																											</td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;text-align: right; width: 120px; padding-right: 5px"></td>
+												<td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px; color: #c6d4df;padding-right: 15px; text-align: right;"></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							
+							<tr><td style="background-color: #111822; padding-top: 10px;" colspan="3"></td></tr>
+
+														
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 10px;">
+				  This email message will serve as your receipt. You can also <a href="https://store.steampowered.com/account/history/">view your Purchase History</a> at any time.			   </td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 16px;">
+				  Refunds and/or returns may be granted for many products on Steam. Learn more about Steam refunds <a href="https://store.steampowered.com/steam_refunds/">here</a>, or request a refund <a href="https://help.steampowered.com/">here</a>.			   </td>
+			</tr>
+			<tr>
+			   <td style="font-family: Helvetica, Arial, sans-serif;font-size: 12px;color: #61696d; padding-top: 20px;">
+				  The Steam Support Team<br/>
+				  <a style="color: #8f98a0;" href="http://help.steampowered.com">http://help.steampowered.com</a>
+			   </td>
+			</tr>
+		</table>
+	</td>
+	</tr>
+	<tr style="background-color: #17212e;">
+	   <td style="padding-top: 50px;">
+	   </td>
+	</tr>			
+	<tr style="background-color: #000000;">
+		<td style="padding: 12px 24px;">
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="92">
+						<img src="https://steamstore-a.akamaihd.net/public/images/logo_valve_footer.jpg" width="92" height="26" alt="Valve&reg;">
+					</td>
+					<td style=" font-size: 11px; color: #595959; padding-left: 12px;">
+						© Valve Corporation.  PO Box 1688 Bellevue, WA 98009.<br>
+						All rights reserved. All trademarks are property of their respective owners in the US and other countries.					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+	<center style="color: #000000; font-size: 11px; margin-bottom: 4px;">Trouble viewing this message?  <a href="https://store.steampowered.com/email/PurchaseReceipt?sparams=eJyNVNty2yAQ_ReeMx3Juhj1qW_9gDx6OgxBG5spAsIlqdrJv4cVkmWlrusZIYk9Z1dnD6A_RPGoxQlcGC2Qr6QgD8Q600cRNB8w8hiADynqo7XGBRi4VCk8T795hK15Awf9F2GQOZM86BCDSNyyaZu2owXtEsqFMFEv1X_yIzgTexh_Jyw4rr3sMaXq6qre72hV17StaNeUC85FkEaznge4qF3RBZ87QT6kVl5lD45ZPg5JDxsgnAx-oE6w9A5EdE7q44zPDmAQtBgnIWn-xpWCwPiAyleXculztKwaBIIJXDGZTGDC-OtA4L_mMjnoT9LaJGPJuIJ8TtnWPnGfehRo59z7Kw9sctqNc56SGhZdWXG9iWbjDuQp6l5BgvILYjcmPy5L4NodSLcr9olUUdo06blvyg7nu6ItabFNyF0cJn1pyc_3pt1tiVP7mbeOzwzmpk1xk7YYeiftjg9fUu9R0IMXTlrcxchMhPnasF7CiCgu5Tr-ajgb_o8ST1Ip1MWPDmDa_ssS37JRDsCiluE_vGcHLzEfkpu88xE7H5Q76eshvJKwtLbu8MfvZA37kP8O5P0DOjGFSQ">Click here</a>.</center>
+</body>
+</html>
+
+
+--np5d52a8299052b--
+From - Tue Dec 17 19:29:58 2019
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+Delivered-To: dtsa.tan+game@gmail.com
+Received: by 2002:ab3:5b11:0:0:0:0:0 with SMTP id u17csp179563ltb;
+        Thu, 12 Sep 2019 19:01:34 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxVAnY7DbBaDatUdEzECcj5dAV0EoPSWNg34k3XQf28nizQlxeh0R1pFzJB1B10LKvt7uVR
+X-Received: by 2002:aa7:94af:: with SMTP id a15mr53287781pfl.157.1568340094229;
+        Thu, 12 Sep 2019 19:01:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568340094; cv=none;
+        d=google.com; s=arc-20160816;
+        b=midZx+BH2RMQ994H3VuSLS+xWJkNhtJApHMzCMeXZdqvE8/JdizVsgwm2Uf+qwk9Wp
+         U2PXwNN5nHf9Myp5j72p6diTMXLZBRmLJyLKY2Aq/As4xnOM1KplEjMcKgIDpAtRZk6c
+         t0qRntiomS3vg1iU9SWhrY6n3Eoeq48cLaqRos9s50Sm6T4WO9QhpmCEqZy2PisGz8zB
+         gUbdLA/wkE14EC+duKGwabhOLINBPhqo0WOw+CYkMUsW1aaYbPhjrXQaLdOZbxA8o+zR
+         7QmON5dxiZbeVgI8IdMrz3lgsMxNgkcvBhRp5YRi6s2muRYs9gous44IkGNfCpcIWFe6
+         Xzjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:message-id:subject:mime-version:errors-to:reply-to:from:to
+         :dkim-signature;
+        bh=ybOe1AoMT8c7GGCOv/XJXE03N8z5eCunRoj5/CDilwY=;
+        b=sDwbSPB3H7bZiAf3dY58ljVTFYNB9eEi9aWMslVhodw923EKy88s9k/XKweVu9l9l3
+         QQErUkmcRKWYThHr9gQDWfW446/GeLvFR4K94YeC2zoXQ7cCChh8uGpTmwAbNqDj0Xsx
+         QunXWUh7Mf+1Jldq2fHkMTFFJp54VXowFXXIeKBkaULA0BqIwzS1OmzvTTf3N3ZcfuN+
+         h9WKZRMbpCi3IHzKoORFmr3wlUOYKFt7kTNdmuDohZl2+zjPFWo60no0R2cQi/j+PGKc
+         dd2NPuHpUT8IFHAfm5XkkF0Koxb1DirwoZh0LEeKTMO/bjasA/vnOBj232ZASnMZYpZd
+         Wb5g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=V9X6cgxi;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.47 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+Return-Path: <noreply@steampowered.com>
+Received: from smtp-02-tuk1.steampowered.com (smtp-02-tuk1.steampowered.com. [208.64.202.47])
+        by mx.google.com with ESMTPS id x6si22751765pln.226.2019.09.12.19.01.34
+        for <dtsa.tan+game@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 12 Sep 2019 19:01:34 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@steampowered.com designates 208.64.202.47 as permitted sender) client-ip=208.64.202.47;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=V9X6cgxi;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.47 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=steampowered.com; s=smtp; h=Date:Message-Id:Content-Type:Subject:
+	MIME-Version:Reply-To:From:To:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ybOe1AoMT8c7GGCOv/XJXE03N8z5eCunRoj5/CDilwY=; b=V9X6cgxiQcd273OlEKpqd3udML
+	ykqddFEW7Sq+H2EYxnnyu6+/MJ6WbP8pAE3GamjCZABowHKsRvjwX9bf3fJRr26YZ0w7XbHaW5Zxc
+	k325gc8iIM8siaxR3008/lQjzxm1Fyb1/KwShMbZ9N14RK5I2UHdnYertC/2Gbt/KZL8=;
+Received: from [208.64.202.21] (helo=valvesoftware.com)
+	by smtp-02-tuk1.steampowered.com with smtp (Exim 4.90_1)
+	(envelope-from <noreply@steampowered.com>)
+	id 1i8atx-0006Ll-Tc
+	for dtsa.tan+game@gmail.com; Thu, 12 Sep 2019 19:01:33 -0700
+To: dtsa.tan+game@gmail.com
+From: "Steam" <DoNotReply@steampowered.com>
+Reply-To: <noreply@steampowered.com>
+Errors-To: <noreply@steampowered.com>
+X-Steam-Message-Type: TwoFactorRemoveSmsStart
+MIME-Version: 1.0
+Subject: Steam Guard Mobile Authenticator recovery started
+Content-Type: multipart/alternative;
+ boundary="np5d7af87ddd397"
+Message-Id: <E1i8atx-0006Ll-Tc@smtp-02-tuk1.steampowered.com>
+Date: Thu, 12 Sep 2019 19:01:33 -0700
+
+This is a multi-part message in MIME format.
+--np5d7af87ddd397
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Steam Guard Mobile Authenticator recovery started
+Dear kageroudeyz
+An SMS code has been sent to your phone to remove or replace the Steam Guard
+Mobile Authenticator on your account.<br><br>If this is you, enter the SMS code
+into the Steam dialog or mobile device that is requesting it. 
+If you did not perform this action, please follow the link below to lock your
+account and submit a request for assistance.https://help.steampowered.com/en/wizard/HelpUnauthorizedLogin?stoken=BHKzwrLL5V3Fxf21Nazzx17cBDbX0fngbsDsylTKf3DqrfxHW%2BBdyIVbbSId8eJJWl4pcvilXcYVrw2FMOozLW9GDGzIDi3bYiKsqN9cbL0%3D
+https://steamcommunity.com/email/twofactorremovesmsstart?sparams=eJxdjVtLwzAYhv9LYXeyduum20CUUnasejHdAXqTJl_X0CzJcrBrxP9uChPBu-99n4fv_QoYshxXoEwrIZgFUXAXSCWIxYajc9dsDaCzb7WVUigDZ0SZr2_xWXdYigYUkD4WnXmTNHBjDfbuYHw_iUdRNI09xYJ0b_2FMBaW_-7U6ARKWAKt-2NM4JpRXnteGSP1LA_zsAIm-_938xB4HjbUIUXycOmVD46sqYSiDkgmTpQ_aSNq4I_JcuMalWXjXTy_lsPBK3LuOnjASVocopKfCp3qlr1vyji9qPK63PeGSULa1a4otisygfV6z0YSf1J2wMedaobzlzfhsv10kS7cKqVxcaQbfXmd4iKLenEafP8AfYN9XA
+
+--np5d7af87ddd397
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Steam Guard Mobile Authenticator recovery started</title>
+		<style media="all" type="text/css">
+		td, p, h1, h3, a {
+			font-family: Helvetica, Arial, sans-serif;
+		}
+		a.bodylink {
+			color: #8f98a0;
+		}
+		a.bodylink:hover {
+			color: #ffffff;
+		}
+	</style>
+</head>
+<body bgcolor="" LINK="#6d93b8" ALINK="#9DB7D0" VLINK="#6d93b8" TEXT="#d7d7d7" style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #d7d7d7;">
+    <center style="color: #000000; font-size: 11px; margin-bottom: 4px;">#Email_Trouble_Viewing  <a href="https://steamcommunity.com/email/twofactorremovesmsstart?sparams=eJxdjVtLwzAYhv9LYXeyduum20CUUnasejHdAXqTJl_X0CzJcrBrxP9uChPBu-99n4fv_QoYshxXoEwrIZgFUXAXSCWIxYajc9dsDaCzb7WVUigDZ0SZr2_xWXdYigYUkD4WnXmTNHBjDfbuYHw_iUdRNI09xYJ0b_2FMBaW_-7U6ARKWAKt-2NM4JpRXnteGSP1LA_zsAIm-_938xB4HjbUIUXycOmVD46sqYSiDkgmTpQ_aSNq4I_JcuMalWXjXTy_lsPBK3LuOnjASVocopKfCp3qlr1vyji9qPK63PeGSULa1a4otisygfV6z0YSf1J2wMedaobzlzfhsv10kS7cKqVxcaQbfXmd4iKLenEafP8AfYN9XA" style="color:#000;">#Email_Click_Here</a>.</center>
+<table style="width: 538px; background-color: #393836;" align="center" cellspacing="0" cellpadding="0">
+	<tr>
+		<td style=" height: 65px; background-color: #000000; border-bottom: 1px solid #4d4b48;">
+			<img src="https://steamcommunity-a.akamaihd.net/public/images/email/email_header_logo.png?v=1" width="538" height="65" alt="Steam">
+		</td>
+	</tr>
+	<tr>
+	<td bgcolor="#17212e">
+		<table width="470" border="0" align="center" cellpadding="0" cellspacing="0" style="padding-left: 5px; padding-right: 5px; padding-bottom: 10px;">
+
+			<tr bgcolor="#17212e">
+				<td style="padding-top: 32px;">
+					<span style="font-size: 24px; color: #66c0f4; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">
+						Dear kageroudeyz					</span><br>
+				</td>
+			</tr>
+
+			<tr>
+			   <td style="font-size: 14px; color: #c2c2c2; padding-top: 16px;">
+				  An SMS code has been sent to your phone to remove or replace the Steam Guard
+Mobile Authenticator on your account.<br><br>If this is you, enter the SMS code
+into the Steam dialog or mobile device that is requesting it.				  
+			   </td>
+			</tr>
+
+			
+						<tr>
+			   <td style="font-size: 14px; color: #c2c2c2; padding-top: 16px;">
+				  If you did not perform this action, please follow the link below to lock your account and submit a request for assistance.			   </td>
+			</tr>
+
+			<tr>
+			   <td style="font-size: 14px; color: #c2c2c2; padding-top: 16px;">
+				  <a href="https://help.steampowered.com/en/wizard/HelpUnauthorizedLogin?stoken=BHKzwrLL5V3Fxf21Nazzx17cBDbX0fngbsDsylTKf3DqrfxHW%2BBdyIVbbSId8eJJWl4pcvilXcYVrw2FMOozLW9GDGzIDi3bYiKsqN9cbL0%3D">Lock my account</a>
+                   <br><br><br>
+			   </td>
+			</tr>
+			
+		</table>
+	</td>
+	</tr>
+	<tr style="background-color: #000000;">
+		<td style="padding: 12px 24px 12px 39px;">
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="92">
+						<img src="https://steamcommunity-a.akamaihd.net/public/images/logo_valve_footer.jpg" width="92" height="26" alt="Valve&reg;">
+					</td>
+					<td style=" font-size: 11px; color: #595959; padding-left: 12px;">
+						© Valve Corporation.  PO Box 1688 Bellevue, WA 98009.<br>
+						All rights reserved. All trademarks are property of their respective owners in the US and other countries.					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+	<center style="color: #000000; font-size: 11px; margin-bottom: 4px;">Trouble viewing this message?  <a href="https://steamcommunity.com/email/twofactorremovesmsstart?sparams=eJxdjVtLwzAYhv9LYXeyduum20CUUnasejHdAXqTJl_X0CzJcrBrxP9uChPBu-99n4fv_QoYshxXoEwrIZgFUXAXSCWIxYajc9dsDaCzb7WVUigDZ0SZr2_xWXdYigYUkD4WnXmTNHBjDfbuYHw_iUdRNI09xYJ0b_2FMBaW_-7U6ARKWAKt-2NM4JpRXnteGSP1LA_zsAIm-_938xB4HjbUIUXycOmVD46sqYSiDkgmTpQ_aSNq4I_JcuMalWXjXTy_lsPBK3LuOnjASVocopKfCp3qlr1vyji9qPK63PeGSULa1a4otisygfV6z0YSf1J2wMedaobzlzfhsv10kS7cKqVxcaQbfXmd4iKLenEafP8AfYN9XA">Click here</a>.</center>
+
+</body>
+</html>
+
+
+--np5d7af87ddd397--
+From - Tue Dec 17 19:29:58 2019
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+Delivered-To: dtsa.tan+game@gmail.com
+Received: by 2002:ab3:5b11:0:0:0:0:0 with SMTP id u17csp179740ltb;
+        Thu, 12 Sep 2019 19:01:46 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxvm7NPejp9LxL2Kjz0OE2uC944h/xEFGLHC7j2MWpLimrrnC37DdQuO7wwIBfyHYBWq6ZI
+X-Received: by 2002:a63:ee08:: with SMTP id e8mr41643062pgi.70.1568340106049;
+        Thu, 12 Sep 2019 19:01:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1568340106; cv=none;
+        d=google.com; s=arc-20160816;
+        b=keKtMq7d+1llaKS2n9k7oWnfwjUzDGBJlB+rtRCQmrsIOu/7Y3vl0HQBEa5eV1CWaa
+         oCtHWIl3CIe+SeNb63zRDhTCOGscM8gio/oVSPte/Mpn+F6fQ5VFVjVGt6S0fTrzlD5z
+         is5r/Bn7C6uLWifylwVbFxvMN6RCN557kPyCRQ9LSJkbxXA0wfFC9RkPzmysmUYkIAE/
+         NJuTd4Q91U2VkFfIvDCisTg22rchvwWZ8BnFaeHISYm5wbhOJ4yDWwImD/d28UDXbdzo
+         MPYPw/m0NnX9Y1tR3RLOE8gRR4yCgjqtqPwqYDRmVOHJqTTAPYW321QvWG8WUgE9797F
+         O5yA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:message-id:subject:mime-version:errors-to:reply-to:from:to
+         :dkim-signature;
+        bh=f41YIp2CnYDhJROfNBk4kiYMaLnWynTOd2Y21/u4NIM=;
+        b=ro7DG4Sf8HYidQDq1Oe161RPPNEzJLRYzsoWI+1t4r2vHhCMJ9CmyWP30wIObR0XPI
+         AmkGQJV68N3FiYBvyhno3+rrI4STZ5tEYUyXpsCt0JwxyVJLuEhZBg/773Z9ntTIPURq
+         VOTAbUB15CST/ERI5nlCnYT4GjUJrmQtKjfAerwMrpOV3+2UDr5XuBN9FUMB15hUNDxs
+         pVG9OO3HYGcMYEsgQEesxCvQaGPTGAPh0h4ip+7ryhy8XX4wzYUFyf9eWPPgIfz06dqn
+         TBK7xjvcNL6UG8LnH7FD7vakgwXHTzWOCg/bhHnSL9XUB3Btu1RG6ArnqJb5GNOWJaWZ
+         WwVw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=OZQu5eoy;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.47 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+Return-Path: <noreply@steampowered.com>
+Received: from smtp-02-tuk1.steampowered.com (smtp-02-tuk1.steampowered.com. [208.64.202.47])
+        by mx.google.com with ESMTPS id m7si24165369plt.135.2019.09.12.19.01.45
+        for <dtsa.tan+game@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 12 Sep 2019 19:01:46 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@steampowered.com designates 208.64.202.47 as permitted sender) client-ip=208.64.202.47;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@steampowered.com header.s=smtp header.b=OZQu5eoy;
+       spf=pass (google.com: domain of noreply@steampowered.com designates 208.64.202.47 as permitted sender) smtp.mailfrom=noreply@steampowered.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=steampowered.com; s=smtp; h=Date:Message-Id:Content-Type:Subject:
+	MIME-Version:Reply-To:From:To:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=f41YIp2CnYDhJROfNBk4kiYMaLnWynTOd2Y21/u4NIM=; b=OZQu5eoyJm5Vf+qkoV71d46RBd
+	7BMOY0o+X/oHG5kocm/q97BT/IT+DFvd1SNMCQK5ma6x8ybd5SmghWEB9x1Cu1VC47oP6eH6m4cPk
+	ION4Evxw0WHTHziDXgs1YLpquiLJ80dRvNGShGVDeW2XBIDpNhpdKAszjfb5wdSs1buc=;
+Received: from [208.64.202.21] (helo=valvesoftware.com)
+	by smtp-02-tuk1.steampowered.com with smtp (Exim 4.90_1)
+	(envelope-from <noreply@steampowered.com>)
+	id 1i8au9-0005fc-Ol
+	for dtsa.tan+game@gmail.com; Thu, 12 Sep 2019 19:01:45 -0700
+To: dtsa.tan+game@gmail.com
+From: "Steam" <DoNotReply@steampowered.com>
+Reply-To: <noreply@steampowered.com>
+Errors-To: <noreply@steampowered.com>
+X-Steam-Message-Type: TwoFactorReplaceSmsSuccess
+MIME-Version: 1.0
+Subject: Steam Guard Mobile Authenticator device changed
+Content-Type: multipart/alternative;
+ boundary="np5d7af889b2dcd"
+Message-Id: <E1i8au9-0005fc-Ol@smtp-02-tuk1.steampowered.com>
+Date: Thu, 12 Sep 2019 19:01:45 -0700
+
+This is a multi-part message in MIME format.
+--np5d7af889b2dcd
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Steam Guard Mobile Authenticator device changed
+Dear kageroudeyz
+You are now getting Steam Guard Mobile Authenticator codes on a new device. 
+If you did not perform this action, please follow the link below to lock your
+account and submit a request for assistance.https://help.steampowered.com/en/wizard/HelpUnauthorizedLogin?stoken=dtgKkwDUKNP77r3aDy3A5Su3NWlPrKv7i8flRdkq3WG%2FR0jgfIu5vkMVwVVkt1MjNmEgK0K7ws9QWMtvTNbE10TQQ6nXoL%2BNktY7MapV0kBJPi%2FYpS%2FbLxRatlT1oIZz
+https://steamcommunity.com/email/twofactorreplacesmssuccess?sparams=eJxdjV1PwjAUhv_LEu4M25hjSGJUAiqOLXwOMbspbdlGu7Z2LYMZ_7tdgjHx5uSc93ly3i-LAs1gjqW6CGwNLce6sYTkSEPFQNkmK4VBadJKC8GlwiUoqImv52PVYsFrLDHqQt6aV6nCTGkFjev6_YF367iObyjkqH1rNgAh1-y3h4AMS64RvjR_jHJIaMGI4blSohqmdmrnmIru_97Uxiy166IBEqX2q1E2DGiVc1k0GM14VrCHSnGC2T1SWUjq8SaM50EgPTC-eE_-Snvxls5leAqKwYEuEfn0ti-d3vPSOWaHqfZPJErqJCHKjY5xOclCJwzq6m6xjdRpHe8nrrNeLPrsnc86vVFM1C6IgEgcMnqbF-bNTqzM3M_OS6Do2uXTj8b6_gFKloRM
+
+--np5d7af889b2dcd
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Steam Guard Mobile Authenticator device changed</title>
+		<style media="all" type="text/css">
+		td, p, h1, h3, a {
+			font-family: Helvetica, Arial, sans-serif;
+		}
+		a.bodylink {
+			color: #8f98a0;
+		}
+		a.bodylink:hover {
+			color: #ffffff;
+		}
+	</style>
+</head>
+<body bgcolor="" LINK="#6d93b8" ALINK="#9DB7D0" VLINK="#6d93b8" TEXT="#d7d7d7" style="font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: #d7d7d7;">
+    <center style="color: #000000; font-size: 11px; margin-bottom: 4px;">#Email_Trouble_Viewing  <a href="https://steamcommunity.com/email/twofactorreplacesmssuccess?sparams=eJxdjV1PwjAUhv_LEu4M25hjSGJUAiqOLXwOMbspbdlGu7Z2LYMZ_7tdgjHx5uSc93ly3i-LAs1gjqW6CGwNLce6sYTkSEPFQNkmK4VBadJKC8GlwiUoqImv52PVYsFrLDHqQt6aV6nCTGkFjev6_YF367iObyjkqH1rNgAh1-y3h4AMS64RvjR_jHJIaMGI4blSohqmdmrnmIru_97Uxiy166IBEqX2q1E2DGiVc1k0GM14VrCHSnGC2T1SWUjq8SaM50EgPTC-eE_-Snvxls5leAqKwYEuEfn0ti-d3vPSOWaHqfZPJErqJCHKjY5xOclCJwzq6m6xjdRpHe8nrrNeLPrsnc86vVFM1C6IgEgcMnqbF-bNTqzM3M_OS6Do2uXTj8b6_gFKloRM" style="color:#000;">#Email_Click_Here</a>.</center>
+<table style="width: 538px; background-color: #393836;" align="center" cellspacing="0" cellpadding="0">
+	<tr>
+		<td style=" height: 65px; background-color: #000000; border-bottom: 1px solid #4d4b48;">
+			<img src="https://steamcommunity-a.akamaihd.net/public/images/email/email_header_logo.png?v=1" width="538" height="65" alt="Steam">
+		</td>
+	</tr>
+	<tr>
+	<td bgcolor="#17212e">
+		<table width="470" border="0" align="center" cellpadding="0" cellspacing="0" style="padding-left: 5px; padding-right: 5px; padding-bottom: 10px;">
+
+			<tr bgcolor="#17212e">
+				<td style="padding-top: 32px;">
+					<span style="font-size: 24px; color: #66c0f4; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">
+						Dear kageroudeyz					</span><br>
+				</td>
+			</tr>
+
+			<tr>
+			   <td style="font-size: 14px; color: #c2c2c2; padding-top: 16px;">
+				  You are now getting Steam Guard Mobile Authenticator codes on a new device.				  
+			   </td>
+			</tr>
+
+			
+						<tr>
+			   <td style="font-size: 14px; color: #c2c2c2; padding-top: 16px;">
+				  If you did not perform this action, please follow the link below to lock your account and submit a request for assistance.			   </td>
+			</tr>
+
+			<tr>
+			   <td style="font-size: 14px; color: #c2c2c2; padding-top: 16px;">
+				  <a href="https://help.steampowered.com/en/wizard/HelpUnauthorizedLogin?stoken=dtgKkwDUKNP77r3aDy3A5Su3NWlPrKv7i8flRdkq3WG%2FR0jgfIu5vkMVwVVkt1MjNmEgK0K7ws9QWMtvTNbE10TQQ6nXoL%2BNktY7MapV0kBJPi%2FYpS%2FbLxRatlT1oIZz">Lock my account</a>
+                   <br><br><br>
+			   </td>
+			</tr>
+			
+		</table>
+	</td>
+	</tr>
+	<tr style="background-color: #000000;">
+		<td style="padding: 12px 24px 12px 39px;">
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="92">
+						<img src="https://steamcommunity-a.akamaihd.net/public/images/logo_valve_footer.jpg" width="92" height="26" alt="Valve&reg;">
+					</td>
+					<td style=" font-size: 11px; color: #595959; padding-left: 12px;">
+						© Valve Corporation.  PO Box 1688 Bellevue, WA 98009.<br>
+						All rights reserved. All trademarks are property of their respective owners in the US and other countries.					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+	<center style="color: #000000; font-size: 11px; margin-bottom: 4px;">Trouble viewing this message?  <a href="https://steamcommunity.com/email/twofactorreplacesmssuccess?sparams=eJxdjV1PwjAUhv_LEu4M25hjSGJUAiqOLXwOMbspbdlGu7Z2LYMZ_7tdgjHx5uSc93ly3i-LAs1gjqW6CGwNLce6sYTkSEPFQNkmK4VBadJKC8GlwiUoqImv52PVYsFrLDHqQt6aV6nCTGkFjev6_YF367iObyjkqH1rNgAh1-y3h4AMS64RvjR_jHJIaMGI4blSohqmdmrnmIru_97Uxiy166IBEqX2q1E2DGiVc1k0GM14VrCHSnGC2T1SWUjq8SaM50EgPTC-eE_-Snvxls5leAqKwYEuEfn0ti-d3vPSOWaHqfZPJErqJCHKjY5xOclCJwzq6m6xjdRpHe8nrrNeLPrsnc86vVFM1C6IgEgcMnqbF-bNTqzM3M_OS6Do2uXTj8b6_gFKloRM">Click here</a>.</center>
+
+</body>
+</html>
+
+
+--np5d7af889b2dcd--

@@ -1,0 +1,87 @@
+// <!-- <mdb:mork:z v="1.4"/> -->
+< <(a=c)> // (f=iso-8859-1)
+  (B8=ns:msg:db:table:kind:pending)(B9=dateReceived)(BA=ProtoThreadFlags)
+  (BB=folderName)(BC=X-GM-MSGID)(BD=X-GM-THRID)(BE=X-GM-LABELS)
+  (BF=storeToken)(C0=gloda-id)(C1=gloda-dirty)(C2=junkscore)(C3=keywords)
+  (80=ns:msg:db:row:scope:msgs:all)(81=subject)(82=sender)(83=message-id)
+  (84=references)(85=recipients)(86=date)(87=size)(88=flags)(89=priority)
+  (8A=label)(8B=statusOfset)(8C=numLines)(8D=ccList)(8E=bccList)
+  (8F=msgThreadId)(90=threadId)(91=threadFlags)(92=threadNewestMsgDate)
+  (93=children)(94=unreadChildren)(95=threadSubject)(96=msgCharSet)
+  (97=ns:msg:db:table:kind:msgs)(98=ns:msg:db:table:kind:thread)
+  (99=ns:msg:db:table:kind:allthreads)
+  (9A=ns:msg:db:row:scope:threads:all)(9B=threadParent)(9C=threadRoot)
+  (9D=msgOffset)(9E=offlineMsgSize)
+  (9F=ns:msg:db:row:scope:dbfolderinfo:all)
+  (A0=ns:msg:db:table:kind:dbfolderinfo)(A1=numMsgs)(A2=numNewMsgs)
+  (A3=folderSize)(A4=expungedBytes)(A5=folderDate)(A6=highWaterKey)
+  (A7=mailboxName)(A8=UIDValidity)(A9=totPendingMsgs)
+  (AA=unreadPendingMsgs)(AB=expiredMark)(AC=version)(AD=forceReparse)
+  (AE=fixedBadRefThreading)(AF=onlineName)(B0=useServerRetention)
+  (B1=highestModSeq)(B2=imapFlags)(B3=charSetOverride)(B4=charSet)
+  (B5=highestRecordedUID)(B6=replyTo)(B7=ns:msg:db:row:scope:pending:all)>
+<(92=3)(8D=5b0b943e)(81=0)(80=1)>
+[1:m(^9C=3)(^90=3)(^92^8D)(^91=0)(^93=1)]
+<(9C=4)(99=5b208332)>[2:m(^9C=4)(^90=4)(^92^99)(^91=0)(^93=1)]
+
+<(A2=81)(88="tunglokfirst@tunglok.com" <tunglokfirst@tunglok.com>)(89
+    =TungLokGroup <tunglokfirst@tunglok.com>)(8A
+    ="dtsa@outlook.sg" <dtsa@outlook.sg>)(8B
+    =TungLokFirst: \$10 Off CitiBank eVoucher)(8C
+    =1525269624618-sg-apac-prod-1527485501128@)(8F=6549)(91=ffffffff)
+  (93=1601684641655104401)(87=)(A0=659c)(A1=148)(94
+    ==?UTF-8?B?WkFMT1JBIFByb21vdGlvbnM=?= <customer-reply@e.zalora.sg>)
+  (95==?UTF-8?B?WkFMT1JBIFByb21vdGlvbnM=?= <campaigns@e.zalora.sg>)
+  (96=dtsa@outlook.sg)(97
+    ==?UTF-8?B?SGkgRGFuaWVsLCBnZXQgRVhUUkEgMTUlIG9mZiB5b3VyIG5leHQ=?= =?UTF-8?\
+B?IG9yZGVyISDwn5iA?=)(98=0.1.55.798.1D402BF5822EE9A.0@omp.email.zalora.com)
+  (9A=UTF-8)(9B=10d65)(9E=1603123175143037882)>
+{1:^80 {(k^97:c)(s=9)} 
+  [3(^88=81)(^B6^88)(^8B=0)(^82^89)(^85^8A)(^81^8B)(^83^8C)(^B9^8D)
+    (^86^8D)(^89=1)(^87^8F)(^9B^91)(^8F=3)(^BA=0)(^BC^93)(^BD^93)(^BE=)
+    (^9D=0)(^BF=0)(^9E^A0)(^8C^A1)]
+  [4(^88=1)(^B6^94)(^8B=0)(^82^95)(^85^96)(^81^97)(^83^98)(^B9^99)(^86^99)
+    (^89=1)(^96^9A)(^87^9B)(^9B^91)(^8F=4)(^BA=0)(^BC^9E)(^BD^9E)(^BE=)]}
+{3:^80 {(k^98:c)(s=9)1:m } 3 }
+{4:^80 {(k^98:c)(s=9)2:m } 4 }
+{FFFFFFFD:^9A {(k^99:c)(s=9)} [3(^95^8B)]
+  [4(^95^97)]}
+
+<(82=Discounts)(83=8082014)(85=ee00)(86=29)(9D=2)>
+{1:^9F {(k^A0:c)(s=9)} 
+  [1(^AC=1)(^AD=0)(^AE=1)(^AF^82)(^88^83)(^A7^82)(^B0=1)(^B1=)(^B2^85)
+    (^A8=29)(^B5=4)(^A1=2)(^A6=4)]}
+
+@$${2{@
+<(A3=3a6)>[3:^80(^C0^A3)]
+@$$}2}@
+
+@$${4{@
+<(A4=26012)(A5=10db8)(A6=4b9)>[-4:^80(^88=81)(^B6^94)(^8B=0)(^82^95)
+    (^85^96)(^81^97)(^83^98)(^B9^99)(^86^99)(^89=1)(^96^9A)(^87^9B)
+    (^9B^91)(^8F=4)(^BA=0)(^BC^9E)(^BD^9E)(^BE=)(^9D^A0)(^BF^A4)(^9E^A5)
+    (^8C^A6)]
+@$$}4}@
+
+@$${5{@
+@$$}5}@
+
+@$${6{@
+@$$}6}@
+
+@$${7{@
+<(A7=3a7)>[4:^80(^C0^A7)]
+@$$}7}@
+
+@$${9{@
+< <(a=c)> // (f=iso-8859-1)
+  (C4=ns:msg:db:row:scope:ops:all)(C5=ns:msg:db:table:kind:ops)>
+[-3:^80(^88=81)(^B6^88)(^8B=0)(^82^89)(^85^8A)(^81^8B)(^83^8C)(^B9^8D)
+    (^86^8D)(^89=1)(^87^8F)(^9B^91)(^8F=3)(^BA=0)(^BC^93)(^BD^93)(^BE=)
+    (^9D=0)(^BF=0)(^9E^A0)(^8C^A1)(^C0^A3)(^C3=)(^8A=0)]
+[-4:^80(^88=81)(^B6^94)(^8B=0)(^82^95)(^85^96)(^81^97)(^83^98)(^B9^99)
+    (^86^99)(^89=1)(^96^9A)(^87^9B)(^9B^91)(^8F=4)(^BA=0)(^BC^9E)(^BD^9E)
+    (^BE=)(^9D^A0)(^BF^A4)(^9E^A5)(^8C^A6)(^C0^A7)(^C3=)(^8A=0)]
+<(A8=666957)>[1:^9F(^B1^A8)]
+{-1:^C4 {(k^C5:c)(s=9)} }
+@$$}9}@
