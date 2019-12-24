@@ -115,6 +115,7 @@ lsb-release
 lvm2
 lxappearance
 lxinput
+neofetch
 m4
 maia-console
 make
