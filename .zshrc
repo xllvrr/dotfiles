@@ -1,6 +1,6 @@
 # basic setup
 
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.config/.oh-my-zsh"
 export EDITOR=’vim’
 export LANG=en_US.UTF-8
 
