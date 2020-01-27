@@ -40,11 +40,11 @@ source $ZSH/oh-my-zsh.sh
 # git management
 
 # for package management (pacman)
-alias pacin=’pacman -S’
-alias pacsrc='pacman -Ss'
-alias pacrem=’pacman -Rns’
-alias pacorph=’pacman -Rns $(pacman -Qtdq)’
-alias pacback=’pacman -Qqe > pkglist.txt’
+alias p='sudo pacman'
+alias psearch='sudo pacman -Ss'
+alias porp='sudo pacman -Rs $(pacman -Qtdq)'
+alias pr='sudo pacman -Rns'
 
 # for dotfile management
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
