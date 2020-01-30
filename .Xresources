@@ -1,39 +1,39 @@
 ! special
-*.foreground:   #88f1ff
-*.background:   #001e2a
-*.cursorColor:  #88f1ff
+*.foreground:   #93a1a1
+*.background:   #002b36
+*.cursorColor:  #93a1a1
 
 ! black
-*.color0:       #001e2a
-*.color8:       #fce82c
+*.color0:       #002b36
+*.color8:       #657b83
 
 ! red
-*.color1:       #931C09
-*.color9:       #f3d447
+*.color1:       #dc322f
+*.color9:       #dc322f
 
 ! green
-*.color2:       #76fff3
-*.color10:      #ec7cff
+*.color2:       #859900
+*.color10:      #859900
 
 ! yellow
-*.color3:       #00f774
-*.color11:      #00e9f6
+*.color3:       #b58900
+*.color11:      #b58900
 
 ! blue
-*.color4:       #effe00
-*.color12:      #4385ff
+*.color4:       #268bd2
+*.color12:      #268bd2
 
 ! magenta
-*.color5:       #7c8c8e
-*.color13:      #568bfe
+*.color5:       #6c71c4
+*.color13:      #6c71c4
 
 ! cyan
-*.color6:       #35c1ff
-*.color14:      #89f3a0
+*.color6:       #2aa198
+*.color14:      #2aa198
 
 ! white
-*.color7:       #54afb9
-*.color15:      #00d8fe
+*.color7:       #93a1a1
+*.color15:      #fdf6e3
 
 *.font: Noto Mono:pixelsize=14:antialias=true:autohint=true;
 *.alpha: 0.8
