@@ -1,8 +1,10 @@
 # basic setup
 
 export ZSH="$HOME/.config/.oh-my-zsh"
-export EDITOR=’vim’
+export EDITOR=’nvim’
 export LANG=en_US.UTF-8
+export PAGER='less'
+export READER='tabbed -c -r 2 zathura -e -d'
 
 # neofetch on start
 neofetch
@@ -36,11 +38,21 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # This section is for aliases that are useful for regular commands
+alias v='nvim'
+alias cleanmake='sudo make clean install'
+alias unmake='sudo make uninstall'
 
 # git management
+alias gac='git add commit'
+function lazygit() {
+      git add .
+      git commit -a -m "$1"
+      git push
+}
 
 # for package management (pacman)
 alias p='sudo pacman'
+alias ps='sudo pacman -S'
 alias psearch='sudo pacman -Ss'
 alias porp='sudo pacman -Rs $(pacman -Qtdq)'
 alias pr='sudo pacman -Rns'
@@ -48,3 +60,5 @@ alias pr='sudo pacman -Rns'
 # for dotfile management
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
+# for zathura-tabbed
+alias ztab='tabbed -c -r 2 zathura -e -d'
