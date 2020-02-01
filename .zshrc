@@ -1,15 +1,7 @@
-# basic setup
-
-export ZSH="$HOME/.zshrc"
-export EDITOR=’vim’
-export LANG=en_US.UTF-8
-export PAGER='less'
-export READER='tabbed -c -r 2 zathura -e -d'
-
 # neofetch on start
 neofetch
 
-# Basic auto complete
+################################# Auto Complete ##############################################
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 # Auto complete with case insenstivity
@@ -19,7 +11,7 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 setopt COMPLETE_ALIASES
 
-
+################################### Vi Stuff ################################################
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -46,30 +38,23 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-# powerlevel configuration
-
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon user dir_writable dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time root_indicator background_jobs time disk_usage ram)
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
-
+# Autocorrection
 ZSH_DISABLE_COMPFIX=true
-
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
-# This section is for plugins that are used in my zsh setup
+
+
+################################# Plugins ##############################################
 # Load zsh-syntax-highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 # Load zsh autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # Load zsh you-should-use
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
-# Load powerlevel9k
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
+
+################################# Aliases ##############################################
 # This section is for aliases that are useful for regular commands
 alias v='nvim'
 alias cleanmake='sudo make clean install'
@@ -95,3 +80,43 @@ alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # for zathura-tabbed
 alias ztab='tabbed -c -r 2 zathura -e -d'
+
+# for ls colors
+alias ls='ls --color=auto'
+
+################################# Spaceship ##############################################
+# Spaceship Config
+# SPACESHIP_PROMPT_SEPARATE_LINE=false
+# SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_USER_SHOW=false
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_HG_SHOW=false
+SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_NODE_SHOW=false
+SPACESHIP_RUBY_SHOW=false
+SPACESHIP_ELM_SHOW=false
+SPACESHIP_ELIXIR_SHOW=false
+SPACESHIP_XCODE_SHOW_LOCAL=false
+SPACESHIP_SWIFT_SHOW_LOCAL=false
+SPACESHIP_GOLANG_SHOW=false
+SPACESHIP_PHP_SHOW=false
+SPACESHIP_RUST_SHOW=false
+SPACESHIP_JULIA_SHOW=false
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_DOCKER_CONTEXT_SHOW=false
+SPACESHIP_AWS_SHOW=false
+SPACESHIP_CONDA_SHOW=false
+SPACESHIP_VENV_SHOW=false
+SPACESHIP_PYENV_SHOW=false
+SPACESHIP_DOTNET_SHOW=false
+SPACESHIP_EMBER_SHOW=false
+SPACESHIP_KUBECONTEXT_SHOW=false
+SPACESHIP_TERRAFORM_SHOW=false
+SPACESHIP_TERRAFORM_SHOW=false
+SPACESHIP_VI_MODE_SHOW=false
+SPACESHIP_JOBS_SHOW=false
+
+# Spaceship Prompt
+autoload -U promptinit; promptinit
+prompt spaceship
+
