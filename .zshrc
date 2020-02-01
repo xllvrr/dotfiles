@@ -86,7 +86,7 @@ alias ls='ls --color=auto'
 
 ################################# Spaceship ##############################################
 # Spaceship Config
-# SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false
 # SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_USER_SHOW=false
 SPACESHIP_CHAR_SUFFIX=" "
