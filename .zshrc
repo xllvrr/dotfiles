@@ -84,6 +84,30 @@ alias ztab='tabbed -c -r 2 zathura -e -d'
 # for ls colors
 alias ls='ls --color=auto'
 
+################################# Documents ##############################################
+# for quick access to HT folder
+alias ht='cd /media/mydisk/GDrive/School/"Honours Thesis"'
+
+# for school folder
+alias school='cd /media/mydisk/GDrive/School/"Year 4 Sem 2"'
+
+# use lf to switch directories and bind it to ctrl-o
+ lfcd () {
+     tmp="$(mktemp)"
+     lf -last-dir-path="$tmp" "$@"
+     if [ -f "$tmp" ]; then
+         dir="$(cat "$tmp")"
+         rm -f "$tmp"
+         if [ -d "$dir" ]; then
+             if [ "$dir" != "$(pwd)" ]; then
+                 cd "$dir"
+             fi
+         fi
+     fi
+}
+
+bindkey -s '^o' 'lfcd\n'  # zsh
+
 ################################# Centering ##############################################
 # load terminfo modules to make the associative array $terminfo available
 zmodload zsh/terminfo 
