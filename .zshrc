@@ -91,6 +91,9 @@ alias ht='cd /media/mydisk/GDrive/School/"Honours Thesis"'
 # for school folder
 alias school='cd /media/mydisk/GDrive/School/"Year 4 Sem 2"'
 
+# for nvim configuration
+alias nvcon='nvim .config/nvim/init.vim'
+
 # use lf to switch directories and bind it to ctrl-o
  lfcd () {
      tmp="$(mktemp)"
