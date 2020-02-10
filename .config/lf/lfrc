@@ -82,9 +82,6 @@ cmd extract ${{
 # custom file opener commands
 map r source ~/.config/lf/lfrc
 
-map gs cd /media/mydisk/GDrive/School/"Year 4 Sem 2"
-map gH cd /media/mydisk/GDrive/School/"Honours Thesis"
-
 # compress current file or selected files with tar and gunzip
 cmd tar ${{
     set -f
