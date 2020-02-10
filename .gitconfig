@@ -1,3 +1,5 @@
 [user]
 	email = dtsa.tan@gmail.com
 	name = xllvr
+[gpg]
+	program = gpg2
