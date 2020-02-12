@@ -84,12 +84,16 @@ alias ztab='tabbed -c -r 2 zathura -e -d'
 # for ls colors
 alias ls='ls --color=auto'
 
+# for nvim to open tabs
+alias vt='nvim -p' # open in tabs
+alias vr='nvim -S' # open saved session
+
 ################################# Documents ##############################################
 # for quick access to HT folder
 alias ht='cd /media/mydisk/GDrive/School/"Honours Thesis"'
 
 # for school folder
-alias school='cd /media/mydisk/GDrive/School/"Year 4 Sem 2"'
+alias sch='cd /media/mydisk/GDrive/School/"Year 4 Sem 2"'
 
 # for nvim configuration
 alias nvcon='nvim .config/nvim/init.vim'
