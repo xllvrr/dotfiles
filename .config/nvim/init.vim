@@ -23,6 +23,7 @@ Plug 'chrisbra/csv.vim'
 Plug 'tpope/vim-commentary'
 
 " Syntax Highlighting
+Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Linting Code
@@ -40,6 +41,7 @@ let g:Rout_more_colors = 1
 nmap , <Plug>RDSendLine
 vmap , <Plug>RDSendSelection
 vmap ,e <Plug>RESendSelection
+Plug 'jalvesaq/R-Vim-runtime' " Highlighting for Rmd and Rnw code chunks
 Plug 'gaalcaras/ncm-R' " Code Completion for R
 Plug 'roxma/nvim-yarp' " Dependency for ncm2
 Plug 'ncm2/ncm2' " Snippets for ncm-R 
@@ -47,7 +49,7 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 inoremap <c-c> <ESC>
 Plug 'ervandew/supertab' " Allow tab to autocomplete
-Plug 'lervag/vimtex'
+Plug 'LaTeX-Box-Team/LaTeX-Box' " Latex highlighting
 
 " Nvim Py 
 Plug 'ncm2/ncm2-jedi'
@@ -73,6 +75,7 @@ set shiftwidth=6
 set softtabstop=6
 set tabstop=6
 set termguicolors
+set mouse=in
 
 colorscheme codedark
 
@@ -81,10 +84,16 @@ let g:netrw_banner = 0
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 
-" Remap Omnicompletion
+" Remap omnicompletion
 inoremap <Tab> <C-n>
 
-" Help File on the Right
+" Easy split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Help file on the right
 augroup vimrc_help
   autocmd!
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
@@ -94,16 +103,11 @@ augroup END
 set undodir=~/.vim/undodir
 set undofile
 
-" Auto-Apply Configuration
-augroup autoapply
-      autocmd bufwritepost .config/nvim/init.vim source .config/nvim/init.vim
-augroup END
-
-" Auto-Center
-nnoremap j jzz
-nnoremap k kzz
-nnoremap n nzz
-nnoremap N Nzz
+" Auto-center and go by screen lines
+nnoremap j gjzz
+nnoremap k gkzz
+nnoremap n gnzz
+nnoremap N gNzz
 
 " Neomake Maker Configuration
 call neomake#configure#automake('nrwi', 500)
@@ -112,17 +116,13 @@ let g:neomake_R_enabled_makers = ['lintr']
 let g:neomake_Rnw_enabled_makers = ['pdflatex']
 let g:neomake_bib_enabled_makers = ['bibtex']
 
-" Allow Multiple Cursors to Work with Deoplete
-func! Multiple_cursors_before()
-      if deoplete#is_enabled()
-        call deoplete#disable()
-        let g:deoplete_is_enable_before_multi_cursors = 1
-      else
-        let g:deoplete_is_enable_before_multi_cursors = 0
-      endif
-    endfunc
-    func! Multiple_cursors_after()
-      if g:deoplete_is_enable_before_multi_cursors
-        call deoplete#enable()
-      endif
-endfunc
+" Highlighting for Rnw files
+augroup filetypedetect
+  au! BufRead,BufNewFile *.r         setfiletype r
+  au! BufRead,BufNewFile *.R         setfiletype r
+augroup END
+
+" Autosource Vim Conf on Save
+augroup autosource
+  au! BufWrite ~/.config/nvim/init.vim source %
+augroup END
