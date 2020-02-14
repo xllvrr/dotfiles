@@ -1,28 +1,42 @@
-#!/bin/bash
+#!bin/bash
 
-# Installing packages
+# This document is a script meant to aid with installation of my particular workflow
 
-pacman -S --needed $(comm -12 <(pacman -Slq | sort) <(sort pkglist.txt))
-pacman -Rsu $(comm -23 <(pacman -Qq | sort) <(sort pkglist.txt))
+# Step 1: Installing Software
+# 1A: Installing YAY AUR Helper
+sudo pacman -Syyu
+sudo pacman -S yay
+# 1B: Installing Packages
+yay -S --needed --nouseask --nocleanmenu --nodiffmenu --removemake - < ~/pkglist.txt # Install all listed packages
+pacman -Rns $(pacman -Qtdq) # Remove orphans
 
-# Setup dotfiles
-git clone --bare https://github.com/Xllvr/dotfiles.git $HOME/.dotfiles
-function config {
-	/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME $@
-}
-mkdir -p .config-backup
-config checkout
-if [$? = 0]; then
-	echo "Configuration files checked out";
-	else
-	  echo "Backing up existing configuration files"
-	  config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+# Step 2: Restoring Configurations
+alias config='/usr/bin/git --git-dir=$HOME/.config/ --work-tree=$HOME'
+echo ".config" >> .gitignore
+git clone --bare https://github.com/Xllvr/dotfiles.git $HOME/.config
+if [ $? = 0 ]; then
+  echo "Checked out config.";
+  else
+    echo "Backing up pre-existing dot files.";
+    config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
 fi;
 config checkout
-config config status.showUntrackedFiles no
+config config --local status.showUntrackedFiles no
 
-# Installing ohmyzsh and custom plugins
-export ZSH = "$HOME/.config/.oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/mohmyzsh/master/tools/install.sh)"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $(ZSH_CUSTOM:~/.config/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+# Step 3: Cloning Needed Git Repos
+cd ~/.config
+git clone https://github.com/Xllvr/st.git
+cd st
+sudo make clean install
+
+# Step 4: Change Default Shell to Zsh
+chsh -s /usr/bin/zsh
+
+# Step 5: Setting Up Fcitx
+sudo echo "export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx" >>  /etc/profile
+
+# Step 6: Reminders
+echo "Setup Insync, Joplin, Rambox, Thunderbird, Discord, Chromium, Steam, Stacer, Gufw, Deja Dup & Timeshift"
+echo "Key in Code for Reaper"
