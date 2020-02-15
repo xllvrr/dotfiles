@@ -78,9 +78,6 @@ alias pr='sudo pacman -Rns'
 # for dotfile management
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
-# for zathura-tabbed
-alias ztab='tabbed -c -r 2 zathura -e -d'
-
 # for ls colors
 alias ls='ls --color=auto'
 
@@ -185,3 +182,5 @@ SPACESHIP_JOBS_SHOW=false
 autoload -U promptinit; promptinit
 prompt spaceship
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
