@@ -69,6 +69,7 @@ let g:jedi#completions_enabled = 0 " disable autocompletion, cause we use deople
 let g:jedi#use_splits_not_buffers = "right" " open the go-to function in split, not another buffer
 Plug 'terryma/vim-multiple-cursors'
 Plug 'habamax/vim-sendtoterm'
+command! -nargs=* PV vsplit | terminal ipython
 
 call plug#end()
 
@@ -155,6 +156,7 @@ let g:neomake_python_enabled_makers = ['pep8', 'flake8']
 let g:neomake_R_enabled_makers = ['lintr']
 let g:neomake_Rnw_enabled_makers = ['pdflatex']
 let g:neomake_bib_enabled_makers = ['bibtex']
+let g:neomake_zsh_enabled_makers = ['zsh']
 
 " Highlighting for Rnw files
 augroup filetypedetect
