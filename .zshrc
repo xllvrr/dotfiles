@@ -1,6 +1,11 @@
 # neofetch on start
 neofetch
 
+# Default apps
+export EDITOR='neovim'
+export VISUAL='sxiv'
+export SHELL='zsh'
+
 ################################# Auto Complete ##############################################
 autoload -Uz compinit
 zstyle ':completion:*' menu select
@@ -59,13 +64,19 @@ source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 alias v='nvim'
 alias cleanmake='sudo make clean install'
 alias unmake='sudo make uninstall'
+alias lsa='ls -a'
 
 # git management
-alias gac='git add commit'
 function lazygit() {
       git add .
       git commit -a -m "$1"
       git push
+}
+
+function configupdate() {
+    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add $1
+    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit -a -m "$2"
+    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME push
 }
 
 # for package management (pacman)

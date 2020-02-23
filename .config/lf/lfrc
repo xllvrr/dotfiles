@@ -17,9 +17,16 @@ cmd open ${{
     esac
 }}
 
-# define a custom 'rename' command without prompt for overwrite
-cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
-map cw push :rename<space>
+# change mode
+cmd chmod ${{
+  printf "Mode Bits: "
+  read ans
+
+  for file in "$fx"
+  do
+    chmod $ans $file
+  done
+}}
 
 # define a custom 'delete' command
 cmd delete ${{
@@ -50,14 +57,18 @@ cmd tar %tar cvf "$f.tar" "$f"
 cmd targz %tar cvzf "$f.tar.gz" "$f"
 cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
 
+# set wallpaper
+cmd setwallpaper %cp "$f" ~/.config/wall.png && feh --bg-scale --no-fehbf "$f"
+
 # Bindings
 map "''"
+map c
+map m
 map <esc> quit # Escape to quit
 
 # File Openers
 map ee $$EDITOR "$f"
 map es $sudo $EDITOR "$f"
-map z $view "$f"
 
 # Archive Mappings
 map az zip
@@ -72,6 +83,7 @@ map p paste
 map x cut
 map y copy
 map <enter> open
+map bm mark-save
 map mf mkfile
 map mr sudomkfile
 map md mkdir

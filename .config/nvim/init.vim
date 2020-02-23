@@ -1,6 +1,6 @@
 let mapleader=" "
 
-call plug#begin('~/plugged')
+call plug#begin('~/repos/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -9,6 +9,7 @@ Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Fuzzy Search
 Plug 'sbdchd/neoformat'
 Plug 'jiangmiao/auto-pairs'
+Plug 'kovetskiy/sxhkd-vim'
 
 Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
@@ -78,6 +79,7 @@ let g:airline_theme = 'codedark'
 " Basic settings
 syntax on
 filetype indent on
+filetype plugin on
 set number relativenumber
 set smartcase
 set encoding=utf8
