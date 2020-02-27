@@ -1,6 +1,3 @@
-# neofetch on start
-neofetch
-
 # Default apps
 export EDITOR='neovim'
 export VISUAL='sxiv'
@@ -48,8 +45,6 @@ ZSH_DISABLE_COMPFIX=true
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
-
-
 ################################# Plugins ##############################################
 # Load zsh-syntax-highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
@@ -64,7 +59,8 @@ source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 alias v='nvim'
 alias cleanmake='sudo make clean install'
 alias unmake='sudo make uninstall'
-alias lsa='ls -a'
+alias lsa='ls -a --color=auto'
+alias pfetch='~/repos/pfetch/pfetch'
 
 # git management
 function lazygit() {
