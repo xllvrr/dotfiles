@@ -1,0 +1,7 @@
+# Assign desktops
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+# Floating Apps
+bspc rule -a Gimp desktop=^3 follow=on state=floating
+
+# Desktop Assignment

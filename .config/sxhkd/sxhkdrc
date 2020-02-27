@@ -1,0 +1,105 @@
+=========== Window Management ===========
+# Quit/restart bspwm
+super + alt + {q,r}
+	{ \
+    prompt "Are you sure you want to quit out?" bspc quit, \
+    bspc wm -r \
+    }
+
+# Close/kill focused window
+super + {c,q}
+	bspc node -{c,k}
+
+# Preselect direction
+super + alt + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# Focus on window in specified direction
+super + {h,j,k,l}
+	bspc node -f {west,south,north,east}
+
+# Send window to desktop
+super + shift + {0-9}
+	bspc node -d {0-9} && bspunhide
+
+# Send window to desktop and swap to desktop
+super + ctrl + {0-9}
+	bspc node -d {0-9} && bspunhide && bspc desktop -f {0-9}
+
+# Toggle fullscreen on/off
+super + f
+	bspfullscreen
+
+# Toggle floating on/off
+super + o
+	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+
+# Focus desktop
+super + {0-9}
+	bspc desktop -f {0-9}
+
+# Cycle through desktops
+ctrl + super + {Left,Right}
+	bspc desktop -f {prev,next}
+
+# Expand a window by moving one of its side outward
+ctrl + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# Contract a window by moving one of its side inward
+ctrl + super + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# Mouse management (floating windows)
+super + button{1-3}
+	bspc pointer -g {move,resize_side,resize_corner}
+super + !button{1-3}
+	bspc pointer -t %i %i
+super + @button{1-3}
+	bspc pointer -u
+
+=========== System Control ===========
+
+# Restart hotkey damon
+super + shift + x
+	killandnotify "sxhkd" "Config reloaded" && sxhkd &
+
+# Reload polybar
+super + shift + o
+	reloadpolybar
+
+# Terminal
+super + return
+	$TERMINAL
+
+# Pulse Controls
+super + {Up, Down}
+	pulsevolctrl "output-vol" @DEFAULT_SINK@ {+2%, -2%}
+
+# Mute Audio
+super + m
+	pulsevolctrl "output-mute" @DEFAULT_SINK@
+
+
+=========== Applications ===========
+# Dmenu
+alt + space
+	dmenu_run
+
+# GUI
+super + a ; {1-5}
+	{ \
+    chromium, \
+    thunderbird, \
+    joplin, \
+    rambox, \
+    discord \
+    }
+
+# File Managers
+super + e ; {t,f}
+	{$TERMINAL -e lfcd, dolphin}
+
+# Screenshot
+print
+	flameshot
