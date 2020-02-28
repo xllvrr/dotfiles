@@ -53,7 +53,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev
 # Load zsh you-should-use
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
-
 ################################# Aliases ##############################################
 # This section is for aliases that are useful for regular commands
 alias v='nvim'
@@ -61,6 +60,8 @@ alias cleanmake='sudo make clean install'
 alias unmake='sudo make uninstall'
 alias lsa='ls -a --color=auto'
 alias pfetch='~/repos/pfetch/pfetch'
+alias polybar='~/repos/scripts/polybarlaunch'
+alias cfglist='~/repos/scripts/configedit'
 
 # git management
 function lazygit() {
