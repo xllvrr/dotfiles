@@ -1,13 +1,18 @@
-# basic setup
+# path
+typeset -U PATH path
+path=("$HOME/.local/bin" "$HOME/repos/scripts" "$HOME/repos/scripts/polybar" "$path[@]")
+export PATH
 
+# default apps
 export HOME="/home/xllvr"
 export ZSH="$HOME/.zshrc"
 export EDITOR='nvim'
 export LANG=en_US.UTF-8
 export PAGER='less'
-export READER='tabbed -c -r 2 zathura -e -d'
-export VISUAL='nvim'
+export READER='zathura'
+export VISUAL='sxiv'
 export TERMINAL='st'
+export BROWSER='firefox'
 
 # man page colors
 export LESS_TERMCAP_mb=$'\e[1;32m'
