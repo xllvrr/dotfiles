@@ -1,8 +1,3 @@
-# Default apps
-export EDITOR='neovim'
-export VISUAL='sxiv'
-export SHELL='zsh'
-
 ################################# Auto Complete ##############################################
 autoload -Uz compinit
 zstyle ':completion:*' menu select
@@ -53,6 +48,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev
 # Load zsh you-should-use
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
+
 ################################# Aliases ##############################################
 # This section is for aliases that are useful for regular commands
 alias v='nvim'
@@ -60,8 +56,8 @@ alias cleanmake='sudo make clean install'
 alias unmake='sudo make uninstall'
 alias lsa='ls -a --color=auto'
 alias pfetch='~/repos/pfetch/pfetch'
-alias polybar='~/repos/scripts/polybarlaunch'
-alias cfglist='~/repos/scripts/configedit'
+alias dragon='dragon-drag-and-drop'
+alias xrefresh='xrdb ~/.Xresources'
 
 # git management
 function lazygit() {
@@ -80,8 +76,10 @@ function configupdate() {
 alias p='sudo pacman'
 alias ps='sudo pacman -S'
 alias psearch='sudo pacman -Ss'
+alias pup='sudo pacman -Syu'
 alias porp='sudo pacman -Rs $(pacman -Qtdq)'
 alias pr='sudo pacman -Rns'
+alias pexist='sudo pacman -Qs'
 
 # for dotfile management
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
@@ -99,9 +97,6 @@ alias ht='cd /media/mydisk/GDrive/School/"Honours Thesis"'
 
 # for school folder
 alias sch='cd /media/mydisk/GDrive/School/"Year 4 Sem 2"'
-
-# for nvim configuration
-alias nvcon='nvim .config/nvim/init.vim'
 
 # use lf to switch directories and bind it to ctrl-o
  lfcd () {
