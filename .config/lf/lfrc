@@ -58,13 +58,18 @@ cmd targz %tar cvzf "$f.tar.gz" "$f"
 cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
 
 # set wallpaper
-cmd setwallpaper %cp "$f" ~/.config/wall.png && feh --bg-scale --no-fehbf "$f"
+cmd setwallpaper %cp "$f" ~/.config/wall.png && feh --bg-scale "$f"
+
+# drag and drop
+cmd dragon %dragon-drag-and-drop -a $fx
+cmd dlfile %dlfile
 
 # Bindings
 map "''"
 map c
 map m
 map <esc> quit # Escape to quit
+map d
 
 # File Openers
 map ee $$EDITOR "$f"
@@ -76,6 +81,10 @@ map at tar
 map ag targz
 map ab tarbz2
 map au extract
+
+# Dragon Mappings
+map dr dragon
+map dl dlfile
 
 # Basic Functions
 map DD delete
