@@ -35,5 +35,5 @@
 *.color7:       #a8a19f
 *.color15:      #f1efee
 
-*.font: Noto Mono:pixelsize=14:antialias=true:autohint=true;
+*.font: JetBrainsMono:pixelsize=14:antialias=true:autohint=true;
 *.alpha: 0.8
