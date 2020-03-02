@@ -20,13 +20,17 @@ super + alt + {h,j,k,l}
 super + {h,j,k,l}
 	bspc node -f {west,south,north,east}
 
+# Swap node with neighbor in specified direction
+super + shift + {h,j,k,l}
+	bspc node --swap {west,south,north,east}
+
 # Send window to desktop
-super + shift + {0-9}
-	bspc node -d {0-9} && bspunhide
+super + shift + {1-9,0}
+	bspc node -d {1-9, 10} && bspunhide
 
 # Send window to desktop and swap to desktop
-super + ctrl + {0-9}
-	bspc node -d {0-9} && bspunhide && bspc desktop -f {0-9}
+super + ctrl + {1-9,0}
+	bspc node -d {1-9, 10} && bspunhide && bspc desktop -f {1-9,10}
 
 # Toggle fullscreen on/off
 super + f
@@ -37,8 +41,8 @@ super + o
 	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
 
 # Focus desktop
-super + {0-9}
-	bspc desktop -f {0-9}
+super + {1-9,0}
+	bspc desktop -f {1-9,10}
 
 # Cycle through desktops
 ctrl + super + {Left,Right}
@@ -62,7 +66,7 @@ super + @button{1-3}
 
 # Restart hotkey damon
 super + shift + x
-	killandnotify "sxhkd" "Config reloaded" && sxhkd &
+	pkill sxhkd && sxhkd &
 
 # Reload polybar
 super + shift + o
@@ -81,12 +85,16 @@ super + m
 	pulsevolctrl "output-mute" @DEFAULT_SINK@
 
 # Power Options
-super + p ; {r, h}
-	{reboot, suspend}
+super + p ; {r, s, o, h}
+	systemctl {reboot, suspend, poweroff, hibernate}
 
 # Configurations
 alt + c
 	$TERMINAL -e cfglist
+
+# System Settings for KDE
+alt + s
+	systemsettins5
 
 
 =========== Applications ===========
@@ -99,7 +107,7 @@ super + space
 	fcitx-remote -t &
 
 # GUI
-super + a ; {1-6}
+super + a ; {1-7}
 	{ \
     $BROWSER, \
     thunderbird, \
@@ -107,11 +115,16 @@ super + a ; {1-6}
     rambox, \
     discord, \
 	lutris, \
+	darktable, \
     }
 
+# Entertainment
+super + e
+	$BROWSER youtube.com music.youtube.com mangadex.org
+
 # File Managers
-super + e ; {t,f}
-	{$TERMINAL -e lfcd, dolphin}
+super + d ; {t,f}
+	{$TERMINAL -e lf, dolphin}
 
 # Screenshot
 Print
