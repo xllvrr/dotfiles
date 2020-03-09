@@ -84,9 +84,9 @@ set number relativenumber
 set smartcase
 set encoding=utf8
 set expandtab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=8
+set softtabstop=8
+set tabstop=8
 set mouse=in
 set history=1000
 
@@ -120,6 +120,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <Shift-K> <C-W><Shift-K>
+nnoremap <Shift-H> <C-W><Shift-H>
 
 " Tab navigation
 nnoremap tn :tabnew<Space>
@@ -151,6 +153,10 @@ nnoremap j gjzz
 nnoremap k gkzz
 nnoremap n gnzz
 nnoremap N gNzz
+vnoremap j gjzz
+vnoremap k gkzz
+vnoremap n gnzz
+vnoremap N gNzz
 
 " Neomake Maker Configuration
 call neomake#configure#automake('nrwi', 500)
