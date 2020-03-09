@@ -34,11 +34,15 @@ super + ctrl + {1-9,0}
 
 # Toggle fullscreen on/off
 super + f
-	bspfullscreen
+	bspc node -t \~fullscreen
 
 # Toggle floating on/off
 super + o
 	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+
+# Rotate node
+super + shift + r
+	bspc node @/ -R 90
 
 # Focus desktop
 super + {1-9,0}
@@ -55,12 +59,6 @@ ctrl + alt + {h,j,k,l}
 # Contract a window by moving one of its side inward
 ctrl + super + {h,j,k,l}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-# Mouse management (floating windows)
-super + button{1-3}
-	bspc pointer -g {move,resize_side,resize_corner}
-super + @button{1-3}
-	bspc pointer -u
 
 =========== System Control ===========
 
@@ -94,7 +92,7 @@ alt + c
 
 # System Settings for KDE
 alt + s
-	systemsettins5
+	systemsettings5
 
 
 =========== Applications ===========
@@ -107,15 +105,15 @@ super + space
 	fcitx-remote -t &
 
 # GUI
-super + a ; {1-7}
+super + a ; {1-6,g}
 	{ \
     $BROWSER, \
     thunderbird, \
     joplin, \
     rambox, \
     discord, \
-	lutris, \
-	darktable, \
+    darktable, \
+    lutris, \
     }
 
 # Entertainment
@@ -128,4 +126,4 @@ super + d ; {t,f}
 
 # Screenshot
 Print
-	flameshot gui
+	maimpick
