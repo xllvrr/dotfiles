@@ -58,6 +58,9 @@ alias lsa='ls -a --color=auto'
 alias pfetch='~/repos/pfetch/pfetch'
 alias dragon='dragon-drag-and-drop'
 alias xrefresh='xrdb ~/.Xresources'
+alias zathura='tabbed -c zathura'
+alias ffs='sudo !!'
+alias tlmgr='sudo tlmgr'
 
 # git management
 function lazygit() {
@@ -90,6 +93,22 @@ alias ls='ls --color=auto'
 # for nvim to open tabs
 alias vt='nvim -p' # open in tabs
 alias vr='nvim -S' # open saved session
+
+# set wallpaper
+function setwallpaper() {
+    qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript '
+    var allDesktops = desktops();
+    print (allDesktops);
+    for (i=0;i<allDesktops.length;i++) {{
+        d = allDesktops[i];
+        d.wallpaperPlugin = "org.kde.image";
+        d.currentConfigGroup = Array("Wallpaper",
+                                     "org.kde.image",
+                                     "General");
+        d.writeConfig("Image", "file:///home/xllvr/.config/wall.png")
+    }}
+'
+}
 
 ################################# Documents ##############################################
 # for quick access to HT folder
