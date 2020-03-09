@@ -9,11 +9,6 @@
 ;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 ;
 ;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/polybar/polybar
-;
-;   The README contains a lot of information
-;
 ;==========================================================
 
 [colors]
@@ -58,23 +53,19 @@ font-3 = FontAwesome5Free:pixelsize=10:style=Solid;0
 font-4 = FontAwesome5Free:pixelsize=10:style=Regular;0
 font-5 = FontAwesome5Brands:style=Regular:size=10;0
 
-; modules-left = bspwm 
-modules-right = filesystem volume wifi time memory cpu 
+modules-left = bspwm 
+modules-right = filesystem volume bluetooth wifi time memory cpu 
 
 tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
 
-; wm-restack = bspwm
-;wm-restack = i3
+wm-restack = bspwm
 
 ;override-redirect = true
 
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -116,58 +107,32 @@ label-unmounted-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+; label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
-label-occupied = %index%
+; label-occupied = %index%
 label-occupied-padding = 2
 
-label-urgent = %index%!
+; label-urgent = %index%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-label-empty = %index%
+; label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
-; Separator in between workspaces
-; label-separator = |
-
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
-
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 2
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
 
 ; Separator in between workspaces
 ; label-separator = |
@@ -197,15 +162,6 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
 
-[module/wifi]
-type = custom/script
-exec = polywifi
-label = "%output%"
-format-prefix = "📡 "
-format-underline = #268bd2
-format-background = ${colors.background-alt}
-format-padding = 1
-
 [module/eth]
 type = internal/network
 interface = eno1
@@ -226,36 +182,17 @@ format-disconnected =
 type = custom/ipc
 hook-0 = polypulsevolume
 click-left = $TERMINAL -e alsamixer
+click-right = kcmshell5 kcm_pulseaudio
 initial = 1
 format-underline = #268bd2
 format-padding = 1
 
-[module/pulseaudio]
-type = internal/pulseaudio
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
-
-label-muted = 🔇 muted
-label-muted-foreground = #666
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+[module/wifi]
+type = custom/text
+content = ""
+click-left = $TERMINAL -e nmtui &
+content-underline = #e7730d
+content-padding = 1
 
 [module/time]
 type = custom/script
@@ -292,6 +229,15 @@ interval = 30
 format-underline = #268bd2
 format-background = ${colors.background-alt}
 format-padding = 1
+
+[module/bluetooth]
+type = custom/script
+exec = bluepower
+interval = 2
+click-left = exec kcmshell5 bluedevildevices 
+click-right = exec toggleblue
+format-padding = 1
+format-underline = #268bd2
 
 [module/pacman-packages]
 type = custom/ipc
