@@ -109,7 +109,7 @@ super + a ; {1-6,g}
 	{ \
     $BROWSER, \
     thunderbird, \
-    joplin, \
+    joplin-desktop, \
     rambox, \
     discord, \
     darktable, \
@@ -119,6 +119,10 @@ super + a ; {1-6,g}
 # Entertainment
 super + e
 	$BROWSER youtube.com music.youtube.com mangadex.org
+
+# Reference Files
+alt + shift + r
+	$TERMINAL -e neovim $HOME/repos/templates/bibtemplates.bib
 
 # File Managers
 super + d ; {t,f}
