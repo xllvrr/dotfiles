@@ -75,6 +75,11 @@ function configupdate() {
     /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME push
 }
 
+# merge files
+function filemerge() {
+        gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=$1 $2 $3
+}
+
 # for package management (pacman)
 alias p='sudo pacman'
 alias ps='sudo pacman -S'
@@ -133,6 +138,10 @@ alias sch='cd /media/mydisk/GDrive/School/"Year 4 Sem 2"'
 }
 
 bindkey -s '^o' 'lfcd\n'  # zsh
+
+# create from defaults
+alias rmd='cp ~/repos/templates/default.Rmd .'
+alias rnw='cp ~/repos/templates/default.Rnw .'
 
 ################################# Centering ##############################################
 # load terminfo modules to make the associative array $terminfo available
