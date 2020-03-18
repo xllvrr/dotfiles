@@ -120,8 +120,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap <Shift-K> <C-W><Shift-K>
-nnoremap <Shift-H> <C-W><Shift-H>
 
 " Tab navigation
 nnoremap tn :tabnew<Space>
