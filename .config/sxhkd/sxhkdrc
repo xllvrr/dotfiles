@@ -40,6 +40,10 @@ super + f
 super + o
 	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
 
+# Toggle hidden on/off
+super + { ,shift} + i
+	{bspc node -g hidden=on, hideoff}
+
 # Rotate node
 super + shift + r
 	bspc node @/ -R 90
@@ -119,10 +123,6 @@ super + a ; {1-6,g}
 # Entertainment
 super + e
 	$BROWSER youtube.com music.youtube.com mangadex.org
-
-# Reference Files
-alt + shift + r
-	$TERMINAL -e neovim $HOME/repos/templates/bibtemplates.bib
 
 # File Managers
 super + d ; {t,f}
