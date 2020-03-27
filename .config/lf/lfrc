@@ -115,15 +115,16 @@ map <enter> open
 map bm mark-save
 map mf mkfile
 map mr sudomkfile
-map md mkdir
+map md push %mkdir<space>
 map ms $mkscript
 map ch chmod
 map bg setwallpaper
-map r rename
 map br bulk-rename
 map H top
 map L bottom
 map R reload
+map r rename
 map C clear
 map U unselect
 map g mark-load
+
