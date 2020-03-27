@@ -84,9 +84,10 @@ set number relativenumber
 set smartcase
 set encoding=utf8
 set expandtab
-set shiftwidth=8
-set softtabstop=8
-set tabstop=8
+set smarttab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 set mouse=in
 set history=1000
 
@@ -145,6 +146,9 @@ tnoremap <Esc> <C-\><C-n>
 command! -nargs=* T split | terminal <args>
 command! -nargs=* VT vsplit | terminal <args>
 command! -nargs=* TT tabnew | terminal <args>
+
+" Quick reference
+command! -nargs=* BibRef tabedit $HOME/repos/templates/bibtemplates.bib
 
 " Auto-center and go by screen lines
 nnoremap j gjzz

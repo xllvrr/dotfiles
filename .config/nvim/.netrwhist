@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/media/mydisk/GDrive/School/Year 4 Sem 2/PL5225R/indiv/ICPSR_36692/DS0005'
+let g:netrw_dirhist_5='/media/mydisk/GDrive/School/Year 4 Sem 2/PL5225R/indiv/ICPSR_36179/DS0001'
 let g:netrw_dirhist_4='/media/mydisk/GDrive/School/Year 4 Sem 2/PL5225R/assign2'
 let g:netrw_dirhist_3='/media/mydisk/GDrive/School/Honours Thesis/Analysis'
 let g:netrw_dirhist_2='/media/mydisk/GDrive/School/Honours Thesis'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_0='/media/mydisk/GDrive/School/Honours Thesis/Analysis'
 let g:netrw_dirhist_9='/media/mydisk/GDrive/School/Honours Thesis'
 let g:netrw_dirhist_8='/media/mydisk/GDrive/School/Honours Thesis/Report'
 let g:netrw_dirhist_7='/etc/profile.d'
-let g:netrw_dirhist_6='/etc'
-let g:netrw_dirhist_5='/etc/profile.d'
