@@ -99,6 +99,9 @@ alias ls='ls --color=auto'
 alias vt='nvim -p' # open in tabs
 alias vr='nvim -S' # open saved session
 
+# change visual for crontab
+alias crontab='export VISUAL=nvim; crontab'
+
 # set wallpaper
 function setwallpaper() {
     qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript '
