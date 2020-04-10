@@ -7,6 +7,7 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 setopt COMPLETE_ALIASES
+source .config/.aliases
 
 ################################### Vi Stuff ################################################
 # vi mode
@@ -48,103 +49,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev
 # Load zsh you-should-use
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
-
-################################# Aliases ##############################################
-# This section is for aliases that are useful for regular commands
-alias v='nvim'
-alias cleanmake='sudo make clean install'
-alias unmake='sudo make uninstall'
-alias lsa='ls -a --color=auto'
-alias pfetch='~/repos/pfetch/pfetch'
-alias dragon='dragon-drag-and-drop'
-alias xrefresh='xrdb ~/.Xresources'
-alias zathura='tabbed -c zathura'
-alias ffs='sudo !!'
-alias tlmgr='sudo tlmgr'
-
-# git management
-function lazygit() {
-      git add .
-      git commit -a -m "$1"
-      git push
-}
-
-function configupdate() {
-    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add $1
-    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit -a -m "$2"
-    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME push
-}
-
-# merge files
-function filemerge() {
-        gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=$1 $2 $3
-}
-
-# for package management (pacman)
-alias p='sudo pacman'
-alias ps='sudo pacman -S'
-alias psearch='sudo pacman -Ss'
-alias pup='sudo pacman -Syu'
-alias porp='sudo pacman -Rs $(pacman -Qtdq)'
-alias pr='sudo pacman -Rns'
-alias pexist='sudo pacman -Qs'
-
-# for dotfile management
-alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-
-# for ls colors
-alias ls='ls --color=auto'
-
-# for nvim to open tabs
-alias vt='nvim -p' # open in tabs
-alias vr='nvim -S' # open saved session
-
-# change visual for crontab
-alias crontab='export VISUAL=nvim; crontab'
-
-# set wallpaper
-function setwallpaper() {
-    qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript '
-    var allDesktops = desktops();
-    print (allDesktops);
-    for (i=0;i<allDesktops.length;i++) {{
-        d = allDesktops[i];
-        d.wallpaperPlugin = "org.kde.image";
-        d.currentConfigGroup = Array("Wallpaper",
-                                     "org.kde.image",
-                                     "General");
-        d.writeConfig("Image", "file:///home/xllvr/.config/wall.png")
-    }}
-'
-}
-
-################################# Documents ##############################################
-# for quick access to HT folder
-alias ht='cd /media/mydisk/GDrive/School/"Honours Thesis"'
-
-# for school folder
-alias sch='cd /media/mydisk/GDrive/School/"Year 4 Sem 2"'
-
-# use lf to switch directories and bind it to ctrl-o
- lfcd () {
-     tmp="$(mktemp)"
-     lf -last-dir-path="$tmp" "$@"
-     if [ -f "$tmp" ]; then
-         dir="$(cat "$tmp")"
-         rm -f "$tmp"
-         if [ -d "$dir" ]; then
-             if [ "$dir" != "$(pwd)" ]; then
-                 cd "$dir"
-             fi
-         fi
-     fi
-}
-
-bindkey -s '^o' 'lfcd\n'  # zsh
-
-# create from defaults
-alias rmd='cp ~/repos/templates/default.Rmd .'
-alias rnw='cp ~/repos/templates/default.Rnw .'
 
 ################################# Centering ##############################################
 # load terminfo modules to make the associative array $terminfo available
