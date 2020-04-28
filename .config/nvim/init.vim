@@ -5,11 +5,12 @@ call plug#begin('~/repos/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tomasiser/vim-code-dark'
-Plug 'junegunn/fzf', { 'do': './install --all' }
-Plug 'junegunn/fzf.vim' " Fuzzy Search
+" Plug 'junegunn/fzf', { 'do': './install --all' }
+" Plug 'junegunn/fzf.vim' " Fuzzy Search
 Plug 'sbdchd/neoformat'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kovetskiy/sxhkd-vim'
+Plug 'unblevable/quick-scope'
 
 Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
@@ -57,7 +58,12 @@ augroup ncm2
       inoremap <c-c> <ESC>
 augroup END
 Plug 'ervandew/supertab' " Allow tab to autocomplete
-Plug 'LaTeX-Box-Team/LaTeX-Box' " Latex highlighting
+
+" Latex
+Plug 'LaTeX-Box-Team/LaTeX-Box' " TeX highlighting and compilation
+let g:LatexBox_show_warnings = 1
+let g:LatexBox_autojump = 1
+let g:LatexBox_latexmk_async = 0
 
 " Nvim Py
 Plug 'ncm2/ncm2-jedi'
@@ -82,6 +88,7 @@ filetype indent on
 filetype plugin on
 set number relativenumber
 set smartcase
+set linebreak
 set encoding=utf8
 set expandtab
 set smarttab
@@ -121,6 +128,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <leader>th <C-W>H
+nnoremap <leader>tk <C-W>K
 
 " Tab navigation
 nnoremap tn :tabnew<Space>
@@ -134,6 +143,9 @@ augroup vimrc_help
   autocmd!
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
+
+" Autosave TeX before Compiling
+autocmd BufNewFile,BufRead *.tex nnoremap <buffer> <LocalLeader>ll :update!<CR>:Latexmk!<CR>
 
 " Persistent undo
 set undodir=~/.vim/undodir
@@ -178,3 +190,6 @@ augroup END
 augroup autosource
   au! BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
+
+" Prettify XML
+com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
