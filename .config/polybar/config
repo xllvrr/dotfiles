@@ -182,7 +182,6 @@ format-disconnected =
 type = custom/ipc
 hook-0 = polypulsevolume
 click-left = $TERMINAL -e pulsemixer
-click-right = kcmshell5 kcm_pulseaudio
 initial = 1
 format-underline = #268bd2
 format-padding = 1
