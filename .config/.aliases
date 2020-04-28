@@ -1,15 +1,24 @@
 ################################# Aliases ##############################################
 # This section is for aliases that are useful for regular commands
-alias v='nvim'
-alias cleanmake='sudo make clean install'
-alias unmake='sudo make uninstall'
+
+# applications
+alias v='nvim'                            # vim
+alias zathura='tabbed -c zathura'
+alias dragon='dragon-drag-and-drop'
+alias ex="exa --color automatic -a"
+alias exl="exa --color automatic -alh --git"
+
+# system tools
+alias cleanmake='sudo make clean install' # quick alias for make clean install
+alias unmake='sudo make uninstall'        # uninstall make files
 alias lsa='ls -a --color=auto'
 alias pfetch='~/repos/pfetch/pfetch'
-alias dragon='dragon-drag-and-drop'
 alias xrefresh='xrdb ~/.Xresources'
-alias zathura='tabbed -c zathura'
 alias ffs='sudo !!'
 alias tlmgr='sudo tlmgr'
+alias grep='grep --color'
+alias cp="cp -i"                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
 
 # git management
 function lazygit() {
