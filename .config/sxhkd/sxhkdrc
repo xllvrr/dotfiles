@@ -111,15 +111,15 @@ super + space
 # GUI
 super + a ; {1-7,g,q}
 	{ \
-$BROWSER, \
+	$BROWSER, \
 	thunderbird, \
-joplin-desktop, \
+	joplin-desktop, \
 	rambox, \
-discord, \
+	discord, \
 	darktable, \
-zoom, \
+	zoom, \
 	lutris, \
-designer-qt5, \
+	designer-qt5, \
 	}
 
 # File Managers
