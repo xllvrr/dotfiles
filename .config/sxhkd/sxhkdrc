@@ -124,7 +124,7 @@ super + a ; {1-7,g,q}
 
 # File Managers
 super + d ; {t,f}
-	{$TERMINAL -e lf, dolphin}
+	{$TERMINAL -e lf, pcmanfm}
 
 # Screenshot
 Print
