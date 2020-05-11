@@ -1,14 +1,14 @@
 #!/bin/sh
 
 =========== Window Management ===========
-# Quit/restart bspwm
+	# Quit/restart bspwm
 super + alt + {q,r}
 	{ \
-    prompt "Are you sure you want to quit out?" bspc quit, \
-    bspc wm -r \
-    }
+prompt "Are you sure you want to quit out?" bspc quit, \
+	bspc wm -r \
+}
 
-# Close/kill focused window
+	# Close/kill focused window
 super + {c,q}
 	bspc node -{c,k}
 
@@ -66,7 +66,7 @@ ctrl + super + {h,j,k,l}
 
 =========== System Control ===========
 
-# Restart hotkey damon
+	# Restart hotkey damon
 super + shift + x
 	pkill sxhkd && sxhkd &
 
@@ -91,7 +91,7 @@ super + p ; {r, s, o, h}
 	systemctl {reboot, suspend, poweroff, hibernate}
 
 # Configurations
-alt + c
+super + alt + c
 	$TERMINAL -e cfglist
 
 # System Settings for KDE
@@ -100,7 +100,7 @@ alt + s
 
 
 =========== Applications ===========
-# Dmenu
+	# Dmenu
 alt + space
 	dmenu_run -h 30
 
@@ -109,20 +109,18 @@ super + space
 	fcitx-remote -t &
 
 # GUI
-super + a ; {1-6,g}
+super + a ; {1-7,g,q}
 	{ \
-    $BROWSER, \
-    thunderbird, \
-    joplin-desktop, \
-    rambox, \
-    discord, \
-    darktable, \
-    lutris, \
-    }
-
-# Entertainment
-super + e
-	$BROWSER youtube.com music.youtube.com mangadex.org
+$BROWSER, \
+	thunderbird, \
+joplin-desktop, \
+	rambox, \
+discord, \
+	darktable, \
+zoom, \
+	lutris, \
+designer-qt5, \
+	}
 
 # File Managers
 super + d ; {t,f}
