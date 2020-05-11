@@ -5,39 +5,34 @@ call plug#begin('~/repos/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tomasiser/vim-code-dark'
-" Plug 'junegunn/fzf', { 'do': './install --all' }
-" Plug 'junegunn/fzf.vim' " Fuzzy Search
 Plug 'sbdchd/neoformat'
-Plug 'jiangmiao/auto-pairs'
-Plug 'kovetskiy/sxhkd-vim'
+Plug 'jiangmiao/auto-pairs' " Auto completion of pairs
+Plug 'kovetskiy/sxhkd-vim' " Integration with sxhkd
 Plug 'unblevable/quick-scope'
+Plug 'junegunn/fzf.vim' " Fuzzy Search
+Plug 'vimwiki/vimwiki' " Vimwiki
 
 Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
 let g:highlightedyank_highlight_duration = 1000 " set highlight duration time to 1000 ms, i.e., 1 second
 
-" Code Folding
-Plug 'tmhedberg/SimpylFold' 
-
 " Csv Reading
 Plug 'chrisbra/csv.vim'
-
 " Commenting
 Plug 'tpope/vim-commentary'
-
 " Syntax Highlighting
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-
+" Plug 'sheerun/vim-polyglot'
 " Linting Code
 Plug 'neomake/neomake'
-
 " Autocomplete
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
-
 " SuperTab
 Plug 'ervandew/supertab'
+
+" Pandoc
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Nvim R
 Plug 'jalvesaq/Nvim-R'
@@ -51,13 +46,14 @@ vmap ,e <Plug>RESendSelection
 Plug 'jalvesaq/R-Vim-runtime' " Highlighting for Rmd and Rnw code chunks
 Plug 'gaalcaras/ncm-R' " Code Completion for R
 Plug 'roxma/nvim-yarp' " Dependency for ncm2
-Plug 'ncm2/ncm2' " Snippets for ncm-R 
+Plug 'ncm2/ncm2' " Snippets for ncm-R
 augroup ncm2
-      autocmd BufEnter * call ncm2#enable_for_buffer()
-      set completeopt=noinsert,menuone,noselect
-      inoremap <c-c> <ESC>
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+    set completeopt=noinsert,menuone,noselect
+    inoremap <c-c> <ESC>
 augroup END
 Plug 'ervandew/supertab' " Allow tab to autocomplete
+au BufNewFile *.Rnw 0r ~/.config/nvim/skeleton.Rnw
 
 " Latex
 Plug 'LaTeX-Box-Team/LaTeX-Box' " TeX highlighting and compilation
@@ -65,8 +61,9 @@ let g:LatexBox_show_warnings = 1
 let g:LatexBox_autojump = 1
 let g:LatexBox_latexmk_async = 0
 
-" Nvim Py
+" Python
 Plug 'ncm2/ncm2-jedi'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Better highlighting
 Plug 'davidhalter/jedi-vim'
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:neoformat_basic_format_align = 1 " Enable alignment
@@ -77,6 +74,10 @@ let g:jedi#use_splits_not_buffers = "right" " open the go-to function in split, 
 Plug 'terryma/vim-multiple-cursors'
 Plug 'habamax/vim-sendtoterm'
 command! -nargs=* PV vsplit | terminal ipython
+au BufNewFile *.py 0r ~/.config/nvim/skeleton.py
+" Run Python Script
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
 call plug#end()
 
@@ -90,6 +91,7 @@ set number relativenumber
 set smartcase
 set linebreak
 set encoding=utf8
+set autoindent
 set expandtab
 set smarttab
 set shiftwidth=4
@@ -97,6 +99,8 @@ set softtabstop=4
 set tabstop=4
 set mouse=in
 set history=1000
+set foldmethod=syntax
+set foldlevelstart=20
 
 " Split direction
 set splitright
@@ -120,6 +124,9 @@ let g:netrw_banner = 0
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 
+" Configuring vimwiki
+let g:vimwiki_list = [{'path': '/media/mydisk/GDrive/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
 " Remap omnicompletion
 inoremap <Tab> <C-n>
 
@@ -140,8 +147,8 @@ nnoremap tl :tablast<CR>
 
 " Help file on the right
 augroup vimrc_help
-  autocmd!
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+    autocmd!
+    autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
 
 " Autosave TeX before Compiling
@@ -180,16 +187,22 @@ let g:neomake_Rnw_enabled_makers = ['pdflatex']
 let g:neomake_bib_enabled_makers = ['bibtex']
 let g:neomake_zsh_enabled_makers = ['zsh']
 
+" Neoformat Configuration
+let g:neoformat_enabled_python = ['autopep8']
+let g:neoformat_enabled_R = ['formatR','styler']
+let g:neoformat_enabled_Rnw = ['latexindent']
+let g:neoformat_enabled_tex = ['latexindent']
+let g:neoformat_enabled_xml = ['prettier']
+" Binding
+nnoremap <leader>fs :Neoformat
+
 " Highlighting for Rnw files
 augroup filetypedetect
-  au! BufRead,BufNewFile *.r         setfiletype r
-  au! BufRead,BufNewFile *.R         setfiletype r
+    au! BufRead,BufNewFile *.r         setfiletype r
+    au! BufRead,BufNewFile *.R         setfiletype r
 augroup END
 
 " Autosource Vim Conf on Save
 augroup autosource
-  au! BufWritePost $MYVIMRC source $MYVIMRC
+    au! BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
-
-" Prettify XML
-com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
