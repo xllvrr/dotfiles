@@ -10,7 +10,6 @@ Plug 'jiangmiao/auto-pairs' " Auto completion of pairs
 Plug 'kovetskiy/sxhkd-vim' " Integration with sxhkd
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/fzf.vim' " Fuzzy Search
-Plug 'vimwiki/vimwiki' " Vimwiki
 
 Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
@@ -123,9 +122,6 @@ colorscheme codedark
 let g:netrw_banner = 0
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
-
-" Configuring vimwiki
-let g:vimwiki_list = [{'path': '/media/mydisk/GDrive/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 " Remap omnicompletion
 inoremap <Tab> <C-n>
