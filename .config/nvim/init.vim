@@ -10,6 +10,7 @@ Plug 'jiangmiao/auto-pairs' " Auto completion of pairs
 Plug 'kovetskiy/sxhkd-vim' " Integration with sxhkd
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/fzf.vim' " Fuzzy Search
+Plug 'vimwiki/vimwiki' " Vimwiki
 
 Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
@@ -63,20 +64,26 @@ let g:LatexBox_latexmk_async = 0
 " Python
 Plug 'ncm2/ncm2-jedi'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Better highlighting
-Plug 'davidhalter/jedi-vim'
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:neoformat_basic_format_align = 1 " Enable alignment
 let g:neoformat_basic_format_retab = 1 " Enable tab to spaces conversion
 let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
-let g:jedi#completions_enabled = 0 " disable autocompletion, cause we use deoplete for completion
-let g:jedi#use_splits_not_buffers = "right" " open the go-to function in split, not another buffer
 Plug 'terryma/vim-multiple-cursors'
-Plug 'habamax/vim-sendtoterm'
-command! -nargs=* PV vsplit | terminal ipython
 au BufNewFile *.py 0r ~/.config/nvim/skeleton.py
+command! -nargs=* PT vsplit | terminal ipython
 " Run Python Script
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+
+" Vim CmdLine
+Plug 'jalvesaq/vimcmdline'
+let cmdline_map_send = '<LocalLeader>l'
+let cmdline_map_start = '<LocalLeader>s'
+let cmdline_follow_colorscheme = 1
+let cmdline_vsplit = 1
+let cmdline_app = {}
+let cmdline_term_width = 120
+let g:cmdline_app = {"python": "ipython --no-autoindent --matplotlib"}
 
 call plug#end()
 
@@ -133,6 +140,18 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <leader>th <C-W>H
 nnoremap <leader>tk <C-W>K
+nnoremap <leader>tj <C-W>J
+nnoremap <leader>tl <C-W>L
+
+" Vimwiki settings
+let g:vimwiki_list = [{'path': '/media/mydisk/GDrive/VimWiki',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+au BufRead,BufNewFile *.wiki set filetype=vimwiki
+
+" Clipboard settings
+vnoremap Y "+y
+nnoremap Y "+y
+nnoremap P "+p
 
 " Tab navigation
 nnoremap tn :tabnew<Space>
