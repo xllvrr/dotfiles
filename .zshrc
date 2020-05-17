@@ -5,9 +5,9 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zmodload zsh/complist
 compinit
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots)       # Include hidden files.
 setopt COMPLETE_ALIASES
-source .config/.aliases
+source $HOME/.config/.aliases
 
 ################################### Vi Stuff ################################################
 # vi mode
@@ -18,15 +18,15 @@ bindkey "^?" backward-delete-char
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
+    if [[ ${KEYMAP} == vicmd ]] ||
+        [[ $1 = 'block' ]]; then
+            echo -ne '\e[1 q'
+        elif [[ ${KEYMAP} == main ]] ||
+            [[ ${KEYMAP} == viins ]] ||
+            [[ ${KEYMAP} = '' ]] ||
+            [[ $1 = 'beam' ]]; then
+                    echo -ne '\e[5 q'
+    fi
 }
 zle -N zle-keymap-select
 
@@ -49,10 +49,37 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev
 # Load zsh you-should-use
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
+##################################### FZF ################################################
+
+# Fuzzy open files
+vf() {
+    local files
+
+    files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
+
+    if [[ -n $files ]]
+    then
+        nvim -- $files
+        print -l $files[1]
+    fi
+}
+
+# Fuzzy cd to directory
+fda() {
+    local dir
+    dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+# cd into the directory of the selected file
+cdf() {
+    local file
+    local dir
+    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
 
 ################################# Centering ##############################################
 # load terminfo modules to make the associative array $terminfo available
-zmodload zsh/terminfo 
+zmodload zsh/terminfo
 
 # save current prompt to parameter PS1o
 PS1o="$PS1"
@@ -63,22 +90,22 @@ halfpage=$((LINES/2))
 # construct parameter to go down/up $halfpage lines via termcap
 halfpage_down=""
 for i in {1..$halfpage}; do
-  halfpage_down="$halfpage_down$terminfo[cud1]"
+    halfpage_down="$halfpage_down$terminfo[cud1]"
 done
 
 halfpage_up=""
 for i in {1..$halfpage}; do
-  halfpage_up="$halfpage_up$terminfo[cuu1]"
+    halfpage_up="$halfpage_up$terminfo[cuu1]"
 done
 
 magic-enter () {
-    if [[ -z $BUFFER ]]
-    then
-            print ${halfpage_down}${halfpage_up}$terminfo[cuu1]
-            zle reset-prompt
-    else
-            zle accept-line
-    fi
+if [[ -z $BUFFER ]]
+then
+    print ${halfpage_down}${halfpage_up}$terminfo[cuu1]
+    zle reset-prompt
+else
+    zle accept-line
+fi
 }
 zle -N magic-enter
 bindkey "^M" magic-enter
