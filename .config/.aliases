@@ -3,7 +3,6 @@
 
 # applications
 alias v='nvim'                            # vim
-alias zathura='tabbed -c zathura'
 alias dragon='dragon-drag-and-drop'
 alias ex="exa --color automatic -a"
 alias exl="exa --color automatic -alh --git"
@@ -41,11 +40,11 @@ function filemerge() {
 # for package management (pacman)
 alias p='sudo pacman'
 alias ps='sudo pacman -S'
-alias psearch='sudo pacman -Ss'
+alias psearch='pacman -Ss'
 alias pup='sudo pacman -Syu'
 alias porp='sudo pacman -Rs $(pacman -Qtdq)'
 alias pr='sudo pacman -Rns'
-alias pexist='sudo pacman -Qs'
+alias pexist='pacman -Qs'
 
 # for dotfile management
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
