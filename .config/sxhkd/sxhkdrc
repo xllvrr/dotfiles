@@ -109,7 +109,7 @@ super + a ; {1-7,g,q}
 	{ \
 	$BROWSER, \
 	thunderbird, \
-	joplin-desktop, \
+	$TERMINAL -e nvim -c 'VimwikiIndex', \
 	rambox, \
 	discord, \
 	darktable, \

@@ -29,7 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "0x0-30+20"
+    geometry = "0x0-5+35"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -175,7 +175,7 @@
     max_icon_size = 32
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:~/.config/dunst
 
     ### History ###
 
@@ -290,14 +290,14 @@
     foreground = "#ffffff"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
-    #icon = /path/to/icon
+    icon = ~/.config/dunst/normal.png
 
 [urgency_normal]
     background = "#222222"
     foreground = "#ffffff"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
-    #icon = /path/to/icon
+    icon = ~/.config/dunst/normal.png
 
 [urgency_critical]
     background = "#900000"
@@ -305,7 +305,7 @@
     frame_color = "#ff0000"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    #icon = /path/to/icon
+    icon = ~/.config/dunst/urgent.png
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
