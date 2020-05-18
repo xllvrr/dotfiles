@@ -209,7 +209,7 @@ let g:neoformat_enabled_Rnw = ['latexindent']
 let g:neoformat_enabled_tex = ['latexindent']
 let g:neoformat_enabled_xml = ['prettier']
 " Binding
-nnoremap <leader>fs :Neoformat
+nnoremap <leader>fs :Neoformat<CR>
 
 " Highlighting for Rnw files
 augroup filetypedetect
