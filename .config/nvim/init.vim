@@ -144,7 +144,7 @@ nnoremap <leader>tj <C-W>J
 nnoremap <leader>tl <C-W>L
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path': '/media/mydisk/GDrive/VimWiki',
+let g:vimwiki_list = [{'path': '$HOME/GDrive/VimWiki',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
 

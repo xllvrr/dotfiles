@@ -66,7 +66,7 @@ ctrl + super + {h,j,k,l}
 
 =========== System Control ===========
 
-	# Restart hotkey damon
+# Restart hotkey damon
 super + shift + x
 	pkill sxhkd && sxhkd &
 
@@ -94,13 +94,9 @@ super + p ; {r, s, o, h}
 super + alt + c
 	$TERMINAL -e cfglist
 
-# System Settings for KDE
-alt + s
-	systemsettings5
-
 
 =========== Applications ===========
-	# Dmenu
+# Dmenu
 alt + space
 	dmenu_run -h 30
 
