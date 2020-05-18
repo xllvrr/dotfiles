@@ -94,11 +94,6 @@ super + p ; {r, s, o, h}
 super + alt + c
 	$TERMINAL -e cfglist
 
-# System Settings for KDE
-alt + s
-	systemsettings5
-
-
 =========== Applications ===========
 	# Dmenu
 alt + space
@@ -118,7 +113,6 @@ super + a ; {1-7,g,q}
 	discord, \
 	darktable, \
 	zoom, \
-	lutris, \
 	designer-qt5, \
 	}
 
