@@ -1,0 +1,26 @@
+name apa6e
+category Package
+revision 23350
+shortdesc Format manuscripts to APA 6th edition guidelines
+longdesc This is a minimalist class file for formatting manuscripts in
+longdesc the style described in the American Psychological Association
+longdesc (APA) 6th edition guidelines. The apa6 class provides better
+longdesc coverage of the requirements.
+containersize 2896
+containerchecksum 155bd30654ec3a2bf3930bdad98235baa6bf7aa8109ad449aa1a7b6f2dbda37851f43978266e1c273cbd2155ed274003dcd91f9f452f2dffe268750fd0d9293b
+doccontainersize 245600
+doccontainerchecksum d78ed178d1fbd07668bdeef74cf6f9f3674837a4f83eb5dce590762f7c02fae1017ee2eed6625a85a7b3e251ebff103e37da84af589125bdb60b73c9459cb748
+docfiles size=65
+ texmf-dist/doc/latex/apa6e/README details="Readme"
+ texmf-dist/doc/latex/apa6e/apa6e.pdf details="Package documentation"
+srccontainersize 8492
+srccontainerchecksum 6a6502eb1a60d2b67d373fd1cb4aea0737d0eba9ed2846c07ff5849c4bfddb9ab3b6369ec0958536e831c79e63beece92393c874d9463bc7e3cc1a56f4c4ecb4
+srcfiles size=7
+ texmf-dist/source/latex/apa6e/apa6e.dtx
+ texmf-dist/source/latex/apa6e/apa6e.ins
+runfiles size=2
+ texmf-dist/tex/latex/apa6e/apa6e.cls
+catalogue-ctan /macros/latex/contrib/apa6e
+catalogue-license bsd
+catalogue-topics apa psychology class journalpub
+catalogue-version 0.3

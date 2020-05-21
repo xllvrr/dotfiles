@@ -1,0 +1,809 @@
+\psset{fillcolor=yellow,linecolor=blue,dotscale=2}
+
+\subsubsection{Points}
+\psset{fillstyle=none,unit=1cm,arrowscale=1}
+\newrgbcolor{Vert}{0 .8 0}
+\label{geom}
+%
+\begin{tabular}{|c|c|} \hline
+\TFRGB{axes par défaut}{default axes} & \TFRGB{axes personnalisés}{personalized axes} \\ \hline
+\begin{pspicture}(-.5,-.5)(6,5.5)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstGeonode(1,2){A}(3,1){A_1}(4,4){C}
+\cnodeput{0}(2,4){D}{D}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(6,5.5)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstGeonode[linecolor=red](3,1){A}(2,2){B}(4,2){C}
+\pnode(1,3){H}
+\ncline[nodesepB=-2]{->}{A}{B}
+\ncline[nodesepB=-1]{->}{A}{C}
+\pstOIJGeonode(1,1){E}{A}{B}{C}(2,1){D}
+\ncline[linestyle=dashed,linewidth=1pt,linecolor=red]{B}{E}
+\ncline[linestyle=dashed,linewidth=1pt,linecolor=red]{C}{D}
+\ncline[linestyle=dashed,linewidth=1pt,linecolor=red]{H}{D}
+\end{pspicture}\\ \hline
+
+\parbox[c]{.48\linewidth}{
+ \BSS{pstGeonode}(1,2)\AC{A}(3,1)\AC{A\_1}(4,4)\AC{C} \BSI{pstGeonode}{pst-eucl}}
+&
+\parbox[c]{.48\linewidth}{
+\BS{pstGeonode(3,1)\AC{A}(2,2)\AC{B}(4,2)\AC{C}}}
+\\
+ \BSS{cnodeput}\AC{0}(2,4)\AC{D}\AC{D}  \footnotemark[1]
+&
+\parbox[c]{.48\linewidth}{
+\BSS{pstOIJGeonode}(1,1)\AC{E}{\red\AC{A}\AC{B}\AC{C}} (2,1)\AC{D} \BSI{pstOIJGeonode}{pst-eucl}}
+\\ \hline
+\end{tabular}
+
+\footnotetext[1]{\TFRGB{On peut aussi utiliser les n\oe uds du module \textbf{pstnode}}{other possible nodes see} page \pageref{nodes}}
+
+%\bigskip
+%\begin{tabular}{|c|c|} \hline
+%\begin{pspicture}(-.5,-.5)(6,5.5)
+%\psaxes[ticksize=5,axesstyle=frame](5,5)
+%\pstGeonode[PointName=none](1,2){A}(3,1){A_1}(4,4){C}
+%\cnodeput{0}(2,4){D}{D}
+%\end{pspicture}
+%&
+%\begin{pspicture}(-.5,-.5)(6,5.5)
+%\psaxes[ticksize=5,axesstyle=frame](5,5)
+%\pstGeonode[PosAngle=45](1,2){A}(3,1){A_1}(4,4){C}
+%\cnodeput{0}(2,4){D}{D}
+%\end{pspicture}
+%\\ \hline
+%\BS{pstGeonode}[\RDD{PointName}=none]& \BS{pstGeonode}[\RDD{PosAngle}=45] \\
+%(1,2)\AC{A}(3,1)\AC{B}(4,4)\AC{C} \RDI{PointName}{pst-eucl} & 
+%(1,2)\AC{A}(3,1)\AC{B}(4,4)\AC{C} \RDI{PosAngle}{pst-eucl}
+%\\ \hline
+%\end{tabular}
+%--------------------------------------------------
+\bigskip
+
+\begin{center}
+\begin{tabular}{|c|p{3cm}|c|p{3cm}|} \hline
+\multicolumn{4}{|c|}{\TFRGB{Types de points}{Point type}}\\ \hline
+\TFRGB{paramètre}{parameter} & \TFRGB{exemple}{sample} \footnotemark[2]  &\TFRGB{paramètre}{parameter} & \TFRGB{exemple}{sample}   \\ \hline
+* & \pstGeonode[PointSymbol=*](1,0){A} &  o & \pstGeonode[PointSymbol=o](1,0){A}    \\
++ & \pstGeonode[PointSymbol=+](1,0){A} &  x & \pstGeonode[PointSymbol=x](1,0){A}  \\
+asterisk & \pstGeonode[PointSymbol=asterisk](1,0){A} &  oplus & \pstGeonode[PointSymbol=oplus](1,0){A}   \\
+otimes & \pstGeonode[PointSymbol=otimes](1,0){A} & | & \pstGeonode[PointSymbol=|](1,0){A}   \\
+triangle & \pstGeonode[PointSymbol=triangle](1,0){A} &  triangle* & \pstGeonode[PointSymbol=triangle*](1,0){A}  \\
+square & \pstGeonode[PointSymbol=square](1,0){A} &  
+square* & \pstGeonode[PointSymbol=square*](1,0){A} \\  
+diamond & \pstGeonode[PointSymbol=diamond](1,0){A}    &
+diamond* & \pstGeonode[PointSymbol=diamond*](1,0){A} \\ 
+pentagon & \pstGeonode[PointSymbol=pentagon](1,0){A}  &
+pentagon* & \pstGeonode[PointSymbol=pentagon*](1,0){A} \\ \hline
+
+\end{tabular}
+\end{center}
+\footnotetext[2]{linecolor=blue,fillcolor=yellow,dotscale=2}
+
+%\newpage
+%Exemple : 
+\begin{tabular}{|c|} \hline  
+\psset{unit=.5cm}
+
+\begin{pspicture}(-.5,-.5)(5,5.5)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstGeonode[linecolor=red,PointSymbol={otimes,asterisk,diamond*}](1,2){A}(3,1){B}(4,4){C}(3,3){D}(1,4){E}
+\end{pspicture}
+
+\psset{unit=1cm}
+\\ \hline  
+\BS{pstGeonode}{\red [PointSymbol=\AC{otimes,asterisk,diamond*}]} \\ (1,2)\AC{A}(3,1)\AC{B}(4,4)\AC{C}(3,3)\AC{D}(1,4)\AC{E}
+
+\\ \hline 
+\end{tabular} 
+
+
+
+%------------------------------------------------------------
+ 
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|} \hline
+\multicolumn{4}{|c|}{\BS{pstGeonode}[PointNameSep=.7cm](1,1)\AC{A}}\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode(1,1){A}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode[PointNameSep=.7cm ](1,1){A}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode[PosAngle=45](1,1){A}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode[PointName=none](1,1){A}
+\end{pspicture}
+\\ \hline
+{\blue\dft  }	&\RDD{PointNameSep}=.7cm \RDI{PointNameSep}{pst-eucl} &  \RDD{PosAngle}=45 \RDI{PosAngle}{pst-eucl}		&  \RDD{PointName}=none  \RDI{PointName}{pst-eucl} \\ \hline
+			& {\blue \dft = 1em  }  & {\blue \dft = 0  } 	&      \\ \hline
+\end{tabular}
+\end{center}
+
+%-----------------------------------------
+
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|} \hline
+\multicolumn{4}{|c|}{ \BS{pstGeonode}[\RDD{CurveType}=polyline](0,1)\AC{A}(1,0)\AC{B}(1.5,1.5)\AC{C} \RDI{CurveType}{pst-eucl} }\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode[linecolor=red,CurveType=polyline](0,1){A}(1,0){B}(1.5,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode[linecolor=red,CurveType=polygon](0,1){A}(1,0){B}(1.5,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode[linecolor=red,CurveType=curve](0,1){A}(1,0){B}(1.5,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode(0,1){A}(1,0){B}(1.5,1.5){C}
+\ncline[linecolor=red]{A}{B}
+\end{pspicture}
+\\ \hline
+\RDD{CurveType}=polyline \RDI{CurveType}{pst-eucl} &\RDD{CurveType}=polygon \RDI{CurveType}{pst-eucl} & \RDD{CurveType}=curve \RDI{CurveType}{pst-eucl}&  \BSS{ncline}\AC{A}\AC{B} \BSI{ncline}{pst-eucl} \footnotemark[1]\\ \hline
+\end{tabular}
+\end{center}
+
+\footnotetext[1]{\TFRGB{On peut aussi utiliser les liaisons des noeuds voir}{other possibilities see} page \pageref{liaisons}}
+
+%============================================================
+\SbSbSSCT{Droites et segments de droite}{Lines}
+ 
+%syntaxe :  \BSS{pstLineAB}[paramètres]\AC{A}\AC{B} 
+
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{3}{|c|}{\BSS{pstLineAB}[nodesepA=.5]\AC{A}\AC{B} \BSI{pstLineAB}{pst-eucl} }\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstLineAB[linecolor=red]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstLineAB[linecolor=red,nodesepA=.5]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstLineAB[linecolor=red,nodesepB=.5]{A}{B}
+\end{pspicture}
+\\  \hline
+{\blue \dft{}} & [\RDD{nodesepA}=0.5] \RDI{nodesepA}{pst-eucl} & [\RDD{nodesepB}=0.5
+\\  \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\ncline[linecolor=red,nodesepA=-1]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\ncline[linecolor=red,nodesepB=-1]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[ticksize=2,axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\ncline[linecolor=red,nodesep=-1]{A}{B}
+\end{pspicture} 
+\\ \hline
+[\RDD{nodesepA}=-1] \RDI{nodesepB}{pst-eucl} 
+ &  [\RDD{nodesepB}=-1] \RDI{nodesepA}{pst-eucl} &
+[\RDD{nodesep}=-1] \RDI{nodesep}{pst-eucl} \\ \hline
+\end{tabular}
+
+
+%===============================================
+
+
+
+
+\SbSbSSCT{Marquage des droites}{Marks}
+ 
+%syntaxe :   \BSS{pstMarkSegment}[paramètres]\AC{point A}\AC{point B}
+
+
+
+\begin{tabular}{|c|c|c|c|} \hline
+\multicolumn{4}{|c|}{\BSS{pstSegmentMark}[\RDD{SegmentSymbol}=pstslash]\AC{A}\AC{B} \BSI{pstSegmentMark}{pst-eucl} \RDI{SegmentSymbol}{pst-eucl}}\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstSegmentMark[linecolor=red,SegmentSymbol=pstslash]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstSegmentMark[linecolor=red,SegmentSymbol=pstslashh]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstSegmentMark[linecolor=red,SegmentSymbol=pstslashhh]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstSegmentMark[linecolor=red,SegmentSymbol=MarkCros]{A}{B}
+\end{pspicture}
+
+\\ \hline
+pstslash \BDI{pstslash}{pst-eucl} &
+pstslashh \BDI{pstslashh}{pst-eucl} & 
+pstslashhh  \BDI{pstslashhh}{pst-eucl} & 
+MarkCros \BDI{MarkCros}{pst-eucl} \\ \hline
+%\end{tabular}
+%
+%\begin{tabular}{|c|c|c|c|} \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstSegmentMark[linecolor=red,SegmentSymbol=MarkHash]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstSegmentMark[linecolor=red,SegmentSymbol=MarkHashh]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstSegmentMark[linecolor=red,SegmentSymbol=MarkHashhh]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstSegmentMark[linecolor=red,SegmentSymbol=MarkCross]{A}{B}
+\end{pspicture}
+\\ \hline
+MarkHash  \BDI{MarkHash}{pst-eucl} & 
+MarkHashh  \BDI{MarkHashh}{pst-eucl} & 
+MarkHashhh  \BDI{MarkHashhh}{pst-eucl} &  
+MarkCross  \BDI{MarkCross }{pst-eucl} \\ \hline
+\end{tabular}
+\bigskip
+
+
+
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{3}{|c|}{\BSS{pstSegmentMark}[\RDD{MarkAngle}=90]\AC{A}\AC{B} }\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstSegmentMark[linecolor=red,MarkAngle=90]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstSegmentMark[linecolor=red,MarkHashLength=.5]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+\pstGeonode(0.5,1.5){A}(1.5,0.5){B}
+\pstSegmentMark[linecolor=red,MarkHashSep=.5]{A}{B}
+\end{pspicture}
+\\ \hline
+\RDD{MarkAngle}=90  \RDI{MarkAngle}{pst-eucl}&
+\RDD{MarkHashLength}=.5  \RDI{MarkHashLength}{pst-eucl}&
+\RDD{MarkHashSep}=.5  \RDI{MarkHashSep}{pst-eucl}
+\\ \hline
+\dft : 45 & \dft : 1.25mm  &  \dft : .625mm
+\\ \hline
+\end{tabular}
+
+%===============================================================
+
+\subsubsection{Triangles}
+ 
+%syntaxe : \textbf{\BS{}pstTriangle}[paramètres](xA,yA){A}(xB,yB){B}(xC,yC){C}
+
+\begin{center}
+\begin{tabular}{|c|} \hline
+\begin{pspicture}(-.5,-.5)(5,5.5)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+ \pstTriangle[linecolor=red](1,2){A}(3,1){P}(4,4){Z} 
+\end{pspicture}\\  \hline
+ \BSS{pstTriangle}(1,2)\AC{A}(3,1)\AC{P}(4,4)\AC{Z} \BSI{pstTriangle}{pst-eucl} \\  \hline
+\end{tabular}
+\end{center}
+
+%\subsubsection{Paramètres des triangles }
+\begin{tabular}{|c|c|c|c|c|} \hline
+\multicolumn{3}{|c|}{ \BS{pstTriangle}[\RDD{PointName}=none](0.5,1)\AC{A}(1.5,0.5)\AC{B}(1,1.5)\AC{C} \RDI{PointName}{pst-eucl}}\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+ \pstTriangle[PointName=none](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+ \pstTriangle[PointName=sommet](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pstTriangle[PointName={X,Y,Z}](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+\\ \hline
+\RDD{PointName}=none   & \RDD{PointName}=sommet &  >> A REVOIR <<
+\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+ \pstTriangle[PointNameA=none](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+ \pstTriangle[PointNameB=X](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+ \pstTriangle[PointNameC=sommet](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+\\ \hline
+
+\RDD{PointNameA}=none  \RDI{PointNameA}{pst-eucl} &  \RDD{PointNameB}=X  \RDI{PointNameB}{pst-eucl} & \RDD{PointNameC}=sommet  \RDI{PointNameC}{pst-eucl}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|c|c|c|} \hline
+\multicolumn{4}{|c|}{\BS{pstTriangle}[\RDD{PosAngle}=45](0.5,1)\AC{A}(1.5,0.5)\AC{B}(1,1.5)\AC{C} \RDI{PosAngle}{pst-eucl} }
+\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\pstTriangle[PosAngle={45,30,40} ] (0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\pstTriangle[PosAngleA=90](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\pstTriangle[PosAngleB=90](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+ \pstTriangle[PosAngleC=0](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+\\ \hline
+\RDD{PosAngle}=180 &
+\RDD{PosAngleA}=90 \RDI{PosAngleA}{pst-eucl}& \RDD{PosAngleB}=90 \RDI{PosAngleB}{pst-eucl}& \RDD{PosAngleC}=0 \RDI{PosAngleC}{pst-eucl} 
+\\ \hline
+\multicolumn{4}{|c|}{\dft : sur la bissectrice }
+\\ \hline
+\end{tabular}
+
+\bigskip
+
+
+
+\begin{tabular}{|c|c|c|c|} \hline
+\multicolumn{4}{|c|}{\BS{pstTriangle}[\RDD{PointSymbolA}=o](0.5,1)\AC{A}(1.5,0.5)\AC{B}(1,1.5)\AC{C} }
+\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+ \pstTriangle[PointSymbolA=o](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+ \pstTriangle[PointSymbolB=o](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+ \pstTriangle[PointSymbolC=o](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+\psaxes[axesstyle=frame](2,2)
+ \pstTriangle[PointSymbol=o](0.5,1){A}(1.5,0.5){B}(1,1.5){C}
+\end{pspicture}
+\\ \hline
+\RDD{PointSymbolA}=o \RDI{PointSymbolA}{pst-eucl} & \RDD{PointSymbolB}=o \RDI{PointSymbolB}{pst-eucl} & \RDD{PointSymbolC}=o \RDI{PointSymbolC}{pst-eucl} & \RDD{PointSymbol}=o \RDI{PointSymbol}{pst-eucl}\\ \hline
+\end{tabular}
+
+
+
+
+%==================================================================
+
+\subsubsection{Angles}
+ 
+
+
+\begin{tabular}{|c|c|c|} \hline
+\begin{pspicture}(-.5,-.5)(5,4.5)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode[CurveType=polyline,linewidth=2pt](1,1){A}(4,1){B}(4,3){C}
+\pstRightAngle[linecolor=red]{A}{B}{C}
+%\psline(A)(B)(C)
+%\pstMarkAngle[linecolor=red]{A}{C}{B}{$\alpha$}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.5)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode[CurveType=polyline,linewidth=2pt](1,1){A}(4,3){C}(4,1){B}
+%\psline(A)(C)(B)
+%\pstRightAngle[linecolor=red]{A}{B}{C}
+\pstMarkAngle[linecolor=red]{A}{C}{B}{$\alpha$}
+\end{pspicture}\\ \hline
+ \BSS{pstRightAngle}\AC{A}\AC{B}\AC{C} \BSI{pstRightAngle}{pst-eucl}
+&
+ \BSS{pstMarkAngle}\AC{A}\AC{C}\AC{B}\AC{$\alpha$} \BSI{pstMarkAngle}{pst-eucl}
+\\ \hline
+\end{tabular}
+
+
+\bigskip
+%---------------------------------------------
+%\subsubsection{}
+
+\psset{linewidth=2pt}
+
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{3}{|c|}{\BS{pstRightAngle}[linecolor=red,\RDD{RightAngleType}=german]\AC{C}\AC{B}\AC{A}}\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A}\pnode(2,0){B}\pnode(2,2){C}
+\psline(A)(B)(C)
+\pstRightAngle[linecolor=red,RightAngleType=german]{C}{B}{A}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A}\pnode(2,0){B}\pnode(2,2){C}
+\psline(A)(B)(C)
+\pstRightAngle[linecolor=red,RightAngleType=suisseromand]{C}{B}{A}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A}\pnode(2,0){B}\pnode(2,2){C}
+\psline(A)(B)(C)
+\pstRightAngle[linecolor=red]{C}{B}{A} 
+\end{pspicture}
+\\  \hline
+\RDD{RightAngleType}= \BDD{german} \RDI{RightAngleType}{pst-eucl} \BDI{german}{pst-eucl} & {\red RightAngleType}=\BDD{suisseromand} \BDI{suisseromand}{pst-eucl}  &  {\blue\dft  }\\ \hline
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{2}{|c|}{\BS{pstRightAngle}[linecolor=red,\RDD{RightAngleSize}=1]\AC{C}\AC{B}\AC{A} \RDI{RightAngleSize}{pst-eucl} }\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A}\pnode(2,0){B}\pnode(2,2){C}
+\psline(A)(B)(C)
+\pstRightAngle[linecolor=red,RightAngleSize=1]{C}{B}{A} 
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A}\pnode(2,0){B}\pnode(2,2){C}
+\psline(A)(B)(C)
+\pstRightAngle[linecolor=red,RightAngleSize=-.3]{C}{B}{A} 
+\end{pspicture}
+\\ \hline
+RightAngleSize=1 & RightAngleSize=-.3
+\\ \hline
+\multicolumn{2}{|c|}{ \dft : RightAngleSize = 0.28 unit }
+\\ \hline
+\end{tabular}
+
+\bigskip
+%\subsubsection{Marquage des angles quelconques}
+
+
+
+
+\begin{tabular}{|c|c|c|c|} \hline
+\multicolumn{4}{|c|}{\BS{pstMarkAngle}[\RDD{LabelSep}=.5]\AC{A}\AC{C}\AC{B}\AC{\$\BS{alpha}\$} }\\ \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A} \pnode(2,0){B} \pnode(1,2){C}
+\psline(A)(C)(B)
+\pstMarkAngle[linecolor=red]{A}{C}{B}{$\alpha$}
+%\pstMarkAngle[linecolor=red,LabelSep=.3cm]{C}{B}{A}{$\alpha$}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A} \pnode(2,0){B} \pnode(1,2){C}
+\psline(A)(C)(B)
+\pstMarkAngle[linecolor=red,LabelSep=.5]{A}{C}{B}{$\alpha$}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A} \pnode(2,0){B} \pnode(1,2){C}
+\psline(A)(C)(B)
+\pstMarkAngle[linecolor=red,LabelAngleOffset=10]{A}{C}{B}{$\alpha$}
+%\pstMarkAngle[linecolor=red,LabelSep=.3cm]{C}{B}{A}{$\alpha$}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A} \pnode(2,0){B} \pnode(1,2){C}
+\psline(A)(C)(B)
+\pstMarkAngle[linecolor=red,LabelAngleOffset=-10]{A}{C}{B}{$\alpha$}
+%\pstMarkAngle[linecolor=red,LabelSep=.3cm]{C}{B}{A}{$\alpha$}
+\end{pspicture}
+\\ \hline
+{\blue \dft } & \RDD{LabelSep}=.3cm \RDI{LabelSep}{pst-eucl} & \RDD{LabelAngleOffset}=10 \RDI{LabelAngleOffset}{pst-eucl} & \RDD{LabelAngleOffset}=-10 \RDI{LabelAngleOffset}{pst-eucl} \\ \hline
+ 			& {\blue \dft : 1} &  {\blue\dft : 0 }  & {\blue \dft : 0 }  \\ \hline
+%\end{tabular}
+%
+%\begin{tabular}{|c|c|c|c|} \hline
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A} \pnode(2,0){B} \pnode(1,2){C}
+\psline(A)(C)(B)
+\pstMarkAngle[linecolor=red,LabelRefPt=l]{A}{C}{B}{$\alpha$}
+
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A} \pnode(2,0){B} \pnode(1,2){C}
+\psline(A)(C)(B)
+\pstMarkAngle[linecolor=red,Mark=MarkCros]{A}{C}{B}{$\alpha$}
+%\pstMarkAngle[linecolor=red,LabelSep=.3cm]{C}{B}{A}{$\alpha$}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A} \pnode(2,0){B} \pnode(1,2){C}
+\psline(A)(C)(B)
+\pstMarkAngle[linecolor=red,MarkAngleRadius=.8]{A}{C}{B}{$\alpha$}
+
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(2,2.5)
+%\psaxes[axesstyle=frame](2,2)
+\pnode(0,0){A} \pnode(2,0){B} \pnode(1,2){C}
+\psline(A)(C)(B)
+\pstMarkAngle[linecolor=red,arrows=->,MarkAngleRadius=.8]{A}{C}{B}{$\alpha$}
+
+\end{pspicture}
+\\ \hline
+\RDD{LabelRefPt}=l \RDI{LabelRefPt}{pst-eucl} & \RDD{Mark}=MarkCros  \RDI{Mark}{pst-eucl} &  \RDD{MarkAngleRadius}=.8 \RDI{MarkAngleRadius}{pst-eucl}& \RDD{arrows}=-> \RDI{arrows}{pst-eucl} \\ \hline
+{\blue \dft : c } &  & {\blue \dft : .4  } &  ,MarkAngleRadius=.8 \\ \hline
+\end{tabular}
+
+\psset{linewidth=1pt}
+%===========================================================
+
+
+\SbSbSSCT{Cercles}{circles}
+
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(3.5,2){B}
+\pstCircleOA[linecolor=red]{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(0.5,2){A}(3.5,2){B}
+\pstCircleAB[linecolor=red]{A}{B}
+\end{pspicture}
+\\  \hline
+ \BSS{pstCircleOA}\AC{A}\AC{B} \BSI{pstCircleOA}{pst-eucl} &  \BSS{pstCircleAB}\AC{A}\AC{B} \BSI{pstCircleAB}{pst-eucl}\\ \hline
+\end{tabular}
+\end{center}
+
+
+%
+%\BS{}pstCircleOA[linecolor=blue, Radius=\BS{}pstDistAB\AC{B}\AC{C}]\AC{A}\AC{}\\
+%
+%\BS{}pstCircleOA[linecolor=vert, Diameter=\BS{}pstDistAB\AC{A}\AC{C}]\AC{B}\AC{}\\
+
+\begin{tabular}{|c|c|} \hline
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(1,1){B}(3,1){C}
+\pstCircleOA[linecolor=red,Radius=\pstDistAB{B}{C}]{A}{}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(1,1){B}(3,1){C}
+\pstCircleOA[linecolor=red,Diameter=\pstDistAB{B}{C}]{A}{}
+\end{pspicture}
+\\  \hline
+\BS{pstCircleOA}[ & 
+\BS{pstCircleOA}[ \\ 
+\RDD{Radius}=\BDD{pstDistAB}\AC{B}\AC{C}] \AC{A}\AC{} \BSI{pstDistAB}{pst-eucl} \RDI{Radius}{pst-eucl}
+& 
+\RDD{Diameter}=\BDD{pstDistAB}\AC{B}\AC{C}] \AC{A}\AC{} \RDI{Diameter}{pst-eucl}\\ \hline
+%\end{tabular}
+%\bigskip
+%
+%\begin{tabular}{|c|c|} \hline
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(1,1){B}(3,1){C}
+\pstCircleOA[linecolor=red,DistCoef=.5,Radius=\pstDistAB{B}{C}]{A}{}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(1,1){B}(3,1){C}
+\pstCircleOA[linecolor=red,DistCoef=2,Diameter=\pstDistAB{B}{C}]{A}{}
+\end{pspicture}
+\\  \hline
+\BS{pstCircleOA}[\RDD{DistCoef}=.5 & 
+\BS{pstCircleOA}[\RDD{DistCoef}=2 \\ 
+Radius=pstDistAB\AC{B}\AC{C}] \AC{A}\AC{} 
+& 
+Diameter=pstDistAB \AC{B}\AC{C}] \AC{A}\AC{} \RDI{DistCoef}{pst-eucl}\\ \hline
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|} \hline
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A} %(1,1){B}(3,1){C}
+\pstCircleOA[linecolor=red,Radius=\pstDistVal{2}]{A}{}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A} %(1,1){B}(3,1){C}
+\pstCircleOA[linecolor=red,Diameter=\pstDistVal{2}]{A}{}
+\end{pspicture}
+\\  \hline
+\BS{}pstCircleOA{\red[Radius=\BDD{pstDistVal}\AC{2}]}\AC{A}\AC{} \BDI{pstDistVal}{pst-eucl}& 
+\BS{}pstCircleOA{\red[Diameter=\BDD{pstDistVal}\AC{2}]}\AC{A}\AC{} \\ \hline
+\end{tabular}
+
+
+
+%-------------------------------------------------------------------------------
+\SbSbSSCT{Arcs de cercle}{Arcs}
+
+
+\begin{tabular}{|c|c|} \hline
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(3,1){B}(3,3){C}
+\pstArcOAB[linecolor=red]{A}{B}{C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(3,1){B}(3,3){C}
+\pstArcnOAB[linecolor=red]{A}{B}{C}
+\end{pspicture}
+\\  \hline
+ \BSS{pstArcOAB}\AC{A}\AC{B}\AC{C} \BSI{pstArcOAB}{pst-eucl} & 
+ \BSS{pstArcnOAB}\AC{A}\AC{B}\AC{C} \BSI{pstArcnOAB}{pst-eucl}\\ \hline
+\end{tabular}
+
+%\newpage %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+\SbSSCT{Point sur cercle}{Point on circle}
+
+\begin{tabular}{|c|c|} \hline
+%\multicolumn{2}{|c|}{ \BSS{pstCurvAbsNode}\AC{A}\AC{B}\AC{C}\AC{\BSS{pstDistVal}\AC{1}}
+%\BSI{pstCurvAbsNode}{pst-eucl} 
+% }
+%\\ \hline
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(3.5,2){B}
+\pstCircleOA{A}{B}
+\pstCurvAbsNode[linecolor=red]{A}{B}{C}{10}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(3.5,2){B}
+\pstCircleOA{A}{B}
+\pstCurvAbsNode[linecolor=red]{A}{B}{C}{\pstDistVal{1}}
+\end{pspicture}
+\\  \hline
+\BSS{pstCurvAbsNode}\AC{A}\AC{B}\AC{C} \AC{10} &
+\BSS{pstCurvAbsNode}\AC{A}\AC{B}\AC{C}   \\
+& \AC{\BSS{pstDistVal}\AC{1}} \BSI{pstDistVal}{pst-eucl}
+\\ \hline
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(3.5,2){B}
+\pstCircleOA{A}{B}
+\pstCurvAbsNode[CurvAbsNeg=true,linecolor=red]{A}{B}{C}{10}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(3.5,2){B}
+\pstCircleOA{A}{B}
+\pstCurvAbsNode[CurvAbsNeg=true,linecolor=red]{A}{B}{C}{\pstDistVal{1}}
+\end{pspicture}
+\\  \hline
+\BSS{pstCurvAbsNode} [\RDD{CurvAbsNeg}=true]  &
+\BSS{pstCurvAbsNode} [\RDD{CurvAbsNeg}=true]    \\
+\AC{A}\AC{B}\AC{C} \AC{10}
+& \AC{A}\AC{B}\AC{C} \AC{\BSS{pstDistVal}\AC{1}} \RDI{CurvAbsNeg}{pst-eucl}
+\\ \hline
+\end{tabular}
+ 
+
+%------------------------------------------------------------
+\SbSbSSCT{Courbe générique}{Generic curve}
+ 
+
+
+\begin{tabular}{|c|c|} \hline
+\multicolumn{2}{|c|}{ \BS{pstGeonode}(2,2)\AC{A} (3,1)\AC{B\_1} (3,3)\AC{B\_2} (1,3)\AC{B\_3} \AC(1,1){B\_4} 
+ }
+\\ \hline
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(3,1){B_1}(3,3){B_2}(1,3){B_3}(1,1){B_4} 
+\pstGenericCurve[linecolor=red]{B_}{2}{4}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(3,1){B_1}(3,3){B_2}(1,3){B_3}(1,1){B_4} %(4,4){C}
+\pstGenericCurve[GenCurvFirst=A,linecolor=red]{B_}{1}{4}
+\end{pspicture}
+\\ \hline
+\BSS{pstGenericCurve}\AC{B\_}\AC{2}\AC{4} \BSI{pstGenericCurve}{pst-eucl}&
+\BS{pstGenericCurve} [\RDD{GenCurvFirst}=A] \AC{B\_}\AC{1}\AC{4} \RDI{GenCurvFirst}{pst-eucl}
+\\ \hline
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(3,1){B_1}(3,3){B_2}(1,3){B_3}(1,1){B_4} 
+\pstGenericCurve[GenCurvLast=A,linecolor=red]{B_}{1}{4}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(4,4.5)
+\psaxes[ticksize=4,axesstyle=frame](4,4)
+\pstGeonode(2,2){A}(3,1){B_1}(3,3){B_2}(2,3){B_3}(1,3){B_4}(1,1){B_5}
+\pstGenericCurve[GenCurvInc=2,linecolor=red]{B_}{1}{5}
+\end{pspicture}\\ \hline
+ \BSS{pstGenericCurve}[\RDD{GenCurvLast}=A]&
+ \BS{pstGenericCurve}[\RDD{GenCurvInc}=2] \\ 
+\AC{B\_}\AC{1}\AC{4}  \RDI{GenCurvLast}{pst-eucl} &
+\AC{B\_}\AC{1}\AC{5}
+\RDI{GenCurvInc}{pst-eucl}
+\\ \hline
+\end{tabular}

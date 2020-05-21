@@ -1,0 +1,23 @@
+name pgf-soroban
+category Package
+revision 32269
+shortdesc Create images of the soroban using TikZ/PGF
+longdesc The package makes it possible to create pictures of the soroban
+longdesc (Japanese abacus) using PGF/TikZ
+containersize 1852
+containerchecksum e0f85a77e9d81bf01f5516c3b3baa52a9b7f1b0faaa6f0aab1cae2182732eaf04ea2edb6b0f9091272849f1d7ccb3797cb2641090b926db7f3d0483d08569845
+doccontainersize 351348
+doccontainerchecksum 3f4c021cfb99a27778c250f9ac13e2abe48127731b54d0fca9e8e588f44ebf797e034a56d3ca19bc847bca173dfb03ef9a70e0fee71649188a8427d6eabceb80
+docfiles size=91
+ texmf-dist/doc/latex/pgf-soroban/Changes
+ texmf-dist/doc/latex/pgf-soroban/README details="Readme"
+ texmf-dist/doc/latex/pgf-soroban/pgf-soroban-doc.bib
+ texmf-dist/doc/latex/pgf-soroban/pgf-soroban-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/pgf-soroban/pgf-soroban-doc.tex
+runfiles size=2
+ texmf-dist/tex/latex/pgf-soroban/pgf-soroban.sty
+catalogue-also pst-soroban
+catalogue-ctan /graphics/pgf/contrib/pgf-soroban
+catalogue-license lppl
+catalogue-topics diagram
+catalogue-version 1.1

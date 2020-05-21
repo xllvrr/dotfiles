@@ -1,0 +1,77 @@
+name langsci
+category Package
+revision 54393
+shortdesc Typeset books for publication with Language Science Press
+longdesc This packages allows you to typeset monographs and edited
+longdesc volumes for publication with Language Science Press
+longdesc (http://www.langsci-press.org). It includes all necessary files
+longdesc for title pages, frontmatter, main content, list of references
+longdesc and indexes. Dust jackets for BoD and Createspace
+longdesc (print-on-demand service providers) can also be produced.
+containersize 67120
+containerchecksum a42abc41729b6f80667e2b3d0b3a5c4fe4ab497f4d8c8930e3615f143e57412918445239ab62667915e7e8d1b9f47b0bc2fedf22f606488f567ce14971900414
+doccontainersize 206320
+doccontainerchecksum 47826660e1dac66c1060fb9e6f47955255fdbc563ea9ef531eb8bca885366b372678e81cb957d99d20861e95298aefb7dd6d96398da61f12f2f4b40d5cb3e159
+docfiles size=60
+ texmf-dist/doc/xelatex/langsci/README.md details="README.md"
+ texmf-dist/doc/xelatex/langsci/documentation/langsci-doc.pdf details="Package documentation"
+ texmf-dist/doc/xelatex/langsci/documentation/langsci-doc.tex
+ texmf-dist/doc/xelatex/langsci/documentation/langsci-gb4.pdf
+ texmf-dist/doc/xelatex/langsci/examples/langsci-test.bib
+ texmf-dist/doc/xelatex/langsci/examples/samplemonograph.tex
+ texmf-dist/doc/xelatex/langsci/examples/samplepaper.tex
+ texmf-dist/doc/xelatex/langsci/examples/samplevolume.tex
+ texmf-dist/doc/xelatex/langsci/labphon-logo.pdf
+runfiles size=96
+ texmf-dist/tex/xelatex/langsci/langsci-basic.sty
+ texmf-dist/tex/xelatex/langsci/langsci-bidi.sty
+ texmf-dist/tex/xelatex/langsci/langsci-forest-setup.sty
+ texmf-dist/tex/xelatex/langsci/langsci-gb4e.sty
+ texmf-dist/tex/xelatex/langsci/langsci-hyphenation-de.tex
+ texmf-dist/tex/xelatex/langsci/langsci-hyphenation-fr.tex
+ texmf-dist/tex/xelatex/langsci/langsci-hyphenation-pt.tex
+ texmf-dist/tex/xelatex/langsci/langsci-hyphenation-universal.tex
+ texmf-dist/tex/xelatex/langsci/langsci-lgr.sty
+ texmf-dist/tex/xelatex/langsci/langsci-linguex.sty
+ texmf-dist/tex/xelatex/langsci/langsci-optional.sty
+ texmf-dist/tex/xelatex/langsci/langsci-series.def
+ texmf-dist/tex/xelatex/langsci/langsci-subparts.sty
+ texmf-dist/tex/xelatex/langsci/langsci-tbls.sty
+ texmf-dist/tex/xelatex/langsci/langsci-textipa.sty
+ texmf-dist/tex/xelatex/langsci/langsci-tikz.sty
+ texmf-dist/tex/xelatex/langsci/langsci-tobi.sty
+ texmf-dist/tex/xelatex/langsci/langsci-unified.bbx
+ texmf-dist/tex/xelatex/langsci/langsci-unified.cbx
+ texmf-dist/tex/xelatex/langsci/langscibook.cls
+ texmf-dist/tex/xelatex/langsci/tbls-alarm.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-book.eps
+ texmf-dist/tex/xelatex/langsci/tbls-book.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-bulb.eps
+ texmf-dist/tex/xelatex/langsci/tbls-bulb.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-bulbon.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-code.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-explore.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-filter.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-glass.eps
+ texmf-dist/tex/xelatex/langsci/tbls-glass.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-glass2.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-law.eps
+ texmf-dist/tex/xelatex/langsci/tbls-law.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-more.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-pencil.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-people.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-plus.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-r.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-receipt.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-refresh.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-report.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-test.pdf
+ texmf-dist/tex/xelatex/langsci/tbls-tree.pdf
+catalogue-contact-bugs https://github.com/langsci/langscibook/issues
+catalogue-contact-development https://github.com/langsci/langscibook/graphs/contributors
+catalogue-contact-home https://www.langsci-press.org
+catalogue-contact-repository https://github.com/langsci/langscibook
+catalogue-contact-support mailto:support@langsci-press.org
+catalogue-ctan /macros/xetex/latex/langsci
+catalogue-license lppl1.3
+catalogue-topics journalpub book-pub class

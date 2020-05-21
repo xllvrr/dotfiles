@@ -1,0 +1,72 @@
+name yazd-thesis
+category Package
+revision 51725
+shortdesc A template for the Yazd University
+longdesc This package offers a document class for typesetting theses and
+longdesc dissertations at the Yazd University. The class requires use of
+longdesc XeLaTeX.
+containersize 5988
+containerchecksum 9f8350ad1d606769e5c5825bfa92832775ca7a120287013119f01e3cdd54b052a9bf51cce2c7350e5f7241b4817a4b840590bade6c07646fc519be5ba2d9e11b
+doccontainersize 2170868
+doccontainerchecksum 315a82c7e548df4c971d9281f5da6e58a58282a3b05ab23eb41befe4cbe56b278d9a975c920d10cbd387f8809a2301ce800b9fc1c482dd6c3821040ac5911aa0
+docfiles size=1103
+ texmf-dist/doc/xelatex/yazd-thesis/MyReferences.bib
+ texmf-dist/doc/xelatex/yazd-thesis/README details="Readme"
+ texmf-dist/doc/xelatex/yazd-thesis/appendix1.tex
+ texmf-dist/doc/xelatex/yazd-thesis/chapter1.tex
+ texmf-dist/doc/xelatex/yazd-thesis/chapter2.tex
+ texmf-dist/doc/xelatex/yazd-thesis/chapter3.tex
+ texmf-dist/doc/xelatex/yazd-thesis/chapter4.tex
+ texmf-dist/doc/xelatex/yazd-thesis/chapter5.tex
+ texmf-dist/doc/xelatex/yazd-thesis/dicen2fa.tex
+ texmf-dist/doc/xelatex/yazd-thesis/dicfa2en.tex
+ texmf-dist/doc/xelatex/yazd-thesis/eninfo.tex
+ texmf-dist/doc/xelatex/yazd-thesis/fainfo.tex
+ texmf-dist/doc/xelatex/yazd-thesis/figures/DSsequence.pdf
+ texmf-dist/doc/xelatex/yazd-thesis/figures/Install-1.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/Install-2.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/Install-3.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/Install-4.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/Install-5.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/Install-6.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/Latex2Word.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/Print-PDF.png
+ texmf-dist/doc/xelatex/yazd-thesis/figures/Setup.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-1.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-2.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-3.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-4.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-5.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-6.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-Update-1.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-Update-2.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-Update-3.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-Update-4.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-Update-5.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-Update-6.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/TexLive2015-Update-7.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/besm.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/farsitex2xepersian-1.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/farsitex2xepersian-2.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/farsitex2xepersian-p1.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/farsitex2xepersian-p1.pdf
+ texmf-dist/doc/xelatex/yazd-thesis/figures/farsitex2xepersian-p2.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/farsitex2xepersian-p2.pdf
+ texmf-dist/doc/xelatex/yazd-thesis/figures/install-pack-1.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/install-pack-2.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/install-pack-3.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/install-pack-4.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/install-pack-5.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/figures/logo.png
+ texmf-dist/doc/xelatex/yazd-thesis/figures/test-crop.jpg
+ texmf-dist/doc/xelatex/yazd-thesis/figures/test-crop.pdf
+ texmf-dist/doc/xelatex/yazd-thesis/figures/word2Latex.JPG
+ texmf-dist/doc/xelatex/yazd-thesis/yazd-thesis.pdf details="Package documentation" language="fa"
+ texmf-dist/doc/xelatex/yazd-thesis/yazd-thesis.tex
+runfiles size=6
+ texmf-dist/tex/xelatex/yazd-thesis/yazd-thesis.cls
+catalogue-contact-home http://yazd-thesis.blog.ir/
+catalogue-ctan /macros/xetex/latex/yazd-thesis
+catalogue-license lppl1.3c
+catalogue-topics class dissertation persian xetex
+catalogue-version 0.3

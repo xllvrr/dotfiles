@@ -1,0 +1,15 @@
+\relax
+
+\metrics
+
+% This metrics file is loaded after having read the Times-Roman
+% glyphs.  We unset those glyphs that should be taken from cmr.
+
+\unsetglyph{plus}
+\unsetglyph{equal}
+\unsetglyph{parenleft}
+\unsetglyph{parenright}
+\unsetglyph{bracketleft}
+\unsetglyph{bracketright}
+
+\endmetrics

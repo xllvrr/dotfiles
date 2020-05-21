@@ -1,0 +1,30 @@
+name schemata
+category Package
+revision 54326
+shortdesc Print topical diagrams
+longdesc The package facilitates the creation of topical schemata,
+longdesc outlines that use braces (or facsimiles thereof) to illustrate
+longdesc the breakdown of concepts and categories in Scholastic thought
+longdesc from late medieval and early modern periods.
+containersize 2340
+containerchecksum a2a5d5d4665d0ab72a57f868acc5f212650268682458caa4c82e1be01456596bc5b9e876565b6ea35b47e7fa521be8ef42db68897925648a0c28d5cef3a63eb6
+doccontainersize 716612
+doccontainerchecksum cb4c1d4c2cc64056058cf4da0fb0af81cb93971486c1fb573c0f1a00df46f7ec1426669c2860d312772f3a1fa4701ad95453e8281194955413a2edd038ce999e
+docfiles size=183
+ texmf-dist/doc/generic/schemata/README details="Readme"
+ texmf-dist/doc/generic/schemata/README.txt
+ texmf-dist/doc/generic/schemata/schemata.pdf details="Package documentation"
+ texmf-dist/doc/generic/schemata/schemata.png
+ texmf-dist/doc/generic/schemata/schematest.tex
+srccontainersize 19276
+srccontainerchecksum 72b4edc889166c8770867c45454eb738c239f34d67a29de28517843882011c1e885c3ab201d00bc485c85e8705577340ee5c71853b9c2c2449f04e0537c24d6e
+srcfiles size=23
+ texmf-dist/source/generic/schemata/Makefile
+ texmf-dist/source/generic/schemata/schemata.dtx
+ texmf-dist/source/generic/schemata/schemata.ins
+runfiles size=3
+ texmf-dist/tex/generic/schemata/schemata.sty
+catalogue-ctan /macros/generic/schemata
+catalogue-license lppl1.3
+catalogue-topics philosophy theology
+catalogue-version 1.1

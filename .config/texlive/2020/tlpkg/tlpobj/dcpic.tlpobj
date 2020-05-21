@@ -1,0 +1,31 @@
+name dcpic
+category Package
+revision 30206
+shortdesc Commutative diagrams in a LaTeX and TeX documents
+longdesc DCpic is a package for typesetting Commutative Diagrams within
+longdesc a LaTeX and TeX documents. Its distinguishing features are: a
+longdesc powerful graphical engine, the PiCTeX package; an easy
+longdesc specification syntax in which a commutative diagram is
+longdesc described in terms of its objects and its arrows (morphism),
+longdesc positioned in a Cartesian coordinate system.
+containersize 13996
+containerchecksum 6cfae1fe50baa81ba778ee1b8cc76dd2d0e66e3cd4a868364857f2338b1078ac81178dbcea81d4edbe013726b7cb14700506f38e49eb528701bf784280ca7de8
+doccontainersize 927712
+doccontainerchecksum 25f768812f31cfc3e4d00717ed8d77392272f2480efe3311ecf5e922b18e1f5b6fa36892c7eb69cc077e350d5d7e55b7201673fc653c188ec8a76205f90b681c
+docfiles size=275
+ texmf-dist/doc/generic/dcpic/README
+ texmf-dist/doc/generic/dcpic/eurotex2001.pdf details="EuroTeX2001 paper" language="en"
+ texmf-dist/doc/generic/dcpic/eurotex2001.tex
+ texmf-dist/doc/generic/dcpic/examples.pdf
+ texmf-dist/doc/generic/dcpic/examples.tex
+ texmf-dist/doc/generic/dcpic/manDCPiC.pdf details="Package documentation (English)" language="en"
+ texmf-dist/doc/generic/dcpic/manDCPiC.tex
+ texmf-dist/doc/generic/dcpic/manDCPiCpt.pdf details="Package documentation (Portuguese)" language="pt"
+ texmf-dist/doc/generic/dcpic/manDCPiCpt.tex
+runfiles size=14
+ texmf-dist/tex/generic/dcpic/dcpic.sty
+ texmf-dist/tex/generic/dcpic/europroc.cls
+catalogue-ctan /macros/generic/diagrams/dcpic
+catalogue-license lppl1.3
+catalogue-topics diagram-comm
+catalogue-version 5.0.0

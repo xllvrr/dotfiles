@@ -1,0 +1,8 @@
+\begin{tikzpicture}[codeblocks,minimum width=1.2cm]
+\einruecken{\node[kontrolle](eins){A\\ B};
+	\einruecken{\node[logik,unter={eins}{1}{0}](zwei){C\\ D};
+		\einruecken{\node[mathe,unter={zwei}{1}{0}](drei){E\\ F};}
+			\node[aktion,unter={drei}{1}{0}](vier){G\\ H};
+	}
+}
+\end{tikzpicture}

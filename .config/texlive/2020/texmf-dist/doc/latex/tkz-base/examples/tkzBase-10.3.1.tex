@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 83 (Section 10.3.1 : Example with \tkzcname{tkzShowBB})
+
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(3,3){B}
+  \tkzDefPoint(1,1){C}
+  \tkzSetBB(A)(2,2)
+  \tkzDrawSegment(A,B)
+  \tkzDrawPoints(A,C)
+  \tkzShowBB
+\end{tikzpicture}right
+
+\end{document}

@@ -1,0 +1,193 @@
+\section{Presentation of \tkzname{tkz-base}}
+
+\subsection{Example that poses a problem  }
+
+The following code gives an error 
+
+\begin{tkzltxexample}[right margin=7cm]  
+\begin{tikzpicture}
+  \draw (0,0)--(600,0);
+\end{tikzpicture}
+\end{tkzltxexample}
+ {\color{red} Latex Error: ... Dimension too large.} 
+
+Indeed, the default unit is a centimeter but \TEX\ cannot store a dimension greater than 575 cm, which leads to an error. \TEX\ however, can store integers up to $2^{31}-1$, so it is possible to work on integers first and then define the dimensions.
+
+\begin{tkzltxexample}[right margin=7cm]  
+\begin{tikzpicture}[x=0.01 cm]
+  \draw (0,0)--(600 cm,0);
+\end{tikzpicture} 
+\end{tkzltxexample} 
+
+{\color{red} Latex Error: ... Dimension too large.}
+  
+The previous code still makes an error. Indeed, 600 cm is a dimension
+ and does not take into account the change of unit. The correct version is:
+ 
+\begin{tkzltxexample}[right margin=7cm]  
+\begin{tikzpicture}[x=0.01 cm]
+  \draw (0,0)--(600,0);
+\end{tikzpicture} 
+\end{tkzltxexample} 
+
+This time, the stored dimension is 6 cm which is acceptable. It is possible with \TEX\ to handle large whole numbers, but, on the other hand, the dimensions cannot exceed \numprint{16384} pt or approximately 5.75 m.
+
+With \TEX, it's also possible to work with the \tkzname{xfp} package. This allows him to work at longer intervals, but at the cost of a certain slowness. This is the method I have preferred for some sensitive calculations that require good precision, such as calculations to measure angles or segment length, but it is necessary once a number has been found to assign it to a dimension. We always find the same constraints.
+
+\subsection{The role of \tkzname{\tkznameofpack}}
+The following code gives an error not because \numprint{6000000} is too large, but because \numprint{0.000001} cm is too small.
+
+ {\color{red} Latex Error:}
+
+\begin{tkzltxexample}[right margin=7cm]  
+\begin{tikzpicture}[x=0.000001 cm]
+ \coordinate (x) at (6000000,0);
+  \draw (0,0)--(x);
+\end{tikzpicture}
+\end{tkzltxexample}
+
+With \tkzname{tkz-base}, it will be possible to work with any coordinates, but it will be necessary to use the macros of the package.
+
+\tkzNamePack{tkz-base} simplifies the use of different value ranges. This package is used by several of my packages such as \tkzname{tkz-tukey}, a package for drawing graphical representations in elementary statistics, \tkzNamePack{tkz-fct} which allows to draw graphical representations of functions using \tkzname{gnuplot}, as well as with \tkzname{tkz-euclide} for Euclidean geometry.
+
+First of all, you should know that it is not necessary to deal with \TIKZ\ with the size of the support (bounding box); however it is sometimes necessary, either to draw a grid, or to draw axes, or to work with a different unit than the centimeter, or finally to control the size of what will be displayed.
+ To do this, you must have prepared the frame in which you are going to work, this is the role of \tkzNamePack{tkz-base} and its main macro \tkzNameMacro{tkzInit}. For example, if you want to work on a 10 cm square, but such that the unit is the dm then you will have to use.
+
+\begin{tkzltxexample}[right margin=7cm]   
+\tkzInit[xmax=1,ymax=1,xstep=0.1,ystep=0.1]
+\end{tkzltxexample}
+
+\tkzname{xstep=0.1} means that 1cm represents the $0.1$ graduation so the $1$ graduation is at $10$ cm from the origin.
+
+On the other hand, for values of $x$ between \numprint{0} and \numprint{10000} and values of $y$ between \numprint{0} and \numprint{100000}, it will be necessary to write 
+
+\begin{tkzltxexample}[right margin=6cm]     
+\tkzInit[xmax=10000,ymax=100000,xstep=1000,ystep=10000]
+\end{tkzltxexample}
+The result is always a 10 cm square.
+
+All this makes little sense for Euclidean geometry, and in this case it is recommended to leave the graphic unit equal to 1 cm. I have not tested whether all macros for Euclidean geometry accept other values than \tkzname{xstep=1} and \tkzname{ystep=1}. On the other hand, for some drawings, it is interesting to fix the extreme values and to "clip" the definition rectangle in order to control the size of the figure as well as possible.
+
+\subsection{Syntax of \tkzname{tkz-base}}
+
+I tried to generalize the following syntax:
+\begin{itemize}
+  \item The syntax is close to that of \LATEX, there's no need for ";" with \tkzname{tkz-base}.
+  \item all the macros have names beginning with \tkzname{tkz};
+  \item braces are used to pass a parameter that will be the reference of an object created by the macro;
+  \item parentheses are used to refer to an object that has already been created or to a coordinate pair;
+  \item square brackets are necessary to pass optional arguments or options, some choices are sometimes mandatory. The use of the comma even in a Math mode requires to be protected in a TeX group;
+  \item blanks (space) are prohibited between [...] and (...), [...] and \{...\},  as well as between (...) and \{…\}, but it is possible to put spaces between passed in optional arguments [...].    
+\end{itemize}
+ 
+\section{Initialization \tkzcname{tkzInit}} 
+\subsection{The main macro  \tkzcname{tkzInit}}
+\begin{NewMacroBox}{tkzInit}{\oarg{local options}}\hypertarget{init}{}%
+\begin{tabular}{lll}%    
+options  & default & definition             \\
+\midrule    
+\TOline{xmin} {0} {minimum value of the abscissae in cm}
+\TOline{xmax} {10} {maximum value of the abscissae in cm}
+\TOline{xstep}{1} {difference between two graduations in $x$}
+\TOline{ymin} {0} {minimum y-axis value in cm }
+\TOline{ymax} {10} {maximum y-axis value in cm}
+\TOline{ystep}{1} {difference between two graduations in $y$}  
+\bottomrule    
+\end{tabular}
+
+\medskip 
+
+The role of \tkzname{tkzInit} is to define a \textcolor{red}{orthogonal} coordinates system and a rectangular part of the plane in which you will place your drawings using Cartesian coordinates. The coordinates system does not have to be normalized.
+This macro allows you to define your working environment as with a calculator.
+\end{NewMacroBox}
+
+\subsubsection{Changing the drawing size with \tkzcname{tkzInit}}    
+This macro sets the stage and defines several constants. It is quite possible to make a figure larger than the predefined rectangle.
+Moreover, as you can see, it is possible to use the commands of \TIKZ\ in the middle of those of \tkzname{tkz} but {\color{red} attention to the units! This possibility must be reserved for exceptional cases only.}
+
+\begin{tkzexample}[latex=10cm,small]
+\begin{tikzpicture}
+   \tkzInit[xmax=8,ymax=6]
+   \tkzGrid
+   \tkzAxeXY
+   \draw[blue](-1,0)--(6,7);
+\end{tikzpicture}
+\end{tkzexample}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+
+\subsubsection{Role of \tkzname{xstep} , \tkzname{ystep}}
+
+\tkzHandBomb\   Warning, a graduation is represented by 1 cm, unless you resize the figure with the \tkzname{scale} option. In the example below \tkzname{xstep} = 2 corresponds to 1 cm, so between 0 and 10, we will need 5 cm. Similarly \tkzname{ystep}=400, so between 0 and 800 there are 2 cm. It is not possible to use the options of \TIKZ, \tkzname{x=...} and \tkzname{y=...}.
+
+\medskip
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}
+  \tkzInit[xmax=10,xstep=2,ymax=800,ystep=400]
+  \tkzGrid  
+  \tkzAxeXY 
+
+\end{tikzpicture}
+\end{tkzexample} 
+
+\subsection{Another example with \tkzname{xstep} and \tkzname{ystep}}    
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}
+  \tkzInit[xmax=5,xstep=1,ymax=2,ystep=.5]
+    \tkzGrid  
+    \tkzAxeXY 
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Customized origin.}
+It is important to note that you can place a point without calculating anything.
+\begin{tkzexample}[latex=10cm,small]
+\begin{tikzpicture}
+  \tkzInit[xmin=20,
+           xmax=50,
+           xstep=10,
+           ymin=5000,
+           ymax=5150,
+           ystep=50]
+  \tkzAxeXY  
+  \tkzDefPoint(30,5100){A}
+  \tkzDrawPoint(A)  
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Use of decimals }
+
+\medskip
+It is preferable to write the different arguments relating to an axis with the same number of decimals.
+\tkzname{numprint} is used to display the graduations correctly.
+
+In the following example, \tkzname{numprint} uses the English conventions for writing numbers because I used:
+ 
+\tkzcname{usepackage[english]\{babel\} }
+
+\medskip
+
+\begin{tkzexample}[small]
+\begin{tikzpicture}
+  \tkzInit[xmin=0.00,  xmax=0.05, 
+           ymin=1.2200,ymax=1.2215,
+           xstep=0.01, ystep=0.0005]
+  \tkzAxeXY
+  \tkzDefPoint(.04,1.22025){I}
+  \tkzDrawPoint(I)   
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Negative values}
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}
+  \tkzInit[xmin  = -40,
+           xmax  =  60,
+           ymin  = -40,
+           ymax  =  60,
+           xstep =  20,
+           ystep =  20]
+  \tkzAxeXY  
+\end{tikzpicture}
+\end{tkzexample}
+
+\endinput

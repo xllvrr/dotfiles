@@ -1,0 +1,19 @@
+name xelatex-dev
+category TLCore
+revision 54498
+depend babel
+depend cm
+depend hyphen-base
+depend l3backend
+depend l3kernel
+depend l3packages
+depend latex-base-dev
+depend latex-fonts
+depend lm
+depend tex-ini-files
+depend unicode-data
+depend xelatex-dev.ARCH
+depend xetex
+execute AddFormat name=xelatex-dev engine=xetex patterns=language.dat   options="-etex xelatex.ini"   fmttriggers=babel,cm,hyphen-base,latex-fonts,l3backend,l3kernel,l3packages,tex-ini-files,unicode-data,latex-base-dev,lm
+containersize 440
+containerchecksum cfdeea0bfff10bccf25935c5bd0d942f981e7238136312e78de720b9b364a40a0fd738fb5b722dc36f5e472ecd079cbfbf0d73dab41b525f88a456955ab53cb2

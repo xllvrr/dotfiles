@@ -1,0 +1,35 @@
+name tikz-kalender
+category Package
+revision 52890
+shortdesc A LaTeX based calendar using TikZ
+longdesc For usage see the example files tikz-kalender-example1.tex,
+longdesc tikz-kalender-example2.tex, and *.events. The Code is inspired
+longdesc by this document and is subject to the >>Creative Commons
+longdesc attribution license (CC-BY-SA)<<. The class tikz-kalender
+longdesc requires the package TikZ and the TikZ libraries calc and
+longdesc calendar.
+containersize 4436
+containerchecksum 8bda7464a62135fe2eb8739d428aca770ee6ba90d3fc08037ebd192f6e436116b59962ae7e0f0cce7addc6a44d0bb5eed47d8c0ff83371a070d3a5c0e8b1feee
+doccontainersize 118464
+doccontainerchecksum d73e1427574212a2652191b0afce180155ff32b7d8d63f076f2b5dc71c64d1d8dd562666f8a7ebeff445409fb884ac79a66d0271582b0b6b72e84c5fe7c44f7e
+docfiles size=37
+ texmf-dist/doc/latex/tikz-kalender/Feiertage-2016.events
+ texmf-dist/doc/latex/tikz-kalender/Geburtstage.events
+ texmf-dist/doc/latex/tikz-kalender/README.md details="Readme"
+ texmf-dist/doc/latex/tikz-kalender/Schulferien-2016.events
+ texmf-dist/doc/latex/tikz-kalender/Sonstiges.events
+ texmf-dist/doc/latex/tikz-kalender/Urlaub.events
+ texmf-dist/doc/latex/tikz-kalender/tikz-kalender-example1.pdf details="Example of use"
+ texmf-dist/doc/latex/tikz-kalender/tikz-kalender-example1.tex
+ texmf-dist/doc/latex/tikz-kalender/tikz-kalender-example2.pdf
+ texmf-dist/doc/latex/tikz-kalender/tikz-kalender-example2.tex
+runfiles size=4
+ texmf-dist/tex/latex/tikz-kalender/tikz-kalender-translation.clo
+ texmf-dist/tex/latex/tikz-kalender/tikz-kalender.cls
+catalogue-also calendar
+catalogue-contact-bugs https://github.com/rolfn/kalenderRN/issues
+catalogue-contact-repository https://github.com/rolfn/kalenderRN
+catalogue-ctan /graphics/pgf/contrib/tikz-kalender
+catalogue-license cc-by-sa-1
+catalogue-topics calendar class pgf-tikz
+catalogue-version 0.4f

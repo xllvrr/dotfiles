@@ -1,0 +1,163 @@
+name tudscr
+category Package
+revision 54744
+shortdesc Corporate Design of Technische Universitat Dresden
+longdesc The TUD-Script bundle provides both classes and packages in
+longdesc order to create LaTeX documents in the corporate design of the
+longdesc Technische Universitat Dresden. It bases on the KOMA-Script
+longdesc bundle, which must necessarily be present. For questions,
+longdesc problems and comments, please refer to either the LaTeX forum
+longdesc of the Dresden University of Technology or the GitHub "tudscr"
+longdesc repository. The bundle offers: the three document classes
+longdesc tudscrartcl, tudscrreprt, and tudscrbook which serve as wrapper
+longdesc classes for scrartcl, scrreprt, and scrbook, the class
+longdesc tudscrposter for creating posters, the package tudscrsupervisor
+longdesc providing environments and macros to create tasks, evaluations
+longdesc and notices for scientific theses, the package tudscrfonts,
+longdesc which makes the corporate design fonts of the Technische
+longdesc Universitat Dresden available for LaTeX standard classes and
+longdesc KOMA-Script classes, the package fix-tudscrfonts, which
+longdesc provides the same fonts to additional corporate design classes
+longdesc not related to TUD-Script, the package tudscrcomp, which
+longdesc simplifies the switch to TUD-Script from external corporate
+longdesc design classes, the package mathswap for swapping math
+longdesc delimiters within numbers (similar to ionumbers), the package
+longdesc twocolfix for fixing the positioning bug of headings in
+longdesc twocolumn layout, and a comprehensive user documentation as
+longdesc well as several tutorials.
+depend cbfonts
+depend environ
+depend etoolbox
+depend geometry
+depend graphics
+depend greek-inputenc
+depend iwona
+depend koma-script
+depend mathastext
+depend mweights
+depend oberdiek
+depend opensans
+depend trimspaces
+depend xcolor
+depend xpatch
+containersize 159924
+containerchecksum cc61292ca058f4ca3c8c6047af85ad18e7e5760eeb67ff17bc8fbdd6ee910544d2f4b6d2be2237c4a540a59dd490b2cd064c9fb39798cf6969f1c470dd37637a
+doccontainersize 3782156
+doccontainerchecksum 303fb81d2f3a20f9a5a91df35b36dd57484e203b16ae6a4074df94aedefa4df3581dc22c052dc0e109c39c567004f5aa79bae58166108d976008311d61fb085e
+docfiles size=1096
+ texmf-dist/doc/latex/tudscr/LICENSE.md
+ texmf-dist/doc/latex/tudscr/README.md details="Readme"
+ texmf-dist/doc/latex/tudscr/tudscr.pdf details="User manual" language="de"
+ texmf-dist/doc/latex/tudscr/tudscr_print.pdf
+ texmf-dist/doc/latex/tudscr/tudscrsource.pdf details="Documented source code" language="de"
+ texmf-dist/doc/latex/tudscr/tutorials/mathswap.pdf
+ texmf-dist/doc/latex/tudscr/tutorials/mathtype.pdf
+ texmf-dist/doc/latex/tudscr/tutorials/treatise.pdf
+srccontainersize 315432
+srccontainerchecksum 6d3a1a673d63dec5a9951f0dd224ba758f606e381d05fe23b4a428b26ce1e126facb7d51e576fc2b67673b6e82cf42d01dea8f37b4734f4182eb1be9a76924eb
+srcfiles size=458
+ texmf-dist/source/latex/tudscr/doc/examples/dissertation.tex
+ texmf-dist/source/latex/tudscr/doc/examples/document.tex
+ texmf-dist/source/latex/tudscr/doc/examples/evaluation.tex
+ texmf-dist/source/latex/tudscr/doc/examples/mathswap-example.tex
+ texmf-dist/source/latex/tudscr/doc/examples/mathtype-example.tex
+ texmf-dist/source/latex/tudscr/doc/examples/notice.tex
+ texmf-dist/source/latex/tudscr/doc/examples/poster.tex
+ texmf-dist/source/latex/tudscr/doc/examples/poster_print.tex
+ texmf-dist/source/latex/tudscr/doc/examples/task.tex
+ texmf-dist/source/latex/tudscr/doc/examples/thesis.tex
+ texmf-dist/source/latex/tudscr/doc/examples/treatise-example.tex
+ texmf-dist/source/latex/tudscr/doc/sub-tudscr.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-additional.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-bundle.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-examples.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-hints.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-index.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-installation.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-introduction.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-mainclasses.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-obsolete.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-packages.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-poster.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-preface.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr-supervisor.tex
+ texmf-dist/source/latex/tudscr/doc/tudscr.tex
+ texmf-dist/source/latex/tudscr/doc/tutorials/mathswap.tex
+ texmf-dist/source/latex/tudscr/doc/tutorials/mathtype.tex
+ texmf-dist/source/latex/tudscr/doc/tutorials/treatise.tex
+ texmf-dist/source/latex/tudscr/tudscr-area.dtx
+ texmf-dist/source/latex/tudscr/tudscr-base.dtx
+ texmf-dist/source/latex/tudscr/tudscr-color.dtx
+ texmf-dist/source/latex/tudscr/tudscr-comp.dtx
+ texmf-dist/source/latex/tudscr/tudscr-doc.dtx
+ texmf-dist/source/latex/tudscr/tudscr-fields.dtx
+ texmf-dist/source/latex/tudscr/tudscr-fonts.dtx
+ texmf-dist/source/latex/tudscr/tudscr-frontmatter.dtx
+ texmf-dist/source/latex/tudscr/tudscr-layout.dtx
+ texmf-dist/source/latex/tudscr/tudscr-localization.dtx
+ texmf-dist/source/latex/tudscr/tudscr-manual.dtx
+ texmf-dist/source/latex/tudscr/tudscr-mathswap.dtx
+ texmf-dist/source/latex/tudscr/tudscr-misc.dtx
+ texmf-dist/source/latex/tudscr/tudscr-pagestyle.dtx
+ texmf-dist/source/latex/tudscr/tudscr-supervisor.dtx
+ texmf-dist/source/latex/tudscr/tudscr-texindy.dtx
+ texmf-dist/source/latex/tudscr/tudscr-title.dtx
+ texmf-dist/source/latex/tudscr/tudscr-twocolfix.dtx
+ texmf-dist/source/latex/tudscr/tudscr-version.dtx
+ texmf-dist/source/latex/tudscr/tudscr.ins
+ texmf-dist/source/latex/tudscr/tudscrsource.tex
+runfiles size=495
+ texmf-dist/tex/latex/tudscr/fix-tudscrfonts.sty
+ texmf-dist/tex/latex/tudscr/logo/DDC-01.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-01.pdf
+ texmf-dist/tex/latex/tudscr/logo/DDC-03.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-03.pdf
+ texmf-dist/tex/latex/tudscr/logo/DDC-07.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-07.pdf
+ texmf-dist/tex/latex/tudscr/logo/DDC-09.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-09.pdf
+ texmf-dist/tex/latex/tudscr/logo/DDC-19.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-19.pdf
+ texmf-dist/tex/latex/tudscr/logo/DDC-21.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-21.pdf
+ texmf-dist/tex/latex/tudscr/logo/DDC-22.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-22.pdf
+ texmf-dist/tex/latex/tudscr/logo/DDC-24.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-24.pdf
+ texmf-dist/tex/latex/tudscr/logo/DDC-25.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-25.pdf
+ texmf-dist/tex/latex/tudscr/logo/DDC-27.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-27.pdf
+ texmf-dist/tex/latex/tudscr/logo/DDC-28.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-28.pdf
+ texmf-dist/tex/latex/tudscr/logo/DDC-30.eps
+ texmf-dist/tex/latex/tudscr/logo/DDC-30.pdf
+ texmf-dist/tex/latex/tudscr/logo/TUD-black.eps
+ texmf-dist/tex/latex/tudscr/logo/TUD-black.pdf
+ texmf-dist/tex/latex/tudscr/logo/TUD-blue.eps
+ texmf-dist/tex/latex/tudscr/logo/TUD-blue.pdf
+ texmf-dist/tex/latex/tudscr/logo/TUD-white.eps
+ texmf-dist/tex/latex/tudscr/logo/TUD-white.pdf
+ texmf-dist/tex/latex/tudscr/mathswap.sty
+ texmf-dist/tex/latex/tudscr/tudscrartcl.cls
+ texmf-dist/tex/latex/tudscr/tudscrbase.sty
+ texmf-dist/tex/latex/tudscr/tudscrbook.cls
+ texmf-dist/tex/latex/tudscr/tudscrcolor.sty
+ texmf-dist/tex/latex/tudscr/tudscrcomp-book.sty
+ texmf-dist/tex/latex/tudscr/tudscrcomp-poster.sty
+ texmf-dist/tex/latex/tudscr/tudscrcomp.sty
+ texmf-dist/tex/latex/tudscr/tudscrdoc.cls
+ texmf-dist/tex/latex/tudscr/tudscrfonts.sty
+ texmf-dist/tex/latex/tudscr/tudscrmanual.cls
+ texmf-dist/tex/latex/tudscr/tudscrposter.cls
+ texmf-dist/tex/latex/tudscr/tudscrreprt.cls
+ texmf-dist/tex/latex/tudscr/tudscrsupervisor.sty
+ texmf-dist/tex/latex/tudscr/tudscrtutorial.sty
+ texmf-dist/tex/latex/tudscr/twocolfix.sty
+catalogue-contact-bugs https://github.com/tud-cd/tudscr/issues
+catalogue-contact-repository https://github.com/tud-cd/tudscr
+catalogue-contact-support https://latex.wcms-file3.tu-dresden.de/phpBB3/index.php
+catalogue-ctan /macros/latex/contrib/tudscr
+catalogue-license lppl1.3c
+catalogue-topics dissertation class
+catalogue-version 2.06f

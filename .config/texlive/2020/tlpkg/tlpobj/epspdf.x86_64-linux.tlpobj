@@ -1,0 +1,9 @@
+name epspdf.x86_64-linux
+category Package
+revision 29050
+shortdesc x86_64-linux files of epspdf
+containersize 364
+containerchecksum 560f1d59ac8ec0807e6f413a354b2ea7c282cda847e2f942538eabe04db2bc95de5479f09dee870d85193d55354322ed745ea7f341ac5dc6a04dace016055287
+binfiles arch=x86_64-linux size=2
+ bin/x86_64-linux/epspdf
+ bin/x86_64-linux/epspdftk

@@ -1,0 +1,29 @@
+name scientific-thesis-cover
+category Package
+revision 47923
+shortdesc Provides cover page and affirmation at the end of a thesis
+longdesc Institutions require a cover page and an affirmation at the end
+longdesc of a thesis. This package provides both.
+containersize 4916
+containerchecksum 2427c534ad767f1e8f319aa24744346d4a0a39f73d93c779dc89d3cd0abfd683d7a33c81026c4a5823ad686084f026193c917ff173d639dfac2c99350a819c59
+doccontainersize 131328
+doccontainerchecksum 31bc280c96b87b079a7dfb6a0c2ff1a03f80c5a047bc2c11b9fb192c50b8e51a65cb3fd5c043c37124afe2383a611f38accd91d6202416451b3eb34bfe855077
+docfiles size=41
+ texmf-dist/doc/latex/scientific-thesis-cover/CHANGELOG.md
+ texmf-dist/doc/latex/scientific-thesis-cover/README.TEXLIVE
+ texmf-dist/doc/latex/scientific-thesis-cover/README.md details="Readme"
+ texmf-dist/doc/latex/scientific-thesis-cover/demo.tex
+ texmf-dist/doc/latex/scientific-thesis-cover/scientific-thesis-cover.pdf details="Package documentation"
+srccontainersize 532
+srccontainerchecksum ac14306fa7591f6fa684dd8fb6d7c7335b6ce5c8e3099d80286f05a9f378b4d430b1210fec9c071aa8a4e430ff6cae9ea712ea504cc575e89b02751c02e60bd6
+srcfiles size=1
+ texmf-dist/source/latex/scientific-thesis-cover/release.bat
+runfiles size=5
+ texmf-dist/tex/latex/scientific-thesis-cover/scientific-thesis-cover.sty
+catalogue-contact-bugs https://github.com/latextemplates/scientific-thesis-cover/issues
+catalogue-contact-home https://latextemplates.github.io/scientific-thesis-cover
+catalogue-contact-repository https://github.com/latextemplates/scientific-thesis-cover
+catalogue-ctan /macros/latex/contrib/scientific-thesis-cover
+catalogue-license lppl1.3c
+catalogue-topics dissertation journalpub scientific-docs
+catalogue-version 4.0.2

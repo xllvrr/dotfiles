@@ -1,0 +1,45 @@
+$Id: README,v 1.2 1995/05/07 16:58:21 schrod Exp $
+------------------------------------------------------------
+
+
+The plain/js-misc package collects some small miscellaneous plain TeX
+macros I wrote and use quite regularly. You'll find a complete list of
+the package's macro files at the start of Imakefile.
+
+In my opinion, of particular importance are
+
+    idverb.tex		Typesetting verbatim by |...|
+    xfig.tex		Typeset figures created by xfig (transfig, actually)
+
+There does not exist a user manual for most macros. A German
+description of two minor macro files (cassette.tex & schild.tex) is
+available in js-misc.{tex,dvi}. Other DVI files in this distribution
+feature explanations of specific macro files, typically with
+implementation info as well. The rest has user documentation at the
+top of the macro files, as comments.
+
+For installation instructions, check the file INSTALL.
+
+
+Reference anonymous ftp site:
+	ftp.th-darmstadt.de [130.83.47.112]
+	directory pub/tex/plain
+	file js-misc-<version>.tar.gz
+		where <version> is the current version number
+		(a gzipped tar file)
+
+CTAN directory:
+	macros/plain/contrib/js-misc/
+		version info is in file History
+
+
+Enjoy,
+	Joachim
+
+--
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Joachim Schrod			Email: schrod@iti.informatik.th-darmstadt.de
+Computer Science Department
+Technical University of Darmstadt, Germany
+
+

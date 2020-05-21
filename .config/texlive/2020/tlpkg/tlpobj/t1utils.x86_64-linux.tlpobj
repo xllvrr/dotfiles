@@ -1,0 +1,13 @@
+name t1utils.x86_64-linux
+category TLCore
+revision 50281
+shortdesc x86_64-linux files of t1utils
+containersize 42492
+containerchecksum 5cac6bce7f408a98f20d97b6ed45fbf6e0792372063b708d46491c3f36fdc6b9a3f18690c255698982afadc42e4942b2d5b35b6cee666217b6585a3407d9e894
+binfiles arch=x86_64-linux size=64
+ bin/x86_64-linux/t1ascii
+ bin/x86_64-linux/t1asm
+ bin/x86_64-linux/t1binary
+ bin/x86_64-linux/t1disasm
+ bin/x86_64-linux/t1mac
+ bin/x86_64-linux/t1unmac

@@ -1,0 +1,25 @@
+name tikz-dimline
+category Package
+revision 35805
+shortdesc Technical dimension lines using PGF/TikZ
+longdesc tikz-dimline helps drawing technical dimension lines in TikZ
+longdesc picture environments. Its usage is similar to some
+longdesc contributions posted on stackexchange.
+containersize 2000
+containerchecksum c7a3b158a8acd100192b7dc936f2e452513125389f72c12f0c3818bb4e771abf0748338f13603765904adf1d808fc2b263d0f798999c52638e610d24addcc641
+doccontainersize 162296
+doccontainerchecksum 62edb9667ae4405c798a00c1d079ea9ed5bbdddd76e4a730aaf7405d175afa146fcb7bf43a551001eeff1f683ce3b47a0a79fab66b7410be59f18f4f6e409ef4
+docfiles size=49
+ texmf-dist/doc/latex/tikz-dimline/README details="Readme"
+ texmf-dist/doc/latex/tikz-dimline/dimline1.png
+ texmf-dist/doc/latex/tikz-dimline/dimline2.png
+ texmf-dist/doc/latex/tikz-dimline/dimline3.png
+ texmf-dist/doc/latex/tikz-dimline/tikz-dimline-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/tikz-dimline/tikz-dimline-doc.tex
+runfiles size=2
+ texmf-dist/tex/latex/tikz-dimline/tikz-dimline.sty
+catalogue-contact-repository https://github.com/renard/tikz-dimline
+catalogue-ctan /graphics/pgf/contrib/tikz-dimline
+catalogue-license other-free
+catalogue-topics pgf-tikz
+catalogue-version 1.0

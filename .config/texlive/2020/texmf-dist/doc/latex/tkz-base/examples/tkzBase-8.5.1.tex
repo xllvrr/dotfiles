@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 62 (Section  8.5.1 : Equilateral triangle with \tkzcname{tkzDefShiftPointCoord})
+
+\begin{tikzpicture}[scale=1]
+ \tkzDefPoint(2,3){A}
+ \tkzDefShiftPointCoord[2,3](30:4){B}
+ \tkzDefShiftPointCoord[2,3](-30:4){C}
+ \tkzDrawSegments(A,B B,C C,A)
+  \tkzDrawPoints(A,B,C)
+  \tkzLabelPoints(B,C)
+  \tkzLabelPoint[left](A){$A$}
+\end{tikzpicture}
+
+\end{document}

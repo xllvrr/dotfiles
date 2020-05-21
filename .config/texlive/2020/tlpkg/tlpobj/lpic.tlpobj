@@ -1,0 +1,30 @@
+name lpic
+category Package
+revision 20843
+shortdesc Put LaTeX material over included graphics
+longdesc The package defines a convenient interface to put any LaTeX
+longdesc material on top of included graphics. The LaTeX material may
+longdesc also be rotated and typeset on top of a white box overshadowing
+longdesc the graphics. The coordinates of the LaTeX boxes are given
+longdesc relative to the original, unscaled graphics; when the graphics
+longdesc is rescaled, the LaTeX annotations stay at their right places
+longdesc (unless you do something extreme). In a draft mode, the package
+longdesc enables you to draw a coordinate grid over the picture for easy
+longdesc adjustment of positions of the annotations.
+containersize 5308
+containerchecksum d918fdc8744a9f5e0d24f6ba4f19bbc4cbd9a5ba4b3c559ab1321c36a9e3599ccf6ee849bd7f2ef6c3156cec6e526a44d27bc033b7dc5b217e289fdbff0bf149
+doccontainersize 96860
+doccontainerchecksum 307109b75129099c191a65a7632ad0cbc903cb2b621b199dcceb7cab5ab5ddeff7ee504d7da3afd653e1aac04236efb6a3c1225f9e533a777295052bcc28d2ba
+docfiles size=36
+ texmf-dist/doc/latex/lpic/README details="Readme"
+ texmf-dist/doc/latex/lpic/instructions-differential.eps
+ texmf-dist/doc/latex/lpic/instructions-differential.pdf
+ texmf-dist/doc/latex/lpic/instructions.pdf details="Package documentation"
+ texmf-dist/doc/latex/lpic/instructions.tex
+runfiles size=6
+ texmf-dist/tex/latex/lpic/lpic.sty
+catalogue-also overpic
+catalogue-ctan /macros/latex/contrib/lpic
+catalogue-license lppl1.3
+catalogue-topics graphics-text
+catalogue-version 0.8

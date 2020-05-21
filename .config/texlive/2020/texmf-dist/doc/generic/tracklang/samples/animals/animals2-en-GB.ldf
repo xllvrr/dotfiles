@@ -1,0 +1,17 @@
+\TrackLangProvidesResource{en-GB}[2016/10/06 v1.2]
+
+\providecommand*{\enGBanimals}{%
+  \englishanimals
+  \renewcommand*{\ladybirdname}{ladybird}%
+}
+
+\TrackLangRequireResourceOrDo{english}%
+{
+  \TrackLangAddToCaptions{%
+    \renewcommand*{\ladybirdname}{ladybird}%
+  }
+}
+{
+  \TrackLangAddToCaptions\enGBanimals
+}
+

@@ -1,0 +1,29 @@
+name context-gnuplot
+category ConTeXt
+revision 47085
+shortdesc Inclusion of Gnuplot graphs in ConTeXt
+longdesc Enables simple creation and inclusion of graphs with Gnuplot.
+longdesc The package writes a script into temporary file, runs Gnuplot
+longdesc and includes the resulting graphic directly into the document.
+longdesc See the ConTeXt Garden package page for further details.
+depend context
+containersize 18500
+containerchecksum d3d7dce105707bd8fd903038e458cae614ec63da7932231e1f659570ec3a7960ea0fab338a8405f2ca8ce8b03946b58db8255333d2a4ab5a659566f4d272b0b0
+doccontainersize 448972
+doccontainerchecksum 40e471b27d53ced33590792ac62992a220357c6db1c78cba901197362a36817bc14b049f2573ee2e5b5adad5182c5bea2880c4f7a2477bcd1a06ee7ccf88b0b9
+docfiles size=120
+ texmf-dist/doc/context/third/gnuplot/VERSION
+ texmf-dist/doc/context/third/gnuplot/example.plt
+ texmf-dist/doc/context/third/gnuplot/fullpage-example.pdf
+ texmf-dist/doc/context/third/gnuplot/fullpage-example.tex
+ texmf-dist/doc/context/third/gnuplot/gnuplot-context-doc.pdf details="Package documentation"
+ texmf-dist/doc/context/third/gnuplot/gnuplot-context-doc.tex
+runfiles size=27
+ texmf-dist/metapost/context/third/gnuplot/mp-gnuplot.mp
+ texmf-dist/tex/context/third/gnuplot/t-gnuplot.mkii
+ texmf-dist/tex/context/third/gnuplot/t-gnuplot.mkiv
+catalogue-also gnuplottex
+catalogue-contact-home http://wiki.contextgarden.net/Gnuplot
+catalogue-ctan /macros/context/contrib/context-gnuplot
+catalogue-license gpl
+catalogue-topics graphics-inline

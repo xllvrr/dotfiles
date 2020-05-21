@@ -1,0 +1,683 @@
+
+
+\SSCT{Les paramètres disponibles}{Parameters avaliable}
+
+\SbSSCT{Epaisseur du trait}{Linewidth}
+\psset{linecolor=blue}
+
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,0)(4,1){4cm}{1cm} 
+\psline[linewidth=10mm](2,0)(2,1) 
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[\RDD{linewidth}=10mm](2,0)(2,1)  \\
+}
+\\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,0)(4,1){4cm}{1cm}  
+\psline[linewidth=1cm](2,0)(2,1) 
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[\RDD{linewidth}=1cm](2,0)(2,1) \\
+}
+\\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,0)(4,1){4cm}{1cm} 
+\psline[linewidth=1in](2,0)(2,1) 
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[\RDD{linewidth}=1in](2,0)(2,1) \\
+}
+\\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,0)(4,1){4cm}{1cm} 
+\psline[linewidth=10pt](2,0)(2,1) 
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[\RDD{linewidth}=10pt](2,0)(2,1) \\
+}
+\\ \hline
+\multicolumn{2}{|c|}{ {\blue \dft{} : linewidth = 0.8pt} } \\ \hline
+\end{tabular}
+
+\bigskip
+
+
+
+\begin{tabular}{|c|c|} \hline 
+\multicolumn{2}{|c|}{{\emph Dimensions en fonction de la taille de la police }} \\  \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,0)(4,1){4cm}{1cm} 
+\psline[linewidth=1em](2,0)(2,1) 
+\rput[c](2,0.5){\green  m}
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[\RDD{linewidth}=1em](2,0)(2,1) \\
+}
+\\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,0)(4,1){4cm}{1cm} 
+{\Huge \psline[linewidth=1em](2,0)(2,1) 
+\rput[c](2,0.5){\green  m}}
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\AC{\BSS{Huge} \BS{psline}[\RDD{linewidth}=1em](2,0)(2,1)  }\\
+}
+\\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,0)(4,1){4cm}{1cm} 
+\psline[linewidth=1ex](0,0.5)(4,0.5) 
+\rput[c](2,0.5){\green  x}
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[\RDD{linewidth}=1ex](0,0.5)(4,0.5)  \\
+}
+\\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,0)(4,1){4cm}{1cm} 
+{\Huge \psline[linewidth=1ex](0,0.5)(4,0.5) 
+\rput[c](2,0.5){\green x}}
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\AC{\BSS{Huge} \BS{psline}[\RDD{linewidth}=1ex](0,0.5)(4,0.5)   }\\
+}
+\\ \hline  
+\end{tabular}
+
+
+%-------------------------------------------------
+\SbSSCT{Couleur de ligne}{Line color}
+
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm}  
+ \psline[linewidth=0.5cm,linecolor=green ](4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline} [linewidth=0.5cm,\RDD{linecolor}=green ] (4,0)\\
+}
+\\ \hline 
+\end{tabular} 
+
+\psset{unit=.8cm}
+\smallskip
+
+\begin{tabular}{|l|l|l|l|p{.8cm}|p{.8cm}|l|l|l|l|l|} \hline
+
+\multicolumn{10}{|c|}{  \TFRGB{{\emph Couleurs disponibles}}{\emph Colors available} }  \\
+\hline  black & darkgray & gray  & lightgray  &white  &  red & green & blue & cyan &  magenta   \\ \hline
+\rule[-.3cm]{0pt}{.6cm}
+\psline[linewidth=10pt, linecolor=black ](1,0)&
+\psline[linewidth=10pt, linecolor= darkgray](1,0) &
+\psline[linewidth=10pt, linecolor=gray ](1,0) &
+\psline[linewidth=10pt, linecolor=lightgray ](1,0)  &
+\psline[linewidth=10pt, linecolor=white ](1,0)  &
+\psline[linewidth=10pt, linecolor= red ](1,0)  &
+\psline[linewidth=10pt, linecolor= green ](1,0) & 
+\psline[linewidth=10pt, linecolor=blue ](1,0) & 
+\psline[linewidth=10pt, linecolor= cyan ](1,0) &
+\psline[linewidth=10pt, linecolor=magenta ](1,0) \\  \hline  
+brown & lime & olive & orange & pink  & purple & teal &violet & yellow &  \\ \hline  
+\rule[-.3cm]{0pt}{.6cm}
+\psline[linewidth=10pt, linecolor=brown](1,0)&
+\psline[linewidth=10pt, linecolor= lime](1,0) &
+\psline[linewidth=10pt, linecolor=olive](1,0) &
+\psline[linewidth=10pt, linecolor=orange ](1,0)  &
+\psline[linewidth=10pt, linecolor=pink ](1,0)  &
+\psline[linewidth=10pt, linecolor= purple ](1,0)  &
+\psline[linewidth=10pt, linecolor=teal ](1,0) &
+\psline[linewidth=10pt, linecolor=violet ](1,0) &
+\psline[linewidth=10pt, linecolor= yellow ](1,0) &
+\psline[linewidth=10pt, linecolor=white ](1,0) \\  \hline  
+\multicolumn{10}{|c|}{ {\blue \dft : linecolor = black }} \\   \hline  
+\end{tabular} 
+%___________________________________________________________________
+
+\SbSSCT{Styles de ligne}{Line style}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm} 
+\psline[linewidth=0.5cm,linestyle= dotted ](4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=0.5cm,\RDD{linestyle}= \RDD{dotted} ](4,0) \\
+}
+\\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm} 
+\psline[linewidth=0.5cm,linestyle= dashed  ](4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=0.5cm,\RDD{linestyle}= \RDD{dashed} ](4,0) \\
+}
+\\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm} 
+\psline[linewidth=0.5cm,linestyle= none  ](4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=0.5cm,\RDD{linestyle}= \RDD{none}](4,0) \\
+}
+\\ \hline
+ \multicolumn{2}{|c|}{ {\blue \dft{} : linestyle = solid } }
+\\ \hline   
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm} 
+\psline[linewidth=0.5cm,linestyle=dotted,dotsep =0.5cm](4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=0.5cm,linestyle= dotted ,\RDD{dotsep} ={\red 1cm}](4,0) \\
+}
+\\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm} 
+\psline[linewidth=0.5cm,linestyle=dashed,dash=1cm ](4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=0.5cm,linestyle= dashed ,\RDD{dash}={\red 1cm} ](4,0) \\
+}
+\\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm} 
+\psline[linewidth=0.5cm,linestyle=dashed,dash=1cm 0.5cm](4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=0.5cm,linestyle= dashed ,\\
+\RDD{dash}={\red1cm 0.5cm}](4,0) \\
+}
+\\ \hline
+ \multicolumn{2}{|c|}{ {\blue \dft{} : dotsep = 3pt  dashsep= 5pt 3pt} }
+\\ \hline  
+\end{tabular} 
+
+\bigskip
+
+
+\textbf{\TFRGB{Nouvelle option}{New option}} : dashcolor \cite{pst-news10} 
+
+ 
+\smallskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm} 
+\psline[linewidth=.5cm,linestyle=dashed,dashcolor=red](0,0)(4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=.5cm,linestyle=dashed,\RDD{dashcolor}=red](0,0)(4,0) \\
+}
+\\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm} 
+\psline[linewidth=0.5cm,linestyle=dashed,linecolor=black,dashcolor=black!40,dash=5mm 5mm](0,0)(4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=0.5cm,linestyle=dashed, \\ linecolor=black,\RDD{dashcolor}=black!40,dash=5mm 5mm](0,0)(4,0) \\
+}
+\\ \hline 
+\end{tabular}  
+ 
+ 
+ 
+%%---------------------------------------------------------------------------------------
+\SbSSCT{ Lignes doubles}{Double line}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm}  
+ \psline[doubleline=true](4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[\RDD{doubleline}=true](4,0)\\
+}
+\\ \hline 
+\end{tabular} 
+
+\smallskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm}  
+ \psline[linewidth=0.25cm,doubleline=true,doublesep=.3cm](4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=0.25cm,doubleline=true,\RDD{doublesep}=.3cm](4,0)\\
+}
+\\ \hline 
+\multicolumn{2}{|c|}{ {\blue \dft{} :  doublesep = 1.25\BS{pslinewidth}} } \\ \hline 
+\end{tabular} 
+
+\smallskip
+
+\begin{tabular}{|c|c|} \hline 
+
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm}  
+ \psline[linewidth=0.25cm,doubleline=true,,doublecolor=red](4,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=0.25cm,doubleline=true,\RDD{doublecolor}=red](4,0)\\
+}
+\\ \hline
+\multicolumn{2}{|c|}{ {\blue \dft{} : doublecolor = white } } \\ \hline 
+\end{tabular} 
+
+
+
+%%============================================
+
+\SbSSCT{Bordure de ligne}{Border}
+
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm}  
+ \psline[linewidth=0.5cm,border=0.25cm,bordercolor=red](3,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=0.5cm,border=0.25cm,bordercolor=red](3,0) \\
+}
+\\ \hline 
+\end{tabular} 
+
+\smallskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=- 1,yticksize=-1 ,subticks=0,shift=*](0,0)(-1,-1)(1,1){2cm}{2cm}  
+ \psline[linewidth=3pt,linecolor=red](-1,-1)(1,1)
+ \psline[linewidth=3pt,linecolor=blue,border=0.25cm](1,-1)(-1,1)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=3pt,linecolor=red](-1,-1)(1,1)\\
+\BS{psline}[linewidth=3pt,linecolor=blue,border==0.25cm](1,-1)(-1,1)\\
+}
+\\ \hline 
+\end{tabular} 
+
+
+%%-------------------------------------------------------------------------------
+\SbSSCT{Ombrage de ligne}{Shadow}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm}  
+ \psline[linewidth=.5cm,shadow=true](3,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linecolor=red,\RDD{shadow}=true](3,0)\\
+}
+\\ \hline 
+\multicolumn{2}{|c|}{ {\blue \dft{} : shadow = false } } \\ \hline 
+\end{tabular} 
+
+\smallskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm}  
+ \psline[linewidth=.5cm,shadow=true,shadowsize=.5cm](3,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=.5cm,shadow=true,\RDD{shadowsize}=.5cm](3,0)\\
+}
+\\ \hline
+\multicolumn{2}{|c|}{ {\blue \dft{} : shadowsize = 3pt } } \\ \hline  
+\end{tabular} 
+
+\smallskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm}  
+ \psline[linewidth=.5cm,shadow=true,shadowcolor=green](3,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=.5cm,shadow=true,\RDD{shadowcolor}=green](3,0)\\
+}
+\\ \hline
+\multicolumn{2}{|c|}{ {\blue \dft{} : shadowcolor = darkgray } } \\ \hline  
+\end{tabular} 
+
+\smallskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 4,subticks=0,shift=*](0,-.5)(4,.5){4cm}{1cm}  
+ \psline[linewidth=.5cm,shadow=true,shadowsize=1cm,shadowangle=15](3,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[linewidth=.5cm,shadow=true,shadowsize=1cm,\\
+\RDD{shadowangle}=15](3,0)\\
+}
+\\ \hline
+\multicolumn{2}{|c|}{ {\blue \dft{} : ,shadowangle = - 45 } } \\ \hline 
+\end{tabular} 
+
+
+
+%%-----------------------------------------------------------
+\SbSSCT{Paramètres spécifiques}{Specific parameters }
+
+\begin{tabular}{|c|c|} \hline 
+\multicolumn{2}{|c|}{ \textbf{\BS{}psdiamond} } \\ \hline  
+ \begin{psgraph}[axesstyle=none,xticksize=0 2cm,yticksize=0 4cm,subticks=0,shift=*](0,0)(4,2){4cm}{2cm} 
+  \psdiamond[linestyle=dotted](2,1)(1,1)
+ \psdiamond[gangle=30](2,1)(1,1)
+  \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psdiamond}[linestyle=dotted](2,1)(1,1)\\
+\BS{psdiamond}[\RDD{gangle}=30](2,1)(1,1)\\
+}
+\\ \hline
+\end{tabular}
+
+
+
+\bigskip
+\begin{tabular}{|c|c|} \hline 
+\multicolumn{2}{|c|}{ \textbf{\BS{}pssarc} } \\ \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 2cm,yticksize=0 2cm,subticks=0,shift=*](0,0)(2,2){2cm}{2cm}
+\psarc[linecolor=green,linewidth=0.5cm,linejoin=0](0,0){2}{0}{90}  
+\psarc[arcsep=1cm](0,0){2}{0}{90} 
+\end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psarc}[linecolor=green,linewidth=0.5cm](0,0)\AC{2}\AC{0}\AC{90}\\
+\BS{psarc}[\RDD{arcsep}=1cm](0,0)\AC{2}\AC{0}\AC{90}\\
+}
+\\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 2cm,yticksize=0 2cm,subticks=0,shift=*](0,0)(2,2){2cm}{2cm}
+\psarc[linecolor=green,linewidth=0.5cm,linejoin=0](0,0){2}{0}{90}  
+\psarc[arcsepA=1cm](0,0){2}{0}{90} 
+\end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psarc}[linecolor=green,linewidth=0.5cm](0,0)\AC{2}\AC{0}\AC{90}\\
+\BS{psarc}[\RDD{arcsepA}=1cm](0,0)\AC{2}\AC{0}\AC{90}\\
+}
+\\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 2cm,yticksize=0 2cm,subticks=0,shift=*](0,0)(2,2){2cm}{2cm}
+\psarc[linecolor=green,linewidth=0.5cm,linejoin=0](0,0){2}{0}{90}  
+\psarc[arcsepB=1cm](0,0){2}{0}{90} 
+\end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psarc}[linecolor=green,linewidth=0.5cm](0,0)\AC{2}\AC{0}\AC{90}\\
+\BS{psarc}[\RDD{arcsepB}=1cm](0,0)\AC{2}\AC{0}\AC{90}\\
+ }
+\\ \hline
+%\multicolumn{2}{|c|}{ {\blue \dft{} : ,shadowangle = - 45 } } \\ \hline 
+\end{tabular}
+
+\smallskip
+
+%%--------------------------------------------------------------
+\SbSSCT{Remplissage de surface}{Filling }
+
+\psset{fillcolor=yellow}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1.5,yticksize=0 1.5,subticks=0,shift=*](0,0)(1.5,1.5){1.5cm}{1.5cm} 
+ \psframe[fillstyle=solid](1,1)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psframe}[\RDD{fillstyle}=solid](1,1)\\
+}
+\\ \hline 
+\end{tabular} 
+
+\smallskip
+
+\begin{tabular}{|c|c|c|c|c|c|c|} \hline
+ \multicolumn{7}{|c|}{  Types de remplissages disponibles } \\ \hline
+ \RDDD{none}{fillstyle}& \RDDD{solid}{fillstyle}& \RDDD{vlines}{fillstyle}  &  \RDDD{hlines}{fillstyle}  & \RDDD{crosshatch}{fillstyle}  & \RDDD{penrose}{fillstyle}   & dots\\  \hline
+ & 
+\begin{pspicture}[shift=*](-.2,-.2)(1.2,1.2)
+ \psframe[fillstyle=solid](1,1)
+\end{pspicture}
+ & 
+ \begin{pspicture}[shift=*](-.2,-.2)(1.2,1.2)
+ \psframe[fillstyle=vlines ](1,1)
+ \end{pspicture}
+ & 
+ \begin{pspicture}[shift=*](-.2,-.2)(1.2,1.2)
+\psframe[fillstyle= hlines](1,1)
+ \end{pspicture}
+
+ & 
+ \begin{pspicture}[shift=*](-.2,-.2)(1.2,1.2)
+ \psframe[fillstyle=crosshatch](1,1)
+  \end{pspicture}
+
+&
+ \begin{pspicture}[shift=*](-.2,-.2)(1.2,1.2)
+\psframe[fillstyle= penrose,psscale=.5](1,1)
+  \end{pspicture}
+
+ &
+  \begin{pspicture}[shift=*](-.2,-.2)(1.2,1.2)
+ \psframe[fillstyle= dots,psscale=.5](1,1)
+   \end{pspicture}
+\\ \hline
+& &  \RDD{vlines*} & \RDD{hlines*} & \RDD{crosshatch*} & \RDD{penrose*} &
+\\ \hline
+&
+&
+ \begin{pspicture}[shift=*](-.2,-.2)(1.2,1.2)
+\psframe[fillstyle=vlines*](1,1)
+ \end{pspicture}
+ & 
+  \begin{pspicture}[shift=*](-.2,-.2)(1.2,1.2)
+ \psframe[fillstyle=hlines*](1,1)
+  \end{pspicture}
+ & 
+ \begin{pspicture}[shift=*](-.2,-.2)(1.2,1.2)
+\psframe[fillstyle= crosshatch*](1,1) 
+  \end{pspicture}
+ &
+ \begin{pspicture}[shift=*](-.2,-.2)(1.2,1.2)
+\psframe[fillstyle= penrose*,psscale=.5](1,1)
+  \end{pspicture}
+ &
+  
+ \\ \hline
+\end{tabular}
+
+
+\bigskip
+\textbf{\TFRGB{Options disponibles}{Options available } }:
+ 
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 1,subticks=0,shift=*](0,0)(1,1){1cm}{1cm} 
+\psframe[fillstyle=hlines*,fillcolor=green](1,1)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psframe}[fillstyle=hlines*,\RDD{fillcolor}=green](1,1)\\
+}
+\\ \hline 
+\multicolumn{2}{|c|}{ {\blue  fillcolor = white  } } \\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 1,subticks=0,shift=*](0,0)(1,1){1cm}{1cm} 
+\psframe[fillstyle=hlines*,hatchwidth=3pt](1,1)
+\end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psframe}[fillstyle=hlines*,\RDD{hatchwidth}=3pt](1,1)\\
+}
+\\ \hline 
+\multicolumn{2}{|c|}{ {\blue  hatchwidth = 0.8pt } } \\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 1,subticks=0,shift=*](0,0)(1,1){1cm}{1cm} 
+\psframe[fillstyle=hlines*,hatchsep=10pt](1,1)
+\end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psframe}[fillstyle=hlines*,\RDD{hatchsep}=10pt](1,1)\\
+}
+\\ \hline
+\multicolumn{2}{|c|}{ {\blue  hatchsep = 4pt } } \\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 1,subticks=0,shift=*](0,0)(1,1){1cm}{1cm} 
+\psframe[fillstyle=hlines*,hatchcolor=red](1,1)
+\end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psframe}[fillstyle=hlines*,\RDD{hatchcolor}=red](1,1)\\
+}
+\\ \hline
+\multicolumn{2}{|c|}{ {\blue hatchcolor = black } } \\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 1,subticks=0,shift=*](0,0)(1,1){1cm}{1cm} 
+\psframe[fillstyle=hlines*,hatchangle=25](1,1)
+\end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psframe}[fillstyle=hlines*,\RDD{hatchangle}=25](1,1)\\
+}
+\\ \hline  
+\multicolumn{2}{|c|}{ {\blue  hatchangle =  45 } } \\ \hline 
+
+\end{tabular}  
+ 
+
+\bigskip
+\textbf{\TFRGB{Nouvelle option}{New option} : hatchwidthinc  hatchsepinc} \cite{pst-news05} 
+
+
+
+\begin{tabular}{|c|} \hline 
+
+\BS{}psframe[fillstyle=vlines,\RDD{hatchwidthinc}=2pt](14,1)
+\\ \hline  
+\begin{pspicture}(\linewidth,1.3)
+\psframe[fillstyle=vlines,hatchwidthinc=2pt](14,1)
+\end{pspicture}
+\\ \hline 
+\end{tabular} 
+
+\smallskip
+\begin{tabular}{|c|} \hline  
+\BS{}psframe[fillstyle=vlines,\RDD{hatchsepinc}=2pt](14,1)
+\\ \hline  
+
+ \begin{pspicture}(\linewidth,1.3)
+\psframe[fillstyle=vlines,hatchsepinc=2pt](14,1)
+\end{pspicture}
+\\ \hline 
+\end{tabular} 
+
+%%----------------------------------------------------------------------------------------
+\SbSSCT{Coins arrondis}{Line arc}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=-1 1,yticksize=0 2,subticks=0,shift=*](0,0)(0,-1)(2,1){2cm}{2cm} 
+\psline[linearc=0.5cm](0,1)(1,-1)(2,1)
+\psline[linestyle=dotted,linewidth=1pt](0,1)(1,-1)(2,1)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psline}[\RDD{linearc}=0.5cm](0,1)(1,-1)(2,1)\\
+\BS{psline}[linestyle=dotted](0,1)(1,-1)(2,1)\\
+% \BS{end}\AC{psgraph} \\
+ }\\ \hline
+  \multicolumn{2}{|c|}{  {\blue  \dft{}: linearc  = 0 } } \\ \hline 
+\end{tabular}
+
+
+%%----------------------------------------------------
+
+\SbSSCT{Types de points}{Dot style}
+
+
+\begin{center}
+\begin{tabular}{|c | p{3cm} || c | p{3cm} |}\hline
+ \multicolumn{3}{|c|}{ \BS{}psdots [\RDD{dotstyle}=pentagon*](.5,0)(1.5,0)(2.5,0)  } 
+& \psdots[dotstyle=pentagon*](.5,0)(1.5,0)(2.5,0)  \\ \hline 
+
+* 	& \psdots[dotstyle=*](.5,0)(1.5,0)(2.5,0)  	&  o 	& \psdots[dotstyle=o](.5,0)(1.5,0)(2.5,0)  \\
+x 	& \psdots[dotstyle=x](.5,0)(1.5,0)(2.5,0)	& + 	& \psdots[dotstyle=+](.5,0)(1.5,0)(2.5,0) \\
+Bo 	&\psdots[dotstyle=Bo](.5,0)(1.5,0)(2.5,0)	&  B+	& \psdots[dotstyle=B+](.5,0)(1.5,0)(2.5,0) \\
+asterisk & \psdots[dotstyle=asterisk](.5,0)(1.5,0)(2.5,0) &  Basterisk 	& \psdots[dotstyle=Basterisk](.5,0)(1.5,0)(2.5,0) 	\\
+Asterisk & \psdots[dotstyle=Asterisk](.5,0)(1.5,0)(2.5,0) & BoldAsterisk & \psdots[dotstyle=BoldAsterisk](.5,0)(1.5,0)(2.5,0) \\
+SolidAsterisk 	& \psdots[dotstyle=SolidAsterisk](.5,0)(1.5,0)(2.5,0) 	& oplus & \psdots[dotstyle=oplus](.5,0)(1.5,0)(2.5,0) \\
+BoldOplus & \psdots[dotstyle=BoldOplus](.5,0)(1.5,0)(2.5,0) &  SolidOplus & \psdots[dotstyle=SolidOplus](.5,0)(1.5,0)(2.5,0) \\
+otimes 	& \psdots[dotstyle=otimes](.5,0)(1.5,0)(2.5,0) 	& | 	& \psdots[dotstyle=|](.5,0)(1.5,0)(2.5,0) \\
+square 	& \psdots[dotstyle=square](.5,0)(1.5,0)(2.5,0)	&  Bsquare 	& \psdots[dotstyle=Bsquare](.5,0)(1.5,0)(2.5,0)	  \\ 
+square* 	& \psdots[dotstyle=square*](.5,0)(1.5,0)(2.5,0)	&  diamond 	& \psdots[dotstyle=diamond](.5,0)(1.5,0)(2.5,0)	 \\ 
+diamond* 	& \psdots[dotstyle=diamond*](.5,0)(1.5,0)(2.5,0) &  triangle & \psdots[dotstyle=triangle ](.5,0)(1.5,0)(2.5,0)	 \\
+Btriangle 	&   \psdots[dotstyle=Btriangle](.5,0)(1.5,0)(2.5,0)	&  triangle* &  \psdots[dotstyle=triangle*](.5,0)(1.5,0)(2.5,0)	 \\
+pentagon 	& \psdots[dotstyle=pentagon](.5,0)(1.5,0)(2.5,0)	&  Bpentagon &  \psdots[dotstyle=Bpentagon](.5,0)(1.5,0)(2.5,0)	\\
+pentagon* 	& \psdots[dotstyle=pentagon*](.5,0)(1.5,0)(2.5,0)	&  Hexagon 	& \psdots[dotstyle=Hexagon](.5,0)(1.5,0)(2.5,0)	\\
+BoldHexagon & \psdots[dotstyle= BoldHexagon](.5,0)(1.5,0)(2.5,0) & SolidHexagon & \psdots[dotstyle=SolidHexagon](.5,0)(1.5,0)(2.5,0)\\
+
+ Octogon & \psdots[dotstyle= Octogon](.5,0)(1.5,0)(2.5,0)&  BoldOctogon 	& \psdots[dotstyle= BoldOctogon](.5,0)(1.5,0)(2.5,0)\\
+SolidOctogon 	& \psdots[dotstyle= SolidOctogon](.5,0)(1.5,0)(2.5,0)	& & \\
+
+\hline 
+ \multicolumn{4}{|c|}{ {\blue \dft{} : dotstyle = * } } \\ \hline 
+\end{tabular} 
+\end{center}
+\footnotetext[1]{linecolor=blue,fillcolor=yellow}
+
+%%----------------------------------------------------
+\SbSSCT{Paramètres des points}{Parameters of the points }
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 3,subticks=0,shift=*](0,-1)(3,1){3cm}{2cm}
+\psdots[dotstyle=diamond*, dotsize= 1cm](0.5,0)(1.5,0)(2.5,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psdots}[dotstyle=diamond*, \RDD{dotsize}= 1cm] (0.5,0)(1.5,0)(2.5,0)\\
+}
+\\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 3,subticks=0,shift=*](0,-1)(3,1){3cm}{2cm}
+\psdots[dotstyle=diamond*, dotsize= .5cm 10] (0.5,0)(1.5,0)(2.5,0)
+\psdots[linecolor=red,dotstyle=diamond*, dotsize= 0.5cm ] (0.5,0)(1.5,0)(2.5,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psdots}[dotstyle=diamond*, \RDD{dotsize}= 0.5cm 10] \\ (0.5,0)(1.5,0)(2.5,0)\\
+\BS{psdots}[linecolor=red,dotstyle=diamond*, \RDD{dotsize}= 0.5cm] \\ 
+(0.5,0)(1.5,0)(2.5,0)\\
+}
+\\ \hline
+\multicolumn{2}{|c|}{ {\blue  dotsize= 0.5pt 2.5 } } \\ \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 3,subticks=0,shift=*](0,-.5)(3,.5){3cm}{1cm}
+\psdots[dotstyle=diamond*, dotscale= 5](0.5,0)(1.5,0)(2.5,0)
+
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psdots}[dotstyle=diamond*, \RDD{dotscale}= 5] \\ (0.5,0)(1.5,0)(2.5,0)\\
+}
+\\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 3,subticks=0,shift=*](0,-.5)(3,.5){3cm}{1cm}
+\psdots[dotstyle=diamond*, dotscale= 5 2](0.5,0)(1.5,0)(2.5,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psdots}[dotstyle=diamond*, \RDD{dotscale}= 5 2] (0.5,0)(1.5,0)(2.5,0)\\
+ }
+\\ \hline
+\multicolumn{2}{|c|}{ {\blue  dotscale= 1 } } \\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 1,yticksize=0 3,subticks=0,shift=*](0,-.5)(3,.5){3cm}{1cm}
+\psdots[dotstyle=diamond*,dotscale= 5, dotangle= 30](0.5,0)(1.5,0)(2.5,0)
+ \end{psgraph}
+ &
+\parbox[c]{10cm}{  
+\BS{psdots}[dotstyle=diamond*,dotscale= 5, \RDD{dotangle}= 30] \\
+(0.5,0)(1.5,0)(2.5,0)\\
+}
+\\ \hline
+\multicolumn{2}{|c|}{ {\blue  dotangle= 0 } } \\ \hline 
+\end{tabular} 

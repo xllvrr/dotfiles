@@ -1,0 +1,97 @@
+\SbSSCT{Texte dans un cadre]}{Text in a frame} 
+
+\begin{tabular}{|c|c|}
+\hline 
+\begin{pspicture}(-0.2,-0.2)(4.2,1.7)
+\psTextFrame(0,0)(4,1.5){\TFRGB{texte}{text}}
+\end{pspicture}
+&  
+\begin{pspicture}(-0.2,-0.2)(4.2,1.7)
+\psTextFrame*[linecolor=yellow](0,0)(4,1.5){\TFRGB{texte}{text}}
+\end{pspicture}  
+\\ 
+\hline  
+\BSS{psTextFrame}(0,0)(4,2)\AC{\TFRGB{texte}{text}}
+&
+\BS{}psTextFrame{\red *}[linecolor=yellow](0,0)(4,2)\AC{\TFRGB{texte}{text}}
+\\ 
+\hline 
+\end{tabular} 
+
+\SbSbSSCT{Problème de dépassement du cadre}{Problem : text too long for the frame}
+ 
+ \begin{tabular}{|c|} \hline  
+ \BS{psTextFrame}(0,0)(4,1)\AC{\TFRGB{Problème de dépassement du cadre}{Problem : text too long for the frame}}
+\\ \hline
+\begin{pspicture}(-.2,-0.2)(4.5,1.2)
+\psTextFrame(0,0)(4,1){\TFRGB{Problème de dépassement du cadre}{Problem : text too long for the frame}}
+\end{pspicture}
+\\  \hline 
+ \end{tabular} 
+
+
+\bigskip
+
+\textbf{Solutions}
+
+\begin{tabular}{|c|c|} \hline 
+  \begin{pspicture}(-.2,-0.2)(4.2,1.2)
+ \psTextFrame(0,0)(4,1){\parbox{3.5cm}{\TFRGB{Problème de dépassement du cadre : problème résolu}{ text too long for the frame : Problem solved}}}
+ \end{pspicture}
+&
+  \begin{pspicture}(-.2,-0.2)(4.2,1.2)
+  \psTextFrame(0,0)(4,1){\begin{minipage}[c]{3.5cm}
+ \TFRGB{Problème de dépassement du cadre : problème résolu}{ text too long for the frame : Problem solved} \end{minipage}}
+  \end{pspicture}
+\\ \hline  
+\parbox{6.5cm}{ 
+\BS{psTextFrame}(0,0)(4,2)\AC{ {\red\BS{parbox}}\AC{3.5cm}\AC{\TFRGB{Problème de dépassement du cadre : problème résolu}{ text too long for the frame : Problem solved}  }}}
+&
+\parbox{6.5cm}{ \BS{}psTextFrame(0,0)(4,2)\AC{  {\red \BS{}begin\AC{minipage}[c]\AC{3.5cm}}
+
+\TFRGB{Problème de dépassement du cadre : problème résolu}{ text too long for the frame : Problem solved}
+ {\red  \BS{end\AC{minipage}}}}}
+\\ \hline 
+\end{tabular} 
+
+\SbSbSSCT{Rotation du texte}{Text rotation in the frame}
+
+\begin{tabular}{|c|l|}
+\hline  \begin{pspicture}[shift=*](-.2,-0.2)(4.2,2.2)
+ \psTextFrame[rot=90](0,0)(4,2){\TFRGB{texte}{text}}
+ \end{pspicture} & 
+ \BS{}psTextFrame[\RDD{rot}=90](0,0.5)(4,2)\AC{\TFRGB{texte}{text}} \\ 
+\hline 
+\end{tabular}  
+%
+ \SbSbSSCT{Position du texte}{Position of the text in the frame}
+
+ \begin{tabular}{|c|c|c|c|c|}
+ \hline
+ \multicolumn{5}{|c|}{ \BS{}psTextFrame[\RDD{ref=l}](0,0)(2,2)\AC{\TFRGB{texte}{text}}} \\
+ \hline  
+\begin{pspicture}(-.2,-0.2)(2.2,2.2)
+\psTextFrame[ref=l](0,0)(2,2){\TFRGB{texte}{text}}
+\end{pspicture} 
+& 
+\begin{pspicture}(-.2,-0.2)(2.2,2.2)
+\psTextFrame[ref=r](0,0)(2,2){\TFRGB{texte}{text}}
+\end{pspicture}   
+&
+\begin{pspicture}(-.2,-0.2)(2.2,2.2)
+\psTextFrame[ref=t](0,0)(2,2){\TFRGB{texte}{text}}
+\end{pspicture}
+&
+\begin{pspicture}(-.2,-0.2)(2.2,2.2)
+ \psTextFrame[ref=b](0,0)(2,2){\TFRGB{texte}{text}}
+ \end{pspicture}
+&
+\begin{pspicture}(-.2,-0.2)(2.2,2.2)
+\psTextFrame[ref=B](0,0)(2,2){\TFRGB{texte}{text}}
+\end{pspicture}
+  \\ 
+ \hline ref=l & ref=r  & ref=t  & ref=b & ref=B \\ 
+ \hline 
+ \end{tabular} 
+\smallskip
+

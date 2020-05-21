@@ -1,0 +1,48 @@
+name fontools
+category Package
+revision 55117
+shortdesc Tools to simplify using fonts (especially TT/OTF ones)
+longdesc This package provides tools to simplify using OpenType fonts
+longdesc with LaTeX. By far the most important program in this bundle is
+longdesc autoinst: autoinst - a wrapper script around Eddie Kohler's
+longdesc LCDF TypeTools. Autoinst aims to automate the installation of
+longdesc OpenType fonts in LaTeX by calling the LCDF TypeTools (with the
+longdesc correct options) for all fonts you wish to install, and
+longdesc generating the necessary .fd and .sty files. In addition, this
+longdesc bundle contains a few other, less important utilities: afm2afm
+longdesc - re-encode .afm files, ot2kpx - extract kerning pairs from
+longdesc OpenType fonts, splitttc - split an OpenType Collection file
+longdesc (ttc or otc) into individual fonts.
+depend fontools.ARCH
+containersize 45556
+containerchecksum 9e9ff0f0e61a5a856a23c4e8147785769d96d1e416a3ab8e4524ff0bf1e27ed3c0984f658387fd8c7bdd29d69bac4e66ae4ae8d1ba012925a172ad42eaa8cdf9
+doccontainersize 127180
+doccontainerchecksum 6c3ca3f01892918bd483837f4b44cf53f5ff808f9c48065308be48a5112448842d8b79525e5b0cd0852ff1b117817851fae87eb6af12464b6f808b4687e10a1e
+docfiles size=56
+ texmf-dist/doc/man/man1/afm2afm.1
+ texmf-dist/doc/man/man1/afm2afm.man1.pdf
+ texmf-dist/doc/man/man1/autoinst.1
+ texmf-dist/doc/man/man1/autoinst.man1.pdf
+ texmf-dist/doc/man/man1/ot2kpx.1
+ texmf-dist/doc/man/man1/ot2kpx.man1.pdf
+ texmf-dist/doc/support/fontools/GPLv2.txt
+ texmf-dist/doc/support/fontools/README details="Bundle readme"
+ texmf-dist/doc/support/fontools/splitttc
+runfiles size=54
+ texmf-dist/fonts/enc/dvips/fontools/fontools_lgr.enc
+ texmf-dist/fonts/enc/dvips/fontools/fontools_ly1.enc
+ texmf-dist/fonts/enc/dvips/fontools/fontools_ot1.enc
+ texmf-dist/fonts/enc/dvips/fontools/fontools_t1.enc
+ texmf-dist/fonts/enc/dvips/fontools/fontools_t2a.enc
+ texmf-dist/fonts/enc/dvips/fontools/fontools_t2b.enc
+ texmf-dist/fonts/enc/dvips/fontools/fontools_t2c.enc
+ texmf-dist/fonts/enc/dvips/fontools/fontools_t3.enc
+ texmf-dist/fonts/enc/dvips/fontools/fontools_ts1.enc
+ texmf-dist/fonts/enc/dvips/fontools/fontools_ts3.enc
+ texmf-dist/scripts/fontools/afm2afm
+ texmf-dist/scripts/fontools/autoinst
+ texmf-dist/scripts/fontools/ot2kpx
+catalogue-alias autoinst
+catalogue-ctan /fonts/utilities/fontools
+catalogue-license gpl2
+catalogue-topics font-devel

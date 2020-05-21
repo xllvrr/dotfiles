@@ -1,0 +1,40 @@
+name urcls
+category Package
+revision 49903
+shortdesc Beamer and scrlttr2 classes and styles for the University of Regensburg
+longdesc The bundle provides a beamer-derived class and a theme style
+longdesc file for the corporate design of the University of Regensburg.
+longdesc It also contains a scrlttr2-derived class for letters using the
+longdesc corporate design of the UR. Users may use the class itself
+longdesc (URbeamer) or use the theme in the usual way with
+longdesc \usetheme{UR}. Examples of using both letters and presentations
+longdesc are provided as .tex and .pdf-files.
+containersize 12640
+containerchecksum 5b8c80a756e45e5b847c3b970005b866f6c498eff7646155c73a9b86585dffd73e8dc66d91583dd691c910caccab60ee22a1e9dbe3aa450290fb17f019477172
+doccontainersize 901592
+doccontainerchecksum 40b8e4ea2abcc82acb843c692d90e964932f1ad7d0e818d54eeec77340f49686aafcf2fcf3f8f4d942f7cd967754ab24ee2075c6906862266f5af56251063fee
+docfiles size=235
+ texmf-dist/doc/latex/urcls/README.md details="Readme"
+ texmf-dist/doc/latex/urcls/URadressdaten-DEMO.lco
+ texmf-dist/doc/latex/urcls/URbeamer-DEMO.pdf details="Example of usage (presentation)"
+ texmf-dist/doc/latex/urcls/URbeamer-DEMO.tex
+ texmf-dist/doc/latex/urcls/URletter-DEMO.pdf details="Example of usage (letter)"
+ texmf-dist/doc/latex/urcls/URletter-DEMO.tex
+ texmf-dist/doc/latex/urcls/URpagestyles-DEMO.pdf
+ texmf-dist/doc/latex/urcls/URpagestyles-DEMO.tex
+runfiles size=21
+ texmf-dist/tex/latex/urcls/URbeamer.cls
+ texmf-dist/tex/latex/urcls/URcolors.sty
+ texmf-dist/tex/latex/urcls/URletter.cls
+ texmf-dist/tex/latex/urcls/URoptions.sty
+ texmf-dist/tex/latex/urcls/URpagestyles.sty
+ texmf-dist/tex/latex/urcls/URrules.sty
+ texmf-dist/tex/latex/urcls/URspecialopts.sty
+ texmf-dist/tex/latex/urcls/beamercolorthemeUR.sty
+ texmf-dist/tex/latex/urcls/beamerfontthemeUR.sty
+ texmf-dist/tex/latex/urcls/beamerouterthemeUR.sty
+ texmf-dist/tex/latex/urcls/beamerthemeUR.sty
+catalogue-ctan /macros/latex/contrib/urcls
+catalogue-license lppl
+catalogue-topics letter presentation class
+catalogue-version 2.1

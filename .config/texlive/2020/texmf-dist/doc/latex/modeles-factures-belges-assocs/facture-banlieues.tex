@@ -1,0 +1,252 @@
+\documentclass[a4paper,10pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% Modèle Banlieues %%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%% Au moins 1 argument obligatoire pour babel [french, english, ...]  
+%% L'encodage par defaut pour inputenc est utf8, mais vous pouvez utiliser l'option [latin1]
+%% vous pouvez ensuite utiliser \rsfbEncodage{} pour vérifier l'encodage latin1ou utf8
+%% Exemples d'options (nb: si vous changez les options, compilez 2 fois de suite):
+%\usepackage[latin1, french]{facture-belge-simple-sans-tva} % latin1, français
+%\usepackage[french, english]{facture-belge-simple-sans-tva} % utf8, français, anglais
+\usepackage[french]{modeles-factures-belges-associations} % utf8, français
+
+% On évite le "Figure X" dans le caption
+\usepackage{caption}
+\captionsetup[figure]{name={}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Logo de l'association %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Le logo doit être dans le répertoire courant (= du modèle)
+%% Nom du logo de l'association et son échelle (1 = 100%, 0.5 = 50%, etc.)
+\begin{figure}[!h]
+\begin{flushleft}
+\includegraphics[scale=0.2]{facture-banlieues-logo.png}
+\end{flushleft}
+\end{figure}
+
+
+%% pour vérifier l'encodage UTF-8 ou latin1
+%\rsfbEncodage{}
+
+%%%%%%%%%%%%%%%%%%%%%
+%% Titres tableaux %%
+%%%%%%%%%%%%%%%%%%%%%
+%% Titres du tableau d'adresses; utile si utilisé, cas le plus fréquent
+\rsfbExpedition{Expedition}
+\rsfbFacturation{Facturation}
+\rsfbLivraison{Intervention}
+
+%% Titres du tableau des produits:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% La monnaie est fixée juste en dessous de ceci
+%% et au dessus du point "Unité monétaire atomique"
+\rsfbNatureTableauProduits{Nature}
+\rsfbQuantiteTableauProduits{Qtté}
+\rsfbPuTableauProduits{Prix unit.}
+
+%% + quelques autres paramètres utiles du tableau des prodsuits:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Par défaut 2 décimales, c'est plutôt correct, non?
+\rsfbNbDecimalesTableauProduits{2}
+% Et le mot "sur" ("on" en anglais)
+\rsfbSurTableauProduits{sur}
+% Unité monétaire dans les titres du tableau
+\rsfbMonnaieTableauProduits{\euro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Unité monétaire atomique %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% permet de choisir l'unité monétaire, sauf dans le header du tableau (package calctab)
+%% \euro (defaut), \pounds (livre anglaise) \$ (dollar américain) \textyen (yen japonais)
+%% pour être cohérent, les 2 unités \rsfbChoisirUniteMonetaire{\unite}
+%% \ctcurrency{\unite} doivent ëtre les mêmes
+% Decommenter ci-dessous pour voir les unités
+% \${} \pounds{} \euro{} \textyen{}
+\rsfbChoisirUniteMonetaire{\euro}
+
+%% Peut être utile, où vous voulez, dans le texte:
+%% Décommenter pour afficher l'unité monétaire atomique choisie:
+%\rsfbchoisirUniteMonetaire{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Aération de la facture %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% permet d'aérer la page verticalement; le paramètre est une mesure LaTeX
+%% TeX comprend six unités de mesure :
+%% + pt point = 0,35 mm
+%% + mm millimètre
+%% + ex correspond à la hauteur d'un x dans la fonte courante
+%% + em correspond à la largeur d'un m dans la fonte courante
+%% + cm centimètre
+%% + in pouce = 2,54 cm
+\rsfbAerationVerticale{0.3cm}
+%\rsfbAerationVerticale{1.5cm}
+%\rsfbAerationVerticale{1cm}
+%\rsfbAerationVerticale{0.5cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Numéro et date de la facture %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\rsfbNoDate{<numéro=nombre>}{date=chaine}. 
+% (Dé)commenter pour version avec ou sans mention n°
+%% \rsfbNoDate{n° 1}{jj mois AAAA}, avec mention n°
+%\rsfbNoDate{n\textsuperscript{o}X}{JJ mois AAAA}
+%% \rsfbNoDate{1}{jj mois AAAA}, sans mention n°
+\rsfbNoDate{XYZ1234}{JJ mois AAAA}
+
+%% créent aussi les codes \rsfbmentionObligatoire{} et \rsfbdateFacture{} 
+%% qui permettent de récupérer et d'utiliser un numéro de facture 
+%% un peu personnalisé et la date de la facture.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Entrée du compte bancaire créancier %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \rsfbCompteBancaireCreancier{n° compte}
+%% récupérable via \rsfbcompteBancaireCreancier{}
+%% !!! Attention a la différence: rsfbCompt ... et rsfbcompt ...
+\rsfbCompteBancaireCreancier{BE01 2345 6789 0123}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Aération du texte   %%
+\vspace{\rsfbespaceVertical}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tableau des adresses (3): expédition, facturation, livraison  DEBUT %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  On ouvre l'entête du tableau des adresses; à n'utiliser qu'une seule fois.
+\rsfbEnteteTableauAdresses{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Entrée d'une ligne d'adresse, dans l'ordre expédition, facturation, livraison
+
+%% 1) Voici un exemple complexe:
+\rsfbLigneTableauAdresses{Prénom \textsc{Nom}}{ \textsc{Fbg}}{Voir facturation}
+\rsfbLigneTableauAdresses{}{Fédération belge de gong}{}
+\rsfbLigneTableauAdresses{N\up{o}, rue Delarue1}{DelarueStraat, no}{}
+\rsfbLigneTableauAdresses{\textsc{1234 Ville1}}{\textsc{4321 Ville2}}{}
+\rsfbLigneTableauAdresses{\href{mailto:user@domain.tld}{user@domain.tld}}{}{}
+\rsfbLigneTableauAdresses{+32 684 037 078}{}{}
+\rsfbLigneTableauAdresses{\rsfbcompteBancaireCreancier{}}{BE98 7654 3210 9876}{}
+
+%% 2) Voici un exemple simple:
+%\rsfbLigneTableauAdresses{\textsc{Prénom Nom}}{\textsc{Org 1}}{\textsc{Org 2}}
+%\rsfbLigneTableauAdresses{}{Nom organisation 1}{Nom organisation 2}
+%\rsfbLigneTableauAdresses{N\up{o}, rue Delarue1}{N\up{o}, rue Delarue2}{N\up{o}, rue Delarue3}
+%\rsfbLigneTableauAdresses{\textsc{CCC1 Ville1}}{\textsc{CCC2 Ville2}}{\textsc{CCCC Ville3}}
+
+%% 3) et enfin, si vous voulez, des lignes vides:
+%\rsfbLigneTableauAdresses{}{}{}
+%\rsfbLigneTableauAdresses{}{}{}
+%\rsfbLigneTableauAdresses{}{}{}
+%\rsfbLigneTableauAdresses{}{}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  on ferme le pied du tableau des adresses; à n'utiliser qu'une seule fois.
+\rsfbPiedTableauAdresses{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tableau des adresses (3): expédition, facturation, livraison  FIN %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Aération du texte   %%
+\vspace{\rsfbespaceVertical}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tableau des produits, avec le package calctab, on choisit xcalctab, DEBUT  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% On ne va pas réinventer le monde, mais simplement réutiliser les commandes
+%% simples et efficaces du package calctab, dans son environnement xcalctab 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Ensuite le tableau des produits avec nature, quantité, coût et éventuelles
+%% remises
+
+% On ouvre l'environnement xcalctab
+\begin{xcalctab}
+%% calctab est en police police sans empattements (sf, pour sans serif), 
+%% on remet en normalfont de ce document
+\normalfont
+%% On ajoute des produits 
+% \amount{nature}{quantité}{prix unitaire}
+%% si amount comporte un id comme ci-dessous, on pourra lui appliquer une remise (-) (ou une taxe (+))
+%% avec la commande \perc[identificateur]{Intitulé}{+/-pourcentage}
+%% une id s'écrit ainsi: [id=identificateur] identificateur = 1 seul mot entier!
+% \amount[id=identificateur]{nature}{quantité}{prix unitaire}
+%% Simple, non?
+
+% produits (avec ou sans id)
+\amount[id=intervention]{Intervention du 20/09}{2}{37,50}
+\amount[id=forfait]{Déplacement (forfait)}{1}{10}
+\add[id=phtva,intervention,forfait]{Prix HTVA}
+
+% TVA:
+\perc[id=tva21,phtva]{TVA}{21}
+
+% Grand total:
+\add[phtva,tva21]{Total}
+
+% On ferme l'environnement xcalctab
+\end{xcalctab}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tableau des produits, avec le package calctab, FIN  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Aération du texte   %%
+\vspace{\rsfbespaceVertical}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, DEBUT. %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\paragraph*{Description du produit:}
+Les montants ci-dessus sont calculés sur base de l’intervention du 20 septembre 2018 effectuée par notre collègue.
+
+
+Merci de régler cette facture au compte \no \emph{\rsfbcompteBancaireCreancier{}} avec la mention obligatoire \emph{\rsfbmentionObligatoire{}}.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, FIN. %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Ajoute les crédits en footer. %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rsfbCredit{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Logos des sponsors de l'association %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Le logo doit être dans le répertoire courant (= du modèle)
+%% \caption*{texte juste au dessus des logos}
+%% Nom du logo de l'association et son échelle (1 = 100%, 0.5 = 50%, etc.)
+\begin{figure}[b]
+\begin{center}
+\caption*{\small Avec le soutien des sponsors}
+\includegraphics[scale=0.2]{facture-banlieues-sponsors.png}
+\end{center}
+\end{figure}
+
+\end{document}

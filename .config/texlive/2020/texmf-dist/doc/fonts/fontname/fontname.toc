@@ -1,0 +1,36 @@
+\numchapentry{Introduction}{1}{Introduction}{1}
+\numsecentry{History}{1.1}{History}{1}
+\numsecentry{References}{1.2}{References}{1}
+\numchapentry{Filenames for fonts}{2}{Filenames for fonts}{3}
+\numsecentry{Suppliers}{2.1}{Suppliers}{3}
+\numsecentry{Typefaces}{2.2}{Typefaces}{4}
+\numsecentry{Weights}{2.3}{Weights}{18}
+\numsecentry{Variants}{2.4}{Variants}{19}
+\numsecentry{Widths}{2.5}{Widths}{23}
+\numchapentry{Long names}{3}{Long names}{24}
+\numsecentry{A fontname mapping file}{3.1}{Name mapping file}{24}
+\numsecentry{A naming scheme for long names}{3.2}{Long naming scheme}{24}
+\appentry{Font name lists}{A}{Font name lists}{26}
+\appsecentry{Standard PostScript fonts}{A.1}{Standard PostScript fonts}{26}
+\appsecentry{Adobe fonts}{A.2}{Adobe fonts}{27}
+\appsecentry{Apple fonts}{A.3}{Apple fonts}{85}
+\appsecentry{Bitstream fonts}{A.4}{Bitstream fonts}{85}
+\appsecentry{DTC fonts}{A.5}{DTC fonts}{103}
+\appsecentry{ITC fonts}{A.6}{ITC fonts}{103}
+\appsecentry{Linotype fonts}{A.7}{Linotype fonts}{120}
+\appsecentry{Monotype fonts}{A.8}{Monotype fonts}{210}
+\appsecentry{URW fonts}{A.9}{URW fonts}{237}
+\appentry{Encodings}{B}{Encodings}{238}
+\appsecentry{\samp {8a.enc}: Adobe standard encoding}{B.1}{8a}{238}
+\appsecentry{\samp {8r.enc}: \TeX {} base encoding}{B.2}{8r}{243}
+\appsecentry{\samp {cork.enc}: Cork encoding}{B.3}{cork}{247}
+\appsecentry{\samp {dvips.enc}: Dvips encoding}{B.4}{dvips}{249}
+\appsecentry{\samp {texmext.enc}: \TeX {} math extension encoding}{B.5}{texmext}{250}
+\appsecentry{\samp {texmsym.enc}: \TeX {} math symbol encoding}{B.6}{texmsym}{254}
+\appsecentry{\samp {texmital.enc}: \TeX {} math italic encoding}{B.7}{texmital}{258}
+\appsecentry{\samp {texnansi.enc}}{B.8}{texnansi}{262}
+\appsecentry{\samp {texnansx.enc}}{B.9}{texnansx}{269}
+\appsecentry{\samp {xl2.enc}: OT1 + ISO Latin 2 extended}{B.10}{xl2}{276}
+\appsecentry{\samp {xt2.enc}: typewriter OT1 + ISO Latin 2 extended}{B.11}{xt2}{283}
+\appentry{Font legalities}{C}{Font legalities}{290}
+\unnchapentry{Index}{10001}{Index}{292}

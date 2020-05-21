@@ -1,0 +1,306 @@
+% This is a demonstration file distributed with the
+% Lecturer package (see lecturer-doc.pdf).
+%
+% You can recompile the file with a basic TeX implementation,
+% using pdfTeX or LuaTeX with the plain format.
+% 
+% The reusable part ends somewhere around line 200.
+%
+% Author: Paul Isambert.
+% Date: July 2010.
+
+\input lecturer
+
+\font\ttit=cmitt10
+
+\setparameter job:
+  fullscreen     = true
+  normal         = layers
+  autofullscreen = true
+  font           = \tt
+
+\newcolor{greent}{rgb}[.8]{.8 1 .8}
+\setparameter slide:
+  width      = 18cm
+  right      = 5cm
+  hpos       = fr
+  top        = 2cm
+  vsize      = 6cm
+  vpos       = center
+  image      = universe
+  foreground = greent
+  bookmark   = false
+
+% Courtesy of NASA/ESA/Hubble etc.
+% Jet in Carina, it's called. Plus  WFC3 UVIS Full Field. No less.
+\newimage{universe}[18cm,]{universe.jpg}
+
+  
+%
+% The screen behind the main text.
+%
+\newcolor{tgreen}{rgb}[.6]{0 .8 0}
+\setarea{main}
+  vshift     = 2cm
+  vshift*    = 4cm
+  hshift*    = 4cm
+  background = tgreen
+  frame      = "width = .5cm, corner = round"
+
+
+%
+% The fantastic control board.
+%
+\newshade{metal}
+  model = gray
+  from  = .8
+  to    = 0
+  speed = 1.8
+
+\setarea{control}
+  vshift*    = 0pt
+  height     = 2cm
+  background = metal
+  topskip    = 0pt
+
+% The lights on the left.
+\newcolor{darkred}{rgb}{.8 0 0}
+\newsymbol\lightoff[padding=0pt]{%
+  color gray .8,
+  pen 1.5, 10 0, stroke,
+  color darkred, move + -.5 .7,
+  circle ul 4.5, circle ld 4.5, fill
+  }
+\newsymbol\lighton[padding=0pt]{%
+  color gray .8,
+  pen 1.5, 10 0, stroke,
+  color rgb .4 .8 .4, move + -.5 .7,
+  circle ul 4.5, circle ld 4.5, fill
+  }
+% The big circular button.
+\newcolor{twhite}{grey}[.5]{1}
+\newcolor{tblack}{cmyk}[.3]{0 0 0 1}
+\newsymbol\bigbutton{%
+  color red,
+  circle ur 20, circle rd 20, circle dl 20, circle lu 20,fill,
+  color twhite, pen 2, move 20 16, circle rd 16,stroke,
+  color tblack, move 20 -16, circle lu 16,stroke,
+  }
+% The red button, for the circle.
+\newsymbol\showcircle[1em,padding=0pt]{%
+  color grey .6,
+  move -.2 1.3,  -.2 -1.3, 1.2 -1.3,  fill,
+  color grey .1,
+  move -.2 1.3, 1.2 1.3, 1.2 -1.3,  fill,
+  color rgb 1 .4 .4,
+  move 0 .5, + 1 0, + 0 .5, + -1 0,fill,
+  color rgb .3 0 0,
+  move 0 0, + 1 0, + 0 .5, + -1 0,fill,
+  color rgb .6 0 0,
+  move 0 -1, + 1 0, + 0 1, + -1 0,fill,
+  }
+\newsymbol\hidecircle[1em,padding=0pt]{%
+  color grey .6,
+  move -.2 1.3,  -.2 -1.3, 1.2 -1.3,  fill,
+  color grey .1,
+  move -.2 1.3, 1.2 1.3, 1.2 -1.3,  fill,
+  color rgb 1 .4 .4,
+  move 0 0, 1 0, + 0 1, + -1 0,fill,
+  color rgb .3 0 0,
+  move 0 -.5, + 1 0, + 0 .5, + -1 0,fill,
+  color rgb .6 0 0,
+  move 0 -1, + 1 0, + 0 .5, + -1 0,fill,
+  }
+\newsymbol\circle[2em]{%
+  pen .05, color red,
+  circle ur 1, circle rd 1, circle dl 1, circle lu 1
+  }
+% The green button, for the crosshair.
+\newsymbol\showcrosshair[1em,padding=0pt]{%
+  color grey .6,
+  move -.2 1.3,  -.2 -1.3, 1.2 -1.3,  fill,
+  color grey .1,
+  move -.2 1.3, 1.2 1.3, 1.2 -1.3,  fill,
+  color rgb .4 1 .4,
+  move 0 .5, + 1 0, + 0 .5, + -1 0,fill,
+  color rgb 0 .3 0,
+  move 0 0, + 1 0, + 0 .5, + -1 0,fill,
+  color rgb 0 .6 0,
+  move 0 -1, + 1 0, + 0 1, + -1 0,fill,
+  }
+\newsymbol\hidecrosshair[1em,padding=0pt]{%
+  color grey .6,
+  move -.2 1.3,  -.2 -1.3, 1.2 -1.3,  fill,
+  color grey .1,
+  move -.2 1.3, 1.2 1.3, 1.2 -1.3,  fill,
+  color rgb .4 1 .4,
+  move 0 0, 1 0, + 0 1, + -1 0,fill,
+  color rgb 0 .3 0,
+  move 0 -.5, + 1 0, + 0 .5, + -1 0,fill,
+  color rgb 0 .6 0,
+  move 0 -1, + 1 0, + 0 .5, + -1 0,fill,
+  }
+\newsymbol\crosshair[2em]{%
+  pen .03,
+  color rgb .4 1 .4,
+  move .5 0, + 1 0, stroke,
+  move 1 -.5, + 0 1, stroke,
+  }
+% The blue button.
+\newsymbol\shoot[1em,padding=0pt]{%
+  color grey .6,
+  move -.2 1.3,  -.2 -1.3, 1.2 -1.3,  fill,
+  color grey .1,
+  move -.2 1.3, 1.2 1.3, 1.2 -1.3,  fill,
+  color rgb .4 .4 1,
+  move 0 .5, + 1 0, + 0 .5, + -1 0,fill,
+  color rgb 0 0 .3,
+  move 0 0, + 1 0, + 0 .5, + -1 0,fill,
+  color rgb 0 0 .6,
+  move 0 -1, + 1 0, + 0 1, + -1 0,fill,
+  }
+\newsymbol\shot[1em,padding=0pt]{%
+  color grey .6,
+  move -.2 1.3,  -.2 -1.3, 1.2 -1.3,  fill,
+  color grey .1,
+  move -.2 1.3, 1.2 1.3, 1.2 -1.3,  fill,
+  color rgb .4 .4 1,
+  move 0 0, 1 0, + 0 1, + -1 0,fill,
+  color rgb 0 0 .3,
+  move 0 -.5, + 1 0, + 0 .5, + -1 0,fill,
+  color rgb 0 0 .6,
+  move 0 -1, + 1 0, + 0 .5, + -1 0,fill,
+  }
+% The villain. Alive and dead.
+\newsymbol\alien[1.7em]{%
+  pen .05,
+  color cmyk .2 1 .4 0,
+  1 0, circle ul .5, circle ld .5, fill,
+  circle dl .2, circle lu .2,
+  move 1 0, circle dr .2, circle ru .2,
+  move .16 0, + 0 -.3,
+  move .49 0, + 0 -.3,
+  move .82 0, + 0 -.3,stroke,
+  color cmyk 0 0 1 0,
+  move .2 .25, + .2 0, move + .2 0, + .2 0
+  }
+\newsymbol\deadalien[1.4em]{%
+  pen .05,
+  color cmyk .2 1 .4 .7,
+  1 0, circle ul .5, circle ld .5, fill,
+  circle dl .2, circle lu .2,
+  move 1 0, circle dr .2, circle ru .2,
+  move .16 0, + 0 -.3,
+  move .49 0, + 0 -.3,
+  move .82 0, + 0 -.3,stroke,
+  color cmyk 0 0 1 0,
+  move .2 .25, + .2 .1, move + .2 0, + .2 -.1
+  }
+
+\setstep\hidden on = {}\par
+\newcount\tempcount
+% Lights are placed at every step.
+\setstep\textstep
+  vskip      = "0pt plus .5fil"
+  everyvstep = {\position{control}[\dimexpr(1cm+\tempcount\dimexpr(10pt+.2cm)),0pt]{\quitvmode\lighton}
+                \global\advance\tempcount1}
+
+
+% \endinput
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                             %
+% UNCOMMENT THE PREVIOUS LINE TO USE THIS FILE AS A TEMPLATE, %
+% OR REMOVE EVERYTHING BELOW.                                 %
+% Using it for a presentation isn't recommended, though.      %
+% But you have the right to do what you want.                 %
+% I take no responsability.                                   % 
+%                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\slide[The one and only slide, anchor=start]
+
+% Red lights.
+\position{control}
+         [1cm,0pt]
+         {\quitvmode\lightoff\kern.2cm \lightoff\kern.2cm \lightoff\kern.2cm \lightoff\kern.2cm \lightoff\kern.2cm}
+% The big button.
+\position{control}
+         [\dimexpr(\pdfpagewidth/2-20pt),1cm]
+         {\quitvmode\goto[push]{start}{\bigbutton}}
+
+
+
+\textstep[Say hi] Hello, Captain. Aliens have been spotted.
+
+\textstep[Order] Use your button to show where they should appear.
+
+\textstep[AlienAppear,transition=fade,font=\ttit] Here they are!\par
+Use your crosshair to shoot'em up.
+
+\textstep[Shoooooooooooooot,font=] Good. Now shoooooot!
+
+\textstep[Cool,on=] Congratulations!\par
+Click the red button to start again.
+
+
+
+% The following steps have no autonomy. They appear thanks to the previous
+% ones, or make each other appear.
+%
+% The circle.
+\step[on=Order,CircleOn]
+  \position{control}
+           [\dimexpr(\pdfpagewidth/2)+5em,1cm]
+           {\showorhide{on=Circle CircleOff,off=CircleOn}\showcircle}%
+\hidden[CircleOff]
+  \position{control}
+           [\dimexpr(\pdfpagewidth/2)+5em,1cm]
+           {\showorhide{on=CircleOn,off=Circle CircleOff}\hidecircle}%
+\hidden[Circle]
+  \position{main}
+           [12cm,2cm]
+           \circle
+%
+% The alien.
+\step[Alien,on=AlienAppear]
+  \position{main}
+           [12.4cm,2cm]
+           \alien
+%
+% The crosshair.
+\step[on=AlienAppear,CrosshairOn]
+  \position{control}
+           [\dimexpr(\pdfpagewidth/2)+6.5em,1cm]
+           {\showorhide{on=Crosshair CrosshairOff,off=CrosshairOn}\showcrosshair}%
+\hidden[CrosshairOff]
+  \position{control}
+           [\dimexpr(\pdfpagewidth/2)+6.5em,1cm]
+           {\showorhide{on=CrosshairOn,off=Crosshair CrosshairOff}\hidecrosshair}%
+\hidden[Crosshair,group=true]
+  \position{main}
+           [12cm,1.9cm]
+           \crosshair
+%
+% The shooting device.
+\step[PrepareToShoot,on=Shoooooooooooooot]
+  \position{control}
+           [\dimexpr(\pdfpagewidth/2)+8em,1cm]
+           {\showorhide{on=ShotDone Cool DeadAlien CircleOn CrosshairOn,off=Alien CircleOff Circle CrosshairOff Crosshair}\shoot}%
+\hidden[ShotDone]
+  \position{control}
+           [\dimexpr(\pdfpagewidth/2)+8em,1cm]
+           {\shot}
+%
+% The dead alien.
+\hidden[DeadAlien]
+  \position{main}
+           [12.4cm,2cm]
+           \deadalien
+\endslide
+
+
+\bye

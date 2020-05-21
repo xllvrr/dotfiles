@@ -1,0 +1,44 @@
+name apa7
+category Package
+revision 55117
+shortdesc Format documents in APA style (7th edition)
+longdesc This class formats documents in APA style (7th Edition). It
+longdesc provides a full set of facilities in four different output
+longdesc modes (journal-like appearance, double-spaced manuscript,
+longdesc double-spaced student manuscript, LaTeX-like document). The
+longdesc class can mask author identity for copies for use in masked
+longdesc peer review. The class is a development of the apa6 class.
+containersize 14300
+containerchecksum b6b6a81b7985cd46eb2e9464798c230e3a37d56f296eb7fafcf692f70c0261d0d04b7cab3a838cf9f73b92ac9300ec580394bc68e922b73f2640865fdb7a70e9
+doccontainersize 721132
+doccontainerchecksum 95a4072c0a8ab5d7dc0a7116584540e6aa922549d422f7cb3b823aa2ba950dd0109407261778fe1872cdadced1665d1b776f7d687b2021b24dd04a04260f8838
+docfiles size=202
+ texmf-dist/doc/latex/apa7/README.txt details="Readme"
+ texmf-dist/doc/latex/apa7/apa7.pdf details="Package documentation"
+ texmf-dist/doc/latex/apa7/samples/Figure1.pdf
+ texmf-dist/doc/latex/apa7/samples/bibliography.bib
+ texmf-dist/doc/latex/apa7/samples/longsample.pdf
+ texmf-dist/doc/latex/apa7/samples/longsample.tex
+ texmf-dist/doc/latex/apa7/samples/shortsample.pdf
+ texmf-dist/doc/latex/apa7/samples/shortsample.tex
+srccontainersize 31688
+srccontainerchecksum feeda7fee4289d336a9d87c58f4446067366c5dcb43a8f71d9c3c49c57130bf12a88d12567deef27014d1c609b591102b6883a7df46f749923ddf84e957cd3fa
+srcfiles size=38
+ texmf-dist/source/latex/apa7/apa7.dtx
+ texmf-dist/source/latex/apa7/apa7.ins
+runfiles size=28
+ texmf-dist/tex/latex/apa7/apa7.cls
+ texmf-dist/tex/latex/apa7/config/APA7american.txt
+ texmf-dist/tex/latex/apa7/config/APA7british.txt
+ texmf-dist/tex/latex/apa7/config/APA7czech.txt
+ texmf-dist/tex/latex/apa7/config/APA7dutch.txt
+ texmf-dist/tex/latex/apa7/config/APA7endfloat.cfg
+ texmf-dist/tex/latex/apa7/config/APA7english.txt
+ texmf-dist/tex/latex/apa7/config/APA7german.txt
+ texmf-dist/tex/latex/apa7/config/APA7greek.txt
+ texmf-dist/tex/latex/apa7/config/APA7ngerman.txt
+ texmf-dist/tex/latex/apa7/config/APA7turkish.txt
+catalogue-ctan /macros/latex/contrib/apa7
+catalogue-license lppl1.3c
+catalogue-topics apa class journalpub psychology
+catalogue-version 1.07

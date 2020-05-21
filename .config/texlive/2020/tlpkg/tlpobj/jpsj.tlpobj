@@ -1,0 +1,20 @@
+name jpsj
+category Package
+revision 15878
+shortdesc Document Class for Journal of the Physical Society of Japan
+containersize 7272
+containerchecksum 70b0e83af5b828e6a783d888adcacc504342e2cbe255d88aaa2fc3cdda629fca8e2fec9c98c73c0673d98d396727025b0a622905c3403c2b568d67597218398e
+doccontainersize 150368
+doccontainerchecksum 220c28ed6312c046dcb2973e2e22fd47c683460578dbf952d12d52da0aa4c21a5dc5e8195b78d743c093e05772ae1e00a45d3c221e805a452420c435f23b6a38
+docfiles size=61
+ texmf-dist/doc/latex/jpsj/dummy.eps
+ texmf-dist/doc/latex/jpsj/injpsj2.pdf details="Instructions for authors"
+ texmf-dist/doc/latex/jpsj/injpsj2.tex
+ texmf-dist/doc/latex/jpsj/template.tex
+runfiles size=8
+ texmf-dist/tex/latex/jpsj/jpsj2.cls
+catalogue-contact-home http://journals.jps.jp/page/jpsj/authors/style
+catalogue-ctan /macros/latex/contrib/jpsj
+catalogue-license lppl
+catalogue-topics physics journalpub
+catalogue-version 1.2.2

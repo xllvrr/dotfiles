@@ -1,0 +1,19 @@
+name context-construction-plan
+category ConTeXt
+revision 47085
+shortdesc Construction plans in ConTeXt
+longdesc Generate a page with a figure at a well-defined scale.
+depend context
+containersize 2288
+containerchecksum b292f8e271fcac88eaedc376257ae16a401a6c31009eaa3d4faeefba25c33d034f57d30ba4638e85b76ffd0d24ef4d541dfbceb1bc0b5c806a8412d239a32146
+doccontainersize 462200
+doccontainerchecksum 605e09bedb9e2ad1e98a621c0a4842f28592c93507c3da31f8c6437e95e63a47e795b38fa0263d7fa81fa3b8838f21d2426c8705f8e17ac1d827923cf5e88784
+docfiles size=120
+ texmf-dist/doc/context/third/construction-plan/VERSION
+ texmf-dist/doc/context/third/construction-plan/construction-plan-demo.pdf details="Example of use"
+ texmf-dist/doc/context/third/construction-plan/construction-plan-doc.pdf details="Package documentation"
+runfiles size=2
+ texmf-dist/tex/context/third/construction-plan/t-construction-plan.tex
+catalogue-ctan /macros/context/contrib/context-construction-plan
+catalogue-license gpl
+catalogue-topics graphics-use

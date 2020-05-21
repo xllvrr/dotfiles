@@ -1,0 +1,20 @@
+This is pgf-spectra, version 1.0 (15/04/2016).
+
+This package provides the \pgfspectra[<options>] command which draws continuous and emission or absorption spectra for 99 elements and their ions.
+It was developed mainly for the writing of my own documentation and exams sheets supporting directly PDF output format.
+The drawing is made with the TikZ package and is based in the pst-spectra extension for PSTricks.
+
+** Requirements
+TikZ and ifthen packages.
+
+** Installation
+Unpack everything in a directory in the TeX search path and refresh the TeX database.
+
+** Usage
+Just place \usepackage{pgf-spectra} in the preamble.
+
+** Contact the author
+Hugo Gomes (hugo.parelho@gmail.com)
+
+** Licence
+Released under the LaTeX Project Public License v1.3 or later, see http://www.latex-project.org/lppl.txt

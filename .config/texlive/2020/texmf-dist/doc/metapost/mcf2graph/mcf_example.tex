@@ -1,0 +1,88 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Example of MCF typeset by LaTeX   mcf_examples.tex   by A.Yamaji  2019.12.13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper]{article}
+\usepackage{graphicx}
+\pagestyle{empty}
+\topmargin=-20mm
+\oddsidemargin=-12mm
+\textwidth=190mm
+\textheight=280mm
+\parindent=0mm
+\setlength\columnsep{8mm}
+%-------------------------------------------------------------------------------
+\makeatletter%
+\newbox \@stringbox%
+\newcount \fontnum%
+\newcount \tnum%
+\newif\ifCONT@%
+\newread\@auxf%
+%-------------------------------------------------------------------------------
+\def\mol@sel#1{%
+\if#1\empty\relax\else%
+  \edef\@tag{\expandafter\@fst@param#1;}%
+  \edef\@var{\expandafter\@sec@param#1;}%
+  \ifx\@tag\@F\edef\MOLfile{\@var}\fi    \ifx\@tag\@C\edef\MOLchar{\@var}\fi%
+  \ifx\@tag\@Lx\edef\MOLlenx{\@var}\fi   \ifx\@tag\@Ly\edef\MOLleny{\@var}\fi%
+  \ifx\@tag\@EN\edef\MOLnameE{\@var}\fi  \ifx\@tag\@JN\edef\MOLnameJ{\@var}\fi%
+  \ifx\@tag\@CAS\edef\MOLcas{\@var}\fi   \ifx\@tag\@USE\edef\MOLuse{\@var}\fi%
+  \ifx\@tag\@FM\edef\MOLfm{\@var}\fi     \ifx\@tag\@cFM\edef\CALfm{\@var}\fi%
+  \ifx\@tag\@MW\edef\MOLmw{\@var}\fi     \ifx\@tag\@cMW\edef\CALmw{\@var}\fi%
+  \ifx\@tag\@logP\edef\MOLlogP{\@var}\fi \ifx\@tag\@EXA\edef\MOLextA{\@var}\fi%
+  \ifx\@tag\@EXB\edef\MOLextB{\@var}\fi  \ifx\@tag\@NO\edef\MOLnum{\@var}\fi\fi}%
+%-------------------------------------------------------------------------------
+\def\@F{F}\def\@C{C}\def\@EN{EN}\def\@JN{JN}\def\@CAS{CAS}%
+\def\@MW{MW}\def\@cMW{cMW}\def\@FM{FM}\def\@cFM{cFM}\def\@Lx{Lx}\def\@Ly{Ly}%
+\def\@NO{NO}\def\@USE{USE}\def\@logP{logP}\def\@EXA{EXA}\def\@EXB{EXB}%
+%-------------------------------------------------------------------------------
+\def\@fst@param#1:#2;{#1}\def\@sec@param#1:#2;{#2}%
+\def\@stru#1[#2]{\font\@strufont=#1\relax\hbox{\@strufont\char#2}}%
+%-------------------------------------------------------------------------------
+\font\labelM=cmtt8 at 6pt%
+\def\put@char{%
+  \unitlength=0.01mm\relax \@tempcnta=3300\relax \@tempcntb=3750\relax%
+  \begin{picture}(\@tempcntb,\@tempcnta)%
+     \advance\@tempcnta -300\relax%
+     \put(20,\@tempcnta){\footnotesize\bf [\the\fontnum] \MOLnameE}%
+     \advance\@tempcnta -250\relax%
+     \put(20,\@tempcnta){\labelM MW:\CALmw { / }FM:\CALfm}%
+     \advance\@tempcnta -220\relax%
+     \put(20,\@tempcnta){\labelM MW:\MOLmw(data)}%
+     \put( 0,0){\makebox(\@tempcntb,\@tempcnta){\@stru{\MOLfile}[\MOLchar]}}%
+  \end{picture}%
+}
+%-------------------------------------------------------------------------------
+%  modified latex2e kernel program control (@for delimiter ','=>';')
+\def\@sfor#1#2{\expandafter\def\expandafter\@tmp\expandafter{#1}%
+ \ifx\@tmp\@empty\else\expandafter\@rep#1;\@nil;\@@\@list{#2}\fi}%
+\def\@rep#1;#2\@@#3#4{\def#3{#1}\ifx#3\@nnil%
+ \expandafter\@fornoop\else#4\relax\expandafter\@rep\fi#2\@@#3{#4}}%
+%-------------------------------------------------------------------------------
+\def\inputINFOS#1{\openin\@auxf=#1\CONT@true%
+\loop
+\read\@auxf to \@info%
+\ifeof\@auxf\CONT@false\else\@sfor\@info{\mol@sel\@list}%
+  \put@char%
+  \advance\fontnum\@ne\relax\advance\tnum\@ne\relax%
+  \ifnum\tnum=5 \\ \tnum=0\relax \fi%
+\fi%
+\ifCONT@ \repeat
+\closein\@auxf}%
+%-------------------------------------------------------------------------------
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}
+ {\Huge\sf Molecular Coding Format examples}\vspace{5mm}\\
+ Author : Akira Yamaji \quad Date : \today\\
+ Located at : http://www.ctan.org/pkg/mcf2graph\vspace{3mm}\\
+\end{center}
+{\small ** FM:Molecular formula calculated by mcf2graph \quad
+ ** MW:Molecular weight calculated by mcf2graph}\vspace{3mm}\\
+\fontnum=1%
+\noindent%
+%------------------------------------------------------------------------
+\inputINFOS{mcf_exa_soc-info.aux}%
+%------------------------------------------------------------------------
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

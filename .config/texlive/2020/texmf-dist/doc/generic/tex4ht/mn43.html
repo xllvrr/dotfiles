@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Q/A</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<meta name="originator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<!-- xhtml,th4,index --> 
+<meta name="src" content="mn.tex" /> 
+<meta name="date" content="2004-02-11 18:07:00" /> 
+<link rel="stylesheet" type="text/css" href="mn.css" /> 
+</head><body 
+>
+    <a 
+ href="mn.html#mn43.html" >exit Q/A</a>
+    <h3 class="SubSectionHead"><a 
+  name="QQ1-43-63"></a>Q/A</h3>
+    <div class="TableOfContents"><span class="QAChapter"><a 
+ href="#QQ1-43-64"  name="QQ2-43-64">Addresses of Gifs</a></span><br /> <span class="QASection"><span class="cmsy-10">&#8226;</span> <a 
+ href="#QQ1-43-65"  name="QQ2-43-65">How Gifs Are Created for Pictures</a></span><br /> <span class="QASection"><span class="cmsy-10">&#8226;</span> <a 
+ href="#QQ1-43-66"  name="QQ2-43-66">References to Gifs of General
+Pictures</a></span><br /> <span class="QASection"><span class="cmsy-10">&#8226;</span> <a 
+ href="#QQ1-43-67"  name="QQ2-43-67">Placement of Gifs of General Pictures</a></span><br /> <span class="QASection"><span class="cmsy-10">&#8226;</span> <a 
+ href="#QQ1-43-68"  name="QQ2-43-68">References to Gifs of HTF Symbols</a></span><br />
+<span class="QASection"><span class="cmsy-10">&#8226;</span> <a 
+ href="#QQ1-43-69"  name="QQ2-43-69">Placement of Gifs of HTF Symbols</a></span><br /> <span class="QAChapter"><a 
+ href="#QQ1-43-70"  name="QQ2-43-70">Representation of formulas</a></span><br /> <span class="QASection"><span class="cmsy-10">&#8226;</span> <a 
+ href="#QQ1-43-71"  name="QQ2-43-71">Make picture&#8217;s
+alternative text to show the original tex code</a></span><br /> <span class="QASection"><span class="cmsy-10">&#8226;</span> <a 
+ href="#QQ1-43-72"  name="QQ2-43-72">Avoiding bitmaps within formulas</a></span><br /> <span class="QASection"><span class="cmsy-10">&#8226;</span> <a 
+ href="#QQ1-43-73"  name="QQ2-43-73">Setting
+bitmaps within formulas</a></span><br /> <span class="QAChapter"><a 
+ href="#QQ1-43-74"  name="QQ2-43-74">Other</a></span><br /> <span class="QASection"><span class="cmsy-10">&#8226;</span> <a 
+ href="#QQ1-43-75"  name="QQ2-43-75">Conditional bitmap conversion for imported graphic
+files</a></span><br /> <span class="QASection"><span class="cmsy-10">&#8226;</span> <a 
+ href="#QQ1-43-76"  name="QQ2-43-76">Conditional bitmap conversion for imported graphic files</a></span><br /> <span class="QASection"><span class="cmsy-10">&#8226;</span> <a 
+ href="#QQ1-43-77"  name="QQ2-43-77">Missing Configurations</a></span><br />
+    </div>
+<!--l. 6729--><p class="noindent"><span class="cmbx-10">Note: </span>Please also check the .log files of the compilations for hints provided by tex4ht.
+</p>
+    <h3 class="QAChapterHead"><a 
+  name="QQ1-43-64"></a>Addresses of Gifs</h3>
+    <h4 class="QASectionHead"><a 
+  name="QQ1-43-65"></a>How Gifs Are Created for Pictures</h4>
+<!--l. 6742--><p class="noindent">There are two kinds of pictures: those created for letters, and those requested directly or indirectly for figures in the
+source files. The tex4ht.c utility extracts the figures from the foo.dvi file into a foo.idv file, and places in foo.lg
+messages of how to extract the figures. The t4ht.c utility, uses the requests listed at foo.lg, to activate the G-script
+from tex4ht.env for the different figures. However, if a F-script is available, it is used instead for the
+letters.
+</p>
+    <h4 class="QASectionHead"><a 
+  name="QQ1-43-66"></a>References to Gifs of General Pictures</h4>
+<!--l. 6754--><p class="noindent">The command
+</p><!--l. 6756--><p class="indent">    <span class="cmtt-10">\Configure{IMG}{&lt;img\Hnewline src=&#34;foo.dir/}{&#34; alt=&#34;}{&#34; }{ /&gt;}</span>
+</p><!--l. 6759--><p class="indent">    in the configuration file adds the prefix
+</p><!--l. 6761--><p class="indent">    <span class="cmtt-10">foo.dir/</span>
+</p><!--l. 6763--><p class="indent">    to the gif names.
+</p><!--l. 6765--><p class="indent">    The default setting uses the configuration
+</p><!--l. 6767--><p class="indent">    <span class="cmtt-10">\Configure{IMG}{&lt;img\Hnewline src=&#34;}{&#34; alt=&#34;}{&#34; }{ /&gt;}</span>
+</p>
+    <h4 class="QASectionHead"><a 
+  name="QQ1-43-67"></a>Placement of Gifs of General Pictures</h4>
+<!--l. 6774--><p class="noindent">Add to the &#8216;<span class="cmtt-10">G</span>&#8217; script in <span class="cmtt-10">tex4ht.env </span>a command to move the gif&#8217;s to the desired destination (e.g., &#8216;<span class="cmtt-10">Gmv %%3</span>
+<span class="cmtt-10">foo.dir/.</span>&#8217;).
+</p>
+    <h4 class="QASectionHead"><a 
+  name="QQ1-43-68"></a>References to Gifs of HTF Symbols</h4>
+<!--l. 6782--><p class="noindent">Add the following commands to the configuration file.
+</p><div class="Verbatim"><span class="cmtt-10">\Configure{htf}{1}{+}{&lt;img\Hnewline</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;src=&#34;foo.dir/}{&#34;</span><span class="cmtt-10">&nbsp;alt=&#34;}{&#34;</span><span class="cmtt-10">&nbsp;class=&#34;}{\%s}{-\%d}{x-x-\%x}{&#34;</span><span class="cmtt-10">&nbsp;/&gt;}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\Configure{htf}{3}{+}{&lt;img\Hnewline</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;src=&#34;foo.dir/}{&#34;</span><span class="cmtt-10">&nbsp;alt=&#34;}{&#34;</span><span class="cmtt-10">&nbsp;class=&#34;\%s-}{\%s}{-\%d}{x-x-\%x}%</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;{&#34;</span><span class="cmtt-10">&nbsp;align=&#34;middle&#34;</span><span class="cmtt-10">&nbsp;/&gt;}</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+    <h4 class="QASectionHead"><a 
+  name="QQ1-43-69"></a>Placement of Gifs of HTF Symbols</h4>
+<!--l. 6797--><p class="noindent">If &#8216;<span class="cmtt-10">foo.dir/</span>&#8217; is not the directory used in the &#8216;G&#8217; script, introduce into tex4ht.env a similar &#8216;F&#8217; script for the
+character gif&#8217;s, e.g.,
+</p><div class="Verbatim"><span class="cmtt-10">Fdvips</span><span class="cmtt-10">&nbsp;-T</span><span class="cmtt-10">&nbsp;14in,14in</span><span class="cmtt-10">&nbsp;-Ppdf</span><span class="cmtt-10">&nbsp;-mode</span><span class="cmtt-10">&nbsp;ibmvga</span><span class="cmtt-10">&nbsp;-D</span><span class="cmtt-10">&nbsp;110</span><span class="cmtt-10">&nbsp;-f</span><span class="cmtt-10">&nbsp;%%1</span><span class="cmtt-10">&nbsp;-pp</span><span class="cmtt-10">&nbsp;%%2</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;&gt;</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Fconvert</span><span class="cmtt-10">&nbsp;-crop</span><span class="cmtt-10">&nbsp;0x0</span><span class="cmtt-10">&nbsp;-density</span><span class="cmtt-10">&nbsp;110x110</span><span class="cmtt-10">&nbsp;-transparent</span><span class="cmtt-10">&nbsp;'#FFFFFF'</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;%%3</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Fmv</span><span class="cmtt-10">&nbsp;%%3</span><span class="cmtt-10">&nbsp;foo.dir/.</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+    <h3 class="QAChapterHead"><a 
+  name="QQ1-43-70"></a>Representation of formulas</h3>
+    <h4 class="QASectionHead"><a 
+  name="QQ1-43-71"></a>Make picture&#8217;s alternative text to show the original tex code</h4>
+<!--l. 6816--><p class="noindent">Explicit requests:
+</p><div class="Verbatim"><span class="cmtt-10">\newtoks\eqtoks</span><span class="cmtt-10">&nbsp;</span>
+
+<br /><span class="cmtt-10">\def\ImageAlt{\afterassignment\setimg\eqtoks}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\def\setimg{\Picture*[\HCode{\the\eqtoks}]{}\the\eqtoks\EndPicture}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\ImageAlt{$\alpha</span><span class="cmtt-10">&nbsp;+</span><span class="cmtt-10">&nbsp;\beta$}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\ImageAlt{$$</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\begin{array}{cc}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;a</span><span class="cmtt-10">&nbsp;&amp;</span><span class="cmtt-10">&nbsp;b</span><span class="cmtt-10">&nbsp;\\</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;c</span><span class="cmtt-10">&nbsp;&amp;</span><span class="cmtt-10">&nbsp;d</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\end{array}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">$$}</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+<!--l. 6833--><p class="indent">    Implicit requests may also be tailored along the following lines, but they should be used carefully because they
+are not safe.
+</p><div class="Verbatim"><span class="cmtt-10">\newtoks\eqtoks</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\def\AltMath#1${\eqtoks{#1}%</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\Picture*[\HCode{\the\eqtoks}]{</span><span class="cmtt-10">&nbsp;align=&#34;middle&#34;}$#1$\EndPicture$}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\Configure{$}{}{}{\expandafter\AltMath}</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+    <h4 class="QASectionHead"><a 
+  name="QQ1-43-72"></a>Avoiding bitmaps within formulas</h4>
+<!--l. 6849--><p class="noindent"><a 
+  name="index43-72001"></a><span class="cmti-10">Q. I found that some equations have smaller fonts than the others. I wonder why the size of the equations changes</span>
+<span class="cmti-10">along the document.</span>
+</p><!--l. 6854--><p class="indent">    Some equations and symbols are converted to bitmaps-I guess they are the parts you are concerned
+about.
+</p><!--l. 6857--><p class="indent">    If you try the command &#8216;  <span class="cmtt-10">mzlatex filename </span>&#8217;, provided you have the xhlatex-like script of mzlatex
+configured, you&#8217;ll get the bitmaps removed in favor of unicode symbols and mathml formulas. In such a case, one
+will need a mathml-enabled browser to view the outcome.
+</p><!--l. 6862--><p class="indent">    If you don&#8217;t care using the MS SYMBOL font, which non-pc browsers are likely not to recognize, try
+the command &#8216;  <span class="cmtt-10">htlatex filename &#34;&#34; &#34;symbol/!&#34; </span>&#8217;. It will resolve the bitmap problem for of the
+characters.
+</p>
+    <h4 class="QASectionHead"><a 
+  name="QQ1-43-73"></a>Setting bitmaps within formulas</h4>
+<!--l. 6871--><p class="noindent">A code similar to the following one may be used to configure instructions like &#8216;<span class="cmtt-10">\int_{xxx}^{yyy}</span>&#8217; and
+&#8216;<span class="cmtt-10">\sum_{xxx}^{yyy}</span>&#8217; to produce pictorial representations within non-pictorial formulas.
+</p><div class="Verbatim"><span class="cmtt-10">\def\SubSupOp#1{%</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\edef\temp{\expandafter\gobble\string#1}%</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\expandafter\let\csname</span><span class="cmtt-10">&nbsp;old\temp\endcsname=#1</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\edef\temp{\noexpand\SUBSUPOP{\expandafter\noexpand</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\csname</span><span class="cmtt-10">&nbsp;old\temp\endcsname}}%</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\HLet#1=\temp</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\def\gobble#1{}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\def\SUBSUPOP#1{\let\curOP=#1%</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\let\next=\putOP</span><span class="cmtt-10">&nbsp;\let\OPsub=\empty</span><span class="cmtt-10">&nbsp;\let\OPsup=\empty</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\futurelet\nextop\getOP}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\def\getOP{%</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\ifx</span><span class="cmtt-10">&nbsp;_\nextop</span><span class="cmtt-10">&nbsp;\let\next=\getsub</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\else\ifx</span><span class="cmtt-10">&nbsp;^\nextop</span><span class="cmtt-10">&nbsp;\let\next=\getsup\fi\fi</span><span class="cmtt-10">&nbsp;\next}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\def\getsub#1#2{\def\OPsub{#2}\let\next=\putOP</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\futurelet\nextop\getOP}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\def\getsup#1#2{\def\OPsup{#2}\let\next=\putOP</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\futurelet\nextop\getOP}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\def\putOP{\Picture+{</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;align=&#34;middle&#34;}{\curOP_{\OPsub}^{\OPsup}}\EndPicture}</span><span class="cmtt-10">&nbsp;</span>
+
+<br /><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\SubSupOp\sum</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">\SubSupOp\int</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+    <h3 class="QAChapterHead"><a 
+  name="QQ1-43-74"></a>Other</h3>
+    <h4 class="QASectionHead"><a 
+  name="QQ1-43-75"></a>Conditional bitmap conversion for imported graphic files</h4>
+<!--l. 6913--><p class="noindent"><span class="cmti-10">Q. How to avoid the conversion of eps files to gif&#8217;s, included through the </span><span class="cmtt-10">\includegraphics{...} </span><span class="cmti-10">command&#8217;, each</span>
+<span class="cmti-10">time the source file is run across tex4ht.</span>
+</p><!--l. 6918--><p class="indent">    Compile your source with the command line &#8216;  <span class="cmtt-10">htlatex filename &#34;html,info&#34; </span>&#8217;, and check the log file for the
+information provided there. In particular, the &#8216;<span class="cmtt-10">\Configure{graphics*} {wmf} ...</span>&#8217; example may be adapted for
+dealing with eps files, where a conditional conversion is requested within the &#8216;<span class="cmtt-10">\Needs{&#34;...&#34;}</span>&#8217; command (possibly
+indirectly through a call to a script for doing he job).
+</p>
+    <h4 class="QASectionHead"><a 
+  name="QQ1-43-76"></a>Conditional bitmap conversion for imported graphic files</h4>
+<!--l. 6932--><p class="noindent"><a 
+  name="index43-76001"></a><span class="cmti-10">Q. How an image can be made a thumbnail to be clicked on for bringing up the full size image.</span>
+</p><div class="Verbatim"><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\Configure{graphics*}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;{eps}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;{\openin15=\csname</span><span class="cmtt-10">&nbsp;Gin@base\endcsname\PictExt\relax</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\ifeof15</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\Needs{&#34;convert</span><span class="cmtt-10">&nbsp;\csname</span><span class="cmtt-10">&nbsp;Gin@base\endcsname.eps</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\csname</span><span class="cmtt-10">&nbsp;Gin@base\endcsname\PictExt&#34;}%</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\fi</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\closein15</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\Link[\csname</span><span class="cmtt-10">&nbsp;Gin@base\endcsname\PictExt]{}{}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\Picture[pict]{\csname</span><span class="cmtt-10">&nbsp;Gin@base\endcsname\PictExt</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\space</span><span class="cmtt-10">&nbsp;width=&#34;10em&#34;</span><span class="cmtt-10">&nbsp;height=&#34;10em&#34;</span><span class="cmtt-10">&nbsp;}%</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\EndLink</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;}</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\EndPreamble</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+    <h4 class="QASectionHead"><a 
+  name="QQ1-43-77"></a>Missing Configurations</h4>
+<!--l. 6958--><p class="noindent"><span class="cmti-10">Q. I am attempting to convert a Ph.D. thesis written in LaTeX, using a locally developed class ths.cls based on the</span>
+<span class="cmti-10">report class, which redefines some elements of the class for local needs. The output is lacking the Table</span>
+<span class="cmti-10">of Contents and the Lists of Figures and Tables, and the bibliography at the end is only minimally</span>
+<span class="cmti-10">formatted.</span>
+</p><!--l. 6964--><p class="indent">    The problems result from a lack of a configuration file for the thesis class. Try introducing a configuration file
+similar to the following one.
+</p><div class="Verbatim"><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;%</span><span class="cmtt-10">&nbsp;file</span><span class="cmtt-10">&nbsp;name:</span><span class="cmtt-10">&nbsp;ths.4ht</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;\input</span><span class="cmtt-10">&nbsp;report.4ht</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+
+     
+</body></html> 

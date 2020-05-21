@@ -1,0 +1,55 @@
+name seuthesis
+category Package
+revision 33042
+shortdesc LaTeX template for theses at Southeastern University
+longdesc This template is for theses at Southeastern University,
+longdesc Nanjing, China.
+containersize 10520
+containerchecksum a36006ff6a093cd589a0e328c60e7e78afc160ab45746e562a43a8944b2ab331643261f56890497b70449f76be43c0b226642cc5570dccfe0d6240181b20bcb3
+doccontainersize 2221748
+doccontainerchecksum 5bbc5770bc42c62da7ca569b10558dc02bbe7fda2a463a3a2a78bc76fda3f1d0e7023c311f62a91bef73ae3c4026561403284404acc6bc72cb2e308ad4092ab8
+docfiles size=1154
+ texmf-dist/doc/latex/seuthesis/Makefile
+ texmf-dist/doc/latex/seuthesis/a3cover/A3cover.tex
+ texmf-dist/doc/latex/seuthesis/a3cover/A4cover.tex
+ texmf-dist/doc/latex/seuthesis/a3cover/a3cover.bat
+ texmf-dist/doc/latex/seuthesis/a3cover/a3cover.sh
+ texmf-dist/doc/latex/seuthesis/a3cover/a4cover.bat
+ texmf-dist/doc/latex/seuthesis/a3cover/a4cover.sh
+ texmf-dist/doc/latex/seuthesis/a3cover/bookspine_hor.tex
+ texmf-dist/doc/latex/seuthesis/a3cover/bookspine_ver.tex
+ texmf-dist/doc/latex/seuthesis/figures/back-cover.png
+ texmf-dist/doc/latex/seuthesis/figures/doctor-hwzs.pdf
+ texmf-dist/doc/latex/seuthesis/figures/doctor.png
+ texmf-dist/doc/latex/seuthesis/figures/engineering.png
+ texmf-dist/doc/latex/seuthesis/figures/front-cover.jpg
+ texmf-dist/doc/latex/seuthesis/figures/master-hwzs.pdf
+ texmf-dist/doc/latex/seuthesis/figures/master.png
+ texmf-dist/doc/latex/seuthesis/figures/seu-badge-logo.eps
+ texmf-dist/doc/latex/seuthesis/figures/seu-badge-logo.pdf
+ texmf-dist/doc/latex/seuthesis/figures/seu-color-logo.png
+ texmf-dist/doc/latex/seuthesis/figures/seu-text-logo.eps
+ texmf-dist/doc/latex/seuthesis/figures/seu-text-logo.png
+ texmf-dist/doc/latex/seuthesis/sample-bachelor.pdf
+ texmf-dist/doc/latex/seuthesis/sample-doctor.pdf
+ texmf-dist/doc/latex/seuthesis/sample-master.pdf
+ texmf-dist/doc/latex/seuthesis/sample.tex
+ texmf-dist/doc/latex/seuthesis/seuthesis.bib
+ texmf-dist/doc/latex/seuthesis/seuthesis.pdf details="Package documentation (Chinese)" language="zh"
+ texmf-dist/doc/latex/seuthesis/zharticle/scrsize9pt.clo
+ texmf-dist/doc/latex/seuthesis/zharticle/zharticle.bst
+ texmf-dist/doc/latex/seuthesis/zharticle/zharticle.cfg
+ texmf-dist/doc/latex/seuthesis/zharticle/zharticle.cls
+srccontainersize 18188
+srccontainerchecksum a442b5ca4e1e8a4a3f8d331e5575066a8c63d1521d1f774fa7d386a8e42b09a2c4727fae1f0a51a31c6a98c173113349738caac8991d50e4459082a874fed1ad
+srcfiles size=16
+ texmf-dist/source/latex/seuthesis/seuthesis.dtx
+ texmf-dist/source/latex/seuthesis/seuthesis.ins
+runfiles size=22
+ texmf-dist/bibtex/bst/seuthesis/seuthesis.bst
+catalogue-also seuthesix
+catalogue-contact-repository https://github.com/seucs/seuthesis
+catalogue-ctan /macros/latex/contrib/seuthesis
+catalogue-license gpl3
+catalogue-topics dissertation class
+catalogue-version 2.1.2

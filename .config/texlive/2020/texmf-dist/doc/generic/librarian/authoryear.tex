@@ -1,0 +1,266 @@
+% This file is distributed with the librarian package
+% as an example bibliographic style. Most of it is explained
+% in librarian-doc.pdf. It produces author (year) citations,
+% using letter prefixes to distinguish similar entries.
+% 
+% Author: Paul Isambert.
+% E-mail: zappathustra AT free DOT fr
+% Comments and suggestions are welcome.
+% Date: April 2010.
+
+\ifx\RetrieveFieldIn\undefined
+  \errmessage{You should load librarian first}
+  \expandafter\endinput
+\fi
+
+%%% Replace this definitions by yours.
+\def\italics#1{{\it#1}}
+\chardef\namelimit=3
+\def\leftcitemark{(} \def\rightcitemark{)}
+\def\etalii{\italics{ et alii}}
+
+%%% The \cite command.
+\def\terminator{\terminator} \def\empty{} \def\space{ }
+\def\cite#1{%
+  \def\prevauthor{}%
+  \readcite#1,\terminator,%
+  }
+\def\readcite#1,{%
+  \def\temp{#1}%
+  \ifx\temp\terminator
+    \rightcitemark
+    \let\tail\relax
+  \else
+    \let\tail\readcite
+    \unless\ifx\temp\empty
+      \Cite{#1}{main}\makecitation{}%
+    \fi
+  \fi\tail
+  }
+\def\makecitation{%
+  \RetrieveFieldIn{name}\temp
+  \ifx\temp\prevauthor
+    , % Necessary space, as everywhere in this file.
+  \else
+    \unless\ifx\prevauthor\empty
+      \rightcitemark,
+    \fi
+    \RetrieveFieldIn{namenumber}\tempcount
+    \ReadName\makecitename~\leftcitemark%
+  \fi
+  \RetrieveFieldIn{name}\prevauthor
+  \RetrieveField{year}\csname\EntryKey @suffix\endcsname
+  }
+
+\def\othersname{others}
+\def\makecitename{%
+  \ifx\Lastname\othersname
+    \etalii
+  \else
+    \ifnum\tempcount>\namelimit
+      \ifnum\NameCount=1
+        \unless\ifx\Von\empty \Von~\fi
+        \Lastname\etalii
+      \fi
+    \else
+      \unless\ifnum\NameCount=1
+        \ifnum\NameCount=\tempcount\relax \space and \else, \fi
+      \fi
+      \unless\ifx\Von\empty \Von~\fi
+      \Lastname
+    \fi
+  \fi
+  }%
+
+\def\editor{editor}
+\parindent0pt
+\sfcode`\.=\numexpr(\the\sfcode`\.+1)
+\def\conditionalstop{%
+  \unless\ifnum\spacefactor=\sfcode`\.
+    .%
+  \fi
+  }
+
+%%% Typesetting entries.
+\def\MakeReference{%
+  \par\noindent
+  \RetrieveFieldIn{namenumber}\tempcount
+  \ReadName\makerefname
+  \RetrieveFieldIn{nametype}\temp
+  \ifx\temp\editor
+    \RetrieveFieldIn{namenumber}\temp
+    \ifnum\temp>1
+      \space (eds.)%
+    \else
+      \space (ed.)%
+    \fi
+  \fi
+  \space \leftcitemark\RetrieveField{year}\csname\EntryKey @suffix\endcsname\rightcitemark\space
+  \compareentries
+  \RetrieveFieldIn{entrytype}\temp
+  \typesetref\temp\conditionalstop
+  }
+\newcount\sameentrycount
+\def\compareentries{%
+  \ifequalentry
+    \advance\sameentrycount1
+    \WriteImmediateInfo{%
+        \noexpand\expandafter\def\noexpand\csname\EntryKey @suffix\noexpand\endcsname{\toletter}%
+      }%
+  \else
+    \sameentrycount=0
+  \fi
+  }
+\def\toletter{%
+  \ifcase\sameentrycount
+         \or a\or b\or c\or d\or e\or f\or g\or h%
+         \or i\or j\or k\or l\or m\or n\or o\or p%
+         \or q\or r\or s\or t\or u\or v\or w\or x%
+         \or y\or z\fi
+  }
+
+%%% These are for names in the bibliography.
+\def\makerefname{%
+  \ifx\Lastname\othersname
+    \etalii
+  \else
+    \ifnum\NameCount=1
+      \unless\ifx\Von\empty \Von\space \fi
+      \Lastname, \Firstname
+      \unless\ifx\Junior\empty, \Junior \fi
+    \else
+      \ifnum\NameCount=\tempcount\relax \space and \else , \fi
+      \Firstname
+      \unless\ifx\Von\empty \space\Von \fi
+      \space\Lastname
+      \unless\ifx\Junior\empty , \Junior \fi
+    \fi
+  \fi
+  }
+\def\makeedname{%
+  \ifx\Lastname\othersname
+    \etalii
+  \else
+    \unless\ifnum\NameCount=1
+      \ifnum\NameCount=\tempcount\relax \space and \else , \fi
+    \fi
+    \Firstname
+    \unless\ifx\Von\empty \space\Von \fi
+    \space\Lastname
+    \unless\ifx\Junior\empty , \Junior \fi
+  \fi
+  }
+
+%%% Here entries are defined.
+\def\typesetref#1{%
+  \ifcsname#1@entrytype\endcsname
+    \csname#1@entrytype\endcsname
+  \else
+    \errmessage{Unknown entry type: `#1'}%
+  \fi
+  }
+\def\createtype#1{%
+  \expandafter\def\csname#1@entrytype\endcsname
+  }
+\def\booktitle#1{\setbooktitle{\RetrieveField{#1}}}
+\def\setbooktitle#1{\italics{#1}}
+\def\articletitle#1{\setarticletitle{\RetrieveField{#1}}}%
+\def\setarticletitle#1{`#1'}
+\def\addcomma#1{, #1}
+\def\addjournal#1{\addcomma{{\setbooktitle{#1}}}}
+\def\addcolon#1{: #1}
+\def\addpar#1{(#1)}
+\def\addbook#1{, in \setbooktitle{#1}}
+\def\addeditor#1{%
+  \RetrieveFieldIn{editornumber}\tempcount
+  , edited by \ReadEditor\makeedname}
+\def\inbook#1{%
+  , chapter #1%
+  }
+\def\crossref#1{%
+  ,  in \cite{#1}%
+  \WriteImmediateInfo{\noexpand\Cite{#1}{main}{}{}}%
+  }
+
+%%% The following do not pretend to show how entries
+%%% should be typeset.
+\createtype{book}{%
+  \booktitle{title}%
+  \TypesetField{publisher}\addcomma{}%
+  \TypesetField{address}\addcolon{}%
+  }%
+\createtype{article}{%
+  \articletitle{title}%
+  \TypesetField{journal}\addjournal{}%
+  \TypesetField{volume}\addcomma{}%
+  \TypesetField{number}\addpar{}%
+  \TypesetField{pages}\addcomma{}%
+  }
+\createtype{inbook}{%
+  \booktitle{title}%
+  \TypesetField{chapter}\inbook{%
+    \TypesetField{pages}\addcomma{}%
+    }%
+  \TypesetField{publisher}\addcomma{}%
+  \TypesetField{address}\addcolon{}%
+  }%
+\createtype{incollection}{%
+  \articletitle{title}%
+  \TypesetField{crossref}\crossref{%
+    \TypesetField{booktitle}\addbook{}%
+    \TypesetField{editor}\addeditor{}%
+    \TypesetField{pages}\addcomma{}%
+    \TypesetField{publisher}\addcomma{}%
+    \TypesetField{address}\addcolon{}%  
+    }%
+  }
+\createtype{inproceedings}{%
+  \articletitle{title}%
+  \TypesetField{booktitle}\addbook{}%
+  \TypesetField{editor}\addeditor{}%
+  \TypesetField{pages}\addcomma{}%
+  \TypesetField{address}\addcomma{}%
+  }
+\createtype{conference}{%
+  \articletitle{title}%
+  \TypesetField{booktitle}\addbook{}%
+  \TypesetField{editor}\addeditor{}%
+  \TypesetField{pages}\addcomma{}%
+  \TypesetField{address}\addcomma{}%
+  }
+\createtype{mastersthesis}{%
+  \booktitle{title}%
+  , Master's thesis%
+  \TypesetField{organization}\addcomma{}{}%
+  }
+\createtype{phdthesis}{%
+  \booktitle{title}%
+  , PhD dissertation%
+  \TypesetField{organization}\addcomma{}{}%
+  }
+\createtype{proceedings}{%
+  \booktitle{title}%
+  \TypesetField{publisher}\addcomma{%
+    \TypesetField{organisation}\addcomma{}%
+    }%
+  \TypesetField{address}\addcolon{}%
+  }
+\createtype{techreport}{%
+  \booktitle{title}%
+  , technical report%
+  \TypesetField{institution}\addcomma{}%
+  }
+\createtype{booklet}{%
+  \booktitle{title}%
+  \TypesetField{howpublished}\addcomma{}%
+  }
+\createtype{manual}{%
+  \booktitle{title}%
+  \TypesetField{organization}\addcomma{}%
+  }
+\createtype{misc}{%
+  \booktitle{title}%
+  \TypesetField{howpublished}\addcomma{}%
+  }
+\SortingOrder{name,year}{lfvj}
+\endinput

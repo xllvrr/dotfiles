@@ -1,0 +1,336 @@
+% !TeX encoding = ISO-8859-1
+% Ceci est la documentation du package "hlist"
+%
+% Fichier compilé avec pdflatex
+\documentclass[french,a4paper,10pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage[bottom]{footmisc}
+\usepackage{libertine,boites,tikz,enumitem,MnSymbol,babel,xspace,listings,simplekv}
+\usepackage[scaled=0.8]{luximono}
+\frenchbsetup{og=«,fg=»}
+\def\eTeX{\hbox{$\varepsilon$-\TeX}}
+\def\SKV{\texttt{\skvname}\xspace}
+\makeatletter
+\def\code{\expandafter\code@i\string}
+\def\code@i#1{%
+	\begingroup
+		\par\nobreak\medskip\parindent0pt
+		\leftskip.1\linewidth
+		\make@car@active\^^I{\leavevmode\space\space\space\space}%
+		\let\do\@makeother \dospecials
+		\ttfamily\small\@noligs
+		\make@car@active\<{\begingroup$\langle$\itshape}%
+		\make@car@active\>{\/$\rangle$\endgroup}%
+		\obeylines\obeyspaces
+		\def\code@ii##1#1{##1\par\medbreak\endgroup}%
+		\code@ii
+}
+\long\def\grab@toks#1\relax{\gdef\right@content{#1}}
+
+\newcommand\disable@lig[1]{%
+	\catcode`#1\active
+	\begingroup
+		\lccode`\~`#1\relax
+		\lowercase{\endgroup\def~{\leavevmode\kern\z@\string#1}}%
+}
+
+\newcommand\make@car@active[1]{%
+	\catcode`#1\active
+	\begingroup
+		\lccode`\~`#1\relax
+		\lowercase{\endgroup\def~}%
+}
+
+\newcommand\exemple{%
+	\begingroup
+	\parskip\z@
+	\exemple@}
+
+\newcommand\exemple@{%
+	\medbreak\noindent
+	\begingroup
+		\let\do\@makeother\dospecials
+		\make@car@active\ { {}}%
+		\make@car@active\^^M{\par\leavevmode}%
+		\make@car@active\^^I{\space\space}%
+		\make@car@active\,{\leavevmode\kern\z@\string,}%
+		\make@car@active\-{\leavevmode\kern\z@\string-}%
+		\make@car@active\>{\leavevmode\kern\z@\string>}%
+		\make@car@active\<{\leavevmode\kern\z@\string<}%
+		\@makeother\;\@makeother\!\@makeother\?\@makeother\:% neutralise frenchb
+		\exemple@@
+}
+
+\newcommand\exemple@@[1]{%
+	\def\@tempa##1#1{\exemple@@@{##1}}%
+	\@tempa
+}
+
+\newcommand\exemple@@@[1]{%
+	\xdef\the@code{#1}%
+	\endgroup
+		\begingroup
+			\fboxrule0.4pt \fboxsep=5pt
+			\let\breakboxparindent\z@
+			\def\bkvz@top{\hrule\@height\fboxrule}%
+			\def\bkvz@bottom{\hrule\@height\fboxrule}%
+			\let\bkvz@before@breakbox\relax
+			\def\bkvz@set@linewidth{\advance\linewidth\dimexpr-2\fboxrule-2\fboxsep\relax}%
+			\def\bkvz@left{\vrule\@width\fboxrule\kern\fboxsep}%
+			\def\bkvz@right{\kern\fboxsep\vrule\@width\fboxrule}%
+			\breakbox
+				\kern.5ex\relax
+				\begingroup
+					\ttfamily\small\the@code\par
+				\endgroup
+				\kern3pt
+				\hrule height0.1pt width\linewidth depth0.1pt
+				\vskip5pt
+				\newlinechar`\^^M\everyeof{\noexpand}\scantokens{#1}\par
+			\endbreakbox
+		\endgroup
+	\medbreak
+	\endgroup
+}
+\begingroup
+	\catcode`\<13 \catcode`\>13
+	\gdef\verb{\relax\ifmmode\hbox\else\leavevmode\null\fi
+		\bgroup
+			\verb@eol@error \let\do\@makeother \dospecials
+			\verbatim@font\@noligs
+			\catcode`\<13 \catcode`\>13 \def<{\begingroup$\langle$\itshape}\def>{\/$\rangle$\endgroup}%
+			\@ifstar\@sverb\@verb}
+\endgroup
+\def\longfrhlstdate@i#1/#2/#3\@nil{\number#3\relax\space \ifcase#2 \or janvier\or février\or mars\or avril\or mai\or juin\or juillet\or aout\or septembre\or octobre\or novembre\or décembre\fi\space#1}
+\edef\longfrhlstdate{\expandafter\longfrhlstdate@i\skvdate\@nil}
+\def\<#1>{$\langle$\textit{#1}$\rangle$}
+\makeatother
+
+\begin{document}
+\parindent=0pt
+\thispagestyle{empty}
+\begin{titlepage}
+	\begingroup
+		\centering
+		\null\vskip.25\vsize
+		{\large\bfseries L'extension pour \TeX/\LaTeX\par \Huge \skvname\par}
+		\bigbreak
+		v \skvver
+		\smallbreak
+		\longfrhlstdate
+		\vskip1.5cm
+		Christian \bsc{Tellechea}\par
+		\texttt{unbonpetit@netc.fr}\par
+	\endgroup
+	\vskip2cm
+	\leftskip=.2\linewidth \rightskip=.2\linewidth \small
+	Cette petite extension est une implémentation d'un système dit  à «\<clés>/\<valeurs>» pour \TeX{} ou \LaTeX. Elle comporte juste l'essentiel, aucune fioriture inutile n'a été codée et aucune extension tierce n'est nécessaire à son fonctionnement.
+\end{titlepage}
+
+\section{Clés, valeurs}
+Lorsqu'une macro doit recevoir des paramètres dont le nombre n'est pas fixe ou connu, il est commode de procéder par \<clés> et \<valeurs>.
+\medskip
+Voici brièvement les définitions et les limitations des structures mises à disposition :
+
+\begin{itemize}
+	\item une \<clé> est un mot désignant un paramètre; il est formé de préférence avec des caractères de code de catégorie 11 (lettres), 12 (autres caractères sauf la virgule et le signe \verb|=|) et 10 (l'espace). On peut cependant y mettre des caractères ayant d'autres codes de catégorie, dans la limitation de ce qui est admis dans la primitive \verb|\detokenize|; une \<clé>, même si cela revêt peu de signification, peut être vide;
+	\item la syntaxe pour assigner une \<valeur> à une \<clé> est : \hbox{\<clé>=\<valeur>};
+	\item les espaces qui précèdent et qui suivent la \<clé> et la \<valeur> sont ignorés, mais \emph{pas ceux} qui se trouvent à l'intérieur de la \<clé> ou de la \<valeur>;
+	\item une \<valeur> est un \<code> arbitraire;
+	\item si une \<valeur> est entourée d'accolades, ces dernières seront retirées : \verb|<clé>=<valeur>| est donc équivalent à \verb|<clé>={<valeur>}|;
+	\item lorsqu'une valeur est entourée de \emph{plusieurs} imbrications d'accolades, seul le niveau externe est retiré et donc \verb|<clé>={{<valeur>}}| est compris comme \verb|<clé>={<valeur>}|;
+	\item lorsque plusieurs couples de \<clés>/\<valeurs> doivent être spécifiés, ils sont séparés les uns des autres par des virgules;
+	\item une virgule ne peut figurer dans une \<valeur> que si la virgule est dans un niveau d'accolades; par exemple, \verb|foo=1,5| n'est pas valide car la \<valeur> s'étend jusqu'au 1. Il faudrait écrire \verb|foo={1,5}| pour spécifier une valeur de \verb|1,5|;
+	\item les \<valeurs> sont stockées \emph{telles qu'elles sont lues} ; en particulier, aucun développement n'est effectué;
+	\item les définitions sont \emph{locales} : par conséquent, toute \<clé> définie ou modifiée dans un groupe est restaurée à son état antérieur à la sortie du groupe;
+	\item des \<clé>/\<valeurs> destinées à une même macro ou à un même usage doivent être regroupées dans un ensemble dont on choisit le nom. Un tel ensemble est appelé \<trousseau>.
+\end{itemize}
+
+\section{Commandes mises à disposition}
+
+\paragraph{Les macro  \texttt{\char`\\setKV} et \texttt{\char`\\setKVdefault}}
+Ces commandes définissent des \<clés> et leur assignent des \<valeurs> dans un \<trousseau>. La seule différence entre les deux macros est que \verb|\setKVdefault|, en plus d'assigner les \<valeurs> aux \<clés>, les sauvegarde en vue d'une restauration ultérieure avec \verb|\restoreKV|.
+
+On écrit
+\code|\setKV[<trousseau>]{<clé 1>=<valeur 1>,<clé 2>=<valeur 2>,...,<clé n>=<valeur n>}|
+
+Il faut noter que
+\begin{itemize}
+	\item l'argument entre accolades contenant les \<clés> et les \<valeurs> ne devrait pas être vide, sauf à vouloir définir une \<clé> booléenne vide égale à \texttt{true};
+	\item lors de la lecture des \<clés>/\<valeurs>, la virgule et le signe égal ont leurs catcodes rendus égaux à 12;
+	\item le nom du \<trousseau>, bien qu'entre crochet, est \emph{obligatoire}, mais il peut être vide bien que cela ne soit pas conseillé;
+	\item si une même \<clé> figure plusieurs fois, la \<valeur> retenue sera celle de la dernière assignation;
+	\item les \<valeurs> peuvent être booléennes auquel cas, elles \emph{doivent} être «\texttt{true}» ou «\texttt{false}» en caractères de catcode 11;
+	\item si une \<valeur> est omise, elle est comprise comme étant «\texttt{true}». Ainsi, écrire
+		\code|\setKV[foo]{mon bool}|
+	est équivalent à
+		\code|\setKV[foo]{mon bool = true}|
+\end{itemize}
+
+\paragraph{La macro \texttt{\char`\\useKV}}
+Cette macro purement développable renvoie la \<valeur> préalablement associée à une \<clé> dans un \<trousseau>:
+	\code|\useKV[<trousseau>]{<clé>}|
+
+Il faut noter que
+\begin{itemize}
+	\item si la \<clé> n'a pas été définie, une erreur sera émise;
+	\item si la \<clé> est booléenne, le texte «\texttt{true}» ou «\texttt{false}» sera renvoyé;
+	\item il faut 2 développements à \verb|\useKV[<trousseau>]{<clé>}| pour donner la \<valeur> associée à la \<clé>.
+\end{itemize}
+
+\exemple|\setKV[foo]{nombre = 5 , lettres= AB \textit{CD} , mon bool}
+a) \useKV[foo]{nombre}.\qquad   b) \useKV[foo]{lettres}.\qquad   c) \useKV[foo]{mon bool}.
+
+\setKV[foo]{lettres = X Y Z \textbf{123} }
+a) \useKV[foo]{nombre}.\qquad   b) \useKV[foo]{lettres}.\qquad   c) \useKV[foo]{mon bool}.|
+
+\paragraph{La macro \texttt{\char`\\restoreKV}}
+La macro \verb|\restoreKV[<trousseau>]| réinitialise toutes les \<clés> du \<trousseau> aux \<valeurs> qui ont été définies lors de l'exécution \verb|\setKVdefault|. La macro \verb|\useKVdefault[<trousseau>]| lui est équivalente.
+
+\paragraph{La macro \texttt{\char`\\ifboolKV}}
+Cette macro permet, selon la valeur d'une \<clé booléenne>, d'exécuter un des deux \<codes> donnés. La syntaxe est
+	\code|\ifboolKV[<trousseau>]{<clé>}{<code si "true">}{<code si "false>}|
+
+La macro est purement développable, elle nécessite 2 développements pour donner l'un des deux codes, et exige que la \<clé> soit booléenne sans quoi un message d'erreur est émis.
+
+\paragraph{La macro \texttt{\char`\\showKV}}
+Cette commande écrit dans le fichier \texttt{log} la \<valeur> assignée à une \<clé> d'un \<trousseau>:
+	\code|\showKV[<trousseau>]{<clé>}|
+
+Si la \<clé> n'est pas définie, «\texttt{not defined}» est affiché dans le fichier log.
+
+\section{Code}
+En plus d'une \<valeur>, un \<code> arbitraire peut être assigné à n'importe quelle \<clé>. Pour ce faire, on écrit
+\begin{center} \verb|\defKV[<trousseau>]{<clé 1>=<code 1>,<clé 2>=<code 2>,...,<clé n>=<code n>}|
+\end{center}
+Chaque \<code> peut contenir \verb|#1| qui représente la \<valeur> de la \<clé>. Ce \<code> est exécuté lorsque une \<valeur> est assignée à la \<clé> avec \verb|\setKV|, \verb|\setKVdefault| ou \verb|\restoreKV|.
+\bigbreak
+
+Ainsi déclarer
+	\code|\defKV[x]{ mykey = \def\foo{\textbf{#1}}|
+va définir une macro \verb|\foo| dès que la \<clé> «\texttt{mykey}» va être définie (ou redéfinie) et donc, si l'on écrit
+	\code|\setKV[x]{ mykey = bonjour }|
+le code qui est exécuté en coulisses est
+	\code|\long\def\foo{\textbf{bonjour}}|
+
+\exemple|\defKV[x]{ mykey = \def\foo{\textbf{#1}} }
+\setKV[x]{ mykey = bonjour }% définition
+1) \meaning\foo\par
+2) \useKV[x]{ mykey }
+
+\setKV[x]{ mykey = hello }% redéfinition
+3) \meaning\foo\par
+4) \useKV[x]{ mykey }|
+
+La macro \verb|\testboolKV| permet de tester, par exemple dans un \<code>, si son argument est «true» ou «false»
+	\code|\testboolKV{<argument>}{<code si true>}{<code si false>}|
+
+La macro est purement développable, elle nécessite 2 développements pour donner l'un des deux codes, et exige que l'\<argument> soit booléen sans quoi un message d'erreur est émis.
+
+\exemple|\defKV[x]{ x = \def\test{\testboolKV{#1}{test positif}{test négatif}}}
+\setKV[x]{ x = true}
+1) \test
+
+\setKV[x]{ x= false}
+2) \test|
+Toute autre valeur que «\verb|true|» ou «\verb|false|» génèrera un message d'erreur.
+
+\section{Un exemple d'utilisation}
+Voici comment on pourrait programmer une macro qui affiche un cadre sur une ligne, grâce à la macro \verb|\fbox| et l'environnement \verb|center| de \LaTeX. Pour cela les \<clés> suivantes seront utilisées:
+\begin{itemize}
+	\item le booléen \texttt{inline} qui affichera le cadre dans le texte s'il est vrai et sur une ligne dédié s'il est faux;
+	\item \texttt{sep} qui est une dimension mesurant la distance entre le texte et le cadre (par défaut \texttt{3pt});
+	\item \texttt{width} qui est la largeur des traits du cadre (par défaut \texttt{0.5pt});
+	\item \texttt{style} qui contient le code exécuté avant le texte.
+\end{itemize}
+
+Une première façon de faire, sans recours à \verb|\defKV|;
+\exemple|\setKVdefault[frame]{
+	sep        = 3pt,
+	line width = 0.5pt,
+	style      = \bfseries,
+	inline
+	}
+\newcommand\frametxt[2][]{%
+	\restoreKV[frame]% revenir au valeurs par défaut
+	\setKV[frame]{#1}% lit les arguments optionnels
+	\fboxsep = \useKV[frame]{sep}
+	\fboxrule= \useKV[frame]{line width}
+	\ifboolKV[frame]{inline}
+		{}
+		{\begin{center}}%
+	\fbox{\useKV[frame]{style}#2}%
+	\ifboolKV[frame]{inline}
+		{}
+		{\end{center}}%
+}
+Un essai en ligne par défaut \frametxt{essai} puis un autre \frametxt[sep=5pt,line width=2pt]{essai}
+et un dernier \frametxt[sep=1pt,style=\itshape]{essai}.
+
+Un essai hors ligne : \frametxt[inline = false, style=\bfseries\color{red}]{essai centré}|
+
+Dans l'exemple repris ci-dessous et grâce à \verb|\defKV|, on stocke tous les paramètres lors de leur assignation. Il y a bien moins de verbosité dans le code de \verb|frametxt| ce qui le rend plus léger et plus lisible.
+
+\exemple|\defKV[frame]{%
+	sep        = {\fboxsep = #1 },
+	line width = {\fboxrule= #1 },
+	inline     = \testboolKV{#1}
+                    {\def\hookpre{}\def\hookpost{}}
+                    {\def\hookpre{\begin{center}}\def\hookpost{\end{center}}},
+	style      = \def\fstyle{#1}
+}
+\setKVdefault[frame]{
+	sep        = 3pt,
+	line width = 0.5pt,
+	style      = \bfseries,
+	inline
+	}
+\newcommand\frametxt[2][]{%
+	\restoreKV[frame]% revenir au valeurs par défaut
+	\setKV[frame]{#1}% lit les arguments optionnels
+	\hookpre
+	\fbox{\fstyle #2}%
+	\hookpost
+}
+Un essai en ligne par défaut \frametxt{essai} puis un autre \frametxt[sep=5pt,line width=2pt]{essai}
+et un dernier \frametxt[sep=1pt,style=\itshape]{essai}.
+
+Un essai hors ligne : \frametxt[inline = false, style=\bfseries\color{red}]{essai centré}|
+
+
+\section{Le code}
+Le code ci-dessous est l'exact verbatim du fichier \verb|simplekv.tex| :
+
+\lstinputlisting[
+		language=TeX,
+		moretexcs={unless,ifcsname,ifdefined,detokenize,numexpr,dimexpr,glueexpr,unexpanded,expanded},
+		basicstyle=\small\ttfamily\color{black!25},
+		identifierstyle=\bfseries\color{white},%
+		backgroundcolor=\color{black!85},
+		keywordstyle=\bfseries\color{orange},
+		commentstyle=\color{cyan!66},
+		columns=fixed,
+		alsoletter={\_},
+		tabsize=2,
+		extendedchars=true,
+		showspaces=false,
+		showstringspaces=false,
+		numbers=left,
+		numberstyle=\tiny\ttfamily\color{black},
+		breaklines=true,
+		prebreak={\hbox{$\rhookswarrow$}},
+		breakindent=3em,
+		breakautoindent=true,
+		xleftmargin=1em,
+		xrightmargin=0pt,
+		lineskip=0pt,
+		numbersep=1em,
+		classoffset=1,
+		alsoletter={\_},
+		morekeywords={setKVdefault,setKV,useKVdefault,useKV,ifboolKV,defKV,testboolKV,showKV},
+		keywordstyle=\bfseries\color{red!85!black},
+		classoffset=0,
+		]{simplekv.tex}
+\end{document}

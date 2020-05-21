@@ -1,0 +1,20 @@
+name soton
+category Package
+revision 16215
+shortdesc University of Southampton-compliant slides
+longdesc The bundle contains two packages: soton-palette which defines
+longdesc colour-ways, and soton-beamer, which uses the colours to
+longdesc produce compliant presentations.
+containersize 1384
+containerchecksum 59e9e0bd127e44e1a80ff7dccf1fecb18b34a54c379a46632b13f82d80648229daa54c4655575c52ee718b02277c4e2b264451f8d3fe58abd60e593d0826c97b
+doccontainersize 480
+doccontainerchecksum de9b03e8626535d2633af3884e373d8b25fe6d203af75382cf329aeb7b79c745f94c6d08d49a69b42172f4bad3cab2048fadcc4ad826a1c1126425a40289ecdc
+docfiles size=1
+ texmf-dist/doc/latex/soton/README details="Readme"
+runfiles size=2
+ texmf-dist/tex/latex/soton/soton-beamer.sty
+ texmf-dist/tex/latex/soton/soton-palette.sty
+catalogue-ctan /macros/latex/contrib/soton
+catalogue-license lppl
+catalogue-topics presentation
+catalogue-version 0.1

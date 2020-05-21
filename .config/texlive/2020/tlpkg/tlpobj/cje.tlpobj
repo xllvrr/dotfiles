@@ -1,0 +1,30 @@
+name cje
+category Package
+revision 46721
+shortdesc LaTeX document class for CJE articles
+longdesc The cje article class allows authors to format their papers to
+longdesc Canadian Journal of Economics style with minimum effort. The
+longdesc class includes options for two other formats: "review" (double
+longdesc spaced, for use at the submission stage) and "proof" (used by
+longdesc the typesetters to prepare the proof authors will receive for
+longdesc approval).
+containersize 26216
+containerchecksum cab80d266c2b5f9d4ba9d37cc5490e831e3f773d86c92fcbfab9474864aebbb6123e1ed44877127e84b6e1fe8037f2425259789b9b9597de49e1b24b123992a4
+doccontainersize 634044
+doccontainerchecksum 47a2d96b6b530be732385617af832ad48c3d6c7a34a7e9e0523c38a03b5116b94588c995afd153c25be6ceea9bc199685fab9eb83636b5fe27525b19a4bc7cec
+docfiles size=178
+ texmf-dist/doc/latex/cje/README.txt details="Readme"
+ texmf-dist/doc/latex/cje/ageingbib.bib
+ texmf-dist/doc/latex/cje/canadian-flag.pdf
+ texmf-dist/doc/latex/cje/cjeguide.pdf details="Package documentation"
+ texmf-dist/doc/latex/cje/cjeguide.tex
+ texmf-dist/doc/latex/cje/cjetemplate.tex
+runfiles size=31
+ texmf-dist/bibtex/bst/cje/cjebibstyle.bst
+ texmf-dist/tex/latex/cje/cje.cls
+ texmf-dist/tex/latex/cje/cjenatbib.sty
+ texmf-dist/tex/latex/cje/cjeupmath.sty
+catalogue-ctan /macros/latex/contrib/cje
+catalogue-license lppl1.3c
+catalogue-topics journalpub
+catalogue-version 1.06

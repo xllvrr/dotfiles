@@ -1,0 +1,75 @@
+	      Typesetting Articles For Res Philosophica
+
+This package provides a class for typesetting articles for the journal
+Res Philosophica, http://www.resphilosophica.org.
+
+This work was commissioned by the Saint Louis University.
+
+Changes
+
+  version 1.35   Changed margins
+
+  version 1.34   Deleted thin space before : in authors' addresses and
+  	  	 e-mails
+
+  version 1.33   Bibliography change: avoid URLs that duplicate dois
+
+  version 1.32   Changed spelling of `Acknowledgments' (Joe Salerno)
+
+  version 1.31   Changed formatting of doi according to the new rules
+
+  version 1.30   Allowed URLs to be split on hyphens
+
+  version 1.29   Added \manuscriptid and used it to form doi
+
+  version 1.28   Commands enquote and ensquote work correctly in the 
+                 case of embedded quotations
+
+  version 1.27   New bibliography command for single quotes: \ensquote
+
+  version 1.26   If commercial Sabon font is used, the article title may 
+                 include slanted small caps (e.g. for quotations)
+
+  version 1.25   Changed page width and margins
+
+  version 1.24   Added authornote
+
+  version 1.23   Made inner margins slightly smaller than outer margins
+                 in the print mode
+
+  version 1.22   Empty recto page is no longer added unless
+                 the default mode is selected
+
+  version 1.21   Internal changes for paper processing
+
+  version 1.20   A footnote bug corrected
+
+  version 1.19   More editorial commands
+                 Bibliography style changes
+
+  version 1.18:  Formatting changes
+                 Bug fixes
+
+  version 1.17:  Formatting changes
+                 Added layering of editorial comments
+                 New bibliography entry 'inloosecollection'
+
+  version 1.16:  Formatting changes
+                 New commands for typesetter change marks
+                 Deleted mtshadow option
+                 New environment for bibliography notes
+
+  version 1.15:  New command: \suppresscomma
+
+  version 1.14:  Bug fix
+
+  version 1.13:  New command: \titlenote
+                 New options: preprint and forthcoming
+
+  version 1.12:  Bibliography changes
+
+  version 1.11:  Automatic doi generation
+                 Bibliography formatting changes
+
+  version 1.10:  Bibliography formatting changes
+

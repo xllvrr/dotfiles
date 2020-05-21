@@ -1,0 +1,28 @@
+name fig4latex
+category Package
+revision 26313
+shortdesc Management of figures for large LaTeX documents
+longdesc Fig4LaTeX simplifies management of the figures in a large LaTeX
+longdesc document. Fig4LaTeX is appropriate for projects that include
+longdesc figures with graphics created by XFig -- in particular,
+longdesc graphics which use the combined PS/LaTeX (or PDF/LaTeX) export
+longdesc method. An example document (with its output) is provided.
+depend fig4latex.ARCH
+containersize 2528
+containerchecksum 3f01676ea85d64e09376da4481794e1537b9e19c0ff0bac77c022b10b5d49c39d789de6e4f0356b4ea4b23326f9ef320f4b08035bc04a827951cbf44ed7c6228
+doccontainersize 60872
+doccontainerchecksum c05d3c08b916785b765694e68b8f7cd96c3c359325e8f84166102beb4caeada7490ed24ad0b4f52a66cb822000f8b4d75d1013b93055898e88e82d7f23d5095a
+docfiles size=28
+ texmf-dist/doc/support/fig4latex/CHANGES
+ texmf-dist/doc/support/fig4latex/COPYING
+ texmf-dist/doc/support/fig4latex/README details="Readme"
+ texmf-dist/doc/support/fig4latex/example.pdf
+ texmf-dist/doc/support/fig4latex/example.tex
+ texmf-dist/doc/support/fig4latex/figs/div_alg_flowchart.fig
+ texmf-dist/doc/support/fig4latex/figs/if-then_flowchart.fig
+runfiles size=2
+ texmf-dist/scripts/fig4latex/fig4latex
+catalogue-ctan /graphics/fig4latex
+catalogue-license gpl3
+catalogue-topics graphics-incl
+catalogue-version 0.2

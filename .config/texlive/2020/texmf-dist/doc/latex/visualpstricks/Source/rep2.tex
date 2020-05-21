@@ -1,0 +1,49 @@
+
+%\subsection{$\backslash$multirput}
+Utilisation du module \textbf{multido} \label{multido}
+
+\psset{fillcolor=yellow,fillstyle=solid,linecolor=blue,unit=1cm}
+
+
+%Syntaxe : 
+
+%\begin{tabular}{ll}
+% \BSS{multido} 				&   \\ 
+%\AC{variables} 						& \% variable = valeur initial + incrément \\
+%\AC{nombre de répétitions} 			& \% nombre entier\\
+%\AC{élément à répéter} 				& \% on peut utiliser les variables \\
+%\end{tabular}
+%
+%
+%
+%
+%\bigskip
+%
+%Exemples : \BS{}multido\AC{\BS{}i=2+-3}\AC{10}\AC{\BS{}i, } donne : \multido{\i=2+-3}{10}{\i, }
+
+%\multido{\i=2+1, \n=5.0-0.5}{10}{\psframe[fillsyle=none](\i,\n)}
+\begin{tabular}{|c|}\hline
+\begin{pspicture}(6,3.5)
+%   \put(0,0){\vector(1,0){8}}
+   \multido{\i=1+1, \n=3.+-0.5}{5}{\psframe[fillstyle=none](\i,\n) }
+\end{pspicture}   \\  \hline 
+
+\BSS{multido} \Rnode*{A}{\AC{\textbf{\BS{i}}=1+1,\BS{n}=3.+-0.5}} \Rnode*[fillcolor=green]{B}{\AC{5}} \AC{\BS{psframe} \Rnode*[fillcolor=cyan]{C}{(\BS{i},\BS{n})} }
+ \\ \hline 
+\\
+\rnode{AA}{\TFRGB{variable = valeur initiale+incrément}{variable = initial value + increment}} \hspace{1cm} \rnode{BB}{5 \TFRGB{fois}{times}} \hspace{1cm} \rnode{CC}{utilisation}
+ \\ \hline
+\end{tabular} 
+ \ncline[linecolor=blue]{A}{AA}  \ncline[linecolor=blue]{B}{BB}  \ncline[linecolor=blue]{C}{CC}
+ 
+\bigskip
+
+\begin{tabular}{|l|l|} \hline
+ \multicolumn{2}{|c|}{ \TFRGB{Types de variables}{variables types}  } \\  \hline  
+\TFRGB{initiale}{initial} & dimension \\ \hline
+d ou D				&  \TFRGB{longueur}{lenght}  \\  \hline
+i ou I				&  \TFRGB{nombre entier}{integer}\\ \hline
+n ou N 				& \TFRGB{nombre réel (même nombre de décimales)}{real} \\ \hline
+r ou R 				&  \TFRGB{Réel (4 chiffres maxima de part et d'autre)}{real}\\ \hline
+\end{tabular}
+

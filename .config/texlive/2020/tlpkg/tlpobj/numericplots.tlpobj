@@ -1,0 +1,77 @@
+name numericplots
+category Package
+revision 31729
+shortdesc Plot numeric data (including Matlab export) using PSTricks
+longdesc Plotting numeric data is a task which has often to be done for
+longdesc scientific papers. LaTeX itself provides no facilities for
+longdesc drawing more than the simplest plots from supplied data. The
+longdesc package will process user input, and uses PSTricks to plot the
+longdesc results. The package provides Matlab functions to transform
+longdesc Matlab results to plottable data.
+containersize 8808
+containerchecksum 6b51a7c68357dced9627d3c618a167d689b573ea44c2f36de5417735f39f5b3d1034558cf188bad2da5eb25f81a2bdee3df6059b8c14879770c3b300422cf016
+doccontainersize 442268
+doccontainerchecksum 1c9f9856ec2f8cfef61829256f1076099e6bcb79cb45e8155116d6c24feaa52f481c739593c6cc51df803fa76e8ec38b8d276e796660327a2bd1d86957896332
+docfiles size=373
+ texmf-dist/doc/latex/numericplots/License.txt
+ texmf-dist/doc/latex/numericplots/NumericPlots.pdf details="Package documentation"
+ texmf-dist/doc/latex/numericplots/README details="Readme"
+ texmf-dist/doc/latex/numericplots/README.TEXLIVE
+ texmf-dist/doc/latex/numericplots/src/BasicFunctionality.tex
+ texmf-dist/doc/latex/numericplots/src/FurtherExamples.tex
+ texmf-dist/doc/latex/numericplots/src/MatlabSupport.tex
+ texmf-dist/doc/latex/numericplots/src/MultiplePlots.tex
+ texmf-dist/doc/latex/numericplots/src/NumericPlotsDoc.tex
+ texmf-dist/doc/latex/numericplots/src/Roll406_Ref2288.tex
+ texmf-dist/doc/latex/numericplots/src/TechnicalDetails.tex
+ texmf-dist/doc/latex/numericplots/src/TestPlots.tex
+ texmf-dist/doc/latex/numericplots/src/examples/BodeDiagramm.tex
+ texmf-dist/doc/latex/numericplots/src/examples/DataTestRealData.tex
+ texmf-dist/doc/latex/numericplots/src/examples/DefineData.tex
+ texmf-dist/doc/latex/numericplots/src/examples/LabelsNTickLabels.tex
+ texmf-dist/doc/latex/numericplots/src/examples/NyquistPlot.tex
+ texmf-dist/doc/latex/numericplots/src/examples/Sprungantwort_PT1Glied.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_Boxes.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_EasyPlot.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_Grid.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_Labels.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_Legend.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_LegendI.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_LegendII.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_LegendIII.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_LineStyles.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_Lines.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_LogarithmicI.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_LogarithmicII.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_LogarithmicIII.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_MultipleData.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_Objects.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_PlaceObjects.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_PlaceObjectsII.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_PlotWHoles.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_UseRput.tex
+ texmf-dist/doc/latex/numericplots/src/examples/basic_UserLinestyles.tex
+ texmf-dist/doc/latex/numericplots/src/examples/data_BodeDiagrammLinearerTerm.tex
+ texmf-dist/doc/latex/numericplots/src/examples/data_Nyquist.tex
+ texmf-dist/doc/latex/numericplots/src/examples/data_SprungantwortPT1Glied.tex
+ texmf-dist/doc/latex/numericplots/src/examples/furtherEx_TickLabels.tex
+ texmf-dist/doc/latex/numericplots/src/examples/multiplots_exampleI.tex
+ texmf-dist/doc/latex/numericplots/src/examples/multiplots_exampleII.tex
+ texmf-dist/doc/latex/numericplots/src/examples/multiplots_exampleIII.tex
+ texmf-dist/doc/latex/numericplots/src/fig_NoiseData_ClosedLine.eps
+ texmf-dist/doc/latex/numericplots/src/fig_NoiseData_OpenLine.eps
+ texmf-dist/doc/latex/numericplots/src/history.tex
+ texmf-dist/doc/latex/numericplots/src/keys_NumericDataPlot.tex
+ texmf-dist/doc/latex/numericplots/src/options.tex
+runfiles size=16
+ texmf-dist/tex/latex/numericplots/NumericPlots.sty
+ texmf-dist/tex/latex/numericplots/NumericPlots_TickLabels.tex
+ texmf-dist/tex/latex/numericplots/NumericPlots_labels.tex
+ texmf-dist/tex/latex/numericplots/NumericPlots_legend.tex
+ texmf-dist/tex/latex/numericplots/NumericPlots_macros.tex
+ texmf-dist/tex/latex/numericplots/NumericPlots_styles.tex
+catalogue-also pst-plot pgfplots
+catalogue-ctan /graphics/pstricks/contrib/numericplots
+catalogue-license gpl3
+catalogue-topics graphics-plot
+catalogue-version 2.0.2

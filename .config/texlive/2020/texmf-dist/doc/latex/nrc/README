@@ -1,0 +1,44 @@
+THIS IS A SLIGHTLY MODIFIED VERSION of the original README file
+(last updated Oct 2002) for the NRC's macros. -- Ch. Thiele
+
+-----------------
+
+
+	     Macros for NRC press journals
+
+This directory contains macros, and some documentation, for
+typesetting papers for submission to journals published by the
+National Research Council Research Press.
+
+Files in this directory are:
+
+  nrc.dtx             source of the macros
+  nrc.ins             TeX installation script for the NRC classes
+  userguide.tex       LaTeX documentation file
+  userguide.pdf       PDF documentation
+  README              this file
+  00-2012-authors.txt upgrading instructions for authors
+
+To create the NRC class files for use with (current) LaTeX:
+
+  - download the files nrc.dtx and nrc.ins
+  - process nrc.ins with LaTeX
+  - (optionally) move the resulting files nrc1.cls, nrc2.cls (and the
+    corresponding .sty files) to a directory on your LaTeX input path
+    (recommended TDS location, for modern freeware installations of
+    LaTeX, is <local texmf tree>/tex/latex/nrc/)
+
+User-level documentation is available (in two forms) as userguide.*
+in this directory.  If you wish to process userguide.tex, please
+delete any old copy of nrcdoc.sty that is to be found on your system
+(the file will generate a new copy of nrcdoc.sty in the course of
+being processed).
+
+More TeXnical documentation may be had by processing nrc.dtx with
+LaTeX, in the usual way.
+
+Christina Thiele
+For CSP, 2 November 2012
+
+
+

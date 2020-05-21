@@ -1,0 +1,32 @@
+name curves
+category Package
+revision 45255
+shortdesc Curves for LaTeX picture environment
+longdesc This package draws curves in the standard LaTeX picture
+longdesc environment using parabolas between data points with continuous
+longdesc slope at joins; for circles and arcs, it uses up to 16
+longdesc parabolas. The package can also draw symbols or dash patterns
+longdesc along curves. The package provides facilities equivalent to
+longdesc technical pens with compasses and French curves. Curves consist
+longdesc of short secants drawn by overlapping disks or line-drawing
+longdesc \special commands selected by package options.
+containersize 5256
+containerchecksum b2ac96620bdcae2263e0ff37ef0975fc705efd2ec30fa53a5cc50d54378cb29c6ef44543cc321e6cb37dfca0ea9a6cdf85777825703b866bcbad9729235c9722
+doccontainersize 320428
+doccontainerchecksum afd68373952dbf2a97944bcd7b36dcb62d5b65727c660af56dd8da97137ef4845037988e211996289fb54efa435833fa4a503ae4bba70ab38cd6e55f1966db1e
+docfiles size=81
+ texmf-dist/doc/latex/curves/README details="Readme"
+ texmf-dist/doc/latex/curves/curves.pdf details="Package documentation"
+ texmf-dist/doc/latex/curves/latex2pdf
+srccontainersize 22308
+srccontainerchecksum cdef0242776f9976f72d953ac743a4771ac5d5aaaabf6988ef37d695c78e206f43d546bf21621c5a9f91e191c95c02ecbe9fc9d7e3f1eb23372a755856d61d2b
+srcfiles size=20
+ texmf-dist/source/latex/curves/curves.dtx
+ texmf-dist/source/latex/curves/curves.ins
+runfiles size=5
+ texmf-dist/tex/latex/curves/curves.sty
+ texmf-dist/tex/latex/curves/curvesls.sty
+catalogue-ctan /macros/latex/contrib/curves
+catalogue-license lppl1.3
+catalogue-topics graphics-in-tex graphics-curve
+catalogue-version 1.55

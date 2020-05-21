@@ -1,0 +1,59 @@
+The ekaia package v1.06
+====================================
+
+Copyright (C) 2012-2019, Edorta Ibarra and the Ekaia Journal (UPV/EHU)
+----------------------------------------------------------------------
+
+Description
+-----------
+
+The package provides the template required for submiting a manuscript to the
+UPV/EHU science and technology journal Ekaia.
+
+
+Installation
+------------
+
+To perform the installation, run ekaia.ins (in the same path of ekaia.dtx) through  
+LaTeX. This action produces the following files: ekaia.sty and ekaia_EUS.tex.
+
+To finish the installation you have to move the ekaia.sty file into a directory 
+searched by TeX.       
+     
+To produce the English documentation run the file ekaia.dtx through LaTeX.
+To produce the Basque documentation run the file ekaia_EUS.tex through LaTeX.
+
+
+
+Usage
+-----
+
+\usepackage[<options>]{ekaia}
+
+The following package options are provided in the current ekaia.sty version:
+
+review: This option must be selected when generating the manuscript for
+peer-review.
+
+final: This option must be selected when generating the final manuscript.
+
+For more information please refer to the package documentation.
+
+License
+-------
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3c
+of this license or (at your option) any later version.
+The latest version of this license is in
+http://www.latex-project.org/lppl.txt
+and version 1.3c or later is part of all distributions of LaTeX
+version 2008-05-04 or later.
+
+This work has the LPPL maintenance status `maintained'.
+ 
+The Current Maintainer of this work is Edorta Ibarra.
+
+This work consists of the files ekaia.dtx and ekaia.ins
+and the derived file ekaia.sty.
+

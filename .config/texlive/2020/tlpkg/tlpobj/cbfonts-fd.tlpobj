@@ -1,0 +1,36 @@
+name cbfonts-fd
+category Package
+revision 54080
+shortdesc LaTeX font description files for the CB Greek fonts
+longdesc The package provides font description files for all the many
+longdesc shapes available from the cbfonts collection. The files provide
+longdesc the means whereby the NFSS knows which fonts a LaTeX user is
+longdesc requesting. The package depends on cbgreek-complete.
+containersize 3312
+containerchecksum af6f11a601f2ea3fd38d639beb3f836becb71aca7d282f5d0c7e020e9f73269c560ae3ac08d93706731872bd1a271c75724e1049c2dbf65e9ac0ea8f6c9b4724
+doccontainersize 444288
+doccontainerchecksum 8fb94b444966e6e3bd63b5b3ea62f661c038767222b08df2bd288965902cf152e1af4ad4b9d69859d11b1b558f4015b2f304afb0a43c356ff663498d830e1554
+docfiles size=111
+ texmf-dist/doc/fonts/cbfonts-fd/README details="Readme"
+ texmf-dist/doc/fonts/cbfonts-fd/cbfonts-fd.pdf details="Package documentation"
+ texmf-dist/doc/fonts/cbfonts-fd/manifest.txt
+srccontainersize 8568
+srccontainerchecksum d21d517c40e8c5058c8e610ee0a8ebaf19d97a6b284b9d16ceafb87ec401b4110a483f6ed00ac626fc5ed2e1fd97f9cce99df5cc12e73ee7b92b04c84972f280
+srcfiles size=10
+ texmf-dist/source/fonts/cbfonts-fd/cbfonts-fd.fdd
+runfiles size=13
+ texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
+ texmf-dist/tex/latex/cbfonts-fd/lgrcmro.fd
+ texmf-dist/tex/latex/cbfonts-fd/lgrcmss.fd
+ texmf-dist/tex/latex/cbfonts-fd/lgrcmtt.fd
+ texmf-dist/tex/latex/cbfonts-fd/lgrlcmss.fd
+ texmf-dist/tex/latex/cbfonts-fd/lgrlcmtt.fd
+ texmf-dist/tex/latex/cbfonts-fd/lgrlmr.fd
+ texmf-dist/tex/latex/cbfonts-fd/lgrlmro.fd
+ texmf-dist/tex/latex/cbfonts-fd/lgrlmss.fd
+ texmf-dist/tex/latex/cbfonts-fd/lgrlmtt.fd
+catalogue-also cbgreek-complete
+catalogue-ctan /fonts/greek/cbfonts-fd
+catalogue-license lppl1.3
+catalogue-topics font-supp font-greek
+catalogue-version 1.2

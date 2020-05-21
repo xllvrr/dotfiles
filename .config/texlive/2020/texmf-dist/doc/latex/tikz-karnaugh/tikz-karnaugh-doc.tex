@@ -1,0 +1,771 @@
+%% This is file `tikz-karnaugh-doc.tex'
+%% Version: 1.2
+%% Version date: 2018-03-19
+%% 
+%% Copyright (C) 2017 by Luis Paulo Laus, laus@utfpr.edu.br
+%%
+%% This package can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License distributed from CTAN
+%% archives in directory macros/latex/base/lppl.txt; either
+%% version 1 of the License, or (at your option) any later version,
+%% with `The Package' referring to the software `tikzlibrarykarnaugh.code.tex' and its
+%% accompanying documentation and `The Copyright Holder' referring to the
+%% person Luis Paulo Laus.
+%% 
+%% This software is based on Andreas W. Wieland's kvmacros.tex to whom 
+%% the author wished to express his gratitude.
+%% 
+%% IMPORTANT NOTICE: 
+%% 
+%% For error reports, comments or suggestions in case of UNCHANGED 
+%% versions send mail to:
+%% laus@utfpr.edu.br
+%% 
+%%
+\pdfminorversion=5 
+\pdfobjcompresslevel=2
+\documentclass[a4paper]{ltxdoc}
+\usepackage[hyphens]{url}
+\usepackage[version=latest]{pgf}
+\usepackage{calc,listings,tikz}
+
+% if you need an index.
+\usepackage{makeidx}
+
+% for cross-references:
+\usepackage[pdfborder=0 0 0]{hyperref}
+    \hypersetup{%
+        colorlinks=true,    % use true to enable colors below:
+        linkcolor=blue,%red,
+        filecolor=blue,%magenta,
+        pagecolor=blue,%red,
+        urlcolor=blue,%cyan,
+        citecolor=blue,
+        pdfborder=0 0 0,    % PDF link-darstellung, falls colorlinks=false. 0 0 0: nix. 0 0 1: default.
+        pdfsubject={Karnaugh Maps with LaTeX and TikZ},
+        pdfauthor={Luis Paulo Laus},
+        pdftitle={Typesetting Karnaugh Maps with LaTeX and TikZ},
+        pdfkeywords={Karnaugh Maps,LaTeX,TikZ},
+    }
+
+% We need lots of libraries...
+\usetikzlibrary{backgrounds}
+
+\newif\ifgdccodebasic
+\newif\ifgdccodeogdf
+
+\usepackage[a4paper,left=2.25cm,right=2.25cm,top=2.5cm,bottom=2.5cm,nohead]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xxcolor}
+%% \usepackage{pifont}
+%\usepackage{tgpagella} % no ligatures (test)
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+
+% this is due to some stupidity in pgfmanual-en-macros.tex:
+% if this macro is not defined, the automatic cross-referencing is
+% disabled:
+\def\pgfautoxrefs{1}
+
+\input{pgfmanual-en-macros}    % Borrowed from TikZ/PGF
+%% ctan:/graphics/pgf/base/doc/macros/pgfmanual-en-macros.tex
+%% http://mirrors.ctan.org/tex-archive/graphics/pgf/base/doc/macros/pgfmanual-en-macros.tex
+
+
+% this here allows automatic cross referencing:
+\RequirePackage{pgfmanual}
+
+% this here configures automatic cross referencing.
+% It works for ANY package that uses pgfkeys and is independent on tikz/pgf. 
+\pgfkeys{
+    % whenever an unqualified key is found, the following key prefix
+    % list is tried to find a match.
+    /pdflinks/search key prefixes in={/tikz/,/pgf/},
+    %
+    % the link prefix written to the pdf file:
+    /pdflinks/internal link prefix=pgfp,
+    %
+    /pdflinks/codeexample links=true,
+    /pdflinks/warnings=false,   % for debugging 
+    /pdflinks/show labels=false,% for debugging
+}
+
+% belongs to \usepackage{makeindex}
+\makeindex
+
+\makeatletter
+\renewcommand*\l@section[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \addvspace{1.0em \@plus\p@}%
+    \setlength\@tempdima{2.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi}
+\renewcommand*\l@subsection{\@dottedtocline{2}{2.5em}{3.3em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{5.8em}{4.2em}}
+\def\@pnumwidth{2.2em}
+\makeatother
+
+
+% Global styles:
+\tikzset{
+  every plot/.style={prefix=plots/pgf-},
+  shape example/.style={
+    color=black!30,
+    draw,
+    fill=yellow!30,
+    line width=.5cm,
+    inner xsep=2.5cm,
+    inner ysep=0.5cm}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This file really starts here, all the above is for pgfmanual 
+% compatibility
+\input ../tex/tikzlibrarykarnaugh.code
+
+\sloppy
+\begin{document}
+\title{Typesetting Karnaugh Maps with \LaTeX\ and \tikzname}
+\author{Luis Paulo Laus\\e-mail: \texttt{laus@utfpr.edu.br}}
+\date{Version: 1.2, Version date: 2018-03-19}
+
+\maketitle
+
+
+\section{Abstract}
+
+Karnaugh maps are used to simplify logic equations leading to the most compact expression of two levels for a given truth table. The drawing of them used to be a boring, annoying and error-prone task. This set of macros intend to simplify the task. They can typeset Karnaugh maps with up to twelve variables\footnote{The actual limit may be different for you.}, which is more than you might likely need\footnote{A twelve variables map contains of 4096 cells in a $64\times64$ grid. They are simply too big to handle manually and you should consider to use a software.}. You only have to provide a list of variable identifiers plus the truth table of your logic function. The macros also allow to highlight the simplifications of your logic function directly within a Karnaugh map. This package is based on \verb|kvmacros.tex| from \verb|karnaugh| package referred herein as ``the original one''. The modifications carried out intended to use \tikzname\ instead of native \LaTeX\ commands allowing easier customisation, easier extension when you need to draw other elements along with the map and leading to higher graph quality.
+
+
+\section{Introduction}
+
+Karnaugh maps and Veitch charts are used to simplify logic equations. They are map representations of logic functions, and in that they are equivalent. Veitch charts are not supported by this package, but it should not be a big problem to port Andreas W. Wieland's \verb|veitch| macro, available in \verb|karnaugh| package, if you need it.
+Please note that this package, including its documentation, is based on Andreas W. Wieland's previous work and the author wishes to register his acknowledgment.
+
+
+\subsection{Comparison with Other Packages}
+
+If you ask yourself ``why another Karnaugh map typesetting package?'' the answer is easy: because I was not completely happy with the packages available I know and those are:
+\begin{enumerate}
+\item \verb|karnaugh|: it is a great package that uses native \LaTeX\ commands to draw the map. It supports Karnaugh maps and Veitch charts. It employs a recursive algorithm with no size limit\footnote{It works until you blow the memory out which will happen about ten to twelve variables.} which leads to an interesting kind of symmetry. Remember, Karnaugh maps are all about symmetry. It is not customisable, for instance, one cannot change the distance between bars\footnote{Those bars have been underappreciated along the history. Karnaugh (1953) himself called them ``simplified labels'' and used them only to replace the Gray coded numbers showing around the map. Their true strength is the ease way they point out which variable belong to a prime implicant and which does not. An approach much easier than interpreting the Gray coded numbers.} (the marks showing around the map with variable identifiers on them) and if the variable identifier is long it will overlap another bar. Also, I want to use \tikzname\ to draw colourful semi-transparent figures on to top of the map to highlight groups (prime implicants) and, although it is possible, it is rather difficult and the result is not very good because they always look a bit off. I have a long-time experience with this package and I have also written a java program to draw the maps because, though typesetting simple maps is easy, highlighting the prime implicants is not.
+\item \verb|karnaughmap|: it uses \tikzname\ so you got a lot of options for customisation. It is limited to eight variable which, to be honest, should be enough for anyone. The problem is that it only draws bars (those marking mentioned above) up to four variables. Also, the order in which the variable list is inputted is different from the order employed by \verb|karnaugh|.
+\item \verb|askmaps|: this package generates configurable American style Karnaugh maps for 2, 3, 4 and 5 variables. In America, instead of bars denoting the one value of variables, they use Gray coded binaries on the top and left side of the map. This behaviour can be mimic with \verb|tikz-karnaugh| (see Section~\ref{sec:american}), though, in my twenty years of experience teaching the subject, I have found out that bars are much more intuitive. The \verb|askmaps| contains four macros, one for each number of variables, and it can be used to highlight the prime implicants in the very same way that \verb|karnaugh| does.
+\item \verb|karnaugh-map|: uses \tikzname\ to draw up to four maps of four variables leading to a 3D six variables map. It contains commands for drawing implicants on top of the map. Like \verb|askmaps|, this package uses Gray code instead of bars.
+\end{enumerate}
+
+With \verb|tikz-karnaugh| you can typeset big (up to twelve variables or 4096 cells) good looking maps. Using a java software, you can do it automatically, including highlighting the solution.
+
+
+\subsection{Introductory example}
+
+Let us start with an introduction on how to use these macros. The first thing you have to do is to load \tikzname. For this type |\usepackage{tikz}| in the preamble of your document. Then, if the package is somewhere \TeX\ can find it, load the library with the command |\usetikzlibrary{karnaugh}|. If it is not, you can use something like |\input tikzlibrarykarnaugh.code|. You may need to provide the full or relative path to file |tikzlibrarykarnaugh.code.tex|.
+
+Suppose now you have a logic function~$f$ with the following truth table: 
+
+\begin{center}
+  \catcode`\|=12
+\begin{tabular}{lr}
+  \begin{tabular}[t]{r|cccc|c}
+Index & $a$ & $b$ & $c$ & $d$ & $f$\\
+\hline
+0 & 0 & 0 & 0 & 0 & 1\\
+1 & 0 & 0 & 0 & 1 & 1\\
+2 & 0 & 0 & 1 & 0 & 1\\
+3 & 0 & 0 & 1 & 1 & 0\\
+4 & 0 & 1 & 0 & 0 & 0\\
+5 & 0 & 1 & 0 & 1 & 1\\
+6 & 0 & 1 & 1 & 0 & 1\\
+7 & 0 & 1 & 1 & 1 & 0\\
+  \end{tabular}
+ & 
+  \begin{tabular}[t]{r|cccc|c}
+Index & $a$ & $b$ & $c$ & $d$ & $f$\\
+\hline
+8 & 1 & 0 & 0 & 0 & 0\\
+9 & 1 & 0 & 0 & 1 & 1\\
+10 & 1 & 0 & 1 & 0 & 1\\
+11 & 1 & 0 & 1 & 1 & 0\\
+12 & 1 & 1 & 0 & 0 & 0\\
+13 & 1 & 1 & 0 & 1 & 1\\
+14 & 1 & 1 & 1 & 0 & 1\\
+15 & 1 & 1 & 1 & 1 & 0\\
+  \end{tabular}
+\end{tabular}
+  \catcode`\|=13
+\end{center}
+
+This logic function can easily be put into a Karnaugh map by using the
+|\karnaughmap| macro in a \tikzname\ environment (|\begin{tikzpicture}|) or inline command (|\tikz|). The |\karnaughmap| macro has five mandatory parameters:
+\begin{enumerate}
+\item the number of variables in the  map;
+\item an identifier for the function;
+\item a list of variable identifiers for the variables;
+\item the list of values of $f$ for each line in the truth table; and
+\item a possibly empty set of \tikzname\ commands that will be drown before the function values so the values will appear on top of them.
+\end{enumerate}
+
+The variable identifiers in the third parameter are ordered from highest to lowest significance (the same way as in the truth table, with $a$ having a significance of $2^3=8$ and $d$ having a significance of $2^0=1$). The list of values of $f$ was read from lowest to highest index. The fifth parameter remains empty in this example, it will be discussed further on:
+
+\begin{codeexample}[width=5.2cm]
+\tikz[karnaugh,enable indices]
+  \karnaughmap{4}{f(a,b,c,d)}{abcd}{1110 0110 0110 0110}{};
+\end{codeexample}
+
+The indices in the upper left corner of each cell correspond to the indices in the truth table:\footnote{The indices can easily be calculated from the variable value in the truth table, e.g., row~11: the index equals $2^{3}\,a+2^{2}\,b+2^{1}\,c+2^{0}\,d=8\,a+4\,b+2\,c+1\,d=8+2+1=11$.} 
+
+The macros that read the variable list and the list of logic values (i.e., parameters \#3 and \#4) work recursively. 
+
+Each entry has to be one character long and spaces are allowed\footnote{White spaces are really usable to make the string more readable leading to fast verification.}, otherwise -- like a variable identifier enclosed in \$s -- you have to put it into curly brackets:
+
+\begin{codeexample}[width=5.5cm]
+\begin{tikzpicture}[karnaugh]
+   \karnaughmap{4}{$f(a,b,c,d)$}{{$a$}{$b$}{$c$}{$d$}}%
+     {0110 0110 0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+
+Observe that the labels are all in math mode in this example. Also, a \tikzname\ environment was used so there is no semicolon (;) in the end of |\karnaughmap| macro. Moreover, the indices were omitted by removing |enable indices| from the options list.
+
+
+\section{Karnaugh Map Library}
+\begin{pgflibrary}{karnaugh}
+This library provides \TeX\ macros to typeset Karnaugh maps.
+This library defines the following key:
+
+\begin{key}{/tikz/karnaugh}
+This key should be passed as an option to a picture or a scope that contains a map, i.e., that calls |\karnaughmap| macro. It will do some internal setups.
+\end{key}
+
+\begin{command}{{\karnaughmap}\marg{num var}\marg{function}\marg{var list}\marg{contents}\marg{decoration}}
+This macro creates a Kanaugh map of \meta{num var} variables for variable \meta{function} as a function of the variables listed in \meta{var list} for the values given in \meta{content} and applying the specified \meta{decoration}. Any but the first parameter can be empty.
+\end{command}
+
+\begin{command}{{\karnaughmapvert}\marg{num var}\marg{function}\marg{var list}\marg{contents}\marg{decoration}}
+Similar to |\karnaughmap|, but map will be transposed (like in matrix transposition).
+\end{command}
+
+\begin{stylekey}{/tikz/every karnaugh (initially \normalfont empty)}
+The style automatically applied to every Karnaugh map. Can be globaly set using |\tikzset|.
+\end{stylekey}
+
+\begin{command}{{\kmindexcounter}}
+A \TeX\ counter for cell index. See |kmcell/.style| for an example of application.
+\end{command}
+
+\begin{command}{{\kmunitlength}=\marg{length}}
+This length sets the size of an individual cell in the map. Must be set before |karnaugh| is used.
+\end{command}
+
+\begin{key}{/tikz/disable bars=\meta{boolean} (default true, initially false)}
+Boolean switch that disables the typesetting of all bars and the function identifier. Usable when you want an American style map. The initial value is |false| meaning that the bars will be typeset unless they are explicitly disabled.
+\begin{codeexample}[width=4.8cm]
+\begin{tikzpicture}[karnaugh,disable bars]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\noindent{}Note that |$f(a,b,c)$| and |{$a$}{$b$}{$c$}| are not used and could be empty.
+\end{key}
+
+\begin{stylekey}{/tikz/kmbar (initially {$\mid$-$\mid$})}
+The style used for the top and side bars related to the variables and denoting the rows and columns for which the respective variable is~1. The initial value is \verb!|-|! meaning they all will be represented as a line with T chapped tips.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,kmbar/.style={blue,<->}]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{/tikz/kmbar label (initially \normalfont empty)}
+The style used for the variable identifiers on the bars.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,
+       kmbar label/.style={blue,font=\Large}]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{key}{/tikz/kmbar sep=\meta{width} (initially 0.2\char`\\|kmunitlength|)}
+The distance between the bar closer to the map and the map itself. It depends mainly on the line tip used in |kmlines/.style|.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,kmbar sep=1\kmunitlength]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{key}
+
+\begin{key}{/tikz/kmbar top sep=\meta{width} (initially 1\char`\\|kmunitlength|)}
+The distance between two bars on top of map. It depends mainly on the font height used in |kmbar label/.style|.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,kmbar top sep=2\kmunitlength]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{key}
+
+\begin{key}{/tikz/kmbar left sep=\meta{width} (initially 1\char`\\|kmunitlength|)}
+The distance between two bars at the left side of map. It depends mainly on the variable identifier width and the font size used in |kmbar label/.style|.
+\begin{codeexample}[width=7.1cm]
+\begin{tikzpicture}[karnaugh,kmbar left sep=2\kmunitlength]
+   \karnaughmap{4}{$f(a,b,c,d)$}{{$a$}{$b$}{$c$}{$d$}}%
+     {0110 0110 0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{key}
+
+\begin{key}{/tikz/enable indices=\meta{boolean} (default true, initially false)}
+Boolean switch that enables the typesetting of all indices. The initial value is |false| meaning that the indices will not be typeset unless they are explicitly enabled.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,enable indices]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{key}
+
+\begin{stylekey}{/tikz/kmindex (initially {red,font=\string\tiny})}
+The style used for cell index if enable (see also |enable indices|).
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,enable indices,
+       kmindex/.style={blue,font=\scriptsize\itshape}]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{key}{/tikz/kmindexposx=\meta{dimension} (initially 0.2\char`\\|kmunitlength|)}
+The horizontal distance from the cell left side to the index centre.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,enable indices,
+       kmindexposx=.8\kmunitlength]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{key}
+
+\begin{key}{/tikz/kmindexposy=\meta{dimension} (initially 0.8\char`\\|kmunitlength|)}
+The vertical distance from the cell bottom to the index centre.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,enable indices,
+       kmindexposy=.2\kmunitlength]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{key}
+
+\begin{command}{{/tikz/kmindexpos}=\marg{x coordinate}\marg{y coordinate}}
+Sets |\kmindexposx| and |\kmindexposy| to |x| and |y| coordinates measured in |\kmunitlength| from the cell bottom left corner.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,enable indices,
+       kmindexpos={0.8}{0.2}]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{command}
+
+\begin{key}{/tikz/binary index=\meta{boolean} (default true, initially false)}
+Boolean switch that sets the index presentation to binary code. It is convenient to also set the index coordinates. In the following example, the significance order is $a$, $b$ and $c$, meaning, $a$ is the most significant bit and $c$ is the least significant bit. Therefore, the left most bit of the indices is one only in the two left columns below $a$ bar, the middle bit is one in the bottom row as $b$ bar extends and the right most bit is one in the central columns below $c$ bar. 
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,enable indices,
+       binary index,kmindexpos={0.5}{0.8}]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{key}
+
+\begin{stylekey}{/tikz/kmcell (initially \normalfont empty)}
+The style used for cell contents.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,kmcell/.style={blue,font=\Large}]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+
+Some interesting applications of |kmcell/.style| involves the cell index given by |\the\kmindexcounter|. You can name every cell for future use or place a label within the cell index just like |enable indices| does. In the following example, |kmcell/.style| is used to place a label within each cell with the decimal value of the cell index and |enable indices| is for the binary value. Moreover, the cell content is also a number that correspond to the cell index (manually placed) just to show the correlation.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,enable indices,
+       binary index,kmindexpos={0.5}{0.8},
+       kmcell/.style={label={[font=\scriptsize,blue,
+        label distance=-0.3\kmunitlength]
+        below left:\the\kmindexcounter}, green!60!black}]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0123 4567}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{/tikz/kmvar (initially \normalfont empty)}
+The style used for the variable name (function) of the map.
+\begin{codeexample}[width=6.9cm]
+\begin{tikzpicture}[karnaugh,kmvar/.style={blue,font=\Large}]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{/tikz/kmbox (initially \normalfont empty)}
+The style used for the box surrounding the map.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,kmbox/.style={blue,very thick}]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{/tikz/kmlines (initially \normalfont empty)}
+The style used for the lines separating adjacent rows and columns inside the map.
+\begin{codeexample}[width=6.4cm]
+\begin{tikzpicture}[karnaugh,kmlines/.style={blue,very thick}]
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+You can add options to the graphics by setting the |every karnaugh| style which is automaticaly applied.
+
+\end{pgflibrary}
+
+
+\section{Marking simplifications}
+
+The already mentioned fifth parameter can be used if you want to draw something inside the Karnaugh map. For example, this is useful if you want to show how you simplified a logic function highlighting the prime implicants:
+
+\begin{codeexample}[width=5.3cm]
+\begin{tikzpicture}[karnaugh,x=1\kmunitlength,y=1\kmunitlength,
+    thick,
+    grp/.style n args={3}{#1,fill=#1!30,
+      minimum width=#2\kmunitlength,
+      minimum height=#3\kmunitlength,
+      rounded corners=0.2\kmunitlength,
+      fill opacity=0.6,
+      rectangle,draw}]
+  \karnaughmap{4}{$f(a,b,c,d)$}{{$a$}{$b$}{$c$}{$d$}}%
+    {0110 0110 0110 0110}%
+    {
+      \node[grp={blue}{0.9}{1.9}](n000) at (0.5,2.0) {};
+      \node[grp={blue}{0.9}{1.9}](n001) at (3.5,2.0) {};
+      \draw[blue] (n000.north) to [bend left=25]  (n001.north)
+                  (n000.south) to [bend right=25] (n001.south);
+      \node[grp={red}{1.9}{0.9}](n100) at (2.0,3.5) {};
+      \node[grp={red}{1.9}{0.9}](n110) at (2.0,0.5) {};
+      \draw[red]  (n100.west) to [bend right=25] (n110.west)
+                  (n100.east) to [bend left=25] (n110.east);
+   }
+\end{tikzpicture}
+\end{codeexample}
+
+\noindent{}and the corresponding expression is:\[f(a,b,c,d) = {\color{blue}c\,\bar{d}} + {\color{red}\bar{c}\,d}\]where colours were used to relate the subexpression with the prime implicant highlighted on the map.
+ 
+Instead of \LaTeX's graphics macros\footnote{As in the original package.} you can use \tikzname\ for this purpose. In this example, a new style |grp| was defined in order to draw semi-transparent rectangles with a specified colour, width and height (both given in |\kmunitlength|). The Karnaugh map has its datum at the lower left point \emph{exactly}. The centre point coordinates of those rectangles are specified using the |at| command. The length of a single cell within the Karnaugh map is equal to |\kmunitlength|. Thus, the |x| and |y| units are set to |1\kmunitlength| so the coordinates can be written without the unit and the rectangles will fall in the precise position even if one changes the map size by changing the |\kmunitlength|. 
+
+
+\section{Adjusting the map size}
+
+Possibly the most important feature that you can change is the size of the diagrams and it is done by changing the size of the cells within the map, simply by typing:
+
+\begin{codeexample}[width=8.1cm]
+\kmunitlength=14mm
+\begin{tikzpicture}[karnaugh]
+   \karnaughmap{4}{$f$}{abcd}{0110 0110 0110 0110}{}
+\end{tikzpicture}
+\end{codeexample}
+\kmunitlength=8mm
+
+The setting of the |\kmunitlength| remains active until you change it again;\footnote{Or, of course, until you leave the group in which you redefined the value.} the default |\kmunitlength| is 8\,mm:
+
+
+\section{Complete example}
+
+In this and in the next sections, examples of how individual variables and cell contents can be format are presented. The syntax relies on square brackets (|[]|) to enclose \tikzname\ features that change the appearance and add more graphs to an individual variable or cell content. Let us see a more interesting and colourful example:
+
+\begin{codeexample}[code only]
+\kmunitlength=2.5em
+\begin{tikzpicture}[karnaugh,x=1\kmunitlength,y=1\kmunitlength,
+    thick,
+    grp/.style n args={3}{#1,fill=#1!30,
+      minimum width=#2\kmunitlength,
+      minimum height=#3\kmunitlength,
+      rounded corners=0.2\kmunitlength,
+      fill opacity=0.6,
+      rectangle,draw},
+    kmbar/.style={blue,<->,double=white,semithick},
+    kmbar left sep=1.2\kmunitlength,
+    kmbar sep=0.4\kmunitlength,
+    kmbar label/.style={red!70!black,font=\large},
+    kmindex/.style={orange,font=\tiny},
+    enable indices,
+    kmcell/.style={cyan!80!black},
+    kmbox/.style={brown,thick},
+    kmlines/.style={brown,thin},
+    kmvar/.style={green!70!black,font=\huge},
+    lbl/.style={left,align=right,text width=1.5\kmunitlength}]
+  \karnaughmap{6}{$z_{0}$}{%
+    {$x_{5}$}{$x_{2}$}{$x_{4}$}{$x_{1}$}%
+      {[yellow!70!black,name=Nv,|-|,double=red,very thick,
+       label={[font=\tiny,green!50!black]above:var.},
+       text=blue!60!red]$x_{3}$}%
+      {$x_{0}$}}%
+    {--1{}1{}1{}-11-1{}1{}1-{}1{}{}1-1-{}1-{}-1-1%
+     {[red,name=Nc,label={[name=Nl,orange!90!black,
+       label distance=1\kmunitlength]left:Special},
+       circle,inner sep=2pt,draw=green!70!blue]1}%
+     --{}1{}-11{}-{}1--1{}1{}{}111-{}1{}--1}%
+    {
+      \node[grp={blue}{1.9}{0.9}](n000) at (1.0,7.5) {};
+      \node[grp={blue}{1.9}{0.9}](n002) at (7.0,7.5) {};
+      \node[grp={blue}{1.9}{1.9}](n010) at (1.0,4.0) {};
+      \node[grp={blue}{1.9}{1.9}](n012) at (7.0,4.0) {};
+      \node[grp={blue}{1.9}{0.9}](n030) at (1.0,0.5) {};
+      \node[grp={blue}{1.9}{0.9}](n032) at (7.0,0.5) {};
+      \draw[blue] (n000.east)  to [bend left=25]  (n002.west)
+                  (n010.east)  to [bend left=25]  (n012.west)
+                  (n030.east)  to [bend right=25] (n032.west)
+                  (n000.south) to [bend right=25] (n010.north)
+                  (n002.south) to [bend left=25]  (n012.north)
+                  (n010.south) to [bend right=25] (n030.north)
+                  (n012.south) to [bend left=25]  (n032.north);
+      \node[grp={red}{0.8}{7.8}](n100) at (0.5,4.0) {};
+      \node[grp={red}{0.8}{7.8}](n101) at (3.5,4.0) {};
+      \draw[red] (n100.north) to [bend left=25]  (n101.north)
+                 (n100.south) to [bend right=25] (n101.south);
+      \node[grp={orange}{1.9}{1.9}](n200) at (5.0,6.0) {};
+      \node[grp={orange}{1.9}{1.9}](n220) at (5.0,2.0) {};
+      \draw[orange] (n200.west) to [bend right=25] (n220.west)
+                    (n200.east) to [bend left=25]  (n220.east);
+      \node[grp={teal}{1.8}{1.8}](n300) at (6.0,6.0) {};
+      \node[grp={teal}{1.8}{1.8}](n320) at (6.0,2.0) {};
+      \draw[teal] (n300.west) to [bend right=25] (n320.west)
+                  (n300.east) to [bend left=25]  (n320.east);
+ }
+  \draw[<-] (Nv) -- +(-1,1)  node[lbl]{variable on its bar};
+  \draw[<-] (Nc) -- +(-1,-1) node[lbl]{special cell};
+  \draw[<-] (Nl.120) -- +(-1.1,3.5)  node[lbl]{label for special cell};
+\end{tikzpicture}
+\end{codeexample}
+
+The corresponding Karnaugh map looks like this:
+
+\begin{center}
+\kmunitlength=2.5em
+\begin{tikzpicture}[karnaugh,x=1\kmunitlength,y=1\kmunitlength,
+    thick,
+    grp/.style n args={3}{#1,fill=#1!30,
+      minimum width=#2\kmunitlength,
+      minimum height=#3\kmunitlength,
+      rounded corners=0.2\kmunitlength,
+      fill opacity=0.6,
+      rectangle,draw},
+    kmbar/.style={blue,<->,double=white,semithick},
+    kmbar left sep=1.2\kmunitlength,
+    kmbar sep=0.4\kmunitlength,
+    kmbar label/.style={red!70!black,font=\large},
+    kmindex/.style={orange,font=\tiny},
+    enable indices,
+    kmcell/.style={cyan!80!black},
+    kmbox/.style={brown,thick},
+    kmlines/.style={brown,thin},
+    kmvar/.style={green!70!black,font=\huge},
+    lbl/.style={left,align=right,text width=1.5\kmunitlength}]
+  \karnaughmap{6}{$z_{0}$}{%
+    {$x_{5}$}{$x_{2}$}{$x_{4}$}{$x_{1}$}%
+      {[yellow!70!black,name=Nv,|-|,double=red,very thick,
+       label={[font=\tiny,green!50!black]above:var.},
+       text=blue!60!red]$x_{3}$}%
+      {$x_{0}$}}%
+    {--1{}1{}1{}-11-1{}1{}1-{}1{}{}1-1-{}1-{}-1-1%
+     {[red,name=Nc,label={[name=Nl,orange!90!black,
+       label distance=1\kmunitlength]left:Special},
+       circle,inner sep=2pt,draw=green!70!blue]1}%
+     --{}1{}-11{}-{}1--1{}1{}{}111-{}1{}--1}%
+    {
+      \node[grp={blue}{1.9}{0.9}](n000) at (1.0,7.5) {};
+      \node[grp={blue}{1.9}{0.9}](n002) at (7.0,7.5) {};
+      \node[grp={blue}{1.9}{1.9}](n010) at (1.0,4.0) {};
+      \node[grp={blue}{1.9}{1.9}](n012) at (7.0,4.0) {};
+      \node[grp={blue}{1.9}{0.9}](n030) at (1.0,0.5) {};
+      \node[grp={blue}{1.9}{0.9}](n032) at (7.0,0.5) {};
+      \draw[blue] (n000.east)  to [bend left=25]  (n002.west)
+                  (n010.east)  to [bend left=25]  (n012.west)
+                  (n030.east)  to [bend right=25] (n032.west)
+                  (n000.south) to [bend right=25] (n010.north)
+                  (n002.south) to [bend left=25]  (n012.north)
+                  (n010.south) to [bend right=25] (n030.north)
+                  (n012.south) to [bend left=25]  (n032.north);
+      \node[grp={red}{0.8}{7.8}](n100) at (0.5,4.0) {};
+      \node[grp={red}{0.8}{7.8}](n101) at (3.5,4.0) {};
+      \draw[red] (n100.north) to [bend left=25]  (n101.north)
+                 (n100.south) to [bend right=25] (n101.south);
+      \node[grp={orange}{1.9}{1.9}](n200) at (5.0,6.0) {};
+      \node[grp={orange}{1.9}{1.9}](n220) at (5.0,2.0) {};
+      \draw[orange] (n200.west) to [bend right=25] (n220.west)
+                    (n200.east) to [bend left=25]  (n220.east);
+      \node[grp={teal}{1.8}{1.8}](n300) at (6.0,6.0) {};
+      \node[grp={teal}{1.8}{1.8}](n320) at (6.0,2.0) {};
+      \draw[teal] (n300.west) to [bend right=25] (n320.west)
+                  (n300.east) to [bend left=25]  (n320.east);
+ }
+  \draw[<-] (Nv) -- +(-1,1)  node[lbl]{variable on its bar};
+  \draw[<-] (Nc) -- +(-1,-1) node[lbl]{special cell};
+  \draw[<-] (Nl.120) -- +(-1.1,3.5)  node[lbl]{label for special cell};
+\end{tikzpicture}
+\end{center}
+end the logic expression\footnote{This is not of any importance here, but I couldn't hold myself back. By the way, if you are curious, there are another two minimal solutions.} is \[z = {\color{blue}\bar{x}_{3}\,\bar{x}_{1}} + {\color{red}\bar{x}_{2}\,\bar{x}_{0}} + {\color{orange}x_{3}\,x_{2}\,x_{1}} + {\color{teal}x_{3}\,x_{2}\,x_{0}}.\]
+
+You may notice that the zeros were omitted (replaced by |{}| in the list). Also, the cell~34 is special beause \verb|{[red,name=Nc,| \verb|label={[name=Nl,orange!90!black,| \verb|label distance=|\verb|1\kmunitlength| \verb|]left:| \verb|Special},| \verb|circle,| \verb|inner sep=2pt,| \verb|draw=green!70!blue]1}|. You can put almost anything inside a cell using curly brackets and you can customize the cell style using square brackets. The format is: \verb|{[opt]string}| where |opt| is an optional set of styles (among other \tikzname\ parameters) which will be passed as the last option of \tikzname\ command |\node| and |string| will be written inside the cell by that command. To use this syntax, it is imperative that the very first character after the opening curly brackets (|{|) be the opening square brackets (|[|). Matching pairs of square brackets are allowed inside the optional sequence provided that they are protected inside a pair of curly brackets. In this case, the proper content of cell~34 is just the number~1 near the end, all the rest is the style applied to this single~1, therefore coded between square brackets. The style uses \tikzname\ syntax in order to change colour, font size, add a label, add figure, add decoration and name it for future reference. In this case, two nodes are named |Nc| and |Nl| for future reference. Near the \tikzname\ environment end, those names are used to place arrows pointing to the nodes with a description. The |\draw| command that draws those arrows cannot be placed inside the fifth argument of macro |\karnaughmap| because the fifth argument is typeset before the cells contents (the fourth argument), therefore no name would be created at the time the fifth argument is typeset.
+
+The variables identifiers (the third argument) can also be formatted individually using style, but note that the custom style will be applied to both the bar line and the node for the variable identifier. If a bar gets segmented, just like $x_3$ bar, the named node will be the top most if the bar is vertical or the right most if the bar is horizontal. The $x_3$ bar is different from the other bars because \verb?[yellow!70!black,name=Nv,|-|,double=red,? \verb|very thick,| \verb|label={[font=\tiny,green!50!black]above:var.},| \verb|text=blue!60!red]| changes its appearance. The node name |Nv| is also not available at the time the fifth argument is typeset. So any command that makes use of it will need to be placed after the end of macro |\karnaughmap|.
+
+The distance between bars on the left side was set to |1.2\kmunitlength| to prevent overlapping between $x_3$ (the label) and $x_4$ bar and $x_4$ and $x_5$ bar, but the distance between the bars on top was left unchanged. The distance between the map and the bars closest to it was set to |0.4\kmunitlength| to prevent overlapping between the bar tip (\tikz[baseline] \draw[blue,->,double=white,semithick] (0,0.6ex) -- (0.5cm,0.6ex);) and the map itself. 
+
+The indices can be computed by \[32\,x_{5}+8\,x_{4}+2\,x_{3}+16\,x_{2}+4\,x_{1}+1\,x_{0}\] which is a bit bizarre. The truth table values ought to be arranged according to this index order. This bizarreness is the price we pay to have the variables placed in positions which are more intuitive. See Section~\ref{sec:remarks} for a java software that can help on this matter.
+
+
+\section{American style\label{sec:american}}
+
+If you really want an American style map and you are not afraid of admitting it publicly, you can still use this package to typeset it. The first thing to do is to disable the bars and the function identifiers. Therefore, this option has to be included in the \tikzname\ environment: |disable bars|.
+
+Then you will need rows and columns labels in Gray code and a caption for the map and variables identifiers. In the last example, these can be achieved by appending the following code in the fifth argument of the |karnaughmap| macro:
+\begin{codeexample}[code only]
+      \draw[kmbox] (0,8) --
+          node[below left,magenta]{$x_5,x_4,x_3$} 
+          node[above right,violet]{$x_2,x_1,x_0$} +(-1,1) 
+          node[above left,green!70!black] {$z_0$};
+      \foreach \x/\l in %
+        {0/000,1/001,2/011,3/010,4/110,5/111,6/101,7/100} {
+          \node[violet] at (\x+0.5,8.2) {\l};
+          \node[magenta] at (-0.4,7.5-\x) {\l};
+      }
+\end{codeexample}
+
+The result should be:
+
+\begin{center}
+\kmunitlength=2.5em
+\begin{tikzpicture}[karnaugh,x=1\kmunitlength,y=1\kmunitlength,
+    thick,
+    grp/.style n args={3}{#1,fill=#1!30,
+      minimum width=#2\kmunitlength,
+      minimum height=#3\kmunitlength,
+      rounded corners=0.2\kmunitlength,
+      fill opacity=0.6,
+      rectangle,draw},
+    disable bars,enable indices,
+    kmindex/.style={orange,font=\tiny},
+    kmcell/.style={cyan!80!black},
+    kmbox/.style={brown,thick},
+    kmlines/.style={brown,thin}]
+  \karnaughmap{6}{$z_{0}$}{%
+    {$x_{5}$}{$x_{2}$}{$x_{4}$}{$x_{1}$}{$x_{3}$}{$x_{0}$}}%
+    {--1{}1{}1{}-11-1{}1{}1-{}1{}{}1-1-{}1-{}-1-11%
+     --{}1{}-11{}-{}1--1{}1{}{}111-{}1{}--1}%
+    {
+      \node[grp={blue}{1.9}{0.9}](n000) at (1.0,7.5) {};
+      \node[grp={blue}{1.9}{0.9}](n002) at (7.0,7.5) {};
+      \node[grp={blue}{1.9}{1.9}](n010) at (1.0,4.0) {};
+      \node[grp={blue}{1.9}{1.9}](n012) at (7.0,4.0) {};
+      \node[grp={blue}{1.9}{0.9}](n030) at (1.0,0.5) {};
+      \node[grp={blue}{1.9}{0.9}](n032) at (7.0,0.5) {};
+      \draw[blue] (n000.east)  to [bend left=25]  (n002.west)
+                  (n010.east)  to [bend left=25]  (n012.west)
+                  (n030.east)  to [bend right=25] (n032.west)
+                  (n000.south) to [bend right=25] (n010.north)
+                  (n002.south) to [bend left=25]  (n012.north)
+                  (n010.south) to [bend right=25] (n030.north)
+                  (n012.south) to [bend left=25]  (n032.north);
+      \node[grp={red}{0.8}{7.8}](n100) at (0.5,4.0) {};
+      \node[grp={red}{0.8}{7.8}](n101) at (3.5,4.0) {};
+      \draw[red] (n100.north) to [bend left=25]  (n101.north)
+                 (n100.south) to [bend right=25] (n101.south);
+      \node[grp={orange}{1.9}{1.9}](n200) at (5.0,6.0) {};
+      \node[grp={orange}{1.9}{1.9}](n220) at (5.0,2.0) {};
+      \draw[orange] (n200.west) to [bend right=25] (n220.west)
+                    (n200.east) to [bend left=25]  (n220.east);
+      \node[grp={teal}{1.8}{1.8}](n300) at (6.0,6.0) {};
+      \node[grp={teal}{1.8}{1.8}](n320) at (6.0,2.0) {};
+      \draw[teal] (n300.west) to [bend right=25] (n320.west)
+                  (n300.east) to [bend left=25]  (n320.east);
+      \draw[kmbox] (0,8) --
+          node[below left,magenta]{$x_5,x_4,x_3$} 
+          node[above right,violet]{$x_2,x_1,x_0$} +(-1,1) 
+          node[above left,green!70!black] {$z_0$};
+      \foreach \x/\l in %
+       {0/000,1/001,2/011,3/010,4/110,5/111,6/101,7/100} {
+        \node[violet] at (\x+0.5,8.2) {\l};
+        \node[magenta] at (-0.4,7.5-\x) {\l};
+     }
+ }
+\end{tikzpicture}
+\end{center}
+
+Note, however, that the index inside a cell does not match the Gray code value of the respective row and column\footnote{Do not use a Gray code table to compute the index.}. The indices can still be computed by \[32\,x_{5}+8\,x_{4}+2\,x_{3}+16\,x_{2}+4\,x_{1}+1\,x_{0}.\]
+
+
+\section{Vertical mode}
+
+For an odd number of variables, the Karnaugh map is rectangular and macro |karnaughmap| will typeset it twice as wide as it is high (not taking into account the bars). Like this single variable map:
+
+\begin{codeexample}[width=3cm]
+\tikz[karnaugh,enable indices]%
+  \karnaughmap{1}{$f(a)$}{{$a$}}{10}{};
+\end{codeexample}
+
+This layout is good for presentations because the projection area is usually wider than higher. Paper sheets, on the other hand, are usually higher than wider, so for a big map you may need something like\footnote{Or you can use landscape.}:
+
+\begin{codeexample}[width=3cm]
+\tikz[karnaugh,enable indices]%
+  \karnaughmapvert{1}{$f(a)$}{{$a$}}{10}{};
+\end{codeexample}
+
+This is called, for lack of a better name, vertical mode\footnote{Not to be confused with \TeX\ vertical mode.} and it is done by the |karnaughmapvert| macro. Note that |karnaughmapvert| macro arranges the variables in a different order. Compare the two square (four variables) maps below in the normal (on the left) and vertical mode (on the right) paying attention to the indices and variables identifier.
+
+\begin{center}
+\begin{tabular}{ccc}
+\tikz[karnaugh,enable indices]%
+  \karnaughmap{4}{$f(a,b,c,d)$}{{$a$}{$b$}{$c$}{$d$}}{0101 1011 1011 1101}{};
+ &  \hspace{5mm}  & 
+\tikz[karnaugh,enable indices]%
+  \karnaughmapvert{4}{$f(a,b,c,d)$}{{$a$}{$b$}{$c$}{$d$}}{0101 1011 1011 1101}{};\\
+Normal (horizontal) mode  &  &  Vertical mode
+\end{tabular}
+\end{center}
+
+The indices are calculated in the same way, but their position inside the map are different because the variables positions are different. It is like one map is mirrored and then rotated 90$^o$ (mirrored horizontally and rotated clockwise or mirrored vertically and rotated counterclockwise.) Exactly like matrix transposition.
+
+One interesting application of vertical mode is when you want to keep consistency in variable identifier position among maps with odd and even number of variables. For example, if you want the most significant variable $a$ appearing on top of the maps you can use normal (horizontal) mode for maps of odd number of variables and vertical mode for even amounts, like this:
+
+\begin{center}
+\begin{tabular}[t]{ccc}
+\tikz[karnaugh,enable indices]%
+  \karnaughmap{3}{$f(a,b,c)$}{{$a$}{$b$}{$c$}}{0101 1011}{};
+ &  \hspace{5mm}  & 
+\tikz[karnaugh,enable indices]%
+  \karnaughmapvert{4}{$g(a,b,c,d)$}{{$a$}{$b$}{$c$}{$d$}}{0101 1011 1011 1101}{};\\
+Normal (horizontal) mode  &  &  Vertical mode
+\end{tabular}
+\end{center}
+
+A more general approach is to use the java software described in Section~\ref{sec:remarks} to create maps with arbitrary variables positioning. Suppose that you desire the most significant variable $a$ to appear at the left side of a three variables map. You can do the opposite of what was done in the last example, but you will end up with a vertical map of three variables and maybe it is not what you want. Using the software described in Section~\ref{sec:remarks} allows $a$ to be placed at the left in a normal (horizontal) mode map. This will change the indices because it reorders the truth tablet such that $a$ will no longer be the most significant variable, but without changing the logic function.
+
+
+\section{If you use the original version of the macros\ldots}
+
+\ldots{} you certainly have noticed a number of changes. The most important one is that now you control the appearance of cell, index, etc. by changing the style and not through macros. Also, you need a \tikzname\ picture environment or inline command.
+
+
+\section{Final remarks\label{sec:remarks}}
+
+This is not even nearly all you need to know about the usage of these macros, but it is a good start. In case you find a bug, or if you have comments or suggestions, please send me an e-mail.
+
+The maximum size map I could produce was a Karnaugh map with 12~variables; with bigger maps I only exceeded \TeX's main memory. This is due to the macros' recursive algorithm. Quite likely you will exceed \TeX's capacity with even smaller maps if they occur in large documents.
+
+If you need help to typeset Karnaugh maps with or without the prime implicants highlighted, you can try |JQM - Java Quine McCluskey| for minimization of Boolean functions available on \url{https://sourceforge.net/projects/jqm-java-quine-mccluskey/}. It can generate the solution and create the corresponding map based on a given truth table.
+One very useful feature of this software is that you can reorder the variables on the map to suite your particular application instead of rely exclusively on the macro to scatter your variables around.
+
+\end{document}

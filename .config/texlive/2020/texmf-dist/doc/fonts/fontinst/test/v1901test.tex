@@ -1,0 +1,214 @@
+% Test of fontinst v1.901.
+% Started 1999/03/13.
+\input fontinst.sty
+
+% Part one---test of pooled file allocation.
+\catcode`\_=11
+\catcode`\@=11
+
+\def\show_out_filenames{%
+   \immediate\write16{\string\count17=\the\count17}%
+   \for(i){-1}{16}{1}%
+      \immediate\write16{Stream \strint{i}: 
+         \x_cs\meaning{out_filename-\strint{i}}%
+      }%
+   \endfor(i)%
+}
+
+% %1 Standard usage
+% \show_out_filenames
+% \open_pout\tF{\jobname.out}
+% \show_out_filenames
+% \pout_line\tF{Hello world!}
+% \close_pout\tF{Test output}
+% \show_out_filenames
+% % Seems to work fine.
+
+% %2 Allocating LOTS of files.
+% \newcount\j_count
+% \newcount\k_count
+% \j_count=0
+% \k_count=1
+% \for(o){1}{48}{1}
+%    \x_cs\open_pout{F-\strint{o}}{\jobname.\strint{o}}%
+%    \ifodd \int{o} \else
+%       \x_cs\pout_line{F-\the\k_count}{%
+%          open=\strint{o} close=\the\j_count\space write=\the\k_count
+%       }%
+%       \multiply \k_count \thr@@
+%       \advance \k_count \@ne
+%       \d_count=\k_count
+%       \divide \d_count \int{o}%
+%       \multiply \d_count \int{o}%
+%       \advance \k_count -\d_count
+%       \advance \k_count \@ne
+%       \advance \j_count \@ne
+%       \x_cs\close_pout{F-\the\j_count}{Test data}%
+%    \fi
+%    \d_count=\int{o}%
+%    \divide \d_count 8%
+%    \multiply \d_count 8%
+%    \advance \d_count -\int{o}%
+%    \ifnum 0=\d_count \show_out_filenames \fi
+% \endfor(o)
+% % Seems to work fine as well.
+
+
+%% Part two---test of reimplemented \transformfont stuff
+%% Part two B---test of \recordtransforms stuff
+
+\recordtransforms{mapfrags.tex}
+\transformfont{v1901test1}{
+   \xscalefont{2000}{\reencodefont{t1c}{\frommtx{v1901test}}}
+}
+\transformfont{v1901test2}{
+   \yscalefont{500}{\xscalefont{2000}{\frommtx{v1901test}}}
+}
+\transformfont{v1901test3}{
+   \reencodefont{t1}{\slantfont{100}{\frommtx{v1901test}}}
+}
+\endrecordtransforms
+
+
+\bye
+
+%% Part three---test of reglyphing
+
+\reglyphfonts
+  \resetcommand\iftokeep#1\then{\ifnum 0<#1}
+  % This means that an AFM command will survive the conversion only if 
+  % it refers to at least one renamed glyph and not refer to any killed 
+  % glyph.
+  
+%   \offmtxcommand\setrawglyph
+%   \offmtxcommand\setglyph
+%   % This reglyphing file is inteded for extracting information from the 
+%   % AFM file of a Caps, Small caps, and Oldstyle figures fonts--with the 
+%   % intention to build a corresponding virtual font with glyphs that are 
+%   % present in the Regular and Expert Regular variants instead. Hence 
+%   % there is no need for \setrawglyph or \setglyph commands (the 
+%   % dimensions of the characters are known from the Reg. and Exp.Reg. 
+%   % AFM's), but the \setkern commands are most interesting (since 8x 
+%   % fonts don't contain any upper case letters, and hence has no kerning 
+%   % pairs between these and the small caps either).
+  
+  
+  \renameglyph{dollaroldstyle}{dollar}
+  \renameglyph{ampersandsmall}{ampersand}
+  
+  \renameglyph{zerooldstyle}{zero}
+  \renameglyph{oneoldstyle}{one}
+  \renameglyph{twooldstyle}{two}
+  \renameglyph{threeoldstyle}{three}
+  \renameglyph{fouroldstyle}{four}
+  \renameglyph{fiveoldstyle}{five}
+  \renameglyph{sixoldstyle}{six}
+  \renameglyph{sevenoldstyle}{seven}
+  \renameglyph{eigtholdstyle}{eight}
+  \renameglyph{nineoldstyle}{nine}
+  
+  \renameglyph{Asmall}{a}
+  \renameglyph{Bsmall}{b}
+  \renameglyph{Csmall}{c}
+  \renameglyph{Dsmall}{d}
+  \renameglyph{Esmall}{e}
+  \renameglyph{Fsmall}{f}
+  \renameglyph{Gsmall}{g}
+  \renameglyph{Hsmall}{h}
+  \renameglyph{Ismall}{i}
+  \renameglyph{Jsmall}{j}
+  \renameglyph{Ksmall}{k}
+  \renameglyph{Lsmall}{l}
+  \renameglyph{Msmall}{m}
+  \renameglyph{Nsmall}{n}
+  \renameglyph{Osmall}{o}
+  \renameglyph{Psmall}{p}
+  \renameglyph{Qsmall}{q}
+  \renameglyph{Rsmall}{r}
+  \renameglyph{Ssmall}{s}
+  \renameglyph{Tsmall}{t}
+  \renameglyph{Usmall}{u}
+  \renameglyph{Vsmall}{v}
+  \renameglyph{Wsmall}{w}
+  \renameglyph{Xsmall}{x}
+  \renameglyph{Ysmall}{y}
+  \renameglyph{Zsmall}{z}
+  
+  \renameglyph{centoldstyle}{cent}
+  
+  % \renameglyph{FIsmall}{fi}
+  % \renameglyph{FLsmall}{fl}
+  % These two aren't really necessary, since the ligature `fi' looks 
+  % exactly as the letters `f'`i' next to each others.
+  \killglyph{fi}
+  \killglyph{fl}
+  
+  \renameglyph{Gravesmall}{grave}
+  \renameglyph{Acutesmall}{acute}
+  \renameglyph{Circumflexsmall}{circumflex}
+  \renameglyph{Tildesmall}{tilde}
+  \renameglyph{Macronsmall}{macron}
+  \renameglyph{Brevesmall}{breve}
+  \renameglyph{Dotaccentsmall}{dotaccent}
+  \renameglyph{Dieresissmall}{dieresis}
+  \renameglyph{Ringsmall}{ring}
+  \renameglyph{Cedillasmall}{cedilla}
+  \renameglyph{Ogoneksmall}{ogonek}
+  \renameglyph{Caronsmall}{caron}
+  
+  \renameglyph{AEsmall}{ae}
+  \renameglyph{dotlessIsmall}{dotlessi}
+  \renameglyph{Lslashsmall}{lslash}
+  \renameglyph{Oslashsmall}{oslash}
+  \renameglyph{OEsmall}{oe}
+  % \renameglyph{SSsmall}{germandbls}
+  % This isn't really needed in the AGaramond font family, since `SSsmall' 
+  % looks exactly like `Ssmall'`Ssmall'
+  \killglyph{germandbls}
+  
+  \renameglyph{Oacutesmall}{oacute}
+  \renameglyph{Odieresissmall}{odieresis}
+  \renameglyph{Ucircumflexsmall}{ucircumflex}
+  
+  \renameglyph{Uacutesmall}{uacute}
+  \renameglyph{Eacutesmall}{eacute}
+  \renameglyph{Iacutesmall}{iacute}
+  \renameglyph{Icircumflexsmall}{icircumflex}
+  
+  \renameglyph{Thornsmall}{thorn}
+  \renameglyph{Yacutesmall}{yacute}
+  
+  \renameglyph{Ocircumflexsmall}{ocircumflex}
+  \renameglyph{Otildesmall}{otilde}
+  \renameglyph{Ntildesmall}{ntilde}
+  \renameglyph{Ydieresissmall}{ydieresis}
+  \renameglyph{Ethsmall}{eth}
+  \renameglyph{Acircumflexsmall}{acircumflex}
+  \renameglyph{Aringsmall}{aring}
+  \renameglyph{Ccedillasmall}{ccedilla}
+  
+  \renameglyph{Ugravesmall}{ugrave}
+  \renameglyph{Zcaronsmall}{zcaron}
+  \renameglyph{Idieresissmall}{idieresis}
+  \renameglyph{Agravesmall}{agrave}
+  
+  \renameglyph{Ogravesmall}{ograve}
+  
+  \renameglyph{Udieresissmall}{udieresis}
+  \renameglyph{Edieresissmall}{edieresis}
+  \renameglyph{Aacutesmall}{aacute}
+  \renameglyph{Igravesmall}{igrave}
+  \renameglyph{Idieresissmall}{idieresis}
+  \renameglyph{Adieresissmall}{adieresis}
+  
+  \renameglyph{Scaronsmall}{scaron}
+  \renameglyph{Egravesmall}{egrave}
+  \renameglyph{Atildesmall}{atilde}
+  \renameglyph{Ecircumflexsmall}{ecircumflex}
+  
+  \reglyphfont{K-padrc}{gdsc}
+  \reglyphfont{K-padsc}{padsc8a}
+\endreglyphfonts
+
+
+\bye

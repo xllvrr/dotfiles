@@ -1,0 +1,26 @@
+name knittingpattern
+category Package
+revision 17205
+shortdesc Create knitting patterns
+longdesc The class provides a simple, effective method for knitters to
+longdesc produce high-quality, attractive patterns using LaTeX. It does
+longdesc this by providing commands to handle as much of the layout of
+longdesc the document as possible, leaving the author free to
+longdesc concentrate on the pattern.
+containersize 1540
+containerchecksum cee26b0e6fd54a43a12e0e48fd5b4bf381816dabb6019cbd7c13ab5e2561b9f191d9fce4c75a513c06530077bba8d383b26552e2e6f4e97600aa2216547a08b5
+doccontainersize 136792
+doccontainerchecksum d391a25a224713092128af5adf68e5331c530a67a763dc37f657d8bfcee0d904632e86ae2f3745ec2c4bb0cea5e886c85da15b064780dbe997104b9afbef9e4e
+docfiles size=42
+ texmf-dist/doc/latex/knittingpattern/README details="Readme"
+ texmf-dist/doc/latex/knittingpattern/introduction.pdf details="Package introduction"
+ texmf-dist/doc/latex/knittingpattern/introduction.tex
+ texmf-dist/doc/latex/knittingpattern/lion.png
+ texmf-dist/doc/latex/knittingpattern/template.pdf
+ texmf-dist/doc/latex/knittingpattern/template.tex
+runfiles size=1
+ texmf-dist/tex/latex/knittingpattern/knittingpattern.cls
+catalogue-also knitting
+catalogue-ctan /macros/latex/contrib/knittingpattern
+catalogue-license lppl1.3
+catalogue-topics diagram

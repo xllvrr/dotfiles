@@ -1,0 +1,27 @@
+name york-thesis
+category Package
+revision 23348
+shortdesc A thesis class file for York University, Toronto
+longdesc York Graduate Studies has again changed the requirements for
+longdesc theses and dissertations. The established york-thesis class
+longdesc file now implements the changes made in Spring 2005.
+containersize 4292
+containerchecksum 5b5152cc315dc05164ba3502d6e7aff355d853e43a3836bda0a15a4af7a90ef9fef02c852125c7e1e4842c05d51f2be6441b5131400eb46bb6704b281711e18d
+doccontainersize 111744
+doccontainerchecksum e1ee454ad9996b61f1cac9bbeec30210359ecd8939bd9e0696e7cca7106733b13b8831946c47652186d4b80060f96c479b642274f5c90f8757953b1c3861f0bc
+docfiles size=32
+ texmf-dist/doc/latex/york-thesis/README details="Package Readme"
+ texmf-dist/doc/latex/york-thesis/york-thesis-Template.tex
+ texmf-dist/doc/latex/york-thesis/york-thesis.el
+ texmf-dist/doc/latex/york-thesis/york-thesis.pdf details="Package documentation"
+srccontainersize 12580
+srccontainerchecksum 3096ee9334bab690b38ff943559a0a7b0c54f8b831e7d1320ae4581740c48dd05e09813e220ce1d28d4523fb456d7fd01920e89e7e0d66da00e9dce88bfadea7
+srcfiles size=12
+ texmf-dist/source/latex/york-thesis/york-thesis.dtx
+ texmf-dist/source/latex/york-thesis/york-thesis.ins
+runfiles size=4
+ texmf-dist/tex/latex/york-thesis/york-thesis.cls
+catalogue-ctan /macros/latex/contrib/york-thesis
+catalogue-license lppl1.3
+catalogue-topics dissertation class
+catalogue-version 3.6

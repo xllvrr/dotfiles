@@ -1,0 +1,24 @@
+\makeglossaries
+
+%acronym AP
+\newglossaryentry{apg}{
+	name={AP},
+	description={Application provider description here}
+}
+
+\newglossaryentry{ap}{
+	type=\acronymtype, 
+	name={AP}, 
+	description={Application Provider}, 
+	first={Application Provider (AP)\glsadd{apg}},
+	plural={APs},
+	firstplural={Application Providers (APs)\glsadd{apg}},
+	see=[Glossary:]{apg}
+}
+
+
+%glossary item: Cloud provider
+\newglossaryentry{cloud provider}{
+	name={cloud provider},
+	description={cloud provider description here}
+}

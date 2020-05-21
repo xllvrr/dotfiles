@@ -1,0 +1,1354 @@
+% This is The Visual Doc for the Lecturer package.
+% The EXHAUSTIVE documentation is lecturer-doc.pdf.
+%
+% You can recompile if you want, but you need LuaTeX 0.6
+% + piTeX (available on CTAN, put it on top of plain TeX)
+% + non-free fonts. So you'd better just copy and paste here
+% and there.
+% 
+% Author: Paul Isambert.
+% Date: July 2010.
+
+\input pitex
+\input lecturer
+
+
+%
+% That's piTeX, nothing to do with
+% Lecturer, except the syntax (how strange).
+%
+\setparameter font:
+  command = \mainfont
+  name    = ChaparralPro-
+  size    = 10pt
+  roman   = Regular
+  bold    = Bold
+  italic  = Italic
+
+\setparameter font:
+  command = \titlefont
+  name    = ChaparralPro-
+  size    = 1.5cm
+  roman   = Regular
+  bold    = Bold
+  italic  = Italic
+
+\setparameter font:
+  command = \codefont
+  name    = LTYPE
+  size    = 8pt
+  type    = ttf
+  roman   = {}
+  bold    = B
+  italic  = O
+
+\setparameter font:
+  command = \centaur
+  type    = ttf
+  name    = Centaur
+  roman   = {}
+
+\setcatcodes{_=12}
+%
+% End of piTeX stuff.
+%
+
+
+
+
+
+
+
+
+
+
+\setparameter job:
+  title          = "{\it Lecturer:} a Visual Doc"
+  pdftitle       = "Lecturer's Visual Doc (alternate title set with pdftitle in the job parameter)"
+  author         = "Paul Isambert"
+  background     = lightgrey
+  menutext       = "Value to the job's submenutext attribute"
+  fullscreen     = true
+  autofullscreen = true
+
+\newcolor{lightgrey}{grey}{.9}
+\newcolor{attribute}{rgb}{.9 0 0}
+\newcolor{value}{rgb}{0 .7 0}
+\newcolor{instruction}{grey}{.5}
+\def\Parameter#1{\bold{#1}}
+\def\Attribute#1{\usecolor{attribute}{#1}}
+\def\Value#1{\usecolor{value}{#1}}
+\def\Instruction#1{\usecolor{instruction}{\ital{#1}}}
+\def\com#1{\usecolor{attribute}{\string#1}\antigobblespace}
+
+\setarea{controlbar}
+  width      = 3cm
+  top        = 1cm
+  left       = .3cm
+  font       = \mainfont
+  foreground = value
+  background = lightgrey
+
+\newsymbol\menu[.3cm]{%
+  pen .05, color attribute,
+  circle ur 1, circle rd .9, circle dl .8, circle lu .7,
+  circle ur .6, circle rd .5, circle dl .4, circle lu .3,
+  circle ur .2, circle rd .1,
+  }
+
+
+\setparameter slide:
+  height     = 16cm
+  width      = 19cm
+  left       = 3.5cm
+  right      = 1cm
+  top        = 1cm
+  bottom     = 1.5cm
+  hpos       = ff
+  vpos       = top
+  font       = \mainfont
+  everyslide = \everyslide
+
+\def\everyslide{%
+  \position{controlbar}[0cm,11.5cm]{%
+    \firstslide{\codefont\com\firstslide}
+    \prevslide{\codefont\com\prevslide}
+    \prevstep{\codefont\com\prevstep}
+    \nextstep[flash]{\codefont\com\nexstep[flash]}
+    \nextslide[push]{\codefont\com\nextslide[push]}
+    \lastslide[none]{\codefont\com\lastslide[none]}
+    \kern.2cm
+    \showbookmarks\menu
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+%
+%
+% TITLE SLIDE
+%
+%
+
+\setarea{title}
+  hshift  = 4cm
+  hshift* = 1cm
+  vshift  = 3cm
+  baselineskip = 2cm
+  visible = false
+  font    = \titlefont
+  hpos    = rr
+
+\setarea{showtitle showauthor showdate}
+  visible    = step
+  height     = 2cm
+  frame      = "width=-.3cm, corner=bevel, color=lightgrey"
+
+\setarea{showtitle}
+  top     = -2cm
+  right   = 2.5cm
+  hshift  = 4cm
+  hshift* = 1cm
+  vshift  = 2cm
+
+\setarea{showauthor}
+  hshift  = 6cm
+  hshift* = 3cm
+  left    = -4cm
+  hsize   = 3.7cm
+  vshift  = 4cm
+  hpos    = rf
+  
+\setarea{showdate}
+  top     = 2cm
+  hshift  = 7cm
+  hshift* = 4cm
+  vshift  = 6cm
+
+\setarea{showall}
+  visible    = step 
+  height     = \pdfpageheight
+  hshift     = 3cm
+  left       = 8cm
+  hpos       = rf
+  background = lightgrey
+
+\newcolor{tblack}{grey}[.9]{0}
+\setarea{warning}
+  hshift* vshift* = 1cm
+  right           = 3cm
+  frame           = "width=1cm, corner=round"
+  foreground      = white
+  background      = tblack
+  hpos            = ff
+  vpos            = center
+  visible         = step
+  parskip         = \baselineskip
+  
+
+
+
+
+\slide[The Job]
+
+\createbookmark{1.1}{%
+  This bookmark has been created just
+  to show the menutext attribute above;
+  it is also probably the longest bookmark
+  ever created. It was done with the createbookmark
+  command, of course.
+  }
+
+\position{title}{\Title\par\Author\par\Date}
+
+\step[off=all]
+  \position{showtitle}
+  {That's the title, set in the \Attribute{title} attribute
+   of the \Parameter{job} parameter and stored in \com\Title.
+   (Since it includes an italic command, an alternative one
+   has been declared in \Attribute{pdftitle}, so it appears
+   correctly. Look in the document's properties.)}
+
+\step[off=all]
+\position{showauthor}
+  {That's \Attribute{author}, again in
+  the \Parameter{job} parameter, and then in \com\Author;
+  \Attribute{pdfauthor} can be used to define
+  an alternative version.}
+
+\step[off=all]
+\position{showdate}
+  {That's the \Attribute{date} attribute, still in \Parameter{job},
+   and stored as \com\Date.
+   In this document, it hasn't been specified, so it's
+   automatically created with the format shown here.}
+
+\step[all]
+\position{showall}[,12cm]
+  {That's your PDF reader's background, whose color
+  you set with \Attribute{background} in the \Parameter{job} parameter
+  (how surprising).}
+
+\step
+\position{showall}[-10cm,9cm]
+  {And these are navigation commands, which take an argument
+   and create a clickable hbox with it. Below is
+   a symbol drawn with \com\newsymbol, which displays
+   the bookmark pop-up menu when clicked because it's
+   the argument to \com\showbookmarks\ (note the value
+   of \Attribute{submenutext} from the \Parameter{job} parameter).
+   This material is positioned here on every slide thanks
+   to the \Attribute{everyslide} attribute of the \Parameter{slide} parameter,
+   using \com\position.}
+
+\step
+\position{warning}{%
+  {\titlefont warning}
+  
+  \kern\baselineskip
+  This visual documentation isn't exhaustive, and doesn't
+  show all there is to know in \ital{Lecturer}. It's for
+  instance a bit light on navigation, because navigation
+  commands aren't the more visual things on earth. The
+  reference remains \tcode{lecturer-doc.pdf}.
+  
+  It says nothing either on what a good presentation is,
+  which I don't know, except you probably spend more time
+  drawing beautiful proportions between elements than
+  devising special effects. Unlike this doc. There are
+  more succesful example presentations distributed with \ital{Lecturer}.
+
+  Anyway, since we're at it, this super-area has a transparent
+  background defined with \com\newcolor, its \Attribute{hshift*}
+  and \Attribute{vshift*} are \Value{1cm}, (thus setting \Attribute{hshift}
+  and \Attribute{vshift} automatically to the same values), \Attribute{right} is
+  \Value{1cm} (hence \Attribute{left} too), \Attribute{parskip}
+  is \string\baselineskip, its \Attribute{hpos}
+  is \Value{ff} and \Attribute{vpos} is \Value{center}.
+  The \Attribute{frame} has a width of \Value{1cm},
+  with \Value{round} \Attribute{corner}s. Finally the value to 
+  \Attribute{visible} is \Value{step}, that's why the area shows up
+  only right now, with its content.
+  
+  Barring personal macros for verbatim text and font selection,
+  all you see here has been done with \ital{Lecturer}. Even the arrows on
+  \goto{dimensions}{the slide about dimensions} are areas without
+  width, with symbols as heads. (In the previous sentence, the
+  phrase \goto{dimensions}{\ital{the slide about dimensions}} sends to the said slide
+  when clicked, because it is the argument of a \com\goto command
+  referring to the value of the \Attribute{anchor} attribute of
+  this slide.)
+  
+  The fonts used in this documentation are Chaparral, Lucida Typewriter,
+  and Centaur for the example text on \goto{dimensions}{the slide about dimensions},
+  which Centaur is out of sync with the text displayed but I couldn't resist.
+  }
+  
+
+\endslide
+
+
+
+
+\let\Doexample\doexample
+\let\doexample\doexamplenogroup
+\let\exampleskip\relax
+
+ 
+\def\Mystep[#1]{%
+  \mystep[#1]
+  {\oldcodefont
+    \string\mystep
+    \reverse\iffemptystring{#1}
+      {{\setcatcodes{\\\~=12}[\usecolor{attribute}{\scantextokens{#1}}]}}
+      }%
+  \verb
+  }
+
+
+
+
+\slide[Self-describing Step, font=\codefont, vpos = center]
+
+\Example
+\setstep\mystep
+  vskip      = \baselineskip
+  everyvstep = $\bullet$~
+  font       = \rm
+
+\newimage{universe}[,1cm]{universe.jpg}
+\Example/
+\let\oldcodefont\codefont
+\let\codefont\mainfont
+\setcatcodes{|=0,<=1,>=2}
+
+\kern2\baselineskip
+
+\Mystep[] "This step is normal." \Mystep[] "This one too. And horizontal. |gotoA<hyperjump><|oldcodefont\gotoA{hyperjump}{Here.}>"
+
+\Mystep[A] "Let's jump!"
+\Mystep[font=\it] "Phew."
+
+\Mystep[visible=true, left=1cm] "I'm already on the screen."
+
+\Mystep[lovely, color=rgb .5 0 .5, on=A, off=B] "Lovely!"
+
+\Mystep[B] "Get off with your color!
+<|oldcodefont|showorhide<toggle=lovely><\showorhide{|usecolor<attribute><toggle=lovely>}{Color or not?}>>"
+
+\Mystep[] "<|oldcodefont\createbookmark[bold,1 0 0]{1.1}{Bookmark created on slide \slidetitle}>"
+\createbookmark[bold,1 0 0]{1.1}{Bookmark created on slide \slidetitle}
+
+\Mystep[] "And the universe appeared: <|oldcodefont\useimage{|useimage<universe>}>."
+
+\Mystep[] "The universe ain't what it used to be. |gotoB<hyperjump><|oldcodefont\gotoB{hyperjump}{There.}>"
+
+\endslide
+
+
+\let\codefont\oldcodefont
+
+
+
+
+
+
+
+
+
+
+
+
+\def\valuebox#1#2#3#4{\hbox{\showorhide{on = #3, off = #4}{#1}\kern1em\bold{#2}}}
+\def\Valuebox#1#2#3#4{\hbox{\bold{#1}\kern1em\showorhide{on = #3, off = #4}{#2}}}
+
+
+\slide[Areas in Steps, vpos=top, top=.5cm, bottom=8cm, scale=true]
+
+\step[scaled,visible=true]
+\position{controlbar}[,]{%
+  \hbox{\Attribute{scale}}
+  \Valuebox{true}{false}{unscaled}{scaled}
+  }
+
+\Example
+\showgrid[11cm,8cm]{.5cm}
+\showgrid[11cm,8cm]{1cm}[red]
+
+\setarea{one two three}
+  visible      = step
+  width height = 8cm
+  right bottom = 1cm
+  topskip      = 0cm
+  foreground   = white
+
+\setarea{one two}
+  hshift* = 0cm
+
+\setarea{three}
+  hshift* vshift = 8cm
+  background     = blue
+  hpos           = rf
+
+\setarea{one}
+  background = red
+  vpos       = bottom
+
+\setarea{two}
+  background = "cmyk  1 0 1 0"
+  vshift     = 8cm 
+
+\step\position{one}{ONE}
+\step\position{two}{TWO}
+\step\position{three}{THREE}
+\Example/
+
+\setarea{unscaled}
+  hshift       = 3.5cm
+  width height = 8cm
+  vshift       = 0cm
+  top          = .5cm
+  baselineskip = 12pt
+  topskip      = 12pt
+  vpos         = top
+  visible      = step 
+
+\step[unscaled, on=]
+\position{unscaled}{{\typesetexample}}
+\position{controlbar}[,]{%
+  \hbox{\Attribute{scale}}
+  \valuebox{true}{false}{scaled}{unscaled}
+  }
+\step
+\position{two}{\tcode{\string\position$\{$two$\}\{$this$\}$}}
+\step
+\position{two}{\tcode{\string\position$\{$two$\}\{$and this$\}$}}
+\step
+\position{two}[1cm,5cm]{\tcode{\string\position$\{$two$\}$[1cm,5cm]$\{$and that$\}$}}
+\endslide
+
+
+
+
+
+
+\hidegrids
+
+
+
+
+\setparameter slide:
+  top   = 3cm
+  left  = 7cm
+  right = 4cm
+  vpos  = top
+  vsize  = "19\baselineskip"
+
+% An empty value for "on" makes the step not 
+% a step at all, but it can be switched on and off.
+\setparameter step: on = ""\par
+
+\setarea{text bordermiter borderbevel borderround}
+  hshift  = "\pdfhorigin-1cm"
+  hshift* = 3cm
+  vshift  = 2cm
+  vshift* = 4cm
+  background = "grey .8"
+  visible = step
+
+\setarea{bordermiter borderbevel borderround}
+  frame = "width = 1cm, color = grey .9"
+
+\setarea{bordermiter} frame_corner = miter\par
+\setarea{borderbevel} frame_corner = bevel\par
+\setarea{borderround} frame_corner = round\par
+
+\setarea{authorff authorfr authorrf authorrr}
+  vshift* = 1cm
+  height  = 2cm
+  hshift* = 5cm
+  width   = 4cm
+  font    = \centaur
+  visible = step
+  parindent = 0pt
+
+\setarea{authorff} hpos = ff\par
+\setarea{authorrf} hpos = rf\par
+\setarea{authorrr} hpos = rr\par
+
+\newsymbol\ltriangle[.1cm, padding=0pt]{% The color must be specified, otherwise
+  color black, 1 .5, + 0 -1, fill       % the aera's foerground will be used.
+  }
+\newsymbol\rtriangle[.1cm, padding=0pt]{%
+  color black, move 1 0, + -1 .5, + 0 -1, fill
+  }
+\newsymbol\ttriangle[.1cm, padding=0pt]{%
+  color black, move -.5 0, +  1 0, + -.5 1, fill
+  }  
+\newsymbol\btriangle[.1cm, padding=0pt]{%
+  color black, .5 1, + -1 0, fill
+  }
+
+\hfuzz=1cm
+\def\Hline{%
+  \ifnext*{\gobbleoneand{\hLine{\baselineskip}}}{\hLine{-.15cm}}%
+  }
+\def\hLine#1#2 #3,#4,#5,#6{%
+  \setarea{hline#2}
+    hshift  = "\pdfhorigin+#3"
+    width   = "#4"
+    vshift  = "#5"
+    height  = 0pt
+    topskip = 0pt
+    frame   = "width = .15pt, color = black"
+    hpos    = ff
+    font    = \mainfont
+    parindent = 0pt
+    foreground = attribute
+    visible = step
+  \par\position{hline#2}{\quitvmode\ltriangle\hfill\rtriangle}%
+  \position{hline#2}[0pt,#1]{\hfill#6\hfill\kern0pt}%
+  }
+
+\def\Vline{%
+  \ifnext*{\gobbleoneand{\vLine{rf}}}{\vLine{fr}}%
+  }
+\def\vLine#1#2 #3,#4,#5,#6{%
+  \setarea{vline#2}
+    vshift  = "#3"
+    height  = "#4"
+    hshift  = "\pdfhorigin+#5"
+    width   = 0pt
+    hsize   = 3cm
+    topskip = .1cm
+    frame   = "width = .15pt, color = black"
+    vpos    = center
+    font    = \mainfont
+    hpos    = #1
+    baselineskip = 0pt
+    parindent = 0pt
+    foreground = attribute
+    visible = step
+  \par
+  \position{vline#2}{\ttriangle\vfill}%
+  \position{vline#2}[\iffstring{#1}{rf}{-3cm-}.3em,.1cm]{#6}%
+  \position{vline#2}{\vfill\btriangle}%
+  }
+
+
+
+
+
+\slide[Main Dimensions, anchor=dimensions]
+
+
+\Hline*X1 0cm, \hsize, 11.3cm,                       {hsize}
+\Vline X1 3cm, 19\baselineskip, \hsize+.3cm,         {vsize}
+\Hline X2 0cm,  1cm,  2.7cm,                         {parindent} 
+\Vline*X2 3cm, \baselineskip, -.3cm,                 {topskip}
+\Vline*X3 3cm+5\baselineskip, \baselineskip, -.3cm,  {baselineskip}
+\Vline X4 3cm+11\baselineskip, \baselineskip, 5.5cm, {parskip}
+
+\step[slidedim, visible=true]
+\Hline S1 -4cm, 16cm, \pdfpageheight-.5cm,           {width}
+\Vline*S1 0cm, \pdfpageheight, \hsize+3.5cm,         {height}
+\Hline S2 -4cm, 4cm, 10cm,                           {left}
+\Vline S2 0cm, \pdfvorigin, 7cm,                     {top}
+\Hline S3 8cm, 4cm,  5cm,                            {right}
+\Vline*S3 11cm, 5cm,  1cm,                           {bottom}
+
+\position{controlbar}[0cm,2.5cm]{%
+  \showorhide{ on = areadim bordermiter, off = slidedim}{\Instruction{Show area}}}
+
+
+\step[maincontrol, visible=true]
+\position{controlbar}[1.2cm,3cm]{%
+  \hbox{\Attribute{vpos}}
+  \showorhide{on = top topcontrol, off = maincontrol center bottom centercontrol bottomcontrol}{top}
+  \showorhide{on = center centercontrol, off = maincontrol top bottom topcontrol bottomcontrol}{center}
+  \showorhide{on = bottom bottomcontrol, off = maincontrol top center topcontrol centercontrol}{bottom}
+  \showorhide{on = top bottom center maincontrol, off = topcontrol centercontrol bottomcontrol}{\Instruction{reset}}
+  }
+
+\step[topcontrol]
+\position{controlbar}[1.2cm,3cm]{%
+  \hbox{\Attribute{vpos}}
+  \showorhide{on = top topcontrol, off = maincontrol center bottom centercontrol bottomcontrol}{\bold{top}}
+  \showorhide{on = center centercontrol, off = maincontrol top bottom topcontrol bottomcontrol}{center}
+  \showorhide{on = bottom bottomcontrol, off = maincontrol top center topcontrol centercontrol}{bottom}
+  \showorhide{on = top bottom center maincontrol, off = topcontrol centercontrol bottomcontrol}{\Instruction{reset}}
+  }
+
+\step[centercontrol]
+\position{controlbar}[1.2cm,3cm]{%
+  \hbox{\Attribute{vpos}}
+  \showorhide{on = top topcontrol, off = maincontrol center bottom centercontrol bottomcontrol}{top}
+  \showorhide{on = center centercontrol, off = maincontrol top bottom topcontrol bottomcontrol}{\bold{center}}
+  \showorhide{on = bottom bottomcontrol, off = maincontrol top center topcontrol centercontrol}{bottom}
+  \showorhide{on = top bottom center maincontrol, off = topcontrol centercontrol bottomcontrol}{\Instruction{reset}}
+  }
+
+\step[bottomcontrol]
+\position{controlbar}[1.2cm,3cm]{%
+  \hbox{\Attribute{vpos}}
+  \showorhide{on = top topcontrol, off = maincontrol center bottom centercontrol bottomcontrol}{top}
+  \showorhide{on = center centercontrol, off = maincontrol top bottom topcontrol bottomcontrol}{center}
+  \showorhide{on = bottom bottomcontrol, off = maincontrol top center topcontrol centercontrol}{\bold{bottom}}
+  \showorhide{on = top bottom center maincontrol, off = topcontrol centercontrol bottomcontrol}{\Instruction{reset}}
+  }
+
+\step[areadim]
+\position{text}{}
+\position{controlbar}[0cm,2.5cm]{%
+  \showorhide{ on = slidedim, off = areadim bordermiter borderbevel borderround}{\Instruction{Show slide}}}
+\Hline*A0 -4cm, 3cm, 8cm,                           {hshift}
+\Vline*A0 0cm, 2cm, 2cm,                            {vshift}
+\Hline*A0a 9cm, 3cm, 10cm,                          {\kern4em hshift*}
+\Vline*A0a 12cm, 4cm, 2cm,                          {vshift*}
+\Hline*A1 -1cm, \hsize+2cm, \pdfpageheight-1.5cm,   {width}
+\Vline A1 2cm, 10cm, \hsize+2.5cm,                  {height}
+\Hline A2 -1cm, 1cm, 10cm,                          {left}
+\Vline A2 2cm, 1cm, 7cm,                            {top}
+\Hline A3 8cm, 1cm,  5cm,                           {\kern1em right}
+\Vline*A3 11cm, 1cm,  1cm,                          {bottom}
+\Hline*A4 -2cm, 1cm, 12cm,                          {frame_width}
+
+\step[bordermiter]
+\position{controlbar}[0cm,6cm]{%
+  \hbox{\Attribute{frame_corner}}
+  \showorhide{on = bordermiter, off = borderbevel borderround}{\bold{miter}}
+  \showorhide{on = borderbevel, off = bordermiter borderround}{bevel}
+  \showorhide{on = borderround, off = bordermiter borderbevel}{round}
+  }
+\position{bordermiter}{}
+
+
+\step[borderbevel]
+\position{controlbar}[0cm,6cm]{%
+  \hbox{\Attribute{frame_corner}}
+  \showorhide{on = bordermiter, off = borderbevel borderround}{miter}
+  \showorhide{on = borderbevel, off = bordermiter borderround}{\bold{bevel}}
+  \showorhide{on = borderround, off = bordermiter borderbevel}{round}
+  }
+\position{borderbevel}{}
+
+\step[borderround]
+\position{controlbar}[0cm,6cm]{%
+  \hbox{\Attribute{frame_corner}}
+  \showorhide{on = bordermiter, off = borderbevel borderround}{miter}
+  \showorhide{on = borderbevel, off = bordermiter borderround}{bevel}
+  \showorhide{on = borderround, off = bordermiter borderbevel}{\bold{round}}
+  }
+\position{borderround}{}
+
+
+\step[ff, visible=true]
+\position{controlbar}[0cm,3cm]{%
+  \hbox{\Attribute{hpos}}
+  \showorhide{on = ff, off = fr rf rr}{\bold{ff}}
+  \showorhide{on = fr, off = ff rf rr}{fr}
+  \showorhide{on = rf, off = ff fr rr}{rf}
+  \showorhide{on = rr, off = ff fr rf}{rr}
+  }
+\position{authorff}{Savinien Cyrano de Bergerac, Etats et Empires de la Lune, c.1650}
+\step[fr]
+\position{controlbar}[0cm,3cm]{%
+  \hbox{\Attribute{hpos}}
+  \showorhide{on = ff, off = fr rf rr}{ff}
+  \showorhide{on = fr, off = ff rf rr}{\bold{fr}}
+  \showorhide{on = rf, off = ff fr rr}{rf}
+  \showorhide{on = rr, off = ff fr rf}{rr}
+  }
+\position{authorfr}{Savinien Cyrano de Bergerac, Etats et Empires de la Lune, c.1650}
+\step[rf]
+\position{controlbar}[0cm,3cm]{%
+  \hbox{\Attribute{hpos}}
+  \showorhide{on = ff, off = fr rf rr}{ff}
+  \showorhide{on = fr, off = ff rf rr}{fr}
+  \showorhide{on = rf, off = ff fr rr}{\bold{rf}}
+  \showorhide{on = rr, off = ff fr rf}{rr}
+  }
+\position{authorrf}{Savinien Cyrano de Bergerac, Etats et Empires de la Lune, c.1650}
+\step[rr]
+\position{controlbar}[0cm,3cm]{%
+  \hbox{\Attribute{hpos}}
+  \showorhide{on = ff, off = fr rf rr}{ff}
+  \showorhide{on = fr, off = ff rf rr}{fr}
+  \showorhide{on = rf, off = ff fr rr}{rf}
+  \showorhide{on = rr, off = ff fr rf}{\bold{rr}}
+  }
+\position{authorrr}{Savinien Cyrano de Bergerac, Etats et Empires de la Lune, c.1650}
+
+\parfillskip=0pt
+\step[top, visible=true,font=\centaur]
+\quitvmode\kern1cm La lune était en son plein, le ciel était découvert, et neuf heures
+du soir étaient sonnées lorsque nous revenions d'une maison proche de Paris,
+quatre de mes amis et moi. Les diverses pensées que nous donna la vue
+de cette boule de safran nous défrayèrent sur le chemin. Les yeux noyés
+dans ce grand astre, tantôt l'un le prenait pour une lucarne du ciel
+par où l'on en\-%
+%
+\step[center, visible=true,font=\centaur]
+trevoyait la gloire des bienheureux ; tantôt l'autre protestait
+que c'était la platine où Diane dresse les rabats d'Apollon ;
+tantôt un autre s'écriait que ce pourrait bien être le soleil lui-même,
+qui s'étant au soir dépouillé de ses rayons regardait par un trou
+ce qu'on faisait au monde quand il n'y était plus.\hfil\kern0pt
+
+\kern\baselineskip
+\step[bottom, visible=true,font=\centaur]
+«~Et moi, dis-je, qui souhaite mêler mes enthousiasmes aux vôtres,
+je crois sans m'amuser aux imaginations pointues dont vous chatouillez
+le temps pour le faire marcher plus vite, que la lune est un monde comme celui-ci,
+à qui le nôtre sert de lune.~»
+La compagnie me régala d'un grand éclat de rire.
+«~Ainsi peut-être, leur dis-je, se moque-t-on maintenant dans la lune,
+de quelque autre, qui soutient que ce globe-ci est un monde.~»
+Mais j'eus beau leur alléguer 
+%que Pythagore, Epicure,
+%Démocrite et, de notre âge, Copernic et Kepler, avaient
+
+\endslide
+
+
+
+
+
+
+
+\setarea{code result}
+  topskip = 1cm
+  everyposition = "\vskip4pt"
+
+\setarea{code}
+  hshift = 3cm
+  width  = 11cm
+
+\setarea{result}
+  hshift* = 0cm
+  width   = 6cm
+
+
+\def\processexample{%
+  \position{code}\typesetexample
+  \doexample
+  \position{result}{\quitvmode\lastsymbol}
+  }
+
+\slide[Symbols]
+\def\lastsymbol{\square}
+\Example
+\newsymbol\square[1cm, padding=.15cm]{%
+  pen .3,
+  1 0, + 0 1, + -1 0, close, stroke,
+  color red, move 1.5 0, + 1 0, + 0 1, + -1 0, fill,
+  color green, move 3 0, + 1 0, + 0 1, + -1 0, paint,
+  }
+\Example/
+
+\position{result}{\kern.5cm}
+
+\def\lastsymbol{\triangle}
+\Example
+\newsymbol\triangle[1cm]{%
+  color rgb .8 0 0,  1 .5, + -1 .5, fill,
+  }
+\Example/
+
+\position{result}{\kern.1cm}
+
+\def\lastsymbol{\spirale}
+\Example
+\newsymbol\spirale[.1mm]{%
+  circle ur 100, circle rd 95, color red, stroke,
+  circle dl  90, circle lu 85, color black, stroke,
+  circle ur  80, circle rd 75, color red, stroke,
+  circle dl  70, circle lu 65, color black
+% stroke automatically added if there remains a path.
+  }
+\Example/
+
+\position{result}{\kern.3cm}
+
+\def\lastsymbol{\diamond}
+\Example
+\newsymbol\diamond[.5mm]{%
+  color red, move 5 0, + 5 7, + 5 -7, + -5 -7, fill
+  }
+\Example/
+
+\position{result}{\kern.5cm}
+
+\def\lastsymbol{\trystero}
+\Example
+\newsymbol\trystero[.5cm]{%
+  pen .1, move 2 2,
+  circle ld 1, circle dr 1, circle ru 1, circle ul 1, stroke,
+  move -.75 2, + 4.5 0, stroke,
+  + 1.2 1.2, + -0 -2.4, close,
+  move + 0 2, + .4 .4, + 0 -2.4, + -.4 .4,
+  }
+\Example/
+\endslide
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\setarea{
+  fullshade1 fullshade2 fullshade3 fullshade4 fullshade5 fullshade6 fullshade7 fullshade8
+  fullshade9 fullshade10 fullshade11 fullshade12 fullshade13 fullshade14 fullshade15 fullshade16
+  mask}
+  hshift  = 3cm
+  visible = step
+
+\setarea{mask}
+  background = white
+ 
+
+\setarea{
+  shade1 shade2 shade3 shade4 shade5 shade6 shade7 shade8
+  shade9 shade10 shade11 shade12 shade13 shade14 shade15 shade16
+  border}
+  hshift  = 4cm
+  hshift* = 2cm
+  vshift  = 1cm
+  vshift* = 11cm
+  visible = step
+  
+\setarea{
+  shade1b shade2b shade3b shade4b shade5b shade6b shade7b shade8b
+  shade9b shade10b shade11b shade12b shade13b shade14b shade15b shade16b
+  borderb}
+  hshift  = 14cm
+  hshift* = 2cm
+  vshift  = 6cm
+  vshift* = 2cm
+  visible = step
+
+\setarea{border borderb}
+  frame_width = .1pt
+  frame_color = white
+
+
+\newshade{shade1}
+  fixed  = true
+  width  = "\pdfpagewidth-3cm"
+  height = \pdfpageheight
+
+\setarea{shade1 shade1b fullshade1 fullshade2 fullshade9 fullshade10} background = shade1\par
+
+\newshade{shade2}
+  fixed = false
+  width  = "\pdfpagewidth-3cm"
+  height = \pdfpageheight
+
+\setarea{shade2 shade2b} background = shade2\par
+
+\newshade{shade3}
+  fixed  = true
+  width  = "\pdfpagewidth-3cm"
+  height = \pdfpageheight
+  angle  = -45
+
+\setarea{shade3 shade3b fullshade3 fullshade4 fullshade11 fullshade12} background = shade3\par
+
+\newshade{shade4}
+  fixed  = false
+  width  = "\pdfpagewidth-3cm"
+  height = \pdfpageheight
+  angle  = -45
+
+\setarea{shade4 shade4b} background = shade4\par
+
+\newshade{shade5}
+  fixed  = true
+  width  = "\pdfpagewidth-3cm"
+  height = \pdfpageheight
+  speed  = 2
+
+\setarea{shade5 shade5b fullshade5 fullshade6 fullshade13 fullshade14} background = shade5\par
+
+\newshade{shade6}
+  fixed = false
+  width  = "\pdfpagewidth-3cm"
+  height = \pdfpageheight
+  speed  = 2
+  
+\setarea{shade6 shade6b} background = shade6\par
+
+\newshade{shade7}
+  fixed  = true
+  width  = "\pdfpagewidth-3cm"
+  height = \pdfpageheight
+  angle  = -45
+  speed  = 2
+  
+\setarea{shade7 shade7b fullshade7 fullshade8 fullshade15 fullshade16} background = shade7\par
+
+\newshade{shade8}
+  fixed = false
+  width  = "\pdfpagewidth-3cm"
+  height = \pdfpageheight
+  angle = -45
+  speed  = 2
+  
+\setarea{shade8 shade8b} background = shade8\par
+
+\newshade{shade9}
+  fixed  = true
+
+\setarea{shade9 shade9b} background = shade9\par
+
+\newshade{shade10}
+  fixed = false
+
+\setarea{shade10 shade10b} background = shade10\par
+
+\newshade{shade11}
+  fixed  = true
+  angle  = -45
+
+\setarea{shade11 shade11b} background = shade11\par
+
+\newshade{shade12}
+  fixed = false
+  angle = -45
+
+\setarea{shade12 shade12b} background = shade12\par
+
+\newshade{shade13}
+  fixed  = true
+  speed  = 2
+
+\setarea{shade13 shade13b} background = shade13\par
+
+\newshade{shade14}
+  fixed = false
+  speed  = 2
+  
+\setarea{shade14 shade14b} background = shade14\par
+
+\newshade{shade15}
+  fixed  = true
+  angle  = -45
+  speed  = 2
+  
+\setarea{shade15 shade15b} background = shade15\par
+
+\newshade{shade16}
+  fixed = false
+  angle = -45
+  speed  = 2
+  
+\setarea{shade16 shade16b} background = shade16\par
+
+
+
+\setarea{comment}
+  hshift  = 4cm
+  width   = 4cm
+  vshift  = 10cm
+  vshift* = 2cm
+  font    = \mainfont
+  foreground = attribute
+
+\def\comment{\position{comment}[0pt,0pt]}
+
+
+
+
+
+
+
+\slide[Shades]
+
+\position{border}{} \position{borderb}{}
+
+\step[mask, visible=true]
+\position{mask}{}
+\position{controlbar}[0cm,4cm]{\showorhide{toggle = mask nomask}{\Instruction{Show slide's shade}}}
+
+\step[nomask]
+\position{controlbar}[0cm,4cm]{\showorhide{toggle = mask nomask}{\Instruction{Hide slide's shade}}}
+
+
+
+
+
+\step[shade1, visible=true]
+\position{shade1}{} \position{shade1b}{} \position{fullshade1}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \Valuebox{true}{false}{shade2}{shade1}
+  \hbox{\Attribute{angle}}
+  \valuebox{-45}{90}{shade3}{shade1}
+  \hbox{\Attribute{speed}}
+  \Valuebox{1}{2}{shade5}{shade1}
+  \hbox{\Attribute{height \& width}}
+  \Valuebox{true}{false}{shade9}{shade1}
+  }
+\comment{The areas are open windows on the underlying shade,
+which goes from black at the top of the slide to white at
+the bottom.}
+
+\step[shade2]
+\position{shade2}{} \position{shade2b}{} \position{fullshade2}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \valuebox{true}{false}{shade1}{shade2}
+  \hbox{\Attribute{angle}}
+  \valuebox{-45}{90}{shade4}{shade2}
+  \hbox{\Attribute{speed}}
+  \Valuebox{1}{2}{shade6}{shade2}
+  \hbox{\Attribute{height \& width}}
+  \Valuebox{true}{false}{shade10}{shade2}
+  }
+\comment{The shade goes from black at the top of each
+areas to white somewhere at the bottom of its height;
+the areas show the same shade at different position; the
+area above is almost totally black because it displays the
+shade's upper part, and the shade takes its time to reach
+its bottom.}
+
+\step[shade3]
+\position{shade3}{} \position{shade3b}{} \position{fullshade3}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \Valuebox{true}{false}{shade4}{shade3}
+  \hbox{\Attribute{angle}}
+  \Valuebox{-45}{90}{shade1}{shade3}
+  \hbox{\Attribute{speed}}
+  \Valuebox{1}{2}{shade7}{shade3}
+  \hbox{\Attribute{height \& width}}
+  \Valuebox{true}{false}{shade11}{shade3}
+  }
+\comment{The shade goes from black at the top right
+corner to white at the bottom left one; the areas display
+the parts they cover.}
+
+\step[shade4]
+\position{shade4}{} \position{shade4b}{} \position{fullshade4}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \valuebox{true}{false}{shade3}{shade4}
+  \hbox{\Attribute{angle}}
+  \Valuebox{-45}{90}{shade2}{shade4}
+  \hbox{\Attribute{speed}}
+  \Valuebox{1}{2}{shade8}{shade4}
+  \hbox{\Attribute{height \& width}}
+  \Valuebox{true}{false}{shade12}{shade4}
+  }
+\comment{The shade makes an angle of 45 degrees from
+its top right corner and goes to white at its bottom left one;
+it is positioned at the top right corner of the areas, which
+are thus almost entirely black.}
+
+\step[shade5]
+\position{shade5}{} \position{shade5b}{} \position{fullshade5}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \Valuebox{true}{false}{shade6}{shade5}
+  \hbox{\Attribute{angle}}
+  \valuebox{-45}{90}{shade7}{shade5}
+  \hbox{\Attribute{speed}}
+  \valuebox{1}{2}{shade1}{shade5}
+  \hbox{\Attribute{height \& width}}
+  \Valuebox{true}{false}{shade13}{shade5}
+  }
+\comment{The shade goes twice faster. It reaches white at its middle;
+since it is fixed, the area on the right has nothing much to show.}
+
+\step[shade6]
+\position{shade6}{} \position{shade6b}{} \position{fullshade6}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \valuebox{true}{false}{shade5}{shade6}
+  \hbox{\Attribute{angle}}
+  \valuebox{-45}{90}{shade8}{shade6}
+  \hbox{\Attribute{speed}}
+  \valuebox{1}{2}{shade2}{shade6}
+  \hbox{\Attribute{height \& width}}
+  \Valuebox{true}{false}{shade14}{shade6}
+  }
+\comment{The shade goes twice faster from its top to its
+bottom, reaching white at half its height; the areas display
+its upper part corner only.}
+
+\step[shade7]
+\position{shade7}{} \position{shade7b}{} \position{fullshade7}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \Valuebox{true}{false}{shade8}{shade7}
+  \hbox{\Attribute{angle}}
+  \Valuebox{-45}{90}{shade5}{shade7}
+  \hbox{\Attribute{speed}}
+  \valuebox{1}{2}{shade3}{shade7}
+  \hbox{\Attribute{height \& width}}
+  \Valuebox{true}{false}{shade15}{shade7}
+  }
+\comment{The shade runs at 45 degrees from its upper right
+corner and reaches white on its diagonal, because it goes
+twice faster than normal; this diagonal visibly crosses the
+areas, which seem really connected.}
+
+
+\step[shade8]
+\position{shade8}{} \position{shade8b}{} \position{fullshade8}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \valuebox{true}{false}{shade7}{shade8}
+  \hbox{\Attribute{angle}}
+  \Valuebox{-45}{90}{shade6}{shade8}
+  \hbox{\Attribute{speed}}
+  \valuebox{1}{2}{shade4}{shade8}
+  \hbox{\Attribute{height \& width}}
+  \Valuebox{true}{false}{shade16}{shade8}
+  }
+\comment{The shade makes a vanishing triangle
+from its upper right corner, which is the part
+both areas display.}
+
+
+
+
+
+
+
+
+
+
+
+\step[shade9]
+\position{shade9}{} \position{shade9b}{} \position{fullshade9}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \Valuebox{true}{false}{shade10}{shade9}
+  \hbox{\Attribute{angle}}
+  \valuebox{-45}{90}{shade11}{shade9}
+  \hbox{\Attribute{speed}}
+  \Valuebox{1}{2}{shade13}{shade9}
+  \hbox{\Attribute{height \& width}}
+  \valuebox{true}{false}{shade1}{shade9}
+  }
+\comment{The area is fixed at the top of the slide,
+but since it has no dimensions it takes those of
+the areas in which it is painted; hence the area
+on the right shows its own bottom.}
+
+
+\step[shade10]
+\position{shade10}{} \position{shade10b}{} \position{fullshade10}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \valuebox{true}{false}{shade9}{shade10}
+  \hbox{\Attribute{angle}}
+  \valuebox{-45}{90}{shade12}{shade10}
+  \hbox{\Attribute{speed}}
+  \Valuebox{1}{2}{shade14}{shade10}
+  \hbox{\Attribute{height \& width}}
+  \valuebox{true}{false}{shade2}{shade10}
+  }
+\comment{The shade adapts to the areas' shapes, and goes
+  from black at their tops to white at their bottom.}
+
+
+\step[shade11]
+\position{shade11}{} \position{shade11b}{} \position{fullshade11}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \Valuebox{true}{false}{shade12}{shade11}
+  \hbox{\Attribute{angle}}
+  \Valuebox{-45}{90}{shade9}{shade11}
+  \hbox{\Attribute{speed}}
+  \Valuebox{1}{2}{shade15}{shade11}
+  \hbox{\Attribute{height \& width}}
+  \valuebox{true}{false}{shade3}{shade11}
+  }
+\comment{The shade is a replica of the areas it paints in the
+top right corner of the shade, hence the varying angles;
+the result is quite unpredictable.}
+
+\step[shade12]
+\position{shade12}{} \position{shade12b}{} \position{fullshade12}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \valuebox{true}{false}{shade11}{shade12}
+  \hbox{\Attribute{angle}}
+  \Valuebox{-45}{90}{shade10}{shade12}
+  \hbox{\Attribute{speed}}
+  \Valuebox{1}{2}{shade16}{shade12}
+  \hbox{\Attribute{height \& width}}
+  \valuebox{true}{false}{shade4}{shade12}
+  }
+\comment{The shade goes from each area's top right corner
+to its bottom left one; in an ideal world where all rectangles
+are square, it is slanted by and angle of 45 degrees.}
+
+\step[shade13]
+\position{shade13}{} \position{shade13b}{} \position{fullshade13}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \Valuebox{true}{false}{shade14}{shade13}
+  \hbox{\Attribute{angle}}
+  \valuebox{-45}{90}{shade15}{shade13}
+  \hbox{\Attribute{speed}}
+  \valuebox{1}{2}{shade9}{shade13}
+  \hbox{\Attribute{height \& width}}
+  \valuebox{true}{false}{shade5}{shade13}
+  }
+\comment{The shade runs a distance the height of the areas
+it paints, but is still fixed at the top of the slide; because
+of its speed, the area on the right is totally blanck.}
+
+\step[shade14]
+\position{shade14}{} \position{shade14b}{} \position{fullshade14}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \valuebox{true}{false}{shade13}{shade14}
+  \hbox{\Attribute{angle}}
+  \valuebox{-45}{90}{shade16}{shade14}
+  \hbox{\Attribute{speed}}
+  \valuebox{1}{2}{shade10}{shade14}
+  \hbox{\Attribute{height \& width}}
+  \valuebox{true}{false}{shade6}{shade14}
+  }
+\comment{The shade fills the areas down to their
+middle, because it goes twice faster than normal. The areas
+look like scaling of each other.}
+
+\step[shade15]
+\position{shade15}{} \position{shade15b}{} \position{fullshade15}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \Valuebox{true}{false}{shade16}{shade15}
+  \hbox{\Attribute{angle}}
+  \Valuebox{-45}{90}{shade13}{shade15}
+  \hbox{\Attribute{speed}}
+  \valuebox{1}{2}{shade11}{shade15}
+  \hbox{\Attribute{height \& width}}
+  \valuebox{true}{false}{shade7}{shade15}
+  }
+\comment{The area on the right can't catch
+itself, it goes too fast; speed, angle and length
+vary according to the area painted, but not the
+position; thus the result is totally unpredictable.}
+
+\step[shade16]
+\position{shade16}{} \position{shade16b}{} \position{fullshade16}{}
+\position{controlbar}[0cm,0cm]{%
+  \hbox{\Attribute{fixed}}
+  \valuebox{true}{false}{shade15}{shade16}
+  \hbox{\Attribute{angle}}
+  \Valuebox{-45}{90}{shade14}{shade16}
+  \hbox{\Attribute{speed}}
+  \valuebox{1}{2}{shade12}{shade16}
+  \hbox{\Attribute{height \& width}}
+  \valuebox{true}{false}{shade8}{shade16}
+  }
+\comment{The areas show their diagonals;
+the variation in angles is quite blatant, because
+the shade adapts to their dissimilar shapes and
+increase the differences with speed.}
+
+
+
+\endslide
+
+
+
+
+
+
+
+\setarea{split blinds box wipe dissolve glitter fly push cover uncover fade}
+  hshift     = 3cm
+  foreground = white
+  visible    = step
+  hpos       = rr
+  vpos       = center
+  
+
+\setarea{split box dissolve fly cover fade}
+  background = attribute
+
+\setarea{blinds wipe glitter push uncover}
+  background = value
+  
+\setparameter step:
+  on = here
+
+\setparameter slide:
+  top    = 0cm
+  bottom = 0cm
+  left   = 3cm
+  right  = 0cm
+  hpos   = rr
+  vpos   = center
+
+
+\slide[Default transitions]
+
+\step[visible=true, off=next]
+Let's \ital{split}!
+
+\step[next, transition=split]
+\position{split}{Let's \ital{blinds}}
+
+\step[transition=blinds]
+\position{blinds}{Let's \ital{box}}
+
+\step[transition=box]
+\position{box}{Let's \ital{wipe}}
+
+\step[transition=wipe]
+\position{wipe}{Let's \ital{dissolve}}
+
+\step[transition=dissolve]
+\position{dissolve}{Let's \ital{glitter}}
+
+\step[transition=glitter]
+\position{glitter}{Let's \ital{fly}}
+
+\step[transition=fly]
+\position{fly}{Let's \ital{push}}
+
+\step[transition=push]
+\position{push}{Let's \ital{cover}}
+
+\step[transition=cover]
+\position{cover}{Let's \ital{uncover}}
+
+\step[transition=uncover]
+\position{uncover}{Let's \ital{fade}}
+\endslide
+
+
+
+
+
+
+\slide[right=0cm, font=\titlefont, transition=fade, background=lightgrey, everyslide=, bookmark=false]
+THE END
+\endslide
+
+
+
+\bye

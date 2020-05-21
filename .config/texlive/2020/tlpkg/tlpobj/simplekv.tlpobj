@@ -1,0 +1,23 @@
+name simplekv
+category Package
+revision 54915
+shortdesc A simple key/value system for TeX and LaTeX
+longdesc The package provides a simple key/value system for TeX and
+longdesc LaTeX.
+containersize 2908
+containerchecksum e24f82c6cf65677bee7a55e43c731c26fc05bceb5add86fb79cfbf0d05d09aba34f6cb0c72074a012096875bccc4a51360eed584e3b812e88d772b22676504de
+doccontainersize 332620
+doccontainerchecksum 8a92af8cecf0d3be86c5a2f1abc4b1ad675f920956a99cf3a99bed61eaa56655eff0f3a2cefc728252dc7c346fbb4fea17a49a4eb4f2e9722409784aeb92a364
+docfiles size=85
+ texmf-dist/doc/generic/simplekv/README details="Readme"
+ texmf-dist/doc/generic/simplekv/simplekv-fr.pdf details="Package documentation" language="fr"
+ texmf-dist/doc/generic/simplekv/simplekv-fr.tex
+runfiles size=4
+ texmf-dist/tex/generic/simplekv/simplekv.sty
+ texmf-dist/tex/generic/simplekv/simplekv.tex
+catalogue-contact-bugs https://framagit.org/unbonpetit/simplekv/issues
+catalogue-contact-repository https://framagit.org/unbonpetit/simplekv/tree/master
+catalogue-ctan /macros/generic/simplekv
+catalogue-license lppl1.3c
+catalogue-topics keyval
+catalogue-version 0.2

@@ -1,0 +1,261 @@
+%\subsection{Graphe en 3D à partir d'équations}
+\subsubsection{psplotThreeD}
+\psset{unit=.5cm}
+\psset{fillstyle=none,fillcolor=yellow,linecolor=blue,dotscale=.25}
+
+\begin{tabular}{|c|} \hline  
+\BSS{psplotThreeD}[algebraic]   \Rnode*[fillcolor=green]{A}{(-4,4)(-4,4)} \Rnode*[fillcolor=yellow]{B}{\AC{sin(x)*cos(y)}}\\
+
+\\
+ \hspace{1cm} \rnode{AA}{\TFRGB{plages pour x et y}{ranges for x and y}} \hspace{1cm}\rnode{BB}{\TFRGB{fonction en x y}{function y x} }
+\\ \hline 
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+
+ \\ \hline 
+\end{tabular} 
+ \ncline[linecolor=blue]{A}{AA}  \ncline[linecolor=blue]{B}{BB}
+ 
+\bigskip 
+%\subsubsection{Option plotstyle}
+\psset{unit=.25cm}
+
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psplotThreeD}[algebraic,\RDD{plotstyle}=line](-4,4)(-4,4)\AC{sin(x)*cos(y)} } \\ \hline 
+
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,plotstyle=line](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+&
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,plotstyle=polygon](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+&
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,plotstyle=dots](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+\\ \hline  
+ plotstyle=line & plotstyle=polygon &  plotstyle=dots \\ \hline 
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,plotstyle=curve](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+& 
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,plotstyle=ecurve](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+&
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,plotstyle=ccurve](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+
+\\ \hline  
+plotstyle=curve & plotstyle=ecurve & plotstyle=ccurve  \\ \hline 
+
+\end{tabular} 
+\bigskip
+
+\begin{tabular}{|c|c|c|c|} \hline  
+ \multicolumn{4}{|c|}{  \BS{psplotThreeD}[algebraic,\RDD{drawStyle}=xLines](-4,4)(-4,4)\AC{sin(x)*cos(y)} } \\ \hline
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,drawStyle=xLines](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+& 
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,drawStyle=yLines](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+&
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,drawStyle=xyLines](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+&
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,drawStyle=yxLines](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+\\ \hline  
+  drawStyle=xLines & drawStyle=yLines & drawStyle=xyLines & drawStyle=yxLines \\ 
+\dft & & & \\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline 
+ \multicolumn{2}{|c|}{  \BS{psplotThreeD}[algebraic,\RDD{showpoints}=false,linewidth=.1pt] } \\ 
+ \multicolumn{2}{|c|}{ (-4,4)(-4,4)\AC{sin(x)*cos(y)} } \\ \hline 
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,showpoints=false,linewidth=.1pt](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+&  
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,showpoints=true,linewidth=.1pt](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+\\ \hline  
+showpoints=false  &  showpoints=true \\ \hline 
+\dft & \\ \hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|c|c|} \hline 
+ \multicolumn{4}{|c|}{  \BS{psplotThreeD}[algebraic,\RDD{xPlotpoints}=5,drawStyle=xyLines](-4,4)(-4,4)\AC{sin(x)*cos(y)} } \\ \hline
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,plotstyle=line,xPlotpoints=5,drawStyle=xyLines](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+&  
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,plotstyle=line,yPlotpoints=5,drawStyle=xyLines](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+&
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,plotstyle=line,xPlotpoints=5,yPlotpoints=5,drawStyle=xyLines](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+&
+\begin{pspicture}(-6,-4)(6,6)
+\psset{Beta=45}
+ \psplotThreeD[algebraic,plotstyle=line,xPlotpoints=50,drawStyle=xyLines](-4,4)(-4,4){sin(x)*cos(y)}
+\pstThreeDCoor[xMin=-1,xMax=5,yMin=-1,yMax=5,zMin=-1,zMax=6]
+\end{pspicture}
+\\ \hline  
+xPlotpoints=5  &  yPlotpoints=5  & yPlotpoints=5 & xPlotpoints=50 \\ 
+  &    &  yPlotpoints=5 &\\ \hline 
+ \multicolumn{4}{|c|}{\blue \dft : xPlotpoints=25 \hspace{1cm}  yPlotpoints=25 }
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+
+\begin{tabular}{|c|c|} \hline 
+ \multicolumn{2}{|c|}{  \BS{psplotThreeD}[algebraic,\RDD{hiddenLine}=false](-4,4)(-4,4)\AC{sin(x)*cos(y)} } \\ \hline 
+\begin{pspicture}(-6,-4)(6,6)
+ \psplotThreeD[algebraic,hiddenLine=false,plotstyle=curve](-4,4)(-4,4){sin(x)*cos(y)}
+\end{pspicture}
+&  
+\begin{pspicture}(-6,-4)(6,6)
+ \psplotThreeD[algebraic,hiddenLine=true,plotstyle=curve](-4,4)(-4,4){sin(x)*cos(y)}
+\end{pspicture}
+\begin{pspicture}(-6,-4)(6,6)
+ \psplotThreeD[algebraic,hiddenLine=true,plotstyle=curve, drawStyle=yLines ](-4,4)(-4,4){sin(x)*cos(y)}
+\end{pspicture}
+\\ \hline  
+hiddenLine=false  &  hiddenLines=true \\ \hline 
+\dft & \\ \hline 
+\end{tabular}
+
+%-------------------------------------------------------
+\subsubsection{parametricplotThreeD}
+
+
+\psset{unit=.5cm}
+
+\begin{tabular}{|c|}\hline  
+\BSS{parametricplotThreeD}[xPlotpoints=200,plotstyle=curve,algebraic]\\
+\Rnode*[fillcolor=green]{A}{(0,50)}  \Rnode*[fillcolor=yellow]{B}{\AC{ t/10*cos(t) | t/10*sin(t) | t/10}}\\
+\\
+\rnode{AA}{ \TFRGB{plage pour t}{range for t} } \hspace{1cm}\rnode{BB}{\TFRGB{3 fonctions paramétriques}{3 parametric functions}}
+\\ \hline  
+\begin{pspicture}(-6,-2.25)(6,7)
+\pstThreeDCoor[zMax=5]
+\parametricplotThreeD[xPlotpoints=200,plotstyle=curve,algebraic](0,50){ t/10*cos(t) | t/10*sin(t) | t/10}
+ \end{pspicture}
+\\ \hline 
+\end{tabular} 
+ \ncline[linecolor=blue]{A}{AA}  \ncline[linecolor=blue]{B}{BB}
+
+\newpage
+% % %-------------------------------------------------
+\SbSSCT{Graphe en 3D à partir d'un fichier de données}{3D graph from a data file}
+\subsubsection{fileplotThreeD}
+
+\begin{tabular}{|c|c|} \hline 
+\begin{pspicture}[shift=*](-6,-2.25)(6,7)
+\pstThreeDCoor[zMax=5]
+\fileplotThreeD{data3d.txt}
+ \end{pspicture}%
+ &  
+ \parbox{8cm}{
+
+\BSS{fileplotThreeD}\AC{data3d.txt} \\
+ \\
+ \% data3d.txt : \TFRGB{fichier de données créé avec}{data file created with} Excel \\
+\\
+
+}
+ \\  \hline 
+\end{tabular} 
+% % %-------------------------------------------------------------
+
+\subsubsection{dataplotThreeD}
+
+\begin{tabular}{|c|c|} \hline 
+\readdata{\data}{data3d.txt}
+\begin{pspicture}[shift=*](-6,-2.25)(6,7)
+\pstThreeDCoor[zMax=5]
+\dataplotThreeD[plotstyle=line]{\data}
+ \end{pspicture}%
+ &  
+ \parbox{8cm}{
+
+ \BS{readdata}\AC{\BS{data}}\AC{data3d.txt} \\
+ \\
+ \% data3d.txt : \TFRGB{fichier de données créé avec}{data file created with} Excel \\
+\\
+\BSS{dataplotThreeD}[plotstyle=line]\AC{\BS{data}} \\
+}
+ \\  \hline 
+\end{tabular} 
+%%--------------------------------------------------------
+\subsubsection{listplotThreeD}
+
+\begin{tabular}{|c|c|} \hline 
+\readdata{\data}{data3d.txt}
+\begin{pspicture}[shift=*](-6,-2.25)(6,7)
+\pstThreeDCoor[zMax=5]
+\listplotThreeD[plotstyle=curve]{\data}
+ \end{pspicture}%
+ &  
+ \parbox{8cm}{
+
+ \BS{readdata}\AC{\BS{data}}\AC{data3d.txt} \\
+ \\
+ \% data3d.txt : \TFRGB{fichier de données créé avec}{data file created with} Excel \\
+\\
+\BSS{listplotThreeD}[plotstyle=curve]\AC{\BS{data}} \\
+}
+\\  \hline  
+\end{tabular} 
+
+
+

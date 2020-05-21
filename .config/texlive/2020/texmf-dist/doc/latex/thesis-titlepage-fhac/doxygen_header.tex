@@ -1,0 +1,91 @@
+%%
+%% This is file `doxygen_header.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% doxygen_header.dtx.input  (with options: `doxyheader')
+%% fhACtitlepage: A LaTeX2e package to create a titlepage for a diploma
+%%                thesis at Fachhochschule Aachen.
+%% 
+%% Copyright (C) 2006 Juergen A. Lamers <jaloma@dokutransdata.de>
+%% 
+\documentclass[a4paper,
+11pt,titlepage,abstracton,german,twoside,bibtotocnumbered,idxtotoc,%glototoc
+liststotoc, pointlessnumbers,openright]{scrreprt}
+
+\usepackage{mathptmx}
+\usepackage[scaled = .9]{helvet}
+\usepackage{courier}
+
+\usepackage[left=20mm,bottom=30mm]{geometry}
+\usepackage{ngerman}
+
+\usepackage[latin1]{inputenc}
+
+\usepackage{float}
+\restylefloat{figure}
+\restylefloat{table}
+
+\usepackage{amsmath}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+\usepackage[dvips]{epsfig}
+\graphicspath{{./bilder}}
+
+\usepackage{psfrag}
+
+\usepackage[german, vlined, boxed]{algorithm2e}
+
+\usepackage{makeidx,verbatim,array}
+\makeindex
+\usepackage{url}
+
+\usepackage{scrpage}
+\deftripstyle{Kopfzeile}{\rightmark}{}{\pagemark}{}{}{}
+\pagestyle{Kopfzeile}
+
+\usepackage[
+center, % Bilder grundsaetzlich zentrieren
+nocaptionlist
+]{figbib_add}
+\fbTheFigs
+\def\fbDirectory{bilder}
+
+\usepackage{gloss}
+\makegloss{}
+
+\newtheorem{defi}{Definition}[chapter]
+\newtheorem{theo}[defi]{Satz}
+\newtheorem{expl}[defi]{Beispiel}
+\newtheorem{lem}[defi]{Lemma}
+\newtheorem{kor}[defi]{Korollar}
+\newtheorem{bem}[defi]{Bemerkung}
+\newtheorem{folg}[defi]{Folgerung}
+\newtheorem{prop}[defi]{Proposition}
+
+\usepackage[colored]{fhACtitlepage}
+\subject{Beschreibung der Programmierschnittstelle}
+
+\usepackage{fancyhdr} % fuer doxygen
+\usepackage{doxygen}
+
+\usepackage{hyperref}
+
+\renewcommand{\proofname}{Beweis}
+
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\makeindex
+\begin{document}
+\maketitle
+\clearemptydoublepage
+\pagenumbering{roman}
+\tableofcontents
+\clearemptydoublepage
+\pagenumbering{arabic}
+\endinput
+%%
+%% End of file `doxygen_header.tex'.

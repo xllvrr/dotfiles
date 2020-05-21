@@ -1,0 +1,897 @@
+\documentclass[10pt,french,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage[euler-digits]{eulervm}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{tipfr}
+\usepackage[margin=2cm]{geometry}
+\usepackage{tabularx,titlesec}
+\usepackage{babel}
+\usepackage[pdfborder={0 0 0},bookmarksnumbered,pdfpagelabels]{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{listingsutf8,documentation}
+\tcbset{color key=blue,color value=ForestGreen,index colorize=true,doclang/keys=options,doclang/key=option,doclang/values=valeurs,doclang/value=valeur}
+\usepackage{makeidx}
+\makeindex
+
+\makeatletter
+\newcommand*{\Spec@nostar}{Cette option s'applique également aux touches spéciales}
+\newcommand*{\Spec@star}{Cette option ne s'applique pas aux touches spéciales}
+\newcommand*\Speciale{\@ifstar{\Spec@star}{\Spec@nostar}}
+\makeatother
+
+%%% FORMAT SECTIONS DE mathbook.cls de Stéphane PASQUET
+
+% couleurs section
+\definecolor{section@title@color}{cmyk}{1,0.2,0.3,0.1}
+\definecolor{subsection@title@color}{cmyk}{0,0.6,0.9,0}
+\definecolor{shadow@color}{cmyk}{.07,0,0,0.49}
+% fontes section
+\def\sectiontitle@font{\fontfamily{ugq}\selectfont}
+\def\subsectiontitle@font{\fontfamily{ugq}\selectfont}
+% Décalages numéro de sections / titres des sections
+\newlength\decalnumsec
+\newlength\decalnumsubsec
+\setlength{\decalnumsec}{-0.5em}
+\setlength{\decalnumsubsec}{-0.5em}
+\newlength\decalxtitlesubsec
+\setlength{\decalxtitlesubsec}{\parindent}
+% Espace entre le numéro de section et le titre
+\newlength\spacetitlesec
+\newlength\spacetitlesubsec
+\setlength{\spacetitlesec}{0.5em}
+\setlength{\spacetitlesubsec}{0.2em}
+
+%%%%%%%%%%%%% Titre de section
+
+\renewcommand{\thesection}{\Roman{section}}
+\titleformat{\section}[block]
+{%
+	\bfseries\Large
+	\color{section@title@color}
+	\sectiontitle@font
+}
+{
+\raisebox{\decalnumsec}
+{%
+\begin{tikzpicture}
+\node (numsec) {\sectiontitle@font\thesection};
+\fill[rounded corners=2pt,fill=shadow@color] ($(numsec.north west)+(2pt,-2pt)$) -- ($(numsec.north east)+(1mm,0mm)+(2pt,-2pt)$) -- ($(numsec.south east)+(2pt,-2pt)$) -- ($(numsec.south west)+(-1mm,0)+(2pt,-2pt)$) -- cycle;
+\fill[rounded corners=2pt,fill=section@title@color] (numsec.north west) -- ($(numsec.north east)+(1mm,0mm)$) -- (numsec.south east) -- ($(numsec.south west)+(-1mm,0)$) -- cycle;
+\node[white] at (numsec) {\sectiontitle@font\thesection};
+\end{tikzpicture}
+}
+}
+{\spacetitlesec}
+{}
+
+%%%%%%%%%%%%% Titre de subsection
+
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\titleformat{\subsection}[block]
+{%
+	\hspace*{\decalxtitlesubsec}
+	\bfseries\large
+	\color{subsection@title@color}
+	\subsectiontitle@font
+}
+{
+	\raisebox{\decalnumsubsec}
+	{%
+	\begin{tikzpicture}
+	\node (numsec) {\subsectiontitle@font\thesubsection};
+	\fill[rounded corners=2pt,fill=shadow@color] ($(numsec.north west)+(2pt,-2pt)$) -- ($(numsec.north east)+(1mm,0mm)+(2pt,-2pt)$) -- ($(numsec.south east)+(2pt,-2pt)$) -- ($(numsec.south west)+(-1mm,0)+(2pt,-2pt)$) -- cycle;
+	\fill[rounded corners=2pt,fill=subsection@title@color] (numsec.north west) -- ($(numsec.north east)+(1mm,0mm)$) -- (numsec.south east) -- ($(numsec.south west)+(-1mm,0)$) -- cycle;
+	\node[white] at (numsec) {\subsectiontitle@font\thesubsection};
+	\end{tikzpicture}
+	}
+}
+{%
+	\spacetitlesubsec
+}
+{%
+	%\itemclass{subsection@title@color}{\subsection@font}
+}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+    \begin{tcolorbox}[enhanced,lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},width=0.65\linewidth]
+    \Huge\bfseries\centering tipfr.sty
+    \end{tcolorbox}\medskip
+
+    \Calculatrice[documentation]
+
+    \today, version 1.5\medskip
+
+    Philippe \bsc{De Sousa} (\href{mailto:philou.desousa@gmail.com}{philou.desousa@gmail.com})
+\end{center}
+
+\begin{abstract}
+    Travaillant en lycée, je suis souvent amené à travailler avec les élèves sur une calculatrice graphique. La technologie d'aujourd'hui nous permet de vidéo-projeter la calculatrice et manipuler en même temps que les élèves pour leur montrer les différentes fonctionnalités de toutes les touches.\par
+    Mais une fois chez eux, comment se souvenir de ce qui a été fait en classe ?\par
+    J'ai créé ce package en m'appuyant sur un modèle de calculatrice répandu dans mon lycée afin de constituer des fiches méthodes que les élèves pourront utiliser à la maison et conserver d'année en année.
+\end{abstract}
+
+\tableofcontents
+\vspace*{2cm}
+
+\section{Les touches}
+
+\subsection{Dessiner une touche}
+
+\begin{docCommand}{Touche}{\oarg{options}}
+    Voici la commande qui fournit tous les dessins de touche. L'appel à la commande \cs{Touche} sans aucune option réalise la touche $\sin$ par défaut.
+\end{docCommand}
+
+\begin{dispExample*}{sidebyside}
+\Touche
+\end{dispExample*}
+
+Pour obtenir d'autres types de touches, on utilise alors différentes options auxquelles on spécifie une valeur :
+
+\begin{docKey}{style}{=\meta{text}}{valeur par défaut : \docValue{function}}
+Crée un dessin de touche selon le style précisé. Les différentes valeurs sont :
+\end{docKey}
+\begin{description}
+    \item[\docValue{function}]  dessine une touche noire pour les différentes fonctions de la calculatrice ;
+    \item[\docValue{number}] dessine une touche blanche un peu plus grosse que les précédentes pour indiquer les chiffres ;
+    \item[\docValue{operation}] dessine des touches grises pour les opérations ;
+    \item[\docValue{graph}] dessine des touches grises plus fines que les précédentes pour les options liées aux dessins de graphiques de la calculatrice ;
+    \item[\docValue{second}] dessine la touche spéciale \textit{2nde} qui permet d'accéder aux fonctions secondaires des touches de la calculatrice ;
+    \item[\docValue{alpha}] dessine la touche spéciale \textit{alpha} qui permet d'accéder aux fonctions alphabétiques des touches de la calculatrice ;
+    \item[\docValue{on}] dessine la touche spéciale \textit{on/off} ;
+    \item[\docValue{enter}] dessine la touche spéciale \textit{entrer} qui permet d'évaluer un résultat ;
+    \item[\docValue{arrows}] dessine la touche spéciale qui représente les quatres flèches de la calculatrice.
+\end{description}
+
+\begin{dispExample*}{sidebyside, center lower}
+\Touche[style=function]
+\Touche[style=number]
+\Touche[style=operation]
+\Touche[style=graph]
+\Touche[style=second]
+
+\Touche[style=alpha]
+\Touche[style=enter]
+\Touche[style=on]
+\Touche[style=arrows]
+\end{dispExample*}
+
+Hormis pour les touches spéciales, on constate que la valeur principale par défaut est $\sin$. De plus, la touche graphique nous montre un problème d'alignement. Des options ont donc été créées pour apporter une solution :
+
+\begin{docKey}{principal}{=\meta{text}}{valeur par défaut : \docValue{sin}}
+Précise le \meta{text} à mettre à l'intérieur d'une touche. \Speciale* sauf la touche spéciale \docValue{enter}. Une fois encore on constate un problème de positionnement.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Touche[style=function, principal={\large ,}]
+\Touche[style=number, principal=2]
+\Touche[style=operation, principal=$\times$]
+\Touche[style=graph,principal=$f(x)$]
+\Touche[style=enter, principal={=}]
+\end{dispExample*}
+
+La commande \cs{Circonflexe} a été créée pour dessiner un grand accent circonflexe : \Circonflexe
+
+\begin{dispExample*}{sidebyside}
+\Touche[style=function, principal=\Circonflexe]
+\end{dispExample*}
+
+\begin{docKey}{position}{=\meta{nombre}}{valeur par défaut : \docValue{0.7}}
+Permet d'ajuster la position du texte principal à l'intérieur de la touche. \Speciale.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Touche[style=on]
+\Touche[style=on, position = 0.1]
+
+\Touche[style=graph,principal=$f(x)$]
+\Touche[style=graph,principal=$f(x)$, position = 0.9]
+
+\Touche[style=enter, principal={\large =}]
+\Touche[style=enter, principal={\large =}, position = 0.35]
+\end{dispExample*}
+
+\begin{docKey}{raise}{=\meta{dim}}{valeur par défaut : \docValue{0ex}}
+Permet d'ajuster la hauteur de la touche par rapport à la ligne de base. Les valeurs négatives sont autorisées. \Speciale.
+\end{docKey}
+
+\noindent\begin{minipage}[t]{0.48\linewidth}
+Hauteurs non modifiées\par
+\begin{dispExample*}{center lower}
+\Touche[style=graph,principal=$f(x)$, position = 0.9]
+\Touche[style=number, principal=3]
+\Touche[style=operation, principal=$\times$]
+\Touche[style=function, principal={$x,t,\theta,n$}]
+\Touche[style=enter, principal=entrer]
+\end{dispExample*}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+Hauteurs modifiées\par
+\begin{dispExample*}{center lower}
+\Touche[style=graph,principal=$f(x)$, position = 0.9]
+\Touche[style=number, principal=3, raise=1.5ex]
+\Touche[style=operation, principal=$\times$, raise=2ex]
+\Touche[style=function, principal={$x,t,\theta,n$}, raise=2ex]
+\Touche[style=enter, principal=entrer, raise=0.5ex]
+\end{dispExample*}
+\end{minipage}
+
+\begin{docKey}{fontsize}{=\meta{dim}}{valeur par défaut : \docValue{8pt}}
+    L'exemple précédent montre cette fois un débordement horizontal. L'option \docAuxKey{fontsize} permet de modifier ponctuellement la taille de la fonte utilisée dans la touche. \Speciale.
+\end{docKey}
+\begin{dispExample*}{sidebyside}
+\Touche[style=function, principal={$x,t,\theta,n$}]
+\Touche[style=function, principal={$x,t,\theta,n$},fontsize=6pt]
+\end{dispExample*}
+\bigskip
+
+Les touches ne sont pas uniquement composées de leur fonction principale. Parfois, elles possèdent une fonction secondaire appelée à l'aide de la touche \Touche[style=second,raise=-1ex] et parfois même une fonction alphabétique appelée à l'aide de la touche \Touche[style=alpha,raise=-1ex].
+
+\begin{docKey}{second}{=\meta{text}}{\sffamily fonction inactive par défaut}
+    \'Ecrit en bleu une fonction secondaire au dessus de la touche. Lorsque l'option \docAuxKey{second} est spécifié sans l'option \docAuxKey{alpha} alors le \meta{text} est centré au dessus de la touche. \Speciale* sauf la touche spéciale \docValue{enter}.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Touche[principal={suppr}, second={insérer}, position=0.65]
+\end{dispExample*}
+
+\begin{docKey}{alpha}{=\meta{text}}{\sffamily fonction inactive par défaut}
+        \'Ecrit en vert une fonction alphabétique au dessus de la touche. Lorsque l'option \docAuxKey{alpha} est spécifié sans l'option \docAuxKey{second} alors rien n'est affiché. En effet, sur la calculatrice prise en modèle, il n'existe aucune touche possédant une fonction alphabétique sans avoir de fonction secondaire. \Speciale* sauf la touche spéciale \docValue{enter}.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Touche[style=graph, principal=$f(x)$,second={gr.stats}, alpha=f1, position=0.95, fontsize=7pt]\quad
+\Touche[style=number, principal={7}, second={$u_n$}, alpha={O}]\quad
+\Touche[style=number, principal={7}, alpha={O}]
+\Touche[style=enter,fontsize=7pt, principal=entrer, second=préc, alpha=résol]
+\end{dispExample*}
+
+L'option \docAuxKey{fontsize} est ici spécifiée afin de permettre au texte secondaire et au texte alphabétique de cohabiter et d'éviter une \textit{badbox}.\bigskip
+
+La commande \cs{Racine} a été créée pour dessiner une racine carré : \Racine
+
+\begin{dispExample*}{sidebyside}
+\Touche[principal={$x^2$}, second={\Racine}, alpha={I}]
+\end{dispExample*}
+
+\subsection{Entourer une touche}
+
+\begin{docKey}{circle}{\docValue*{=true|false}}{valeur par défaut : \docValue{false}}
+    Permet d'entourer la touche à l'aide d'un cercle dont on peut alors préciser le rayon, l'épaisseur et la couleur. \Speciale\ sauf pour le style \docValue{arrows} qui bénéficie d'un traitement particulier.
+\end{docKey}
+
+\begin{docKey}{radius}{=\meta{dim}}{valeur par défaut : \docValue{20pt}}
+    On spécifie ici le rayon du cercle qui ne sera pris en compte que si \docAuxKey{circle}=\docValue{true}.
+\end{docKey}
+
+\begin{docKey}{colour}{=\meta{colour}}{valeur par défaut : \docValue{red}}
+    On spécifie ici la couleur du cercle qui ne sera prise en compte que si \docAuxKey{circle}=\docValue{true}. L'option \docAuxKey{color} est également possible.
+\end{docKey}
+
+\begin{docKey}{thickness}{=\meta{dim}}{valeur par défaut : \docValue{1pt}}
+    On spécifie ici l'épaisseur du cercle qui ne sera prise en compte que si \docAuxKey{circle}=\docValue{true}.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Touche[principal={$x,t,\theta,n$}, second={échanger}, fontsize=7pt, position=0.8, circle=true]
+\Touche[style=enter,fontsize=7pt, principal=entrer, second=préc, alpha=résol, circle=true, thickness=0.5pt, colour=blue, radius=25pt]
+\end{dispExample*}
+
+\subsection{Touches flèches}
+
+Les touches flèches ont un statut bien particulier qui leur permet d'avoir des commandes qui leur sont spécifiques.
+
+\begin{docKey}{fixed}{\docValue*{=true|false}}{valeur par défaut : \docValue{true}}
+    Les flèches sont dessinées à l'endroit même où la commande est appelée. Si on a spécifié \docAuxKey{fixed}=\docValue{false} alors les flèches vont pouvoir se déplacer sur la page.
+\end{docKey}
+
+\begin{docKey}{xoffset}{=\meta{dim}}{valeur par défaut : \docValue{0cm}}
+    Permet de déplacer la touche horizontalement.
+\end{docKey}
+
+\begin{docKey}{yoffset}{=\meta{dim}}{valeur par défaut : \docValue{0cm}}
+    Permet de déplacer la touche verticalement.
+\end{docKey}
+
+\begin{docKey}{scalearrows}{=\meta{nombre}}{valeur par défaut : \docValue{0.25}}
+    Permet de modifier la taille de la touche.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+Il faut donc appuyer sur les\Touche[style=arrows, raise=-0.15cm, scalearrows=0.25] pour voir les autres options du menu.
+\end{dispExample*}
+
+\begin{dispExample*}{sidebyside}
+Les flèches\Touche[style=arrows, fixed=false, xoffset=4.5cm, scalearrows=0.5] ont disparu ! Ah non, les voilà :
+
+Attention, des flèches non fixées \Touche[style=arrows, fixed=false, scalearrows=0.5] se superposent au texte !
+\end{dispExample*}
+
+Les options de décalage ont été utilisées pour positionner les flèches sur la calculatrice de la première page.
+
+\begin{docKey}{arrowtot}{\docValue*{=true|false}}{valeur par défaut : \docValue{false}}
+    Cette option permet d'entourer la touche flèches entièrement.
+\end{docKey}
+
+\begin{docKey}{arrowup}{\docValue*{=true|false}}{valeur par défaut : \docValue{false}}
+    Cette option permet d'entourer la flèche du haut.
+\end{docKey}
+
+\begin{docKey}{arrowdown}{\docValue*{=true|false}}{valeur par défaut : \docValue{false}}
+    Cette option permet d'entourer la flèche du bas.
+\end{docKey}
+
+\begin{docKey}{arrowleft}{\docValue*{=true|false}}{valeur par défaut : \docValue{false}}
+    Cette option permet d'entourer la flèche de gauche.
+\end{docKey}
+
+\begin{docKey}{arrowright}{\docValue*{=true|false}}{valeur par défaut : \docValue{false}}
+    Cette option permet d'entourer la flèche de droite.
+\end{docKey}
+
+Comme pour les autres touches, les options \docAuxKey{thickness} et \docAuxKey{colour} peuvent être employées. En revanche, le rayon du cercle est fixé.
+
+\begin{dispExample*}{sidebyside}
+\Touche[style=arrows, arrowtot=true, scalearrows=0.5]
+\Touche[style=arrows, arrowleft=true, scalearrows=0.5]
+\Touche[style=arrows, arrowup=true, scalearrows=0.5]
+\end{dispExample*}
+
+\subsection{Nommer une touche}\label{subsec:NomTouche}
+
+\begin{docKey}{name}{=\meta{text}}{valeur par défaut : \docValue{NOM}}
+    La touche sera référencée à l'aide d'un n{\oe}ud nommé \meta{text}.
+\end{docKey}
+
+\begin{dispExample}
+Pour obtenir le nombre $\pi$ à la calculatrice, on utilise la séquence suivante :
+\begin{center}
+    \Touche[style=second]
+    \Touche[principal={\Circonflexe},second={$\pi$},alpha={H},name=PI]
+\end{center}
+\begin{tikzpicture}[overlay, remember picture, >=latex']
+    \draw[red, line width=1pt] ($(PI)+(-0.5,0.2)$) circle (7pt);
+    \draw[blue, line width=0.5pt, <-, rounded corners=10pt]
+        ($(PI)+(-0.6,-0.05)$) |- ($(PI)+(0.5,-0.7)$)
+        node[right] {La lettre $\pi$ apparaît ici};
+\end{tikzpicture}
+\end{dispExample}
+
+Les touches sont définies au sein d'un environnement \texttt{tikzpicture}. Afin de pouvoir s'y référer à l'intérieur d'un autre environnement de ce type, il faudra penser à utiliser les options \texttt{overlay} et \texttt{remember picture}. De plus, au minimum deux compilations seront nécessaires.
+
+
+
+\section{Créer des menus}
+
+En plus des différentes touches de la calculatrice, on pourra parler aux élèves des menus affichés par la calculatrice
+
+\begin{docCommand}{Menu}{\oarg{options}\marg{nom}}
+    Cette commande écrit \meta{nom} en majuscule dans une fonte à chasse fixe de type {\ttfamily machine à écrire} pour nommer un menu de calculatrice. Ce nom est enfermé dans une boîte à fond blanc exactement à sa taille.
+\end{docCommand}
+
+\begin{dispExample*}{sidebyside}
+\Menu{Math} \Menu{num} \Menu{cpx} \Menu{prb}
+\end{dispExample*}
+
+La taille peut être modifiée à l'aide de l'option suivante
+
+\begin{docKey}{size}{=\meta{dim}}{valeur par défaut : \docValue{15pt}}
+    Si l'unité de mesure n'est pas spécifié dans \meta{dim}, alors le \texttt{pt} sera utilisé par défaut.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Menu[size=1cm]{Math}
+\Menu{num}
+\Menu[size=8]{cpx}
+\Menu[size=8pt]{prb}
+\end{dispExample*}
+
+\begin{docKey}{select}{\docValue*{=true|false}}{valeur par défaut : \docValue{false}}
+    Permet d'écrire le nom du menu en blanc sur fond noir pour signifier qu'il est sélectionné.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Menu{Math} \Menu{num}
+\Menu[select=true]{cpx}
+\Menu{prb}
+\end{dispExample*}
+
+\begin{docKey}{colourbox}{=\meta{colour}}{valeur par défaut : \docValue{white}}
+    Détermine la couleur la boîte contenant le texte du menu lorsque celui-ci \textit{n'est pas} sélectionné. L'option \docAuxKey{colorbox} est autorisée.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Menu{Math} \Menu{num}
+\Menu[select=true]{cpx}
+\Menu[colourbox=red]{prb}
+\end{dispExample*}
+
+\begin{docKey}{text}{=\meta{text}}{valeur par défaut : \docValue{\symbol{92}unskip}}
+    Cette dernière option permet de spécifier si un texte doit être écrit à côté du nom du menu. Pratique pour les menus sous forme de listes verticales. Le \meta{text} est sensible à l'option \docAuxKey{size}.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Menu[size=10pt, text={$\blacktriangleright$Frac}]{1 :}\par
+\Menu[size=10pt, select=true, text={$\blacktriangleright$Dec}(]{2 :}\par
+\Menu[size=10pt, text=\up{3}]{3 :}
+\end{dispExample*}
+
+Voilà par exemple les quatres menus disponibles avec la touche \Touche[principal={math},second={tests},alpha={A},position=0.8,raise=-1ex] :
+\begin{center}\renewcommand\tabcolsep{-7pt}
+    \begin{tabular}{*{4}{llll|}}
+        \Menu[size=10,select=true]{Maths} & \Menu[size=10]{num} & \Menu[size=10]{cpx} & \Menu[size=10]{prb} &
+                \Menu[size=10]{Maths} & \Menu[size=10,select=true]{num} & \Menu[size=10]{cpx} & \Menu[size=10]{prb} &
+                \Menu[size=10]{Maths} & \Menu[size=10]{num} & \Menu[size=10,select=true]{cpx} & \Menu[size=10]{prb} &
+                \Menu[size=10]{Maths} & \Menu[size=10]{num} & \Menu[size=10]{cpx} & \Menu[size=10,select=true]{prb} \\[-8pt]
+%
+        \multicolumn{4}{l|}{\Menu[select=true, size=9, text={$\blacktriangleright$Frac}]{1 :}} &
+        \multicolumn{4}{l|}{\Menu[select=true, size=9, text=abs(]{1 :}} &
+        \multicolumn{4}{l|}{\Menu[select=true, size=9, text=conj(]{1 :}} &
+        \multicolumn{4}{l|}{\Menu[select=true, size=9, text=NbrAléat]{1 :}} \\[-8pt]
+%
+        \multicolumn{4}{l|}{\Menu[size=9, text={$\blacktriangleright$Dec}(]{2 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=arrondi(]{2 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=réel(]{2 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=Arrangement]{2 :}} \\[-8pt]
+%
+        \multicolumn{4}{l|}{\Menu[size=9, text=\up{3}]{3 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=ent(]{3 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=imag(]{3 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=Combinaison]{3 :}} \\[-8pt]
+%
+        \multicolumn{4}{l|}{\Menu[size=9, text={$^{\text{3}}\sqrt{\phantom x}$(}]{4 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=partDéc(]{4 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=argument(]{4 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=!]{4 :}} \\[-8pt]
+%
+        \multicolumn{4}{l|}{\Menu[size=9, text={$^{\text{x}}\sqrt{\phantom x}$}]{5 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=partEnt(]{5 :}}&
+        \multicolumn{4}{l|}{\Menu[size=9, text=abs(]{5 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=entAléat(]{5 :}} \\[-8pt]
+%
+        \multicolumn{4}{l|}{\Menu[size=9, text={$\times$fMin(}]{6 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=min(]{6 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text={$\blacktriangleright$Rect}]{6 :}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=normAléat(]{6 :}} \\[-8pt]
+%
+        \multicolumn{4}{l|}{\Menu[size=9, text={$\times$fMax(}]{7 $\downarrow$}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=max(]{7 $\downarrow$}}&
+        \multicolumn{4}{l|}{\Menu[size=9, text={$\blacktriangleright$Polaire}]{7 $\downarrow$}} &
+        \multicolumn{4}{l|}{\Menu[size=9, text=BinAléat(]{7 $\downarrow$}}
+    \end{tabular}
+\end{center}
+
+
+\section{Afficher un écran}
+\subsection{Généralités}
+
+\begin{docCommand}{Ecran}{\oarg{options}\marg{arguments}}
+    Cette commande permet d'afficher un écran de calculatrice.
+\end{docCommand}
+
+\begin{dispExample*}{center lower}
+\Ecran{}
+\end{dispExample*}
+
+On peut modifier l'aspect général à l'aide des options suivantes :
+
+\begin{docKey}{screencolour}{=\meta{colour}}{valeur par défaut : \docValue{ForestGreen}\docValue*{!15}}
+    Détermine la couleur de fond de l'écran. \docAuxKey{screencolor} est également possible.
+\end{docKey}
+
+\begin{docKey}{screenname}{=\meta{text}}{valeur par défaut : \docValue{ecran}}
+    Donne un nom à l'écran afin de pouvoir s'y référencer plus tard avec des environnements \texttt{tikzpicture}. Les mêmes précautions que pour les touches doivent être prises (voir sous-section \ref{subsec:NomTouche} page \pageref{subsec:NomTouche}).
+\end{docKey}
+
+\begin{docKey}{width}{=\meta{number}}{valeur par défaut : \docValue{8}}
+Permet de fixer la longueur de l'écran. L'unité de mesure est le \texttt{cm}.
+\end{docKey}
+
+\begin{docKey}{height}{=\meta{number}}{valeur par défaut : \docValue{5}}
+Permet de fixer la largeur de l'écran. L'unité de mesure est le \texttt{cm}.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[width=3, height=2, screenname=first]{}
+\Ecran[width=3, height=2, screencolour=blue!50, screenname=second]{}
+\tikz[remember picture, overlay]{\draw (first.center) circle (5pt);}
+\tikz[remember picture, overlay]{\draw (second.north west) -- (second.south east);}
+\end{dispExample*}
+
+\subsection{\'Ecran de calculs}
+
+\begin{docCommand}{Ecran}{\oarg{options}\marg{expression/résultat}}
+    C'est l'écran par défaut. Il n'existe pas d'options supplémentaires que celles de la sous-section précédente. L'argument obligatoire est une liste de couples \meta{expression/résultat} séparés par une virgule.\par
+    On peut ne rien écrire à la place de \meta{expression} ou \meta{résultat} mais, dans ce cas, il ne faut pas mettre d'espace non plus. Les deux peuvent être laissés vides mais alors rien ne se passe (pas de création de ligne vide).\par
+    On pensera à utiliser des accolades si l'expression ou le résultat utilise les symboles \texttt{,} ou \texttt{/}.
+\end{docCommand}\bigskip
+
+\noindent Voilà un premier exemple un peu long qui utilise la commande \cs{Menu} :\smallskip
+
+\begin{dispExample*}{center lower}
+\Ecran[width=6,height=3]{
+{\renewcommand\tabcolsep{-7pt}
+\begin{tabular}{llll}
+\Menu[size=10,select=true]{Maths} & \Menu[colourbox={ForestGreen!15}, size=10]{num} & \Menu[colourbox={ForestGreen!15}, size=10]{cpx} & \Menu[colourbox={ForestGreen!15}, size=10]{prb} \\[-8pt]
+\multicolumn{4}{l}{\Menu[select=true, size=9, text={$\blacktriangleright$Frac}]{1 :}} \\[-8pt]
+\multicolumn{4}{l}{\Menu[colourbox={ForestGreen!15}, size=9, text={$\blacktriangleright$Dec}(]{2 :}} \\[-8pt]
+\multicolumn{4}{l}{\Menu[colourbox={ForestGreen!15}, size=9, text=\up{3}]{3 :}} \\[-8pt]
+\multicolumn{4}{l}{\Menu[colourbox={ForestGreen!15}, size=9, text={$^{\text{3}}\sqrt{\phantom x}$(}]{4 :}} \\[-8pt]
+\multicolumn{4}{l}{\Menu[colourbox={ForestGreen!15}, size=9, text={$^{\text{x}}\sqrt{\phantom x}$}]{5 :}} \\[-8pt]
+\multicolumn{4}{l}{\Menu[colourbox={ForestGreen!15}, size=9, text={$\times$fMin(}]{6 :}} \\[-8pt]
+\multicolumn{4}{l}{\Menu[colourbox={ForestGreen!15}, size=9, text={$\times$fMax(}]{7 $\downarrow$}}
+\end{tabular}
+}/
+}
+\end{dispExample*}
+
+\noindent Les exemples suivants sont plus courts :\medskip
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[screencolour=blue!10, height=3, width=7]%
+{{sin(5$\pi$/3)\up 2}/0.75,
+3+2/5,
+/,
+1+2+3+4+5+6+7+8+9+10+11+12+13+14+15+16+17+%
+$\blacktriangleright$/5050}
+\end{dispExample*}
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[height=4, width=4]%
+{
+PROGRAM:DISTANCE/,
+{:Input "XA=",A}/,
+{:Input "YA=",B}/,
+{:Input "XB=",C}/,
+{:Input "YB=",D}/,
+{:$\sqrt{\:}$((A-C)\up2+(B-D)\up2)$\to$L}/,
+{:Disp "AB=",L}/
+}
+\end{dispExample*}
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[height=4,width=4]%
+{
+prgmDISTANCE/,
+XA=4/,
+YA=-1/,
+XB=1/,
+YB=3/,
+AB=/,
+/5,
+/Done
+}
+\end{dispExample*}
+
+\subsection{\'Ecran de graphiques}
+
+\begin{docKey}{graphic}{\docValue*{=true|false}}{valeur par défaut : \docValue{false}}
+    Cette option là permet de basculer d'un affichage dédié aux calculs à un affichage prévu pour les graphiques. On voit d'ailleurs apparaître des axes gradués.
+\end{docKey}%
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[width=6, height=4, graphic=true]{}
+\end{dispExample*}
+
+\begin{docKey}{xgrad}{=\meta{number}}{valeur par défaut : \docValue{0.5}}
+    Détermine l'unité de longueur en \texttt{cm} pour une unité sur l'axe des abscisses.
+\end{docKey}
+
+\begin{docKey}{ygrad}{=\meta{number}}{valeur par défaut : \docValue{0.5}}
+    Détermine l'unité de longueur en \texttt{cm} pour une unité sur l'axe des ordonnées.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[width=6, height=4, graphic=true, xgrad=0.25, ygrad=1]{}
+\end{dispExample*}
+
+On constate que, selon l'unité choisie, le nombre de graduations peut être insuffisant.
+
+\begin{docKey}{nbgradx}{=\meta{number}}{valeur par défaut : \docValue{8}}
+    Modifie le nombre de graduations sur un \textbf{demi}-axe des abscisses. Le nombre total de graduations est donc doublé.\par
+    Cependant, la première graduation est tracée à l'origine donc n'est pas visible (car recouverte par l'axe des ordonnées). De même, il se peut qu'une graduation se retrouve exactement sur un bord de l'écran.
+\end{docKey}
+
+\begin{docKey}{nbgrady}{=\meta{number}}{valeur par défaut : \docValue{5}}
+    Modifie le nombre de graduations sur un \textbf{demi}-axe des ordonnées. Le nombre total de graduations est donc doublé.\par
+    Cependant, la première graduation est tracée à l'origine donc n'est pas visible (car recouverte par l'axe des abscisses). De même, il se peut qu'une graduation se retrouve exactement sur un bord de l'écran.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[width=6, height=4, graphic=true, xgrad=0.25, nbgradx=13, ygrad=1, nbgrady=40]{}
+\end{dispExample*}
+
+\begin{docKey}{origin}{=\meta{coordonnées}}{valeur par défaut : \docValue{\meta{screenname}.center}}
+    Modifie l'origine du repère. Celui-ci est utilisé pour tracer les axes gradués mais aussi les courbes. Pour information, le coin inférieur gauche de l'écran est le point \texttt{(0,0)}. Rappelons également que {\ttfamily \meta{screenname}=ecran} par défaut.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[width=6, height=4, graphic=true, origin={(1,1)}, nbgradx=10, nbgrady=6]{}
+\end{dispExample*}
+
+\begin{docCommand}{Ecran}{\oarg{options}\marg{fonction/intervalle}}
+    Avec cet argument obligatoire, on peut dessiner plusieurs courbes représentatives de fonctions, chacune définie sur un intervalle. Pour cela, la syntaxe suivante a été utilisé :
+    \begin{center}
+        \ttfamily
+        \verb!\draw! plot[domain=\meta{intervalle}, samples=500] (\string\x, \meta{fonction});
+    \end{center}
+
+    On a donc {\ttfamily \meta{intervalle}=a:b} et {\ttfamily \meta{fonction}=f(\string\x)}. \meta{intervalle} peut être laissé vide (sans espace) et, dans ce cas, par défaut, {\ttfamily\meta{intervalle}=-6:6}.
+\end{docCommand}
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[width=6, height=4, graphic=true]%
+{%
+\x/,
+\x*\x/,
+2/-3:3
+}
+\end{dispExample*}
+
+On peut modifier l'aspect des courbes. Les options suivantes sont valables pour toutes les courbes tracées et ne peuvent être individualisées.
+
+\begin{docKey}{plotcolour}{=\meta{colour}}{valeur par défaut : \docValue{blue}}
+    Modifie la couleur des courbes. L'option \docAuxKey{plotcolor} est autorisée.
+\end{docKey}
+
+\begin{docKey}{plotwidth}{=\meta{dim}}{valeur par défaut : \docValue{1pt}}
+    Modifie l'épaisseur des courbes.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[plotwidth=0.5pt, plotcolour=red, graphic=true, ygrad=2, width=6.5]%
+{
+sin(\x r)/-3*pi:3*pi,
+cos(\x r)/-2*pi:1.5*pi
+}
+\end{dispExample*}
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[graphic=true, height=2.75, width=6.5, nbgradx=15, origin={(0.5,0.5)}]%
+{sqrt(\x)/0:15}
+\end{dispExample*}
+
+\begin{dispExample*}{sidebyside, center lower}
+\Ecran[width=6.5, height=2.75, graphic=true, nbgradx=15, origin={($(ecran.west)+(0.5,0)$)}]%
+{ln(\x)/0.01:15}
+\end{dispExample*}
+
+
+\section{La calculatrice}
+\subsection{Version grand format}
+
+\begin{docCommand}{Calculatrice}{\oarg{titre optionnel}}
+    Cette commande permet d'afficher la calculatrice en entier. Chaque touche a été nommée individuellement pour pouvoir s'y référer.
+\end{docCommand}
+
+Le tableau ci-dessous montre le nom attribué à chacune des touches avec la commande \cs{Calculatrice}.\bigskip
+
+\noindent\renewcommand\arraystretch{2}%
+\begin{tabularx}{\linewidth}{>{\bfseries}c *{8}{>{\centering\arraybackslash} X}}
+    \hline
+        Touche & \Touche[style=graph,principal=$f(x)$,second={gr.stats},alpha=f1,position=0.95,fontsize=7pt,raise=-2ex] &
+        \Touche[style=graph,principal={fenêtre},second=déf tab,alpha=f2,position=0.95,fontsize=7pt,raise=-2.2ex] &
+        \Touche[style=graph,principal={zoom},second={format},alpha={f3},position=0.95,fontsize=7pt,raise=-2.2ex] &
+        \Touche[style=graph,principal={trace},second={calculs},alpha={f4},position=0.95,fontsize=7pt,raise=-2.2ex] &
+        \Touche[style=graph,principal={graphe},second={table},alpha={f5},position=0.95,fontsize=7pt,raise=-2.2ex] &
+        \Touche[style=second] &
+        \Touche[style=alpha,name=ALPHA] &
+        \Touche[principal={suppr},second={insérer},position=0.65]\\
+    \hline
+    Nom & FX & FEN & ZOOM & TRC & GRA & SCD & ALPHA & SUP \\
+%
+    \hline\hline
+%
+        Touche & \Touche[principal={mode},second={quitter},position=0.8] &
+        \Touche[principal={$x,t,\theta,n$},second={échanger},fontsize=7pt,position=0.8] &
+        \Touche[principal={stats},second={listes}] &
+        \Touche[principal={maths},second={tests},alpha={A},position=0.8] &
+        \Touche[principal={\textcolor{purple}{apps}},second={angle},alpha={B},position=0.7] &
+        \Touche[principal={prgm},second={dessin},alpha={C},position=0.7] &
+        \Touche[principal={var},second={distrib}] &
+        \Touche[principal={annul}]\\
+    \hline
+        Nom & MODE & XTN & STATS & MAT & APPS & PRGM & VAR & ANN \\
+%
+    \hline\hline
+%
+        Touche & \Touche[principal={$x^{-1}$},second={matrice},alpha={D},fontsize=7pt] &
+        \Touche[principal={sin},second={arcsin},alpha={E}] &
+        \Touche[principal={cos},second={arccos},alpha={F}] &
+        \Touche[principal={tan},second={arctan},alpha={G}] &
+        \Touche[principal={\Circonflexe},second={$\pi$},alpha={H}] &
+        \Touche[principal={$x^2$},second={\Racine},alpha={I}] &
+        \Touche[principal={\large ,},second={EE},alpha={J}] &
+        \Touche[principal={log},second={$10^x$},alpha={N}] \\
+    \hline
+        Nom & INV & SIN & COS & TAN & POW & CARRE & VIRG & LOG\\
+%
+    \hline\hline
+%
+        Touche & \Touche[principal={ln},second={e$^x$},alpha={S},name=LN] &
+        \Touche[principal={(},second={\{},alpha={K}] &
+        \Touche[principal={)},second={\}},alpha={L}] &
+        \Touche[principal={sto$\to$},second={rappel},alpha={X},name=STO] &
+        \Touche[style=operation,principal={$\div$},second={e},alpha={M}] &
+        \Touche[style=operation,principal={$\times$},second={[},alpha={R}] &
+        \Touche[style=operation,principal={$-$},second={]},alpha={W},name=SUB] &
+        \Touche[style=operation,principal={+},second={mém},alpha={"},name=ADD]\\
+    \hline
+        Nom & LN & PO & PF & STO & DIV & MUL & SUB & ADD \\
+%
+    \hline\hline
+%
+        Touche & \Touche[style=number,principal={1},second={L1},alpha={Y}] &
+        \Touche[style=number,principal={2},second={L2},alpha={Z}] &
+        \Touche[style=number,principal={3},second={L3},alpha={$\theta$}] &
+        \Touche[style=number,principal={4},second={L4},alpha={T}] &
+        \Touche[style=number,principal={5},second={L5},alpha={U}] &
+        \Touche[style=number,principal={6},second={L6},alpha={V}] &
+        \Touche[style=number,principal={7},second={$u_n$},alpha={O}] &
+        \Touche[style=number,principal={8},second={$v_n$},alpha={P}] \\
+    \hline
+        Nom & T1 & T2 & T3 & T4 & T5 & T6 & T7 & T8 \\
+%
+    \hline\hline
+%
+        Touche & \Touche[style=number,principal={9},second={$w_n$}] &
+        \Touche[style=number,principal={0},second={cat.},alpha={$\sqcup$}] &
+        \Touche[style=number,principal={$\centerdot$},second={$i$},alpha={:}] &
+        \Touche[style=number,principal={(--)},second={rép},alpha={?}] &
+        \Touche[style=on] &
+        \Touche[style=enter, fontsize=7pt, principal=entrer, second=préc, alpha=résol, name=ETR] &
+        \Touche[style=arrows,scalearrows=0.5] &\\
+    \hline
+        Nom & T9 & T0 & DOT & MS & ON & ETR & FLE &\\
+\end{tabularx}\label{tableau}
+
+\begin{center}\label{calculatrice}
+\Calculatrice[Structure]
+\end{center}
+\begin{tikzpicture}[overlay, remember picture]
+        \draw[red, line width=1pt,rounded corners = 5pt] ($(STO) + (0.6,-0.5)$) |-
+                                                    ($(PF) + (0.6,-0.5)$) |-
+                                                    ($(POW) + (0.6,-0.5)$)|-
+                                                    ($(STATS) + (0.6,-0.5)$)|-
+                                                    ($(MODE) + (-0.6,0.5)$)|-
+                                                    ($(MAT) + (-0.6,0.5)$)|- cycle;
+        \path[red]  ($(MAT) + (-0.6,0.5)$) -- ($(STO) + (-0.6,-0.5)$) node[left,midway] {\textbf 1};
+%
+        \draw[blue, line width=1pt,rounded corners = 5pt] ($(T0) + (-0.6,-0.7)$) -|
+                                                    ($(T9) + (0.6,0.5)$) -| cycle;
+        \path[blue]  ($(T0) + (-0.6,-0.7)$) -- ($(MS) + (0.6,-0.7)$) node[below,midway] {\textbf 2};
+%
+        \draw[Orange, line width=1pt,rounded corners = 5pt] ($(ADD) + (-0.6,-0.5)$) -|
+                                                    ($(DIV) + (0.6,0.5)$) -| cycle;
+        \path[Orange]  ($(ADD) + (0.6,-0.5)$) -- ($(DIV) + (0.6,0.5)$) node[right,midway] {\textbf 3};
+%
+        \draw[pink!200, line width=1pt,rounded corners = 5pt] ($(FX) + (-0.6,-0.4)$) -|
+                                                    ($(GRA) + (0.6,0.5)$) -| cycle;
+        \draw[pink!200] ($ (GRA)+ (0.6,0)$) node[right] {\textbf 4};
+%
+        \draw[blue, line width=1pt,rounded corners = 5pt] ($(SCD) + (-0.6,-0.5)$) |-
+                                                                                        ($(ALPHA) + (0.6,-0.5)$)|- ($(SCD) + (-0.6,0.1)$) -- cycle;
+        \path ($ (SCD)+ (-0.6,0.1)$) --  ($(ALPHA)+ (-0.6,-0.5)$) node[midway,left] {\parbox{2cm}{\raggedleft\bfseries touches spéciales}};
+%
+        \draw[red, line width=1pt] (ETR) circle (22pt) node[right=20pt] {\color{black} \parbox{3cm}{\raggedright\bfseries pour évaluer les séquences tapées}};
+%
+        \draw[red, line width=1pt] (ON) circle (20pt) node[left=25pt] {\color{black} \parbox{3cm}{\raggedleft\bfseries pour allumer et éteindre la calculatrice}};
+%
+        \draw[red, line width=1pt] (FLE) circle (1cm) node[right=1.1cm] {\color{black} \parbox{3cm}{\raggedright\bfseries pour se déplacer dans les menus}};
+    \end{tikzpicture}
+\begin{enumerate}
+    \item Touches de fonctions (le cadre a été obtenu en utilisant le code ci-dessous)
+    \item Touches numériques pour écrire les nombres décimaux
+    \item Touches pour écrire les opérations de base
+    \item Touches pour les menus graphiques
+\end{enumerate}\medskip
+
+\begin{dispListing}
+\draw[red, line width=1pt,rounded corners = 5pt]%
+    ($(STO) + (0.6,-0.5)$) |- ($(PF) + (0.6,-0.5)$) |-
+    ($(POW) + (0.6,-0.5)$) |- ($(STATS) + (0.6,-0.5)$) |-
+    ($(MODE) + (-0.6,0.5)$) |- ($(MAT) + (-0.6,0.5)$) |- cycle;
+\path[red]  ($(MAT) + (-0.6,0.5)$) -- ($(STO) + (-0.6,-0.5)$) node[left,midway] {\textbf 1};
+\end{dispListing}
+
+\subsection{Version petit format}
+
+\begin{docCommand}{Calculatrice*}{\oarg{options}}
+    Cette commande permet d'afficher une calculatrice en petit format à utiliser dans des fiches méthodes par exemple.
+\end{docCommand}
+
+\begin{dispExample*}{sidebyside}
+\Calculatrice*
+\end{dispExample*}
+
+L'aspect de la calculatrice est modifiable :
+
+\begin{docKey}{calcscale}{=\meta{number}}{valeur par défaut : \docValue{0.5}}
+Permet de modifier la taille de la calculatrice. Plus la calculatrice est petite, moins les dessins de touches seront précis.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Calculatrice*[calcscale=1]
+\Calculatrice*[calcscale=0.25]
+\end{dispExample*}
+
+\begin{docKey}{calcrotate}{=\meta{number}}{valeur par défaut : \docValue{-30}}
+Permet de changer l'angle d'affichage de la calculatrice.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Calculatrice*[calcrotate=0] \textbf{Méthode}
+\qquad
+\Calculatrice*[calcrotate=90] \textbf{Méthode}
+\par\bigskip
+\Calculatrice*[calcrotate=-30]
+\hspace{-1em}\textbf{Méthode}
+\qquad
+\rotatebox{90}{\textbf{Méthode}}
+\Calculatrice*[calcrotate=0]
+\end{dispExample*}
+
+\begin{docKey}{calcraise}{=\meta{dim}}{valeur par défaut : \docValue{-2ex}}
+Permet de modifier la hauteur de la calculatrice en fonction de la ligne de base.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside}
+\Calculatrice*[calcrotate=0, calcraise=0ex] \textbf{Méthode}
+\qquad
+\rotatebox{90}{\textbf{Méthode}}
+\Calculatrice*[calcrotate=0, calcraise=-0.5ex]
+\end{dispExample*}
+
+\begin{dispListing}
+\begin{center}
+    \begin{tikzpicture}
+        \fill[color=blue!15, rounded corners=5pt] (0,0) rectangle ++(0.75\linewidth,-3.2);
+        \draw[line width = 2pt, color=blue, rounded corners=5pt, line cap=round] (0,0) |- ++(0.75\linewidth,-3.2) -- ++(0,0.2);
+        \node (Calc) at (-0.1,0.1)
+            {\rotatebox{45}{\textbf{Méthode}}\hspace{-2.5em}
+            \Calculatrice*[calcrotate=-45, calcraise=-2.85ex]};
+    \end{tikzpicture}
+
+\vspace*{-3cm}
+\hspace*{0.1\linewidth}
+\parbox{0.7\linewidth}{
+    Pour tracer une courbe à la calculatrice, on effectue les actions suivantes :
+    \begin{itemize}
+        \item appuyer sur \Touche[style=graph, principal=$f(x)$, second={gr.stats}, alpha=f1, fontsize=7pt, position=0.95, raise=-3.5ex] ;
+        \item taper l'expression de la fonction ;
+        \item appuyer sur \Touche[style=graph, principal={trace}, second={calculs}, alpha={f4}, position=0.95, fontsize=7pt, raise=-3.5ex].
+    \end{itemize}
+}
+\end{center}
+\end{dispListing}
+
+\begin{center}
+    \begin{tikzpicture}
+        \fill[color=blue!15, rounded corners=5pt] (0,0) rectangle ++(0.75\linewidth,-3.2);
+        \draw[line width = 2pt, color=blue, rounded corners=5pt, line cap=round] (0,0) |- ++(0.75\linewidth,-3.2) -- ++(0,0.2);
+        \node (Calc) at (-0.1,0.1)
+            {\rotatebox{45}{\textbf{Méthode}}\hspace{-2.5em}
+            \Calculatrice*[calcrotate=-45, calcraise=-2.85ex]};
+    \end{tikzpicture}
+    
+\vspace*{-3cm}
+\hspace*{0.1\linewidth}
+\parbox{0.7\linewidth}{
+    Pour tracer une courbe à la calculatrice, on effectue les actions suivantes :
+    \begin{itemize}
+        \item appuyer sur \Touche[style=graph, principal=$f(x)$, second={gr.stats}, alpha=f1, fontsize=7pt, position=0.95, raise=-3.5ex] ;
+        \item taper l'expression de la fonction ;
+        \item appuyer sur \Touche[style=graph, principal={trace}, second={calculs}, alpha={f4}, position=0.95, fontsize=7pt, raise=-3.5ex].
+    \end{itemize}
+}
+\end{center}
+
+\clearpage
+
+\printindex
+\end{document} 

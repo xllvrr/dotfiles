@@ -1,0 +1,339 @@
+\SbSbSSCT{Symétrie par rapport à un point}{Central symmetry}
+
+\psset{unit=.7cm}
+\begin{tabular}{|c|c|c|} \hline
+%\multicolumn{3}{|c|}{ \BSS{pstSymO}[linecolor=red]\AC{A}\AC{B}  }\\ \hline
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(2,2){A}(3,1){B} %(3,3){C}
+\pstSymO[linecolor=red]{A}{B}
+%\psline[linestyle=dotted](B)(B')
+%\psline[linestyle=dashed](A)(B)
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(2,2){A}(3,1){B} %(3,3){C}
+\pstSymO[linecolor=Vert]{A}{B}[D]
+%\psline[linestyle=dashed](A)(B)
+%\psline[linestyle=dotted](B)(D)
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(2,2){A}(4,1){B}(3,3){C}
+\pstSymO[linecolor=red]{A}{B,C}[D,E]
+\end{pspicture}
+\\ \hline
+
+\BSS{pstSymO}[linecolor=red]  \BSI{pstSymO}{pst-eucl} &  \BSS{pstSymO}[linecolor=Vert]  
+&\BSS{pstSymO}[linecolor=red]    \\
+\AC{A}\AC{B}  & \AC{A}\AC{B}[D] & \AC{A}\AC{B,C}[D,E]
+ \\ \hline
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|c|} \hline
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(2,2){A}(4,1){B}(3,3){C}
+\pstSymO[CodeFig=true]{A}{B,C}[D,E]
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(2,2){A}(4,1){B}(3,3){C}
+\pstSymO[CodeFig=true,CodeFigColor=red]{A}{B,C}[D,E]
+\end{pspicture}
+ \\ \hline
+\BS{pstSymO}[\RDD{CodeFig}=true] & \BS{pstSymO}[CodeFig=true,\RDD{CodeFigColor}=red]   \\
+ \AC{A}\AC{B,C}[D,E] \RDI{CodeFig}{pst-eucl} &  \AC{A}\AC{B,C}[D,E] \RDI{CodeFigColor}{pst-eucl}
+ \\ \hline
+ \dft : CodeFig = false & \dft : CodeFigColor = cyan
+  \\ \hline
+  
+
+
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(2,2){A}(4,1){B}(3,3){C}
+\pstSymO[CodeFig=true,CodeFigStyle=dotted,CodeFigColor=red]{A}{B,C}[D,E]
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(2,2){A}(4,1){B}(3,3){C}
+\pstSymO[CodeFig=true,CodeFigStyle=solid,CodeFigColor=red]{A}{B,C}[D,E]
+\end{pspicture}
+\\ \hline
+\BS{pstSymO}[CodeFig=true,\RDD{CodeFigStyle}=dotted]  & \BS{pstSymO}[CodeFig=true,\RDD{CodeFigStyle}=solid]   \\
+ \AC{A}\AC{B,C}[D,E] \RDI{CodeFigStyle}{pst-eucl} &  \AC{A}\AC{B,C}[D,E] 
+ \\ \hline
+ \dft : CodeFigStyle = dashed & 
+  \\ \hline
+  
+
+\end{tabular}
+
+Autres options possibles : PointSymbol PosAngle PointName PointNameSep PtNameMath 
+
+
+% <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+\SbSbSSCT{Symétrie par rapport à une droite}{Orthogonal symmetry}
+
+\begin{tabular}{|c|c|} \hline
+\multicolumn{2}{|c|}{ \BSS{pstOrtSym}[options]\AC{A}\AC{B}\AC{C}  \BSI{pstOrtSym}{pst-eucl} }\\ \hline
+\begin{pspicture}(-.5,-.5)(5,5.3)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstGeonode(1,1){A}(4,1){C}(3,3){B}
+\pstOrtSym [linecolor=red]{A}{B}{C}
+\psline[linestyle=dashed](B)(A)
+\psline[linestyle=dotted](C)(C')
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,5.3)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstGeonode(1,1){A}(4,1){C}(3,3){B}
+\pstOrtSym [CodeFig=true,CodeFigColor=red]{A}{B}{C} %  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+\psline[linestyle=dashed](B)(A)
+\end{pspicture}
+\\ \hline
+[linecolor=red] & [CodeFig=true,\RDD{CodeFigColor}=red] \RDI{CodeFigColor}{pst-eucl} \\ \hline
+ &  {\blue \dft :  CodeFigColor=cyan } \\ \hline
+\end{tabular}
+
+
+%%--------------------------------------------------
+\subsubsection{Rotation}
+
+\begin{tabular}{|c|c|c|} \hline
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(2,2){A}(4,1){B} %(1,3){C}
+\pstRotation[linecolor=red,CodeFig=true]{A}{B}
+%\pstRotation[linecolor=Vert]{A}{C}[D]
+\psline[linestyle=dotted](A)(B')
+\psline(A)(B)
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(1,3){A}(2,1){B} %(1,3){C}
+\pstRotation[linecolor=red,RotAngle=45,CodeFig=true]{A}{B}[D]
+\psline(B)(A)
+\psline[linestyle=dotted](A)(D)
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(2,2){A}(4,1){B}(1,3){C}
+\pstRotation[linecolor=red,RotAngle=45,CodeFig=true]{A}{B,C}[D,E]
+\psline  (B)(A) (C) %(D)
+%\psline[linestyle=dashed](C)(A) %(E)
+\psline[linestyle=dotted](A)(D)
+\psline[linestyle=dotted](A)(E)
+\end{pspicture}
+\\ \hline
+\BSS{pstRotation}[linecolor=red]  & \textbf{\BS{pstRotation}}[\RDD{RotAngle}=45]  & \textbf{\BS{pstRotation}}[\RDD{RotAngle}=45] \RDI{RotAngle}{pst-eucl} \\
+\AC{A}\AC{B}  \BSI{pstRotation}{pst-eucl} & \AC{A}\AC{C}[D] \RDI{RotAngle}{pst-eucl}& \AC{A}\AC{B,C}[D,E] \\\hline
+ & \multicolumn{2}{|c|} {\blue \dft : RotAngle=60 }\\
+\hline
+\end{tabular}
+
+
+
+
+\bigskip
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{2}{|c|} {\BS{pstRotation}[CodeFig=true,CodeFigColor=red,\RDD{TransformLabel}=\BS{alpha}]\AC{A}\AC{B} \RDI{TransformLabel}{pst-eucl}  }
+\\ \hline
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(2,2){A}(4,1){B} 
+\pstRotation[CodeFig=true,CodeFigColor=red,TransformLabel=\alpha]{A}{B} %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+\psline[linestyle=dashed](B)(A)
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(2,2){A}(4,1){B}
+\pstRotation[CodeFig=true,CodeFigColor=red,TransformLabel=\frac{\pi}{3}]{A}{B}[C] 
+\psline[linestyle=dashed](B)(A)
+\end{pspicture}
+\\ \hline
+\RDD{TransformLabel}=\BS{alpha} \RDI{TransformLabel}{pst-eucl} & \RDD{TransformLabel}=\BS{frac}\AC{\BS{pi}}\AC{3}  \RDI{TransformLabel}{pst-eucl} \\ \hline
+\end{tabular}
+
+
+
+\bigskip
+%%
+%%%>>>>>>>>>>>>>>>>>>> \BS{pstAngleAOB} incompatible avec pst-3dplot <<<<<<<<<<<<<<<<<<<<<<<
+%%
+
+
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{3}{|c|} {\BS{pstRotation}[CodeFig=true,RotAngle=\RDD{pstAngleAOB}\AC{C}\AC{A}\AC{B}] \AC{A}\AC{B} \AC{D} \RDI{pstAngleAOB}{pst-eucl}  }
+\\ \hline
+\parbox{4cm}{
+\begin{pspicture}(-.5,-.5)(5,5.3)
+\psaxes[xticksize=5,yticksize=5,axesstyle=frame](5,5)
+\pstGeonode(3,3){A}(1,1){B} (1,3){C}
+\pstRotation[linecolor=red,RotAngle=\pstAngleAOB{C}{A}{B},CodeFig=true]{A}{B}[D]
+\psline(B)(A)
+%\rput (2,-1){\framebox{Rotation = \makebox[1cm][l]{\psPrintValue[decimals=2]{\pstAngleAOB{C}{A}{B}}}}}
+%\rput (2,-1){Rotation = \psPrintValue[decimals=2] {\pstAngleAOB{C}{A}{B}}}
+\psline[linestyle=dotted](A)(D)
+\end{pspicture} \\
+Rotation = \psPrintValue[decimals=2]{\pstAngleAOB{C}{A}{B}}}
+&
+\parbox{4cm}{
+\begin{pspicture}(-.5,-.5)(5,5.3)
+\psaxes[xticksize=5,yticksize=5,axesstyle=frame](5,5)
+\pstGeonode(1,2){A}(4,1){B}(3,3){C}
+\pstRotation[linecolor=red,RotAngle=\pstAngleAOB{C}{B}{A},CodeFig=true]{A}{B,C}[D,E]
+%\rput* (2,-1){\framebox{Rotation = \makebox[1cm][l]{\psPrintValue[decimals=2]{\pstAngleAOB{C}{B}{A}}}}}
+%\rput (2,-1){Rotation = \psPrintValue[decimals=2] {\pstAngleAOB{C}{B}{A}}}
+\psline  (B)(A) (C) %(D)
+\psline[linestyle=dashed](C)(A) %(E)
+\psline[linestyle=dotted](A)(D)
+\psline[linestyle=dotted](A)(E)
+\end{pspicture}\\
+Rotation = \psPrintValue[decimals=2]{\pstAngleAOB{C}{B}{A}}}
+&
+\parbox{4cm}{
+\begin{pspicture}(-.5,-.5)(5,5.3)
+\psaxes[xticksize=5,yticksize=5,axesstyle=frame](5,5)
+\pstGeonode(2,2){A}(4,1){B}(3,3){C}
+\pstRotation[linecolor=red,AngleCoef=3,RotAngle=\pstAngleAOB{C}{B}{A},CodeFig=true]{A}{B,C}[D,E]
+%\psline  (B)(A) (C) %(D)
+
+%\rput (2,-1){\framebox{Rotation = \makebox[1cm][l]{\psPrintValue[decimals=2] {  \pstAngleAOB{C}{B}{A} 3 mul}}}}
+%\psline[linestyle=dashed](C)(A) %(E)
+%\psline[linestyle=dotted](A)(D)
+%\psline[linestyle=dotted](A)(E)
+\end{pspicture}\\
+Rotation = \psPrintValue[decimals=2] {  \pstAngleAOB{C}{B}{A} 3 mul}}
+\\ \hline
+
+\end{tabular}
+%<<<<<<<<
+%\bigskip
+%%
+%%%\begin{pspicture}(-.5,-.5)(5,4.3)
+%%%\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+%%%\pstGeonode(3,2){A}(3,3){B}(1,2){C}
+%%%\pstRotation[RotAngle=45, CodeFig=true]{A}{D}[E] 
+%%%%\pstRotation[RotAngle=\pstAngleAOB{C}{A}{B}, CodeFig=true]{A}{D}[E] 
+%%%%\pstRotation[ RotAngle=\pstAngleAOB{B}{A}{C} ,CodeFigColor=red, CodeFig=true]{A}{B}[C]
+%%%%\pstRotation[CodeFig=true,CodeFigColor=red,TransformLabel=\alpha]{A}{B}
+%%%%\pstRotation[linecolor=Vert,RotAngle=\pstAngleAOB{B}{A}{C}]{A}{C}[D]
+%%%
+%%%\end{pspicture}
+%%
+%%%\begin{tabular}{|c|c|} \hline
+%%%\begin{pspicture}(-.5,-.5)(5,4.3)
+%%%\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+%%%\pstGeonode(3,2){A}(3,3){B}(1,3){C}
+%%%\pstRotation[RotAngle=\pstAngleAOB{B}{A}{C}]{A}{D}[E] %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+%%%\pstRotation[AngleCoef=.5, RotAngle=\pstAngleAOB{B}{A}{C},CodeFigColor=red, CodeFig=true]{A}{B}[C]
+%%%\pstRotation[CodeFig=true,CodeFigColor=red,TransformLabel=\alpha]{A}{B}
+%%%\pstRotation[linecolor=Vert,RotAngle=\pstAngleAOB{B}{A}{C}]{A}{C}[D]
+%%%
+%%%\end{pspicture}
+%%%&
+%%%\begin{pspicture}(-.5,-.5)(4,4.3)
+%%%\psaxes[ticksize=4,axesstyle=frame](4,4)
+%%%\pstGeonode(3,2){A}(3,3){B} %(1,3){C}
+%%%\pstRotation[CodeFig=true,CodeFigColor=red,TransformLabel=\alpha]{A}{B}
+%%%\pstRotation[RotAngle=\pstAngleAOB{B}{A}{C},CodeFig=true,CodeFigColor=red,TransformLabel=\widehat{BAC}]{A}{C}[D]
+%%%\psline[linestyle=dashed](B)(A)(B')
+%%%\psline[linestyle=dashed](C)(A)(D)
+%%%\end{pspicture}
+%%%\\ \hline
+%%%RotAngle=\textbf{\BS{}pstAngleAOB}\AC{B}\AC{A}\AC{C} & {\red TransformLabel}=\BS{widehat}\AC{BAC}
+%%%\\ \hline
+%%%\end{tabular}
+%%
+%%
+%%%------------------------------------------------------
+\subsubsection{Translation}
+
+\begin{tabular}{|c|c|c|} \hline
+\BSS{pstTranslation}[options]\AC{B}\AC{A}\AC{C}  \BSI{pstTranslation}{pst-eucl} & 
+\multicolumn{2}{|c|}{ \BSS{pstTranslation}[options]\AC{A}\AC{B}\AC{C}  \BSI{pstTranslation}{pst-eucl} }\\ \hline
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(1,2){A}(3,1){B}(3,2){C}
+\pstTranslation[linecolor=red]{B}{A}{C}
+\psline[linestyle=dashed](B)(A)
+\psline[linestyle=dashed](C)(C')
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(1,2){A}(3,1){B}(3,2){C}
+\pstTranslation[linecolor=red,DistCoef=.5]{A}{B}{C}
+\psline[linestyle=dashed](B)(A)
+\psline[linestyle=dashed](C)(C')
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(6,4.3)
+\psaxes[xticksize=4,yticksize=6,axesstyle=frame](6,4)
+\pstGeonode(1,2){A}(3,1){B}(3,2){C}
+\pstTranslation[CodeFig=true]{A}{B}{C}
+\psline[linestyle=dashed](B)(A)
+%\psline[linestyle=dashed](C)(C')
+\end{pspicture}
+\\ \hline
+ & [\RDD{DistCoef}=0.5] \RDI{DistCoef}{pst-eucl} & [\RDD{CodeFig}=true] \RDI{CodeFig}{pst-eucl} 
+\\ \hline
+
+\end{tabular}
+
+
+%
+%%--------------------------------------------------------------------------
+\SbSbSSCT{Homothétie}{Homothetie}
+
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{2}{|c|}{ \BSS{pstHomO}\AC{A}\AC{B,C}[D,E]  \BSI{pstHomO}{pst-eucl} }\\ \hline
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(0,2){A}(4,1){B}(4,3){C}
+\pstLineAB[nodesepB=-1,linestyle=dashed]{A}{B}
+\pstLineAB[nodesepB=-1,linestyle=dashed]{A}{C}
+\pstHomO[linecolor=red]{A}{B,C}[D,E]
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.3)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+\pstGeonode(0,2){A}(4,1){B}(4,3){C}
+\pstLineAB[nodesepB=-1,linestyle=dashed]{A}{B}
+\pstLineAB[nodesepB=-1,linestyle=dashed]{A}{C}
+\pstHomO[linecolor=red,HomCoef=.75]{A}{B,C}[D,E]
+\end{pspicture} 
+
+
+\\ \hline
+ &
+[\RDD{HomCoef}=.75] \RDI{HomCoef}{pst-eucl} 
+\\ \hline
+\end{tabular}
+
+
+
+%%-------------------------------------------------------------
+\SbSbSSCT{Projection orthogonale}{Orthogonal projection}
+
+\begin{tabular}{|c|} \hline  
+\begin{pspicture}(-.5,-.5)(5,5.3)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+ \pstTriangle(1,3){A}(3,1){B}(4,4){C}
+ \pstProjection[CodeFig=true, CodeFigColor=red]{A}{B}{C}[D]
+\end{pspicture}
+\\ \hline  
+\BSS{pstProjection}[CodeFig=true,CodeFigColor=red]\AC{A}\AC{B}\AC{C}[D]  \BSI{pstProjection}{pst-eucl}
+\\ \hline 
+\end{tabular} 

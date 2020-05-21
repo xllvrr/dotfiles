@@ -1,0 +1,30 @@
+This is the `chronosys' package v1.15, 2012/04/08.
+_____________________________________________________________
+
+You can find the documentation of this package in docchronosys_fr.pdf (french) and docchronosys_en.pdf (english).
+
+The current maintener of this package is Mathieu Long (mail : mlong.tex@hotmail.fr).
+
+This package is used for drawing timelines.
+
+This package contains the files docchronosys_en.tex, 
+docchronosys_en.pdf, docchronosys_fr.tex, docchronosys_fr.pdf,
+chronosys.sty, chronosys.tex, x-chronosys.tex, chronosyschr.tex and 
+this README, and it enables the commandes:
+\startchronology, \stopchronology, 
+\definechronoevent, \definechronoperiode, 
+\setupchronoperiode, \setupchronoevent, 
+\chronoperiodecoloralternation,
+\chronograduation, \chronoevent and \chronoperiode.
+
+It uses the package `tikz' for drawing. 
+Since the 1.2 version, `tikz' is used at least possible, and MetaPost 
+is is used instead of `tikz' on ConTeXt MkIV.
+
+You can use it in plain TeX, LaTeX and ConTeXt.
+
+_____________________________________________________________
+
+This material is subject to the LaTeX Project Public License. See
+http://www.latex-project.org/lppl.txt for the details of that 
+license.

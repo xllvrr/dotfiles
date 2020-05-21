@@ -1,0 +1,29 @@
+name uothesis
+category Package
+revision 25355
+shortdesc Class for dissertations and theses at the University of Oregon
+longdesc The class generates documents that are suitable for submission
+longdesc to the Graduate School and conform with the style requirements
+longdesc for dissertations and theses as laid out in the Fall 2010 UO
+longdesc graduate school student manual.
+containersize 8728
+containerchecksum 8549715b39426264ae94d5618f13837bf20e48a350cfccc5642ff5e246ad84e04050e2def0780e8f3da69647d86b6795a009215da1277f43ab9a8a3b5acb798a
+doccontainersize 608984
+doccontainerchecksum 16af5c258ae738401885a1451675ace657e169deb37670336ab87ac39d30128c98bff91b5f9f6f2de9961d981b2719f94472692c5456913bada6e7ec6bbb60c6
+docfiles size=154
+ texmf-dist/doc/latex/uothesis/README details="Readme"
+ texmf-dist/doc/latex/uothesis/README.txt
+ texmf-dist/doc/latex/uothesis/acs-uothesis.bib
+ texmf-dist/doc/latex/uothesis/uothesis.hd
+ texmf-dist/doc/latex/uothesis/uothesis.pdf details="Package documentation"
+srccontainersize 24256
+srccontainerchecksum 3b6a5f3ccc28877e4e48000ec88c480b70f5f454c481f970e6ba409fe71e19cee64293cdbc9fe46c8d0a498401fb2f46f2bd6c1662c3bf19a2c24e1c10c3895a
+srcfiles size=25
+ texmf-dist/source/latex/uothesis/uothesis.dtx
+ texmf-dist/source/latex/uothesis/uothesis.ins
+runfiles size=8
+ texmf-dist/tex/latex/uothesis/uothesis.cls
+catalogue-ctan /macros/latex/contrib/uothesis
+catalogue-license lppl1.3
+catalogue-topics dissertation
+catalogue-version 2.5.6

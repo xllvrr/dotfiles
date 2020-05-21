@@ -1,0 +1,28 @@
+name tikz-relay
+category Package
+revision 51355
+shortdesc TikZ library for typesetting electrical diagrams
+longdesc This package contains a collection of symbols for typesetting
+longdesc electrical wiring diagrams for relay control systems. The
+longdesc symbols are meant to be in agreement with the international
+longdesc standard IEC-60617 which has been adopted worldwide, with
+longdesc perhaps the exception of the USA. It extends and modifies, when
+longdesc needed, the TikZ-libray circuits.ee.IEC. A few non-standard
+longdesc symbols are also included mainly to be used in presentations,
+longdesc particularly with the beamer package.
+containersize 6108
+containerchecksum ff171ed2c1b494ecbf012f1401fd0f2d0fc56a388383e482cf50ca7f591af93b2e6da74c237ac4a17fa214a489650670ef8560d826c7674086dbde6d541ffce4
+doccontainersize 484156
+doccontainerchecksum 1e81af1e171e7bf353617b1fee7f456b1e263ad911a842c154ec813c38fbab694f46b134c213810ca8de106854cc05d40bf8dbb1376c055d4d92c4f87e4e779d
+docfiles size=209
+ texmf-dist/doc/latex/tikz-relay/BeamerAnimation.pdf details="Further documentation"
+ texmf-dist/doc/latex/tikz-relay/BeamerAnimation.tex
+ texmf-dist/doc/latex/tikz-relay/README.txt details="Readme"
+ texmf-dist/doc/latex/tikz-relay/tikz-relay-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/tikz-relay/tikz-relay-doc.tex
+runfiles size=14
+ texmf-dist/tex/latex/tikz-relay/tikzlibrarycircuits.ee.IEC.relay.code.tex
+catalogue-ctan /graphics/pgf/contrib/tikz-relay
+catalogue-license lppl1
+catalogue-topics pgf-tikz diagram diagram-circ engineering physics
+catalogue-version 1.2

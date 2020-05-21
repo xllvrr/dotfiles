@@ -1,0 +1,35 @@
+name hep-paper
+category Package
+revision 54994
+shortdesc Publications in High Energy Physics
+longdesc This package aims to provide a single style file containing
+longdesc most configurations and macros necessary to write appealing
+longdesc publications in High Energy Physics. Instead of reinventing the
+longdesc wheel by introducing newly created macros, hep-paper preferably
+longdesc loads third party packages as long as they are light-weight
+longdesc enough. For usual publications it suffices to load the
+longdesc hep-paper package, without optional arguments, in addition to
+longdesc the article class.
+containersize 6796
+containerchecksum 5b167f229cf4b7aca3f6a54c9b9f8c0abeaa0ca834fcc5eaefe1fe52f1b0a9f5ad3162e6bc7a2852f7d17d5ea47f9a718777122690ad600b66a18a6d18aa995f
+doccontainersize 533552
+doccontainerchecksum 8250e34feeb34d95d8e759e98dbaeb35de70386eb10325f6ede31e53f02456ff2bc2ba3e41c361e0c3b5a340d8052d021f6d06a8c3948d9e63aa8e2cde9c81e1
+docfiles size=139
+ texmf-dist/doc/latex/hep-paper/README.md details="Readme"
+ texmf-dist/doc/latex/hep-paper/bibliography.bib
+ texmf-dist/doc/latex/hep-paper/hep-paper.pdf details="Package documentation"
+ texmf-dist/doc/latex/hep-paper/license.md
+srccontainersize 17752
+srccontainerchecksum 2b670a23868d65cb783fc339fef7669e87f1c605e58b66623c929ec8d7a4138b50f704fe0a58e0235711b1ff52a92f66c044bdf4d05c06b73e365db408a8455f
+srcfiles size=19
+ texmf-dist/source/latex/hep-paper/hep-paper.dtx
+ texmf-dist/source/latex/hep-paper/hep-paper.ins
+runfiles size=7
+ texmf-dist/tex/latex/hep-paper/hep-paper.dbx
+ texmf-dist/tex/latex/hep-paper/hep-paper.sty
+catalogue-contact-bugs https://github.com/janhajer/hep-paper/issues
+catalogue-contact-repository https://github.com/janhajer/hep-paper
+catalogue-ctan /macros/latex/contrib/hep-paper
+catalogue-license lppl1.3c
+catalogue-topics physics
+catalogue-version 1.3

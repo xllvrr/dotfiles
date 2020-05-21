@@ -1,0 +1,222 @@
+%======================================================================
+
+\SbSSCT{Commande rput}{Macro rput}
+
+
+\psset{fillcolor=yellow,fillstyle=solid,linecolor=blue}
+
+
+\TFRGB{syntaxe : \BS{rput}*[point de référence]\AC{rotation}(coordonnées)\AC{contenu}}{syntax : \BS{rput}*[reference point]\AC{rotation}(coordinates)\AC{contents}}
+
+\bigskip
+
+
+
+\SbSbSSCTTC{Rôle de l'astérisque}{Rôle de l'astérisque \protect \footnote{La couleur de fond est en jaune et le point de référence en bleu}}{Role of the asterisk}{Role of the asterisk  \protect \footnote{Fillcolor=yellow and Reference point = blue disk}}
+
+\begin{tabular}{|p{3cm}|p{3cm}|}\hline
+\rput(1,0){objet}  &  \rput*(1,0){objet}  \\
+\textbf{\BS{}rput}(1,0)\AC{objet} & \textbf{\BS{}rput*}(1,0)\AC{objet} \\ \hline
+\end{tabular}
+%-------------------------------------
+
+\SbSbSSCT{Point de référence }{Reference point} % \protect \footnote{La couleur de fond est en jaune et le point de référence en bleu} 
+
+
+\begin{tabular}{|c|l|p{3cm}|c|}
+
+\hline \multicolumn{4}{|c|}{Horizontal}   								\\ \hline
+ 
+\rule[-.35cm]{0mm}{.7cm} l	& \TFRGB{à gauche}{left}		
+&  \rput*[l](1,0){objet}\qdisk(1,0){3pt} 			
+&  \BS{rput*}[{\red l}](1,0)\AC{objet}\BS{qdisk}(1,0)\AC{3pt} \\ \hline
+
+\rule[-.35cm]{0mm}{.7cm} r 	& \TFRGB{à droite}{right}		
+&   \rput*[r](1,0){objet}\qdisk(1,0){3pt}				
+& \BS{rput*}[{\red r}](1,0)\AC{objet}\BS{qdisk}(1,0)\AC{3pt}  \\  \hline
+ \multicolumn{4}{|c|}{vertical}   								\\ \hline
+
+\rule[-.5cm]{0mm}{.7cm} t	
+& \TFRGB{en haut}{top}		
+&  \rput*[t](1,0){objet}	\qdisk(1,0){3pt}		
+& \BS{rput*}[{\red t}](1,0)\AC{objet}\BS{qdisk}(1,0)\AC{3pt}  \\ \hline
+
+
+\rule[-.2cm]{0mm}{.7cm }b 	& \TFRGB{en bas}{bottom}		
+&  \rput*[b ](1,0){objet}	 \qdisk(1,0){3pt}		&
+\BS{rput*} [{\red b}](1,0)\AC{objet}\BS{qdisk}(1,0)\AC{3pt}  \\ \hline
+
+
+\rule[-.25cm]{0mm}{.7cm} B 	& \TFRGB{sur la ligne d'écriture}{baseline}		& \rput*[B](1,0){objet}	 \qdisk(1,0){3pt} 			& \BS{rput*}[{\red B]}(1,0)\AC{objet}\BS{qdisk}(1,0)\AC{3pt} \\ \hline
+
+ \multicolumn{4}{|c|}{horizontal \TFRGB{et}{and} vertical}   								\\ \hline
+
+\rule[-.5cm]{0mm}{.7cm} rt	
+& \TFRGB{à droite et en haut}{right and top}		
+& \rput*[rt](1,0){objet}	\qdisk(1,0){3pt} 
+& \BS{rput}*[{\red rt}](1,0)\AC{objet}\BS{qdisk}(1,0)\AC{3pt}  \\  \hline 
+ \end{tabular} 
+
+%------------------------------------------------------
+
+\SbSbSSCT{Angle de rotation de l'objet}{Rotation angle of the object}
+
+
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}\hline
+   \BS{rput*}[t]\AC{45} 
+&  \BS{rput*}[t]\AC{90} 
+&  \BS{rput*}[b]\AC{90}
+&  \BS{rput*}[B]\AC{90} 
+&  \BS{rput*}[l]\AC{90}
+&  \BS{rput*}[r]\AC{90}  \\ 
+\hline \rule[-1cm]{0mm}{2cm}  
+\rput*[t]{45}(1,0){objet}\qdisk(1,0){3pt} & 
+\rput*[t]{90}(1,0){objet}\qdisk(1,0){3pt} & 
+\rput*[b]{90}(1,0){objet}\qdisk(1,0){3pt} & 
+\rput*[B]{90}(1,0){objet}\qdisk(1,0){3pt} & 
+\rput*[l]{90}(1,0){objet}\qdisk(1,0){3pt} & 
+\rput*[r]{90}(1,0){objet}\qdisk(1,0){3pt}  \\ 
+\hline 
+\end{tabular} 
+%
+%----------------------------------------------------------
+
+\SbSbSSCT{Angles de rotation  en points cardinaux}{Rotation angle in cardinal points}
+
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline  \TFRGB{haut}{top} 	&  \TFRGB{haut}{top}  	&  \TFRGB{haut}{top}  	& \TFRGB{haut}{top}   & \TFRGB{gauche}{left}   &  \TFRGB{droite}{right}  \\
+\TFRGB{ et Est}{and east} 		& \TFRGB{ et Ouest}{and west} & \TFRGB{et Nord}{and north}  & \TFRGB{ et Sud}{and south} & \TFRGB{ et Est}{and east}  & \TFRGB{ et Est}{and east}  \\
+\hline  
+   \BS{}rput*[t]\AC{E} 
+&  \BS{}rput*[t]\AC{W} 
+& \BS{}rput*[t]\AC{N}  
+&  \BS{}rput*[t]\AC{S}   
+&  \BS{}rput*[l]\AC{W}  
+&  \BS{}rput*[r]\AC{W}  \\ 
+\hline \rule[-1cm]{0mm}{2cm}  \rput*[t]{E}(1,0){objet}\qdisk(1,0){3pt} & \rput*[t]{W}(1,0){objet}\qdisk(1,0){3pt} & \rput*[t]{N}(1,0){objet}\qdisk(1,0){3pt} & \rput*[t]{S}(1,0){objet}\qdisk(1,0){3pt} & \rput*[l]{W}(1,0){objet}\qdisk(1,0){3pt} & \rput*[r]{W}(1,0){objet}\qdisk(1,0){3pt}  \\ 
+\hline 
+\end{tabular} 
+
+
+
+\newpage
+%%---------------------------------------------------------------
+
+\SbSSCT{Commande uput}{Macro uput}
+\psset{fillcolor=yellow,fillstyle=solid,linecolor=blue}
+
+
+\TFRGB{ syntaxe :\BSS{uput}*\AC{écartement}[point de référence]\AC{rotation}(coordonnées)\AC{contenu} }{syntax  : \BSS{uput}*\AC{spacing}[Reference point]\AC{rotation}(coordinates)\AC{content}}
+\smallskip
+
+
+
+\SbSbSSCTTC{Rôle de l'astérisque}{Rôle de l'astérisque \protect \footnote{La couleur de fond est en jaune et le point de référence en bleu}}{Role of the asterisk}{Role of the asterisk  \protect \footnote{Fillcolor=yellow and Reference point = blue disk}}
+
+\begin{tabular}{|p{3cm}|p{3cm}|}\hline
+ \uput[r](1,0){objet} &  \uput*[r](1,0){objet}  \\ \hline
+\textbf{\BS{}uput}(1,0)\AC{objet} & \textbf{\BS{}uput*}(1,0)\AC{objet} \\ \hline
+\end{tabular}
+ 
+\SbSbSSCT{Point de référence  : angle}{Reference point : angle}
+
+\begin{center}
+\begin{tabular}{|c|p{3cm}|c|} \hline
+
+ \rule[-1cm]{0mm}{2cm} à 45°	&  \uput*[45](1,0){objet}\qdisk(1,0){3pt} 			&  \BS{uput*}[{\red 45}](1,0)\AC{objet}\BS{qdisk}(1,0)\AC{3pt}\\ \hline
+
+ \rule[-1cm]{0mm}{2cm} à 90° 			&   \uput*[90](1,0){objet}\qdisk(1,0){3pt}				& \BS{uput*}[{\red 90}](1,0)\AC{objet}\BS{qdisk}(1,0)\AC{3pt}\\  \hline
+
+ \rule[-1cm]{0mm}{2cm} à 120°		&  \uput*[120](1,0){objet}	\qdisk(1,0){3pt}		& \BS{uput*}[{\red 120}](1,0)\AC{objet}\BS{qdisk}(1,0)\AC{3pt} \\ \hline
+ \end{tabular} 
+ \end{center}
+
+\bigskip
+%%-----------------------------------------------------------------
+
+\SbSbSSCT{Point de référence  : points cardinaux }{Reference point : letter} 
+
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline 
+  \BS{uput*}[{\red u}] 
+&  \BS{uput*}[{\red r}]
+&  \BS{uput*}[{\red d}]
+& \BS{uput*}[{\red l}]   
+& \BS{uput*}[{\red ul}]  
+&  \BS{uput*}[{\red ur}]  \\ 
+\hline  \rule[-1cm]{0mm}{2cm} 
+  \uput*[u](1,0){objet}\qdisk(1,0){3pt} 
+& \uput*[r](1,0){objet}\qdisk(1,0){3pt} 
+& \uput*[d](1,0){objet}\qdisk(1,0){3pt} 
+& \uput*[l](1,0){objet}\qdisk(1,0){3pt} 
+& \uput*[ul](1,0){objet}\qdisk(1,0){3pt} 
+& \uput*[ur](1,0){objet}\qdisk(1,0){3pt}  \\ \hline 
+\end{tabular} 
+
+
+
+\bigskip
+\SbSbSSCT{Angle de rotation de l'objet}{Rotation angle of the object} 
+
+
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline  
+  \BS{uput*}[{\red u}]\AC{{\red 45}} 
+& \BS{uput*}[{\red u}]\AC{{\red 90}}
+& \BS{uput*}[{\red d}]\AC{{\red 90}}
+& \BS{uput*}[{\red l}]\AC{{\red 90}}
+& \BS{uput*}[{\red r}]\AC{{\red 90}}  
+& \BS{uput*}[{\red ur}]\AC{{\red 90}}  \\ \hline  
+\rule[-1.5cm]{0mm}{3cm} 
+\uput*[u]{45}(1,0){objet}\qdisk(1,0){3pt} 
+& \uput*[u]{90}(1,0){objet}\qdisk(1,0){3pt} 
+& \uput*[d]{90}(1,0){objet}\qdisk(1,0){3pt} 
+& \uput*[l]{90}(1,0){objet}\qdisk(1,0){3pt} 
+& \uput*[r]{90}(1,0){objet}\qdisk(1,0){3pt} 
+& \uput*[ur]{90}(1,0){objet}\qdisk(1,0){3pt}  \\ \hline 
+\end{tabular} 
+%
+
+ 
+\bigskip
+\SbSbSSCT{\'Ecartement de l'objet par rapport au point de référence}{Spacing between object and reference point}
+
+\dft: \RDD{labelsep}= 0.5 pt 
+\bigskip
+
+\TFRGB{Exemple}{E\emph{}xample} : 
+
+\begin{tabular}{ll}
+\BS{}psset\AC{\red labelsep=1cm } &  \% \TFRGB{nouveau écartement par défaut}{new default spacing} \\ 
+\BS{}uput(1,0)\{ à 1cm \}& \%  \TFRGB{utilisation  nouveau écartement par défaut}{use of the new default spacing} \\ 
+\BS{}uput {\red \AC{3cm}}(1,0)\AC{à 3cm} & \% \TFRGB{écartement spécifié à 3 cm}{spacing = 3cm}  \\ 
+\BS{}uput{\red \AC{3cm}[-30]}(1,0)\AC{à 3cm et à -30°} & \% \TFRGB{écartement spécifié à 3  et à un angle de -30°}{spacing = 3cm angle= -30°} \\  
+\BS{}qdisk(1,0)\AC{3pt}  & \%\TFRGB{ point de référence}{Reference point} \\ 
+ 
+\end{tabular} 
+\bigskip
+
+
+{\blue
+
+\psset{labelsep=1cm} 
+\uput[0](1,0){ à 1cm }      \uput{3cm}[0](1,0){ à 3cm}  \uput{3cm}[-30](1,0){ à 3cm et à -30°}\qdisk(1,0){3pt}  }
+
+\vspace{2cm}
+
+
+\SbSSCT{Commande psrotate}{Macro psrotate}
+\label{rot}
+\psset{fillstyle=none                                                        }
+\begin{tabular}{|c|}\hline  
+\BSS{psrotate}(2,1)\AC{45}\AC{\BS{psline}(0, 1)(1, 2)(2, 2)(3, 4)}  \BSI{psrotate}{pstricks-add} 
+\\ \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 4cm,yticksize=0 4cm,subticks=0](0,0)(4,4){4cm}{4cm} 
+\psline[linestyle=dotted](0, 1)(1, 2)(2, 2)(3, 4)
+\psrotate(2,2){45}{\psline(0, 1)(1, 2)(2, 2)(3, 4)}
+\qdisk(2,2){3pt}
+
+ \end{psgraph}
+\\ 
+\hline 
+\end{tabular} 

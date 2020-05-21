@@ -1,0 +1,24 @@
+name srdp-mathematik
+category Package
+revision 54685
+shortdesc Typeset Austrian SRDP in mathematics
+longdesc This package provides basic commands for the defined formats of
+longdesc the Austrian sRDP (Standardisierte Reife- und Diplomprufung) in
+longdesc mathematics. Furthermore, it includes ways to implement answers
+longdesc in the tex file which can optionally be displayed in the pdf
+longdesc file, and it offers a way to vary the answers in order to
+longdesc create different groups (e. g. for tests) easily.
+containersize 7380
+containerchecksum 4168f866e5e656539a4003546251e2b1813582bfe8e21057fe649069dafd43c501b24bafb8769c04f2edcc2bfbd8d5583234145038f18f5a7186f7611db70a56
+doccontainersize 140608
+doccontainerchecksum 96e5c8146c1ff3e6311ff6ad9c5c7b53e62e6f317ca3ea71db82ef8feb4062148b956ef2d9711a1eaf32fe4a71996cfd16b70ba1dbdf8406a3b0d6dd6e206967
+docfiles size=53
+ texmf-dist/doc/latex/srdp-mathematik/README.txt details="Readme"
+ texmf-dist/doc/latex/srdp-mathematik/srdp-mathematik.pdf details="Package documentation"
+ texmf-dist/doc/latex/srdp-mathematik/srdp-mathematik.tex
+runfiles size=18
+ texmf-dist/tex/latex/srdp-mathematik/srdp-mathematik.sty
+catalogue-ctan /macros/latex/contrib/srdp-mathematik
+catalogue-license lppl1.3c
+catalogue-topics exam maths
+catalogue-version 1.6

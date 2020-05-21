@@ -1,0 +1,16 @@
+    This directory contains the LaTeX2e class `gammas'.
+			Version: 1.0; February 11, 2019
+
+This is the official document class for typesetting journal articles
+for GAMM Archive for Students (GAMMAS), the open-access online yournal
+run by the GAMM Juniors.
+
+A small template (gammas_template.tex) is provided to show the usage 
+of the documentclass. For more details we refer to the educational 
+sample article 'How to write an article for GAMMAS and a longer title'
+available at the journal webpage under
+
+    https://doi.org/10.14464/gammas.v1i1.417 
+
+Copyright 2019, GAMM Juniors. This ma­te­rial is sub­ject to the LaTeX 
+Project Public Li­cense 1.3c.

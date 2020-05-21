@@ -1,0 +1,15 @@
+Subject: Re: Plain TeX macros for text-flowing-around-figures
+
+Carlos Felippa wrote:
+> I wrote my own macros to do this, but they involve
+> fiddling with several dimens and picking the 
+> insertion spot. Also possible interaction with
+> footnotes, wide eqs, ejects, etc, often requires 
+> intervention. Coulnt find anything pertinent in eplain.
+> 
+> Note: I am not interested in LaTeX.
+
+Here is what I wrote (ages ago, I notice). I don't claim anything great 
+about it, but it might give you or someone some ideas.
+
+Ian Hutchinson.

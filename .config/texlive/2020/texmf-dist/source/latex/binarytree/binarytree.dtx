@@ -1,0 +1,1796 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2016 by Aleksandrina Nikolova
+% <aayla.secura.1138@gmail.comaayla.secura.1138@gmail.com>
+% -----------------------------------
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any later
+% version. The latest version of this license is in:
+%
+%    http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<*package>
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{binarytree}
+  [2016/07/25 v1.01 Binary trees using TikZ]
+\RequirePackage{tikz}
+%</package>
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{binarytree}
+\usepackage[columns=2]{idxlayout}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{needspace}
+\usepackage{import}
+\usepackage[subpreambles=true]{standalone}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+%\OnlyDescription
+\begin{document}
+  \DocInput{binarytree.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v1.0}{2016/07/01}{First published version}
+%
+% \GetFileInfo{binarytree.sty}
+%
+% \DoNotIndex{\def,\edef,\let,\newdimen,\newif}
+% \DoNotIndex{\begingroup,\endgroup,\begin,\end,\relax,\endinput}
+% \DoNotIndex{\if,\ifx,\ifnum,\ifdim,\else,\fi,\ifcsname,\csname,\endcsname}
+% \DoNotIndex{\@ifnextchar,\@firstoftwo,\@secondoftwo,\@nil}
+% \DoNotIndex{\the,\numexpr,\dimexpr,\number,\advance}
+% \DoNotIndex{\detokenize,\expandafter,\unexpanded,\noexpand,\string}
+% \DoNotIndex{\dp,\wd,\ht,\hbox,\setbox}
+% \DoNotIndex{\MessageBreak,\par}
+% \DoNotIndex{\pgfqkeysactivatesinglefamilyandfilteroptions}
+% \DoNotIndex{\(,\),\z@,\@ne,\m@ne}
+%
+% \iffalse
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% \fi
+%
+% \makeatletter
+%
+% \colorlet{dgreen}{green!50!black}
+% \colorlet{dred}{red!70!black}
+%
+% \def\ttup#1{\texttt{\textup{#1}}}
+% \def\str#1{\texttt{\textup{\string#1}}}
+% \def\vbar{\space\rule[-0.4ex]{0.12ex}{0.9em}\space}
+% \def\app@to@hook#1#2{\expandafter\def\expandafter#1\expandafter{#1#2}}
+% \def\eapp@to@hook#1#2{\edef#1{\unexpanded\expandafter{#1}#2}}
+%
+% \def\ncall@macro#1#2#3,{^^A
+%   \ifx\@nil#3\expandafter\@gobble\else^^A
+%     \expandafter\@iden\fi{^^A
+%       \expandafter#1\expandafter{\the\numexpr#2\relax}{#3}^^A
+%       \ncall@macro{#1}{#2+1}}}
+% \newcommand*\apply@macro@to@nlist[3][1]{\ncall@macro{#2}{#1}#3,\@nil,}
+% \newcommand*\apply@macro@to@list[3][1]{\ncall@macro{^^A
+%   \expandafter\expandafter#2\expandafter\@gobble}{#1}#3,\@nil,}
+%
+% \protected\def\ensurespace{^^A
+%   \@ifnextchar{.}{}{^^A
+%     \@ifnextchar{,}{}{^^A
+%       \@ifnextchar{;}{}{^^A
+%         \@ifnextchar{:}{}{^^A
+%           \@ifnextchar{!}{}{^^A
+%             \@ifnextchar{?}{}{^^A
+%               \@ifnextchar{)}{}{^^A
+%                 \@ifnextchar\par{}{^^A
+%                   \space\ignorespaces}}}}}}}}}
+%
+% \def\nargs{\@ifstar{\nargs@i\@iden}{\nargs@i\meta}}
+% \def\nsargs{\@ifstar{\nsargs@i\@iden}{\nsargs@i\meta}}
+% \def\nargs@i#1#2#3#4{\begingroup\color{dgreen}^^A
+%   \ifnum#2 > 1\relax, \fi^^A
+%   \texttt{\##2}--\texttt{#3}: #1{#4}\endgroup}
+% \def\nsargs@i#1#2#3#4{\begingroup\color{dgreen}^^A
+%   \ifnum#2 > 1\relax, \fi^^A
+%   \texttt{\#\##2}--\texttt{#3}: #1{#4}\endgroup}
+% 
+% \def\narg{\@ifstar{\@narg\@iden}{\@narg\meta}}
+% \def\nsarg{\@ifstar{\@nsarg\@iden}{\@nsarg\meta}}
+% \def\@narg{\narg@i{\#}}
+% \def\@nsarg{\narg@i{\#\#}}
+% \def\narg@i#1#2#3#4{\begingroup\color{dgreen}^^A
+%   \ifnum#3 > 1\relax, \fi^^A
+%   \texttt{#1#3}: #2{#4}\endgroup}
+% 
+% \def\nsig{\@ifstar{\nsig@i{\narg\expandafter*}}{\nsig@i{\narg}}}
+% \def\nssig{\@ifstar{\nsig@i{\nsarg\expandafter*}}{\nsig@i{\nsarg}}}
+% \def\nsig@i#1{\@ifnextchar[{\nsig@ii{#1}}{\nsig@ii{#1}[1]}}
+% \def\nsig@ii#1[#2]#3{\apply@macro@to@nlist[#2]{#1}{#3}}
+%
+% \def\coarg#1{\if\relax\detokenize{#1}\relax\else{\color{dgreen}\oarg{#1}}\fi}
+% \def\cmarg#1{\if\relax\detokenize{#1}\relax\else{\color{dred}\marg{#1}}\fi}
+% \def\iniarg#1{\if\relax\detokenize{#1}\relax\texttt{none}\else\texttt{#1}\fi}
+% \def\defarg#1{\if\relax\detokenize{#1}\relax\texttt{none}\else\texttt{#1}\fi}
+% \def\sig#1#2{^^A
+%  \begingroup\upshape\sig@args{#1}{#2}\endgroup\par}
+% \def\sigdef#1#2#3#4{^^A
+%  \begingroup\upshape\sig@args{#1}{#2}\sig@ini@def{#3}{#4}\endgroup\par}
+% \def\sig@args#1#2{^^A
+%   \apply@macro@to@list\coarg{#1}^^A
+%   \apply@macro@to@list\cmarg{#2}}
+% \def\sig@ini@def#1#2{^^A
+%   \hfill\color{black}(initial: \iniarg{#1}, default: \defarg{#2})}
+% 
+% \newcount\n@Macro
+% \newdimen\prevd@Macro
+% \newdimen\vskip@Macro
+% \vskip@Macro=0.5\baselineskip
+% \def\unvbox@unskip#1{%
+%   \ifdim#1 > -\@M pt\relax%
+%   \@tempdima=\dimexpr\baselineskip-#1-\ht0\relax
+%     \ifdim\@tempdima > \lineskiplimit\relax\vskip-\@tempdima%
+%     \else\vskip\dimexpr-\lineskip\relax\fi%
+%   \else\vskip-\ht0\fi}
+% 
+% \def\pgf@key@index#1#2#3#4{\@bsphack^^A
+%^^A   #1{#4\actualchar{\string\texttt{#4}} (#2)\encapchar#3}^^A
+%   #1{#2s:\actualchar{\string\textbf{#2s:}}^^A
+%   \levelchar#4\actualchar{\string\texttt{#4}}\encapchar#3}^^A
+%   \@esphack}
+% \def\usage@index@pgf@key{\pgf@key@index\index{key}{usage}}
+% \def\main@index@pgf@key{\pgf@key@index\special@index{key}{main}}
+%
+% \def\DescribeOption#1{\leavevmode\@bsphack\marginpar{^^A
+%   \raggedleft\PrintDescribeOption{#1}}\usage@index@pgf@key{#1}^^A
+%   \@esphack\ignorespaces}
+% \def\PrintDescribeOption#1{\strut\MacroFont\texttt{#1}\ }
+%
+% \newenvironment{key}{}{}
+% \let\pgf@opt\m@cro@
+% \def\key{\begingroup\pgf@opt\iffalse}
+% \let\endkey\endmacro
+% \patchcmd{\pgf@opt}{\SpecialMainEnvIndex}{\main@index@pgf@key}{}{}
+%
+% \newenvironment{Macro}[3]{^^A
+%   \par\prevd@Macro=\prevdepth^^A
+%   \def\tmp@hook{}^^A
+%   \apply@macro@to@nlist\add@macro{#1}^^A
+%   \needspace{\n@Macro\baselineskip}\noindent\tmp@hook^^A
+%   \advance\n@Macro\m@ne\relax\sig{#2}{#3}^^A
+%   \setbox0\vtop\bgroup\prevdepth=\prevd@Macro^^A
+% }{\egroup^^A\unvbox@unskip\prevd@Macro^^A
+%   \@tempdima=\dimexpr\n@Macro\normalbaselineskip - \dp0 - \ht0\relax^^A
+%   \unvbox0\ifdim\@tempdima > \z@\relax\vskip\@tempdima\fi\vskip\vskip@Macro}
+% \newenvironment{Option}[5]{^^A
+%   \par\prevd@Macro=\prevdepth^^A
+%   \def\tmp@hook{}^^A
+%   \apply@macro@to@nlist\add@pgf@option{#1}^^A
+%   \needspace{\n@Macro\baselineskip}\noindent\tmp@hook^^A
+%   \advance\n@Macro\m@ne\relax\sigdef{#2}{#3}{#4}{#5}^^A
+%   \setbox0\vtop\bgroup\prevdepth=\prevd@Macro^^A
+% }{\egroup^^A\unvbox@unskip\prevd@Macro^^A
+%   \@tempdima=\dimexpr\n@Macro\normalbaselineskip - \dp0 - \ht0\relax^^A
+%   \unvbox0\ifdim\@tempdima > \z@\relax\vskip\@tempdima\fi\vskip\vskip@Macro}
+% \def\add@macro#1#2{\n@Macro=#1\relax\app@to@hook\tmp@hook{\DescribeMacro{#2}}}
+% \def\add@pgf@option#1#2{\n@Macro=#1\relax\app@to@hook\tmp@hook{\DescribeOption{#2}}}
+%^^A \let\add@pgf@option\add@macro
+%
+% \def\BTkey#1{\texttt{#1}} 
+% \makeatother
+%
+% \def\pkg#1{\textsf{#1}}
+% \def\BT{\pkg{binarytree}\ensurespace}
+% \def\TikZ{\pkg{Ti\textit{k}Z}\ensurespace}
+% \expandafter\def\expandafter\TeX\expandafter{\TeX\ensurespace}
+%
+% \def\BTspath{\meta{l/r~moves}\allowbreak:\meta{label}\allowbreak:^^A
+%   \meta{color}\allowbreak:\meta{anchor}}
+% \def\BTpath{\BTspath\allowbreak!\BTspath!\ldots}
+%
+% \title{The \BT package\thanks{This document
+%   corresponds to \BT~\fileversion, dated \filedate.}}
+% \author{Aleksandrina Nikolova \\ \texttt{aayla.secura.1138@gmail.com}}
+%
+% \maketitle
+%
+% \begin{abstract}
+%   The \BT package provides an easy but flexible interface to draw binary trees using \TikZ. It uses a path specification of the form \BTpath to determine the style for each edge of the tree. It supports the \TikZ |external| library and can automatically name the files based on content. The default appearance and behaviour can be customized by a range of options.
+% \end{abstract}
+%
+% \tableofcontents
+%^^A \listoftables
+%^^A \listoffigures
+% \clearpage
+%
+% \section{Introduction}
+% The \BT package provides a macro, |\BinaryTree|, which accepts a path specification and a number signifying the maximum tree depth. The path specification determines the style for each edge of the tree. The behaviour can be customized by calling |\btreeset| or |\btreesetexternal| with a list of \meta{key=value} pairs. These will have effect until the end of the current group. Additionally, one can pass these keys as an optional argument to |\BinaryTree| to have them affect only that single tree.
+%
+% Each node is named, so you can refer to it later. The root is named |btree-root| while each of its children is named according to its ancestors, for example |btree-l-r| is the name of the right child of the root's left child.
+%
+% The package supports the \TikZ |external| library. To use this feature however one needs to load this library and execute |\tikzexternalize| in the preamble. All of the externalization options passed to, for example, |\btreesetexternal| are only executed once inside the local group of each tree so there is no conflict between them and any global configuration of the library. One may therefore disable externalization globally by calling |\tikzexternaldisable|; externalization will still be enabled for all the trees of \BT for which the \BTkey{external} option is |true|.
+%
+% \section{Usage}
+% 
+% \begin{Macro}{\BinaryTree}{local options}{path specification,depth}
+%   \meta{local options} is a coma separated list of \meta{key=value} pairs which set options locally inside a group for this tree alone. The \BTkey{external/file name} option, in case externalization is enabled, is allowed only in this context.\par
+%   \meta{path specification} is of the form \BTpath. Multiple such paths can be given, separated by a coma. If an edge is visited more than once only the last \emph{explicitly set} style will be used (i.~e. only when one of \meta{label} or \meta{color} is given). \meta{l/r~moves} is a sequence of |l| or |r| characters which visit the corresponding (left or right) child of the current node, and draw an edge in the color \meta{color}. Upon a change in direction, the previous move may be continued until the end. \meta{label} is placed on either the first or every child of the subpath, at the given anchor. The list of moves can be empty, in which case the label and color is applied to the previous (parent) edge. The path after an exclamation mark continues from the last child, while the path after a coma starts at the root again.\par
+%   \meta{depth} is the maximum depth to which the tree will be drawn (when continuing we stop at this depth; any moves extending beyond this depth are ignored without error).
+% \end{Macro}
+%
+% \subsection{Configuring the defaults}
+% 
+% \begin{Macro}{\btreeset,\btreesetexternal}{}{options}
+%   Setting defaults which apply to all trees (until the end of the current group) is done by calling |\btreeset| or |\btreesetexternal|. They accept a single argument---a coma separated list of \meta{key=value} pairs. The default key path for |\btreeset| is |/BT/| and that of |\btreesetexternal| is |/BT/external|. The \BTkey{external/file name} option is \emph{not} accepted here---it only makes sense to give it as a local option to a particular invocation of |\BinaryTree|.
+% \end{Macro}
+%
+% \subsection{Options for appearance}
+%
+% The following keys are defined and determine the style for all subsequent trees (until the end of the current group). For any unknown key passed to |\btreeset| (|\btreesetexternal|) or as an optional argument to |\BinaryTree|, it is checked if this key is defined for |/tikz| or |/pgf| (|/tikz/external|).
+%
+% \begingroup\makeatletter
+% \let\add@macro\add@pgf@option\makeatother
+% \begin{Macro}{/BT/defaults}{}{}
+%   A shortcut for setting all appearance related keys to their default values. \BTkey{separate} and any keys related to externalization are not affected.
+% \end{Macro}
+% \endgroup
+%
+% \begin{Option}{/BT/grow}{}{direction}{up}{}
+%   A choice of |up|, |down|, |left|, or |right| sets the growth direction of the tree and the default label anchors.
+% \end{Option}
+%
+% \begin{Option}{/BT/root label anchor,/BT/left label anchor,^^A
+%   /BT/right label anchor,/BT/final label anchor}{}{anchor}{}{}
+%   These keys can override the default anchors set by \BTkey{grow}. An anchor is any valid \TikZ anchor, such as |above| or |north east|.
+% \end{Option}
+%
+% \begin{Option}{/BT/root edge}{}{\ttup{true\vbar false}}{false}{true}
+%   If set to |true| a single child of the root will be drawn before the rest of the tree. The root label is still placed on the root node, not on this edge, so any anchor is relative to the bottom of this edge.
+% \end{Option}
+%
+% \begin{Option}{/BT/draw missing}{}{\ttup{true\vbar false}}{false}{true}
+%   If set to |true| children which have not been visited in the course of constructing the path will be drawn anyway (no label, default color).
+% \end{Option}
+%
+% \begin{Option}{/BT/label on every edge}{}{\ttup{true\vbar false}}{false}{true}
+%   If set to |true| \meta{label} will be placed on every edge of the subpath segment (delimited by |!|) and \meta{anchor} will apply to all of them.
+% \end{Option}
+%
+% \begin{Option}{/BT/math labels}{}{\ttup{true\vbar false}}{false}{true}
+%   If set to |true| all labels will be wrapped in math mode.
+% \end{Option}
+%
+% \begin{Option}{/BT/continue at path end}{}{\ttup{true\vbar false}}{true}{true}
+%   If set to |true| when the end of a subpath is reached and the current depth is less than the tree depth, the last move will be continued. Then, to explicitly make the path terminate, use an |s| move operation. When set to |false|, one can force a continuation with the |c| move operation.
+% \end{Option}
+%
+% \begin{Option}{/BT/continue after turn}{}{\ttup{true\vbar false}}{true}{true}
+%   If set to |true| after a change in direction is encountered (as in |lr| or |r!l|) the previous move will be continued until the top of the tree before moving on.
+% \end{Option}
+%
+% \begin{Option}{/BT/default color}{}{color}{black}{}
+%   Set the default color for edges and labels. Any color specification accepted by |\colorlet| is valid.
+% \end{Option}
+%
+% \begin{Option}{/BT/default color after turn}{}{\ttup{true\vbar false}}{true}{true}
+%   If set to |true| after a change in direction is encountered the default color is used (a previously set style will not however be overridden); otherwise the previously given path color is used, which, if not, empty will cause any previously set style for the edges to be overridden.
+% \end{Option}
+%
+% \begin{Option}{/BT/xscale,/BT/yscale}{}{scale factor}{1}{}
+%   Append an x or y scale to the current style. The effect is \emph{accumulative}.
+% \end{Option}
+%
+% \begin{Option}{/BT/scale}{}{scale factor}{1}{}
+%   This is equivalent to setting \BTkey{xscale}=\meta{scale factor}, \BTkey{yscale}=\meta{scale~factor}
+% \end{Option}
+%
+% \begin{Option}{/BT/label distance}{}{length}{10pt}{}
+%   Sets the distance between the label and the edge.
+% \end{Option}
+%
+% \begin{Option}{/BT/sibling distance}{}{length}{40mm}{}
+%   Sets the distance between siblings \emph{on level 1} (root's immediate children). See below.
+% \end{Option}
+%
+% \begin{Option}{/BT/level distance}{}{length}{20mm}{}
+%   Sets the distance between levels \emph{on level 1} (root's immediate children). See below.
+% \end{Option}
+%
+% \begin{Option}{/BT/sibling distance scales,^^A
+%   /BT/level distance scales}{}{\ttup{true\vbar false}}{true}{true}
+%   If set to |true| the sibling/level distance will be scaled by the level number on each level.
+% \end{Option}
+%
+% \begin{Option}{/BT/top padding,/BT/bottom padding,^^A
+%   /BT/left padding,/BT/right padding}{}{length}{3pt}{}
+%   Add an additional padding on the corresponding side. This is useful if one of the labels of intermediate outer children extends beyond the bounding box, or if the label anchor for the root (final children) is changed (in which case one would need to set a negative padding to compensate for assuming the labels are below (above) the node).
+% \end{Option}
+%
+% \begin{Option}{/BT/framed}{}{\ttup{true\vbar false}}{false}{true}
+%   If set to |true| the bounding box will be drawn.
+% \end{Option}
+%
+% \begin{Option}{/BT/separate}{}{\ttup{true\vbar false}}{false}{true}
+%   If set to |true| the whole tree will be wrapped in a |tikzpicture| environment, otherwise---in a |scope| environment.
+% \end{Option}
+%
+% \subsection{Options for externalization}
+%
+% \begin{Option}{/BT/external}{}{\ttup{true\vbar false}}{false}{true}
+%   If set to |true| externalization will be enabled and the following keys will have effect on how the file names. This requires one to load the |external| library of \TikZ and initialize it (by calling |\tikzexternalize|). One may then disable it globally by calling |\tikzexternaldisable|, it will be enabled locally inside the group of each tree. 
+% \end{Option}
+%
+% \begin{Option}{/BT/external/use automatic file name}{}{\ttup{true\vbar false}}{false}{true}
+%   Generate a (not so short or friendly looking) file name from the global style and the path specification. If it is set to |false|, a figure name (by default |binary-tree_|) is used with each filename being the figure name plus a number appended at the end, indicating the order in which the trees are encountered in the document. This option is useful if one regularly changes the order of the trees and wishes to avoid having to recompile them. Under some circumstances different looking trees may end up with the same name (for example if math labels are used, which cannot be safely expanded into text and are thus ignored). In these cases one may either locally disable this option or specify a file name explicitly by either calling |\tikzsetnextfilename| or by using the following key.
+% \end{Option}
+%
+% \begin{Option}{/BT/external/file name}{}{file name}{}{}
+%   Explicitly set the file name for the currently drawn tree regardless of whether automatic file naming is enabled or not. This key is only accepted as a local option to each |\BinaryTree|.
+% \end{Option}
+%
+% Additionally, any unknown keys defined for |/tikz/external| are accepted, collected and will be executed once we're inside the local group for each tree. So if one wishes to, one can, without a conflict, set global options for externalization (by calling for example |\tikzset|{\meta{key=value}}), which will be used by all other \TikZ figures and by \BT by default, and different settings (via |\btreesetexternal| or local options to |\BinaryTree|) for the \BT figures.
+%
+% \section{Examples}
+% 
+% \begin{itemize}[leftmargin=0pt]
+% \item Each node has a unique name, but you can name the entire tree using \TikZ's |local bounding box key| and refer to it for example in a graph.\par
+% \vskip 10pt\import{examples/}{binarytree-ex1.tex}
+% \vskip 10pt\hrule
+% \verbatiminput{examples/binarytree-ex1.tex}
+% \hrule\vskip 10pt
+% \item Here is a simple example which shows how the scaling of the sibling or level distance affects the appearance of the tree. The trees are otherwise identical.\par
+% \vskip 10pt\import{examples/}{binarytree-ex2.tex}
+% \vskip 10pt\hrule
+% \verbatiminput{examples/binarytree-ex2.tex}
+% \hrule\vskip 10pt
+% \item You have control over which edges are drawn implicitly. Surely there is another way to do this in \TikZ!\par
+% \vskip 10pt\centering\import{examples/}{binarytree-ex3.tex}
+% \vskip 10pt\hrule
+% \verbatiminput{examples/binarytree-ex3.tex}
+% \hrule\vskip 10pt
+% \item The next example simply aims to demonstrate that placing two identical trees, and using the externalization and automatic file naming features, one would only compile the tree once. You need to manually compile the |makefile| and the next time the example is compiled, the figures will be included.\par
+% \vskip 10pt\centering\pgfimage{examples/binarytree-ex4.pdf}
+% \vskip 10pt\hrule
+% \verbatiminput{examples/binarytree-ex4.tex}
+% \hrule\vskip 10pt
+% \end{itemize}
+%
+% \section{Known Issues}
+%
+% \begin{itemize}
+% \item Calculation of the bounding box uses the default (for the chosen growth direction) label anchors instead of any explicitly set anchors. It also does not take into account the width of the labels of any intermediate (outer) or final middle children.
+% \item Spaces between the semicolon and the color/anchor cannot be handled.
+% \item The automatically generated file name may not be unique: two or more differently styled trees may end up with the same name, thus only the one that was compiled first will be used. On the other hand, two trees that \emph{are} the same may end up with different names if the subpaths are given in a different order.
+% \end{itemize}
+% 
+% \section{Planned changes}
+%
+% \begin{itemize}
+% \item Options to control how a file name is generated:
+%   \begin{itemize}
+%   \item use figure name instead of the generated file name for figures where an unknown keys have been used
+%   \item use figure name instead of the generated file name for figures where math mode for labels has been used
+%   \item force writing the expanded label into the file name, even if math mode is set---will only work if the label expands to text without special characters; at user's discretion
+%   \item configure how detailed the generated file name is: whether or not to ignore labels, distances, scales, etc.
+%   \end{itemize}
+% \item Option to specify label position along the edge.
+%^^A \item When \BTkey{external} is set to |true|, check if |\tikzexternalize| has been run and abort if not.
+% \end{itemize}
+%
+% \StopEventually{\clearpage\PrintChanges\PrintIndex}
+% \clearpage
+% \section{Implementation}
+%
+% The tree is drawn in a simple recursive way, which creates exactly two child nodes for each previous node, up to a maximum depth of |\BT@max@depth|. The entire appearance is controlled by a global style \BTkey{/tikz/binary tree} (which is determined by the setting of various pgf keys) as well as individual styles for each edge, which are created on the fly as the path specification is processed. Each style lives under the \BTkey{/tikz/binary tree} directory and is named according to the unique place of the child in the tree, by appending |l@| or |r@| to the name of its parent. The root is called |@| and has a depth of 0, its immediate children are |@r@| and |@l@| on level 1, and so on. Each node is also named similarly, for example |btree-l-l-r| or |btree-root|.\par
+% We create template styles for each type of node: root, intermediate labelled, final labelled, unlabelled, or unvisited. When setting a style for a particular edge, the relevant template is used and a macro with the name |\|\meta{child name}| styled| is defined (let to |\relax|). This is so we don't override a previously set style unless one of \meta{label}, \meta{color} or \meta{anchor} is given explicitly. It is also used when drawing the tree to check if such a style exists, otherwise the style is set to \BTkey{/tikz/binary tree/default}.\par
+% \TikZ would put unnecessary white space around the tree (especially if there are missing outer children), so we need to calculate the actual size of the tree and clip the bounding box accordingly: we need the left and right width, height and depth, since these will be coordinates for the clipping rectangle. It is mostly calculated on the fly, starting with 0pt for each 4 coordinates. If \BTkey{draw missing} is |true|, we set the bounding box size to the maximum for this depth (and don't change it further). Otherwise we proceed in the following way: the height is easy to deal with---we add a level distance to the height each time a new level is created (we keep track by defining a macro |\level |\meta{depth}| exists|). The width is trickier---consider for example the case where there are no children on the right, but there are right children to one of the left nodes; they may extend to the right side of the box. What is done is we keep track of a current x coordinate (which is relative to root, being negative on the left) and each time any left (right) edge is created, we compare the (magnitude of the) coordinate to the current left (right) width of the box, and if greater---set the box width to it.\par
+% Additionally, we save the height (width) of the root's label since this will (may) add to the depth (width) of the box, but we do not add it to the size of the box just yet (since the root label may change several times). Furthermore, we keep track of the maximum height (width) of any of the final children's labels since these will increase the ``height''\footnote{Here ``height'' means height if the tree is growing up, depth if it's growing down, left/right width if it's growing left/right; and similarly for ``width''} of the box when the tree is growing vertically (sideways). We also save the width (height) of the left- and rightmost final children, as these will increase the ``width'' of the box when growing vertically (sideways). At the end all of these are used to increase the box (still assuming the tree is growing upwards). Finally, the four sides are cycled according to the actual growing direction.
+%
+% \parindent=0pt\relax
+% \subsection{Allocating registers}
+%
+% \begin{macro}{\BT@bbox@r@width}
+% \begin{macro}{\BT@bbox@l@width}
+% \begin{macro}{\BT@bbox@height}
+% \begin{macro}{\BT@bbox@depth}
+% \begin{macro}{\BT@bbox@current@x}
+% \begin{macro}{\BT@root@width}
+% \begin{macro}{\BT@root@height}
+% \begin{macro}{\BT@max@final@width}
+% \begin{macro}{\BT@max@final@height}
+% \begin{macro}{\BT@l@final@width}
+% \begin{macro}{\BT@l@final@height}
+% \begin{macro}{\BT@r@final@width}
+% \begin{macro}{\BT@r@final@height}
+% \begin{macro}{\BT@bbox@padding@top}
+% \begin{macro}{\BT@bbox@padding@bottom}
+% \begin{macro}{\BT@bbox@padding@left}
+% \begin{macro}{\BT@bbox@padding@right}
+% \begin{macro}{\BT@sibling@distance}
+% \begin{macro}{\BT@level@distance}
+% \begin{macro}{\BT@label@distance}
+%   The following lengths are used in calculating the bounding box for clipping the final picture.
+%    \begin{macrocode}
+\newdimen\BT@bbox@r@width
+\newdimen\BT@bbox@l@width
+\newdimen\BT@bbox@height
+\newdimen\BT@bbox@depth
+\newdimen\BT@bbox@current@x
+\newdimen\BT@root@width
+\newdimen\BT@root@height
+\newdimen\BT@max@final@width
+\newdimen\BT@max@final@height
+\newdimen\BT@l@final@width
+\newdimen\BT@l@final@height
+\newdimen\BT@r@final@width
+\newdimen\BT@r@final@height
+\newdimen\BT@bbox@padding@top
+\newdimen\BT@bbox@padding@bottom
+\newdimen\BT@bbox@padding@left
+\newdimen\BT@bbox@padding@right
+\newdimen\BT@sibling@distance
+\newdimen\BT@level@distance
+\newdimen\BT@label@distance
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% 
+% \begin{macro}{\ifBT@root@edge}
+% \begin{macro}{\ifBT@draw@missing}
+% \begin{macro}{\ifBT@label@every@edge}
+% \begin{macro}{\ifBT@math@labels}
+% \begin{macro}{\ifBT@continue@at@end}
+% \begin{macro}{\ifBT@continue@after@turn}
+% \begin{macro}{\ifBT@default@color@after@turn}
+% \begin{macro}{\ifBT@sibling@distance@scales}
+% \begin{macro}{\ifBT@level@distance@scales}
+% \begin{macro}{\ifBT@framed}
+% \begin{macro}{\ifBT@separate}
+% \begin{macro}{\ifBT@external}
+% \begin{macro}{\ifBT@auto@file@name}
+%   The following |\if|'s are set by |pgfkeys| when the corresponding keys are used.
+%    \begin{macrocode}
+\newif\ifBT@root@edge
+\newif\ifBT@draw@missing
+\newif\ifBT@label@every@edge
+\newif\ifBT@math@labels
+\newif\ifBT@continue@at@end
+\newif\ifBT@continue@after@turn
+\newif\ifBT@default@color@after@turn
+\newif\ifBT@sibling@distance@scales
+\newif\ifBT@level@distance@scales
+\newif\ifBT@framed
+\newif\ifBT@separate
+\newif\ifBT@external
+\newif\ifBT@auto@file@name
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \subsection{Keys, styles and defaults}
+% \subsubsection{For internal use}
+%
+% \begin{macro}{\BT@key@is@tikz@or@error}
+% \begin{macro}{\BT@key@is@tikz@external@or@error}
+% \begin{key}{/BT/.unknown}
+% \begin{key}{/BT/external/.unknown}
+%   |\BT@key@is@tikz@or@error| and |\BT@key@is@tikz@external@or@error| are called from the |.unknown| handlers in |/BT/| and |/BT/external/| pgf directories respectively, and check if the key is defined for |/tikz/| or |/pgf/|, or |/tikz/external|.\par
+%   \nsig{key basename,value}
+%    \begin{macrocode}
+\def\BT@key@is@tikz@or@error#1#2{%
+  \tikzset{binary tree/.append code={%
+      \pgfkeys{/tikz/#1/.try=#2,%
+        /pgf/#1/.lastretry=#2}}}}
+\def\BT@key@is@tikz@external@or@error#1#2{%
+  \tikzset{binary tree/externalize/.append code={%
+      \pgfkeys{/tikz/external/#1=#2}}}}
+\pgfkeys{/BT/.cd,%
+  .unknown/.code={%
+    \expandafter\BT@key@is@tikz@or@error\expandafter{%
+      \pgfkeyscurrentname}{#1}},%
+  external/.unknown/.code={%
+    \expandafter\BT@key@is@tikz@external@or@error\expandafter{%
+      \pgfkeyscurrentname}{#1}}}
+%    \end{macrocode}
+% \end{key}
+% \end{key}
+% \end{macro}
+% \end{macro}
+%
+% \subsubsection{The user interface}
+%
+% \begin{macro}{\@btreeset}
+% \begin{macro}{\btreeset}
+% \begin{macro}{\btreesetexternal}
+%   The user should use |\btreeset| and |\btreesetexternal| to customize the default tree style. Some keys however only make sense for a single invocation of |\BinaryTree|, so we do not allow these to be set via |\btreeset| or |\btreesetexternal|
+%    \begin{macrocode}
+\def\@btreeset#1#2{%
+  \pgfkeyssavekeyfilterstateto{\BT@restore@pgf@key@filter}%
+%    \end{macrocode}
+% \BTkey{local option outside of scope} will handle only keys which are defined and belong to family \BTkey{local options}, so that \BTkey{.unknown} and \BTkey{external/.unknown} will still handle undefined keys.
+%    \begin{macrocode}
+  \pgfkeys{/pgf/key filters/not/.install key filter={%
+      /pgf/key filters/and={/pgf/key filters/active families}{%
+        /pgf/key filters/defined}},%
+    /BT/local option outside of scope/.install key filter handler}%
+  \pgfqkeysactivatesinglefamilyandfilteroptions{/BT/local options}{#1}{#2}%
+  \BT@restore@pgf@key@filter}
+\def\btreeset{\@btreeset{/BT}}
+\def\btreesetexternal{\@btreeset{/BT/external}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \begin{key}{/BT/local options}
+% \begin{key}{/BT/local option outside of scope}
+%    \begin{macrocode}
+\pgfkeys{/BT/.cd,%
+  local options/.is family,%
+  local option outside of scope/.code={%
+    \PackageError{binarytree}{'\pgfkeyscurrentkey' only allowed %
+      locally\MessageBreak for each \string\BinaryTree}{}}}
+%    \end{macrocode}
+% \end{key}
+% \end{key}
+%
+% \subsubsection{Keys for customizing the tree appearance}
+%
+% The following macros are used in the calculation of the bounding box size.
+% \begin{macro}{\BT@set@max@l@or@r@bbox@size}
+%   Increase the bounding box on the left or right side so it accommodates all children on that side.
+%    \begin{macrocode}
+\def\BT@set@max@l@or@r@bbox@size#1{%
+  \BT@bbox@current@x=\z@\relax%
+  \@tempcnta=\BT@root@depth\relax%
+  \loop%
+    \ifnum\@tempcnta < \numexpr\BT@max@depth\relax%
+    \advance\@tempcnta\@ne\relax%
+    \BT@check@if@new@level\@tempcnta%
+    \csname BT@#1@xshift\endcsname\@tempcnta%
+    \csname BT@update@bbox@#1@width\endcsname%
+  \repeat}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BT@bbox@scale@labels}
+% \begin{macro}{\BT@bbox@scale@padding}
+%   When \TikZ applies the scaling set by the user, the labels, label distance and the paddings will not be scaled, so we divide them by the scale here.
+%    \begin{macrocode}
+\def\BT@bbox@scale@labels{%
+  \pgfmathparse{\BT@root@height / \BT@yscale}%
+  \BT@root@height\pgfmathresult pt\relax%
+  \pgfmathparse{\BT@root@width / \BT@xscale}%
+  \BT@root@width\pgfmathresult pt\relax%
+  \pgfmathparse{\BT@max@final@height / \BT@yscale}%
+  \BT@max@final@height\pgfmathresult pt\relax%
+  \pgfmathparse{\BT@max@final@width / \BT@xscale}%
+  \BT@max@final@width\pgfmathresult pt\relax%
+  \pgfmathparse{\BT@l@final@width / \BT@xscale}%
+  \BT@l@final@width\pgfmathresult pt\relax%
+  \pgfmathparse{\BT@r@final@width / \BT@xscale}%
+  \BT@r@final@width\pgfmathresult pt\relax}%
+\def\BT@bbox@scale@padding{%
+  \pgfmathparse{\BT@bbox@padding@top / \BT@yscale}%
+  \BT@bbox@padding@top\pgfmathresult pt\relax%
+  \pgfmathparse{\BT@bbox@padding@bottom / \BT@yscale}%
+  \BT@bbox@padding@bottom\pgfmathresult pt\relax%
+  \pgfmathparse{\BT@bbox@padding@left / \BT@yscale}%
+  \BT@bbox@padding@left\pgfmathresult pt\relax%
+  \pgfmathparse{\BT@bbox@padding@right / \BT@yscale}%
+  \BT@bbox@padding@right\pgfmathresult pt\relax}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\BT@bbox@add@labels}
+%   |\BT@bbox@add@labels| increases the height, depth, right and left width of the bounding box assuming an upward growing tree. It scales the label sizes and adds them to the bounding box, which at this point accommodates only the tree.
+%    \begin{macrocode}
+\def\BT@bbox@add@labels{%
+  \BT@bbox@scale@labels%
+  \pgfmathparse{\BT@label@distance / \BT@yscale}%
+  \ifdim\BT@root@height > \z@\relax%
+    \advance\BT@bbox@depth\dimexpr\BT@root@height%
+    + \pgfmathresult pt\relax\fi%
+  \ifdim\BT@max@final@height > \z@\relax%
+    \advance\BT@bbox@height\dimexpr\BT@max@final@height%
+    + \pgfmathresult pt\relax\fi%
+  \advance\BT@bbox@l@width\dimexpr\BT@l@final@width / 2\relax%
+  \advance\BT@bbox@r@width\dimexpr\BT@r@final@width / 2\relax%
+%    \end{macrocode}
+% If the width of the root label is more than the width of the bounding box, use it instead.
+%    \begin{macrocode}
+  \BT@set@dim@to@greater\BT@bbox@l@width{\BT@root@width / 2}%
+  \BT@set@dim@to@greater\BT@bbox@r@width{\BT@root@width / 2}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@bbox@add@padding}
+%   |\BT@bbox@add@padding| simply adds the padding.
+%    \begin{macrocode}
+\def\BT@bbox@add@padding{%
+  \BT@bbox@scale@padding%
+  \advance\BT@bbox@height\dimexpr\BT@bbox@padding@top\relax%
+  \advance\BT@bbox@depth\dimexpr\BT@bbox@padding@bottom\relax%
+  \advance\BT@bbox@l@width\dimexpr\BT@bbox@padding@left\relax%
+  \advance\BT@bbox@r@width\dimexpr\BT@bbox@padding@right\relax}
+%    \end{macrocode}
+% \end{macro}
+% \begin{key}{/BT/grow}
+% \begin{macro}{\BT@adjust@bbox@sides}
+% \begin{macro}{\BT@grow@direction}
+%   The \BTkey{grow} key determines the growth direction, sets the default anchors for the labels and defines the macro |\BT@adjust@bbox@sides| which is called right before drawing the tree to compute the coordinates of the bounding box. Since |\BT@bbox@add@labels| calculates the sides of the box as if the growth direction is |up| we need to further transform them according to the actual direction. We call |\BT@bbox@add@padding| at the very end, since these paddings are absolute (independent of direction).\par
+%   |\BT@grow@direction| is used for generating the file name only.
+%    \begin{macrocode}
+\pgfkeys{/BT/.cd,%
+  grow/.is choice,%
+  grow/up/.code={\def\BT@adjust@bbox@sides{%
+      \BT@bbox@add@labels%
+      \BT@bbox@add@padding}%
+    \def\BT@grow@direction{up}%
+    \pgfkeys{/BT/.cd,%
+      /tikz/binary tree/.append style={grow=up},
+      root label anchor=below,
+      left label anchor=north east,
+      right label anchor=north west,
+      final label anchor=above}},%
+%    \end{macrocode}
+% Growing down is the same as growing up, but the depth and height of the bounding box need to be swapped.
+%    \begin{macrocode}
+  grow/down/.code={\def\BT@adjust@bbox@sides{%
+      \BT@bbox@add@labels
+      \BT@swap@dims\BT@bbox@depth\BT@bbox@height%
+      \BT@bbox@add@padding}%
+    \def\BT@grow@direction{down}%
+    \pgfkeys{/BT/.cd,%
+      /tikz/binary tree/.append style={grow'=down},
+      root label anchor=above,
+      left label anchor=south east,
+      right label anchor=south west,
+      final label anchor=below}},%
+%    \end{macrocode}
+% Growing left means that the x and y scales, as well as the heights and widths of each of the relevant labels, should be swapped \emph{before} calling |\BT@bbox@add@labels|.
+%    \begin{macrocode}
+  grow/left/.code={\def\BT@adjust@bbox@sides{%
+      \BT@swap@hooks\BT@xscale\BT@yscale%
+      \BT@swap@dims\BT@root@width\BT@root@height%
+      \BT@swap@dims\BT@max@final@width\BT@max@final@height%
+      \BT@swap@dims\BT@l@final@width\BT@l@final@height%
+      \BT@swap@dims\BT@r@final@width\BT@r@final@height%
+      \BT@bbox@add@labels%
+%    \end{macrocode}
+% Then, cycle the sides of the box according to: depth \(\to\) right width, right width \(\to\) height, height \(\to\) left width, left width \(\to\) depth.
+%    \begin{macrocode}
+      \@tempdima\BT@bbox@depth\relax%
+      \BT@bbox@depth\BT@bbox@l@width\relax%
+      \BT@bbox@l@width\BT@bbox@height\relax%
+      \BT@bbox@height\BT@bbox@r@width\relax%
+      \BT@bbox@r@width\@tempdima\relax%
+      \BT@bbox@add@padding}%
+    \def\BT@grow@direction{left}%
+    \pgfkeys{/BT/.cd,%
+      /tikz/binary tree/.append style={grow=left},
+      root label anchor=right,
+      left label anchor=north west,
+      right label anchor=south west,
+      final label anchor=left}},%
+%    \end{macrocode}
+% As in the |left| case, swap the x and y scales, widths and heights of labels and cycle the sides in the same order but additionally swap height and depth. This is in fact equivalent to swapping height and right width, depth and left width.
+%    \begin{macrocode}
+  grow/right/.code={\def\BT@adjust@bbox@sides{%
+      \BT@swap@hooks\BT@xscale\BT@yscale%
+      \BT@swap@dims\BT@root@width\BT@root@height%
+      \BT@swap@dims\BT@max@final@width\BT@max@final@height%
+      \BT@swap@dims\BT@l@final@width\BT@l@final@height%
+      \BT@swap@dims\BT@r@final@width\BT@r@final@height%
+      \BT@bbox@add@labels%
+      \BT@swap@dims\BT@bbox@depth\BT@bbox@l@width%
+      \BT@swap@dims\BT@bbox@height\BT@bbox@r@width%
+      \BT@bbox@add@padding}%
+    \def\BT@grow@direction{right}%
+    \pgfkeys{/BT/.cd,%
+      /tikz/binary tree/.append style={grow'=right},
+      root label anchor=left,
+      left label anchor=north east,
+      right label anchor=south east,
+      final label anchor=right}},%
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{key}
+%
+% \begin{key}{/BT/root label anchor}
+% \begin{key}{/BT/left label anchor}
+% \begin{key}{/BT/right label anchor}
+% \begin{key}{/BT/final label anchor}
+%   These can be used to override the default anchors set by \BTkey{grow}. They of course need to be called after this key has been set.
+%    \begin{macrocode}
+  root label anchor/.initial=,%
+  left label anchor/.initial=,%
+  right label anchor/.initial=,%
+  final label anchor/.initial=,%
+%    \end{macrocode}
+% \end{key}
+% \end{key}
+% \end{key}
+% \end{key}
+%
+% \begin{key}{/BT/root edge}
+% \begin{macro}{\BT@effective@level}
+%   The way the root edge is drawn is a single child is added to it, which offsets the level numbering by one. Since we don't want the overall size of the tree to decrease, we define |\BT@effective@level| to subtract 1 (for levels\({} > 1\)).
+%    \begin{macrocode}
+  root edge/.is if={BT@root@edge},%
+  root edge/.append code={%
+    \ifBT@root@edge%
+      \def\BT@effective@level##1{%
+        \ifnum\numexpr##1\relax < \numexpr 3\relax\expandafter\@firstoftwo%
+        \else\expandafter\@secondoftwo\fi{1}{(##1-1)}}%
+    \else\def\BT@effective@level##1{##1}\fi},%
+%    \end{macrocode}
+% \end{macro}
+% \end{key}
+%
+% \begin{macro}{\BT@set@min@bbox@size}
+% \begin{key}{/BT/draw missing}
+% \begin{key}{/tikz/binary tree/default}
+%   \BTkey{draw missing} key chooses between |/tikz/missing| and unlabelled edge (in the default color) as the default style for children which have not been visited. If set to |true|, then we need to set the bounding box size to accommodate all of the children. Then we may define the |\BT@[lr]@xshift|, |\BT@update@bbox@[lr]@width| macros to empty, we don't need them anymore. |\BT@set@min@bbox@size| will eitherway be called before setting the styles.
+%    \begin{macrocode}
+  draw missing/.is if={BT@draw@missing},%
+  draw missing/.append code={%
+    \ifBT@draw@missing%
+      \def\BT@set@min@bbox@size{\BT@set@max@l@or@r@bbox@size{l}%
+        \BT@set@max@l@or@r@bbox@size{r}%
+        \let\BT@l@xshift\@gobble%
+        \let\BT@r@xshift\@gobble%
+        \let\BT@update@bbox@l@width\relax%
+        \let\BT@update@bbox@r@width\relax}%
+      \tikzset{binary tree/default/.style={binary tree/empty={BT@default}}}%
+    \else\let\BT@set@min@bbox@size\relax%
+      \tikzset{binary tree/default/.style={missing}}\fi},%
+%    \end{macrocode}
+% \end{key}
+% \end{key}
+% \end{macro}
+%
+% \begin{key}{/BT/label on every edge}
+%   If this key is |true|, then the label specified for a subpath will be applied to every edge.
+%    \begin{macrocode}
+  label on every edge/.is if={BT@label@every@edge},%
+%    \end{macrocode}
+% \end{key}
+%
+% \begin{key}{/BT/math labels}
+% \begin{macro}{\BT@wrap@label}
+%   |\BT@wrap@label| wraps the label in math mode if \BTkey{math labels} is |true|.
+%    \begin{macrocode}
+  math labels/.is if={BT@math@labels},%
+  math labels/.append code={%
+    \ifBT@math@labels\def\BT@wrap@label##1{\(##1\)}%
+    \else\def\BT@wrap@label##1{##1}\fi},%
+%    \end{macrocode}
+% \end{macro}
+% \end{key}
+%
+% \begin{key}{/BT/continue at path end}
+%   This determines if we stop or continue the last move when the end of a subpath is reached.
+%    \begin{macrocode}
+  continue at path end/.is if={BT@continue@at@end},%
+%    \end{macrocode}
+% \end{key}
+%
+% \begin{key}{/BT/continue after turn}
+%   This determines if we stop or continue after a turn is made.
+%    \begin{macrocode}
+  continue after turn/.is if={BT@continue@after@turn},%
+%    \end{macrocode}
+% \end{key}
+%
+% \begin{key}{/BT/default color}
+%   This key sets |BT@default|---the default color for the tree.
+%    \begin{macrocode}
+  default color/.code={\colorlet{BT@default}{#1}},%
+  default color/.value required,%
+%    \end{macrocode}
+% \end{key}
+%
+% \begin{key}{/BT/default color after turn}
+%   This key determines if the default color will be used when continuing a path after a turn.
+%    \begin{macrocode}
+  default color after turn/.is if={BT@default@color@after@turn},%
+%    \end{macrocode}
+% \end{key}
+%
+% \begin{key}{/BT/xscale}
+% \begin{key}{/BT/yscale}
+% \begin{key}{/BT/scale}
+% \begin{macro}{\BT@xscale}
+% \begin{macro}{\BT@yscale}
+%   The x and y scale are simply appended to the \BTkey{/tikz/binary tree} style. |\BT@xscale| and |\BT@yscale| are used in calculating the bounding box size.
+%    \begin{macrocode}
+  xscale/.store in=\BT@xscale,%
+  xscale/.append style={/tikz/binary tree/.append style={xscale=#1}},%
+  xscale/.value required,%
+  yscale/.store in=\BT@yscale,%
+  yscale/.append style={/tikz/binary tree/.append style={yscale=#1}},%
+  yscale/.value required,%
+  scale/.forward to=/BT/xscale,%
+  scale/.forward to=/BT/yscale,%
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{key}
+% \end{key}
+% \end{key}
+%
+% \begin{key}{/BT/label distance}
+% \begin{key}{/BT/sibling distance}
+% \begin{key}{/BT/level distance}
+%   These keys simply set the corresponding lengths
+%    \begin{macrocode}
+  label distance/.code={\BT@label@distance=\dimexpr#1\relax},%
+  label distance/.value required,%
+  sibling distance/.code={\BT@sibling@distance=\dimexpr#1\relax},%
+  sibling distance/.value required,%
+  level distance/.code={\BT@level@distance=\dimexpr#1\relax},%
+  level distance/.value required,%
+%    \end{macrocode}
+% \end{key}
+% \end{key}
+% \end{key}
+%
+% \begin{key}{/BT/sibling distance scales}
+% \begin{key}{/BT/level distance scales}
+% \begin{macro}{\BT@current@sibling@distance}
+% \begin{macro}{\BT@current@level@distance}
+%   If set to |true| we scale the corresponding distance by the current level number. Note that |\BT@current@sibling@distance| and |\BT@current@level@distance| expand either to a length register, or to an expression understood by |\pdfmathparse|, so they can only be used inside |\pgfmathparse|.
+%    \begin{macrocode}
+  sibling distance scales/.is if={BT@sibling@distance@scales},%
+  sibling distance scales/.append code={%
+    \ifBT@sibling@distance@scales%
+      \def\BT@current@sibling@distance##1{%
+        \BT@sibling@distance/(\BT@effective@level{##1})}%
+    \else\def\BT@current@sibling@distance##1{\BT@sibling@distance}\fi},%
+  level distance scales/.is if={BT@level@distance@scales},%
+  level distance scales/.append code={%
+    \ifBT@level@distance@scales%
+      \def\BT@current@level@distance##1{%
+        \BT@level@distance/(\BT@effective@level{##1})}%
+    \else\def\BT@current@level@distance##1{\BT@level@distance}\fi},%
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{key}
+% \end{key}
+%
+% \begin{key}{/BT/top padding}
+% \begin{key}{/BT/bottom padding}
+% \begin{key}{/BT/left padding}
+% \begin{key}{/BT/right padding}
+%   These keys set the padding on each side of the bounding box.
+%    \begin{macrocode}
+  top padding/.code={\BT@bbox@padding@top=#1\relax},%
+  top padding/.value required,%
+  bottom padding/.code={\BT@bbox@padding@bottom=#1\relax},%
+  bottom padding/.value required,%
+  left padding/.code={\BT@bbox@padding@left=#1\relax},%
+  left padding/.value required,%
+  right padding/.code={\BT@bbox@padding@right=#1\relax},%
+  right padding/.value required,%
+%    \end{macrocode}
+% \end{key}
+% \end{key}
+% \end{key}
+% \end{key}
+%
+% \begin{key}{/BT/framed}
+%   If set to |true| the bounding box will be drawn.
+%    \begin{macrocode}
+  framed/.is if={BT@framed},%
+%    \end{macrocode}
+% \end{key}
+%
+% \begin{key}{/BT/defaults}
+%   We define a single key which sets the default values for all keys related to the appearance. We do not set defaults for keys related to externalization since the user will likely want to set those globally for the entire document. This is meant to be a shortcut to simply reset the styles for the current group or tree.
+%    \begin{macrocode}
+  defaults/.style={/BT/.cd,%
+    default color=black,%
+    default color after turn=true,%
+    grow=up,%
+    root edge=false,%
+    draw missing=false,
+    label on every edge=false,%
+    math labels=false,%
+    continue at path end=true,%
+    continue after turn=true,%
+    scale=1,%
+    sibling distance=40mm,%
+    level distance=20mm,%
+    sibling distance scales=true,%
+    level distance scales=true,%
+    label distance=10pt,%
+    top padding=3pt,%
+    bottom padding=3pt,%
+    left padding=3pt,%
+    right padding=3pt,%
+    framed=false},%
+  defaults/.value forbidden,%
+%    \end{macrocode}
+% \end{key}
+%
+% \subsubsection{Keys related to externalization}
+%
+% \begin{key}{/BT/separate}
+%   If set to |true| the code for the tree will be put in a |tikzpicture| environment, otherwise---in a |scope| environment.
+%    \begin{macrocode}
+  separate/.is if={BT@separate},%
+  separate/.append code={%
+    \ifBT@separate\else\pgfkeys{/BT/external=false}\fi},%
+%    \end{macrocode}
+% \end{key}
+%
+% \begin{key}{/BT/external}
+%   If set to |true| \BTkey{separate} will also be enabled. Additionally, right before drawing the tree, |\tikzexternalenable| will be run and all the |/tikz/external| keys that the user has passed will be set.
+%    \begin{macrocode}
+  external/.is if={BT@external},%
+  external/.append code={%
+    \ifBT@external\pgfkeys{/BT/separate=true}\fi}}
+%    \end{macrocode}
+% \end{key}
+%
+% \begin{key}{/BT/use automatic file name}
+% \begin{key}{/BT/file name}
+%   If \BTkey{external/file name} is set, this will be used as the file name for the figure. Otherwise, if \BTkey{external/use automatic file name} is |true| the automatically generated file name will be used (a figure with the same file name may already be present, this may or may not be what the user intended); if it is |false| the figure name (the default one or the one set by the user) will be used with a unique number automatically appended.
+%    \begin{macrocode}
+\pgfkeys{/BT/external/.cd,%
+  use automatic file name/.is if={BT@auto@file@name},%
+  file name/.style={/tikz/binary tree/externalize/.append code={%
+      \tikzsetnextfilename{#1}}},%
+  file name/.belongs to family=/BT/local options,%
+  file name/.value required}
+%    \end{macrocode}
+% \end{key}
+% \end{key}
+%
+% \subsubsection{Setting default values}
+%
+% \begin{key}{/tikz/binary tree}
+% \begin{key}{/tikz/binary tree/externalize}
+%   The \BTkey{/tikz/binary tree} style is applied to the scope of the tree. \BTkey{/tikz/binary tree/externalize} is run right before entering the scope and it sets the given |/tikz/external| keys. It also sets the default figure name to |binary-tree_|.
+%    \begin{macrocode}
+\tikzset{binary tree/.style={%
+    level/.style={level distance=\BT@current@level@distance{##1},%
+      sibling distance=\BT@current@sibling@distance{##1}},%
+    parent anchor=center,child anchor=center,%
+    label distance=\BT@label@distance,every node/.style={outer sep=0pt,%
+      inner sep=0pt}},%
+  binary tree/externalize/.code={%
+    \tikzexternalenable\tikzsetfigurename{binary-tree_}}}
+%    \end{macrocode}
+% \end{key}
+% \end{key}
+%
+% Now we set the defaults.
+%    \begin{macrocode}
+\pgfqkeys{/BT}{%
+  defaults,%
+  separate=false,%
+  external=false,%
+  external/use automatic file name=false}
+%    \end{macrocode}
+%
+% \subsubsection{\TikZ styles for child nodes}
+%
+% The |\BT@edge@label| and |\BT@edge@no@label| macros are used by the \TikZ child styles as |edge from parent macro|.
+% \begin{macro}{\BT@edge@label}
+%   \nsig{label,anchor,color}\nargs*{4}{5}{\meta{options and node specifications} (ignored)}
+%    \begin{macrocode}
+\def\BT@edge@label#1#2#3#4#5{%
+  [style=edge from parent, color=#3]%
+    (\tikzparentnode\tikzparentanchor) --%
+      node[anchor=#2,inner sep=\BT@label@distance/2] {#1}%
+        (\tikzchildnode\tikzchildanchor)}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@edge@no@label}
+%   \nsig{color}\nargs*{2}{3}{\meta{options and node specifications} (ignored)}
+%    \begin{macrocode}
+\def\BT@edge@no@label#1#2#3{%
+  [style=edge from parent, color=#1]%
+    (\tikzparentnode\tikzparentanchor) --%
+      (\tikzchildnode\tikzchildanchor)}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{key}{/tikz/binary tree/root}
+% \begin{key}{/tikz/binary tree/child}
+% \begin{key}{/tikz/binary tree/final child}
+%   The |root|, |child| and |final child| styles draw the edges for the root and \emph{labelled} child nodes. The |root| style additionally sets the empty style which has effect only when it is passed to a |child| operation (where the |label| key has no effect); this is how the root label and the edge from it are drawn in the same color when \BTkey{root edge} is |true|---the root style is passed to both the root node and its single immediate child.\par
+%   \nsig{label,label anchor,color}
+%    \begin{macrocode}
+\tikzset{binary tree/.cd,%
+  root/.style n args={3}{%
+    label={[text=#3]#2:#1},binary tree/empty={#3}},%
+  root/.value required,%
+  child/.style n args={3}{%
+    edge from parent macro=\BT@edge@label{#1}{#2}{#3},%
+    every child node/.style={}},%
+  child/.value required,%
+  final child/.style n args={3}{%
+    edge from parent macro=\BT@edge@no@label{#3},%
+    every child node/.style={label={[text=#3]#2:#1}}},%
+  final child/.value required,%
+%    \end{macrocode}
+% \end{key}
+% \end{key}
+% \end{key}
+% \begin{key}{/tikz/binary tree/empty}
+%   The |empty| style is for unlabelled child nodes.\par
+%   \nsig{color}
+%    \begin{macrocode}
+  empty/.style={%
+    edge from parent macro=\BT@edge@no@label{#1},%
+    every child node/.style={}},%
+  empty/.value required}
+%    \end{macrocode}
+% \end{key}
+%
+% \subsection{General helper macros}
+%
+% \begin{macro}{\BT@message}
+%   When modifying the code, |\BT@message| is used to printing debugging information (comment out the second line).
+%    \begin{macrocode}
+\def\BT@message#1{\pgfinterruptpicture #1\par\endpgfinterruptpicture}
+\def\BT@message#1{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BT@gobble@till@nil}
+%   Gobble all tokens until the next |\@nil| including.
+%    \begin{macrocode}
+\def\BT@gobble@till@nil#1\@nil{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BT@endgroup@let}
+%   End the current group and define token |#1| to be the expansion of token |#2|.
+%    \begin{macrocode}
+\def\BT@endgroup@let#1#2{%
+  \expandafter\endgroup\expandafter\def\expandafter#1\expandafter{#2}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BT@app@to@hook}
+% \begin{macro}{\BT@eapp@to@hook}
+%   |\BT@app@to@hook| appends |#2|, as is, to an already defined (parameterless) macro |#1|, while |\BT@eapp@to@hook| fully expands |#2|.
+%    \begin{macrocode}
+\def\BT@app@to@hook#1#2{\expandafter\def\expandafter#1\expandafter{#1#2}}
+\def\BT@eapp@to@hook#1#2{\edef#1{\unexpanded\expandafter{#1}#2}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\BT@if}
+%   If the \TeX boolean named |#1| is |true|, expands to \meta{true}, otherwise to \meta{false}.
+%    \begin{macrocode}
+\def\BT@if#1{\csname if#1\endcsname\expandafter\@firstoftwo%
+  \else\expandafter\@secondoftwo\fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BT@if@blank}
+% \begin{macro}{\BT@if@blank@i}
+%   If |#1| is empty or consists of spaces only, expands to \meta{true}, otherwise to \meta{false}. No expansion of the first argument is performed.\par
+%   \nsig{tokens,true,false}
+%    \begin{macrocode}
+\def\BT@if@blank#1{\BT@if@blank@i#1\@nil}
+\def\BT@if@blank@i#1{\ifx\@nil#1\expandafter\@firstoftwo%
+  \else\expandafter\expandafter\expandafter\@secondoftwo\expandafter%
+    \BT@gobble@till@nil\fi}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\BT@strip@prefix}
+%   Remove |#1| from beginning of replacement text of macro |#2|.
+%    \begin{macrocode}
+\def\BT@strip@prefix#1#2{%
+  \begingroup%
+  \def\@@suffix#1##1\@nil{##1}%
+  \edef#2{\unexpanded\expandafter\expandafter\expandafter{%
+      \expandafter\@@suffix#2\@nil}}%
+  \BT@endgroup@let#2#2}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BT@set@to@dim}
+% \begin{macro}{\BT@set@to@width}
+% \begin{macro}{\BT@set@to@height}
+% \begin{macro}{\BT@set@to@total@height}
+%   ``|settoheight|'' and friends in plain \TeX. It does not work for the scratch registers (|\dimen|0--9).\par
+%   \nsig{{\str\ht\vbar\str\wd\vbar\str\dp},\TeX length register,content}
+%    \begin{macrocode}
+\def\BT@set@to@dim#1#2#3{%
+  \begingroup%
+  \setbox0\hbox{#3}%
+  \expandafter\endgroup\expandafter#2\the#10\relax}
+\def\BT@set@to@width{\BT@set@to@dim\wd}
+\def\BT@set@to@height{\BT@set@to@dim\ht}
+\def\BT@set@to@depth{\BT@set@to@dim\dp}
+\def\BT@set@to@total@height#1#2{%
+  \BT@set@to@height#1{#2}%
+  \begingroup%
+  \BT@set@to@depth#1{#2}%
+  \expandafter\endgroup\expandafter\advance\expandafter#1\the#1\relax}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\BT@swap@hooks}
+% \begin{macro}{\BT@swap@dims}
+%   Swap two (parameterless) macros or lengths.
+%    \begin{macrocode}
+\def\BT@swap@hooks#1#2{%
+  \expandafter\let\expandafter#1\expandafter#2%
+    \expandafter\def\expandafter#2\expandafter{#1}}
+\def\BT@swap@dims#1#2{%
+  \expandafter#1\expandafter\the#2\expandafter\relax%
+    \expandafter#2\the#1\relax}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\BT@set@dim@to@greater}
+% \begin{macro}{\BT@set@dim@to@smaller}
+%   Set length |#1| to the greater or smaller of the two lengths.
+%    \begin{macrocode}
+\def\BT@set@dim@to@greater#1#2{%
+  #1\dimexpr\ifdim\dimexpr#1\relax < \dimexpr#2\relax#2\else#1\fi\relax}
+\def\BT@set@dim@to@smaller#1#2{%
+  #1\dimexpr\ifdim\dimexpr#1\relax < \dimexpr#2\relax#1\else#2\fi\relax}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\BT@extract@rgb@color@specs}
+%   Extract color specifications and convert them to |RGB|.\par
+%   \nsig{color,macro to save in}
+%    \begin{macrocode}
+\def\BT@extract@rgb@color@specs#1#2{%
+  \begingroup%
+  \extractcolorspecs{#1}{\tmp@mod}{\tmp@col}%
+  \convertcolorspec{\tmp@mod}{\tmp@col}{rgb}{\tmp@col}%
+  \BT@endgroup@let#2\tmp@col}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Macros for setting the styles}
+% \subsubsection{Helper macros}
+%
+% \begin{macro}{\BT@at@to@dash}
+% \begin{macro}{\BT@at@to@dash@i}
+%   Convert |@| to |-| (except trailing |@|, which is removed) for root children. For example |@r@l@| \(\to\) |-r-l|. Used in naming the child nodes. For root, |@|, it expands to empty.
+%    \begin{macrocode}
+\def\BT@at@to@dash#1{\BT@at@to@dash@i#1\@nil}
+\def\BT@at@to@dash@i @#1{\ifx\@nil#1\else-#1\expandafter\BT@at@to@dash@i\fi}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\BT@anchor@or@default}
+%   Use the given anchor, or if empty---the default one.\par
+%   \nsig{anchor,\ttup{root\vbar left\vbar right\vbar final}}
+%    \begin{macrocode}
+\def\BT@anchor@or@default#1#2{%
+  \BT@if@blank{#1}{\pgfkeysvalueof{/BT/#2 label anchor}}{#1}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@color@or@default}
+%   Use the given color, or if empty---the default one.
+%    \begin{macrocode}
+\def\BT@color@or@default#1{\BT@if@blank{#1}{BT@default}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BT@if@child@is@outer}
+% \begin{macro}{\BT@if@child@is@outer@i}
+% \begin{macro}{\BT@if@child@is@outer@ii}
+%   Expands to \meta{true} if the child node named |#1| lies on an outer edge (reached by all right or all left moves from the root), and to \meta{false} otherwise.\par
+%   \nsig{child name,true,false}
+%    \begin{macrocode}
+\def\BT@if@child@is@outer#1{\BT@if@child@is@outer@i#1\@nil}
+\def\BT@if@child@is@outer@i @#1@#2{%
+%    \end{macrocode}
+% If |#1 == #2|, compare |#2| to its child;
+%    \begin{macrocode}
+  \ifx#1#2\expandafter\BT@if@child@is@outer@i\expandafter @\expandafter#2%
+%    \end{macrocode}
+% else, see whether we have reached the end, or its child is on the other side.
+%    \begin{macrocode}
+  \else\expandafter\BT@if@child@is@outer@ii\expandafter#2\fi}
+\def\BT@if@child@is@outer@ii#1{%
+  \ifx\@nil#1\expandafter\@firstoftwo%
+  \else\expandafter\expandafter\expandafter\@secondoftwo%
+    \expandafter\BT@gobble@till@nil\fi}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\BT@check@if@new@level}
+% \begin{macro}{\BT@new@level}
+%   If this is the first time we visit a child on level |#1|, increase the height of the box.
+%    \begin{macrocode}
+\def\BT@check@if@new@level#1{%
+  \ifcsname level \the\numexpr#1\relax exists\endcsname\else%
+    \BT@new@level{#1}%
+    \csname level \the\numexpr#1\relax exists\expandafter\endcsname\fi}
+\def\BT@new@level#1{%
+  \BT@message{adding new level: \the\numexpr#1\relax}%
+  \pgfmathparse{\BT@current@level@distance{#1}}%
+  \advance\BT@bbox@height\pgfmathresult pt\relax%
+  \BT@message{added \pgfmathresult pt to bounding box height}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\BT@l@xshift}
+% \begin{macro}{\BT@r@xshift}
+% \begin{macro}{\BT@xshift}
+%   Update the current x-coordinate (relative to root) in the bounding box by shifting it by half \(\pm\)sibling distance on level |#1|. + for right moves, - for left.
+%    \begin{macrocode}
+\def\BT@l@xshift{\BT@xshift-}
+\def\BT@r@xshift{\BT@xshift+}
+\def\BT@xshift#1#2{%
+%    \end{macrocode}
+% \nsig{\ttup{+\vbar -},\ttup{r\vbar l}}
+%    \begin{macrocode}
+  \pgfmathparse{\BT@current@sibling@distance{#2} / 2}%
+  \advance\BT@bbox@current@x #1\pgfmathresult pt\relax%
+  \BT@message{current x coordinate is \the\BT@bbox@current@x}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\BT@update@bbox@l@width}
+% \begin{macro}{\BT@update@bbox@r@width}
+%   Compare the current x-coordinate with the size of the bounding box and update it if necessary. For the left side, negate the coordinate first.
+%    \begin{macrocode}
+\def\BT@update@bbox@l@width{%
+  \@tempdima=-\BT@bbox@current@x\relax%
+  \BT@set@dim@to@greater\BT@bbox@l@width\@tempdima}
+\def\BT@update@bbox@r@width{%
+  \BT@set@dim@to@greater\BT@bbox@r@width\BT@bbox@current@x}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\BT@save@final@child@size}
+%   Set the relevant lengths to the size of the final child's label---if it's an outer one, save its width and height; eitherway, check if this label is wider (taller) than the current maximum final child width (height), and update the width if so.\par
+%   \nargs{1}{3}{side, name and depth of child}
+%    \begin{macrocode}
+\def\BT@save@final@child@size#1#2#3{%
+  \BT@set@to@width\@tempdima{%
+    \pgfinterruptpicture#3\endpgfinterruptpicture}%
+  \BT@set@to@total@height\@tempdimb{%
+    \pgfinterruptpicture#3\endpgfinterruptpicture}%
+  \BT@set@dim@to@greater\BT@max@final@width\@tempdima%
+  \BT@set@dim@to@greater\BT@max@final@height\@tempdimb%
+  \BT@if@child@is@outer{#2}{%
+    \csname BT@#1@final@width\endcsname\@tempdima\relax%
+    \csname BT@#1@final@height\endcsname\@tempdimb\relax}{}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Macros for processing subpath specifications}
+%
+% \begin{macro}{\BT@process@next@path}
+%   Take the next path (delimited by~|,|) and split it into subpaths (delimited by~|!|). |\BT@file@name@new@path| inserts a string to the file name currently being generated indicating the start of a new path at the root.
+%    \begin{macrocode}
+\def\BT@process@next@path#1,{%
+  \ifx\@nil#1\relax\expandafter\@firstoftwo%
+  \else\expandafter\@secondoftwo\fi{}{%
+    \BT@file@name@new@path%
+    \BT@bbox@current@x=\z@\relax%
+    \def\BT@current@child{@}%
+    \def\BT@current@side{}%
+    \def\BT@current@level{\BT@root@depth}%
+    \BT@if@blank{#1}{}{\BT@process@next@subpath#1!\@nil!}%
+    \BT@process@next@path}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BT@process@next@subpath}
+%   Take the next subpath and split it into \meta{l/r~moves}, \meta{label}, \meta{color}, \meta{anchor}. If we've reached the end (token |#1| is |\@nil|), then continue the last move if \BTkey{continue at path end} is |true|.
+%    \begin{macrocode}
+\def\BT@process@next@subpath#1!{%
+  \ifx\@nil#1\relax\expandafter\@firstoftwo%
+  \else\expandafter\@secondoftwo\fi{%
+    \BT@if{BT@continue@at@end}{%
+      \BT@message{continuing last path, starting at \BT@current@child}%
+      \BT@set@subpath@style c::::\@nil}{}}{%
+    \BT@if@blank{#1}{}{%
+      \BT@set@subpath@style#1::::\@nil}%
+    \BT@process@next@subpath}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BT@set@subpath@style}
+%   If the path is empty (the subpath starts with~|:|), then set the style for the last visited child (insert an empty token for the ``next move'').\par
+%   \nsig{path,label,color,anchor}\narg*{5}{ignored}
+%    \begin{macrocode}
+\def\BT@set@subpath@style#1:#2:#3:#4:#5\@nil{%
+  \BT@message{setting style (#2, #3, #4) for subpath #1,
+    starting at \BT@current@child}%
+%    \end{macrocode}
+% Append the style to the file name currently being generated.
+%    \begin{macrocode}
+  \BT@file@name@append@style{#1}{#2}{#3}{#4}%
+  \edef\tmp@hook{\noexpand\BT@set@next@style{\BT@current@child}{%
+      \BT@current@level}\unexpanded{{#2}}{#3}{#4}{\BT@current@side}%
+    \BT@if@blank{#1}{{}}{#1}s}%
+%    \end{macrocode}
+%  stop here (append an |s| move), we'll continue when the last subpath is done
+%    \begin{macrocode}
+  \tmp@hook\@nil}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \rule{\textwidth}{1.5pt}
+% In what follows (unless stated otherwise) the signature for the macros is as follows:\par
+% \nargs{1}{2}{name and depth of \textbf{parent}}\nsig[2]{label,edge color,label anchor}
+% \begin{macro}{\BT@set@next@style}
+%   |\BT@set@next@style| expects the previous and next moves (either of them can be empty) and calls macros for each valid combination that do what needs to be done. These macros will call |\BT@set@next@style| again, to set the next move. If \BTkey{label on every edge} is |false|, they will pass an empty label. If the current depth is the tree depth, |\BT@max@depth|, then call |\BT@terminate@path@style| which saves the last visited child's name, depth and side, so we can continue from here next time.\par
+%   \nargs{6}{7}{previous and next moves}
+%    \begin{macrocode}
+\def\BT@set@next@style#1#2#3#4#5#6#7{%
+  \BT@message{previous: #1, went: #6, going #7, depth:
+    \the\numexpr#2\relax/\BT@max@depth}%
+  \ifnum\numexpr#2\relax = \numexpr\BT@max@depth\relax%
+    \expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
+    {\BT@terminate@path@style{#1}{#2}{#6}}%
+    {\ifcsname BT@go@#6@#7\endcsname%
+      \expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
+      {\csname BT@go@#6@#7\endcsname{#1}{#2}{#3}{#4}{#5}}%
+      {\PackageError{binarytree}{Invalid path: only l, r, c or s allowed}{}}}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@terminate@path@style}
+%   \nargs{1}{3}{name, depth, and side of last visited child}
+%    \begin{macrocode}
+\def\BT@terminate@path@style#1#2#3{%
+  \edef\BT@current@child{#1}%
+  \edef\BT@current@level{\the\numexpr#2\relax}%
+  \def\BT@current@side{#3}%
+  \BT@gobble@till@nil}
+%    \end{macrocode}
+% \end{macro}
+%
+% \hrule
+% \begin{macro}{\BT@go@@c}
+% \begin{macro}{\BT@go@l@c}
+% \begin{macro}{\BT@go@r@c}
+%   Continuing---keep inserting the previous move (unless we are at the root).
+%    \begin{macrocode}
+\def\BT@go@@c{%
+  \BT@terminate@path@style{@}{\BT@root@depth}{}}
+\def\BT@go@l@c{\BT@continue{l}}
+\def\BT@go@r@c{\BT@continue{r}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\BT@go@@s}
+% \begin{macro}{\BT@go@l@s}
+% \begin{macro}{\BT@go@r@s}
+%   Stopping.
+%    \begin{macrocode}
+\let\BT@go@@s\BT@go@@c
+\def\BT@go@l@s#1#2{\BT@terminate@path@style{#1}{#2}{l}}
+\def\BT@go@r@s#1#2{\BT@terminate@path@style{#1}{#2}{r}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\BT@go@@}
+%   Previous and current moves are empty---we're setting the root style.
+%    \begin{macrocode}
+\def\BT@go@@#1#2#3#4#5{%
+  \BT@set@root@style{#3}{#4}{#5}%
+  \BT@if{BT@label@every@edge}{%
+    \BT@set@next@style{@}{\BT@root@depth}{#3}{#4}{#5}{}}{%
+    \BT@set@next@style{@}{\BT@root@depth}{}{#4}{}{}}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@go@@l}
+% \begin{macro}{\BT@go@@r}
+%   Previous move was empty---we are setting one of root's children.
+%    \begin{macrocode}
+\def\BT@go@@l{\BT@go@l@or@r{l}}
+\def\BT@go@@r{\BT@go@l@or@r{r}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\BT@go@l@l}
+% \begin{macro}{\BT@go@r@r}
+%   Keep moving left or right.
+%    \begin{macrocode}
+\let\BT@go@l@l\BT@go@@l
+\let\BT@go@r@r\BT@go@@r
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\BT@go@l@}
+% \begin{macro}{\BT@go@r@}
+%   Current move is empty---set the style for the current child.
+%    \begin{macrocode}
+\def\BT@go@l@{\BT@stay@here{l}}
+\def\BT@go@r@{\BT@stay@here{r}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\BT@go@r@l}
+% \begin{macro}{\BT@go@l@r}
+%   Changed direction---continue previous path until the top of the tree (if configured this way) and then do requested move.
+%    \begin{macrocode}
+\def\BT@go@r@l{\BT@turn{r}{l}}
+\def\BT@go@l@r{\BT@turn{l}{r}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \hrule
+%
+% \begin{macro}{\BT@continue}
+%   \nsig{previous move}\nargs*{2}{6}{same as \ttup{\#1}--\ttup{5} from above}
+%    \begin{macrocode}
+\def\BT@continue#1#2#3#4#5#6{%
+  \BT@if{BT@label@every@edge}{%
+    \BT@set@next@style{#2}{#3}{#4}{#5}{#6}#1#1c}{%
+    \BT@set@next@style{#2}{#3}{}{#5}{}#1#1c}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BT@turn}
+%   Save |\BT@bbox@current@x| and restore it later. |\@tempdimb| is only used when setting a labelled final child, so it will not be used here\par
+%   \nargs{1}{2}{previous and next moves}\nargs*{3}{7}{same as \ttup{\#1}--\ttup{5} from above}
+%    \begin{macrocode}
+\def\BT@turn#1#2#3#4#5#6#7{%
+  \BT@if{BT@continue@after@turn}{%
+    \@tempdimb=\BT@bbox@current@x\relax%
+    \BT@if{BT@default@color@after@turn}{%
+      \BT@set@next@style{#3}{#4}{}{}{#7}#1c\@nil}{%
+      \BT@set@next@style{#3}{#4}{}{#6}{#7}#1c\@nil}%
+    \BT@bbox@current@x=\@tempdimb\relax}{}%
+  \BT@go@l@or@r{#2}{#3}{#4}{#5}{#6}{#7}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@stay@here}
+%   \nsig{previous move}\nargs*{2}{6}{same as \ttup{\#1}--\ttup{5} from above}
+%    \begin{macrocode}
+\def\BT@stay@here#1#2#3#4#5#6{%
+  \BT@set@child@style{#1}{#2}{#3}{#4}{#5}{#6}%
+  \BT@if{BT@label@every@edge}{%
+    \BT@set@next@style{#2}{#3}{#4}{#5}{#6}#1}{%
+    \BT@set@next@style{#2}{#3}{}{#5}{}#1}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@go@l@or@r}
+%   \nsig{current move}\nargs*{2}{6}{same as \ttup{\#1}--\ttup{5} from above}
+%    \begin{macrocode}
+\def\BT@go@l@or@r#1#2#3#4#5#6{%
+  \BT@set@child@style{#1}{#2#1@}{#3+1}{#4}{#5}{#6}%
+  \BT@if{BT@label@every@edge}{%
+    \BT@set@next@style{#2#1@}{#3+1}{#4}{#5}{#6}#1}{%
+    \BT@set@next@style{#2#1@}{#3+1}{}{#5}{}#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \rule{\textwidth}{1.5pt}
+% \begin{macro}{\BT@set@root@style}
+%   Set the |\BT@root@width| and |\BT@root@height| lengths as well as a style named |@| under (\BTkey{/tikz/binary tree}).\par
+%   \nsig{label,edge color,label anchor}
+%    \begin{macrocode}
+\def\BT@set@root@style#1#2#3{%
+  \BT@set@to@width\BT@root@width{\pgfinterruptpicture%
+    \BT@wrap@label{#1}\endpgfinterruptpicture}%
+  \BT@set@to@total@height\BT@root@height{\pgfinterruptpicture%
+    \BT@wrap@label{#1}\endpgfinterruptpicture}%
+  \BT@set@root@style@i{@}{\BT@wrap@label{#1}}{\BT@color@or@default{#2}}{#3}}
+%    \end{macrocode}
+% \end{macro}
+% The signature of the following macros is:\par
+%   \nargs{1}{3}{side, name and depth of child}\nsig[3]{label,edge color,label anchor}
+% \begin{macro}{\BT@set@child@style}
+%   Set the style for a child (either intermediate or final). Check if it is the first visited child on this level and if so---increase the height of the bounding box. Also check if it is an outer child and if it is the first time we are setting the style, increase the width of the box on its side. Call the relevant macro to actually set the style.
+%    \begin{macrocode}
+\def\BT@set@child@style#1#2#3#4#5#6{%
+  \BT@check@if@new@level{#3}%
+  \csname BT@#1@xshift\endcsname{#3}%
+  \csname BT@update@bbox@#1@width\endcsname%
+  \BT@if@blank{#4}{\BT@if@blank{#5}{%
+      \BT@set@default@if@missing{#2}}{%
+      \BT@set@empty@style{#2}{\BT@color@or@default{#5}}}}{%
+    \ifnum\numexpr#3\relax = \numexpr\BT@max@depth\relax%
+      \BT@set@final@style{#1}{#2}{#3}{#4}{#5}{#6}%
+    \else\BT@set@inter@style{#1}{#2}{#3}{#4}{#5}{#6}\fi}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@set@inter@style}
+%   Set the child for a left or right intermediate child---simply call the relevant macro.
+%    \begin{macrocode}
+\def\BT@set@inter@style#1#2#3#4#5#6{%
+  \csname BT@set@inter@style@#1\endcsname{#2}{%
+    \BT@wrap@label{#4}}{\BT@color@or@default{#5}}{#6}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@set@final@style}
+%   Set the style for a final child---save the size of its label (if needed) first.
+%    \begin{macrocode}
+\def\BT@set@final@style#1#2#3#4#5#6{%
+  \BT@save@final@child@size{#1}{#2}{\BT@wrap@label{#4}}%
+  \BT@set@final@style@i{#2}{%
+    \BT@wrap@label{#4}}{\BT@color@or@default{#5}}{#6}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \hrule
+% \begin{macro}{\BT@set@root@style@i}
+% \begin{macro}{\BT@set@inter@style@l}
+% \begin{macro}{\BT@set@inter@style@r}
+% \begin{macro}{\BT@set@final@style@i}
+% The following macros set the \TikZ style and define the macro |\|\meta{child name}| styled|.\par
+%  \nsig{name,label,color,anchor}
+%    \begin{macrocode}
+\def\BT@set@root@style@i#1#2#3#4{%
+  \BT@message{setting style (#2, #3,
+    \BT@anchor@or@default{#4}{root}) for root}%
+  \ifcsname#1 styled\endcsname\else\csname#1 styled\expandafter\endcsname\fi%
+  \tikzset{binary tree/#1/.style={binary tree/root={#2}{%
+        \BT@anchor@or@default{#4}{root}}{#3}}}}
+\def\BT@set@inter@style@l#1#2#3#4{%
+  \BT@message{setting style (#2, #3,
+    \BT@anchor@or@default{#4}{left}) for left child #1}%
+  \ifcsname#1 styled\endcsname\else\csname#1 styled\expandafter\endcsname\fi%
+  \tikzset{binary tree/#1/.style={binary tree/child={#2}{%
+        \BT@anchor@or@default{#4}{left}}{#3}}}}
+\def\BT@set@inter@style@r#1#2#3#4{%
+  \BT@message{setting style (#2, #3,
+    \BT@anchor@or@default{#4}{right}) for right child #1}%
+  \ifcsname#1 styled\endcsname\else\csname#1 styled\expandafter\endcsname\fi%
+  \tikzset{binary tree/#1/.style={binary tree/child={#2}{%
+        \BT@anchor@or@default{#4}{right}}{#3}}}}
+\def\BT@set@final@style@i#1#2#3#4{%
+  \BT@message{setting style (#2, #3,
+    \BT@anchor@or@default{#4}{final}) for final child #1}%
+  \ifcsname#1 styled\endcsname\else\csname#1 styled\expandafter\endcsname\fi%
+  \tikzset{binary tree/#1/.style={binary tree/final child={#2}{%
+        \BT@anchor@or@default{#4}{final}}{#3}}}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\BT@set@empty@style}
+%   An unlabelled child---simply color the edge.\par
+%   \nsig{name,color}
+%    \begin{macrocode}
+\def\BT@set@empty@style#1#2{%
+  \BT@message{setting empty style (#2) for child #1}%
+  \ifcsname#1 styled\endcsname\else\csname#1 styled\expandafter\endcsname\fi%
+  \tikzset{binary tree/#1/.style={binary tree/empty={#2}}}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@set@default@if@missing}
+%   Set a default style (used if the neither label nor color is given and we have not set this style before).\par
+%   \nsig{name}
+%    \begin{macrocode}
+\def\BT@set@default@if@missing#1{%
+  \BT@message{setting default style for child #1}%
+  \ifcsname#1 styled\endcsname\else%
+    \tikzset{binary tree/#1/.style={binary tree/empty={BT@default}}}%
+    \csname#1 styled\expandafter\endcsname\fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Macros for generating the file name}
+%
+% \begin{macro}{\BT@file@name@init}
+%   Set the first part of the file name according to the global style.
+%    \begin{macrocode}
+\def\BT@file@name@init{%
+  \BT@extract@rgb@color@specs{BT@default}{\@@tmp}%
+  \edef\BT@file@name{%
+    btree-\the\numexpr\BT@max@depth\relax% prefix and depth
+    _\BT@grow@direction%                   grow direction
+    \ifBT@root@edge _edge\fi%              root edge?
+    _\@@tmp%                               default color
+    _\number\BT@level@distance%            level distance in sp
+    \ifBT@level@distance@scales% 
+      -scaled\fi%                          level distance scales
+    _\number\BT@sibling@distance%          sibling distance in sp
+    \ifBT@sibling@distance@scales%
+      -scaled\fi%                          sibling distance scales
+    _\number\BT@label@distance%            label distance in sp
+    _\BT@xscale%                           x-scale
+    _\BT@yscale}}%                         y-scale
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@file@name@new@path}
+%   When starting a new path, append a |_| to the filename.
+%    \begin{macrocode}
+\def\BT@file@name@new@path{\BT@eapp@to@hook\BT@file@name{_}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@file@name@append@style}
+%   When setting the style for a new subpath, append the style for it.\par
+%   \nsig{path,label,color,anchor}
+%    \begin{macrocode}
+\def\BT@file@name@append@style#1#2#3#4{%
+  \BT@if@blank{#3}{\def\@@tmp{}}{%
+    \BT@extract@rgb@color@specs{#3}{\@@tmp}}%
+  \BT@eapp@to@hook\BT@file@name{%
+    -#1%                                        subpath
+    -\BT@if@blank{#2}{}{%                       label
+       \ifBT@math@labels MATH\else#2\fi}%
+    -#4%                                        anchor
+    -\@@tmp}}%                                  color
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@file@name@set}
+%   If a file name is already set (by the \BTkey{external/file name} or via direct call to |\tikzsetnextfilename|), do not do anything, otherwise---set the file name for the next figure if \BTkey{external/use automatic file name} is |true|.
+%    \begin{macrocode}
+\def\BT@file@name@set{%
+  \ifBT@auto@file@name%
+    \if\relax\detokenize\expandafter{\tikzexternal@nextfile}\relax%
+      \expandafter\tikzsetnextfilename\expandafter{\BT@file@name}\fi\fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Drawing the tree}
+%
+% \begin{macro}{\BT@draw@tree@children}
+%   Enter a recursive for loop for |\BT@max@depth| levels. On the first call |#2 == 0|; the first |\BT@max@depth| children to be drawn are the rightmost ones. Then, the top of the tree is reached and we do not recurse another time here. The macro exits and is back into the previous call, where |#2 == \BT@max@depth - 1|. It then calls itself again to draw the left sibling of the rightmost final child; |##2 == \BT@max@depth| again, so it only sets the style and exits. It is back into the parent call (|##2 == \BT@max@depth - 1|) with nothing else to do---exit. Back into the parent call (|##2 == \BT@max@depth - 2|), it draws the left sibling of the rightmost child on level |\BT@max@depth - 1|, then its right child, \emph{its} left child and so on\ldots\par
+%   \nargs{1}{2}{name and depth of \textbf{parent}}
+%    \begin{macrocode}
+\def\BT@draw@tree@children#1#2{%
+  \ifnum\numexpr#2\relax = \numexpr\BT@max@depth\relax\else%
+    child[\ifcsname#1r@ styled\endcsname binary tree/#1r@\else%
+      binary tree/default\fi] {node (btree\BT@at@to@dash{#1r@}) {}% right
+        \BT@draw@tree@children{#1r@}{#2+1} }%
+    child[\ifcsname#1l@ styled\endcsname binary tree/#1l@\else%
+      binary tree/default\fi] {node (btree\BT@at@to@dash{#1l@}) {}% left
+        \BT@draw@tree@children{#1l@}{#2+1} }\fi}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\BT@draw@tree}
+%   Draw the whole path---before we do that, adjust the sizes of the bounding box. If we are adding a single edge to the root, we need to add a level distance to the height before adjustment. Expansion of |\BT@draw@tree@children| after |\node| does not work, so we expand the whole path before inserting it. Clip, draw the frame (if requested) and insert the path.
+%    \begin{macrocode}
+\def\BT@draw@tree{%
+  \ifBT@root@edge%
+    \advance\BT@bbox@height\BT@level@distance\relax%
+    \BT@adjust@bbox@sides%
+    \edef\BT@tree{%
+      \noexpand\node[\ifcsname @ styled\endcsname binary tree/@\fi] (btree-root) {}%
+      child[\ifcsname @ styled\endcsname binary tree/@\fi] {%
+        node {} \BT@draw@tree@children{@}{\BT@root@depth}}}%
+    \clip (-\BT@bbox@l@width,-\BT@bbox@depth)%
+      rectangle (\BT@bbox@r@width,\BT@bbox@height);%
+    \ifBT@framed\draw (current bounding box.south west)%
+      rectangle (current bounding box.north east);\fi%
+    \BT@tree;%
+  \else\BT@adjust@bbox@sides%
+    \edef\BT@tree{%
+      \noexpand\node[\ifcsname @ styled\endcsname binary tree/@\fi] (btree-root) {}%
+      \BT@draw@tree@children{@}{\BT@root@depth}}%
+    \clip (-\BT@bbox@l@width,-\BT@bbox@depth)%
+      rectangle (\BT@bbox@r@width,\BT@bbox@height);%
+    \ifBT@framed\draw (current bounding box.south west)%
+      rectangle (current bounding box.north east);\fi%
+    \BT@tree;%
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \hrule
+% \begin{macro}{\BinaryTree}
+% \changes{1.01}{2016/07/25}{Each node is now uniquely named.}
+% \begin{macro}{\@BinaryTree}
+% \begin{macro}{\BT@max@depth}
+% \begin{macro}{\BT@root@depth}
+%   |\BinaryTree| is the user interface. It resets the lengths, sets the keys, defines |\BT@max@depth| and |\BT@root@depth|, initializes the file name, sets the styles; if needed, enables externalization and sets the \BTkey{/tikz/binary tree/externalize} style; draws the tree in either a |tikzpicture| or a |scope| environment, applying the \BTkey{/tikz/binary tree} style. Everything is done inside a group.\par
+%   \nsig{local options,path specification,tree depth}
+%    \begin{macrocode}
+\def\BinaryTree{\@ifnextchar[\@BinaryTree{\@BinaryTree[]}}
+\def\@BinaryTree[#1]#2#3{%
+  \begingroup%
+  \BT@bbox@r@width=\z@\relax%
+  \BT@bbox@l@width=\z@\relax%
+  \BT@bbox@height=\z@\relax%
+  \BT@bbox@depth=\z@\relax%
+  \BT@root@width=\z@\relax%
+  \BT@root@height=\z@\relax%
+  \BT@max@final@width=\z@\relax%
+  \BT@max@final@height=\z@\relax%
+  \BT@l@final@width=\z@\relax%
+  \BT@l@final@height=\z@\relax%
+  \BT@r@final@width=\z@\relax%
+  \BT@r@final@height=\z@\relax%
+  \pgfqkeys{/BT}{#1}%
+  \ifBT@root@edge\def\BT@max@depth{#3+1}\def\BT@root@depth{1}%
+  \else\def\BT@max@depth{#3}\def\BT@root@depth{0}\fi%
+  \BT@set@min@bbox@size%
+  \BT@file@name@init%
+  \BT@process@next@path#2,\@nil,%
+  \ifBT@separate\ifBT@external%
+    \tikzset{binary tree/externalize}\BT@file@name@set\fi%
+    \begin{tikzpicture}[binary tree]%
+      \BT@draw@tree%
+    \end{tikzpicture}%
+  \else\begin{scope}[binary tree]%
+      \BT@draw@tree%
+    \end{scope}\fi%
+  \endgroup}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \Finale
+\endinput

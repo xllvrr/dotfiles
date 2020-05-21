@@ -1,0 +1,226 @@
+
+\psset{llx=-1.5cm,lly=-.5cm,urx=.5cm,ury=0.5cm,fillstyle=none}
+
+\subsection{Macro  fileplot , psfileplot \cite{pst-user}  \cite{pst-plot}}
+
+\TFRGB{Syntaxe}{syntax} : \BSS{fileplot} [Options] \AC{\TFRGB{fichier}{file}} ou  \BSS{psfileplot} [Options] \AC{\TFRGB{fichier}{file}} \BSI{psfileplot}{pst-plot} 
+
+\bigskip
+
+
+\begin{tabular}{|l|}
+\hline  
+\psset{xunit=.015cm,yunit=30cm}
+
+\begin{pspicture}(-1cm,-1cm)(748,.13)
+\psaxes[Dx=100,Dy=.02]{->}(748,.13)
+\fileplot[linecolor=red,linewidth=2pt]{mesdata.dat}
+\end{pspicture}
+\\ \hline 
+
+\BSS{fileplot}[linecolor=red,linewidth=2pt]\AC{mesdata.dat} \BSI{fileplot}{pst-plot} 
+
+ \\ \hline 
+option plotstyle : \TFRGB{seulement}{only} \hspace{1cm}  \og line \fg \hspace{1cm} \og polygon  \fg  \hspace{1cm}\og dots \fg \\
+\TFRGB{Séparateurs de données}{Separators of data} : \hspace{1cm}  \og \AC{}  \fg  \hspace{1cm}  \og ()  \fg  \hspace{1cm} \og ,  \fg  \hspace{1cm} \og \TFRGB{espace}{space}  \fg 
+ \\ \hline 
+\end{tabular} 
+
+%------------------
+
+\subsection{Macro  dataplot , psdataplot}
+
+\TFRGB{Syntaxe}{syntax} :  \BSS{dataplot} [Options] \AC{\BS{}macro} ou \BSS{psdataplot} [Options] \AC{\BS{}macro}
+
+\BSI{dataplot}{pst-plot} \BSI{psdataplot}{pst-plot} 
+ 
+\TFRGB{Elle doit être précédé de}{It must be preceded by }  : \BSS{readdata}\AC{\BS{}macro}\AC{nomfichier}
+\BSI{readdata}{pst-plot}
+\bigskip
+ 
+
+
+
+\begin{center}
+\begin{tabular}{|l|} \hline
+
+ \begin{psgraph}[axesstyle=frame,xticksize=0 4cm,yticksize=0 9cm,subticks=0,Dx=100,dy=.01,Dy=.2](0,0)(750,.12){9cm}{4cm} 
+\readdata{\dat}{mesdata.dat}
+\dataplot[linecolor=red,linewidth=2pt]{\dat}
+\end{psgraph}\\ \hline
+\textbf{\BS{}readdata}\AC{{\red \BS{}dat}}\AC{mesdata.dat} \\
+\textbf{\BS{dataplot}}[linecolor=red,linewidth=2pt]\AC{{\red \BS{}dat}} 
+
+\\\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Macro  savedata}
+
+
+\TFRGB{Syntaxe}{syntax} : \BSS{savedata}\AC{\BS{}macro}[données en XY]
+\BSI{savedata}{pst-plot}
+
+\bigskip
+
+\textbf{\BS{}savedata}\AC{\BS{}mydata}[\AC{x0, y0}, \AC{x1., y1}, .... \AC{xn., yn}]
+
+
+\newpage
+\subsection{Macro listplot , pslistplot}
+
+
+\TFRGB{Syntaxe}{syntax} : \BSS{listplot}\AC{data}   \BSS{pslistplot}\AC{data}
+\BSI{listplot}{pst-plot} \BSI{pslistplot}{pst-plot}
+
+\bigskip
+
+
+\begin{center}
+\begin{tabular}{|l|} \hline
+\psset{llx=-1cm,lly=-1cm,urx=.5cm,ury=0.5cm}
+ \begin{psgraph}[axesstyle=frame,xticksize=0 4cm,yticksize=0 9cm,subticks=0,Dx=100,Dy=.02](0,0)(750,.12){9cm}{4cm} 
+\readdata{\dat}{mesdata.dat}
+\listplot[plotstyle=curve,showpoints=true,dotstyle=triangle]{\dat}
+\end{psgraph} \\ \hline
+\textbf{\BS{}listplot}[plotstyle=curve,showpoints=true,dotstyle=triangle]\AC{\BS{}dat} \\ \hline
+\TFRGB{liste des coordonnées séparées que par des espaces blancs}{separator of data  :  space only} !
+ \\ \hline
+\end{tabular}
+\end{center}
+
+
+\bigskip
+%=====================================================
+\SbSSCT{\'Echelle des données}{Scale factor}
+
+\BSS{pstScalePoints}(\TFRGB{facteur échelle X,facteur échelle Y}{X scale factor , Y scale factor})\AC{\TFRGB{code calcul postscript sur X}{PostScript code applied to the x values}}\AC{\TFRGB{code calcul postscript sur Y}{PostScript code applied to the Y values} }
+\BSI{pstScalePoints}{pst-plot} 
+\bigskip
+
+
+\begin{center}
+\begin{tabular}{|l|} \hline
+\readdata{\dat}{mesdata.dat}
+\psset{llx=-.5cm,lly=-.5cm,urx=.5cm,ury=0.5cm}
+ \begin{psgraph}[axesstyle=frame,xticksize=0 4cm,yticksize=0 9cm,subticks=0,Dx=100,dy=1,Dy=2](0,0)(750,12){9cm}{4cm} 
+\pstScalePoints(1,100){}{}
+\listplot[linecolor=red,linewidth=2pt]{\dat}
+\end{psgraph} \\\hline
+\BSS{pstScalePoints}({\red 1,100})\AC{}\AC{} \\ \hline
+ \multicolumn{1}{|c|}{\cyan \TFRGB{ne fonctionne qu'avec \BS{listplot} et \BS{pslistplot}{Only work with \BS{listplot} and \BS{pslistplot}! }}} \\  \hline  
+\end{tabular}
+\end{center}
+ 
+%----------------------------------------------------------------------------------------
+\SbSSCT{Options de lecture de fichier}{Options  reading the file of data}
+
+
+
+\begin{tabular}{|c|c|} \hline
+\psset{llx=-1cm}
+ \begin{psgraph}[axesstyle=frame,xticksize=0 3cm,yticksize=0 5cm,subticks=0,Dx=100,Dy=.02](0,0)(750,.12){5cm}{3cm} 
+ \readdata[ignoreLines=100]{\dat}{mesdata.dat}
+\listplot[plotstyle=line,linecolor=blue,linewidth=2pt ]{\dat}
+\end{psgraph}
+&
+ \readdata{\dat}{mesdata.dat}
+ \psset{llx=-1cm}
+ \begin{psgraph}[axesstyle=frame,xticksize=0 3cm,yticksize=0 5cm,subticks=0,Dx=100,Dy=.02](0,0)(750,.12){5cm}{3cm}
+\listplot[plotstyle=curve,linestyle=dotted,linewidth=1pt ]{\dat}
+\listplot[plotstyle=dots,linecolor=red,nStep=100,dotscale=2]{\dat}
+\end{psgraph} \\  \hline
+\RDD{ignoreLines}=100  \RDI{ignoreLines}{pst-plot} & \RDD{nStep}=100  \RDI{nStep}{pst-plot} \\ \hline
+ 
+
+\end{tabular}
+
+
+\bigskip
+\begin{tabular}{|c|c|} \hline
+\psset{llx=-1cm}
+ \begin{psgraph}[axesstyle=frame,xticksize=0 3cm,yticksize=0 5cm,subticks=0,Dx=100,Dy=.02](0,0)(750,.12){5cm}{3cm} 
+\listplot[plotstyle=curve,linestyle=dotted,linewidth=1pt ]{\dat}
+\listplot[plotstyle=dots,linecolor=red,xStep=100,dotscale=2]{\dat}
+\end{psgraph}
+&
+\psset{llx=-1cm}
+ \begin{psgraph}[axesstyle=frame,xticksize=0 3cm,yticksize=0 5cm,subticks=0,Dx=100,Dy=.02](0,0)(350,.12){5cm}{3cm}
+  
+\listplot[plotstyle=curve,linestyle=dotted,linewidth=1pt ,xEnd=300]{\dat}
+\listplot[plotstyle=dots,linecolor=red,yStep=0.02,dotscale=2,xEnd=300]{\dat}
+\end{psgraph} \\  \hline
+\RDD{xStep}=100  \RDI{xStep}{pst-plot}& \RDD{yStep}=0.02,xEnd=300  \RDI{yStep}{pst-plot} \\ \hline
+\end{tabular}
+
+%----------------------------------------------------------------------------------
+
+\SbSSCT{Table de données multiples}{Multiple data table}
+
+
+\TFRGB{Soit une table de données est organisée ainsi}{The data table has 4 columns of data } :
+
+\smallskip
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline  A & B & C & B \\ 
+\hline  &  &  &  \\ 
+\hline  &  &  &  \\ 
+\hline 
+\end{tabular} 
+\end{center}
+\bigskip
+
+\begin{tabular}{|l @{:} l |}
+\hline 
+\multicolumn{2}{|c|}{ \BS{listplot}[\RDD{plotNoMax}=3,\RDD{plotNoX=2},\RDD{plotNo}=2]\AC{\BS{data}}  
+\RDI{plotNoMax}{pst-plot}  \RDI{plotNoX}{pst-plot} 
+ \RDI{plotNo}{pst-plot} 
+} 
+
+\\ \hline 
+plotNoX=2 & \TFRGB{ la colonne B correspond à X}{ X values on  column B} \\
+plotNoMax=3 & \TFRGB{ soit 2 colonnes y + 1 colonne x}{ 1 columm with x values + 2 columms with y values} \\ 
+plotNo=2  & \TFRGB{ la colonne C correspond à Y}{ Y values on  column C} \\  \hline 
+\end{tabular} 
+
+\newpage
+\subsection{Macro sur Excel}
+\TFRGB{Voici un programme en Visual Basic permettant de créer son fichier de données d'après une feuille Excel}{Here is a Visual Basic program to create a data file from an Excel spreadsheet}
+
+
+\bigskip
+
+\psframebox{\parbox[c]{\linewidth}{
+
+Sub mesdata() \\
+deb = 8      \hspace{2cm}        ' \TFRGB{première ligne de données}{first line of data} \\
+fin = 382     \hspace{2cm}         ' \TFRGB{dernière ligne de données}{last line of data} \\
+colX = 5       \hspace{2cm}        ' \TFRGB{colonne des valeurs de X}{column of the values  X} \\
+colY = 6        \hspace{2cm}       ' \TFRGB{colonne des valeurs de Y}{column of the values  Y} \\
+nom = "mesdata.dat"  \hspace{1cm}  ' \TFRGB{nom du fichier}{name of the file} \\
+
+Dim valX, valY As Double \\
+
+'\TFRGB{pour effacer le fichier}{to erase the file} \\
+Open nom For Output Access Write As \#1 \\
+Close \#1 \\
+
+'\TFRGB{création du fichier}{creation of the file} \\
+For i = deb To fin \\
+Open nom For Append As \#1 \\
+valX = Cells(i, colX) \\
+valY = Cells(i, colY) \\
+
+Write \#1, valX \\
+Write \#1, valY \\
+Close \#1 \\
+Next \\
+
+End Sub}} \\
+
+\TFRGB{A copier dans un module Excel et modifier les paramètres}{copy  this code in a module Excel and  modify the parameters}  deb, fin , colX, colY et nom
+
+ 

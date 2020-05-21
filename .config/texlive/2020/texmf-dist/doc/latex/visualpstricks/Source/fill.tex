@@ -1,0 +1,140 @@
+\TFRGB{Utilisation du module}{Package} \textbf{pst-fill} \label{pst-fill}
+
+\psboxfill{\MonMotif}
+
+\begin{center}
+\begin{tabular}{|p{14cm}|} \hline
+\multicolumn{1}{|c|}{ \TFRGB{Création du motif}{Creating the pattern} : \begin{pspicture}(-.5,-.27)(.5,.27)
+ \psframe[dimen=middle,fillcolor=yellow,fillstyle=solid,linecolor=blue](-.5,-.25)(.5,.25)
+ \pscircle[dimen=middle,fillcolor=magenta,fillstyle=solid,linecolor=magenta]{.1}
+\end{pspicture} 
+} \\ \hline 
+\BS{}newcommand\AC{{\red \BS{}MonMotif}}\{
+
+\BS{}begin\AC{pspicture}(1,.5)
+
+\BS{}psframe[dimen=middle,fillcolor=yellow,fillstyle=solid,linecolor=blue](1,.5)
+
+\BS{}pscircle[dimen=middle,fillcolor=magenta,fillstyle=solid,linecolor=magenta](.5,.25)\AC{.1}
+
+\BS{}end\AC{pspicture} \} \\ \hline 
+\multicolumn{1}{|c|}{\TFRGB{Utilisation du motif}{Using the pattern} : \BSS{psboxfill}\AC{{\red\BS{}MonMotif}}  \BSI{psboxfill}{pst-fill} }\\   \hline
+
+\multicolumn{1}{|l|}{\BS{}pspolygon[fillstyle=\RDDD{boxfill}{fillstyle}](0,.5)(1,2)(3,2)(4,0)(2,.5)}\\  
+\multicolumn{1}{|c|}{\begin{pspicture}(2.5,2.5) \pspolygon[fillstyle=boxfill](0,.5)(1,2)(3,2)(4,0)(2,.5) \end{pspicture} }\\ \hline
+\end{tabular}
+\end{center}
+
+%---------------------------------------------------
+ 
+ 
+
+\psset{arrowscale=2}
+\psset{linecolor=blue,fillcolor=yellow,linewidth=1pt}
+
+
+ 
+ 
+ \begin{center}
+ \begin{tabular}{|c|c|c|} \hline 
+\begin{pspicture}(2.5,2.5)
+\psframe[fillstyle=boxfill,fillangle=90](0,0)(2,2)
+\end{pspicture}
+&
+\begin{pspicture}(4,2.5)
+\pspolygon[fillstyle=boxfill,fillangle=45](0,.5)(1,2)(3,2)(4,0)(2,.5)
+\end{pspicture}
+&
+\begin{pspicture}(2.5,2.5)
+\pscircle[fillstyle=boxfill,fillangle=-30](1,1){1}
+\end{pspicture}   \\ \hline
+ \RDD{fillangle}=90  \RDI{fillangle}{pst-fill} & {\red fillangle}=45 & {\red fillangle}=-30 \\ \hline
+\multicolumn{3}{|c|}{ \blue \dft  : 0 }\\ \hline
+
+ \end{tabular}
+ \end{center}
+ 
+ 
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline 
+\begin{pspicture}(4,2.5)
+\pspolygon[fillstyle=boxfill,fillsepx=.25cm](0,.5)(1,2)(3,2)(4,0)(2,.5)
+\end{pspicture}
+&
+\begin{pspicture}(4,2.5)
+\pspolygon[fillstyle=boxfill,fillsepy=.25cm](0,.5)(1,2)(3,2)(4,0)(2,.5)
+\end{pspicture}
+&
+\begin{pspicture}(4,2.5)
+\pspolygon[fillstyle=boxfill,fillsep=.25cm](0,.5)(1,2)(3,2)(4,0)(2,.5)
+\end{pspicture} \\ \hline
+\RDD{fillsepx}=.25cm  \RDI{fillsepx}{pst-fill} &
+\RDD{fillsepy}=.25cm  \RDI{fillsepy}{pst-fill} &  \RDD{fillsep}=.25cm  \RDI{fillsep}{pst-fill}\\ \hline
+\end{tabular}
+\end{center}
+
+ 
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline 
+\begin{pspicture}(4,2.5)
+\pspolygon[fillstyle=boxfill,fillcyclex=3](0,.5)(1,2)(3,2)(4,0)(2,.5)
+\end{pspicture}
+&
+\begin{pspicture}(4,2.5)
+\pspolygon[fillstyle=boxfill,fillcycley=3](0,.5)(1,2)(3,2)(4,0)(2,.5)
+\end{pspicture}
+&
+\begin{pspicture}(4,2.5)
+\pspolygon[fillstyle=boxfill,fillcycle=3](0,.5)(1,2)(3,2)(4,0)(2,.5)
+\end{pspicture} \\ \hline
+\RDD{fillcyclex}=3  \RDI{fillcyclex}{pst-fill} & 
+\RDD{fillcycley}=3  \RDI{fillcycley}{pst-fill} &  
+\RDD{fillcycle}=3  \RDI{fillcycle}{pst-fill} \\ \hline
+\multicolumn{3}{|c|}{ 3  \TFRGB{correspond à}{corresponds to} $1/3$, {\blue \dft  : 0} }\\ \hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline 
+\begin{pspicture}(4,2.5)
+\pspolygon[fillstyle=boxfill,fillmovex=.1](0,.5)(1,2)(3,2)(4,0)(2,.5)
+\end{pspicture}
+&
+\begin{pspicture}(4,2.5)
+\pspolygon[fillstyle=boxfill,fillmovey=.1](0,.5)(1,2)(3,2)(4,0)(2,.5)
+\end{pspicture}
+&
+\begin{pspicture}(4,2.5)
+\pspolygon[fillstyle=boxfill,fillmove=.1](0,.5)(1,2)(3,2)(4,0)(2,.5)
+\end{pspicture} \\ \hline
+\RDD{fillmovex}=.1 \RDI{fillmovex}{pst-fill}  & 
+\RDD{fillmovey}=.1 \RDI{fillmovey}{pst-fill}  &  \RDD{fillmove}=.1 \RDI{fillmove}{pst-fill}  \\ \hline
+\multicolumn{3}{|c|}{ .1  \TFRGB{correspond à}{corresponds to} 0,1 cm , {\blue \dft  : 0 }}\\ \hline
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|} \hline 
+\multicolumn{4}{|c|}{\BS{}pspolygon[fillstyle=boxfill](0.6,.7)(1.8,2.4)(2.3,.6)(4,1.2)(2.5,.3) }\\ \hline
+\begin{pspicture}(.5,0)(4,3)
+\pspolygon[fillstyle=boxfill](0.6,.7)(1.8,2.4)(2.3,1.6)(3.8,1.2)(2.5,.3)
+\end{pspicture}
+&
+\begin{pspicture}(.5,0)(4,3)
+\pspolygon[fillstyle=boxfill,fillloopaddx=1](0.6,.7)(1.8,2.4)(2.3,1.6)(3.8,1.2)(2.5,.3)
+\end{pspicture}
+&
+\begin{pspicture}(.5,0)(4,3)
+\pspolygon[fillstyle=boxfill,fillloopaddy=1](0.6,.7)(1.8,2.4)(2.3,1.6)(3.8,1.2)(2.5,.3)
+\end{pspicture} 
+&
+\begin{pspicture}(.5,0)(4,3)
+\pspolygon[fillstyle=boxfill,fillloopadd=1](0.6,.7)(1.8,2.4)(2.3,1.6)(3.8,1.2)(2.5,.3)
+\end{pspicture} \\ \hline
+  & 
+  \RDD{fillloopaddx}=1  \RDI{fillloopaddx}{pst-fill}  & \RDD{fillloopaddy}=1  \RDI{fillloopaddy}{pst-fill}  & 
+  \RDD{fillloopadd}=1  \RDI{fillloopadd}{pst-fill}  \\ \hline
+\multicolumn{4}{|c|}{\blue \dft : 0} \\ \hline
+\end{tabular}
+\end{center}

@@ -1,0 +1,103 @@
+\documentclass[a4paper]{article}
+
+\usepackage{etex}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}	 
+\usepackage{lmodern} 
+
+\usepackage[frenchb]{babel}
+%
+\usepackage{amsmath,amsfonts}
+%\usepackage{amssymb}
+%\usepackage{pdfpages}  
+\usepackage{textcomp}
+\usepackage{makeidx}
+\usepackage{pst-all}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{pst-fr3d}
+\usepackage{infix-RPN}
+\usepackage{pst-infixplot}
+
+\usepackage{pst-eucl}
+\usepackage{pst-slpe}
+\usepackage{wrapfig}
+\usepackage{pst-solides3d}
+\usepackage{pst-3dplot}
+\usepackage{pst-fun}
+\usepackage{pst-func}
+\usepackage{pst-bezier}
+\usepackage{pst-bspline}
+\usepackage{animate}
+\usepackage{makeidx}
+\usepackage{pst-tools}
+\usepackage{pst-poly}
+%\usepackage{pst-gantt}
+
+%\usepackage{showidx}
+%\usepackage{pst-abspos}
+%====================================================================
+
+\makeindex
+
+\newcommand{\AC}[1]{\{#1\}}
+
+\newcommand{\BS}[1]{$\backslash$#1}
+
+%\newcommand{\BSS}[1]{\textbf{\cyan $\backslash${#1}}\index{Commandes!\textbackslash{}#1}}
+\newcommand{\BSS}[1]{\textbf{\textbackslash{#1}}\index{\textbf{1) Commandes}!#1 @\textbackslash{}#1}}
+
+\newcommand{\BSI}[2]{ \index{\textbf{4) Par modules }!\textbf{#2}!#1@\textbackslash{}#1 (M)}}
+
+%\newcommand{\BSI}[2]{\cite{#2} \index{\textbf{4) Par modules }!\textbf{#2}!#1@\textbackslash{}#1 (M)}}
+
+\newcommand{\RDI}[2]{ \index{\textbf{4) Par modules }!\textbf{#2}!#1@#1 (P)}}
+
+%\newcommand{\RDI}[2]{\cite{#2} \index{\textbf{4) Par modules }!\textbf{#2}!#1@#1 (P)}}
+
+\newcommand{\BDI}[2]{\cite{#2} \index{\textbf{4) Par modules }!\textbf{#2}!#1@#1 (V) }}
+
+\newcommand{\RDD}[1]{{\red #1}\index{\textbf{2) Paramètres et options}!#1}}
+
+\newcommand{\RDDD}[2]{{\red #1}\index{\textbf{2) Paramètres et options}!#2!#1}}
+
+\newcommand{\BDD}[1]{{\blue #1}\index{\textbf{3) Variables PsTricks}!#1}}
+
+\newcommand{\DFR}{\psset{unit=.25cm,fillstyle=solid,linewidth=0pt}\begin{pspicture*}(3,1.5) \psframe[fillcolor=blue](1,1.5)\psframe[fillcolor=white](1,0)(2,1.5)\psframe[fillcolor=red](2,0)(3,1.5)\end{pspicture*}
+\psset{unit=1cm,fillstyle=solid,linewidth=1pt}}
+
+\newcommand{\DGB}{\psset{unit=.25cm,fillstyle=solid,linewidth=0pt}\begin{pspicture*}(3,1.5) \psframe[fillcolor=blue](3,1.5) \psline[linecolor=white,linewidth=.1cm](3,1.5)\psline[linecolor=white,linewidth=.1cm](0,1.5)(3,0) \psline[linecolor=white,linewidth=.1cm](0,.75)(3,.75)\psline[linecolor=white,linewidth=.1cm](1.5,0)(1.5,1.5)
+\psline[linecolor=red,linewidth=.05cm](3,1.5) \psline[linecolor=red,linewidth=.05cm](0,1.5)(3,0)
+\psline[linecolor=red,linewidth=.05cm](0,.75)(3,.75) \psline[linecolor=red,linewidth=.05cm](1.5,0)(1.5,1.5) \end{pspicture*}
+
+\psset{unit=1cm,fillstyle=solid,linewidth=1pt}}
+
+\newcommand{\maboite}[1]{\begin{center} \psframebox[fillcolor=yellow,fillstyle=solid]{ \parbox{.5\linewidth} {\centering #1}} \end{center}}
+
+\newcommand{\mydessin}[1]{%
+ \begin{pspicture}(-5,-3)(5,5)
+\psset{unit=.5cm}
+\psset{solidmemory}
+\psset{viewpoint=50 #1  20 rtp2xyz, Decran=50}
+\psSolid[object=cylindrecreux,h=10,r=2,fillcolor=white,mode=4,name=A1,action=none,incolor=green!50,SphericalCoor,viewpoint=50 30 20](0,0,-3)%
+%
+\psSolid[object=conecreux,h=15,r=2,RotY=-60,fillcolor=white,incolor=red!50,action=none,mode=5,name=B1,SphericalCoor,viewpoint=50 30 20](4,0,0)%
+\psSolid[object=fusion,action=draw**,base=A1 B1,SphericalCoor,](0,0,0)%
+\composeSolid%
+ \end{pspicture}}
+ 
+\newcommand{\essais}[1]{}
+
+\newcommand{\MonMotif}{%
+\begin{pspicture}(1,.5)
+ \psframe[dimen=middle,fillcolor=yellow,fillstyle=solid,linecolor=blue](1,.5)
+ \pscircle[dimen=middle,fillcolor=magenta,fillstyle=solid,linecolor=magenta](.5,.25){.1}
+\end{pspicture}}
+
+
+
+
+
+
+\newcommand{\xx}{\unskip\kern.05em:} 

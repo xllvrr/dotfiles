@@ -1,0 +1,20 @@
+name context-layout
+category ConTeXt
+revision 47085
+shortdesc Show ConTeXt layouts
+longdesc Draws a representation of the layout of the current page and
+longdesc displays the sizes of the widths and heights of the margins,
+longdesc header, footer and text body.
+depend context
+containersize 3996
+containerchecksum 6cad00783d0bc91000ca0e0c8350fe2a2e99f7fefccd375d5bb2f1a144fc04a59f83122dcd490fc0596b1dc9fd0c0a779bfa35932362927ed50ed8df39ec359e
+doccontainersize 211432
+doccontainerchecksum 4ecf7bfe5fbc78453cc116cf7a657f4b6ac7fc21ca7dd6da5beb0ea1af0c1fd48d6a74ab516213f49d1e29cb8bd47fbcc94145157472e3ea22b291f494fc3d1f
+docfiles size=54
+ texmf-dist/doc/context/third/layout/VERSION
+ texmf-dist/doc/context/third/layout/t-layout.pdf details="Package documentation"
+runfiles size=3
+ texmf-dist/tex/context/third/layout/t-layout.tex
+catalogue-ctan /macros/context/contrib/context-layout
+catalogue-license gpl
+catalogue-topics context

@@ -1,0 +1,2081 @@
+\documentclass[english,nolocaltoc]{nwejmart}
+%
+\DTMsavedate{release-date}{2020-01-28}
+\newcommand{\releaseversion}{1.0.0}
+%
+\usepackage{denisbdoc}
+\usepackage{tabulary}
+\usepackage[firstpage]{draftwatermark}
+%
+\makeatletter
+\patchcmd{\@mn@margintest}{\@tempswafalse}{\@tempswatrue}{}{}
+\patchcmd{\@mn@margintest}{\@tempswafalse}{\@tempswatrue}{}{}
+\reversemarginpar
+\makeatother
+%
+\indexsetup{level=\section*,toclevel=section,noclearpage}
+\makeindex[columns=2]
+\tcbset{index format=off}
+%
+\lstMakeShortInline[style=dbtex]|
+%
+\tcbset{listing options={escapechar=+}}
+%
+\SetWatermarkColor{gray!10}%
+\SetWatermarkFontSize{20mm}%
+\SetWatermarkText{\MakeUppercase{travail en cours}}%
+%
+\DeclareBibliographyCategory{examples}
+\DeclareBibliographyCategory{documentation}
+\addtocategory{examples}{shin,laz1,har}
+\addtocategory{documentation}{Bitouze,Bitouze7}
+
+\addbibresource{nwejm-fr.bib}
+%
+\newacronym{nwejm}{nwejm}{North-Western European Journal of Mathematics}
+\newacronym{bap}{bap}{bounded approximation property}
+\newacronym{msc}{msc}{Mathematical Subject Classification}
+\newacronym{url}{url}{Uniform Resource Locator}
+\newacronym{tdm}{tdm}{table des matières}
+%
+\newtheorem{article}
+\newtheorem[style=definition]{fait}
+\newtheorem[title=expérience]{experience}
+\newtheorem[title-plural=anneaux]{anneau}
+\newtheorem[title=idéal,title-plural=idéaux]{ideal}
+%
+\newenumeration{conventions}
+\newenumeration[singular=cas]{cas}
+\newenumeration[singular=règle,plural=règles]{regles}
+%
+\DeclareMathOperator{\cat}{Cat}
+\newcommand{\mybinop}{\mathbin{*}}
+%
+\begin{document}
+\title[Documentation de la classe \LaTeX{} du
+\texorpdfstring{\nwejm}{NWEJM}]{Documentation de la classe \LaTeX{} du \nwejm*{}
+  destinée aux auteurs}%
+%
+\subtitle[Version \releaseversion{} (\DTMusedate{release-date})]{\small Version \releaseversion{} en
+  date du \DTMusedate{release-date}}%
+%
+\author[%
+affiliation={%
+  Université du Littoral Côte d'Opale, Laboratoire de mathématiques pures et
+  appliquées (\nolinkurl{denis.bitouze@univ-littoral.fr})%
+},%
+]{Bitouzé, Denis}
+%
+\maketitle
+%
+\etocarticlestylenomarks
+\localtableofcontents
+%
+\DeclareFixedFootnote{\conseilslatex}{Et donne de façon subliminale quelques
+  conseils \LaTeX{}. On consultera \autocite{Ensenbach} pour un panorama plus
+  complet des commandes et extensions obsolètes (et autres erreurs).}
+\DeclareFixedFootnote{\suitecompilations}{Pour automatiser ces compilations, on
+  pourra recourir au \enquote{compilateur} \program{latexmk}, fourni par toute
+  distribution \TeX{} moderne, en s'aidant du fichier de configuration
+  \file{latexmkrc} joint à la présente classe.}
+
+\section{Introduction}
+\label{sec-introduction}
+
+\begin{dbremark}{Documentation : travail en cours}{}
+  La présente documentation est un travail en cours. Nous prions les lecteurs
+  qui ont des remarques à formuler ou qui trouveront des erreurs de bien vouloir
+  nous les signaler à l'adresse courriel figurant en page de titre.
+\end{dbremark}
+
+\begin{dbwarning}{Classe à utiliser}{}
+  Le \gls{nwejm} fournit deux classes \LaTeX{} :
+  \begin{enumerate}
+  \item la \nwejmcl{} conçue pour les numéros entiers de la revue, donc destinée
+    à l'équipe du \nwejm{} (et normalement pas aux auteurs d'articles) ;
+  \item la \nwejmauthorcl{} destinée aux auteurs d'articles à paraître dans le
+    \gls{nwejm}.
+  \end{enumerate}
+  Les auteurs d'articles prendront donc soin de recourir à la \nwejmauthorcl{}
+  et \emph{pas} à la \nwejmcl{}.
+\end{dbwarning}
+
+La classe \LaTeX{} \nwejmauthor{} est destinée aux auteurs souhaitant publier un
+article dans le \href{http://math.univ-lille1.fr/~nwejm/}{\gls{nwejm}}. Cette
+classe a pour but :
+\begin{enumerate}
+\item de reproduire fidèlement la maquette de la \nwejm{}, permettant ainsi
+  aux auteurs de pouvoir travailler la mise en page de leur document dans des
+  conditions réelles ;
+\item de fournir un certain nombre d'outils (commandes et environnements)
+  destinés à faciliter la rédaction de documents, notamment ceux contenant des
+  formules de mathématiques.
+\end{enumerate}
+
+\begin{dbwarning}{Codage d'entrée \protect\lstinline+UTF-8+ obligatoire}{}
+  La \nwejmauthorcl{} du \nwejm{} repose de façon cruciale sur un codage
+  d'entrée en |UTF-8| :
+  \begin{itemize}
+  \item elle charge le \Package{inputenc}\footnote{%
+      Il convient donc de \emph{ne pas} charger ce package : on se reportera
+      à l'\vref{sec-canevas-de-fichier} pour un canevas de fichier source
+      destiné à la \nwejm{} et notamment pour un préambule typique.%
+      %
+    }
+    %
+    avec l'option \docAuxKey{utf8} ;
+  \item elle suppose que les fichiers sources \file{.tex} sont effectivement
+    codés en |UTF-8| : on veillera donc à ce que l'éditeur utilisé soit réglé
+    sur ce codage d'entrée.
+  \end{itemize}
+\end{dbwarning}
+
+\begin{dbwarning}{Format et compilation \hologo{pdfLaTeX}}{}
+  La composition des numéros du \nwejm*{} met en œuvre :
+  \begin{itemize}
+  \item le format \hologo{LaTeX}\footnote{Sous sa version \hologo{LaTeXe}, la
+      plus courante de nos jours.}. On évitera donc les commandes des autres
+    formats tels que \hologo{plainTeX} ;
+  \item le compilateur privilégié est \hologo{pdfLaTeX}. En particulier, le
+    compilateur \hologo{LaTeX} n'étant \emph{a priori} pas utilisé, nous
+    préférons :
+    \begin{enumerate}
+    \item comme formats d'images : \format{jpg}, \format{png} et
+      \format{pdf}\footnote{Le format recommandé est \format{pdf} car il est
+        vectoriel si bien que la qualité des images n'est pas dégradée en cas de
+        redimensionnement.} ;
+    \item éviter l'usage de code \program{PostScript}, notamment via
+      \program{PSTricks} et, comme outil de dessin, privilégions par exemple le
+      \Package{TikZ}.
+    \end{enumerate}
+  \end{itemize}
+\end{dbwarning}
+
+\section{Configuration de l'article}
+
+\subsection{Langue de l'article}
+\label{sec:langue-de-larticle}
+
+Le \nwejm{} accepte des articles dans chacune des quatre langues
+\begin{itemize}
+\item anglais ;
+\item français ;
+\item allemand ;
+\item néerlandais ;
+\end{itemize}
+et la \nwejmauthorcl{} permet de spécifier la langue choisie\footnote{La gestion
+  des langues est assurée en sous-main par le \Package{babel}.} au moyen des
+options de classe suivantes.
+% \refKey{english}, \refKey{french}, \refKey{ngerman} \refKey{dutch}
+
+\begin{docKey}{english}{}{pas de valeur, option par défaut}
+  Cette option définit l'anglais comme langue de l'article.
+\end{docKey}
+\begin{docKey}{french}{}{pas de valeur}
+  Cette option définit le français comme langue de l'article.
+\end{docKey}
+\begin{docKey}{german}{}{pas de valeur}
+  Cette option définit l'allemand comme langue de l'article. Elle a pour alias
+  \docAuxKey{ngerman}.
+  \begin{dbremark}{Option de \package*{babel} sous-jacente à l'option
+      \protect\refKey{german}}{}
+    L'option de langue \refKey{german} de la \nwejmauthorcl{} appelle en
+    sous-main l'option \docAuxKey*{ngerman} du \Package*{babel}.
+  \end{dbremark}
+\end{docKey}
+\begin{docKey}{dutch}{}{pas de valeur}
+  Cette option définit le néerlandais comme langue de l'article.
+\end{docKey}
+
+\begin{dbremark}{Langue par défaut de l'article}{}
+  Si aucune de ces options n'est spécifiée, la langue de l'article est par
+  défaut l'anglais.
+\end{dbremark}
+
+\subsection{Autres configurations}
+\label{sec:autr-conf}
+
+\begin{docCommand}{articlesetup}{\marg{options}}
+  Cette commande permet de configurer les \meta{options} de l'article en cours
+  sous la forme clés/valeurs.
+
+  La seule clé fournie pour l'instant est \refKey{gradient}.
+  \begin{docKey}{gradient}{=\docValue{grad}\textbar\docValue{nabla}}{pas
+      de valeur par défaut, initialement \docValue{grad}}
+    Cette clé permet de spécifier la façon dont est affiché le gradient grâce
+    à la commande \refCom{grad}.
+  \end{docKey}
+\end{docCommand}
+
+\begin{dbwarning}{Commande \protect\refCom{articlesetup} : pas en préambule !}{}
+  La commande \refCom{articlesetup} doit être utilisée \emph{exclusivement} dans
+  le corps du document (de préférence juste après |\begin{document}|) sans quoi
+    la configuration choisie, certes prise en compte dans l'article isolé,
+    risque de ne pas l'être dans le volume complet !
+\end{dbwarning}
+
+\section{Préparation du \enquote{titre} de l'article}
+\label{sec-prep-de-lart}
+
+Cette section liste les commandes, options et environnement permettant de
+\emph{préparer} le \enquote{titre} de l'article ainsi que son éventuelle partie
+finale.
+
+\subsection{Titre, sous-titre}
+\label{sec-titre}
+
+\begin{docCommand}[doc new=2017-10-23]{title}{\oarg{titre alternatif {\normalfont\ttfamily\acrshort*{tdm}}}\oarg{titre alternatif entête}\marg{titre}}
+  Cette commande définit, pour l'article en cours :
+  \begin{itemize}
+  \item son \meta{titre} figurant en 1\iere{} page ;
+  \item son \emph{éventuel} \meta{titre alternatif
+      {\normalfont\ttfamily\acrshort*{tdm}}} figurant :
+    \begin{itemize}
+    \item dans le volume où l'article sera publié :
+      \begin{itemize}
+      \item en \gls{tdm} ;
+      \item en signet ;
+      \end{itemize}
+    \item dans le fichier \textsc{pdf} de l'article autonome, en métadonnée
+      \enquote{Titre} ;
+    \end{itemize}
+  \item son \emph{éventuel} \meta{titre alternatif entête} figurant en
+    entête\footnote{\Ie{} en titre courant.} sur les pages paires.
+  \end{itemize}
+  L'usage précis de cette commande est synthétisé à la
+  \vref{tab-commande-title}.
+\end{docCommand}
+
+\begin{table}[htb]
+  \centering
+  \caption{Usage (des deux arguments optionnels) de la commande
+    \protect\refCom{title} }
+  \label{tab-commande-title}
+\footnotesize%
+\lstset{%
+  deletekeywords={title},deletekeywords={[3]title},%
+}
+\begin{tabular}{|l|c|c|c|}
+  \cline{2-4}
+  \multicolumn{1}{c|}{}                                                                                                                             & 1\iere{} page                     & \gls{tdm}                                            & entête                \\\hline
+  \lstinline+\title{+\meta{titre}\lstinline+}+                                                                                                      & \multicolumn{3}{c|}{\meta{titre}}                                                                                       \\\hline
+  \lstinline+\title[+\meta{alt. {\normalfont\ttfamily\acrshort*{tdm}}}\lstinline+]{+\meta{titre}\lstinline+}+                                    & \meta{titre}                      & \multicolumn{2}{c|}{\meta{alt. {\normalfont\ttfamily\acrshort*{tdm}}}}    \\\hline
+  \lstinline+\title[][+\meta{alt. entête}\lstinline+]{+\meta{titre}\lstinline+}+                                                                 & \multicolumn{2}{c|}{\meta{titre}} & \meta{alt. entête}                                                        \\\hline
+  \lstinline+\title[+\meta{alt. {\normalfont\ttfamily\acrshort*{tdm}}}\lstinline+][+\meta{alt. entête}\lstinline+]{+\meta{titre}\lstinline+}+ & \meta{titre}                      & \meta{alt. {\normalfont\ttfamily\acrshort*{tdm}}} & \meta{alt. entête} \\\hline
+\end{tabular}
+\end{table}
+
+\begin{docCommand}{subtitle}{\oarg{sous-titre alternatif {\normalfont\ttfamily\acrshort*{tdm}}}\marg{sous-titre}}
+  Cette commande définit \emph{éventuellement}, pour l'article en cours :
+  \begin{itemize}
+  \item son \meta{sous-titre} figurant en 1\iere{} page à la suite
+    du \meta{titre} ;
+  \item son \emph{éventuel} \meta{sous-titre alternatif
+      {\normalfont\ttfamily\acrshort*{tdm}}} figurant à la suite du
+    \meta{titre}\footnote{Ou éventuel \meta{titre alternatif
+        {\normalfont\ttfamily\acrshort*{tdm}}}.} :
+    \begin{itemize}
+    \item dans le volume où l'article sera publié :
+      \begin{itemize}
+      \item en \gls{tdm} ;
+      \item en signet ;
+      \end{itemize}
+    \item dans le fichier \textsc{pdf} de l'article autonome, en métadonnée
+      \enquote{Titre}.
+    \end{itemize}
+  \end{itemize}
+\end{docCommand}
+
+\begin{bodycode}[listing options={deletekeywords={[2]title}}]
+\title[Le Traité du calcul des probabilités]{Le Traité du calcul des
+  probabilités et de ses applications}
+\subtitle[Étendue et limites d'un projet borélien]{Étendue et limites
+  d'un projet borélien de grande envergure (1921-1939)}
+\end{bodycode}
+
+\begin{dbremark}{Affichage des titre et sous-titre}{}
+  Pour que les titre et sous-titre soient affichés, il est nécessaire de
+  recourir à la commande habituelle \refCom{maketitle}.
+\end{dbremark}
+
+\subsection{Auteur(s)}
+\label{sec-auteurs}
+
+Un auteur d'article est spécifié au moyen de la commande \refCom{author}
+suivante. En cas d'auteurs multiples, il suffit de (et il faut) recourir
+à plusieurs occurrences de cette commande.
+
+\begin{docCommand}{author}{\oarg{options}\brackets{\meta{Nom}, \meta{Prénom}}}
+  Cette commande, facultative, définit un auteur d'article.
+\end{docCommand}
+%
+\begin{dbwarning}{Format des prénom et nom de l'auteur}{}
+  On veillera à ce que :
+  \begin{enumerate}
+  \item la saisie des prénom et nom de l'auteur soit conforme à la syntaxe
+    (identique à celle de \hologo{BibTeX} et \package{biblatex}) :
+    %
+\begin{bodycode}[listing options={showspaces}]
+"\meta{Nom}", "\meta{Prénom}"
+\end{bodycode}
+    %
+  \item les éventuels caractères diacritiques (accents, etc.) figurent dans les
+    \meta{Prénom} et \meta{Nom} ;
+  \item le \meta{Nom} \emph{ne} soit \emph{pas} saisi en capitales (sauf pour la
+    ou les majuscules)\footnote{Dans les articles en français, ce nom sera
+      automatiquement composé en petites capitales.}.
+  \end{enumerate}
+
+  La métadonnée \enquote{Auteur} du \File{PDF} produit contient automatiquement
+  le ou les auteurs spécifiés.
+\end{dbwarning}
+
+La commande \refCom{author} admet un argument optionnel permettant de spécifier
+la ou les affiliations de l'auteur au moyen d'une des clés \refKey{affiliation}
+et \refKey{affiliationtagged} suivantes.
+
+\begin{docKey}{affiliation}{={\oarg{tag}\marg{affiliation}}}{pas de valeur par défaut,\\initialement vide}
+  Cette clé permet de définir une (unique) \meta{affiliation}. Pour un auteur
+  ayant plusieurs affiliations, cette clé est utilisée autant de fois que
+  nécessaire.
+
+  En outre, chaque affiliation peut recevoir un \meta{tag} en vue d'être
+  réutilisée pour un autre auteur.
+\end{docKey}
+
+\begin{docKey}{affiliationtagged}{={\marg{tag}}}{pas de valeur par défaut,
+    initialement vide}
+  Cette clé permet de spécifier une (unique) affiliation déjà définie et taguée
+  pour un auteur précédent.
+\end{docKey}
+
+% \begin{bodycode}
+% % Exemple où 2 auteurs partagent l'affiliation "\meta{affiliation$_3$}".
+% \author[%
+%   affiliation="\marg{affiliation$_1$}",%
+%   affiliation="\marg{affiliation$_2$}",%
+%   affiliation="\oarg{tag de l'affiliation$_3$}\marg{affiliation$_3$}",%
+% ]{"\meta{Nom$_1$}", "\meta{Prénom$_1$}"}
+% \author[%
+%   affiliationtagged="\oarg{tag de l'affiliation$_3$}",%
+% ]{"\meta{Nom$_2$}", "\meta{Prénom$_2$}"}
+% \end{bodycode}
+
+\begin{bodycode}
+\author[
+  affiliation={Laboratoire \textsc{sphere}, Université Paris Diderot}
+  ]{Bustamante, Martha-Cecilia}
+\author[
+  affiliation=[aff2]{\textsc{lpma}, Université Pierre et Marie Curie},
+  affiliation={\textsc{ghdso}, Université Paris-Sud}]{Cléry, Matthias}
+\author[
+  affiliationtagged={aff2}
+]{Mazliak, Laurent}
+\end{bodycode}
+
+\begin{dbwarning}{Paires d'accolades
+    % des clés \refKey{affiliation} et \refKey{minibio}
+    (relativement) obligatoires}{}
+  Au cas (probable) où une valeur \meta{affiliation} contienne une ou plusieurs
+  virgules, la paire d'accolades l'entourant est obligatoire.
+\end{dbwarning}
+
+\begin{dbwarning}{Affichage des prénoms et noms du ou des auteurs}{}
+  Pour que les prénoms et noms du ou des auteurs soient affichés, il est
+  nécessaire :
+  \begin{enumerate}
+  \item de recourir à la commande habituelle \refCom{maketitle} ;
+  \item de procéder à une suite de compilations\suitecompilations{} :
+    \begin{enumerate}
+    \item \hologo{pdfLaTeX} ;
+    \item \hologo{biber} ;
+    \item \hologo{pdfLaTeX}.
+    \end{enumerate}
+  \end{enumerate}
+\end{dbwarning}
+
+\subsection{Résumé}
+\label{sec-resume}
+
+\begin{docEnvironment}[doc description=\mandatory,doclang/environment content=résumé]{abstract}{}
+  Cet environnement est destiné à recevoir le \meta{résumé} de l'article.
+\end{docEnvironment}
+
+\subsection{Mots clés}
+
+\begin{docCommand}[doc description=\mandatory]{keywords}{\oarg{variante des mots clés}\marg{mots clés}}
+  Cette commande permet de spécifier les \meta{mots clés} de l'article sous la
+  forme d'une liste séparée par des virgules.
+
+  La métadonnée \enquote{Mots-clés} du \File{PDF} produit contient
+  automatiquement les \meta{mots clés} spécifiés.  Dans le cas où ceux-ci
+  contiennent des caractères (notamment des mathématiques) non admis en
+  métadonnées des fichiers \file{PDF} , on spécifiera en argument optionnel une
+  \meta{variante des mots clés} ne contenant que des caractères autorisés.
+\end{docCommand}
+
+\begin{bodycode}[listing options={deletekeywords={[5]keywords}}]
+\keywords[N\string_p-space]{$\mathcal{N}_p$-space}
+\end{bodycode}
+
+\subsection{\texorpdfstring{\acrfull{msc}}{MSC}}
+
+\begin{docCommand}[doc description=\mandatory]{msc}{\marg{\acrshort{msc}}}
+  Cette commande permet de spécifier le (ou les) \meta{\acrshort{msc}} de
+  l'article sous la forme d'une liste séparée par des virgules.
+\end{docCommand}
+
+\section{Production du titre de l'article}
+\label{sec-creation-du-titre}
+
+Le titre proprement dit de l'article, regroupant tous les éléments saisis à la
+\vref{sec-prep-de-lart}, est produit par la commande standard
+\refCom{maketitle}.
+
+\begin{docCommand}[doc description=\mandatory]{maketitle}{}
+  Cette commande \emph{produit} l'affichage du \enquote{titre} de l'article,
+  c'est-à-dire :
+  \begin{itemize}
+  \item son titre et son éventuel sous-titre (commandes \refCom{title} et
+    \refCom{subtitle}) ;
+  \item son ou ses auteurs, sous la forme de leurs noms et prénoms (commande(s)
+    \refCom{author}) et, en note de bas de page, leurs affiliations respectives ;
+  \item son éventuel résumé (environnement \refEnv{abstract}) ;
+  \item son ou ses mots clés (commande \refCom{keywords}) ;
+  \item son ou ses \acrshort{msc} (commande \refCom{msc}).
+  \end{itemize}
+\end{docCommand}
+
+\begin{bodycode}[listing options={deletekeywords={[2]title,article},deletekeywords={[5]keywords}}]
+\title[Le Traité du calcul des probabilités]{Le Traité du calcul des
+  probabilités et de ses applications}
+\subtitle[Étendue et limites d'un projet borélien]{Étendue et limites
+  d'un projet borélien de grande envergure (1921-1939)}
+%
+\author[
+  affiliation={Laboratoire \textsc{sphere}, Université Paris Diderot}
+  ]{Bustamante, Martha-Cecilia}
+\author[
+  affiliation=[aff2]{\textsc{lpma}, Université Pierre et Marie Curie},
+  affiliation={\textsc{ghdso}, Université Paris-Sud}]{Cléry, Matthias}
+\author[
+  affiliationtagged={aff2}
+]{Mazliak, Laurent}
+%
+\begin{abstract}
+  Cet article est consacré à l'étude détaillée du vaste projet [...]
+\end{abstract}
+%
+\keywords{Probabilités, statistiques, balistique, assurance, jeux,
+  Émile Borel, Institut Henri Poincaré}
+\msc{01A60, 01A74, 60-03, 60A05, 62-03}
+%
+\maketitle
+\end{bodycode}
+
+\section{Remerciements}
+\label{sec:remerciements}
+
+\begin{docCommand}{acknowledgements}{\marg{remerciements}}
+  Cette commande, facultative, permet de spécifier des \meta{remerciements} pour
+  un article.
+\end{docCommand}
+
+\begin{bodycode}[listing options={deletekeywords={[2]first}}]
+\acknowledgments{%
+  The first author's research was supported by the Hungarian National
+  Science Foundation Grants K81658 and K104183. Research conducted
+  while the second author enjoyed the hospitality of the Alfréd Rényi
+  Institute of  Mathematics, and benefited from the \textsc{otka}
+  grant K109789.%
+}
+\end{bodycode}
+
+\begin{dbremark}{Affichage des remerciements sur les auteurs}{}
+  Pour que les remerciements soient affichés, il est nécessaire de recourir à la
+  commande \refCom{printbibliography} destinée à être utilisée en fin d'article.
+\end{dbremark}
+
+\section{Commandes de structuration}
+
+La \nwejmauthorcl{} modifie la commande usuelle de structuration
+\docAuxCommand{section} pour permettre d'en différencier le titre alternatif
+figurant en \gls{tdm} de celui figurant en entête\footnote{On notera, de ce
+  point de vue, la similitude avec la commande \protect\refCom{title}.}.
+
+\begin{docCommand}[doc new=2017-10-23]{section}{\oarg{titre alternatif {\normalfont\ttfamily\acrshort*{tdm}}}\oarg{titre alternatif entête}\marg{titre}}
+  Cette commande définit, pour la section en cours :
+  \begin{itemize}
+  \item son \meta{titre} figurant au fil du texte ;
+  \item son \emph{éventuel} \meta{titre alternatif
+      {\normalfont\ttfamily\acrshort*{tdm}}} figurant, dans le volume où
+    l'article sera publié :
+    \begin{itemize}
+    \item en \gls{tdm} ;
+    \item en signet.
+    \end{itemize}
+  \item son \emph{éventuel} \meta{titre alternatif entête} figurant en
+    entête\footnote{\Ie{} en titre courant.} sur les pages impaires.
+  \end{itemize}
+  L'usage précis de cette commande est synthétisé à la
+  \vref{tab-commande-section}.
+\end{docCommand}
+
+\begin{table}[htb]
+  \centering
+  \caption{Usage (des deux arguments optionnels) de la commande
+    \protect\refCom{section} }
+  \label{tab-commande-section}
+\footnotesize%
+\lstset{%
+  deletekeywords={section},deletekeywords={[3]section},%
+}
+\begin{tabular}{|l|c|c|c|}
+  \cline{2-4}
+  \multicolumn{1}{c|}{}                                                                                                                             & fil du texte                     & \gls{tdm}                                            & entête                \\\hline
+  \lstinline+\section{+\meta{titre}\lstinline+}+                                                                                                      & \multicolumn{3}{c|}{\meta{titre}}                                                                                       \\\hline
+  \lstinline+\section[+\meta{alt. {\normalfont\ttfamily\acrshort*{tdm}}}\lstinline+]{+\meta{titre}\lstinline+}+                                    & \meta{titre}                      & \multicolumn{2}{c|}{\meta{alt. {\normalfont\ttfamily\acrshort*{tdm}}}}    \\\hline
+  \lstinline+\section[][+\meta{alt. entête}\lstinline+]{+\meta{titre}\lstinline+}+                                                                 & \multicolumn{2}{c|}{\meta{titre}} & \meta{alt. entête}                                                        \\\hline
+  \lstinline+\section[+\meta{alt. {\normalfont\ttfamily\acrshort*{tdm}}}\lstinline+][+\meta{alt. entête}\lstinline+]{+\meta{titre}\lstinline+}+ & \meta{titre}                      & \meta{alt. {\normalfont\ttfamily\acrshort*{tdm}}} & \meta{alt. entête} \\\hline
+\end{tabular}
+\end{table}
+
+\section{Bibliographie}
+\label{sec-bibliographie}
+
+Pour composer les bibliographies, la \nwejmauthorcl{} recourt aux outils
+modernes que sont le \Package*{biblatex} et le moteur \hologo{biber} dont
+l'usage peut être brièvement résumé comme suit\autocite[Pour plus de détails,
+cf. par exemple][en français]{Bitouze}.
+\begin{enumerate}
+\item Construire, dans un \meta{fichier bibliographique}\footnote{De tels
+    fichiers sont d'extension \file{.bib}.}, une base bibliographique.
+
+  Pour ce faire, nous recommandons de recourir à un logiciel dédié, par exemple
+  \href{http://jabref.sourceforge.net/}{\program{JabRef}} que nous conseillons
+  de configurer en visitant le menu
+  \menuentry{Options>Preferences>General} et en choisissant dans les listes
+  déroulantes :
+  \begin{description}
+  \item[\menuentry{Default encoding} :] \menuentry{UTF8} ;
+  \item[\menuentry{Default bibliography mode} :] \menuentry{biblatex}.
+  \end{description}
+  On pourra en profiter pour changer la langue de l'interface dans la liste
+  déroulante \menuentry{Language}.
+
+  On n'oubliera pas de donner à chaque référence bibliographique une \meta{clé}
+  permettant de l'identifier de façon unique dans la base
+  bibliographique\footnote{Sous \program{JabRef}, l'icône en forme de
+    \enquote{baguette magique} ou de clé aide à générer ladite
+    \meta{clé}.}.
+\item Dans le fichier source \file{.tex} :
+  \begin{enumerate}
+  \item \emph{En préambule}, utiliser la commande \docAuxCommand{addbibresource}
+    pour indiquer le \meta{fichier bibliographique} à considérer :
+\begin{preamblecode}[listing options={alsolanguage={[biblatex]TeX}}]
+\addbibresource{"\meta{fichier bibliographique}".bib}
+\end{preamblecode}
+  \item Dans le corps du document, utiliser la commande
+    \docAuxCommand{autocite}\footnote{De préférence à la commande
+      \docAuxCommand{cite}.}\footnote{La référence est alors détaillée en note
+      de bas de page.}  ou, éventuellement, \docAuxCommand{textcite}\footnote{La
+      référence est alors affichée au fil du texte, mais avec moins de détails.}
+    du \Package*{biblatex} pour citer des références bibliographiques (chacune
+    pourvue d'une \meta{clé}) :
+\begin{bodycode}[listing options={alsolanguage={[biblatex]TeX}}]
+...\autocite{"\meta{clé1}"}... \textcite{"\meta{clé2}"} ...
+...\autocite{"\meta{clé3,clé4}"}... \textcite{"\meta{clé5,clé6}"} ...
+\end{bodycode}
+  \item À la fin du document, faire figurer la liste des références
+    bibliographiques au moyen de la commande \refCom{printbibliography}.
+  \end{enumerate}
+\item Procéder à une suite de compilations \hologo{pdfLaTeX}, \hologo{biber} et
+  \hologo{pdfLaTeX}\suitecompilations.
+\end{enumerate}
+
+\begin{docCommand}{printbibliography}{}
+  Cette commande produit la liste des références bibliographiques saisies selon
+  la syntaxe du \Package*{biblatex}. Elle a été redéfinie de sorte
+  à automatiquement afficher, avant la liste des références, les éventuels
+  remerciements (commande \refCom{acknowledgements}).
+\end{docCommand}
+
+Par exemple, si le \File{.bib} contient :
+
+\begin{bodycode}[listing only,listing options={alsolanguage={[biblatex]TeX},deletekeywords={[2]series,geometry}}]
+@Book{            har,
+  author	= {Hartshorne, Robin},
+  title		= {Algebraic geometry},
+  note		= {Graduate Texts in Mathematics, No. 52},
+  publisher	= {Springer-Verlag},
+  address	= {New York},
+  date		= {1977}
+}
+@Book{		  laz1,
+  author	= {Lazarsfeld, Robert},
+  title		= {Positivity in algebraic geometry. I},
+  volume	= {48},
+  note		= {Classical setting: line bundles and linear series},
+  publisher	= {Springer-Verlag},
+  address	= {Berlin},
+  date		= {2004}
+}
+@Article{         shin,
+  author	= {Shin, Kil-Ho},
+  title		= {$3$-dimensional Fano varieties with canonical
+                  singularities},
+  journal	= {Tokyo J. Math.},
+  volume	= {12},
+  date		= {1989},
+  number	= {2},
+  pages		= {375-385}
+}
+\end{bodycode}
+
+alors, le source \file{.tex} suivant :
+\begin{bodycode}[listing only,listing options={alsolanguage={[biblatex]TeX},deletekeywords={[1]theorem},deletekeywords={[2]first,and,see,theorem},deletekeywords={[3]theorem}}]
+The first assertion is a direct consequence of the Riemann-Roch
+formula for threefolds\autocite[See e.g.][437]{har} and
+Kawamata-Viehweg vanishing\autocite[Theorem~4.3.1]{laz1}. For the
+second assertion, see \textcite[Theorem~(0.4)]{shin}.
+%
+\printbibliography
+\end{bodycode}
+
+donne le texte figurant dans l'encadré intitulé \enquote{Exemple de
+  bibliographie} \vpageref{biblio}.
+
+\ExplSyntaxOn
+\makeatletter
+\defbibheading{origsectionnotintoc}[References]{%
+  \__nwejm_section*{#1}%
+}
+\makeatother
+\ExplSyntaxOff
+\renewcommand{\thempfootnote}{\arabic{mpfootnote}}
+%
+\begin{bodycode}[text only,float,title={Exemple de bibliographie},label=biblio]
+\StandardFootnotes
+The first assertion is a direct consequence of the Riemann-Roch formula for
+threefolds\autocite[See e.g.][437]{har} and Kawamata-Viehweg
+vanishing\autocite[Theorem~4.3.1]{laz1}. For the second assertion, see
+\textcite[Theorem~(0.4)]{shin}.
+%
+\printbibliography[heading=origsectionnotintoc,category=examples]
+\end{bodycode}
+%
+\renewcommand{\thempfootnote}{\alph{mpfootnote}}
+
+\section{Commandes propres aux mathématiques}
+\label{sec:comm-propr-aux}
+
+La \nwejmauthorcl{} :
+\begin{itemize}
+\item charge les packages :
+  \begin{itemize}
+  \item \package*{kpfonts} qui fournit tous les symboles standard, y compris
+    ceux du \Package{amssymb}, mais en propose également de nombreux autres ;
+  \item \package*{mathtools} qui lui-même charge \package*{amsmath} (mais en
+    l'étendant et en corrigeant certains de ses défauts), si bien que toutes les
+    commandes de ces deux packages sont disponibles ;
+  \item \package*{rsfso} qui fournit de jolies lettres calligraphiques (via
+    la commande \docAuxCommand{mathscr}) ;
+  \end{itemize}
+\item redéfinit certaines commandes et en fournit quelques nouvelles, listées
+  ci-dessous ;
+\item fournit (en s'appuyant sur les packages \package*{amsthm} et
+  \package*{thmtools}) des environnements de type \enquote{théorème} classiques,
+  listés ci-dessous.
+\end{itemize}
+
+\subsection{Constantes universelles et fonctions courantes}
+
+\begin{docCommand}{I}{}
+  Cette commande affiche l'unité imaginaire : \enquote{$\I$}.
+\end{docCommand}
+
+\begin{docCommand}{E}{\oarg{argument}}
+ Selon que son argument optionnel est utilisé ou pas, cette commande affiche :
+  \begin{itemize}
+  \item la fonction exponentielle appliquée à l'\meta{argument} ;
+  \item le nombre d'Euler \enquote{$\E$}.
+  \end{itemize}
+\end{docCommand}
+
+\begin{bodycode}[listing and text]
+\begin{align}
+  \E[\I\pi]+1 & = 0 \\
+  \E          & = \sum_{n\geq 0} \frac{1}{n!}
+\end{align}
+\end{bodycode}
+
+\begin{dbremark}{Syntaxes équivalentes pour la fonction exponentielle}{}
+  Il y a équivalence entre les commandes :
+  \begin{itemize}
+  \item |\E[|\meta{argument}|]| qui est fournie par la classe ;
+  \item |\E^{|\meta{argument}|}| qui est plus habituelle.
+\end{itemize}
+\end{dbremark}
+
+\begin{docCommand}{log(*)}{}
+  Cette commande affiche, sous sa forme :
+  \begin{description}
+  \item[\emph{non} étoilée :] \enquote{$\log$} ;
+  \item[étoilée :] \enquote{$\log*$}.
+  \end{description}
+\end{docCommand}
+
+\begin{docCommand}{lg(*)}{}
+  Cette commande affiche, sous sa forme :
+  \begin{description}
+  \item[\emph{non} étoilée :] \enquote{$\lg$} ;
+  \item[étoilée :] \enquote{$\lg*$}.
+  \end{description}
+\end{docCommand}
+
+\subsection{Ensembles}
+
+\subsubsection{Ensembles courants}
+
+\begin{docCommand}{bbN}{}
+  Cette commande affiche l'ensemble des nombres entiers positifs :
+  \enquote{$\bbN$}.
+\end{docCommand}
+
+\begin{docCommand}{bbZ}{}
+  Cette commande affiche l'ensemble des nombres entiers relatifs :
+  \enquote{$\bbZ$}.
+\end{docCommand}
+
+\begin{docCommand}{bbD}{}
+  Cette commande affiche l'ensemble des nombres décimaux : \enquote{$\bbD$}.
+\end{docCommand}
+
+\begin{docCommand}{bbQ}{}
+  Cette commande affiche l'ensemble des nombres rationnels : \enquote{$\bbQ$}.
+\end{docCommand}
+
+\begin{docCommand}{bbR}{}
+  Cette commande affiche l'ensemble des nombres réels : \enquote{$\bbR$}.
+\end{docCommand}
+
+\begin{docCommand}{bbC}{}
+  Cette commande affiche l'ensemble des nombres complexes : \enquote{$\bbC$}.
+\end{docCommand}
+
+\begin{docCommand}{bbK}{}
+  Cette commande peut être utilisée pour dénoter un corps quelconque. Elle
+  affiche \enquote{$\bbK$}.
+\end{docCommand}
+
+\subsubsection{Ensembles définis}
+
+\begin{docCommand}[doc updated=2019-03-18]{set}{\marg{définition}\oarg{caractérisation}}
+  Cette commande affiche l'ensemble défini par \meta{définition}, avec une
+  éventuelle \meta{caractérisation}\footnote{Partie suivant \enquote{tels
+      que}.}.
+\begin{bodycode}[listing and text]
+\begin{align}
+  \bbN & = \set{0,1,2,3,\dots}              \\
+  \bbZ & = \bbN\cup\set{-n}[n\in\bbN]       \\
+  \bbQ & = \set{p/q}[p\in\bbZ,\ q\in\bbN^*] \\
+  \bbQ & = \set{\frac{p}{q}}[p\in\bbZ,\ q\in\bbN^*]
+\end{align}
+\end{bodycode}
+\end{docCommand}
+
+\subsection[Fonctions trigonométriques circulaires et hyperboliques]{Fonctions
+  trigonométriques circulaires et hyperboliques, directes et réciproques}
+
+\begin{dbremark}{Commandes propres au français}{}
+  Les commandes de cette section ne sont définies (ou redéfinies) que pour les
+  articles en français.
+\end{dbremark}
+
+\begin{docCommand}{cot}{}
+  Cette commande affiche la cotangente : \enquote{$\cot$}. Elle a pour alias
+  \docAuxCommand{cotan}.
+\end{docCommand}
+
+\begin{docCommand}{arccos}{}
+  Cette commande affiche (la détermination principale de) l'arc cosinus :
+  \enquote{$\arccos$}.
+\end{docCommand}
+
+\begin{docCommand}{arcsin}{}
+  Cette commande affiche (la détermination principale de) l'arc sinus :
+  \enquote{$\arcsin$}.
+\end{docCommand}
+
+\begin{docCommand}{arctan}{}
+  Cette commande affiche (la détermination principale de) l'arc tangente :
+  \enquote{$\arctan$}.
+\end{docCommand}
+
+\begin{docCommand}{cosh}{}
+  Cette commande affiche le cosinus hyperbolique : \enquote{$\cosh$}. Elle a pour
+  alias \docAuxCommand{ch}.
+\end{docCommand}
+
+\begin{docCommand}{sinh}{}
+  Cette commande affiche le sinus hyperbolique : \enquote{$\sinh$}. Elle a pour
+  alias \docAuxCommand{sh}.
+\end{docCommand}
+
+\begin{docCommand}{tanh}{}
+  Cette commande affiche la tangente hyperbolique : \enquote{$\tanh$}.
+  \begin{dbremark}{Pas de commande \protect\docAuxCommand{th} pour la tangente hyperbolique}{}
+    La commande |\th| est déjà définie dans \LaTeX{} et ne peut donc pas être
+    utilisée pour la tangente hyperbolique.
+  \end{dbremark}
+\end{docCommand}
+
+\begin{docCommand}{arccosh}{}
+  Cette commande affiche l'argument cosinus hyperbolique :
+  \enquote{$\arccosh$}. Elle a pour alias \docAuxCommand{Argch}.
+\end{docCommand}
+
+\begin{docCommand}{arcsinh}{}
+  Cette commande affiche l'argument sinus hyperbolique :
+  \enquote{$\arcsinh$}. Elle a pour alias \docAuxCommand{Argsh}.
+\end{docCommand}
+
+\begin{docCommand}{arctanh}{}
+  Cette commande affiche l'argument tangente hyperbolique :
+  \enquote{$\arctanh$}. Elle a pour alias \docAuxCommand{Argth}.
+\end{docCommand}
+
+\subsection{Paires de délimiteurs}
+
+\subsubsection{Commandes prédéfinies}
+
+La classe offre un certain nombre de commandes listées \vref{com-paired},
+facilitant la saisie de paires de délimiteurs courants, par exemple pour les
+normes, les valeurs absolues, etc.
+
+\begin{table}
+  \centering
+  \begin{tabular}{ll}
+    Commandes               & Exemple           \\\toprule
+    \docAuxCommand{norm}    & $\norm{\cdot}$    \\\midrule
+    \docAuxCommand{lnorm}   & $\lnorm{\cdot}$   \\\midrule
+    \docAuxCommand{llnorm}  & $\llnorm{\cdot}$  \\\midrule
+    \docAuxCommand{lpnorm}  & $\lpnorm{\cdot}$  \\\midrule
+    \docAuxCommand{supnorm} & $\supnorm{\cdot}$ \\\midrule
+    \docAuxCommand{abs}     & $\abs{\cdot}$     \\\midrule
+    \docAuxCommand{prt}     & $\prt{\cdot}$     \\\midrule
+    \docAuxCommand{brk}     & $\brk{\cdot}$     \\\midrule
+    \docAuxCommand{brc}     & $\brc{\cdot}$     \\\midrule
+    \docAuxCommand{leqgeq}  & $\leqgeq{\cdot}$  \\\midrule
+    \docAuxCommand{lrangle} & $\lrangle{\cdot}$ \\\bottomrule
+  \end{tabular}
+  \caption{Commandes facilitant la saisie de paires de
+    délimiteurs courants}
+  \label{com-paired}
+\end{table}
+
+Ces commandes ayant toutes la même syntaxe, seule celle de la commande
+\docAuxCommand{norm} est détaillée.
+
+\begin{docCommand*}{norm}{\oarg{paramètre de taille}\marg{argument}}
+  Cette commande affiche la norme de l'\meta{argument}.
+
+  Par défaut, la hauteur des délimiteurs est automatiquement adaptée à celle de
+  l'\meta{argument} mais il est possible de spécifier en argument optionnel un
+  \meta{paramètre de taille} :
+  \begin{itemize}
+  \item \docValue{0} : taille par défaut du délimiteur\footnote{Taille du
+      délimiteur en mode texte.} ;
+  \item \docValue{1} ou \docAuxCommand{big} : taille du délimiteur plus grande
+    que la précédente ;
+  \item \docValue{2} ou \docAuxCommand{Big} : taille du délimiteur plus grande
+    que la précédente ;
+  \item \docValue{3} ou \docAuxCommand{bigg} : taille du délimiteur plus grande
+    que la précédente ;
+  \item \docValue{4} ou \docAuxCommand{Bigg} : taille du délimiteur plus grande
+    que la précédente.
+  \end{itemize}
+\end{docCommand*}
+
+\begin{docCommand}{norm*}{\marg{argument}}
+  Cette commande est équivalente à |\norm[0]{|\meta{argument}|}|.
+\end{docCommand}
+
+\begin{bodycode}[listing and text]
+\begin{equation}
+\supnorm{\frac{A}{2}}^k    \quad
+\supnorm[0]{\frac{A}{2}}^k \quad
+\supnorm[1]{\frac{A}{2}}^k \quad
+\supnorm[2]{\frac{A}{2}}^k \quad
+\supnorm[3]{\frac{A}{2}}^k \quad
+\supnorm[4]{\frac{A}{2}}^k \quad
+\supnorm*{\frac{A}{2}}^k
+\end{equation}
+\end{bodycode}
+
+\begin{dbremark}{Indices des paires de délimiteurs qui n'en sont pas pourvues par défaut}{}
+  Il est toujours possible d'ajouter manuellement un indice à une commande de
+  paire de délimiteurs qui n'en est pas pourvue par défaut.
+\begin{bodycode}[listing and text]
+\begin{equation}
+\norm{\frac{A}{2}}_3
+\end{equation}
+\end{bodycode}
+\end{dbremark}
+
+\subsubsection{Commandes à définir}
+
+Il est possible de définir de nouvelles commandes facilitant la saisie de paires
+de délimiteurs au moyen de la commande \refCom{NewPairedDelimiter}.
+%
+\begin{docCommand}{NewPairedDelimiter}{\marg{commande}\marg{options}}
+  Cette commande définit une \meta{commande} similaire à la commande
+  \docAuxCommand{norm} mais dont les délimiteurs gauche et droit et l'indice
+  sont ceux spécifiés en \meta{options} au moyen des clés \refKey{left},
+  \refKey{right} et \refKey{subscript}.
+  \begin{docKey}{left}{=\meta{délimiteur}}{pas de valeur par défaut,
+      initialement vide}
+    Cette clé permet de spécifier le \meta{délimiteur} gauche de la \meta{commande} ainsi
+    créée.
+  \end{docKey}
+  \begin{docKey}{right}{=\meta{délimiteur}}{pas de valeur par défaut,
+      initialement vide}
+    Cette clé permet de spécifier le \meta{délimiteur} droit de la
+    \meta{commande} ainsi créée.
+  \end{docKey}
+  \begin{docKey}{subscript}{=\meta{indice}}{pas de valeur par défaut,
+      initialement vide}
+    Cette clé permet de spécifier l'\meta{indice} de la \meta{commande} ainsi
+    créée.
+  \end{docKey}
+\end{docCommand}
+
+\NewPairedDelimiter{\floor}{
+  left=\lfloor,
+  right=\rfloor,
+  subscript=\text{eff}
+}
+\begin{preamblecode}[listing options={morekeywords={[2]left,right,subscript}}]
+\NewPairedDelimiter{\floor}{
+  left=\lfloor,
+  right=\rfloor,
+  subscript=\text{eff}
+}
+\end{preamblecode}
+\begin{bodycode}[listing and text]
+\begin{equation}
+\floor{\frac{A}{2}}
+\end{equation}
+\end{bodycode}
+
+\subsection{Opérateurs}
+
+\subsubsection{Opérateurs prédéfinis}
+
+\begin{docCommand}{dif}{}
+  Cette commande affiche l'opérateur différentiel employé notamment dans les
+  intégrales : \enquote{$\dif$}.
+\begin{bodycode}[listing and text]
+\begin{equation}
+\iiint_T f(x,y,z)\dif x \dif y \dif z=0
+\end{equation}
+\end{bodycode}
+\end{docCommand}
+
+\begin{docCommand}{grad}{}
+  Cette commande affiche le gradient :
+  \begin{itemize}
+  \item sous la forme \enquote{$\grad$} par défaut ;
+  \item sous la forme \enquote{$\nabla$} si la valeur \docValue{nabla} est
+    passée à la clé \refKey{gradient} en argument de la commande
+    \refCom{articlesetup}.
+  \end{itemize}
+\end{docCommand}
+
+\begin{docCommand}{Div}{}
+  Cette commande affiche la divergence : \enquote{$\Div$}.
+  \begin{dbremark}{Pas de commande \protect\docAuxCommand{div} pour la divergence}{}
+    La commande |\div| est déjà définie dans \LaTeX{} et ne peut donc pas être
+    utilisée pour la divergence.
+  \end{dbremark}
+\end{docCommand}
+
+\begin{docCommand}{curl}{}
+  Cette commande affiche le rotationnel :
+  \enquote{$\curl$}. Elle a pour alias \docAuxCommand{rot}.
+\end{docCommand}
+
+\begin{bodycode}[listing and text]
+\begin{align}
+  \Div  F & = \grad \cdot  F \\
+  \curl F & = \grad \wedge F
+\end{align}
+\end{bodycode}
+
+\begin{docCommand}{supp}{}
+  Cette commande affiche le support (d'une fonction, d'une mesure, etc.) :
+  \enquote{$\supp$}.
+\end{docCommand}
+
+\subsubsection{Opérateurs à définir}
+
+Il est possible de définir de nouveaux noms d'opérateurs au moyen de la commande
+usuelle \refCom{DeclareMathOperator}.
+
+\begin{docCommand}{DeclareMathOperator}{\marg{commande}\marg{nom}}
+  Cette commande définit la \meta{commande} qui affiche l'opérateur nommé
+  \meta{nom}.
+\end{docCommand}
+
+\begin{preamblecode}
+\DeclareMathOperator{\cat}{Cat}
+\end{preamblecode}
+\begin{bodycode}[listing and text,listing options={deletekeywords={example},deletekeywords={[4]all}}]
+A standard example is $\cat$, the $2$-category of all (small) ideals.
+\end{bodycode}
+
+\subsubsection{(Usage avancé) Précautions en cas d'opérations binaires non
+  courantes}
+
+Si, dans des opérations binaires, un opérateur\footnote{Prédéfini ou défini au
+  moyen de la commande \protect\refCom{DeclareMathOperator}.} est suivi par un
+opérateur binaire courant de \LaTeX{} (\docAuxCommand{circ},
+\docAuxCommand{cdot}, \docAuxCommand{wedge}, etc.), les espaces horizontales les
+séparant seront correctes.
+
+En revanche, si l'opérateur binaire impliqué n'est pas courant, il convient de
+le déclarer au moyen de la commande \refCom{BinaryOperators}.
+
+\begin{docCommand}{BinaryOperators}{\marg{opérateurs binaires}}
+  Cette commande assure que les \meta{opérateurs binaires}\footnote{Séparés par
+    des virgules.} seront, dans des opérations binaires, correctement espacés
+  des opérateurs les précédant.
+\end{docCommand}
+
+\begin{preamblecode}[listing options={moretexcs={mybinop}}]
+\newcommand{\mybinop}{\mathbin{*}}
+\end{preamblecode}
+\begin{bodycode}[listing and text,listing options={moretexcs={mybinop}}]
+\begin{tabular}{>{$}l<{$}@{ : }l}
+  \grad \cdot    F & bon     \\
+  \grad \mybinop F & mauvais \\ \BinaryOperators{\mybinop}%
+  \grad \mybinop F & bon (grâce à \verb|\BinaryOperators{\mybinop}|)
+\end{tabular}
+\end{bodycode}
+
+\subsection{Divers}
+
+\begin{dbremark}{Commandes propres au français (bis)}{}
+  Les commandes suivantes ne sont redéfinies que pour les articles en
+  français.
+\end{dbremark}
+
+\begin{docCommand}{leq}{}
+  Cette commande affiche \enquote{$\leq$}.
+\end{docCommand}
+\begin{docCommand}{geq}{}
+  Cette commande affiche \enquote{$\geq$}.
+\end{docCommand}
+
+\subsection{Environnements de type \enquote{théorème}}
+
+Pour faciliter la composition des théorèmes et objets analogues, la
+\nwejmauthorcl{} fournit des environnements prêts à l'emploi et permet d'en
+créer de nouveaux si besoin est (cf. commande \refCom{newtheorem}).
+
+\subsubsection{Environnements prédéfinis}
+\label{sec:envir-de-type}
+
+La \vref{env-theorems} liste les théorèmes et objets analogues prédéfinis par la
+\nwejmauthorcl{} avec :
+\begin{description}
+\item[en colonne~1] le nom des environnements correspondants ;
+\item[en colonne~2] leurs titres récurrents (automatiquement traduits dans la
+  langue de l'article).
+\end{description}
+
+\begin{table}
+  \centering
+  \begin{tabular}{ll}
+    Environnement                   & Titre (ici en français) \\\toprule
+    \docAuxEnvironment{theorem}     & Théorème                \\\midrule
+    \docAuxEnvironment{corollary}   & Corollaire              \\\midrule
+    \docAuxEnvironment{conjecture}  & Conjecture              \\\midrule
+    \docAuxEnvironment{proposition} & Proposition             \\\midrule
+    \docAuxEnvironment{lemma}       & Lemme                   \\\midrule
+    \docAuxEnvironment{axiom}       & Axiome                  \\\midrule[.75pt]
+    \docAuxEnvironment{definition}  & Définition              \\\midrule
+    \docAuxEnvironment{remark}      & Remarque                \\\midrule
+    \docAuxEnvironment{example}     & Exemple                 \\\midrule
+    \docAuxEnvironment{notation}    & Notation                \\\midrule[.75pt]
+    \docAuxEnvironment{proof}       & Preuve                  \\\bottomrule
+  \end{tabular}
+  \caption{Environnements de type \enquote{théorème} fournis}
+  \label{env-theorems}
+\end{table}
+
+\begin{dbremark}{\enquote{Théorèmes} non numérotés}{}
+  Chacun des environnements de la \vref{env-theorems} admet une version étoilée
+  créant une version non numérotée de l'objet de type \enquote{théorème}
+  correspondant.
+\end{dbremark}
+
+\begin{bodycode}[listing and text]
+\begin{theorem}
+  Tout espace métrisable séquentiellement compact est compact.
+\end{theorem}
+\begin{definition}[congruence modulo $n$]
+  Soit $n$ un entier supérieur ou égal à $2$. Deux entiers $a$ et $b$
+  sont dits congruents modulo $n$ si $a - b \in n\bbZ$.
+\end{definition}
+\begin{remark*}
+  Une des plus belles relations mathématiques est $\E[i\pi]+1=0$.
+\end{remark*}
+\begin{proof}
+  Tout ce qui est rare est cher. Or un cheval bon marché est rare.
+  Donc un cheval bon marché est cher.
+\end{proof}
+\end{bodycode}
+
+On remarque dans l'exemple précédent que les \enquote{théorèmes} ont des mises
+en forme variables. La \nwejmauthorcl{} fournit effectivement trois styles de
+\enquote{théorèmes}, \docValue{theorem}, \docValue{definition} et
+\docValue{proof}, dont les caractéristiques sont indiquées à la
+\vref{env-theorems-styles}.
+
+\begin{table}
+  \centering
+  % \setlength{\tymin}{\widthof{romain, terminé}}
+  \begin{tabulary}{\linewidth}{lLLL}
+Style                 & Titre récurrent                  & Contenu                            & \enquote{Théorèmes} concernés               \\\toprule
+\docValue{theorem}    & gras, romain, numéroté           & italique
+                      & théorèmes, corollaires, conjectures, propositions, lemmes, axiomes                                                  \\\midrule
+\docValue{definition} & gras, romain, numéroté           & romain                             & définitions, remarques, exemples, notations \\\midrule
+\docValue{proof}      & non gras, italique, non numéroté & romain, terminé par un carré blanc & preuves                                     \\\bottomrule
+  \end{tabulary}
+  \caption{Styles de \enquote{théorèmes} fournis}
+  \label{env-theorems-styles}
+\end{table}
+
+\subsubsection{Environnements définis par l'utilisateur}
+\label{sec:envir-de-type-1}
+
+Si les environnements de \enquote{théorème} fournis par la classe ne suffisent
+pas, la commande \refCom{newtheorem} permet d'en créer de nouveaux.
+
+\begin{docCommand}{newtheorem}{\oarg{option(s)}\marg{nom}}
+  Cette commande crée un nouvel environnement \LaTeX{}, \meta{nom}, destiné à la
+  composition d'un \enquote{théorème} dont, par défaut :
+  \begin{itemize}
+  \item le titre récurrent est \meta{Nom}\footnote{\Ie*{}, quelle que soit la
+      langue de l'article, le \meta{nom} de l'environnement \LaTeX{} dont
+      l'initiale est en majuscule.} ;
+  \item le style est \docValue{theorem}.
+  \end{itemize}
+  Cette commande crée également l'environnement étoilé \meta{nom}|*| produisant
+  des occurrences \emph{non} numérotées de ce \enquote{théorème}.
+
+\begin{preamblecode}[listing options={deletekeywords={[2]article}}]
+\newtheorem{article}
+\end{preamblecode}
+\begin{bodycode}[listing and text,listing options={deletekeywords={[2]article,label}}]
+\begin{article*}[dit premier]
+Les hommes naissent et demeurent libres et égaux en droits [...]
+\end{article*}
+\begin{article}[dit premier]\label{premier}
+Les hommes naissent et demeurent libres et égaux en droits [...]
+\end{article}
+L'\vref{premier} est le plus célèbre.
+\end{bodycode}
+
+  Si la valeur par défaut du style (\docValue{theorem}) ne convient pas, il
+  suffit de spécifier en \meta{option(s)} celle souhaitée au moyen de la clé
+  \refKey{style} suivante.
+  \begin{docKey}{style}{=\docValue{theorem}\textbar\docValue{definition}\textbar\docValue{proof}}{pas
+      de valeur par défaut,\\initialement \docValue{theorem}}
+    Cette clé permet de spécifier le style du \enquote{théorème} à créer, au
+    moyen des valeurs \docValue{theorem}, \docValue{definition} et
+    \docValue{proof}.
+  \end{docKey}
+\begin{preamblecode}
+\newtheorem[style=definition]{fait}
+\end{preamblecode}
+\begin{bodycode}[listing and text,listing options={deletekeywords={[2]label}}]
+\begin{fait}\label{majeure}
+Tout ce qui est rare est cher.
+\end{fait}
+\begin{fait}\label{mineure}
+Un cheval bon marché est rare.
+\end{fait}
+En vertu des \cref{mineure,majeure}, un cheval bon marché est
+cher.
+\end{bodycode}
+
+  Si la valeur par défaut du titre récurrent (\meta{Nom}) ne convient pas, il
+  suffit de spécifier en \meta{option(s)} celle souhaitée au moyen de la clé
+  \refKey{title} suivante.
+  \begin{docKey}{title}{={\meta{titre récurrent}}}{pas de
+      valeur par défaut, initialement vide}
+    Cette clé permet de spécifier un \meta{titre récurrent} différent de
+    \meta{Nom}, valable quelle que soit la langue de l'article.
+  \end{docKey}
+\begin{preamblecode}
+\newtheorem[title=expérience]{experience}
+\end{preamblecode}
+\begin{bodycode}[listing and text,listing options={deletekeywords={[2]label}}]
+\begin{experience}\label{un}
+On lance un dé à 6 faces [...]
+\end{experience}
+\begin{experience}\label{deux}
+On lance deux dés à 6 faces [...]
+\end{experience}
+Les \vref{un,deux} mettent en évidence [...]
+\end{bodycode}
+
+  On remarque que, en cas de références croisées au moyen de la commande
+  recommandée\footnote{Cf. \vref{sec-references-croisees}} \refCom{vref} (ou
+  \refCom{cref}), le titre récurrent du ou des \enquote{théorèmes} référencés
+  est automatiquement ajouté à la référence et ce, éventuellement sous sa forme
+  plurielle. Par défaut, cette dernière est obtenue en ajoutant un \enquote{s}
+  final à \meta{nom} ou au \meta{titre récurrent} fixée par l'option
+  \refKey{title}. Si cette forme plurielle doit être construite différemment, il
+  convient de le spécifier en \meta{option(s)} au moyen de la clé
+  \refKey{title-plural} suivante.
+  \begin{docKey}{title-plural}{={\meta{forme plurielle du titre récurrent}}}{pas de
+      valeur\\par défaut, initialement vide}
+    Cette clé permet de spécifier la forme plurielle du titre récurrent.
+  \end{docKey}
+\begin{preamblecode}
+\newtheorem[title-plural=anneaux]{anneau}
+\end{preamblecode}
+\begin{bodycode}[listing and text,listing options={deletekeywords={[2]label}}]
+\begin{anneau}\label{anneau}
+Considérons un anneau : [...]
+\end{anneau}
+\begin{anneau}\label{anneau-bis}
+Considérons un autre anneau : [...]
+\end{anneau}
+Les \vref{anneau,anneau-bis} admettent [...]
+\end{bodycode}
+
+\begin{preamblecode}
+\newtheorem[title=idéal,title-plural=idéaux]{ideal}
+\end{preamblecode}
+\begin{bodycode}[listing and text,listing options={deletekeywords={[2]label}}]
+\begin{ideal}\label{ideal}
+Considérons un idéal : [...]
+\end{ideal}
+\begin{ideal}\label{ideal-bis}
+Considérons un autre idéal : [...]
+\end{ideal}
+Les \vref{ideal,ideal-bis} admettent [...]
+\end{bodycode}
+
+  % Si besoin est, il est même possible de spécifier des titres récurrents
+  % différents selon la langue utilisée au moyen des clés suivantes :
+  % \begin{docKey}{title/english}{={\meta{titre récurrent en anglais}}}{pas de
+  %     valeur par défaut,\\initialement vide}
+  % \end{docKey}
+  % \begin{docKey}{title/french}{={\meta{titre récurrent en français}}}{pas de
+  %     valeur par défaut,\\initialement vide}
+  % \end{docKey}
+  % \begin{docKey}{title/german}{={\meta{titre récurrent en allemand}}}{pas de
+  %     valeur par défaut,\\initialement vide}
+  % \end{docKey}
+  % \begin{docKey}{title/dutch}{={\meta{titre récurrent en néerlandais}}}{pas de
+  %     valeur par défaut,\\initialement vide}
+  %   Ces clés permettent de spécifier un \meta{titre récurrent} différent
+  %   de \meta{Nom} pour la langue correspondante.
+  % \end{docKey}
+\end{docCommand}
+
+\subsection{Énumérations}
+\label{sec:list-dhyp-ou}
+
+Pour faciliter la composition des énumérations (d'hypothèses, d'assertions, de
+conditions, etc.), la \nwejmauthorcl{} fournit des environnements prêts
+à l'emploi et permet d'en créer de nouveaux si besoin est (cf. commande
+\refCom{newenumeration}).
+
+\subsubsection{Énumérations prédéfinies}
+\label{sec:predefinies-:-listes}
+
+Dans les articles en mathématiques, il est fréquent d'énumérer des assertions,
+hypothèses ou conditions et de s'y référer. Pour ce faire, la \nwejmauthorcl{}
+fournit trois environnements qui s'emploient comme l'habituel environnement
+\docAuxEnvironment{enumerate} de listes ordonnées (numérotées) :
+\refEnv{assertions}, \refEnv{hypotheses} et \refEnv{conditions}, dans lesquels
+chaque assertion, hypothèse ou condition est introduite par la commande
+\docAuxCommand{item}.
+
+\begin{docEnvironment}[doclang/environment content=assertions]{assertions}{}
+  Cet environnement compose une liste d'assertions.
+\end{docEnvironment}
+\begin{docEnvironment}[doclang/environment content=hypothèses]{hypotheses}{}
+  Cet environnement compose une liste d'hypothèses.
+\end{docEnvironment}
+\begin{docEnvironment}[doc new=2019-03-18,doclang/environment content=conditions]{conditions}{}
+  Cet environnement compose une liste de conditions.
+\end{docEnvironment}
+
+\begin{bodycode}[listing and text,listing options={deletekeywords={[2]label}}]
+\begin{axiom}\label{mon-axiome}
+  Chaque assertion suivante est admise.
+  \begin{assertions}
+  \item\label{rare-cher} Tout ce qui est rare est cher.
+  \item\label{cheval} Un cheval bon marché est rare.
+  \end{assertions}
+\end{axiom}
+En vertu des \vref{rare-cher,cheval} de l'\vref{mon-axiome},
+un cheval bon marché est cher.
+\end{bodycode}
+
+\subsubsection{Énumérations définies par l'utilisateur}
+
+Si les énumérations fournies par la classe ne suffisent pas, il est possible
+d'en créer de nouvelles au moyen de la commande \refCom{newenumeration}.
+
+\begin{docCommand}[doc new=2019-03-18]{newenumeration}{\oarg{option(s)}\marg{nom}}
+  Cette commande crée un nouvel environnement \LaTeX{}, \meta{nom}, qui
+  s'emploie comme l'habituel environnement \docAuxEnvironment{enumerate} de
+  listes ordonnées (numérotées) dans lequel chaque item à énumérer
+  est introduit par la commande \docAuxCommand{item}.
+
+\begin{preamblecode}
+\newenumeration{conventions}
+\end{preamblecode}
+\begin{bodycode}[listing and text]
+\begin{conventions}
+\item Le cheval est bon marché.
+\item Le cheval est cher.
+\end{conventions}
+\end{bodycode}
+
+  On constate que chaque item énuméré est introduit par un label par défaut
+  constitué de l'initiale du \meta{nom} et indexé par un chiffre arabe, le tout
+  entre parenthèses. Si ce label ne convient pas, il suffit de spécifier celui
+  souhaité en \meta{option(s)} au moyen de la clé \refKey{label}.
+  \begin{docKey}{label}{={\meta{label}}}{pas de
+      valeur par défaut, initialement initiale du \meta{nom}}
+    Cette clé permet de spécifier un \meta{label} différent de l'initiale du
+    \meta{nom} de l'environnement.
+  \end{docKey}
+\renewenumeration[label=K]{conventions}
+\begin{preamblecode}
+\newenumeration[label=K]{conventions}
+\end{preamblecode}
+\begin{bodycode}[listing and text,listing options={deletekeywords={[2]label}}]
+\begin{conventions}
+\item\label{k-one} Le cheval est bon marché.
+\item\label{k-two} Le cheval est cher.
+\end{conventions}
+Cf. \vref{k-one}. Cf. \vref{k-one,k-two}.
+\end{bodycode}
+
+On remarque que, en cas de références croisées au moyen de la commande
+recommandée\footnote{Cf. \vref{sec-references-croisees}} \refCom{vref} (ou
+\refCom{cref}), le \meta{nom} de la ou des énumérations référencées est
+automatiquement ajouté à la référence et ce, sous ses formes singulière ou
+plurielle selon les cas. Par défaut, la forme :
+\begin{description}
+\item[plurielle] est le \meta{nom} ;
+\item[singulière] est obtenue en supprimant la dernière lettre\footnote{Supposée être
+  souvent un \enquote{s}.} du \meta{nom}.
+\end{description}
+Si ces formes singulière ou plurielle doivent être construites différemment, il
+convient de le spécifier en \meta{option(s)} au moyen des clés
+\refKey{singular} et \refKey{plural} suivantes.
+  \begin{docKey}{singular}{={\meta{forme singulière de l'énumération}}}{pas de
+      valeurpar défaut,\\initialement vide}
+    Cette clé permet de spécifier la forme singulière de l'énumération.
+  \end{docKey}
+  \begin{docKey}{plural}{={\meta{forme plurielle de l'énumération}}}{pas de
+      valeur par défaut,\\initialement vide}
+    Cette clé permet de spécifier la forme plurielle de l'énumération.
+  \end{docKey}
+\begin{preamblecode}
+\newenumeration[singular=cas]{cas} % Sinon, forme sing. = « ca ».
+\end{preamblecode}
+\begin{bodycode}[listing and text,listing options={deletekeywords={[2]label}}]
+\begin{cas}
+\item\label{case-one} Le cheval est bon marché.
+\item\label{case-two} Le cheval est cher.
+\end{cas}
+Cf. \vref{case-one}. Cf. \vref{case-one,case-two}.
+\end{bodycode}
+
+\begin{preamblecode}
+\newenumeration[singular=règle,plural=règles]{regles}
+\end{preamblecode}
+\begin{bodycode}[listing and text,listing options={deletekeywords={[2]label}}]
+\begin{regles}
+\item\label{regle-one} Le cheval est bon marché.
+\item\label{regle-two} Le cheval est cher.
+\end{regles}
+Cf. \vref{regle-one}. Cf. \vref{regle-one,regle-two}.
+\end{bodycode}
+%
+\end{docCommand}
+
+Au besoin, la commande \refCom{renewenumeration} permet de redéfinir une
+énumération préalablement définie au moyen de la commande
+\refCom{newenumeration}.
+
+\begin{docCommand}[doc new=2019-03-18]{renewenumeration}{\oarg{option(s)}\marg{nom}}
+  Cette commande reféfinit l'environnement d'énumération \meta{nom}. Ses
+  \meta{option(s)} sont les mêmes que celles de la commande
+  \refCom{newenumeration}.
+\end{docCommand}
+
+\section{Commandes généralistes}
+\label{sec:comm-gener}
+
+En plus des commandes propres aux mathématiques, la \nwejmauthorcl{} fournit des
+commandes généralistes destinées à faciliter la saisie d'un article à paraître
+dans la \nwejm{}.
+
+\begin{docCommand}{ie(*)}{}
+  Cette commande affiche l'expression \enquote{\ie*{}} traduite dans la langue
+  de l'article, sous sa forme :
+  \begin{description}
+  \item[\emph{non} étoilée :] en version abrégée \enquote{\ie{}} ;
+  \item[étoilée :] en version \emph{non} abrégée \enquote{\ie*{}}.
+  \end{description}
+\end{docCommand}
+
+\begin{docCommand}{Ie(*)}{}
+  Cette commande affiche l'expression \enquote{\Ie*{}} traduite dans la langue
+  de l'article, sous sa forme :
+  \begin{description}
+  \item[\emph{non} étoilée :] en version abrégée \enquote{\Ie{}} ;
+  \item[étoilée :] en version \emph{non} abrégée \enquote{\Ie*{}}.
+  \end{description}
+\end{docCommand}
+
+\begin{docCommand}{century(*)}{\marg{numéro}}
+  Cette commande affiche l'ordinal du \meta{numéro}\footnote{Ce numéro doit être
+    un nombre entier non nul, le cas échéant négatif.}\footnote{En français et en
+    allemand, \meta{numéro} est composé en chiffre romain et en petites
+    capitales.} d'un siècle, suivi du mot \enquote{siècle} traduit dans la
+  langue de l'article et de la mention éventuelle qu'il s'agit d'un siècle
+  précédant notre ère. Ainsi :
+\begin{bodycode}[listing and text]
+Au \century{-1}, [...]. Plus tard, au \century{8}, [...]
+\end{bodycode}
+  Sa version étoilée n'affiche que l'ordinal (sauf si le \meta{numéro} est
+  négatif). Ainsi :
+\begin{bodycode}[listing and text]
+L'agriculture au \century*{-1} était [...].
+La poésie du \century*{19} aura marqué [...].
+\end{bodycode}
+\end{docCommand}
+
+\begin{docCommand}{aside(*)}{\marg{texte}}
+  Cette commande permet de composer du \meta{texte} entre tirets longs, pour une
+  \enquote{incise} (un peu à la manière de parenthèses).
+  \begin{description}
+  \item[Sous sa forme non étoilée,] elle insère le \meta{texte} entre deux
+    tirets longs.
+  \item[Sous sa forme étoilée,] elle fait (seulement) précéder le \meta{texte}
+    d'un tiret, ce qui est à utiliser en fin de phrase.
+  \end{description}
+  Ainsi :
+\begin{bodycode}[listing and text]
+Des expériences \aside{dans le monde \enquote{réel}} ont même été
+suscitées par des expériences numériques.
+\end{bodycode}
+  et :
+\begin{bodycode}[listing and text,listing options={deletekeywords={exemple}}]
+On soupçonne que non \aside*{par exemple on s'attend à ce que
+  $1/\pi$ ne soit pas une période}.
+\end{bodycode}
+\end{docCommand}
+
+\begin{docCommand}{nwejm}{}
+  Cette commande affiche, sous sa forme :
+  \begin{description}
+  \item[\emph{non} étoilée :] la version abrégée \enquote{\nwejm{}} ;
+  \item[étoilée :] la version \emph{non} abrégée \enquote{\nwejm*{}}.
+  \end{description}
+\end{docCommand}
+
+\section{Sélection d'outils fournis par des packages tiers}
+
+Cette section liste un certain nombre d'outils (commandes et environnements)
+fournis par des packages automatiquement chargés par la
+\nwejmauthorcl\footnote{L'\vref{sec-packages-charges-ou-pas} liste ceux dont les
+  fonctionnalités peuvent être utiles aux auteurs.}.
+
+\begin{dbwarning}{Liste des fonctionnalités des packages tiers non exhaustive}{}
+  Cette liste est \emph{non exhaustive} :
+  \begin{itemize}
+  \item seule une infime partie des packages existants est chargée par la
+    classe ;
+  \item seuls certains packages chargés par la classe sont cités ;
+  \item seules certaines fonctionnalités des packages cités sont décrites. Le
+    lecteur souhaitant en savoir davantage est invité à lire la documentation de
+    ces packages.
+  \end{itemize}
+\end{dbwarning}
+
+\subsection{Références croisées}
+\label{sec-references-croisees}
+
+\DeclareFixedFootnote{\objets}{Section, équation, théorème, figure, tableau,
+  etc.}
+
+Le \Package*{cleveref} rend puissante la gestion des références croisées. Il
+fournit notamment les commandes \refCom{cref} et \refCom{vref} suivantes.
+
+\begin{docCommand}{cref}{\brackets{\meta{label$_1$},...,\meta{label$_n$}}}
+  Si un ou plusieurs objets\objets{} sont labellisés au moyen de
+  \lstinline[deletekeywords={[2]label}]|\label{|\meta{label$_1$}|}|,...,
+  \lstinline[deletekeywords={[2]label}]|\label{|\meta{label$_n$}|}|, la commande
+  \refCom{cref} :
+  \begin{itemize}
+  \item en affiche les numéros\footnote{Entourés de parenthèses quand c'est
+      l'usage, p. ex. pour les équations.} ;
+  \item en détecte les natures\objets{} et affiche avant leurs numéros les mots clés
+    correspondants\footnote{Fonctionnalité fournie par le \Package{cleveref}.},
+    automatiquement traduit dans la langue de l'article\footnote{Fonctionnalité
+      fournie par la \nwejmauthorcl.}.
+  \end{itemize}
+  %
+\begin{bodycode}[listing and text]
+On se reportera aux \cref{sec-titre,sec-auteurs} [...]
+\end{bodycode}
+\end{docCommand}
+
+\begin{docCommand}{vref}{\brackets{\meta{label$_1$},...,\meta{label$_n$}}}
+  Cette commande :
+  \begin{itemize}
+  \item reprend les fonctionnalités de \refCom{cref} ;
+  \item affiche\footnote{Ou pas selon le contexte.} après les numéros des objets
+    référencés les (numéros de) pages où ils se situent\footnote{Fonctionnalité
+      fournie par le \Package{varioref}.}.
+  \end{itemize}
+
+  %
+\begin{bodycode}[listing and text]
+On se reportera aux \vref{sec-titre,sec-auteurs} [...]
+\end{bodycode}
+\end{docCommand}
+
+\begin{dbremark}{Liens hypertextes vers l'objet référencé}{}
+  Les numéros et éventuels \aside{numéros de} pages des références croisées
+  créées avec \refCom{cref} et \refCom{vref} sont des liens hypertextes vers les
+  objets référencés\footnote{Fonctionnalité fournie par le \Package{hyperref}.}.
+\end{dbremark}
+
+% \begin{dbremark}{\docAuxCommand{ref} et \docAuxCommand{eqref} : clones de \protect\refCom{vref}}{}
+%   Les traditionnelles commandes \docAuxCommand{ref} et \docAuxCommand{eqref} ont
+%   été redéfinies par la \nwejmauthorcl pour fonctionner de façon identique
+%   à \refCom{vref}.
+% \end{dbremark}
+
+% \subsection{\enquote{Équations} (non-)numérotées}
+% \label{sec:equat-non-numer}
+%
+% Le lecteur, rompu à la composition de formules de mathématiques, connaît
+% certainement le \Package*{amsmath} et les environnements qu'il fournit :
+% \begin{itemize}
+% \item |equation|, |align|, |gather|, |multline| et |flalign| qui numérotent
+%   leur contenu ;
+% \item |equation*|, |align*|, |gather*|, |multline*| et |flalign*| qui \emph{ne}
+%   numérotent \emph{pas} leur contenu ;
+% \end{itemize}
+% et utilise les premiers si (et seulement si, théoriquement) les contenus
+% correspondants font l'objet de références croisées.
+%
+% Avoir à choisir entre les versions numérotées ou pas présente au moins deux
+% inconvénients pour l'utilisateur :
+% \begin{enumerate}
+% \item cela l'oblige à se poser à chaque fois la question de la pertinence de la
+%   numérotation de sa formule ;
+% \item son choix peut ultérieurement s'avérer caduc\footnote{Et donc nécessiter
+%     de passer par exemple d'un environnement étoilé à un non-étoilé \aside*{donc
+%       avec ajout d'un label}.}.
+% \end{enumerate}
+% Pour pallier cela, la \nwejmauthorcl{} charge automatiquement le
+% \Package{autonum} qui :
+% \begin{enumerate}
+% \item permet de ne recourir qu'aux environnements non-étoilés ;
+% \item assure automatiquement que les formules effectivement numérotées seront
+%   celles, et seulement celles, s'avérant faire l'objet de références croisées au
+%   sein du document.
+% \end{enumerate}
+%
+% \begin{bodycode}[listing and text]
+% L'\vref{euler-identity} mérite une référence croisée.
+% \begin{equation}\label{euler-identity}
+%   \E[\I\pi]+1=0
+% \end{equation}
+% C'est bien la seule ici.
+% \begin{equation}\label{not-interesting}
+%   0=0
+% \end{equation}
+% Malheureusement.
+% \begin{equation}
+%   1=1
+% \end{equation}
+% \end{bodycode}
+
+\subsection{Acronymes}
+\label{sec:acronymes}
+
+Il est fréquent que des acronymes doivent figurer dans un article de
+mathématiques et le \Package{glossaries} propose pour cela une fonctionnalité
+à la fois très efficace et très simple : il suffit de recourir à ses commandes :
+\begin{itemize}
+\item \refCom{newacronym} pour \emph{définir} un acronyme :
+\item \refCom{gls} (ou \refCom{acrshort}) pour \emph{afficher} un acronyme.
+\end{itemize}
+
+\begin{docCommand}{newacronym}{\marg{clé}\marg{forme courte}\marg{forme longue}}
+  Cette commande, à utiliser de préférence en préambule, définit un acronyme
+  où :
+  \begin{enumerate}
+  \item \meta{clé} identifie l'acronyme de manière unique dans le
+    document\footnote{À l'auteur de veiller à ne pas utiliser deux fois la même
+      clé pour identifier des acronymes distincts.} ;
+  \item \meta{forme courte} est l'acronyme en lui-même ;
+  \item \meta{forme longue} est la signification de l'acronyme.
+  \end{enumerate}
+\begin{dbwarning}{Forme courte des acronymes : en bas de casse}{}
+  La \meta{forme courte} d'un acronyme est à saisir exclusivement en bas de
+  casse (en minuscules) car elle sera en fait composée en petites capitales.
+\end{dbwarning}
+\end{docCommand}
+
+\begin{docCommand}{gls}{\marg{clé}}
+  Cette commande affiche l'acronyme identifié par \marg{clé} selon le principe
+  suivant :
+  \begin{enumerate}
+  \item la 1\iere{} occurrence de cette commande dans le document affiche
+    l'acronyme sous sa forme \emph{complète}, \ie*{} sa \meta{forme longue}
+    suivie de sa \meta{forme courte} entre parenthèses ;
+  \item les occurrences suivantes affichent l'acronyme uniquement sous
+    \meta{forme courte}.
+  \end{enumerate}
+\end{docCommand}
+
+\begin{preamblecode}[listing options={alsolanguage={[glossaries]TeX}}]
+\newacronym{bap}{bap}{bounded approximation property}
+\end{preamblecode}
+\begin{bodycode}[listing and text,listing options={alsolanguage={[glossaries]TeX}}]
+\begin{enumerate}
+\item \gls{bap},
+\item \gls{bap}.
+\end{enumerate}
+\end{bodycode}
+
+\begin{docCommand}{acrshort}{\marg{clé}}
+  Cette commande affiche la \meta{forme courte} (seule) de l'acronyme, quel que
+  soit le contexte\footnote{\Ie*{} même si c'est la 1\iere{} fois que l'acronyme
+    est utilisé dans le document.}.
+\end{docCommand}
+
+\begin{dbremark}{Commande \refCom{acrshort} : utile dans un titre}{}
+  La commande \refCom{acrshort} peut être utile notamment dans le titre d'un
+  article où l'on ne souhaite pas que soit détaillée la forme complète d'un
+  acronyme.
+\end{dbremark}
+
+Le \Package*{glossaries} fournit bien d'autres commandes et offre bien d'autres
+fonctionnalités\autocite[Pour plus de détails, cf. par exemple][]{Bitouze7}.
+
+\subsection{Guillemets, citations}
+\label{sec-guillemets-citations}
+
+Le \Package*{csquotes} est dédié aux citations, formelles et informelles,
+d'extraits de textes. Il propose notamment la commande \refCom{enquote}
+suivante, simple d'emploi.
+
+\begin{docCommand}{enquote}{\marg{texte}}
+  Cette commande compose le \meta{texte} entre guillemets, automatiquement
+  adaptés :
+  \begin{itemize}
+  \item aux standards typographiques de la langue en cours. On pourra donc
+    l'utiliser dès que du texte est à mettre entre guillemets ;
+  \item au niveau (1 ou 2) de \enquote{citation} en cas d'emboîtement. On
+    pourra donc également l'utiliser dès que du texte est à citer de façon
+    informelle.
+  \end{itemize}
+\begin{bodycode}[listing and text,listing options={alsolanguage={[csquotes]TeX}}]
+Il lui répondit : \enquote{Courteline disait: \enquote{Passer
+    pour un idiot aux yeux d'un imbécile est une volupté de fin
+    gourmet.}}
+\end{bodycode}
+\end{docCommand}
+
+\begin{docCommand}{blockcquote}{\marg{clé}\marg{extrait}}
+  Cette commande permet de citer un \meta{extrait} de façon
+  formelle\footnote{\Ie*{} avec précision de la source.}, la référence
+  bibliographique correspondante devant figurer dans un des fichiers \file{.bib}
+  ajoutés\footnote{Au moyen de la commande \docAuxCommand{addbibresource}} et
+  y étant identifiée par la clé \meta{clé}.
+
+\renewcommand{\thempfootnote}{\arabic{mpfootnote}}
+\begin{bodycode}[listing and text,listing options={alsolanguage={[biblatex]TeX},alsolanguage={[csquotes]TeX},deletekeywords={[3]footnote}}]
+\citeauthor{Bitouze} précise que :
+\blockcquote{Bitouze}{%
+  \textins{Cette} commande compose les citations en détachant
+  automatiquement du paragraphe courant celles qui sont
+  longues\footnote{Par défaut, ce sont celles
+    dépassant 3~lignes.}.%
+}.
+\end{bodycode}
+\renewcommand{\thempfootnote}{\alph{mpfootnote}}
+\end{docCommand}
+
+La commande \refCom{blockcquote} admet des arguments optionnels permettant
+d'ajouter du texte \meta{antérieur} et/ou \meta{postérieur} à la citation
+d'extrait\autocite[Pour plus de détails, cf. par exemple][]{Bitouze}.
+
+% (\textsc{À suivre...})
+
+\subsection{Adresses Web (\texorpdfstring{\acrshort{url}}{URL})}
+\label{sec-url}
+
+Le \Package*{hyperref} fournit (entre autres) la commande \refCom{url} qui
+permet de facilement afficher des adresses Web, aussi appelées
+\enquote{\gls{url}}, même si elles comportent des caractères spéciaux de \TeX{}
+(|#|,
+%
+\lstinline[commentstyle={}]+%+,
+%
+|_|, |~|, |&|, etc.) : ces caractères peuvent donc être saisis tels quels, sauf
+si la commande \refCom{url} est utilisée dans l'argument d'une autre
+commande\footnote{Par exemple \protect\docAuxCommand*{footnote}.} auquel cas les
+caractères |#| et
+%
+\lstinline[commentstyle={}]+%+
+%
+sont alors à faire précéder de la commande \enquote{d'échappement} |\|
+(contre-oblique).%
+
+\begin{docCommand}{url}{\marg{adresse Web}}
+  Cette commande affiche l'\meta{adresse Web} saisie \emph{telle quelle} et fait
+  d'elle un lien hypertexte.
+\begin{bodycode}[listing and text,listing options={alsolanguage={[hyperref]TeX},deletekeywords={[2]url}}]
+Nous renvoyons aux instructions aux auteurs sur notre site Web
+\url{http://math.univ-lille1.fr/~nwejm/#Authors}.
+\end{bodycode}
+\end{docCommand}
+
+\subsection{Listes en ligne}
+\label{sec:listes-en-ligne}
+
+Le lecteur est certainement familier des environnements
+\docAuxEnvironment{itemize}, \docAuxEnvironment{enumerate} et
+\docAuxEnvironment{description} permettant de créer des listes respectivement
+non ordonnées\footnote{\enquote{À puces}.}, ordonnées\footnote{\Ie*{}
+  numérotées} et \enquote{de description}. Le \Package*{enumitem} fournit des
+versions étoilées de ces environnements qui composent ces listes \enquote{en
+  ligne}, c'est-à-dire au sein d'un même paragraphe\footnote{Le but premier de
+  ce package est de personnaliser les listes mais cela est déconseillé dans le
+  cadre du \nwejm{} car cela pourrait contrevenir à la marche typographique
+  qu'il a adoptée.}.
+
+\begin{docEnvironment}[doclang/environment content=liste]{itemize*}{}
+  Cet environnement compose une liste \enquote{à puces} en ligne.
+\end{docEnvironment}
+\begin{docEnvironment}[doclang/environment content=liste]{enumerate*}{}
+  Cet environnement compose une liste \enquote{numérotée} en ligne.
+\end{docEnvironment}
+\begin{docEnvironment}[doclang/environment content=liste]{description*}{}
+  Cet environnement compose une liste \enquote{de description} en ligne.
+\end{docEnvironment}
+
+\begin{bodycode}[listing and text,listing options={alsolanguage={[hyperref]TeX},deletekeywords={math},deletekeywords={[2]url,math}}]
+\begin{enumerate}
+\item Les données que j'ai rassemblées [...]
+\item Les données que j'ai recueillies sont
+  \begin{enumerate*}
+  \item disponibles publiquement sur internet : pages Web et CV des
+    conférenciers ;
+  \item accessibles par Wikipédia, par le précieux
+    \enquote{mathematics genealogy project}
+    (\url{http://genealogy.math.ndsu.nodak.edu/}) ;
+  \item pour 60 des conférenciers pour lesquelles mes informations
+    étaient trop lacunaires, [...].
+  \end{enumerate*}
+\end{enumerate}
+\end{bodycode}
+
+\appendix
+
+\section{Canevas de fichier source typique}
+\label{sec-canevas-de-fichier}
+
+Le lecteur souhaitant écrire un article pour le \nwejm*{} trouvera ci-dessous un
+canevas de fichier source qui est un modèle typique d'article standard où les
+commandes et environnement moins fréquents ont été mis en commentaire. Il est
+attaché au fichier \file{PDF} de la présente documentation\footnote{Pour
+  l'extraire, il devrait suffire de cliquer sur l'icône ci-dessous. Il peut
+  également être copié-collé : la plupart des afficheurs \textsc{pdf}
+  permettent de sélectionner et de copier du texte.}.
+%
+\newcommand{\attachfilename}{template.tex}%
+\newcommand{\attachfiletextlink}{Canevas de fichier source typique}%
+\tcbinputlisting{%
+  samples,
+  fontupper=\scriptsize\ttfamily,
+  listing only,
+  listing file=../../examples/\attachfilename,
+  title={\attachfiletextlink\ \attachfile{../../examples/\attachfilename}},%
+  listing options={alsolanguage={[biblatex]TeX},deletekeywords={[2]title,author,keywords},deletekeywords={[5]keywords}}
+}
+
+\section{Packages chargés (ou pas) par la
+  classe}\label{sec-packages-charges-ou-pas}
+
+\subsection{Packages chargés par la classe}\label{sec:packages-charges-par}
+
+On a vu que, pour plusieurs de ses fonctionnalités, la \nwejmauthorcl{} s'appuie
+sur des packages qu'elle charge automatiquement. Ceux dont les fonctionnalités
+peuvent être utiles aux auteurs d'articles du \nwejm{} sont répertoriés dans la
+liste suivante qui indique leur fonction et le cas échéant la ou les options
+avec lesquelles ils sont chargés.
+
+En sus des outils propres à la \nwejmauthorcl, tous ceux fournis par ces
+différents packages sont donc à disposition des auteurs de la \nwejm{}.
+
+\begin{description}
+\item[\package{nag} :] signalement\footnote{Sous forme de \emph{warnings}.} de
+  packages, commandes et environnements obsolètes :
+  \begin{description}
+  \item[options par défaut :] \docAuxKey{l2tabu}, \docAuxKey{orthodox} ;
+  \end{description}
+\item[\package{kpfonts} :] police principale du document :
+  \begin{description}
+  \item[options par défaut :] \docAuxKey{noDcommand}, \docAuxKey{easyscsl} ;
+  \end{description}
+\item[\package{graphicx} :] inclusion d'images ;
+\item[\package{subcaption} :] sous-figures et sous-tableaux ;
+\item[\package{adjustbox} :] ajustement de la position de boîtes, par exemple
+  d'images ;
+\item[\package{xspace} :] définition de commandes qui ne \enquote{mangent} pas
+  l'espace qui suit ;
+\item[\package{array} :] extension (et corrections de bogues) des
+  environnements de tableaux ;
+\item[\package{booktabs} :] tableaux d'allure professionnelle ;
+\item[\package{csquotes} :] citations d'extraits informelles et
+  formelles\footnote{Avec citation des sources,
+    cf. \vref{sec-guillemets-citations}.} :
+    \begin{description}
+    \item[option par défaut :] \docAuxKey{autostyle} ;
+    \item[réglage par défaut :]
+      \lstinline[alsolanguage={[csquotes]TeX},alsolanguage={[biblatex]TeX}]|\SetCiteCommand{\autocite}| ;
+  \end{description}
+\item[\package{biblatex} :] gestion puissante de la bibliographie ;
+\item[\package{datetime2} :] formats de dates et de (zones de) temps :
+  \begin{description}
+  \item[option par défaut :] \docAuxKey{useregional} ;
+  \end{description}
+\item[\package{hyperref} :] support pour les liens
+  hypertextes\footnote{Cf. \vref{sec-url}.} :
+  \begin{description}
+  \item[option par défaut :] \docAuxKey{hidelinks},
+    \docAuxKey{pdfencoding}\lstinline[alsolanguage={[hyperref]TeX}]|=unicode|,
+    \docAuxKey{final}, \docAuxKey{breaklinks},
+    \docAuxKey{hypertexnames}|=false| ;
+  \end{description}
+\item[\package{glossaries} :] création de glossaires et (listes d')acronymes :
+  \begin{description}
+  \item[option par défaut :] \docAuxKey{nowarn} ;
+  \end{description}
+\item[\package{varioref} :] références de pages intelligentes.
+\item[\package{cleveref} :] références croisées
+  intelligentes\footnote{Cf. \vref{sec-references-croisees}.} ;
+  \begin{description}
+  \item[option par défaut :] \docAuxKey{french}, \docAuxKey{ngerman},
+    \docAuxKey{dutch}, \docAuxKey{english}, \docAuxKey{noabbrev},
+    \docAuxKey{capitalize}.
+  \end{description}
+\end{description}
+
+\subsection{Packages non  chargés par la classe}\label{sec:packages-non-charges}
+
+La liste suivante, loin d'être exhaustive, répertorie des packages non chargés
+par la \nwejmauthorcl{} mais pouvant se révéler utiles aux auteurs.  En outre,
+lorsqu'ils sont chargés manuellement par l'utilisateur, certains d'entre eux se
+voient fixés par la \nwejmauthorcl{} des options ou réglages dont les plus
+notables sont précisés.
+
+\begin{description}
+\item[\package{tikz-cd} :] création simple de diagrammes commutatifs de très
+  haute qualité\footnote{Le \Package{xy}, souvent utilisé pour de tels
+    diagrammes, est incomptible avec la présente classe :
+    cf. \vref{sec-incompatibilites}.} ;
+\item[\package{pgfplots} :] création simple de graphiques (de dimensions~$2$
+  ou~$3$) de très haute qualité pour représenter des fonctions ou des données
+  expérimentales ;
+\item[\package{siunitx} :] gestion des nombres, angles et unités, et alignement
+  vertical sur le séparateur décimal dans les tableaux :
+  \begin{description}
+  \item[option par défaut :]\
+    \begin{itemize}
+    \item \docAuxKey{detect-all} ;
+    \item \docAuxKey{locale}|=|\docValue{FR} ou \docValue{UK} ou \docValue{DE}
+      selon la langue de l'article ;
+    \end{itemize}
+  \end{description}
+\item[\package{listings} :] insertion de listings informatiques ;
+\item[\package{todonotes} :] insertion de \enquote{TODO}\footnote{Rappels de
+    points qu'il ne faut pas oublier d'ajouter, de compléter, de réviser, etc.}.
+\end{description}
+
+\section{Incompatibilités}
+\label{sec-incompatibilites}
+
+Pour des raison techniques, le \nwejm{} n'accepte pas de fichier source
+\file{.tex} chargeant le \Package{xy} et la classe \nwejmauthor{} émet une
+erreur si tel est le cas. L'utilisateur ayant à composer des diagrammes
+\enquote{de type matriciel}, notamment des diagrammes commutatifs, est invité
+à recourir au \Package{tikz-cd} à la fois moderne et convivial.
+
+\section{Notations, syntaxe, terminologie et codes couleurs}\label{sec-synt-term-notat}
+
+Nous précisons ici les notations, syntaxe, terminologie et codes couleurs de
+la présente documentation.
+
+\subsection{Commandes, environnements, clés, valeurs}\label{sec-comm-envir-cles}
+
+Les commandes, environnements, clés et valeurs de clés sont systématiquement
+composés en fonte à chasse fixe. En outre, pour plus facilement les
+distinguer, ils figurent avec des couleurs propres :
+\begin{itemize}
+\item les commandes en bleu : \docAuxCommand*{commande} ;
+\item les environnements en \enquote{sarcelle} :
+  \docAuxEnvironment*{environnement} ;
+\item les clés en pourpre : \docAuxKey*{clé} ;
+\item les valeurs des clés en violet : \docValue*{valeur}.
+\end{itemize}
+
+\subsection{Arguments génériques}
+\label{sec-arguments-generiques}
+
+Pour expliquer le rôle d'une commande, il est parfois nécessaire d'indiquer
+à quoi celle-ci s'applique, autrement dit quel en est l'argument générique.
+Un tel argument est composé :
+\begin{itemize}
+\item en fonte à chasse fixe ;
+\item en italique ;
+\item entre chevrons simples ;
+\end{itemize}
+le tout en marron, ainsi : \meta{argument générique}.
+
+\subsection{Liens hypertextes}
+\label{sec-liens-hypertextes}
+
+Les liens hypertextes figurent en couleur, ainsi :
+\href{http://gte.univ-littoral.fr/members/dbitouze/pub/latex}{lien hypertexte}.
+La plupart des références aux commandes, environnements et clés définis dans la
+présente documentation, sont des liens hypertextes, surmontés du numéro de page
+où se trouve la cible correspondante (sauf si elle se situe sur la même page) :
+\begin{itemize}
+\item \refCom{author} ;
+\item \refEnv{abstract}.
+\end{itemize}
+
+
+\subsection{Éléments \enquote{obligatoires}}
+\label{sec-comm-oblig}
+
+L'icône \mandatory{}, figurant en regard de certains éléments (commandes ou
+environnements), indique que ceux-ci sont \enquote{obligatoires}.
+
+\subsection{Codes sources}
+\label{sec-codes-sources}
+
+Les exemples qui illustrent la présente documentation sont constitués de codes
+sources et, le cas échéant, des \enquote{copies d'écran} correspondantes.
+% Ceux-ci proviennent le plus souvent du spécimen de document composé avec la
+% \yatcl, fourni avec l'ensemble de la classe
+% (cf. \vref{sec-specimen-arborescence}).
+
+Ces codes sources figurent dans des cadres, pouvant comporter un titre, de
+couleur bleu :
+\begin{itemize}
+\item non ombrés s'ils doivent être saisis dans le corps du document ;
+\begin{bodycode}
+"\meta{code source}"
+\end{bodycode}
+\begin{bodycode}[title=\meta{titre}]
+"\meta{code source}"
+\end{bodycode}
+\item ombrés s'ils doivent être saisis en préambule du fichier.
+\begin{preamblecode}
+"\meta{code source à insérer en préambule}"
+\end{preamblecode}
+\begin{preamblecode}[title=\meta{titre}]
+"\meta{code source à insérer en préambule}"
+\end{preamblecode}
+\end{itemize}
+
+\subsection{Espaces dans les codes sources}
+\label{sec-espaces-dans-les}
+
+Pour éviter certaines confusions, les espaces dans les codes sources devant
+être saisis au clavier sont parfois matérialisés au moyen de la marque
+\lstinline[showspaces]+ +.
+
+\subsection{Options}
+\label{sec-options}
+
+La présente classe, ainsi que certaines de ses commandes et certains de ses
+environnements, peuvent être modulés au moyen d'options, ou listes d'options
+(séparées par des virgules). Ces options peuvent se présenter sous la forme
+\meta{clé}|=|\meta{valeur} et la \meta{valeur} passée à une \meta{clé} peut
+être :
+%^^A \begin{description}
+%^^A \item[ne prennent pas de valeur.] Une telle option, par exemple nommée
+%^^A   \refKey{option}, est alors documentée selon la syntaxe suivante:
+%^^A     \begin{docKey*}{option}{}{\meta{valeurs par défaut et initiale}}
+%^^A       \meta{Description de \refKey{option}}
+%^^A     \end{docKey*}
+%^^A \item[prennent des valeurs.] Une telle option se présente alors sous la forme
+%^^A   \meta{clé}"="\meta{valeur}. Les valeurs passées à une clé peuvent être :
+\begin{description}
+\item[libre.] Si une telle \meta{clé} est (pour l'exemple) nommée
+  \refKey{freekey}, elle est alors documentée selon la syntaxe suivante :
+  \begin{docKey*}{freekey}{=\meta{valeur}}{\meta{valeurs par défaut et initiale}}
+    \meta{Description de \refKey{freekey}}
+  \end{docKey*}
+\item[imposée] (parmi une liste de valeurs possibles). Si une telle \meta{clé} est
+   (pour l'exemple) nommée \refKey{choicekey} et de valeurs imposées
+  \docValue*{valeur1}, \dots{}, \docValue*{valeurN}, elle est alors
+  documentée selon la syntaxe suivante\footnote{Comme souvent en informatique,
+    la barre verticale séparant les valeurs possibles signifie \enquote{ou}.} :
+  \begin{docKey*}{choicekey}{=\docValue*{valeur1}\textbar...\textbar\docValue*{valeurN}}{\meta{valeurs par défaut et initiale}}
+    \meta{Description de \refKey{choicekey} et de ses valeurs possibles}
+  \end{docKey*}
+\end{description}
+%^^A \end{description}
+
+Les \meta{valeurs par défaut et initiale} d'une clé sont souvent précisées
+(entre parenthèses en fin de ligne). Elles indiquent ce que la clé vaut :
+\begin{description}
+\item[par défaut] c'est-à-dire lorsque la clé \emph{est} employée, mais
+  \emph{seule} c'est-à-dire sans qu'une valeur explicite lui soit passée ;
+\item[initialement] c'est-à-dire lorsque la clé \emph{n'est pas} employée.
+\end{description}
+%
+\printbibliography[category=documentation]
+%
+% \tcblistof{dbwarninglist}{Table des
+%   avertissements\addcontentsline{toc}{section}{Table des avertissements}}%
+% \tcblistof{dbremarklist}{Table des remarques\addcontentsline{toc}{section}{Table
+%     des remarques}}%
+% \tcblistof[\chapter*]{dbexamplelist}{Table des exemples\addcontentsline{toc}{chapter}{Table des exemples}}%
+% \tcblistof[\chapter*]{dbfaqlist}{Table des
+% questions\addcontentsline{toc}{chapter}{Table des questions}
+%
+\printindex
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,35 @@
+name cmpj
+category Package
+revision 51661
+shortdesc Style for the journal Condensed Matter Physics
+longdesc The package contains macros and some documentation for
+longdesc typesetting papers for submission to the Condensed Matter
+longdesc Physics journal published by the Institute for Condensed Matter
+longdesc Physics of the National Academy of Sciences of Ukraine.
+containersize 48472
+containerchecksum 31e9fb352cf03797436bcc1cd0f3d16b2ff6234d6306770e940f59eb77392fe7f616530febc4b299cc52c71036358b203e7cc99256099093fbbd4eceb71af4bf
+doccontainersize 462504
+doccontainerchecksum 3e2b162c6c04f409e1dd32ac4be59431d65e6b39e813e091bff0cbdbb9fe101c751664df8f83704d38daaf4c7c04db24b22e32a36d3cdf07411b73a1d21c076f
+docfiles size=171
+ texmf-dist/doc/latex/cmpj/README details="Readme"
+ texmf-dist/doc/latex/cmpj/cmpjxampl.bib
+ texmf-dist/doc/latex/cmpj/eps_demo.eps
+ texmf-dist/doc/latex/cmpj/eps_demo.pdf
+ texmf-dist/doc/latex/cmpj/icmphome.eps
+ texmf-dist/doc/latex/cmpj/icmphome.pdf
+ texmf-dist/doc/latex/cmpj/template.pdf details="Template and instructions to authors"
+ texmf-dist/doc/latex/cmpj/template.tex
+runfiles size=76
+ texmf-dist/bibtex/bst/cmpj/cmpj.bst
+ texmf-dist/tex/latex/cmpj/cmp-logo.eps
+ texmf-dist/tex/latex/cmpj/cmp-logo.pdf
+ texmf-dist/tex/latex/cmpj/cmpj-cc-by-small.eps
+ texmf-dist/tex/latex/cmpj/cmpj-cc-by-small.pdf
+ texmf-dist/tex/latex/cmpj/cmpj.sty
+ texmf-dist/tex/latex/cmpj/cmpj2.sty
+ texmf-dist/tex/latex/cmpj/cmpj3.sty
+catalogue-contact-home http://www.icmp.lviv.ua/journal/Instructions.html
+catalogue-ctan /macros/latex/contrib/cmpj
+catalogue-license lppl
+catalogue-topics physics journalpub
+catalogue-version 3.02

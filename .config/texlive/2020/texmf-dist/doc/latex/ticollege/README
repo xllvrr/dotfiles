@@ -1,0 +1,22 @@
+************* Fichier README pour ticollege.sty **********************
+
+Objectif
+-----
+Cette extension utilise TikZ pour dessiner des touches d'une
+calculatrice scientifique (non graphique), des item de menus, l'affichage de calcul sur un écran, ainsi qu'une calculatrice en grand ou petit format.
+
+Licence
+-------
+This program can be redistributed and/or modified under the terms
+of the LaTeX Project Public License Distributed from CTAN archives
+in directory macros/latex/base/lppl.txt.
+
+Documentation
+-------------
+La documentation de l'extension se trouve dans le répertoire /doc/.
+
+Merci d'utiliser ticollege.sty.
+
+Philippe De Sousa
+Evry (91), France
+philou.desousa@gmail.com

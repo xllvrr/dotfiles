@@ -1,0 +1,27 @@
+name matc3
+category Package
+revision 29845
+shortdesc Commands for MatematicaC3 textbooks
+longdesc The package provides support for the Matematica C3 project to
+longdesc produce free mathematical text books for use in Italian high
+longdesc schools.
+containersize 1692
+containerchecksum 19996040ec55b000d84637070a21fa9fc216eb3cf8ec75f7c408925e0d7a716a7dca0eff4887778f666be3e857b589cd033c53d3859f84226416ad069720f7be
+doccontainersize 438856
+doccontainerchecksum 68f65e9171eb03fed79dc9bffadb725dc7324fd9696ff9f6f0a13233327f47474477180c6e17b5bbb9ee2ee02996ebd6213b43eeb7e9b7eb7dca2caac2db470d
+docfiles size=109
+ texmf-dist/doc/latex/matc3/Makefile
+ texmf-dist/doc/latex/matc3/README details="Readme"
+ texmf-dist/doc/latex/matc3/matc3.pdf details="Package documentation (in Italian)" language="it"
+srccontainersize 5928
+srccontainerchecksum efc84a936de1ab0905e94937d00c3ab2f371412975786c3816cb3b8fdf98482943c1f18a08422ea95d7a7bda6607ffd1dcb6b5c28101c7f5348260a088cf1233
+srcfiles size=7
+ texmf-dist/source/latex/matc3/matc3.dtx
+ texmf-dist/source/latex/matc3/matc3.ins
+runfiles size=2
+ texmf-dist/tex/latex/matc3/matc3.sty
+catalogue-also matc3mem
+catalogue-ctan /macros/latex/contrib/matc3
+catalogue-license lppl1.3
+catalogue-topics maths
+catalogue-version 1.0.1

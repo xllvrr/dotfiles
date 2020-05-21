@@ -1,0 +1,148 @@
+\begin{tikzpicture}[scale=2.54]
+% dpic version 2020.03.01 option -g for TikZ and PGF 1.01
+\ifx\dpiclw\undefined\newdimen\dpiclw\fi
+\global\def\dpicdraw{\draw[line width=\dpiclw]}
+\global\def\dpicstop{;}
+\dpiclw=0.8bp
+\dpiclw=0.8bp
+{\sf
+\dpicdraw (0.2,0.075)
+ --(0.2,0.525)
+ --(0.6,0.425)
+ --(0.6,-0.275)
+ --(0.2,-0.375)
+ --(0.2,0.075)\dpicstop
+\draw (0.4,0.075) node{\scriptsize M1};
+\dpicdraw (0.6,0.075)
+ --(0.8,0.075)\dpicstop
+\dpicdraw (0.4,-0.325)
+ --(0.4,-0.525)\dpicstop
+\draw (0.2,0.4125) node[right=-2bp]{{\scriptsize      0}};
+\dpicdraw (0.2,0.4125)
+ --(0,0.4125)\dpicstop
+\draw (0.2,0.1875) node[right=-2bp]{{\scriptsize      1}};
+\dpicdraw (0.2,0.1875)
+ --(0,0.1875)\dpicstop
+\draw (0.2,-0.0375) node[right=-2bp]{{\scriptsize      2}};
+\dpicdraw (0.2,-0.0375)
+ --(0,-0.0375)\dpicstop
+\draw (0.2,-0.2625) node[right=-2bp]{{\scriptsize      3}};
+\dpicdraw (0.2,-0.2625)
+ --(0,-0.2625)\dpicstop
+\draw (0.4,-0.525) node[below=-2bp]{\tt Mux(4,M1)};
+\draw (0,0.4125) node[left=-2bp]{\sl In0};
+\draw (0,0.1875) node[left=-2bp]{\sl In1};
+\draw (0,-0.0375) node[left=-2bp]{\sl In2};
+\draw (0,-0.2625) node[left=-2bp]{\sl In3};
+\draw (0.8,0.075) node[above=-2bp]{\sl Out};
+\draw (0.4,-0.525) node[above right=-2bp]{\sl Sel};
+\dpicdraw (1.5,-0.075)
+ --(1.5,-0.525)
+ --(1.1,-0.425)
+ --(1.1,0.275)
+ --(1.5,0.375)
+ --(1.5,-0.075)\dpicstop
+\dpicdraw (1.1,-0.075)
+ --(0.9,-0.075)\dpicstop
+\dpicdraw (1.3,0.325)
+ --(1.3,0.525)\dpicstop
+\draw (1.5,0.285) node[left=-2bp]{{\scriptsize      0}};
+\dpicdraw (1.5,0.285)
+ --(1.7,0.285)\dpicstop
+\draw (1.5,0.105) node[left=-2bp]{{\scriptsize      1}};
+\dpicdraw (1.5,0.105)
+ --(1.7,0.105)\dpicstop
+\draw (1.5,-0.075) node[left=-2bp]{{\scriptsize      2}};
+\dpicdraw (1.5,-0.075)
+ --(1.7,-0.075)\dpicstop
+\draw (1.5,-0.255) node[left=-2bp]{{\scriptsize      3}};
+\dpicdraw (1.5,-0.255)
+ --(1.7,-0.255)\dpicstop
+\draw (1.5,-0.435) node[left=-2bp]{{\scriptsize      $\overline{\hbox{OE}}$}};
+\dpicdraw (1.5375,-0.435) circle (0.014764in)\dpicstop
+\dpicdraw (1.575,-0.435)
+ --(1.7,-0.435)\dpicstop
+\draw (1.3,-0.802778) node{\tt left\_; Mux(4,{,}LNOE)};
+\draw (1.7,0.285) node[above=-2bp]{\sl In0};
+\draw (1.755556,-0.435) node[below=-2bp]{\sl NOE};
+\draw (0.9,-0.075) node[below=-2bp]{\sl Out};
+\draw (1.3,0.525) node[below left=-2bp]{\sl Sel};
+\dpicdraw (2.5,-0.0875)
+ --(2.5,0.3625)
+ --(2.9,0.2625)
+ --(2.9,-0.4375)
+ --(2.5,-0.5375)
+ --(2.5,-0.0875)\dpicstop
+\dpicdraw (2.9,-0.0875)
+ --(3.1,-0.0875)\dpicstop
+\dpicdraw (2.6,0.3375)
+ --(2.6,0.5375)\dpicstop
+\dpicdraw (2.8,0.2875)
+ --(2.8,0.4875)\dpicstop
+\draw (2.5,0.2725) node[right=-2bp]{{\scriptsize       00}};
+\dpicdraw (2.5,0.2725)
+ --(2.3,0.2725)\dpicstop
+\draw (2.5,0.0925) node[right=-2bp]{{\scriptsize       01}};
+\dpicdraw (2.5,0.0925)
+ --(2.3,0.0925)\dpicstop
+\draw (2.5,-0.0875) node[right=-2bp]{{\scriptsize       10}};
+\dpicdraw (2.5,-0.0875)
+ --(2.3,-0.0875)\dpicstop
+\draw (2.5,-0.2675) node[right=-2bp]{{\scriptsize       11}};
+\dpicdraw (2.5,-0.2675)
+ --(2.3,-0.2675)\dpicstop
+\draw (2.5,-0.4475) node[right=-2bp]{{\scriptsize      OE}};
+\dpicdraw (2.5,-0.4475)
+ --(2.3,-0.4475)\dpicstop
+\draw (2.7,-0.5375) node[below=-2bp]{\tt Mux(4,{,}OEBN2)};
+\draw (2.6,0.5375) node[left=-2bp]{\sl Sel0};
+\draw (2.8,0.4875) node[right=-2bp]{\sl Sel1};
+\draw (2.3,0.2725) node[left=-2bp]{\sl In0};
+\draw (2.3,-0.2675) node[left=-2bp]{\sl In3};
+\draw (2.3,-0.4475) node[left=-2bp]{\sl OE};
+\dpicdraw (4.491667,0.2)
+ --(5.191667,0.2)
+ --(5.091667,-0.2)
+ --(3.891667,-0.2)
+ --(3.791667,0.2)
+ --(4.491667,0.2)\dpicstop
+\dpicdraw (4.491667,-0.2)
+ --(4.491667,-0.4)\dpicstop
+\dpicdraw (3.808333,0.133333)
+ --(3.608333,0.133333)\dpicstop
+\dpicdraw (3.841667,0)
+ --(3.641667,0)\dpicstop
+\dpicdraw (3.875,-0.133333)
+ --(3.675,-0.133333)\dpicstop
+\draw (3.879167,0.2) node[below=-2bp]{{\scriptsize      0}};
+\dpicdraw (3.879167,0.2)
+ --(3.879167,0.4)\dpicstop
+\draw (4.054167,0.2) node[below=-2bp]{{\scriptsize      1}};
+\dpicdraw (4.054167,0.2)
+ --(4.054167,0.4)\dpicstop
+\draw (4.229167,0.2) node[below=-2bp]{{\scriptsize      2}};
+\dpicdraw (4.229167,0.2)
+ --(4.229167,0.4)\dpicstop
+\draw (4.404167,0.2) node[below=-2bp]{{\scriptsize      3}};
+\dpicdraw (4.404167,0.2)
+ --(4.404167,0.4)\dpicstop
+\draw (4.579167,0.2) node[below=-2bp]{{\scriptsize      4}};
+\dpicdraw (4.579167,0.2)
+ --(4.579167,0.4)\dpicstop
+\draw (4.754167,0.2) node[below=-2bp]{{\scriptsize      5}};
+\dpicdraw (4.754167,0.2)
+ --(4.754167,0.4)\dpicstop
+\draw (4.929167,0.2) node[below=-2bp]{{\scriptsize      6}};
+\dpicdraw (4.929167,0.2)
+ --(4.929167,0.4)\dpicstop
+\draw (5.104167,0.2) node[below=-2bp]{{\scriptsize      7}};
+\dpicdraw (5.104167,0.2)
+ --(5.104167,0.4)\dpicstop
+\draw (4.4,-0.4) node[below=-2bp]{\tt down\_; Mux(8,{,}L3,{,}28*L\_unit)};
+\draw (3.608333,0.133333) node[left=-2bp]{\sl Sel0};
+\draw (3.675,-0.133333) node[below left=-2bp]{\sl Sel2};
+\draw (3.879167,0.4) node[left=-2bp]{\sl In0};
+\draw (5.104167,0.4) node[right=-2bp]{\sl In7};
+}
+\end{tikzpicture}
+\vspace*{-0.5\baselineskip}

@@ -1,0 +1,41 @@
+\input fontinst.sty
+
+\transformfont{padr8r} {\reencodefont{8r}{\fromafm{padr8a}}}
+\transformfont{padrc8r}{\reencodefont{8r}{\fromafm{padrc8a}}}
+\transformfont{pads8r} {\reencodefont{8r}{\fromafm{pads8a}}}
+\transformfont{padsc8r}{\reencodefont{8r}{\fromafm{padsc8a}}}
+\fromafm{padr8x}
+\fromafm{pads8x}
+
+\installfonts
+
+\installfamily{T1}{pad} {}
+\installfamily{T1}{padx}{}
+\installfamily{T1}{padj}{}
+
+\installfont{padrc8t}{padrc8r,latin}
+            {T1}{T1}{pad}{m}{sc}{}
+\installfont{padrc9e}
+            {kernoff,padr8r,padr8x,kernon,glyphoff,padrc8r,glyphon,
+             resetsc,latinsc}
+            {T1c}{T1}{padx}{m}{sc}{}
+\installfont{padrc9d}
+            {kernoff,padr8r,padr8x,kernon,glyphoff,padrc8r,glyphon,
+             resetosf,resetsc,latinsc}
+            {T1cj}{T1}{padj}{m}{sc}{}
+
+\installfont{padsc8t}{padsc8r,latin}
+            {T1}{T1}{pad}{m}{sc}{}
+\installfont{padsc9e}
+            {kernoff,pads8r,pads8x,kernon,glyphoff,padsc8r,glyphon,
+             resetsc,latinsc}
+            {T1c}{T1}{padx}{sb}{sc}{}
+\installfont{padsc9d}
+            {kernoff,pads8r,pads8x,kernon,glyphoff,padrc8r,glyphon,
+             resetosf,resetsc,latinsc}
+            {T1cj}{T1}{padj}{sb}{sc}{}
+
+\endinstallfonts
+\bye
+
+

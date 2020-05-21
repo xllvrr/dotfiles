@@ -1,0 +1,222 @@
+\documentclass[a4paper,10pt]{article}
+
+%% Au moins 1 argument obligatoire pour babel [french, english, ...]  
+%% L'encodage par defaut pour inputenc est utf8, mais vous pouvez utiliser l'option [latin1]
+%% vous pouvez ensuite utiliser \rsEncodage{} pour vérifier l'encodage latin1ou utf8
+%% Exemples d'options (nb: si vous changez les options, compilez 2 fois de suite):
+%\usepackage[latin1, french]{facture-belge-simple-sans-tva} % latin1, français
+%\usepackage[french, english]{facture-belge-simple-sans-tva} % utf8, français, anglais
+\usepackage[french]{facture-belge-simple-sans-tva} % utf8, français
+
+\begin{document}
+
+%% pour vérifier l'encodage UTF-8 ou latin1
+%\rsEncodage{}
+
+%%%%%%%%%%%%%%%%%%%%%
+%% Unité monétaire %%
+%%%%%%%%%%%%%%%%%%%%%
+
+%% permet de choisir l'unité monétaire, sauf dans le header du tableau (package calctab)
+%% \euro (defaut), \pounds (livre anglaise) \$ (dollar américain) \textyen (yen japonais)
+%% Decommenter ci-dessous pour voir les unités
+% \${} \pounds{} \euro{} \textyen{}
+\rsChoisirUniteMonetaire{\euro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Unité monétaire pour la facture seulement
+% Fixe l'unité monétaire dans le header du tableau (package calctab)
+% pour être cohérent, les 2 unités \rsChoisirUniteMonetaire{\unite}
+% \ctcurrency{\unite} et doivent ëtre les mêmes
+\ctcurrency{\euro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Aération de la facture %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% permet d'aérer la page verticalement; le paramètre est une mesure LaTeX
+%% TeX comprend six unités de mesure :
+%% + pt point = 0,35 mm
+%% + mm millimètre
+%% + ex correspond à la hauteur d'un x dans la fonte courante
+%% + em correspond à la largeur d'un m dans la fonte courante
+%% + cm centimètre
+%% + in pouce = 2,54 cm
+%\rsAerationVerticale{0.3cm}
+%\rsAerationVerticale{1.5cm}
+%\rsAerationVerticale{1cm}
+\rsAerationVerticale{0.5cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Numéro et date de la facture %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\rsNoDate{<numéro=nombre>}{date=chaine}
+%\rsNoDate{1}{jj mois AAAA}
+\rsNoDate{X}{JJ mois AAAA}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Aération du texte   %%
+\vspace{\rsespaceVertical}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tableau des adresses expédition, facturation, livraison  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  On ouvre l'entête du tableau des adresses; à n'utiliser qu'une seule fois.
+\rsEnteteTableauAdresses{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Entrée d'une ligne d'adresse, dans l'ordre expédition, facturation, livraison
+
+%% 1) Voici un exemple complexe:
+\rsLigneTableauAdresses{Prénom \textsc{Nom}}{ \textsc{Fbg}~\textsc{Bgf}}{Voir facturation}
+\rsLigneTableauAdresses{}{Fédération belge de gong}{}
+\rsLigneTableauAdresses{}{Belgische gong federatie}{}
+\rsLigneTableauAdresses{N\up{o}, rue Delarue1}{DelarueStraat, no}{}
+\rsLigneTableauAdresses{\textsc{CCC1 Ville1}}{\textsc{CCC2 Ville2}}{}
+\rsLigneTableauAdresses{\href{mailto:user@domain.tld}{user@domain.tld}}{\textsc{(Entité)}}{}
+\rsLigneTableauAdresses{+32 684 037 078}{}{}
+
+%% 2) Voici un exemple simple:
+%\rsLigneTableauAdresses{\textsc{Prénom Nom}}{\textsc{Org 1}}{\textsc{Org 2}}
+%\rsLigneTableauAdresses{}{Nom organisation 1}{Nom organisation 2}
+%\rsLigneTableauAdresses{N\up{o}, rue Delarue1}{N\up{o}, rue Delarue2}{N\up{o}, rue Delarue3}
+%\rsLigneTableauAdresses{\textsc{CCC1 Ville1}}{\textsc{CCC2 Ville2}}{\textsc{CCCC Ville3}}
+
+%% 3) et enfin, si vous voulez, des lignes vides:
+%\rsLigneTableauAdresses{}{}{}
+%\rsLigneTableauAdresses{}{}{}
+%\rsLigneTableauAdresses{}{}{}
+%\rsLigneTableauAdresses{}{}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  on ferme le pied du tableau des adresses; à n'utiliser qu'une seule fois.
+\rsPiedTableauAdresses{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Aération du texte   %%
+\vspace{\rsespaceVertical}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tableau des produits, avec le package calctab, on choisit xcalctab %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% On ne va pas réinventer le monde, mais simplement réutiliser les commandes
+%% simples et efficaces du package calctab, dans son environnement xcalctab 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% D'abord quelques paramètres utiles pour nous:
+%% On fixe les headers en français (anglais par défaut)
+%% \ctcurrency{\euro}, la monnaie est fixée plus haut
+%% près du point "Unité monétaire"
+\ctdescription{Nature}
+\ctontraslation{sur}
+\ctheaderone{Quantité}
+\ctheadertwo{Prix unit.}
+%% Par défaut 2 décimales, c'est plutôt correct, non?
+\nprounddigits{2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Ensuite le tableau des produits avec nature, quantité, coût et éventuelles
+%% remises
+
+% On ouvre l'environnement xcalctab
+\begin{xcalctab}
+%% calctab est en police police sans empattements (sf, pour sans serif), 
+%% on remet en normalfont de ce document
+\normalfont
+%% On ajoute des produits 
+% \amount{nature}{quantité}{prix unitaire}
+%% si amount comporte un id comme ci-dessous, on pourra lui appliquer une remise (-) (ou une taxe (+))
+%% avec la commande \perc[identificateur]{Intitulé}{+/-pourcentage}
+%% une id s'écrit ainsi: [id=identificateur] identificateur = 1 seul mot entier!
+% \amount[id=identificateur]{nature}{quantité}{prix unitaire}
+%%% !!! ATTENTION UN ID EST UN MOT UNIQUE POUR *TOUTE* LA FACTURE !!! %%%
+
+%% Nous allons prendre un exemple où nous choisissons de donner un id à 
+%% tous les produits, c'est le plus simple.
+\amount[id=nisl]{Produit nisl}{5}{100,0}
+\amount[id=eget]{Produit eget}{2}{1000,0}
+\amount[id=luctus]{Produit luctus}{3}{50,25}
+
+% le total des produits avant remise
+\add[id=prixhrem,nisl,eget,luctus]{Total hors remise:}
+
+% les remises
+\perc[id=rem10,nisl]{Remise 1:}{-10}
+\perc[id=rem20,eget,luctus]{Remise 2:}{-5}
+
+% le total des remises
+\add[id=coutrem,rem10,rem20]{Total remise:}
+
+% le grand total:
+\add[prixhrem,coutrem]{Total}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Comme vous voyez, ci-dessus, on détermine à chaque fois sur quoi porte les calculs]  %%
+%% en utilisant les id                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Finalement, on ferme l'environnement xcalctab
+\end{xcalctab}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Aération du texte   %%
+\vspace{\rsespaceVertical}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, DEBUT. %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\paragraph*{Description du produit:}
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla rhoncus est ac viverra lacinia. Etiam pulvinar tempus rutrum. Maecenas vel metus metus. Quisque tempus tempor metus, vitae interdum purus vehicula ac. Duis purus tortor, ultricies eu nunc eget, aliquet ullamcorper lectus. Duis eget luctus nisl, non molestie quam. Cras volutpat egestas arcu, ac blandit felis scelerisque quis. Morbi vestibulum feugiat facilisis.
+
+Ut sed augue pharetra, viverra sapien in, tincidunt magna. Sed a feugiat tortor. Mauris maximus posuere egestas. Nulla interdum nisl quis ex eleifend, accumsan posuere libero vehicula. 
+
+\paragraph*{\'{E}tendue des fournitures:}
+\begin{itemize}
+    \item La livraison du produit 1 s'étend sur 5 semaines, du JJ/MM/AAAA au JJ/MM/AAAA, 1 quantité par semaine;
+    \item La livraison du produit eget luctus nisl s'étend sur 2 mois, du JJ/MM/AAAA au JJ/MM/AAAA, 1 quantité par semaine.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, FIN. %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Entrée du compte bancaire créditeur et de la date limite de paiement. %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \compteBancaireEtDateLimiteDePaiement{n° compte}{JJ mois AAAA}
+\rsCompteBancaireEtDateLimiteDePaiement{BE95 0011 8359 9858}{JJ mois AAAA}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Ajoute les crédits en footer. %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rsCredit{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Ci-dessous, les lignes du haut et du bas %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[scale=0.3]{line_haut.png}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[b]
+\begin{center}
+\includegraphics[scale=0.3]{line_bas.png}
+\end{center}
+\end{figure}
+
+\end{document}

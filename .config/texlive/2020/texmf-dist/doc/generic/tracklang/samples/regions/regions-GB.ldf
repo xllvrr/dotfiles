@@ -1,0 +1,9 @@
+\TrackLangProvidesResource{GB}[2016/10/06 v1.2]
+
+\providecommand*{\GBunits}{%
+  \renewcommand*{\weightunit}{kg}%
+  \renewcommand*{\lengthunit}{mm}%
+  \renewcommand*{\currencyunit}{GBP}%
+}
+
+\TrackLangAddToCaptions\GBunits

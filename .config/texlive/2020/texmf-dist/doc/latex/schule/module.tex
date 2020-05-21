@@ -1,0 +1,24 @@
+\part{Module}
+    \label{sec:module}
+    \section{Nutzung der Module}
+        \subsection{Standardmodule}
+        Standardmäßig wird davon ausgegangen, dass ein Dokument mit Schulkontext gesetzt werden soll (Arbeitsblatt, Klausur, etc). Dann lädt das Schule-Paket die Module \module{Metadaten}, \module{Format} und \module{Aufgaben}.
+
+        Wird das Paket eingebettet verwendet, also mit der Paketoption \keyis{typ}{ohne} geladen, lädt das Schule-Paket nur die Module \module{Metadaten} und \module{Format}.
+
+        Wird ein nicht definierter Typ angegeben, wird ein Arbeitsblatt gesetzt und der angegebene Typ wird als Bezeichner verwendet.
+
+        \subsection{Laden weiterer Module}
+        \begin{options}
+            \keyval{module}{Modul1,Modul2,\dots}\Default Weitere Module können geladen werden, indem Sie der Paketoption \option{module} als kommaseparierte Liste übergeben werden.
+        \end{options}
+
+    \input{modulAufgaben}
+    \input{modulBewertung}
+    \input{modulFormat}
+    \input{modulKuerzel}
+    \input{modulLizenzen}
+    \input{modulMetadaten}
+    \input{modulPapiertypen}
+    \input{modulSymbole}
+    \input{modulTexte}

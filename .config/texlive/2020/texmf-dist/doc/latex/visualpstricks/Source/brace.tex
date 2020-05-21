@@ -1,0 +1,190 @@
+
+%Syntaxe : 
+%\BSS{psbrace}[Options](A)(B)\AC{\TFRGB{texte}{text}}
+
+\SbSbSSCT{Dans un environnement pspicture}{Braces in  pspicture}
+
+
+\begin{tabular}{|c|c|} \hline  
+ \begin{pspicture}[shift=*](-.5,-0.5)(5,4.5)
+\psaxes[xticksize=4,yticksize=4,axesstyle=frame](5,4)
+\pnode(1,1){B}\pnode(3,2){C}
+\psbrace(B)(C){\TFRGB{texte}{text}}
+\psbrace(4,3)(1,3){}
+\psdots[dotstyle=*,linecolor=blue,dotscale=2](B) \nput{45}{B}{B} 
+\psdots[dotstyle=*,linecolor=blue,dotscale=2](C) \nput{45}{C}{C}%
+ \end{pspicture} 
+& 
+\parbox{3.5cm}{ 
+\BS{}pnode(1,1)\AC{B} \BS{}pnode(3,2)\AC{C}
+
+\BSS{psbrace}(B)(C)\AC{\TFRGB{texte}{text}} \BSI{psbrace}{pstricks-add} 
+
+\bigskip
+\textbf{\BS{psbrace}}(4,3)(1,3)\AC{} }
+\\ \hline 
+\end{tabular} 
+
+%\begin{center}
+%
+%\end{center}
+ 
+%\bigskip
+
+ 
+% \psbrace[bracePos=0.25,nodesepB=10 pt,rot=90](0,2)(\linewidth,2){\fbox{Text}}
+\bigskip
+\begin{tabular}{|c|c|}\hline 
+\multicolumn{2}{|c|}{\TFRGB{Rôle de l'astérisque}{Role of the asterisk} \footnotemark[1] } \\
+\hline 
+ \begin{pspicture}(-.5,-.5)(4,3)
+ \psaxes[xticksize=2.5,yticksize=4,axesstyle=frame](4,2.5)
+ \psbrace[braceWidth=.5cm,fillcolor=yellow](1,1)(3,2){}
+ \end{pspicture}  &  
+ \begin{pspicture}(-.5,-.5)(4,3)
+ \psaxes[xticksize=2.5,yticksize=5,axesstyle=frame](4,2.5)
+ \psbrace*[braceWidth=.5cm,fillcolor=yellow](1,1)(3,2){}
+\end{pspicture} \\ \hline 
+ \BS{}psbrace(1,1)(3,2)\AC{} &
+  \BS{}psbrace*(1,1)(3,2)\AC{}  \\
+\hline 
+\end{tabular} 
+
+\footnotetext[1]{braceWidth=.5cm,fillcolor=yellow}
+
+\SbSbSSCT{Dans le texte}{The brace in the text}
+ \TFRGB{le noeud  A est ici \pnode(0,0){A} et le noeud B est ici}{the node  A is here \pnode(0,0){A} and the node  B is here} \pnode(0,0){B} \BS{}psbrace(A)(B)\AC{\TFRGB{texte}{text}}
+\psbrace(A)(B){\TFRGB{texte}{text}}
+\smallskip
+
+{\red \TFRGB{L'accolage n'a pas de dimension}{The brace has no dimension !}}
+
+\vspace{1cm}
+
+
+\pnode(0,0){A} \TFRGB{ici, se trouve le noeud}{here is the node}  A 
+
+\BS{}vspace\AC{1cm}
+\vspace{1cm}
+
+ \pnode(0,0){B} \TFRGB{ici, se trouve le noeud}{here is the node}  B   \BS{}psbrace(A)(B)\AC{}
+\psbrace[rot=90](A)(B){}
+
+\vspace{1cm}
+
+
+
+
+\subsubsection{Options}
+\begin{tabular}{|c|c|c|}
+\hline 
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+\pnode(1,1){B}\pnode(3,2){C}
+\psbrace[braceWidth=5pt](B)(C){\TFRGB{texte}{text}}
+ \end{pspicture} 
+&
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+\pnode(1,1){B}\pnode(3,2){C}
+\psbrace[braceWidthInner=.5cm](B)(C){\TFRGB{texte}{text}}
+ \end{pspicture}
+ &
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+\pnode(1,1){B}\pnode(3,2){C}
+\psbrace[braceWidthOuter=.5cm](B)(C){\TFRGB{texte}{text}}
+ \end{pspicture}
+ \\ \hline
+\RDD{braceWidth}=5pt \RDI{braceWidth}{pstricks-add} & \RDD{braceWidthInner}=.5cm \RDI{braceWidthInner}{pstricks-add} &
+\RDD{braceWidthOuter}=.5cm \RDI{braceWidthOuter}{pstricks-add}
+\\ \hline
+{\blue \dft : \BS{pslinewidth}}  & {\blue  \dft : 10\BS{pslinewidth}} & {\blue \dft : 10\BS{pslinewidth} }
+  \\ \hline
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+\pnode(1,1){B}\pnode(3,2){C}
+\psbrace[bracePos=.25](B)(C){\TFRGB{texte}{text}}
+ \end{pspicture}
+&
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+\pnode(1,1){B}\pnode(3,2){C}
+\psbrace[nodesepA=.5cm](B)(C){\TFRGB{texte}{text}}
+ \end{pspicture}
+&
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+ \pnode(1,1){B}\pnode(3,2){C}
+ \psbrace[nodesepB=.5cm](B)(C){\TFRGB{texte}{text}}
+  \end{pspicture}
+ \\ \hline
+\RDD{bracePos}=.25 \RDI{bracePos}{pstricks-add} & 
+\RDD{nodesepA}=5pt \RDI{nodesepA}{pstricks-add} & \RDD{nodesepB}=5pt \RDI{nodesepB}{pstricks-add}\\
+Position (\%) & \TFRGB{décalage horizontal}{horizontal  offset} & \TFRGB{décalage vertical}{vertical offset}
+ \\ \hline
+{\blue \dft : .5} &  {\blue\dft : 0pt  }& {\blue \dft : 0pt }
+  \\ \hline
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+ \pnode(1,1){B}\pnode(3,2){C}
+ \psbrace[rot=90](B)(C){\TFRGB{texte}{text}} 
+  \end{pspicture} 
+&
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+ \pnode(1,1){B}\pnode(3,2){C}
+ \psbrace[rot=90,ref=r](B)(C){\TFRGB{texte}{text}}
+  \end{pspicture} 
+&
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+ \pnode(1,1){B}\pnode(3,2){C}
+ \psbrace[rot=90,ref=l](B)(C){\TFRGB{texte}{text}}
+  \end{pspicture} 
+   \\ \hline 
+\RDD{rot}=90  \RDI{rot}{pstricks-add} & 
+rot=90,\RDD{ref} = {\red r}  \RDI{ref}{pstricks-add} & rot=90,ref={\red l }
+   \\ \hline 
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+ \pnode(1,1){B}\pnode(3,2){C}
+ \psbrace[rot=90,ref=b](B)(C){\TFRGB{texte}{text}}
+  \end{pspicture} 
+ &
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+  \pnode(1,1){B}\pnode(3,2){C}
+  \psbrace[rot=90,ref=t](B)(C){\TFRGB{texte}{text}}
+    \end{pspicture} 
+  &
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+ \pnode(1,1){B}\pnode(3,2){C}
+ \psbrace[rot=90,ref=C](B)(C){\TFRGB{texte}{text}}
+  \end{pspicture}
+   \\ \hline 
+rot=90,ref={\red b} & rot=90,ref={\red t} & rot=90,ref={\red C}
+ \\ \hline
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+ \pnode(1,1){B}\pnode(3,2){C}
+ \psbrace[rot=90,ref=B](B)(C){\TFRGB{texte}{text}}
+  \end{pspicture} 
+ &
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+  \pnode(1,1){B}\pnode(3,2){C}
+  \psbrace[rot=90,ref=lC](B)(C){\TFRGB{texte}{text}}
+    \end{pspicture} 
+  &
+ \begin{pspicture}(-.5,-.5)(4.2,2.5)
+\psaxes[xticksize=2.2,yticksize=4,axesstyle=frame](4,2.2)
+ \pnode(1,1){B}\pnode(3,2){C}
+ \psbrace[fillcolor=green](B)(C){\TFRGB{texte}{text}}
+  \end{pspicture}
+   \\ \hline 
+rot=90,ref={\red B} & rot=90,ref={\red lC}& \RDD{fillcolor}=green  \RDI{fillcolor}{pstricks-add}\\ \hline
+  \end{tabular} 
+  
+\bigskip

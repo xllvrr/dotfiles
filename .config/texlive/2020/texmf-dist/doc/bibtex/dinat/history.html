@@ -1,0 +1,692 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML LANG="de">
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso-8859-1">
+<META NAME="description" CONTENT="history of the BibTeX styles dinat">
+<META NAME="keywords" CONTENT="history dinat literatur DIN 1505 bibtex">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<TITLE>Versions&uuml;bersicht</TITLE>
+
+</HEAD>
+
+<BODY BGCOLOR="white">
+
+<H1>Versions&uuml;bersicht f&uuml;r <A HREF="index.html">dinat</A></H1>
+
+<HR>
+
+<H4>A short note for english speaking people</H4>
+
+<P>
+This page is the version history of the BibTeX style 
+<CODE>dinat.bst</CODE>, which produce bibliographies following the german 
+norm DIN 1505. Because this norm is only usefull for text in german, all 
+extra documentation like these pages is in german, too. Nonetheless the 
+styles themselves have comments and output in english. If you like to get 
+this pages in english, too, please write me, I'll do my very best.
+</P>
+
+<ADDRESS><A HREF="mailto:helge.baumann@gmx.de">mailto</A>: Helge 
+Baumann</ADDRESS>
+<HR>
+
+<H2>Einleitung</H2>
+
+<P>
+Hier werden (hoffentlich) alle &Auml;nderungen und ihr Sinn 
+aufgef&uuml;hrt, die zum Erreichen der aktuellen Version des BibTeX-Stils 
+<A HREF="dinat.bst">dinat.bst</A> durchgef&uuml;hrt wurden. Ich hoffe, dass 
+damit das Verst&auml;ndnis des Stils im Speziellen und von BibTeX im 
+Allgemeinen vertieft wird.
+</P>
+
+<HR>
+
+<H4> Zu den <A HREF="#last">letzten &Auml;nderungen</A></H4>
+
+<HR>
+
+<H2>Der Anfang</H2>
+
+<P>
+Einen neuen Stil zu schreiben kam mir zwar auch kurzzeitig in den Sinn, 
+aber nach einigen halbherzigen Versuchen habe ich es aufgegeben (hey, ich 
+sollte eigentlich meine Diplomarbeit schreiben!) und mich lieber auf die 
+Modifikation eines existierenden Stils beschr&auml;nkt. Als Ausgangspunkt 
+habe ich den Stil <A 
+HREF="http://www.fh-hamburg.de/pers/Lorenzen/bibtex/"><CODE>natdin</CODE></A> 
+von <A HREF="http://www.fh-hamburg.de/pers/Lorenzen/">Lorenzen</A> 
+genommen, der die grundlegende DIN-Konformit&auml;t schon eingebaut hat, 
+allerdings ziemlich fehlerhaft (und chaotisch) ist. Als Gradmesser f&uuml;r 
+den Erfolg habe ich anfangs die Datei <CODE>xampl.bib</CODE> verwendet, die 
+mit BibTeX mitgeliefert wird. Sie bietet zwar nicht unbedingt DIN-konforme 
+Eintr&auml;ge, deckt aber alle Standardf&auml;lle ab.
+</P>
+
+<P>
+Nachdem die Entscheidung gefallen war, einen &quot;neuen&quot; Stil zu 
+produzieren, ging es an die Einarbeitung in BibTeX im Allgemeinen und 
+<CODE>natdin</CODE> im Besonderen. Irgendwann verstand ich so 
+ungef&auml;hr, wie BibTeX mit Hilfe der bst-Dateien aus den Eintr&auml;gen 
+der Datenbank eine TeX-Quelle erzeugt und f&uuml;hlte mich gewappnet, dem 
+Problem entgegenzutreten.
+</P>
+
+<HR>
+
+<H2>Von NATDIN zu DINAT</H2>
+
+<P>
+Zuallererst musste ich <CODE>natdin</CODE> erstmal zum Laufen bekommen, 
+bei mir produzierte das Ding haufenweise Fehlermeldungen und Warnungen. 
+Fehler sind schlimmer als Warnungen, also musste ich mich zuerst um diese 
+k&uuml;mmern.
+</P>
+
+<H3>Grundlegende Fehler</H3>
+
+<UL>
+    <LI>doppelte Funktionen <CODE>or</CODE> und <CODE>conference</CODE> 
+    entfernt</LI>
+</UL>
+
+<P>
+Ab hier lie&szlig; sich der Stil ohne Fehler einlesen, produzierte aber 
+noch 48 Fehler mit xampl.bib, ein bischen viel f&uuml;r meinen Geschmack!
+</P>
+
+<H3>Detail-Arbeit</H3>
+
+<P>
+Nun wurden einige &Auml;nderungen durchgef&uuml;hrt, die die Ausgabe nicht 
+grundlegend &auml;ndern, aber f&uuml;r das Verst&auml;ndnis des Stils gut 
+waren. Das meiste war eigentlich einfaches Aufr&auml;umen, nur ein paar 
+Sachen sind mir im Vorbeigehen zus&auml;tzlich aufgefallen, und so habe 
+ich sie gleich mit ge&auml;ndert:
+</P>
+
+<UL>
+    <LI>Kommentare komplett entfernt, die meisten betrafen sowieso 
+    irgendwelche &Auml;nderungen von vorangegangenen Versionen</LI>
+    <LI>Funktion <CODE>either.or.check</CODE> entfernt, wird nicht aufgerufen</LI>
+    <LI>in <CODE>misc</CODE> <CODE>Norm</CODE> durch <CODE>NORM</CODE> 
+    ersetzt</LI>
+    <LI><CODE>[u.~a.~]</CODE> durch <CODE>[u.~a.]</CODE> ersetzt</LI>
+    <LI><CODE>{ 'skip$ }</CODE> durch <CODE>{ skip$ }</CODE> ersetzt</LI>
+    <LI>Formatierung (Einr&uuml;ckungen und Umbr&uuml;che) vereinheitlicht</LI>
+    <LI>Macro f&uuml;r <CODE>mar</CODE> ge&auml;ndert</LI>
+    <LI><CODE>phdthesis</CODE> eingef&uuml;hrt</LI>
+    <LI><CODE>format.pages.book</CODE> ge&auml;ndert</LI>
+    <LI>Funktionen <CODE>show</CODE> und <CODE>show.stack</CODE> f&uuml;r 
+    Debugging eingef&uuml;hrt</LI>
+    <LI><CODE>&quot;x&quot; * &quot;y&quot;</CODE> zu 
+    <CODE>&quot;xy&quot;</CODE>zusammengezogen</LI>
+    <LI>Funktionsaufrufe <CODE>'name</CODE> durch <CODE>{ name }</CODE> 
+    ersetzt</LI>
+    <LI>gemeinsame Teile aus if-Zweigen verschoben bei</LI>
+    
+    <UL>
+	<LI><CODE>article.in.journal</CODE></LI>
+	<LI><CODE>format.editors</CODE></LI>
+	<LI><CODE>format.address.publisher.year</CODE></LI>
+	<LI><CODE>format.btitle.vol</CODE></LI>
+	<LI><CODE>format.series.number.din</CODE></LI>
+	<LI><CODE>format.vol.year.num.pages</CODE></LI>
+	<LI><CODE>format.in.ed.booktitle.din</CODE></LI>
+	<LI><CODE>format.tr.number.din</CODE> (umgestellt!)</LI>
+	<LI><CODE>format.book.crossref</CODE></LI>
+	<LI>allen entry-Funktionen</LI>
+    </UL>
+    
+    <LI>alle Kommandos ausser ENTRY, INTEGERS und STRINGS an das Ende 
+    gesetzt</LI>
+    <LI><CODE>extra.label</CODE> am Ende von <CODE>format.date</CODE> 
+    entfernt</LI>
+    <LI>diverse <CODE>tie.or.space.connect</CODE> durch <CODE>*</CODE> ersetzt, 
+    falls kein festes Leerzeichen n&ouml;tig</LI>
+</UL>
+
+<P>
+Bis hier waren alle Ma&szlig;nahmen im Prinzip semantik-erhaltend, haben 
+damit also an der Anzahl der Fehler nichts ge&auml;ndert! Dies sollte nun 
+anders werden ...
+</P>
+
+<H3><I>You can't pop an empty literal stack ...</I>-Fehler</H3>
+
+<UL>
+    <LI>in <CODE>calc.label</CODE> vor <CODE>sortify</CODE> ein 
+    <CODE>label</CODE> eingef&uuml;gt</LI>
+</UL>
+
+<P>
+Das entfernte die Fehlermeldungen, die durch das Sortieren hervorgerufen 
+wurden. Es blieben noch 12 Fehlermeldungen.
+</P>
+
+<UL>
+    <LI>in <CODE>article.in.journal</CODE> bei leeren <CODE>author</CODE> und 
+    <CODE>editor</CODE> kein <CODE>*</CODE></LI>
+</UL>
+
+<P>
+Das behebt den <CODE>empty literal stack</CODE> bei 
+<CODE>whole-jounal</CODE>, es bleiben noch 11 <I>the literal stack isn't 
+empty ...</I>-Fehler.
+</P>
+
+<H3>Kommentare</H3>
+
+<P>
+Ab hier war das Verst&auml;ndnis des Stils allerdings schon relativ 
+gro&szlig;, so dass vorher ein paar weitere Dinge in Angriff genommen 
+werden konnten:
+</P>
+
+<UL>
+    <LI>Funktionen etc. kommentiert</LI>
+    <LI>Funktionen umbenannt, um ihren Zweck zu beschreiben:
+    
+    <DL>
+	<DT><CODE>out.*</CODE></DT> <DD>Schreibt den obersten Eintrag des Stacks in 
+	die bbl-Datei</DD>
+	<DT><CODE>format.*</CODE></DT> <DD>Formatiert den obersten Eintrag des 
+	Stacks, d.h. baut ihn irgendwie um, packt aber keinen neuen Eintrag drauf 
+	oder entfernt einen</DD>
+	<DT><CODE>push.*</CODE></DT> <DD>Legt genau einen (evtl. leeren) neuen 
+	Eintrag auf den Stack</DD>
+    </DL>
+    
+    </LI>
+</UL>
+
+<H3><I>the literal stack isn't empty ...</I>-Fehler</H3>
+
+<P>
+Eine naheliegende Ma&szlig;name war das Einf&uuml;gen von 
+<CODE>stack$</CODE> am Ende von <CODE>out.bibitem.end</CODE> (ehemals 
+<CODE>fin.entry</CODE>), aber das h&auml;tte nur die Symptome kuriert, 
+nicht deren Ursache. Also ging es einzeln ans Eingemachte: Es waren alle 
+Stellen zu suchen und zu finden, in denen irgendwas auf den Stack gelegt 
+wurde, das hinterher nicht verarbeitet wurde. Dazu half die Umbenennung: 
+alles mit <CODE>push</CODE> musste etwas (genauer gesagt, exakt 
+<STRONG>ein</STRONG> Item) auf den Stack legen, alles mit 
+<CODE>format</CODE> dagegen sollte den obersten Stack-Eintrag manipulieren, 
+musste ihn also dazu abheben und hinterher wieder drauftun oder/und musste 
+etwas daranh&auml;ngen. Gefunden habe ich dann nur den einen Eintrag:
+</P>
+
+<UL>
+    <LI>in <CODE>format.article.in.journal</CODE> bei leerem Titel 
+    <CODE>*</CODE> entfernt</LI>
+</UL>
+
+<P>
+Damit (wenn ich nichts vergessen habe) waren alle Fehlermeldungen 
+verschwunden, und die Hauptarbeit war getan:
+</P>
+
+<H3>DINAT war geboren!</H3>
+
+<HR>
+
+<H2>Neue Funktionen</H2>
+
+<P>
+Nun ging es daran, neue Funktionen einzubauen bzw. die existierenden 
+Formatierungen zu modifizieren:
+</P>
+
+<UL>
+    <LI>Macros f&uuml;r Zeitschriften eingef&uuml;gt</LI>
+    <LI>Leerzeichen vor Verweis in <CODE>format.article.crossref</CODE> 
+    eingef&uuml;rht</LI>
+    <LI>fette Verweise (<CODE>\textbf</CODE>) entfernt</LI>
+    <LI>ein Klammerpaar (&quot;{}&quot;) um ehemalige <CODE>\textbf</CODE> 
+    entfernt</LI>
+    <LI>zus&auml;tzliche Macros f&uuml;r Monate entfernt</LI>
+    <LI><CODE>pages</CODE> in <CODE>incollection</CODE> und 
+    <CODE>inproceedings</CODE> hinter <CODE>series</CODE> und </LI>
+    <CODE>number</CODE> verschoben
+    <LI>alle Ausgaben in Englisch</LI>
+</UL>
+
+<HR>
+
+<H2>URL</H2>
+
+<P>
+Neuere Stile enthalten das Feld URL, also mu&szlig; das auch hier rein 
+(au&szlig;erdem brauche ich es selbst!).
+</P>
+
+<UL>
+    <LI>Feld <CODE>url</CODE> eingef&uuml;gt</LI>
+    <LI>Formatierung f&uuml;r <CODE>url</CODE> eingef&uuml;gt</LI>
+    <LI>falls das url-Paket nicht verwendet wird, <CODE>\texttt</CODE> f&uuml;r 
+    URL verwenden (<CODE>begin.bib</CODE>)</LI>
+    <LI>bei leerem <CODE>publisher</CODE>, <CODE>author</CODE> und 
+    <CODE>editor</CODE> als Impressum die <CODE>url</CODE> verwenden</LI>
+    <LI><CODE>url</CODE> in alle Eintr&auml;ge vor <CODE>note</CODE> eingebaut, 
+    allerdings nur, wenn noch nicht im Impressum verwendet</LI>
+</UL>
+
+<HR>
+
+<H2>Von DINAT zu DINNAT</H2>
+
+<P>
+Nachdem der DINAT-Stil so weit gediehen war, kam ich durch Beitr&auml;ge in 
+der Newsgruppe <A HREF="news:de.comp.text.tex">de.comp.text.tex</A> auf die 
+Idee, den Stil so zu modifizieren, dass er die ganzen 
+NATBIB-M&ouml;glichkeiten bietet, also z.B. auch <CODE>\citeyear</CODE> und 
+die <CODE>*</CODE>-Formen.
+</P>
+
+<UL>
+    <LI>Klammern um <CODE>year</CODE> in das Label eingebaut 
+    (<CODE>calc.label</CODE>)</LI>
+</UL>
+
+<P>
+Leider gingen dabei die Marken vor den Eintr&auml;gen im 
+Literaturverzeichnis fl&ouml;ten, so dass ein zweiter Stil n&ouml;tig 
+wurde, der allerdings nicht mehr so richtig DIN-konform genannt werden 
+kann. Da er aber quasi die Langform von DINAT ist, wurde er DINNAT genannt. 
+Falls ich das jemals hinbekomme, die Marken zu erzeugen, wird DINNAT aber 
+wieder eingestellt!
+</P>
+
+<P>
+Ab jetzt m&uuml;ssen alle &Auml;nderungen parallel in beiden Stilen 
+durchgef&uuml;hrt werden, falls nicht anders vermerkt.
+</P>
+
+<P>
+Damit werden aber schon die zus&auml;tzlichen cite-Versionen 
+erm&ouml;glicht, es fehlt allerdings noch die lange Autorenliste.
+</P>
+
+<UL>
+    <LI><CODE>make.full.names</CODE> mit allen in ihr aufgerufenen Funktionen 
+    aus den anderen NAT-Stilen in <CODE>dinnat</CODE> eingef&uuml;gt und hinter 
+    das bisherige Label eingebaut</LI>
+</UL>
+
+<HR>
+
+<H2>Erste Ver&ouml;ffentlichung am 10.4.2000</H2>
+
+<P>
+Nachdem ich soweit gekommen war, war es an der Zeit, DINAT mit der 
+gro&szlig;en b&ouml;sen Welt in Kontakt kommen zu lassen: Eine erste 
+Ank&uuml;ndigung erfolgte in der Newsgruppe de.comp.text.tex. Das Ergebnis 
+war nicht &uuml;berw&auml;ltigend, aber gr&ouml;&szlig;er als gedacht, und 
+vor allem positiv! Ein echter Ansporn, weiter zu arbeiten.
+</P>
+
+<HR>
+
+<H2>Version 1.1 vom 18.4.2000</H2>
+
+<P>
+Wie &uuml;blich finden sich direkt nach Ver&ouml;ffentlichung der ersten 
+Version sofort ein paar kleine Fehler, die eine &Uuml;berarbeitung 
+notwendig machen:
+</P>
+
+<UL>
+    <LI><CODE>format.dashes</CODE> aus <CODE>push.url</CODE> entfernt</LI>
+    <LI><CODE>out.bibitem.start.end</CODE> in <CODE>out.bibitem.end</CODE> 
+    umbenannt (typischer Suchen-und-Ersetzen-Fehler)</LI>
+    <LI><CODE>top$</CODE> durch <CODE>warning$</CODE> ersetzt, falls es nicht 
+    f&uuml;r Debugging gebraucht wird</LI>
+    <LI>diverse <CODE>tie.or.space.connect</CODE> durch <CODE>*</CODE> ersetzt, 
+    falls der hintere Teil auf jeden Fall l&auml;nger ist, z.B. bei 
+    ISBN/ISSN</LI>
+    <LI>diverse Leerzeichen vor bzw. hinter Satzzeichen etc. durch eine Tilde 
+    ersetzt (und <CODE>tie.or.space.connect</CODE> durch <CODE>*</CODE> 
+    ersetzt)</LI>
+    <LI>&uuml;berfl&uuml;ssige geschweifte Klammern entfernt</LI>
+    <LI><CODE>format.article.in.journal</CODE> vereinfacht</LI>
+    <LI><CODE>push.series.number</CODE> umgestellt</LI>
+</UL>
+
+<P>
+Und nat&uuml;rlich auch ein paar richtige &Auml;nderungen (welche erste 
+Verison ist schon korrekt?):
+</P>
+
+<UL>
+    <LI>zur Label-Erzeugung durch <CODE>key</CODE> wird der ganze Eintrag 
+    genommen, nicht mehr nur die ersten drei Buchstaben (<A 
+    HREF="mailto:rascher@ifn.ing.tu-bs.de">mailto</A>: Kai Rascher)</LI>
+    <LI>zur Label-Erzeugung wird der komplette <CODE>year</CODE>-Eintrag 
+    verwendet, nicht nur die letzten vier Stellen, z.B. f&uuml;r 
+    von-bis-Angaben (<A HREF="mailto:ulfhinze@gmx.de">mailto</A>: Ulf 
+    Hinze)</LI>
+    <LI>bei <CODE>incollection</CODE> und <CODE>inproceedings</CODE> wird auch 
+    mit <CODE>crossref</CODE> das Kapitel angegeben</LI>
+    <LI><CODE>push.book.crossref</CODE> vereinfacht</LI>
+</UL>
+
+<P>
+Ab jetzt sind auch diese Webseiten verf&uuml;gbar, ich hoffe, damit werden 
+viele Fragen im Vorfeld beantwortet. Irgendwann demn&auml;chst wird diese 
+Seite auch umziehen, auf jeden Fall steht die Adresse dann im Vorspann der 
+Dateien.
+</P>
+
+<HR>
+
+<H2>Version 1.2 vom 25.4.2000</H2>
+
+<P>
+Nachdem diese Stile und damit auch diese Webseiten (auf Anregungen von <A 
+HREF="mailto:niepraschk@ptb.de">mailto</A>: Rolf Niepraschk) die Aufnahme 
+in die heiligen Hallen des <A HREF="http://www.ctan.com">CTAN</A> im Pfad 
+<CODE>biblio/bibtex/contrib/german/dinat/</CODE> gefunden haben, gibt es 
+auch noch ein paar &Auml;nderungen:
+</P>
+
+<UL>
+    <LI>doppelte Leerzeichen entfernt</LI>
+    <LI><CODE>\natexlab</CODE> in <CODE>dinat</CODE> wieder eingef&uuml;hrt 
+    (warum war das eigentlich draussen?)</LI>
+    <LI>in <CODE>dinnat</CODE> geschweifte Klammern um <CODE>\natexlab</CODE> 
+    und in <CODE>\bibitem[...]</CODE> entfernt</LI>
+    <LI>in <CODE>misc</CODE> wird f&uuml;r <CODE>NORM</CODE> eine beliebige 
+    Gro&szlig;-/Kleinschreibung erkannt und verwendet</LI>
+    <LI>bei fehlenden Autor- etc. Angaben wird die gesamte Marke 
+    (<CODE>cite$</CODE>) als Label genommen, nicht nur ihre ersten drei 
+    Buchstaben</LI>
+    <LI><CODE>push.address.publisher.year</CODE> umgestellt</LI>
+    <LI>diverse <CODE>tie.or.space.connect</CODE> durch <CODE>*</CODE> ersetzt 
+    (und Leerzeichen bzw. Tilden eingef&uuml;gt)</LI>
+    <LI>Kommata in <CODE>push.incoll.inproc.crossref</CODE> richtig 
+    gesetzt</LI>
+    <LI><CODE>url</CODE> nicht bei fehlenden Verlagsangaben (und nicht 
+    fehlenden Autor und Editor!)</LI>
+    <LI>Titel von Normen kursiv</LI>
+    <LI><CODE>crossref</CODE> bei Normen eingef&uuml;gt</LI>
+</UL>
+
+<HR>
+
+<H2>Version 2.0 vom 2.5.2000</H2>
+
+<P>
+Wenn das so weitergeht, komme ich doch noch in einen w&ouml;chentlichen 
+Update-Rhythmus :-)
+</P>
+
+<P>
+Ab jetzt gibt es zu den &Auml;nderungen auf dieser Seite auch die Namen und 
+Mail-Adressen der Leute, die diese angeregt haben, als Dank und Ansporn 
+sozusagen.
+</P>
+
+<UL>
+    <LI>&uuml;berfl&uuml;ssiges Leerzeichen in der Namensliste durch 
+    <CODE>format.names</CODE> entfernt (<A 
+    HREF="mailto:stefan@snobis.de">mailto</A>: Stefan Nobis)</LI>
+    <LI><CODE>urldate</CODE> als Datum des Zugriffs auf die URL eingebaut (<A 
+    HREF="mailto:stefan@snobis.de">mailto</A>: Stefan Nobis)</LI>
+    <LI>Kommentar mit Namen des Stils in <CODE>begin.bib</CODE> zur Ausgabe in 
+    die bbl-Datei eingef&uuml;gt (sollte eigentlich Standard sein!)</LI>
+    <LI>einen Punkt hinter den Buchtitel bei Verweisen in 
+    <CODE>incollection</CODE> und <CODE>inproceedings</CODE> gesetzt 
+    (<CODE>push.incoll.inproc.crossref</CODE>)</LI>
+    <LI>Muster f&uuml;r den Eintrag in <CODE>natbib.cfg</CODE> berichtigt (<A 
+    HREF="mailto:stefan@snobis.de">mailto</A>: Stefan Nobis)</LI>
+    <LI>L&ouml;sung des Label-Problems in <CODE>dinnat</CODE> gefunden!<BR>
+    Na gut, keine &uuml;berzeugende, ist mehr ein Hack, aber wenigstens 
+    funktioniert es</LI>
+</UL>
+
+<P>
+Diese L&ouml;sung sollte auch mit der Formatierung per 
+<CODE>natbib.cfg</CODE> zurechtkommen.<BR>
+Falls die <CODE>natbib</CODE>-Option <CODE>numbers</CODE> oder die 
+<CODE>\bibpunct</CODE>-Variante <CODE>n</CODE> gew&auml;hlt wurde, wird 
+auch nur ein entsprechendes numerisches Label erzeugt.
+</P>
+
+<P>
+Die letzte &Auml;nderung rechtfertigt den Sprung auf Version 2.0, da nun 
+mit einem Stil alle Zitierm&ouml;glichkeiten und Label erreicht werden 
+k&ouml;nnen.
+</P>
+
+<P>
+Diese &Auml;nderung f&uuml;hrt dar&uuml;berhinaus zur Zusammenf&uuml;hrung 
+der beiden Stile, so dass nur noch ein Stil, n&auml;mlich der eigentlich 
+geplante <A HREF="dinat.bst">dinat.bst</A>, &uuml;brigbleibt.
+</P>
+
+<HR>
+
+<H2>Version 2.1 vom 9.5.2000</H2>
+
+<P>
+Und weiter geht es im immerw&auml;hrenden Kreislauf der &Auml;nderungen, 
+selbst an meinem Geburtstag (aber schlie&szlig;lich erfolgte die erste 
+Ver&ouml;ffentlichung auch am Geburtstag meiner Frau):
+</P>
+
+<UL>
+    <LI>der f&uuml;nfte Parameter von <CODE>\bibpunct</CODE> in der 
+    Konfiguration <CODE>natbib.cfg</CODE> erzeugte ein zus&auml;tzliches 
+    Leerzeichen in den Zitierungen, also wurde es entfernt</LI>
+    <LI> die Felder <CODE>isbn</CODE>, <CODE>issn</CODE>, <CODE>url</CODE> und 
+    <CODE>urldate</CODE> im Vorspann und auf der Webseite erkl&auml;rt 
+    (demn&auml;chst wird es auch eine richtige Anleitung geben)</LI>
+    <LI>f&uuml;r <CODE>techreport</CODE> <CODE>url</CODE> als Impressum bei 
+    leerem <CODE>institution</CODE>, nicht <CODE>publisher</CODE></LI>
+    <LI>Links hier im Dokument ge&auml;ndert: Mailadressen werden jetzt 
+    &uuml;ber <CODE>mailto:</CODE> verlinkt, Webseiten &uuml;ber den Namen</LI>
+    <LI>alle Texte in Funktionen verlagert, um sie leichter &auml;nderbar zu 
+    machen, z.B. f&uuml;r Leute, die <CODE>et.al.</CODE> statt 
+    <CODE>u.a.</CODE> haben wollen (<A 
+    HREF="mailto:baum@mbox.cri.uni-hannover.de">mailto</A>: Peter Baum)</LI>
+    <LI><CODE>push.editors.organization</CODE> in 
+    <CODE>push.organization</CODE> umbenannt und umgebaut</LI>
+    <LI><CODE>push.editors</CODE> umgebaut</LI>
+    <LI>damit wurde auch <CODE>push.ed.incoll</CODE> &uuml;berfl&uuml;ssig</LI>
+    <LI><CODE>push.authors.editors</CODE> neu erstellt und eingebunden</LI>
+    <LI>die letzten vier &Auml;nderungen machten auch einige &Auml;nderungen an 
+    anderen Funktionen notwendig</LI>
+    <LI>kleinerer Abstand bei <CODE>u.a.</CODE>: <CODE>\,</CODE> statt 
+    <CODE>~</CODE></LI>
+    <LI><CODE>format.article.in.journal</CODE> zu 
+    <CODE>push.article.in.journal</CODE> umgebaut</LI>
+    <LI><CODE>\cite</CODE> durch <CODE>\citep</CODE> ersetzt</LI>
+    <LI><CODE>push.crossref.editor</CODE> entfernt, da es nicht benutzt 
+    wurde</LI>
+    <LI>in vielen Funktionen kleinere Umstellungen vorgenommen, um den Code 
+    verst&auml;ndlicher und wartungsfreundlicher zu machen</LI>
+</UL>
+
+<HR>
+<A NAME="last"></A>
+
+<H2>Version 2.2 vom 12.07.2000</H2>
+
+<P>
+Nachdem die Diplomarbeit abgegeben war, war wieder Zeit f&uuml;r 
+die Arbeit an dinat, dachte ich. Aber dann kam die neue Wohnung, der 
+Umzug, das Einrichten, der neue Job usw. Aber nun ist es geschafft, eine 
+neue Version ist fertig, wenn auch nicht so neu wie erhofft:
+</P>
+
+<UL>
+    <LI><CODE>push.crossref</CODE> erstellt und eingebaut</LI>
+    <LI>diverse <CODE>crossref</CODE> ge&auml;ndert</LI>
+    <LI><CODE>out.check</CODE> in <CODE>out.check.required</CODE> 
+    umbenannt</LI>
+    <LI><CODE>out.check.din</CODE> eingebaut f&uuml;r nur nach DIN 
+    fehlende Teile</LI>
+    <LI><CODE>mastersthesis</CODE> in <CODE>masterthesis</CODE> 
+    korrigiert</LI>
+    <LI><CODE>Zugriffsdatum</CODE> ebenfalls richtig geschrieben</LI>
+    <LI>um <CODE>\,</CODE> geschweifte Klammern gesetzt, hoffentlich 
+    behebt das den nervigen <CODE>\nobreakspace{}</CODE>-Fehler
+</UL>    
+
+<P>
+Vor allem f&uuml;r das letztere erbitte ich Meldungen, ob es geholfen hat!
+</P>
+
+<HR>
+
+<H2>Version 2.3 vom 03.10.2000</H2>
+
+<P>
+Nun ist der erste Stress mit neuer Wohnung, neuem Job etc. weg, viele viele 
+Vorschl&auml;ge f&uuml;r dinat sind eingegegangen, und jetzt habe ich auch Zeit 
+f&uuml;r eine neue Version gefunden. Diese bringt noch nicht die 
+angek&uuml;ndigten gro&szlig;en &Auml;nderungen, sondern wie die vorigen vor 
+allem Detailverbesserungen, wenn auch einige lange geforderte:
+</P>
+
+<UL>
+    <LI><CODE>masterthesis</CODE> wieder in das korrekte <CODE>mastersthesis</CODE> 
+    ge&auml;ndert. Entschuldigung an alle f&uuml;r diese schlampige Korrektur, da 
+    hatte ich mich aufs Glatteis f&uuml;hren lassen und selbst nicht genug 
+    recherchiert. Um den Frust nicht zu gro&szlig; werden zu lassen, bleibt 
+    <CODE>masterthesis</CODE> erhalten.</LI>
+    <LI>die letzten Vorkommen von <CODE>u.~a.</CODE> beseitigt, nun sollten 
+    wirklich alle <CODE>\nobreakspace{}</CODE>-Fehler weg sein!</LI>
+    <LI>als Abstand zwischen der Marke und dem Eintrag wird nun 
+    standardm&auml;&szlig;ig <CODE>\labelsep</CODE> verwendet, wie es sich 
+    geh&ouml;rt.</LI>
+    <LI><CODE>...key.organization.label</CODE> korrigiert, so dass nun die 
+    ganze Organisation als Label verwendet wird.</LI>
+    <LI>in <CODE>proceedings</CODE> wird jetzt eine leere Organisation 
+    abgefangen und falls vorhanden durch (Hrsg.) erg&auml;nzt.</LI>
+</UL>
+
+<P>
+<A NAME="doku">Und die Dokumentation ist immer noch nicht fertig.</A>
+</P>
+
+<HR>
+
+<H2>Version 2.4 vom 05.11.2000</H2>
+
+<P>
+Diese Version ist eine Olaf-Meltzer-Dank-Ausgabe, da er die 
+meisten &Auml;nderungen zu dieser Version beigetragen hat. Ich hatte 
+eigentlich nur ein wenig zu tun mit dem Zusammentragen und 
+Ver&ouml;ffentlichen. Dachte ich jedenfalls, bis ich mich an die 
+Namens-Formatierung machte ... Aber trotzdem, er hat es verdient, da er 
+nicht nur Fragen stellt, sondern auch selbst gute L&ouml;sungen liefert!
+</P>
+
+<UL>
+    <LI><CODE>inbook</CODE> verbessert. Nun wird bei der Zitierung eines 
+    einzelnen Teils eines Buchs nur eine einzelne Literaturangabe mit allen Werten 
+    genriert. Wenn dagegen mehr als ein Teil eines Buchs zitiert werden, wird 
+    das Buch mit allen Angaben aufgef&uuml;hrt und die jeweiligen Teile mit einem 
+    entsprechenden Verweis (<A HREF="mailto:Olaf.Meltzer@freenet.de">mailto</A>: Olaf Meltzer).</LI>
+    <LI>&uuml;berfl&uuml;ssigen Satzanfang aus <CODE>proceedings</CODE> entfernt
+    (<A HREF="mailto:Olaf.Meltzer@freenet.de">mailto</A>: Olaf Meltzer).</LI>
+    <LI>fehlenden Doppelpunkt nach Autor/Editor in <CODE>misc</CODE> 
+    erg&auml;nzt (<A HREF="mailto:Olaf.Meltzer@freenet.de">mailto</A>: Olaf Meltzer).</LI> 
+    <LI>wegen Problemen mit Adelspr&auml;dikaten wurden die Funktionen 
+    <CODE>format.full.names</CODE>, <CODE>format.names</CODE> und 
+    <CODE>sort.format.names</CODE> &uuml;berarbeitet. Dabei fiel ab:
+    <UL>
+	<LI>die Variable <CODE>numnames</CODE> konnte entfernt werden.</LI>
+        <LI>die Variable <CODE>zahl</CODE> wurde in <CODE>pos</CODE> umbenannt, 
+        da sie nicht einfach eine Zahl ist, sondern eine Position angibt.</LI>
+        <LI>die Variable <CODE>lang</CODE> wurde entfernt und statt dessen 
+        die Variable <CODE>len</CODE> verwendet.</LI>
+	<LI>das allgemeine Verst&auml;ndnis der Namensformatierung wurde 
+	gr&ouml;&szlig;er!</LI>
+    </UL></LI>
+    <LI>innerhalb der ISBN/ISSN wird laut Duden der Binde-, also 
+    Trennstrich verwendet, also keine Verdoppelung des <CODE>-</CODE> 
+    mehr (sollte eigentlich schon lange gemacht sein).</LI>
+    <LI>Bei der Gelegenheit auch <CODE>format.dashes</CODE> etwas 
+    aufger&auml;umt und verstanden.</LI>
+</UL>
+
+<P>
+Zum Stand der Dokumentation siehe <A HREF="#doku">oben</A>. Aber 
+inzwischen habe ich sehr viele Beispiel-Eintr&auml;ge sammeln k&ouml;nnen!
+</P>
+
+<HR>
+<A NAME="last"></A>
+
+<H2>Version 2.5 vom 15.11.2000</H2>
+
+<P>
+Und direkt nach der letzten Version nun schon wieder eine neue. 
+Es haben sich einfach ein paar Dinge ergeben, die mir sinnvoll erschienen 
+und eine echte Verbesserung darstellen. Au&szlig;erdem habe ich gerade 
+etwas Zeit.
+</P>
+
+<UL>
+    <LI>In <CODE>proceedings</CODE> fehlendes <CODE>*</CODE> hinter 
+    <CODE>push.organization</CODE> angef&uuml;gt (<A 
+    HREF="mailto:huhr@uni-paderborn.de">mailto</A>: Holger Uhr).</LI>
+    <LI>In <CODE>dinatlabel</CODE> wird nicht mehr <CODE>\citealt</CODE> 
+    aufgerufen, sondern ein eigenes Label (<CODE>dinat.label</CODE>) gebastelt. 
+    Dies spart einen LaTeX-Durchgang und erm&ouml;glicht vor allem das 
+    Entfernen eines Zitats aus dem Text, ohne alle <CODE>.aux</CODE>-Dateien 
+    wegschmeissen zu m&uuml;ssen. Ausserdem verhindert es &uuml;berfl&uuml;ssige 
+    Links, wenn das <CODE>hypertext</CODE>-Paket verwendet wird (<A 
+    HREF="mailto:ben.samwer@ptb.de">mailto</A>: Ben Samwer).</LI>
+    <LI>Wenn ein Wert f&uuml;r <CODE>key</CODE> vorhanden ist, wird dieser 
+    immer f&uuml;r das Label verwendet, vor <CODE>author</CODE>, 
+    <CODE>editor</CODE> etc. Die dahinterliegende &Uuml;berlegung ist, dass 
+    ein <CODE>key</CODE> wohl nur angegeben wird, wenn er Sinn macht. Ist dann 
+    aber ein <CODE>author</CODE> o.&Auml;. vorhanden, w&uuml;rde 
+    <CODE>key</CODE> nirgendwo auftauchen. So lassen sich nun auch Werke mit 
+    Autorenangaben etc. mit einer evtl. &uuml;blicheren Kurzbezeichnung zitieren (<A 
+    HREF="mailto:ben.samwer@ptb.de">mailto</A>: Ben Samwer)</LI>. 
+    <LI>Dazu wurden alle <CODE>...label</CODE>-Funktionen umgestellt und 
+    auch umbenannt.</LI>
+    <LI>Und die <CODE>...sort</CODE>-Funktionen mussten ebenfalls 
+    angepasst werden.</LI>
+    <LI><CODE>longest.label.width</CODE> und <CODE>longest.label</CODE> wurden 
+    nicht benutzt, also wurden sie entfernt. Urspr&uuml;nglich waren die Variablen 
+    wohl zur Bestimmung der Einr&uuml;cktiefe im Literaturverzeichnis 
+    gedacht, was aber bei Autor-Jahr-Labels wenig Sinn macht, vor allem 
+    wenn man an Werke mit zwei Autoren denkt, deren Label allein schon eine 
+    ganze Zeile f&uuml;llen kann.</LI>
+    <LI><CODE>initialize.longest.label</CODE> in <CODE>initialize.label</CODE> 
+    umbenannt und vereinfacht.</LI> 
+    <LI><CODE>number.label</CODE> in <CODE>label.count</CODE> 
+    umbenannt.</LI>
+    <LI>Die <A HREF="index.html">Webseite</A> von Fehlern bereinigt.</LI>
+</UL>
+
+<P>
+Ein Problem bleibt die Sortierung von Eintr&auml;gen mit gleichem ersten 
+(<EM>A</EM>), aber verschiedenem zweiten Autor (<EM>B</EM> bzw. <EM>C</EM>) 
+sowie mindestens einem weiteren Autoren (<EM>D</EM>) und unterschiedlicher 
+Jahreszahl (<EM>1994</EM> bzw. <EM>1999</EM>). Das Label wird dann aus erstem 
+Autor und Jahr gebildet (<EM>A u.a. 1994</EM> bzw. <EM>A u.a. 1999</EM>) und 
+entsprechend sortiert. Wird aber das Label nicht angezeigt, z.B. bei 
+numerischer Zitierung, dann wird das Werk <EM>A, B und D 1999</EM> trotzdem 
+hinter <EM>A, C und D 1994</EM> einsortiert, was zu Verwirrung f&uuml;hren kann.
+Dies ist aber nicht befriedigend zu l&ouml;sen, da zur Sortierzeit nicht 
+zwischen den beiden Zitierungsarten unterschieden werden kann. Da laut DIN 
+nach dem Label sortiert wird, behalte ich dieses bei, da ja die numerische 
+Zitierung nicht DIN entspricht.
+</P>
+
+<HR>
+<ADDRESS><A HREF="mailto:helge.baumann@gmx.de">mailto</A>: Helge Baumann, 
+2000-11-15</ADDRESS>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,36 @@
+name ijmart
+category Package
+revision 30958
+shortdesc LaTeX Class for the Israel Journal of Mathematics
+longdesc The Israel Journal of Mathematics is published by The Hebrew
+longdesc University Magnes Press. This class provides LaTeX support for
+longdesc its authors and editors. It strives to achieve the distinct
+longdesc "look and feel" of the journal, while having the interface
+longdesc similar to that of the amsart document class. This will help
+longdesc authors already familiar with amsart to easily submit
+longdesc manuscripts for The Israel Journal of Mathematics or to put the
+longdesc preprints in arXiv with minimal changes in the LaTeX source.
+containersize 10720
+containerchecksum a1fc1aca9f557ea9c8c70343ad1e5712a846b8a7edddf2077e78fabc3919b928a5d7e8b1fee0f0bc29ebf7887e26dcda5bd95f2ba613051e52f13f1ee24001d3
+doccontainersize 945544
+doccontainerchecksum 502aebf377c8b13d7699761651cfd67e1e2d10a8e8a022303921aa1e708fe913b217e186b4e2527d8ed81e3db6ff055dba5edbea218d6b9a92f679da66fefe97
+docfiles size=252
+ texmf-dist/doc/latex/ijmart/Makefile
+ texmf-dist/doc/latex/ijmart/README details="Readme"
+ texmf-dist/doc/latex/ijmart/ijmart.bib
+ texmf-dist/doc/latex/ijmart/ijmart.pdf details="Package documentation"
+ texmf-dist/doc/latex/ijmart/ijmsample.bib
+ texmf-dist/doc/latex/ijmart/ijmsample.pdf details="Sample paper"
+ texmf-dist/doc/latex/ijmart/ijmsample.tex
+srccontainersize 17084
+srccontainerchecksum e42bfa6ded16f78b764d1ca55e905ae0b2c0a5611b8ffb2e882f121d04855b5f72bf925002bc322cc1106f68c7c68ebb412acc71789d560fbca12051a75860e0
+srcfiles size=15
+ texmf-dist/source/latex/ijmart/ijmart.dtx
+ texmf-dist/source/latex/ijmart/ijmart.ins
+runfiles size=11
+ texmf-dist/bibtex/bst/ijmart/ijmart.bst
+ texmf-dist/tex/latex/ijmart/ijmart.cls
+catalogue-ctan /macros/latex/contrib/ijmart
+catalogue-license lppl
+catalogue-topics journalpub
+catalogue-version 1.7

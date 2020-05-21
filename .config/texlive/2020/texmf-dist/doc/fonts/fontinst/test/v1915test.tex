@@ -1,0 +1,25 @@
+\input fontinst.sty
+
+% %1: Catcodes
+% \def\do#1{Catcode of `\string#1 = \the\catcode`#1 ^^J}
+% \def\showcatcodes{\message{\do{\ }\do{\^^M}\do{\@}\do{\_}\do{\~}}}
+% 
+% \showcatcodes
+% \show\fontinstcc
+% \fontinstcc
+% \showcatcodes
+% \show\normalcc
+% \normalcc
+% \showcatcodes
+
+%2: Aliased glyphs
+\input Knuth:fontinst:New.fontinst:cyrfinst:etc:fnstcorr.tex
+\transformfont{padsc8r}{\reencodefont{8r}{\fromafm{padsc8a}}}
+\def\renameglyph#1#2{\galias{#1}{#2}}
+\input csc2x.tex
+\transformfont{padscx8r}{\reencodefont{8r}{\fromafm{padsc8a}}}
+% När glyfnamnen har tagits bort från de omkodade PL-filerna så är
+% de i allt väsentligt lika. Sålunda tycks det fungera!
+
+
+\bye

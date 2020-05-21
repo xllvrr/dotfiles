@@ -1,0 +1,44 @@
+name tikzscale
+category Package
+revision 30637
+shortdesc Resize pictures while respecting text size
+longdesc The package extends the \includegraphics command to support
+longdesc tikzpictures. It allows scaling of TikZ images and PGFPlots to
+longdesc a given width or height without changing the text size.
+containersize 4712
+containerchecksum 73aa62d84417deec8085c3f46b1ababb756e32ae55c4af97def15816606df2b3df4a7735ab434d489d24dabf26806428d945ff3fced3c5eb7c19b36996f2f58b
+doccontainersize 560500
+doccontainerchecksum d2ac9080a08d7d7e37ea2d1f801c4091cddf9540eb7c2cc2c0753ab0c07c2f0e7392742bc2e93274775c890184c126aa490c78fedf8827a6c787b951abcb6bf5
+docfiles size=189
+ texmf-dist/doc/latex/tikzscale/3Dplot.tikz
+ texmf-dist/doc/latex/tikzscale/README details="Readme"
+ texmf-dist/doc/latex/tikzscale/alt.tikz
+ texmf-dist/doc/latex/tikzscale/histogramNormal.tikz
+ texmf-dist/doc/latex/tikzscale/invisible.tikz
+ texmf-dist/doc/latex/tikzscale/linewidth.tikz
+ texmf-dist/doc/latex/tikzscale/only.tikz
+ texmf-dist/doc/latex/tikzscale/onslide.tikz
+ texmf-dist/doc/latex/tikzscale/pause.tikz
+ texmf-dist/doc/latex/tikzscale/pgfplots-test.tikz
+ texmf-dist/doc/latex/tikzscale/pgfplots.randn.dat
+ texmf-dist/doc/latex/tikzscale/temporal.tikz
+ texmf-dist/doc/latex/tikzscale/test-tikzscale.pdf
+ texmf-dist/doc/latex/tikzscale/test-tikzscale.tex
+ texmf-dist/doc/latex/tikzscale/testNode.tikz
+ texmf-dist/doc/latex/tikzscale/testRectangle.tikz
+ texmf-dist/doc/latex/tikzscale/testgraphic2D.tikz
+ texmf-dist/doc/latex/tikzscale/tikzscale-beamer.tex
+ texmf-dist/doc/latex/tikzscale/tikzscale.pdf details="Package documentation"
+ texmf-dist/doc/latex/tikzscale/uncover.tikz
+ texmf-dist/doc/latex/tikzscale/visible.tikz
+srccontainersize 19780
+srccontainerchecksum e073c55b8101eca9f401dc58046cbae260cd9513945e9c7a2fadd0ef86886607d1f92b83a11258be94e0bca08dea87ee878af031c6b42e343b716a1c6af42a2b
+srcfiles size=22
+ texmf-dist/source/latex/tikzscale/tikzscale.dtx
+ texmf-dist/source/latex/tikzscale/tikzscale.ins
+runfiles size=5
+ texmf-dist/tex/latex/tikzscale/tikzscale.sty
+catalogue-ctan /graphics/pgf/contrib/tikzscale
+catalogue-license lppl1.3
+catalogue-topics graphics-supp
+catalogue-version 0.2.6

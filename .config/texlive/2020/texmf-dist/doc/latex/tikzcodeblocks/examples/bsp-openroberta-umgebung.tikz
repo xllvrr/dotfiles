@@ -1,0 +1,13 @@
+\begin{tikzpicture}[codeblocks,openroberta]
+\wenndann{\tikz\node[mathe,keinezacken]{A==B};}{
+	\node[aktion] (two) {mache das };
+	\node[mathe, unter={two}{0}{0}] (three)	{und das };}
+{one} 
+\node[mathe,unter={one}{0}{0}] (four) {später das }; % TODO: Ungenau. Warum nicht -1?
+\node[kontrolle,unter={four}{0}{0}] (five)	{und danach das };
+
+\begin{pgfonlayer}{background}
+\node[logik, fit=(one) (two) (three)] {};
+\end{pgfonlayer}	
+
+\end{tikzpicture}

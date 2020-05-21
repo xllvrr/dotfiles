@@ -1,0 +1,744 @@
+This is the README file for the GATECH-THESIS class for LaTeX.
+It corresponds to version 1.5 of the GATECH-THESIS class 
+(17 August 2002)
+
+Copyright (c) 2002 by Charles S. Wilson. All rights reserved.
+
+GATECH-THESIS may be obtained from any of the following locations:
+
+   http://www.grad.gatech.edu/thesis/index.html
+     this is where the official version, approved by the Georgia
+     Tech Office of Graduate Studies, may be found.  Do NOT
+     attempt to use the old, out-of-date, LaTeX2.09 style file
+     (gtthesis.sty) that is STILL on cyberbuzz.
+
+   http://www.neuro.gatech.edu/users/cwilson/gatech-thesis/
+	  the most recent version, plus archives of all past versions
+	  will always be here.
+
+   http://www.ctan.org/tex-archive/macros/latex/contrib/supported/gatech-thesis/
+     and of course, CTAN.
+
+This class file can be used with the LaTeX typesetting system
+to produce dissertations that adhere to Georgia Tech's guidelines
+for publishing.  
+
+There are a number of files within this archive.  The important
+ones are 
+
+   gatech-thesis.cls
+   gatech-thesis.bst
+   gatech-thesis-gloss.sty
+   gatech-thesis-losa.sty
+   gatech-thesis-losa.bst
+   gatech-thesis-index.sty
+   gatech-thesis-index.ist
+
+Everything else is fluff: examples, licensing, documentation...
+
+=============================
+Using the GATECH-THESIS class
+=============================
+
+First, read this file.  Then read COMPLIANCE.  Then read
+INSTALL.  Take a peek a NEWS, and then (maybe) CHANGES.
+Then you can worry about the examples...
+
+Sample File
+-----------
+
+example-thesis.tex + example-thesis.bib
+
+There is a sample dissertation (by the fictitious, but very
+irritating, Perry H Disdainful) in the file example-thesis.tex.  It 
+also uses example-thesis.bib as its bibliography database (though 
+the contents of the database are not important).  Mostly this is 
+useful as an example of how to produce the front matter.  If you 
+don't understand LaTeX at all, this file might help you get started, 
+but, since you're going to be writing a 100+ page document, you 
+should invest in a copy of the LaTeX manual (by Leslie Lamport, the 
+original author of LaTeX). This has recently been updated for 
+LaTeX2e (1, below).
+
+The LaTeX Companion, by Goossens, Mittelbach, and Samarin (who have been
+involved in developing and supporting LaTeX2e) is also quite good.  It 
+gives a lot of useful information if you are going to be writing or 
+modifying classes, and gives a lot of additional information on commonly
+available style packages (2, below).
+
+Helpful books (in no particular order): 
+  (1) "LaTeX: A Document Preparation System" by Leslie Lamport
+  (2) "The LaTeX Companion" by Goossens, Mittelbach, and Samarin
+  (3) "A Guide to LaTeX" by Helmut Kopka and Patrick Daly
+  (4) "LaTeX: Line by Line" by Antoni Diller
+  (5) "The LaTeX Graphics Companion"
+  (6) "The TeXbook" by Donald Knuth
+
+Larger Sample
+-------------
+
+julesverne/basic/*
+
+This is a slightly more complicated, multi-file example.  The text
+is taken from the first five chapters of the Project Gutenberg edition 
+of Jules Verne's ``20,000 Leagues Under the Sea'' and is freely 
+redistributable as long as the complete text, 2000010.txt, accompanies 
+the other excerpts. The original document is also available here:
+  http://promo.net/pg/
+  ftp://ibiblio.org/pub/docs/books/gutenberg/etext94/2000010.txt
+This example can be built with either latex (to generate a .dvi file) or
+with pdflatex (to generate a .pdf file). 
+
+Gory, all-the-bells-and-whistles example:
+------------
+
+julesverne/bellswhistles/*
+
+This directory contains a reworked version of the jules-verne
+example "thesis".  However, all of the bells and whistles 
+provided by the gatech-thesis.cls class and associated styles
+are exercised, along with some suggestions for thesis document 
+structuring.
+
+Features:
+  *)  segregating preamble code into a document-specific style
+  *)  How to easily generate OGS format complant documents
+      and prettier, "personal" copies.
+  *)  Support for using hyperref (clickable links in the TOC,
+      when making a .pdf)
+  *)  Using postscript versions of fonts other than Computer Modern,
+      like Times, Courier, etc.  See extensive comments in
+      jules-verne.sty.
+  *)  Using the listings package for including program code
+      in appendices
+  *)  Using the add-on style gatech-thesis-gloss.sty for 
+      generating a glossary
+  *)  Using the add-on style gatech-thesis-losa.sty for
+      generating a "List of Symbols or Abbreviations"
+  *)  Using the add-on style gatech-thesis-index.sty for 
+      generating an index.  Typically a GT thesis doesn't
+      have one of these, but the style is provided just in case.
+  *)  Demonstrate the multivolume support, for those theses that
+      are over 2.5" thick (according to OGS Guidelines).
+  *)  Using \include instead of \input to incorporate subsidiary
+      files into the main document.  This lets you use \includeonly
+      to speed development of your document.
+
+This example requires some additional work to prepare your LaTeX 
+system, before you can compile it.  See the local documentation,
+julesverne/bellswhistles/00README.
+
+NOTE: The julesverne directory is not available in the CTAN version of
+gatech-thesis. It can be obtained from the Georgia Tech version at
+http://www.gradadmiss.gatech.edu/thesis.php
+
+Building the Examples
+---------------------
+
+To compile the examples, you must first install the gatech-thesis 
+files (see the INSTALL document).  Also, the bells-and-whistles 
+example needs some additional preparation; see its local documentation
+in julesverne/bellswhistels/00README.
+
+However, once you have all of the required items installed, you can
+build the simplest example by executing the following commands:
+
+latex example-thesis.tex
+bibtex example-thesis
+latex example-thesis.tex
+latex example-thesis.tex
+dvips example-thesis
+  (generates a postscript file)
+
+To build the other examples, run the DO_* scripts.  For instance,
+if you are using a unix or unix-like system, cd to the julesverne/basic
+directory and execute:
+
+  ./DO_postscript.sh
+  
+to generate a postscript output (or ./DO_pdf.sh to generate a pdf).
+If, on the other hand, you are on a DOS-ish system, the execute 
+instead the file
+
+  DO_postscript.bat
+
+(or DO_pdf.bat)  To understand what the scripts do (especially the
+ones in the julesverne/bellswhistles/ directory) you really ought
+to read thru them...
+
+Choosing the GATECH-THESIS class
+--------------------------------
+
+To use the GATECH-THESIS class, make sure that the gatech-thesis.cls 
+file is on your TEXINPUTS search path and use the following command 
+at the start of your input file:
+
+\documentclass{gatech-thesis}
+
+To insure that gatech-thesis.cls is on your TEXINPUTS search path, 
+you can copy it into your localtexmf tree and then update the file
+database; or you can place it into the same directory as your
+thesis .tex files themselves.  This is also described in the INSTALL
+document.
+
+=================================
+What the GATECH-THESIS class does
+=================================
+
+The GATECH-THESIS class builds on the the standard LaTeX REPORT class,
+and is accepted for use with Georgia Institute of Technology PhD 
+dissertations and Masters theses.  The available commands are almost 
+identical to those of the REPORT class, so your best starting point 
+for documentation is the LaTeX manual written by Leslie Lamport.
+
+The key features of the class are:
+
+1) The primary modification to the REPORT class is the use of
+pseudo-double-spacing, since Georgia Tech's rules are still designed
+for typewriters.  This is achieved by increasing the \baselinestretch
+parameter to 1.33.  The \baselinestretch is returned to a
+single-spaced value of 1.00 for elements like tables, captions, and
+footnotes and for all displayed text (quote, quotation, and verse
+environments).  
+
+2) Margins are 1.5" on left, 1" on top, right and bottom (headers & 
+footers 1/4" from body)
+
+3) Use 11 point by default; you can use the 10pt or 12pt options
+
+4) Page numbers are in the center at the bottom of the page
+
+5) Complete, correct front matter for Georgia Tech dissertations can
+be generated.
+
+Options
+---------------
+
+There are a number of primary options.  However, if called without
+any options, the approved format -- 11pt, letterpaper, oneside,
+doublespaced, normalmargins, final -- will be generated.
+
+
+Any standard option for the LaTeX2e `report' class, including
+`10pt', `11pt', `12pt', `oneside', `twoside', etc. is valid.
+
+`singlespaced', `oneandahalfspaced', or `doublespaced': 
+   Set the entire document's default line spacing, except for 
+   notes, which are single-spaced by default.
+
+`spacednotes':  Let the line spacing of notes be determined
+   by the line spacing of the main document, instead of being
+   forced single-spaced.
+
+`normalmargins', `narrowmargins', `widemargins', `extrawidemargins'
+   or `oldmargins':  normalmargins is the default and Georgia Tech-
+   approved format.  Oldmargins is the OLD Georgia Tech format. 
+
+`draft':  Produce a draft copy (10pt font, double-sided,
+   double-spaced, normal margins, with the word ``DRAFT'' printed
+   at all four corners of every page, and current date printed in
+   a running header).
+
+`final': style uses the correct pseudo-double-spacing.  This option
+   is the default and is redundant, but is included for symmetry.
+
+`hyperref': Indicates that the document will \usepackage{hyperref}.
+   This is a kludge, but I didn't want to explicitly *require*
+   hyperref, so we must indicate to gatech-thesis.cls whether it should
+   define certain hyperref commands as dummies.  ALWAYS use this
+   option if you use the hyperref package.  NEVER use this option if
+   you do not also use the hyperref package.
+
+The options are selected on the \documentclass line, e.g.:
+
+\documentclass[10pt,hyperref,draft]{gatech-thesis}
+
+Thus, the default options:
+   \documentclass[11pt,letterpaper,oneside,
+                  doublespaced,normalmargins,final]{gatech-thesis}
+will generate a document that conforms to the graduate studies office
+and is identical to setting no options at all
+   \documentclass{gatech-thesis}
+
+Page Headers
+------------
+
+If you want to use page headers or footers other than the default
+ones, you should try using ``fancyheadings.sty''.  It is easy to use,
+widely distributed, and well documented.  However, the default headers
+and footers are the Georgia Tech-approved ones.  There are also
+some interesting variations defined within the gatech-thesis.cls 
+itself (tcplain, gtthesis), but those should ONLY be used for personal 
+copies, and NOT for your official version.  See the 
+julesverne/bellswhistles example.
+
+============
+Front matter
+============
+
+The other key service provided by this class is that it generates
+correct front matter (title page, approval page, dedication, etc.) with
+a fairly simple set of commands.  The format of the front matter is 
+specified quite explicitly in the document ``Manual for Graduate Theses:
+Georgia Institute of Technology'' distributed by Office of Graduate 
+Studies.
+
+A complete example of the use of the front matter commands can be
+found in any of the examples distributed with the class 
+(example-thesis.tex or julesverne/basic or julesversion/bellswhistles).
+
+Declarations
+------------
+
+To use the front matter macros and environments, you must first
+declare a number of text strings within the preamble of your document 
+(that is, these must be declared BEFORE the \begin{document} command.)
+
+\title{...}         Dissertation title
+
+\author{...}        Your name as registered with Georgia Tech
+
+\department{...}    Specify the name of the graduate department.
+      \dept{...}    synonym
+
+\degree{...}        Title of your degree (e.g. ``Doctor of Philosophy'')
+
+\gradyear{...}      Year your degree will be granted
+\copyrightyear{...} synonym
+
+Any or all of the \*reader{}, \committeechair, or \principaladvis?r{}
+commands may be ommitted -- but your signature page will look a little
+silly if you don't include SOME names.
+
+\principaladvisor{...} Name of your thesis advisor
+\principaladviser{...} if you prefer advisor spelled with an e)
+
+\committeechair{...}   Name of your committee chairperson
+
+\firstreader{...}   Name of other committee member
+\secondreader{...}  Name of other committee member 
+\thirdreader{...}   Name of other committee member
+\fourthreader{...}  Name of other committee member
+\fifthreader{...}   Name of other committee member
+\sixthreader{...}   Name of other committee member
+
+\bibfiles{...}      List of files to use when generating a bibliography 
+
+\submitdate{...}    Specify the ``month year'' in which dissertation 
+                    submitted
+
+\linespacing{...}   Use this to override the default double-spacing.  
+                    NOT recommended; the default is approved by the 
+                    Graduate Studies Office.  For draft/personal copies,
+                    use the ``draft'' or ``singlespace'' options in your
+                    documentclass statement, instead.
+\spacing{...}       compatibility synonym
+
+Switches
+------------
+
+Also, there are a number of ``true/false'' flags that can be used to 
+control the frontmatter generation.  However, the defaults will result 
+in the approved Georgia Tech format.  These flags, if specified, should 
+also be in the document preamble (BEFORE the \begin{document} command).
+
+\titlepagetrue or \titlepagefalse
+     - produce or don't produce a title page (TRUE by default)
+
+\signaturepagetrue or \signaturepagefalse
+     - produce or don't produce a signature page (TRUE by default)
+
+\copyrighttrue or \copyrightfalse
+     - place or don't place a copyright notice on the title page 
+       (FALSE by default)
+
+\figurespagetrue or \figurespagefalse
+     - produce or don't produce a List of Figures page (TRUE by default)
+
+\tablespagetrue or \tablespagefalse
+     - produce or don't produce a List of Tables page (TRUE by default)
+
+\contentspagetrue or \contentspagefalse
+     - produce or don't produce a Table of Contents page 
+       (TRUE by default)
+
+\bibpagetrue or \bibpagefalse
+     - produce or don't produce a Bibliography page (TRUE by default)
+
+\thesisproposaltrue or \thesisproposalfalse
+     - indicate ``Thesis Proposal'' or ``Thesis'' on the title page 
+       (FALSE by default -- e.g. default is to say ``Thesis'')
+
+\dedicationheadingtrue or \dedicationheadingfalse
+     - display ``DEDICATION'' heading on the dedication page 
+       (FALSE by default)
+
+\strictmarginstrue or \strictmarginsfalse
+     - if true, then obey the margin rules EVEN on the title and 
+       signature page. Default TRUE and REQUIRED by Graduate Studies 
+       Office, but not very appealing.  (under ``oldmargins'' an extra 
+       50p spacing is added so that the title page looks like the 
+       chapter headings.  In any case, \strictmarginsfalse looks better 
+       for personal copies but \strictmarginstrue is necessary for 
+       official ones.
+
+\multivolumetrue or \multivolumefalse
+     - if true, indicates that the thesis will span multiple volumes. 
+       triggers automatic generation of the first volume title page
+       (in addition to the ``entire work'' title page), but it''s up
+       to you to place the ``part{}'' commands in the appropriate
+       locations for volume 2, volume 3, etc.
+
+Frontmatter Environments
+------------------------
+GATECH-THESIS provides a number of specialized environments for the
+various frontmatter sections.  Of course, you don't have to use them
+all.  The provided environments include
+  
+  dedication:        \begin{dedication}
+                     text here
+                     \end{dedication}
+
+  preface:           \begin{preface}
+                     text here
+                     \end{preface}
+
+  acknowledgements:  \begin{acknowledgements}
+                     text here
+                     \end{acknowledgements}
+
+  abstract:          \begin{abstract}
+                     text here
+                     \end{abstract}
+ 
+  summary:           \begin{summary}
+                     text here
+                     \end{summary}
+
+And if that isn't enough for you, you can add your own:
+   \prefacesection{other-title}{...text...}
+Note that these add-a-sections aren't true environments (they do not 
+have \begin{} and \end{} statements.  So, for a ``forward'' section:
+
+   \prefacesection{forward}{text here}
+
+The ``Preliminary'' environment
+-----------------------------
+
+ALL of these preceeding environments MUST be enclosed within the
+``preliminary'' environment, which ensures that page-numbering is 
+handled properly (e.g. no page number on the title page or signature
+page, use lower case roman numerals to number the frontmatter pages, 
+reset the page numbers to start with arabic 1).  Within this preliminary 
+environment, you put the environments and commands for the rest of 
+the front matter.
+
+Each environment makes its contents start on a new page.  They also 
+emblazon the first page with a heading -- all except for the dedication
+environment.  For formatting the dedication page, you're on your own.
+After all, the dedication is a kind of poetry and there's no predicting 
+the right way to format poetry.  Actually, that's not entirely true:
+according to the OGS Guidelines, the dedication material should be
+centered vertically, so your text will be automatically centered.  If 
+you wish to override this centerring behavior, just redefine the 
+dedicationtop and dedicationbottom commands:
+         \renewcommand{\dedicationtop}{\vspace*{\stretch{1}}
+         \renewcommand{\dedicationbottom{\vspace*{\stretch{3}}
+Will position your dedication at about 1/4 of the way down the page.
+Also, if you *want* an ugly ``DEDICATION'' heading emblazoned in
+bold centered letters at the top of the page, you can use the 
+\dedicationheadingtrue switch within the preamble.
+
+  \begin{preliminary}
+    The other environments go in here, along with
+    \contents
+  \end{preliminary}
+
+Table of Contents, Figures, and Tables
+--------------------------------------
+
+\contents
+
+At the appropriate point within the frontmatter, generate these tables 
+by issuing the \contents command.  You can modify the look of the Table 
+of Contents with the following commands -- which should be executed 
+within the \begin{preliminary}...\end{preliminary} environment (see 
+below) but before the \contents command.
+
+If you also want a ``List of Symbols or Abbreviations'', you can
+use the gatech-thesis-losa.sty add-on package: in your preamble, just
+  \usepackage{gatech-thesis-losa}
+  \losafiles{your-symbols-database}
+And then sprinkle references to your symbols or abbreviations 
+within your text.  Read the header in gatech-thesis-losa.sty itself 
+for more information, and see how the julesverne/bellswhistles/ 
+example does it (and don't forget to read the documenation on the 
+`gloss' package, which is used by gatech-thesis-losa.sty).  You 
+also will need to run `bibtex' on the LOSA database; see the above 
+documentation.
+
+If you want a Glossary or ``List of Nomenclature'', you can
+use the gatech-thesis-gloss.sty add-on package: in your preamble, just
+  \usepackage{gatech-thesis-gloss}
+  \glossfiles{glossary-database}
+And then sprinkle references to your glossary terms 
+within your text.  Read the header in gatech-thesis-gloss.sty itself 
+for more information, and see how the julesverne/bellswhistles/ 
+example does it (and don't forget to read the documenation on the 
+`gloss' package, which is used by gatech-thesis-gloss.sty).  You 
+also will need to run `bibtex' on the glossary database; see the above 
+documentation.
+
+\labelchaptersintableofcontents 
+   inserts an entry into the TOC that says ``CHAPTERS'' just 
+   before Chapter 1. Not recommended.
+
+\labelappendicesintableofcontents
+   inserts an entry into the TOC that says ``APPENDICES'' just 
+   before Appendix A. Not recommended.
+
+\setchaptertocdepth
+   set the default for how ``deep'' to number within chapters
+   in the table of contents.  Defaults to subsections.
+
+\setappendixtocdepth
+   set the default for how ``deep'' to number within appendices
+   (chapter{}'s after the \appendix command} in the table of
+   contents.  Defaults to Appendices only (no sections or subs)
+
+\settocdepth
+   temporarily change how ``deep'' to number in the table of 
+   contents for current chapter/section.  For example, you
+   usually include \section{}'s in the TOC (\setchaptertocdepth{1})
+   but in chapter 5 you want to include subsection as well:
+   \chapter{This is Chapter 5}\settocdepth{2}.  In chapter 6 the
+   default depth of 1 is reasserted.
+  
+You should never need to call \setcounter{tocdepth}{..} directly.
+
+Use the following numbers with the various tocdepth commands above:
+   0 = chapter only
+   1 = chapter + sections
+   2 = chapter, section, subsection
+   3 = chapter, section, subsection, subsubsection
+
+
+==========
+End matter
+==========
+
+Similarly, the end matter components (bibliography, vita, index, 
+afterward, etc) MUST be enclosed in a ``postliminary'' environment.
+
+GATECH-THESIS provides a few (okay, one) specialized environments for 
+the various endmatter sections, as well.
+  
+  vita:    \begin{vita}
+           text here
+           \end{vita}
+
+And you want other sections (afterword, index), you can add them:
+   \postfacesection{other-title}{...text...}
+Note that these add-a-sections aren't true environments (they do not 
+have \begin{} and \end{} statements.  So, for a ``afterword'' section:
+
+   \postfacesection{afterword}{text here}
+
+Additionally, if you want an index, you can use the add-on style
+gatech-thesis-index.sty.  Read the comments in that file, and 
+see how the julesverne/bellswhistles/ example does it.  Basically,
+you just include the following command in your preamble
+  \usepackage{gatech-thesis-index}
+and sprinkle \index commands within your text.  Don't forget to
+read the documentation on the `index' package, on which the
+gatech-thesis-index.sty is based.  And you'll need to run makeindex
+on the index database -- but that's all explained in the 
+documentation and demonstrated by the example.
+
+Bibliography
+------------
+
+Also, within the postliminary environment, you should issue the 
+  \references
+command in order to generate a bibliography in the Georgia Tech-approved
+format.  There are a few tricks to getting the \references command to 
+work properly, though:
+
+  \bibpagetrue
+  \bibfiles{file1,file2,...}
+
+must be set in the preamble.  (Actually, since bibpagetrue is the
+default, you don't ACTUALLY need to specify it -- but don't say 
+\bibpagefalse and expect \references to work.)  Also, 
+
+  \bibliographystyle{...} 
+
+should be specified just after \begin{document}.  Yes, it's a bit 
+confusing, but see the example files (example-thesis.tex,
+julesverne/basic/jules-verne.tex, or 
+julesverne/bellswhistles/jules-verne.sty) and all will be clear.
+
+The updated GSO Guidelines is no longer very specific about the format
+of bibliographic entries (although the example bibliography IS sorted).
+I know of one thesis that was accepted using the``plain'' bibstyle 
+(which generates a sorted [not order-of-reference] bibliography). Then,
+of course, there's the gatech-thesis.bst bibliography format, which
+has been approved by the GSO.  So, you'll want to use
+
+  \bibliographystyle{gatech-thesis}
+or
+  \bibliographystyle{plain}
+
+=========
+Main Body
+=========
+
+See any book on LaTeX's report class for more information, but the 
+following deserves special mention:
+
+``\appendix'' is a global mode switch that changes the way ``chapter'' 
+headings and TOC entries are generated.
+  \chapter{last chapter title}
+  \appendix
+  \chapter{first appendix title}
+Note that you use the ``\chapter'' command to indicate new appendices --
+but only after switching the ``mode'' with the \appendix command.
+
+=====================================================
+Other commands not found in the standard report style
+=====================================================
+
+The GATECH-THESIS class also provides several other helpful environments
+and commands.  These include
+
+ignore{...}  or   comment{...}
+     Ignore the part of the file between { and } (can include
+     paragraph breaks); useful for commenting out large blocks.
+
+\begin{longquote}...\end{longquote}:
+     Single-spaced version of the `quote' environment
+
+\begin{longquotation}...\end{longquotation}:
+     Single-spaced version of the `quotation' environment.
+
+\begin{singlespaced}...\end{singlespaced}:
+     Format single-spaced paragraphs.
+
+\begin{oneandahalfspaced}...\end{oneandahalfspaced}:
+     Format 1 1/2-spaced paragraphs.
+
+\begin{doublespaced}...\end{doublespaced}:
+     Format double-spaced paragraphs.
+
+\begin{newspacing}{<n>}...\end{newspacing}:
+     Format paragraphs with an interline spacing of `n'.
+
+\clearemptydoublepage, \clearplaindoublepage, \cleargtplaindoublepage:
+     Same as \cleardoublepage except that it sets the pagestyle of
+     any inserted blank page to `empty' `plain' or `gtplain', 
+     respectively.
+
+Modifying the look of the document
+----------------------------------
+
+There are also a number of commands that can be used to change the
+look.  However, the default ``look'' is the one approved by 
+Georgia Tech's Graduate Studies Office, so don't use these 
+``look-altering'' commands for your official versions -- only for 
+personal copies.
+
+\setbodypagestyle{x}, where x = plain (the default and OGS approved), 
+   empty, headings, myheadings, gtthesis, or tcplain.  Avoid myheadings; 
+   use the fancyheaders package instead.
+
+\setfrontpagestyle{x} - set pagestyle for frontmatter
+\setbackpagestyle{x}   - set pagestyle for endmatter
+    
+The Graduate Studies Office approved pagestyle is plain for 
+the body, as well frontmatter and endmatter.  (However, pages are 
+numbered with roman numberals in the frontmatter and automatically 
+switch to arabic numbers in the body and endmatter, as required by GSO. 
+Don't try to change the pagenumbering style).  However:
+
+   - `gtthesis' pagestyle adds a running header on each page 
+     identifying the Chapter (and Section for twopage layouts).
+     This is a nice touch IMO for the body and endmatter, but 
+     use it ONLY for personal copies.
+
+   - note that you also need to add \pagestyle{gtthesis}
+     if you use \setbodypagestyle{gtthesis}.  See the 
+     julesverne/bellswhistles/jules-verne.sty for an example of 
+     how to handle this for unofficial copies.
+
+Chapter headings and the TOC use ROMAN numerals, but the running headers
+at the top of each page use ARABIC numbers for the Chapter number.  
+Thus, there are two separate formats that are used.
+
+   \thegtchapter is used for ROMAN chapter numbers
+   \thechapter is used for ARABIC chapter numbers
+
+If you wish all chapter headings to use ROMAN, then just redefine 
+\thechapter in your document:
+   \renewcommand{\thechapter}{\thegtchapter}
+Do the reverse if you want all ARABIC chapter numbers:
+   \renewcommand{\thegtchapter}{\thechapter} 
+
+==================================
+Installing the GATECH-THESIS class
+==================================
+
+See the INSTALL file
+
+===========
+Final Notes
+===========
+
+For more information about the GATECH-THESIS class and its options, 
+look inside the class file itself -- it is heavily commented.  Also, 
+the add-on styles contain helpful comments -- and you should read 
+all of the various READMEs and the comments within the ``root''
+example files:
+  example-thesis.tex
+  julesverne/basic/jules-verne.tex
+  julesverne/basic/00README
+  julesverne/bellswhistles/jules-verne.tex
+  julesverne/bellswhistles/jules-verne.sty
+  julesverne/bellswhistles/00README
+Also, it wouldn't hurt to read the NEWS file, the NOTES file, and the
+CHANGES file -- but I'd stay away from the ChangeLog unless you're a 
+real glutton for punishment.
+
+And read the COMPLIANCE file -- it is a blow-by-blow commentary
+on the Office of Graduate Studies Style Manual for Theses, and 
+how it relates/is implemented by GATECH-THESIS.
+
+Backward Compatibility
+----------------------
+
+There are a number of commands available within gatech-thesis.cls that
+are purely for backward compatibility with the older official 
+gt-thesis.sty style file that was previously provided by the Georgia 
+Tech Graduate Studies Office.  In theory, one could take a disseration
+that previously began:
+
+  documentstyle{report}
+  \usepackage{gt-thesis.sty}
+
+and replace those two commands with
+
+  documentclass{gatech-thesis}
+
+And it should ``just work''(tm).  These backwards compatibility commands
+are not recommended for NEW documents, and they are described only in
+the comments inside the gatech-thesis.cls file itself.
+
+=========================================
+MANIFEST  --  This archive should contain
+=========================================
+
+See these files:
+   MANIFEST
+   julesverne/basic/MANIFEST
+   julesverne/bellswhistles/MANIFEST
+
+

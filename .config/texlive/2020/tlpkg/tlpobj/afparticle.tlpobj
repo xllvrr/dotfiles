@@ -1,0 +1,29 @@
+name afparticle
+category Package
+revision 35900
+shortdesc Typesetting articles for Archives of Forensic Psychology
+longdesc This package provides a class for typesetting articles for the
+longdesc open access journal Archives of Forensic Psychology.
+containersize 3760
+containerchecksum 958ed5cbce1dc7bfb5d01befe74de6236a09b3ae5246aa3f2e80225bc353abf21b622f4128641c54a27197560557738d4c224e160c0be87010517c3a30a729ae
+doccontainersize 550024
+doccontainerchecksum d8185772e114a891ff5ce0f2a2e12b827420f8c486813d87bbb6fafc662ca1db710178e8cfa260d7d650c3432909b9f7a8521648f6aebd5f90daf1aec4e28d7d
+docfiles size=165
+ texmf-dist/doc/latex/afparticle/Makefile
+ texmf-dist/doc/latex/afparticle/README details="Readme"
+ texmf-dist/doc/latex/afparticle/afparticle.pdf details="Package documentation"
+ texmf-dist/doc/latex/afparticle/afpsample.bib
+ texmf-dist/doc/latex/afparticle/afpsample.pdf details="Example of usage"
+ texmf-dist/doc/latex/afparticle/afpsample.tex
+ texmf-dist/doc/latex/afparticle/vitruvian.jpg
+srccontainersize 9516
+srccontainerchecksum f12b5a10b929d78c728331704ee83e726bc28562b8179adc2d9e7324b6b742100319078f5ebe8371a34927ae1fecac4779b9442076a95cae1d66e015f235d440
+srcfiles size=9
+ texmf-dist/source/latex/afparticle/afparticle.dtx
+ texmf-dist/source/latex/afparticle/afparticle.ins
+runfiles size=3
+ texmf-dist/tex/latex/afparticle/afparticle.cls
+catalogue-ctan /macros/latex/contrib/afparticle
+catalogue-license lppl1.3
+catalogue-topics journalpub class article-like
+catalogue-version 1.3

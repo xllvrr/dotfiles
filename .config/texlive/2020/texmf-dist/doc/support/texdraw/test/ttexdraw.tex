@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage{texdraw}
+\usepacakge{amsmath}
+
+\begin{document}
+
+% Test TeXdraw macros - unusual cases
+
+% $Id: ttexdraw.tex 1.8 1999/11/15 TeXdraw-v2r3 $
+
+% check for extraneous characters in texdraw.tex
+\setbox0=\vbox{\input texdraw }
+\message {texdraw.tex box size:
+          height: \the\ht0, width: \the\wd0, depth: \the\dp0}
+
+\bigskip
+\bigskip
+
+% check for a zero sized box for a zero sized TeXdraw
+\setbox0=\hbox{\begin{texdraw}
+               \lvec (0 0)
+               \end{texdraw}}
+\message {TeXdraw box size:
+          height: \the\ht0, width: \the\wd0, depth: \the\dp0}
+
+\bigskip
+\bigskip
+
+\begin{texdraw}
+% text only, should be no PostScript file
+  \rtext td:-45 (2 2){Test Text}
+\end{texdraw}
+
+\bigskip
+\bigskip
+
+\let\et=\etexdraw
+\def\etexdraw{\drawbb\et}
+
+\begin{texdraw}
+% blank lines OK?
+% box should be 2in by 2in
+% arc should go from inside to outside the box
+
+% \larc if no initial point defined
+\larc r:1 sd:45 ed:135
+
+% \ifill if path is empty
+\move (2 2)
+\ifill f:0.5
+
+\lvec (1 1)
+
+\end{texdraw}
+
+\bigskip
+\bigskip
+
+% Testing restoration of position after segments
+\begin{texdraw}
+  \lvec (1 1)
+  \bsegment
+    \linewd 0.03
+    \lvec (1 0)
+  \esegment
+  \bsegment
+    \lvec (0 -1)
+   \esegment
+\end{texdraw}
+
+\bigskip
+\bigskip
+
+% Check t:W arrows, should wipe out the line under the rightmost arrow head
+\begin{texdraw}
+  \arrowheadtype t:W
+  \arrowheadsize l:0.9 w:0.6
+  \linewd 0.05
+  \bsegment
+    \move (0 1)
+    \lvec (3 3)
+    \bsegment
+      \move (-3 -3)
+      \avec (0 0)
+    \esegment
+    \lvec (3 2)
+  \esegment
+  \move (3 0)
+  \bsegment
+    \move (0 1)
+    \lvec (3 3)
+    \rmove (0 0)
+    \bsegment
+      \move (-3 -3)
+      \avec (0 0)
+    \esegment
+    \lvec (3 2)
+  \esegment
+\end{texdraw}
+
+\bigskip
+\bigskip
+
+% Check that paths continue under filled circles
+\begin{texdraw}
+  \bsegment
+    \lvec (1 1)
+    \bsegment
+      \move (-0.25 -0.25)
+      \fcir f:0.8 r:0.5
+    \esegment
+    \lvec (1 0)
+  \esegment
+  \move (3 0)
+  \bsegment
+    \lvec (1 1)
+    \rmove (0 0)
+    \bsegment
+      \move (-0.25 -0.25)
+      \fcir f:0.8 r:0.5
+    \esegment
+    \lvec (1 0)
+  \esegment
+\end{texdraw}
+
+\bigskip
+\bigskip
+
+% Check that positions are restored correctly when the move pending and path
+% in progress flags are set
+
+\begin{texdraw}
+  \linewd 0.045
+  \lvec (1 0)
+  \bsegment
+    \move (0 -1)
+    \bsegment
+    \esegment
+    \lvec (0 0)
+  \esegment
+  \lvec (2 0)
+\end{texdraw}
+
+\bigskip
+\bigskip
+
+% Check \everytexdraw and \fellip
+\everytexdraw={\fellip f:0.8 rx:2.5 ry:1.0 }
+\begin{texdraw}
+  \lvec (0 0.75)
+\end{texdraw}
+\everytexdraw={}
+
+\bigskip
+\bigskip
+
+\def\ptext#1{\writeps{ gsave /Times-Roman findfont 41.6667
+scalefont setfont (#1) dup stringwidth exch neg 2 div exch neg 2 div rmoveto
+show grestore }}
+
+\begin{texdraw}
+  \move( 0 0)
+  \move(-1 -1) \rlvec( 2 0) \rlvec( 0 2) \rlvec( -2 0) \rlvec( 0 -2)
+  \lfill f:.8
+  \move( 0 .2)
+  \textref h:C v:C
+  \htext{This is a very long sentence to illustrate my point}
+  \move( 0 -.2)
+  \ptext{This is a very long sentence to illustrate my point}
+  \move( 0 0)
+  \move(-.5 -.5) \rlvec( 1 0) \rlvec( 0 1) \rlvec( -1 0) \rlvec( 0 -1)
+  \lfill f:.9
+\etexdraw
+
+\bigskip
+\bigskip
+
+% This example, with texdraw invoked from \text from within an equation,
+% ends up invoking texdraw 8 times (\gather together with \mathchoice).
+% A hook was built in to texdraw to detect half of these cases.  Now only
+% 4 identical copies of the PS file are generated.
+% Note: To avoid generating the extra PS files, use a \savebox to create the
+%       drawing and then place the box where desired.
+\begin{equation}
+\text{
+     \begin{texdraw}
+     \move(0 0)\lcir r:0.1
+     \end{texdraw}
+     }
+\end{equation}
+
+\bigskip
+\bigskip
+
+% extraneous data: generate an error message
+\message{ <<<<< Expect an error message: type return >>>>>}
+\btexdraw
+  \move (2 2)
+  \move (3 3)
+% Put in a spurious character
+a
+\end{texdraw}
+
+\end{document}

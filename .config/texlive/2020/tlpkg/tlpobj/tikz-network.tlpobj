@@ -1,0 +1,33 @@
+name tikz-network
+category Package
+revision 51884
+shortdesc Draw networks with TikZ
+longdesc This package allows the creation of images of complex networks
+longdesc that are seamlessly integrated into the underlying LaTeX files.
+longdesc The package requires datatool, etex, graphicx, tikz,
+longdesc trimspaces, xifthen, and xkeyval.
+containersize 8296
+containerchecksum e8100d04b9ef3336a514d18f43ffa6af5d4c2a2ce28663c9f4b40272f5619dbe11dc32f8d7399b7b730f8a90c5aab5fe18cc839d6736d7be6c8e37289e2dd30a
+doccontainersize 825808
+doccontainerchecksum 26cfe73177bbe885cbb224fcd9b4f136a224947a4d9000e24c7f4fd1c44194ab8d2e11dbfac558c68ce36a30c7a7b82f335e3275db22e599dfcddd48d91ab08c
+docfiles size=287
+ texmf-dist/doc/latex/tikz-network/README.md details="Readme"
+ texmf-dist/doc/latex/tikz-network/data/edges.csv
+ texmf-dist/doc/latex/tikz-network/data/front.pdf
+ texmf-dist/doc/latex/tikz-network/data/ml_edges.csv
+ texmf-dist/doc/latex/tikz-network/data/ml_edges_simple.csv
+ texmf-dist/doc/latex/tikz-network/data/ml_vertices.csv
+ texmf-dist/doc/latex/tikz-network/data/ml_vertices_simple.csv
+ texmf-dist/doc/latex/tikz-network/data/plane.png
+ texmf-dist/doc/latex/tikz-network/data/vertices.csv
+ texmf-dist/doc/latex/tikz-network/data/vertices_RGB.csv
+ texmf-dist/doc/latex/tikz-network/tikz-network.pdf details="Package documentation"
+ texmf-dist/doc/latex/tikz-network/tikz-network.tex
+runfiles size=14
+ texmf-dist/tex/latex/tikz-network/tikz-network.sty
+catalogue-contact-bugs https://github.com/hackl/tikz-network/issues
+catalogue-contact-repository https://github.com/hackl/tikz-network
+catalogue-ctan /graphics/pgf/contrib/tikz-network
+catalogue-license gpl3+
+catalogue-topics graphics pgf-tikz diagram
+catalogue-version 1.1

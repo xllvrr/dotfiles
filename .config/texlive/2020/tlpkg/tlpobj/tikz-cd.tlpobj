@@ -1,0 +1,28 @@
+name tikz-cd
+category Package
+revision 49201
+shortdesc Create commutative diagrams with TikZ
+longdesc The general-purpose drawing package TiKZ can be used to typeset
+longdesc commutative diagrams and other kinds of mathematical pictures,
+longdesc generating high-quality results. The purpose of this package is
+longdesc to make the process of creation of such diagrams easier by
+longdesc providing a convenient set of macros and reasonable default
+longdesc settings. This package also includes an arrow tip library that
+longdesc match closely the arrows present in the Computer Modern
+longdesc typeface.
+containersize 6452
+containerchecksum 3fbfa7731eeb6d2b9cbe67cbc4d5470e235f6f990b76b3c82961df172fbba9a8f62ec6055743098cbdb2d3d8aaa3b94f5d4dd8f735624c7d9562de6aa72fdda3
+doccontainersize 276360
+doccontainerchecksum 63be72c0d55112e8328d40ae4fbd1e3c92133615e28f032f9f5efcf2432b6cc440b3c4de4ba46f3eb9e65725caf7de3623a8b49f3b9a87ef780dbeacc536df46
+docfiles size=80
+ texmf-dist/doc/latex/tikz-cd/README.md details="Readme"
+ texmf-dist/doc/latex/tikz-cd/tikz-cd-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/tikz-cd/tikz-cd-doc.tex
+runfiles size=7
+ texmf-dist/tex/generic/tikz-cd/tikzlibrarycd.code.tex
+ texmf-dist/tex/latex/tikz-cd/tikz-cd.sty
+catalogue-contact-repository https://github.com/astoff/tikz-cd/
+catalogue-ctan /graphics/pgf/contrib/tikz-cd
+catalogue-license gpl3
+catalogue-topics diagram-comm graphics-in-tex pgf-tikz
+catalogue-version 0.9f

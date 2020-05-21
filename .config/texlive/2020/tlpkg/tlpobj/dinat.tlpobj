@@ -1,0 +1,21 @@
+name dinat
+category Package
+revision 15878
+shortdesc Bibliography style for German texts
+longdesc Bibliography style files intended for texts in german. They
+longdesc draw up bibliographies in accordance with the german DIN 1505,
+longdesc parts 2 and 3.
+containersize 8828
+containerchecksum 0b22f43a5088f669820674b46af72e66f3f2714a36052bc7d18c334b202d0060fd07b1a608626adf183314d2380fad672baf58307ed83aaa888231e75c63b1c8
+doccontainersize 11468
+doccontainerchecksum f4491ab35e2ae8003faa8220e88c0abd2d970cc6b985d2baf993effd2ebe94a964ae8ece6db70a55f922abc83c91cce5f598ac2e722b5eb7e1584aee436e4393
+docfiles size=9
+ texmf-dist/doc/bibtex/dinat/dinat-index.html details="Package documentation" language="de"
+ texmf-dist/doc/bibtex/dinat/history.html
+runfiles size=11
+ texmf-dist/bibtex/bst/dinat/dinat.bst
+catalogue-also din1505
+catalogue-ctan /biblio/bibtex/contrib/german/dinat
+catalogue-license pd
+catalogue-topics bibtex-sty
+catalogue-version 2.5

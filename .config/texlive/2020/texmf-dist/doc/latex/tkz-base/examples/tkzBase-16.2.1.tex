@@ -1,0 +1,28 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 109 (Section 16.2.1 : Legends with symbols)
+
+\begin{tikzpicture}
+\tkzInit[xmax=12,ymin=1000,ymax=11000,ystep=2000]
+\tkzGrid[color=orange!30]
+\tkzDrawX[below right,label=Mois]
+\tkzDrawY[above left,label=Recette]
+\tkzLabelX
+\tkzLabelY
+\tkzDefSetOfPoints{1/2000,2/3000,3/2000,4/2500,5/4200,6/4800,7/4600,
+                   8/5200,9/6200,10/7000,11/7400,12/10000}
+\tkzDefSetOfPoints[prefix=P]{1/3200,2/4100,3/3300,4/3300,5/5000,6/5500,7/5200,8/4000,
+         9/3000,10/6000,11/8400,12/9000}
+\tkzSetUpMark[mark=heart,color=black,fill=red!30,size=4pt]
+\tkzJoinSetOfPoints[thick,color=brown,double]
+\tkzDrawSetOfPoints
+\tkzJoinSetOfPoints[prefix=P,thick,color=orange,double]
+\tkzDrawSetOfPoints[prefix=P,mark=square*,mark size=4pt,
+                    mark options={color=blue,fill=blue!40}]
+\tkzLegend[draw,rounded corners,fill=orange!20,text=brown,
+          line width=2pt](5,10000){heart/1ex/red!30/Product Recipe A,%
+                                   square*/0.75ex/blue!40/Product Recipe B}
+\end{tikzpicture}
+
+\end{document}

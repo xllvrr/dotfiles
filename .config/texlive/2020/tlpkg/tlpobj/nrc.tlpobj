@@ -1,0 +1,31 @@
+name nrc
+category Package
+revision 29027
+shortdesc Class for the NRC technical journals
+longdesc Macros, and some documentation, for typesetting papers for
+longdesc submission to journals published by the National Research
+longdesc Council Research Press. At present, only nrc2.cls (for
+longdesc two-column layout) should be used.
+containersize 14420
+containerchecksum 2d93fc25d0305b8bee0e5e9ae61bba492bc265e023980a411ffa521f15746c6d73940e352c886ed5dbe08502f472a63559191aea44c3801518bca8b28d0b753a
+doccontainersize 208276
+doccontainerchecksum 35f86598105db616ea379175f3a098cf7c94f4a0a8836302de664c7bb65bbb5f72f41c5c9dc58bf336781a23553ec49e0a5c4d7d0be12b1cff68108aba77e88d
+docfiles size=75
+ texmf-dist/doc/latex/nrc/00-2013-feb-authors.txt details="Notes for authors"
+ texmf-dist/doc/latex/nrc/README details="Readme"
+ texmf-dist/doc/latex/nrc/userguide.pdf details="Package documentation"
+ texmf-dist/doc/latex/nrc/userguide.tex
+srccontainersize 37568
+srccontainerchecksum 3404facf13d3ddaaf4a9aa295cd7c0777308502075d1ba70bfd6be6e8158eea6ff4b88db2414f8ea5e758ebdf52dcd5f44b6bb55e903c0e11dc6260b02a1779d
+srcfiles size=41
+ texmf-dist/source/latex/nrc/nrc.dtx
+ texmf-dist/source/latex/nrc/nrc.ins
+runfiles size=34
+ texmf-dist/tex/latex/nrc/nrc1.cls
+ texmf-dist/tex/latex/nrc/nrc1.sty
+ texmf-dist/tex/latex/nrc/nrc2.cls
+ texmf-dist/tex/latex/nrc/nrc2.sty
+catalogue-ctan /macros/latex/contrib/nrc
+catalogue-license lppl
+catalogue-topics journalpub physics
+catalogue-version 2.01a

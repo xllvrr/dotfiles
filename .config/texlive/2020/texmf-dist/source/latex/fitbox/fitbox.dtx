@@ -1,0 +1,529 @@
+% \iffalse
+%
+%% Copyright 2015-2019, Boris Veytsman <borisv@lk.net
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3 of this license or (at your option) any 
+%% later version.
+%% The latest version of the license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of
+%% LaTeX version 2003/06/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%%
+%% The Current Maintainer of this work is Boris Veytsman
+%%
+%    \begin{macrocode}
+%<style>\NeedsTeXFormat{LaTeX2e}
+%<*gobble>
+\ProvidesFile{fitbox.dtx}
+%</gobble>
+%<style>\ProvidesPackage{fitbox}
+%<*style>
+[2019/02/20 v1.02 Fitting boxes on a page]
+%    \end{macrocode}
+%</style>
+%<*gobble>
+% \fi
+%
+%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~} 
+%
+%\iffalse
+%    \begin{macrocode}
+\documentclass{ltxdoc}
+\usepackage{hypdoc}
+\PageIndex
+\CodelineIndex
+\RecordChanges
+\EnableCrossrefs
+\begin{document}
+  \DocInput{fitbox.dtx}
+\end{document}
+%    \end{macrocode}
+%</gobble> 
+% \fi
+% \MakeShortVerb{|}
+% \GetFileInfo{fitbox.dtx}
+% 
+% 
+% \title{Fit graphics on a page\thanks{\copyright 2015--2019 Boris Veytsman}
+% \thanks{This package was commissined by Neadwerx, \url{http://www.neadwerx.com/}}}
+% \author{Boris Veytsman \thanks{borisv@lk.net}}
+% \date{\filedate, \fileversion}
+% \maketitle
+%
+% \begin{abstract}
+%   The \textsl{fitbox} package allows a box (usually an
+%   |\includegraphics| box) to fit on the page.  It scales the box
+%   to the maximal allowed size within the user-set limits. If there
+%   there is not enough space on the page, the box is moved to the
+%   next one.
+% \end{abstract}
+%
+% \tableofcontents
+%
+% \clearpage
+%
+%\section{Introduction}
+%\label{sec:intro}
+% 
+% How often one puts a picture on a page only to see that \LaTeX\
+% decides to move it to the next one because there is not enough
+% space---while shaving a millimeter off the height would make the
+% difference?  This package is intended to alleviate this difference.
+% It uses several strategies to fit a picture on the page, and only if
+% they fail, the picture is moved to the next one.
+%
+%\section{User Guide}
+%\label{sec:ug}
+%
+%
+%\subsection{Installation}
+%\label{sec:ug_install}
+%
+% The installation of the class follows the usual
+% practice~\cite{TeXFAQ} for \LaTeX{} packages:
+% \begin{enumerate}
+% \item Run \textsf{latex} on |fitbox.ins|.  This will produce the file
+% |fitbox.sty|.
+% \item Put the file |fitbox.sty| to
+% the place where \LaTeX{} can find it (see
+% \cite{TeXFAQ} or the documentation for your \TeX{}
+% system).\label{item:install}
+% \item Update the database of file names.  Again, see \cite{TeXFAQ}
+% or the documentation for your \TeX{} system for the system-specific
+% details.\label{item:update}
+% \item The file |fitbox.pdf| provides the documentation for the
+%   package
+% \end{enumerate}
+% As an alternative to items~\ref{item:install} and~\ref{item:update}
+% you can just put the files in the working directory where your
+% |.tex| file is.
+% 
+% 
+%
+%\subsection{Usage}
+%\label{sec:usage}
+%
+% To use the package, add to the preamble of your document
+% \begin{verbatim}
+% \usepackage{fitbox}
+% \end{verbatim}
+% 
+% \DescribeMacro{\fitbox}%
+% The main command of the package is
+% \cs{fitbox}\oarg{options}\marg{stuff}.  The \marg{stuff} will be
+% typeset in a box according to the \oarg{options}.  In most cases
+% \marg{stuff} is an \cs{includegraphics} command, but anything that
+% fits into an LR-box can be typeset in this way.
+%
+% The \marg{stuff} is typeset in a box, and then the box is put on the
+% page according to the following algorithm:
+% \begin{enumerate}
+% \item \TeX\ starts a new paragraph.
+% \item The box is scaled up to the maximal dimensions specified by
+% the user (while keeping the aspect ratio).
+% \item If there is not enough space on the page to fit the box, the
+%   latter is scaled down as neccessary, but no smaller than the
+%   minimal dimensions specified by the user.
+% \item If there is still not enough space, \TeX\ tries to enlarge the
+% page up to the specified limit.
+% \item If this also fails, \TeX\ starts a new page and fits the box
+% there.  
+% \end{enumerate}
+%
+% \DescribeMacro{\fitbox*}%
+% The starred version \cs{fitbox*} is intended to be used inside
+% floats, where page length is not well defined.  This command uses
+% only the first two steps of the alogithm above, scaling the box up
+% to the maximal dimensions provided by the user.
+%
+% \DescribeMacro{\fitboxset}%
+% The options can be set individually for each \cs{fitbox} command, or
+% globally using the command \cs{fitboxset}, for example,
+% \begin{verbatim}
+% \fitboxset{maxwidth=\textwidth, minwidth=\fitboxnatwidth}
+% \end{verbatim}
+% 
+%
+% \DescribeMacro{\fitboxnatwidth}%
+% \DescribeMacro{\fitboxnatheight}%
+% The options of the package use key-value interface.  Often
+% the values are dimensions;  in these cases the special dimensions
+% \cs{fitboxnatwidth} and \cs{fitboxnatheight} can be used;  they are
+% equal to natural dimensions of the box.  Note that |height| and
+% \cs{fitboxnatheight} are actually \emph{total heights}, including
+% both height and depth of the corresponding boxes.  For example,
+% \begin{verbatim}
+% \fitboxset{minheight=0.5\fitboxnatheight}
+% \end{verbatim}
+% means that the box cannot be scaled down more than 50\%.  
+% 
+% The following options are recognized by the \cs{fitbox} command:
+% \begin{description}
+% \item[maxheight:] The maximal total height of the box.  By default
+% \cs{textheight}. 
+% \item[maxwidth:] The maximal width of the box.  By default
+% the size of the current box to be constructed. 
+% \item[minheight:] The minimal height of the box.  By default
+% \cs{fitboxnatheight}. 
+% \item[minwidth:] The minimal width of the box.  By default
+% \cs{fitboxnatwidth}. 
+% \item[belowboxspace:] The height of the space that must be left
+% below the box (e.g. for a caption).  By default zero.
+% \item[maxenlargepage:] The maximal amount to add to the current
+% page.  By default zero.
+% \end{description}
+%
+% \DescribeMacro{\SetFitboxLayout}%
+% Since version 1.02 the package added the functionality of
+% \textsl{FigSize} package~\cite{FigSize}.  The latter has a handy
+% command \cs{SetFigLayout}, which can be used to scale all figures on
+% a page.  This package uses the command \cs{SetFitboxLayout} that
+% somewhat mimics \cs{SetFigLayout}.  The macro has the arguments
+% \cs{SetFitboxLayout}\oarg{keys}\marg{rows}\marg{columns}, and helps
+% to scale the boxes into a grid.  However, unlike \textsl{FigSize}
+% package, we do not redefine \cs{includegraphics} command: you should
+% use \cs{fitbox} for your graphics.  The command \cs{SetFitboxLayout}
+% is just \cs{fitboxset} with special values of the parameters.  These
+% commands can be mixed, with the latest command overriding the
+% previous ones.
+%
+% The following keys are recognized by the \cs{SetFitboxLayout} command:
+% \begin{description}
+% \item[colsep:] the distance between the columns; by default the size
+% of \cs{quad}.
+% \item[colsepexpr:] if set, the width of the expression becomes
+% \texttt{colsep}.  For example, \path{colsepexpr=\quad} makes
+% separation between the columns the size of \cs{quad}.
+% \item[maincapheight:] The height of the main caption.  By default,
+% $\cs{abovecaptionskip}+\cs{belowcaptionskip}+
+% n\cs{baselineskip})$ 
+% where $n$ is the expected number of lines in the main caption (by
+% default 1).
+% \item[maincaplines:] The number of lines in the main caption.  By
+% default 1.
+% \item[subcapheight:] The height of the subcaption.  By default,
+%   $\cs{abovecaptionskip}+\cs{belowcaptionskip}+m\cs{baselineskip}$
+%   where $m$ is the expected number of lines in the subcaptions (by
+%   default 0).
+% \item[subcaplines:] The number of lines in the subcaptions.  By
+% default 0.
+% \end{description}
+% 
+%
+%\StopEventually{\clearpage
+% \bibliography{fitbox}
+% \bibliographystyle{unsrt}}
+%
+% \clearpage
+% 
+% \section{Implementation}
+% \label{sec:implementation}
+% 
+%    \begin{macrocode}
+%<*style>
+%    \end{macrocode}
+%
+%
+%\subsection{Setting up parameters}
+%\label{sec:params}
+%
+% 
+%   
+% 
+% \begin{macro}{\fitboxnatheight}
+%   The total height of the box
+%    \begin{macrocode}
+\newdimen\fitboxnatheight
+%    \end{macrocode}
+%   
+% \end{macro}
+%
+% \begin{macro}{\fitboxnatwidth}
+%   The total width of the box
+%    \begin{macrocode}
+\newdimen\fitboxnatwidth
+%    \end{macrocode}
+%   
+% \end{macro}
+%
+% 
+% \changes{v1.01}{2019/02/20}{New keys for \cs{SetFitboxLayout}}
+% We use |xkeyval| interface:
+%    \begin{macrocode}
+\RequirePackage{xkeyval}
+\define@cmdkeys{FTBX}{maxheight, minheight, maxwidth, minwidth,
+  belowboxspace, maxenlargepage, colsep, maincapheight,
+  subcapheight}
+%    \end{macrocode}
+%
+% Setting some keys changes other keys
+%    \begin{macrocode}
+\define@key{FTBX}{colsepexpr}{%
+  \setbox\@tempboxa=\hbox{#1}%
+  \edef\cmdKV@FTBX@colsep{\wd\@tempboxa}}
+\define@key{FTBX}{maincaplines}{%
+  \@tempdima=\z@
+  \advance\@tempdima by #1\baselineskip\relax
+  \ifnum#1>0\relax
+     \advance\@tempdima by \parskip
+  \fi 
+  \advance\@tempdima by \abovecaptionskip
+  \advance\@tempdima by \belowcaptionskip
+  \edef\cmdKV@FTBX@maincapheight{\the\@tempdima}}
+\define@key{FTBX}{subcaplines}{%
+  \@tempdima=\z@
+  \advance\@tempdima by #1\baselineskip\relax
+  \ifnum#1>0\relax
+     \advance\@tempdima by \parskip
+  \fi 
+  \advance\@tempdima by \abovecaptionskip
+  \advance\@tempdima by \belowcaptionskip
+  \edef\cmdKV@FTBX@subcapheight{\the\@tempdima}}  
+%    \end{macrocode}
+% 
+%
+% \begin{macro}{\fitboxset}
+%   Setting everything
+%    \begin{macrocode}
+\def\fitboxset#1{\setkeys{FTBX}{#1}}
+%    \end{macrocode}
+%   
+% \end{macro}
+%
+%\changes{v1.01}{2019/02/10}{Changed maximal width}
+% The defaults
+%    \begin{macrocode}
+\fitboxset{maxheight=\textheight, minheight=\fitboxnatheight,
+  maxwidth=\hsize, minwidth=\fitboxnatwidth,
+  belowboxspace=0pt, maxenlargepage=0pt, colsepexpr={aaa},
+  maincaplines=1, subcaplines=0}
+%    \end{macrocode}
+% 
+%
+%\subsection{Main command}
+%\label{sec:main_command}
+%
+% \begin{macro}{\FTBX@box}
+%   The box which will held the stuff to be typeset
+%    \begin{macrocode}
+\newbox\FTBX@box
+%    \end{macrocode}
+%   
+% \end{macro}
+%
+% \begin{macro}{\FTBX@desired@maxheight}
+%   The desired maximal height
+%    \begin{macrocode}
+\newdimen\FTBX@desired@maxheight
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\FTBX@desired@minheight}
+% The desired minimal height
+%    \begin{macrocode}
+\newdimen\FTBX@desired@minheight
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\FTBX@available@height}
+% The desired available height
+%    \begin{macrocode}
+\newdimen\FTBX@available@height
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\fitbox}
+% \changes{v1.02}{2019/02/18}{Split into normal and starred version}
+% The main command
+%    \begin{macrocode}
+\def\fitbox{\@ifstar\@@fitbox\@fitbox}
+%    \end{macrocode}
+% 
+% \end{macro}
+%
+% \begin{macro}{\@fitbox}
+% \changes{v1.01}{2019/02/10}{Do not force width adjustment}
+% \changes{v1.02}{2019/02/17}{\cs{noident} instead of \cs{leavevmode}
+% (suggested by Frank Mittelbach)}
+% \changes{v1.02}{2019/02/18}{Split into normal and starred version}
+%   The main command---``normal'' version
+%    \begin{macrocode}
+\newcommand\@fitbox[2][]{\noindent
+  \fitboxset{#1}%
+  \setbox\FTBX@box=\hbox{#2}%
+  \fitboxnatwidth=\wd\FTBX@box\relax
+  \fitboxnatheight=\ht\FTBX@box\relax
+  \advance\fitboxnatheight by \dp\FTBX@box\relax
+  % Checking the sizes
+  \expandafter\ifdim\cmdKV@FTBX@minwidth>\columnwidth\relax
+      \PackageWarning{fitbox}{Minimal width is too large.  Consider
+        changing it to \the\hsize}%
+  \fi
+  \expandafter\ifdim\cmdKV@FTBX@maxwidth>\hsize\relax
+      \PackageWarning{fitbox}{Desired width is too large.  Consider
+        changing it to \the\hsize}%
+  \fi
+  \expandafter\ifdim\cmdKV@FTBX@minheight>\textheight\relax
+      \PackageWarning{fitbox}{Minimal height is too large.  
+        Consider changing it to \the\textheight}%
+  \fi
+  \expandafter\ifdim\cmdKV@FTBX@maxheight>\textheight\relax
+      \PackageWarning{fitbox}{Desired height is too large.
+        Consider changing it to \the\textheight}%
+  \fi
+  % Calculating the minimal and maximal height
+  \Gscale@div{\@FTBX@tempa}{\cmdKV@FTBX@maxwidth}{\fitboxnatwidth}%
+  \FTBX@desired@maxheight=\@FTBX@tempa\fitboxnatheight\relax
+  \expandafter\ifdim\cmdKV@FTBX@maxheight<\FTBX@desired@maxheight\relax
+     \expandafter\FTBX@desired@maxheight=\cmdKV@FTBX@maxheight\relax
+  \fi
+  \Gscale@div{\@FTBX@tempa}{\cmdKV@FTBX@minwidth}{\fitboxnatwidth}%
+  \FTBX@desired@minheight=\@FTBX@tempa\fitboxnatheight\relax
+  \expandafter\ifdim\cmdKV@FTBX@minheight>\FTBX@desired@minheight\relax
+     \expandafter\FTBX@desired@minheight=\cmdKV@FTBX@minheight\relax
+  \fi
+  \ifdim\FTBX@desired@minheight>\FTBX@desired@maxheight\relax
+      \PackageWarning{fitbox}{Desired min scale exceeds desired max
+        scale.}% 
+  \fi  
+  \FTBX@available@height=\pagegoal\relax
+  \ifdim\FTBX@available@height>\vsize\relax
+    \FTBX@available@height=\vsize
+  \fi
+  \advance\FTBX@available@height by -\pagetotal\relax
+  \advance\FTBX@available@height by -\cmdKV@FTBX@belowboxspace\relax
+  \advance\FTBX@available@height by -\baselineskip\relax
+  \ifdim\FTBX@desired@maxheight>\FTBX@available@height\relax
+     \ifdim\FTBX@available@height<\FTBX@desired@minheight\relax 
+        \@tempdima=\FTBX@desired@minheight\relax
+        \advance\@tempdima by
+        -\FTBX@available@height\relax
+        \expandafter\ifdim\cmdKV@FTBX@maxenlargepage<\@tempdima\relax
+          \newpage
+          \resizebox*{!}{\FTBX@desired@maxheight}{\box\FTBX@box}%
+        \else
+          \enlargethispage{\@tempdima}%
+          \resizebox*{!}{\FTBX@desired@minheight}{\box\FTBX@box}%
+        \fi
+      \else 
+       \resizebox*{!}{\FTBX@available@height}{\box\FTBX@box}%
+      \fi
+  \else
+     \resizebox*{!}{\FTBX@desired@maxheight}{\box\FTBX@box}%
+  \fi
+}
+%    \end{macrocode}
+%   
+% \end{macro}
+%
+% \begin{macro}{\@@fitbox}
+% \changes{v1.01}{2019/02/10}{Do not force width adjustment}
+% \changes{v1.02}{2019/02/17}{\cs{noident} instead of \cs{leavevmode}
+% (suggested by Frank Mittelbach)}
+% \changes{v1.02}{2019/02/18}{Split into normal and starred version}
+%   The main command---``starred'' version.  Simplified computations.
+%    \begin{macrocode}
+\newcommand\@@fitbox[2][]{\noindent
+  \fitboxset{#1}%
+  \setbox\FTBX@box=\hbox{#2}%
+  \fitboxnatwidth=\wd\FTBX@box\relax
+  \fitboxnatheight=\ht\FTBX@box\relax
+  \advance\fitboxnatheight by \dp\FTBX@box\relax
+  % Checking the sizes
+  \expandafter\ifdim\cmdKV@FTBX@minwidth>\columnwidth\relax
+      \PackageWarning{fitbox}{Minimal width is too large.  Consider
+        changing it to \the\hsize}%
+  \fi
+  \expandafter\ifdim\cmdKV@FTBX@maxwidth>\hsize\relax
+      \PackageWarning{fitbox}{Desired width is too large.  Consider
+        changing it to \the\hsize}%
+  \fi
+  \expandafter\ifdim\cmdKV@FTBX@minheight>\textheight\relax
+      \PackageWarning{fitbox}{Minimal height is too large.  
+        Consider changing it to \the\textheight}%
+  \fi
+  \expandafter\ifdim\cmdKV@FTBX@maxheight>\textheight\relax
+      \PackageWarning{fitbox}{Desired height is too large.
+        Consider changing it to \the\textheight}%
+  \fi
+  % Calculating the minimal and maximal height
+  \Gscale@div{\@FTBX@tempa}{\cmdKV@FTBX@maxwidth}{\fitboxnatwidth}%
+  \FTBX@desired@maxheight=\@FTBX@tempa\fitboxnatheight\relax
+  \expandafter\ifdim\cmdKV@FTBX@maxheight<\FTBX@desired@maxheight\relax
+     \expandafter\FTBX@desired@maxheight=\cmdKV@FTBX@maxheight\relax
+  \fi
+  \Gscale@div{\@FTBX@tempa}{\cmdKV@FTBX@minwidth}{\fitboxnatwidth}%
+  \FTBX@desired@minheight=\@FTBX@tempa\fitboxnatheight\relax
+  \expandafter\ifdim\cmdKV@FTBX@minheight>\FTBX@desired@minheight\relax
+     \expandafter\FTBX@desired@minheight=\cmdKV@FTBX@minheight\relax
+  \fi
+  \ifdim\FTBX@desired@minheight>\FTBX@desired@maxheight\relax
+      \PackageWarning{fitbox}{Desired min scale exceeds desired max
+        scale.}% 
+  \fi  
+  \resizebox*{!}{\FTBX@desired@maxheight}{\box\FTBX@box}%
+}
+%    \end{macrocode}
+%   
+% \end{macro}
+%
+%
+%\subsection{Multi-figure layout}
+%\label{sec:layout}
+%
+%
+%
+% \begin{macro}{\SetFitboxLayout}
+% \changes{v1.02}{2019/02/17}{New macro}
+% \changes{v1.02}{2019/02/20}{Key-value interface}
+% A macro styles after \cs{SetFigsizeLayout} of \textsl{FigSize}
+% package.
+%    \begin{macrocode}
+\newcommand\SetFitboxLayout[3][]{%
+  \fitboxset{#1}%
+  \@tempdima=\textheight
+  \advance\@tempdima by -\cmdKV@FTBX@maincapheight\relax
+  \divide\@tempdima by #2\relax
+  \advance\@tempdima by -\cmdKV@FTBX@subcapheight\relax
+  \edef\cmdKV@FTBX@maxheight{\the\@tempdima}%
+  \@tempdima=\columnwidth
+  \@tempdimb=\cmdKV@FTBX@colsep\relax
+  \advance\@tempdima by -#3\@tempdimb\relax
+  \advance\@tempdima by \@tempdimb\relax
+  \divide\@tempdima by #3\relax
+  \edef\cmdKV@FTBX@maxwidth{\the\@tempdima}%
+}
+%    \end{macrocode}
+% 
+% \end{macro}
+%
+%    \begin{macrocode}
+%</style>
+%    \end{macrocode}
+%\Finale
+%\clearpage
+%
+%\PrintChanges
+%\clearpage
+%\PrintIndex
+%
+\endinput

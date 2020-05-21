@@ -1,0 +1,31 @@
+name nddiss
+category Package
+revision 45107
+shortdesc Notre Dame Dissertation format class
+longdesc This class file conforms to the requirements of the Graduate
+longdesc School of the University of Notre Dame; with it a user can
+longdesc format a thesis or dissertation in LaTeX.
+containersize 11852
+containerchecksum 62f951bce52bab564ab2671bd5d019ff9f6f5ad1d8a18ae9f8b574226aa83e4d3a9c6c931f4830f71c43499f68b8b06e539d55a027e712ce4cd2c03e349d3fd1
+doccontainersize 384324
+doccontainerchecksum bd92c614f160c50a22ff83d296f0e511909906459cfcb7100c615170ee9fadbd38ba032bf95f7b25a083cae33c80ede96964d3b81e23c481fe5a836d91967ad1
+docfiles size=102
+ texmf-dist/doc/latex/nddiss/LICENSE
+ texmf-dist/doc/latex/nddiss/README.md details="Readme"
+ texmf-dist/doc/latex/nddiss/nddiss2e.pdf details="Package documentation"
+ texmf-dist/doc/latex/nddiss/process.sh
+ texmf-dist/doc/latex/nddiss/template.tex
+srccontainersize 24516
+srccontainerchecksum 498e13f4e4bbf8e2133870854f75feb5617a517b55593ab90c203ba860f95599ac5b010bee58d4f35706a6e17bdba54c66e02e04281bb548e62b335c576a6357
+srcfiles size=24
+ texmf-dist/source/latex/nddiss/ltxdoc.cfg
+ texmf-dist/source/latex/nddiss/nddiss2e.dtx
+ texmf-dist/source/latex/nddiss/nddiss2e.ins
+runfiles size=14
+ texmf-dist/bibtex/bst/nddiss/nddiss2e.bst
+ texmf-dist/tex/latex/nddiss/nddiss2e.cls
+catalogue-contact-repository https://github.com/ndlib/nddiss
+catalogue-ctan /macros/latex/contrib/nddiss
+catalogue-license lppl1.2
+catalogue-topics dissertation class
+catalogue-version 3.2017.2

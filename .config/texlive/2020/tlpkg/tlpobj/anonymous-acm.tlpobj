@@ -1,0 +1,27 @@
+name anonymous-acm
+category Package
+revision 55121
+shortdesc Typeset anonymous versions for ACM articles
+longdesc Academics often need to submit anonymous versions of their
+longdesc papers for peer-review. This often requires anonymization which
+longdesc at some future date needs to be reversed. However
+longdesc de-anonymizing an anonymized paper can be laborious and
+longdesc error-prone. This LaTeX package allows anonymization options to
+longdesc be specified at the time of writing for authors using
+longdesc acmart.cls, the official Association of Computing Machinery
+longdesc (ACM) master article template. Anonymization or deanonymization
+longdesc is carried out by simply changing one option and recompiling.
+containersize 1528
+containerchecksum 6899f18cd8422c1671b74a0ea3f9e8eb47d7ef62e0809d12e71de6ad6a7634c8cc7af22f701c710c9b2b5ee3867acde491bec8d3e2690e2532de3488aed1bec9
+doccontainersize 381532
+doccontainerchecksum f7a91677338dff848150dd1beac5645c157550f3463795d2d67493f35a81a09d33ee6cb39f2d921f535c12f26bb60ac17e4208298bd8bd7ba0dea8da4e1b41e1
+docfiles size=97
+ texmf-dist/doc/latex/anonymous-acm/README.txt details="Readme"
+ texmf-dist/doc/latex/anonymous-acm/anonymous-acm.pdf details="Package documentation"
+ texmf-dist/doc/latex/anonymous-acm/anonymous-acm.tex
+runfiles size=1
+ texmf-dist/tex/latex/anonymous-acm/anonymous-acm.sty
+catalogue-ctan /macros/latex/contrib/anonymous-acm
+catalogue-license lppl1.3
+catalogue-topics journalpub
+catalogue-version 1.0

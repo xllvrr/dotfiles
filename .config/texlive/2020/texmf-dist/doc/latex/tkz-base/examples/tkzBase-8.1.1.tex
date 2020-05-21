@@ -1,0 +1,14 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 55 (Section  8.1.1 : Use of \tkzname{shift})
+
+\begin{tikzpicture}[trim left=-1cm]
+ \tkzDefPoint(2,3){A}
+ \tkzDefPoint[shift={(2,3)}](31:3){B}
+ \tkzDefPoint[shift={(2,3)}](158:3){C}
+ \tkzDrawSegments[color=red,line width=1pt](A,B A,C)
+ \tkzDrawPoints[color=red](A,B,C)
+\end{tikzpicture}
+
+\end{document}

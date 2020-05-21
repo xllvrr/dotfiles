@@ -1,0 +1,25 @@
+name ps2pk
+category TLCore
+revision 52851
+shortdesc Generate a PK font from an Adobe Type 1 font
+longdesc Generates a PK file from an Adobe Type 1 font. PK fonts are (or
+longdesc used to be) valuable in enabling previewers to view documents
+longdesc generated that use Type 1 fonts. The program makes use of code
+longdesc donated to the X consortium by IBM.
+depend ps2pk.ARCH
+containersize 504
+containerchecksum 4b3ead8d2708a182d0c158dd8ae5077fb2f4a94c7f6fff52a66d6479d4c05de3d742e4c960ab79b63084435bef491866c38e01d77c41ae3d630c7a32450d0a11
+doccontainersize 62396
+doccontainerchecksum c5b22a86807378fd7d6d83e8802780567a2473e87875bee4c827a48ff470911855bc4a1db4f439fbda1baf71f714086b96e6e78ee059590fb6ebb45c58abca4f
+docfiles size=27
+ texmf-dist/doc/man/man1/mag.1
+ texmf-dist/doc/man/man1/mag.man1.pdf
+ texmf-dist/doc/man/man1/pfb2pfa.1
+ texmf-dist/doc/man/man1/pfb2pfa.man1.pdf
+ texmf-dist/doc/man/man1/pk2bm.1
+ texmf-dist/doc/man/man1/pk2bm.man1.pdf
+ texmf-dist/doc/man/man1/ps2pk.1
+ texmf-dist/doc/man/man1/ps2pk.man1.pdf
+catalogue-ctan /fonts/utilities/ps2pk
+catalogue-license other-free
+catalogue-topics ps-manip font-proc

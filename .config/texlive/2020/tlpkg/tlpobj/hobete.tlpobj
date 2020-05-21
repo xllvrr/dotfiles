@@ -1,0 +1,27 @@
+name hobete
+category Package
+revision 27036
+shortdesc Unofficial beamer theme for the University of Hohenheim
+longdesc The package provides a beamer theme which features the Ci
+longdesc colors of the University of Hohenheim. Please note that this is
+longdesc not an official Theme, and that there will be no support for
+longdesc it, from the University. Furthermore there is NO relationship
+longdesc between the University and this theme.
+containersize 6292
+containerchecksum d2c79f5d39fbe82b43704a78add3a016768ff282d48ed1f49d1991c6ab56bef5266e8cfa7b3b03bcc944990d407ae43eca99930270ab84679f51323407b861a0
+doccontainersize 366520
+doccontainerchecksum ef7b1bd487c496cb2ffc01fb2940a72ac69edb1a5516d19ce6a6e6cb197ba6f517e03ac673b2372cc9cd4f40e5c6ea2469c2712528a10a3f5ba09e9d3a46f209
+docfiles size=98
+ texmf-dist/doc/latex/hobete/README details="Readme (German)" language="de"
+ texmf-dist/doc/latex/hobete/hobete_doc.pdf details="Package documentation (German)" language="de"
+ texmf-dist/doc/latex/hobete/hobete_doc.tex
+ texmf-dist/doc/latex/hobete/poster-test.tex
+runfiles size=7
+ texmf-dist/tex/latex/hobete/beamercolorthemehohenheim.sty
+ texmf-dist/tex/latex/hobete/beamerouterthemehohenheim.sty
+ texmf-dist/tex/latex/hobete/beamerouterthemehohenheimposter.sty
+ texmf-dist/tex/latex/hobete/beamerthemehohenheim.sty
+ texmf-dist/tex/latex/hobete/hobete.sty
+catalogue-ctan /macros/latex/contrib/beamer-contrib/themes/hobete
+catalogue-license lppl
+catalogue-topics presentation poster

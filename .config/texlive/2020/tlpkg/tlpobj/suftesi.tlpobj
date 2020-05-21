@@ -1,0 +1,24 @@
+name suftesi
+category Package
+revision 53903
+shortdesc A document class for typesetting theses, books and articles
+longdesc The class can be used to typeset any kind of book (originally
+longdesc designed for use in the humanities).
+containersize 13772
+containerchecksum 6b6249485e0c7076ad6141af22ec6aba22c0df86c38c03565bf61a486cd8d7c24c1909034e365699e3428307762f65aa6be64e222f167e8ce744e8b84d2a0e71
+doccontainersize 957272
+doccontainerchecksum 316340999ebe6534adcb38c53f3183c64fce9819ed57ca51587c8ca2dda25afbb6d2c68529134524974ebaf9ee27b03267e8021d4d6e4cfa51a7697b942f4a7e
+docfiles size=354
+ texmf-dist/doc/latex/suftesi/README details="Readme"
+ texmf-dist/doc/latex/suftesi/suftesi.pdf details="Package documentation" language="en"
+ texmf-dist/doc/latex/suftesi/templates.zip
+srccontainersize 36724
+srccontainerchecksum cdffa74eed1f65452acf39233decd0941bc23718862545fd74b95ede4daa3c1e65f7f7e14dbe69253ccf09f198ff2e2d8434bc9842b61d5a11de56c497aaa0e1
+srcfiles size=47
+ texmf-dist/source/latex/suftesi/suftesi.dtx
+runfiles size=23
+ texmf-dist/tex/latex/suftesi/suftesi.cls
+catalogue-ctan /macros/latex/contrib/suftesi
+catalogue-license lppl1.3
+catalogue-topics book-pub class dissertation
+catalogue-version 2.9.8

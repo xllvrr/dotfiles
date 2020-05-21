@@ -1,0 +1,77 @@
+%%
+%% This is the documentation of DPcircling package.
+%% (Last Update: 2020/04/15)
+%% Maintained on GitHub:
+%% https://github.com/domperor/DPcircling
+%%
+%% Copyright (c) 2020 Oura M. (domperor)
+%% Released under the MIT license
+%% https://opensource.org/licenses/mit-license.php
+%% 
+
+\documentclass[10pt]{article}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{geometry}
+\usepackage{url}
+\geometry{a4paper,total={170mm,257mm},left=20mm,top=20mm}
+\usepackage{DPcircling}
+\title{DPcircling package v1.0}
+\author{Oura M. (domperor)}
+\date{\today}
+\pagestyle{empty}
+\begin{document}
+\maketitle\thispagestyle{empty}
+
+\section*{about this package}
+
+This package provides 4 types of text decorations: \verb+\DPcircling+ \DPcircling{circle}, \verb+\DPrectangle+ \DPrectangle{rectangle}, \verb+\DPjagged+ \DPjagged{jagged rectangle}, and \verb+\DPfanshape+ \DPfanshape{fan-shape}. The baseline would be adjusted properly according to the surroundings\footnote{Unless you cram too tall things into a small decoration box. The box would be broken, and you would make a mess.}. You can use these decorations both in text mode and in math mode. You can specify \verb+line color+, \verb+line width+, \verb+width+, and \verb+height+ as option keys.
+
+\ 
+
+This package is maintained on GitHub: \url{https://github.com/domperor/DPcircling}
+
+\subsection*{basic usage}
+
+\begin{quote}
+(in preamble): \verb+\usepackage[+\textit{\texttt{driver}}\verb+]{graphicx}\usepackage{DPcircling}+\footnote{The author personally uses dvipdfmx as the driver.}
+
+(in your text): \verb+\DP*****[+\textit{\texttt{options}}\verb+]{+\textit{\texttt{content}}\verb+}+
+\end{quote}
+
+For instance, the code
+\begin{quote}
+\begin{verbatim}
+It is a \DPjagged[line color=blue,line width=1.4pt]{\color{brown}great} opportunity.
+\end{verbatim}
+\end{quote}
+\noindent gives the result:
+\begin{quote}
+It is a \DPjagged[line color=blue, line width= 1.4pt]{\color{brown}great} opportunity.
+\end{quote}
+
+\subsection*{required packages}
+
+DPcircling requires the following packages: \verb+tikz+, \verb+keyval+, \verb+graphicx+, and the ones that these packages require.
+
+\subsection*{aliases}
+
+\verb+\DPcircle+ and \verb+\DPcirc+ are the aliases of \verb+\DPcircling+.
+\verb+\DPrect+ is the alias of \verb+\DPrectangle+.
+
+\subsection*{changing default values}
+
+The default values of \verb+line color+, \verb+line width+, \verb+width+, and \verb+height+ are \verb+black+, \verb+1pt+, noted below(*), and \verb+2*(content height)+. You can modify these like this:
+\begin{quote}
+\begin{verbatim}
+\DPcirclingDefault{line color=brown, line width=0.33pt, width=4em, height=5em}
+\end{verbatim}
+\end{quote}
+
+\noindent (*) The default values of \verb+width+ are \verb+max{2*(content width), 2em}+ (circle) and 
+\verb:(content width)+2em: (else).
+
+\section*{version history}
+
+2020/04/15 v1.0
+
+\end{document}

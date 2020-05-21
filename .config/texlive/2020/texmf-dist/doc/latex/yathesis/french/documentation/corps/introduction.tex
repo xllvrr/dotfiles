@@ -1,0 +1,195 @@
+\chapter{Introduction}
+
+\section{Objet de la présente classe}
+\label{sec-objet-de-la}
+
+\LaTeX{} est un système particulièrement performant de préparation et de
+production de toutes sortes de documents : rapports de stage, mémoires de
+\emph{master} et de thèses, polycopiés de cours, rapports d'activité, etc.
+
+Les outils standards ou généralistes de \LaTeX{} tels que les classes
+\class*{book} ou \class{memoir} n'étant pas calibrés pour répondre aux exigences
+particulières des mémoires de thèse, de nombreuses classes spécifiques ont été
+créées\footnote{Cf. \url{http://ctan.org/topic/dissertation}.}  et sont livrées
+avec toute distribution \TeX{} moderne. Toutefois, la plupart d'entre elles ne
+sont pas destinées aux thèses préparées en France et sont souvent propres à une
+université donnée.
+
+Parmi les exceptions notables figurent les classes :
+\begin{itemize}
+\item \class{droit-fr} et
+  \class[https://github.com/ienissei/frenchlaw]{frenchlaw}, destinées aux
+thèses en droit préparées en France ;
+\item \class{ulthese}, destinée aux thèses francophones préparées à l'université
+  Laval (Canada) ;
+\item \class[https://members.loria.fr/DRoegel/TeX/TUL.html]{thesul}, destinée
+  initialement aux thèses en informatique préparées à l'université de Lorraine,
+  mais aisément adaptable à tout autre champ disciplinaire et institut en
+  France.
+\end{itemize}
+Il est à noter que les classes \class{frenchlaw} et \class{thesul} ne sont pas
+fournies par les distributions \TeX{} et nécessitent d'être installées
+manuellement.
+
+\frenchabstract{}
+
+% Mais sur ce dernier point, ce que fait observer \citefirstlastauthor{thesul}
+% au sujet de sa \Class{thesul}, s'applique également à la \yatCl{} : %
+% \blockcquote{thesul}{%
+% La \Class{thesul} fait partie des classes de la gamme \enquote{prêt-à-porter}.
+% Elle satisfait un certain nombre de besoins, mais pas tous les besoins. C'est
+% une classe faite pour ceux qui veulent utiliser un outil au prix d'un nombre
+% très restreint (voire nul) de modifications. Celui ou celle qui souhaiterait
+% une classe très particulière, différant en de nombreux points de ce qu'offre
+% la \Class{thesul}, pourrait bien sûr redéfinir les parties concernées de la
+% classe mais gagnerait bien plus à se construire sa propre classe. Le
+% \enquote{prêt-à-porter} ne vaudra jamais le \enquote{sur mesure}.%
+% }
+
+\section{Comment lire la présente documentation ?}
+\label{sec-comment-lire-cette}
+
+La présente documentation est divisée en deux parties : une principale dédiée
+à l'usage courant de la \yatCl{} et une annexe concernant les aspects moins
+courants, pouvant n'être consultés qu'occasionnellement.
+
+\subsection{Partie principale}
+\label{sec-partie-principale}
+
+La partie principale de la documentation commence par présenter les commandes et
+environnements fournis par la \yatCl{} et ce, dans l'ordre dans lequel on
+rencontre les objets correspondants dans un mémoire de thèse :
+\begin{enumerate}
+\item en page(s) de titre (cf. \vref{cha-caract-du-docum,cha-pages-de-titre}) ;
+\item en \gls{liminaire} (cf. \vref{cha-liminaires}) ;
+\item en partie principale (corps) de la thèse (cf. \vref{cha-corps}) ;
+\item en annexes (cf. \vref{cha-annexes}) ;
+\item en partie finale (cf. \vref{cha-pages-finales}).
+\end{enumerate}
+Elle indique enfin comment personnaliser la \yatCl{}
+(cf. \vref{cha-configuration}).
+% , par exemple pour redéfinir les expressions automatiquement insérées dans les
+% documents.
+
+\subsection{Partie annexe}
+\label{sec-partie-annexe}
+
+L'installation de la \yatCl{} est décrite à l'\vref{cha-installation}.
+
+L'\vref{cha-specimen-canevas} est dédiée à deux spécimens et deux canevas de
+thèse produits par la \yatCl{}. On pourra :
+\begin{itemize}
+\item visualiser leurs \glsxtrshortpl{pdf} pour se faire une idée du genre de
+  mémoire qu'on peut obtenir ;
+\item consulter et compiler leurs fichiers sources, et s'en servir de base pour
+  les adapter à son propre mémoire de thèse.
+\end{itemize}
+
+L'\vref{cha-recomm-et-astuc} fournit quelques recommandations, trucs et astuces.
+
+Les questions fréquemment posées au sujet de la \yatCl{} sont répertoriées
+à l'\vref{cha-faq}.
+
+L'\vref{cha-fichiers-importes-par} documente deux fichiers que la \yatCl{}
+importe automatiquement.
+
+L'\vref{cha-packages-charges} répertorie les packages chargés par la \yatCl{} et
+qu'il est du coup préférable de \emph{ne pas} charger manuellement. Elle donne
+également une liste non exhaustive de packages qu'elle ne charge pas mais
+pouvant se révéler très utiles, notamment aux doctorants.
+
+L'\vref{cha-incomp-conn} liste les incompatibilités connues de la \yatCl{}.
+
+Si nécessaire, on pourra consulter l'\vref{cha-pagination} pour avoir une vue
+d'ensemble de la \gls{pagination}, des \glspl{titrecourant} et de la
+numérotation des chapitres par défaut avec la \yatCl{}.
+
+Les notations, syntaxe, terminologie et codes couleurs de la présente
+documentation se veulent intuitifs mais, en cas de doute, on se reportera
+à l'\vref{cha-synt-term-notat}. De même, certains des termes employés ici sont
+définis dans le glossaire \vpageref{glossaire}.
+
+L'\vref{cha-add-ons} signale quelques \emph{add-ons} destinés à faciliter
+l'usage de la \yatCl{} avec différents éditeurs de texte.
+
+L'\vref{cha-usage-avance}, à ne pas mettre entre toutes les mains, indique
+comment s'affranchir de messages d'erreurs propres à la \yatCl{}. Elle n'est
+à consulter que si on est sûr :
+\begin{enumerate}
+\item \emph{de ce que l'on fait} !
+\item \emph{de pouvoir en gérer \emph{seul} les conséquences} !
+\end{enumerate}
+
+L'\vref{cha-comp-de-la-pres} détaille la procédure permettant de compiler
+soi-même la présente documentation.
+
+L'\vref{cha-trad-de-la-pres} aborde la question de la traduction de la présente
+documentation en langues étrangères, notamment en anglais.
+
+L'\vref{cha-devel-futurs} est une \emph{TODO list} des fonctionnalités que
+l'auteur de \yatcl{} doit encore mettre en œuvre, que ce soit pour la classe
+elle-même ou pour sa documentation.
+
+Enfin, l'historique des changements de la classe se trouve \vref{cha-history}.
+Les changements les plus importants, notamment ceux qui rompent la compatibilité
+ascendante, y figurent en rouge.
+
+\section{Ressources Internet}
+\label{sec-ressources-internet}
+\index{distribution \TeX}%
+
+La \yatCl{} est fournie par les distributions \texlive et \miktex, et est également disponible en versions :
+\begin{itemize}
+\item stable sur le \href{http://ctan.org/pkg/yathesis}{\glsxtrshort*{ctan}} ;
+\item de développement sur \href{https://github.com/dbitouze/yathesis}{GitHub}.
+\end{itemize}
+
+Elle est aussi \emph{directement utilisable} au moyen d'éditeurs (et compilateurs)
+\LaTeX{} en ligne%
+\index{éditeur de texte!en ligne}%
+\index{compilation!en ligne}%
+\index{en ligne!éditeur de texte}%
+\index{en ligne!compilation}
+%
+tels que :
+\begin{itemize}
+\item \href{https://fr.sharelatex.com/}{ShareLaTeX} par le biais d'un
+  \href{https://frama.link/sharelatex-yathesis-template}{canevas}
+  et
+  \href{https://frama.link/sharelatex-yathesis-specimen}{spécimen}\detailsspecimencanevas ;
+\item \href{https://www.overleaf.com/}{Overleaf} par le biais d'un
+  \href{https://frama.link/overleaf-yathesis-template}{canevas}
+  et
+  \href{https://frama.link/overleaf-yathesis-sample}{spécimen}\detailsspecimencanevas ;
+\end{itemize}
+mais alors dans des versions probablement bien moins à jour que celle livrée
+avec les distributions \texlive et \miktex (surtout si ces dernières sont mises
+à jour).
+
+\section{Remerciements}
+\label{sec-remerciements}
+
+L'auteur de la \yatCl{} remercie tous les doctorants que, depuis plusieurs
+années, il a formés à \LaTeX{} : les questions qu'ils ont soulevées et les
+demandes de fonctionnalités qu'ils ont formulées sont à l'origine du présent
+travail.
+
+Il remercie en outre tous les auteurs de packages à qui il a soumis \aside{à un
+  rythme parfois effréné} des questions, demandes de fonctionnalités et rapports
+de bogues. Ils ont eu la gentillesse de répondre rapidement, clairement et
+savamment, en acceptant souvent les suggestions formulées. Parmi eux, Nicola
+Talbot pour \package{datatool} et \package{glossaries}, Thomas F. Sturm
+pour \package{tcolorbox} et Jean-François Burnol pour \package{etoc}.
+
+L'auteur adresse des remerciements chaleureux à ceux qui ont accepté de
+bêta-tester la \yatCl{}, notamment Cécile Barbet, Coralie Escande, Mathieu
+Leroy-Lerêtre, Mathieu Bardoux, Yvon Henel et Jérôme Champavère.
+
+Enfin, l'auteur sait gré de leur patience tous ceux à qui il avait promis une
+version stable ou, plus simplement une fonctionnalité, de la présente
+classe... pour la semaine dernière !
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../yathesis-fr"
+%%% End:

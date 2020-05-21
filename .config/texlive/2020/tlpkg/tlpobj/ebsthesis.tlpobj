@@ -1,0 +1,26 @@
+name ebsthesis
+category Package
+revision 15878
+shortdesc Typesetting theses for economics
+longdesc The ebsthesis class and ebstools package facilitate the
+longdesc production of camera-ready manuscripts in conformance with the
+longdesc guidelines of Gabler Verlag and typographical rules established
+longdesc by the European Business School.
+containersize 6092
+containerchecksum 37df2bd7749bf91c2e2a6e27e92a9222ed9b9d499b3a9bdb63f7751008bf7a4bea20d62bd59e8672b7fbc7bf0caa1ca77ef797c42224fc4167e5212f21cafbd3
+doccontainersize 251260
+doccontainerchecksum 5c508fdf7304668a371966d1be0198d71cce4ec762aa1b5b480dc495f47dd13d88f678d8613ed266e1d8e1353811e3058c31aaa5ae9f181c34c6bcf40adf5ae9
+docfiles size=67
+ texmf-dist/doc/latex/ebsthesis/README
+ texmf-dist/doc/latex/ebsthesis/ebsthesis.pdf details="Package documentation"
+srccontainersize 7240
+srccontainerchecksum 0e35721d759fac3af82d3c627c5520ed60c36a83e50f10a717db990f2bcf5a3b22a0b28cce5f3926ec0a9859d5b08124efbe24ffe9a64f9ddd15f45f3246f596
+srcfiles size=8
+ texmf-dist/source/latex/ebsthesis/ebsthesis.dtx
+ texmf-dist/source/latex/ebsthesis/ebsthesis.ins
+runfiles size=6
+ texmf-dist/tex/latex/ebsthesis/ebsthesis.cls
+catalogue-ctan /macros/latex/contrib/ebsthesis
+catalogue-license lppl
+catalogue-topics dissertation class
+catalogue-version 1.0

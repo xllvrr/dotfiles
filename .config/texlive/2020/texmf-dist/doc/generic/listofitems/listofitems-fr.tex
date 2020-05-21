@@ -1,0 +1,438 @@
+% !TeX encoding = UTF-8
+% Ceci est la documentation du package "listofitems"
+%
+% Fichier compilé avec pdflatex
+\documentclass[french,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{listofitems,babel}
+\usepackage[bottom]{footmisc}
+\usepackage{libertine}\usepackage[italic,frenchmath]{mathastext}
+\usepackage[scaled=0.8]{luximono}
+\usepackage[margin=3cm]{geometry}
+\usepackage{fancybox,xcolor,xspace,listings,MnSymbol}
+\def\listofitems{\loiname\xspace}
+\def\eTeX{\hbox{$\varepsilon$-\TeX}}
+\makeatletter
+\def\code{\expandafter\code@i\string}
+\def\code@i#1{%
+	\begingroup
+		\par\nobreak\medskip\parindent0pt
+		\leftskip.1\linewidth
+		\catcode`\^^I 13 \begingroup\lccode`\~`\^^I \lowercase{\endgroup\def~{\leavevmode\space\space\space\space}}%
+		\let\do\@makeother \dospecials
+		\ttfamily\small\@noligs
+		\obeylines\obeyspaces
+		\catcode`\<13 \catcode`\>13
+		\begingroup\lccode`\~`\<\lowercase{\endgroup\def~{\begingroup$\langle$\itshape}}%
+		\begingroup\lccode`\~`\>\lowercase{\endgroup\def~{\/$\rangle$\endgroup}}%
+		\def\code@ii##1#1{##1\par\medbreak\endgroup}%
+		\code@ii
+}
+\long\def\grab@toks#1\relax{\gdef\right@content{#1}}
+
+\newcommand\disable@lig[1]{%
+	\catcode`#1\active
+	\begingroup
+		\lccode`\~`#1\relax
+		\lowercase{\endgroup\def~{\leavevmode\kern\z@\string#1}}%
+}
+
+\newcommand\exemple[1][60]{%
+	\edef\par@@indent{\the\parindent}%
+	\par\nobreak\vskip5pt \noindent
+	\def\part@coeff{#1}%
+	\relax\leavevmode\null
+	\bgroup
+		\let\do\@makeother\dospecials
+		\catcode`\^^M\active \catcode`\ \active
+		\begingroup
+			\lccode`\~`\ \lowercase{\def~{ {}}}%
+			\lccode`\~`\^^M\lowercase{\endgroup\def~{\par\noexpand\leavevmode}}%
+		\@makeother:\disable@lig,\disable@lig-%
+		\exemple@@
+}
+
+\newcommand\exemple@@[1]{%
+	\def\@tempa##1#1{%
+		\xdef\left@content{##1}%
+		\egroup
+		\def\right@content{##1}%
+		\begingroup
+			\newlinechar`\^^M\everyeof{\relax}%
+			\expandafter\grab@toks\scantokens\expandafter{\right@content}%
+		\endgroup
+		\exemple@@@
+		}%
+	\@tempa
+}
+
+\begingroup
+\catcode`#=12
+\gdef\exemple@@@{%
+	\begingroup
+		\fboxsep1pt\relax
+		\edef\part@left{\the\dimexpr0.\part@coeff\linewidth-\fboxsep-\fboxrule}%
+		\edef\part@right{\the\dimexpr\linewidth-0.\part@coeff\linewidth-\fboxsep-\fboxrule}%
+		\fbox{%
+			\parbox[c]\part@left{\vskip5pt\relax\ttfamily\footnotesize\left@content\vskip5pt}%
+			\parbox[c]\part@right{\vskip5pt\relax\normalfont\footnotesize\right@content\vskip5pt}%
+		}%
+		\vskip7.5pt\relax
+	\endgroup
+}
+\endgroup
+\begingroup
+	\catcode`\<13 \catcode`\>13
+	\gdef\verb{\relax\ifmmode\hbox\else\leavevmode\null\fi
+		\bgroup
+			\verb@eol@error \let\do\@makeother \dospecials
+			\verbatim@font\@noligs
+			\catcode`\<13 \catcode`\>13 \def<{\begingroup$\langle$\itshape}\def>{$\rangle$\endgroup}%
+			\@ifstar\@sverb\@verb}
+\endgroup
+\def\longfrloidate@i#1/#2/#3\@nil{\number#3\relax\ifnum#3=1 \ier\fi\space \ifcase #2 \or janvier\or février\or mars\or avril\or mai\or juin\or juillet\or aout\or septembre\or octobre\or novembre\or décembre\fi\space#1}
+\def\longfrloidate{\expandafter\longfrloidate@i\loidate\@nil}
+\makeatother
+\begin{document}
+\parindent=0pt
+\thispagestyle{empty}
+\begin{titlepage}
+	\renewcommand\thefootnote{\fnsymbol{footnote}}
+	\begingroup
+		\centering
+		\null\vskip.25\vsize
+		{\large\bfseries L'extension\par \Huge \listofitems\par}
+		\bigbreak
+		v\loiver
+		\smallbreak
+		\longfrloidate
+		\vskip1.5cm
+		{Christian \bsc{Tellechea}\footnote{\texttt{unbonpetit@netc.fr}}\par Steven B. \bsc{Segletes}\footnote{steven.b.segletes.civ@mail.mil}}
+		\par
+	\endgroup
+	\vskip2cm
+	\leftskip=.2\linewidth \rightskip=.2\linewidth \small
+	Cette petite extension pour est destinée à lire une liste d'éléments dont le séparateur peut être choisi par l'utilisateur. Une fois la liste lue, ses éléments sont stockés dans une structure qui se comporte comme un tableau unidimensionnel et ainsi, il devient très facile d'accéder à un élément de la liste par son numéro. Par exemple, si la liste est stockée dans la macro \verb|\foo|, l'élément \no3 est désigné par \verb|\foo[3]|.
+
+	Un élément peut à son tour être une liste disposant d'un autre séparateur que celui de la liste de niveau supérieur, ce qui ouvre la voie à des imbrications et donne une syntaxe rappelant celle des tableaux à plusieurs dimensions du type \verb|\foo[3,2]| pour accéder à l'élément \no2 de la liste contenue dans l'élément \no3 de la liste de plus haut niveau.
+\end{titlepage}
+\def\listofitems{\textsf\loiname\xspace}
+\section{Avant-propos}
+\fbox{\vbox{\hsize\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax\textbf{Important} : à partir de la version 1.62, \listofitems nécessite un moteur \TeX{} fournissant la primitive \texttt{\string\expanded}. Si ce n'est pas le cas, un message d'erreur sera émis et la version 1.61 sera chargée (dernière version fonctionnant sans la primitive \texttt{\string\expanded}) : il est vivement conseillé de mettre à jour sa distribution \LaTeX{} afin de profiter d'un moteur \TeX{} récent permettant l'utilisation de cette nouvelle primitive.}}\medbreak
+
+Cette extension ne requiert aucun package, doit être utilisée avec un moteur \eTeX, et doit être appelée sous (pdf)(Xe)(lua)\LaTeX{} par
+\code|\usepackage{listofitems}|
+
+et sous (pdf)(Xe)(lua)\TeX{} par
+\code|\input listofitems.tex|
+
+\section{Lire une liste simple}
+\paragraph{Définir le séparateur}
+Le \verb|<séparateur>| par défaut est la virgule et si l'on souhaite en changer, il faut, avant de lire une liste d'éléments, le définir avec \verb|\setsepchar{<séparateur>}|. Un \verb|<séparateur>| est un ensemble de tokens dont les catcodes sont différents de 1 et 2 (les accolades ouvrantes et fermantes), 14 (habituellement \verb|%|) et 15. Le token de catcode 6 (habituellement \verb|#|) n'est accepté que s'il est suivi d'un entier auquel cas l'ensemble désigne l'argument d'une macro; en aucun cas ce token ne doit se trouver seul dans le \verb|<séparateur>|. Des commandes peuvent se trouver dans cet ensemble de tokens, y compris la primitive \verb|\par|.
+\smallbreak
+Le \verb|<séparateur>| \og\verb-/-\fg{} est réservé par défaut pour les listes imbriquées (voir page~\pageref{sep.listes.imbriquees}). Il ne faut donc pas écrire \og\verb-\setsepchar{/}-\fg{} car \listofitems comprendrait que l'on souhaite lire une liste imbriquée. Pour définir \og\verb-/-\fg comme \verb|<séparateur>| d'une liste simple, il faut, à l'aide de l'argument optionnel, choisir un autre \verb|<séparateur>| de listes imbriquées, par exemple \og\verb|.|\fg{} et écrire \og\verb+\setsepchar[.]{/}+\fg.
+\medbreak
+
+Il n'est pas possible de choisir \og\verb-|-\fg{} comme \verb|<séparateur>| car il entrerait en conflit avec l'opérateur logique \textbf{OU} noté \og\verb-||-\fg{} (voir plus bas). On peut cependant contourner cette limitation, à ses risques et périls, en écrivant \og\verb-\setsepchar{{|}}-\fg.
+
+\paragraph{Lire la liste}
+Pour lire la liste d'éléments, la commande \verb|\readlist<macroliste>{<liste>}| doit être appelée. Ce faisant, la \verb|<liste>| est lue et les éléments sont stockés dans une macro, notée \verb|<macroliste>| qui dès lors, se comporte comme un tableau composé des éléments de la \verb|<liste>|. Un élément est un ensemble de tokens dont les accolades \emph{doivent} être équilibrées. Les tokens de catcode 6 seuls, 14 et 15 ne sont pas autorisés dans les listes.
+
+Par exemple, pour définir la \verb|<macroliste>| nommée \verb|\foo|, on peut écrire
+\code|\setsepchar{,}
+\readlist\foo{12,abc, x y ,{\bfseries z}, ,\TeX,,!}|
+\setsepchar{,}
+\readlist\foo{12,abc, x y ,{\bfseries z}, ,\TeX,,!}
+
+Si la \verb|<liste>| est contenue dans une macro, alors cette macro est développée par \listofitems. On peut donc écrire \verb|\readlist<macroliste><macro>| ce qui donnerait
+
+\code|\setsepchar{,}
+\def\liste{12,abc, x y ,{\bfseries z}, ,\TeX,,!}
+\readlist\foo\liste|
+
+La macro \verb|\greadlist| agit comme \verb|\readlist| mais effectue des assignations \emph{globales} et par conséquent, la \verb|<macroliste>| est utilisable hors du groupe où a été exécutée \verb|\greadlist|.
+
+\paragraph{Accéder à un élément}
+La macro \verb|\foo| attend un argument numérique \emph{obligatoire} entre crochets, que nous notons $i$ et qui désigne le rang de l'élément auquel on souhaite accéder. Ainsi, \verb|\foo[1]| est\footnote{Il faut 2 développements à \texttt{\textbackslash foo[}$i$\texttt] pour obtenir l'élément \no$i$.} \og\verb|12|\fg. De la même façon, \verb|\foo[4]| est \og\verb|{\bfseries z}|\fg. 
+
+Le nombre $i$ peut également être négatif auquel cas le comptage se fait à partir de la fin de la liste : $-1$ représente le dernier rang, $-2$ l'avant-dernier, etc. Si le nombre d'éléments est $n$, alors l'argument $-n$ est le premier élément.
+\medbreak
+
+D'une façon générale, si une \verb|<liste>| a une longueur $n$, alors l'index $i$ peut se trouver dans l'intervalle $[1\,;n]$ ou $[-n\,;-1]$ et dans le cas contraire, une erreur de compilation survient.
+
+Si l'index est vide, alors \verb|\foo[]| se développe en la \verb|<liste>| entière.
+
+\paragraph{Accéder à un séparateur}
+Lorsque \verb|\readlist\foo{<liste>}| est exécuté, la macro \verb|\foosep| est créé. Elle s'utilise avec la syntaxe \verb|\foosep[<index>]| et permet d'accéder au séparateur qui suit l'élément de rang \verb|<index>|. Le dernier séparateur (celui qui suit le dernier élément) est vide. Si l'\verb|<index>| est vide, \verb|\foosep[]| a un développement vide.
+
+\paragraph{Choisir plusieurs séparateurs possibles}
+Pour spécifier plusieurs séparateurs possibles, il faut utiliser l'opérateur \textbf{OU} noté \og\verb-||-\fg{}. On peut par exemple utiliser cette fonctionnalité pour isoler les termes dans une somme algébrique :
+
+\exemple/\setsepchar{+||-}
+\readlist\terme{17-8+4-11}
+1) \terme[1] (séparateur = \termesep[1])\par
+2) \terme[2] (séparateur = \termesep[2])\par
+3) \terme[3] (séparateur = \termesep[3])\par
+4) \terme[4] (séparateur = \termesep[4])/
+
+\paragraph{Nombre d'éléments}
+Si l'on écrit \verb|\readlist<macroliste>{<liste>}| alors la macro \verb|<macroliste>len| contient\footnote{C'est-à-dire qu'elle est purement développable et se développe en un nombre} le nombre d'éléments de la \verb|<liste>|. Dans l'exemple avec \verb|\foo|, la macro \verb|\foolen| contient \foolen.
+
+\paragraph{Afficher tous les éléments}
+À des fins de débogage, la macro \verb|\showitems<macroliste>| compose tous les éléments d'une liste tandis que que sa version étoilée affiche ces éléments \og détokénisés\footnote{La primitive \texttt{\string\detokenize} qui procède à cette dénaturation insère un espace après chaque séquence de contrôle.}\fg.
+
+\exemple/\showitems\foo\par
+\showitems*\foo/
+
+La présentation de chaque élément est confiée à la macro \verb|\showitemsmacro| dont le code est
+
+\code|\newcommand\showitemsmacro[1]{%
+	\begingroup\fboxsep=0.25pt \fboxrule=0.5pt \fbox{\strut#1}\endgroup
+	\hskip0.25em\relax}|
+
+Il est donc possible ---~et souhaitable~--- de la redéfinir si l'on cherche un autre effet.
+\medbreak
+
+La macro \verb|\fbox| et ses dimensions afférentes \verb|\fboxsep| et \verb|\fboxrule| sont définies par \listofitems lorsqu'on ne compile pas sous \LaTeX{} de façon à obtenir le même résultat qu'avec \LaTeX.
+
+\paragraph{Suppression des espaces extrêmes}
+Par défaut, \listofitems lit et prend en compte le (ou les) espaces se trouvant au début et à la fin d'un élément. Pour que ces espaces soient ignorés lors de la lecture de la \verb|<liste>|, il faut exécuter la version étoilée \verb|\readlist*<macro>{<liste>}|:
+
+\exemple|\setsepchar{,}
+\readlist*\foo{12,abc, x y ,{\bfseries z}, ,\TeX,,!}
+\showitems\foo|
+
+\paragraph{Gestion des éléments vides}
+Par défaut, \listofitems prend en compte les éléments vides. Ainsi, dans l'exemple précédent, le 2-développement de \verb|\foo[7]| est vide. Pour que des éléments vides (ceux délimités par deux séparateurs consécutifs dans la liste) soient ignorés, il faut, avant de lancer la macro \verb|\readlist|, exécuter la macro \verb|\ignoreemptyitems|. La macro \verb|\reademptyitems| revient au comportement par défaut.
+
+Cette option peut être utilisée seule ou combinée avec \verb|\readlist*| auquel cas la suppression des espaces extrêmes intervient \emph{avant} que \listofitems n'ignore les éléments vides :
+
+\exemple|\setsepchar{,}
+\ignoreemptyitems
+\readlist\foo{12,abc, x y ,{\bfseries z}, ,\TeX,,!}
+a) nombre d'éléments = \foolen\par
+   \showitems\foo
+
+\readlist*\foo{12,abc, x y ,{\bfseries z}, ,\TeX,,!}
+b) nombre d'éléments = \foolen\par
+   \showitems\foo|
+
+\paragraph{Itérer sur la liste}
+Une fois une liste lue par \verb|\readlist| et stockée dans une \verb|<macroliste>|, la commande \verb|\foreachitem <variable> \in <macroliste>{<code>}| itère sur la liste : la \verb|<variable>| est une macro choisire par l'utilisateur qui prendra tour à tour la valeur de chaque élément.
+
+La macro \verb|<variable>cnt| représente le numéro de l'élément contenu dans \verb|<variable>|.
+
+\exemple|\setsepchar{ }% séparateur = espace
+\readlist\phrase{Une phrase de test.}
+\foreachitem\mot\in\phrase{Le mot numéro \motcnt{} : \mot\par}|
+
+\paragraph{Assigner un élément à une macro}
+La commande \verb|\itemtomacro<macroliste>[index]<macro>| assigne à la \verb|<macro>| l'élément désigné par \verb|<macroliste>[index]|. La \verb|<macro>| ainsi définie est purement développable, sous réserve que l'élément qu'elle contient le soit.
+
+\exemple|\setsepchar{ }% séparateur = espace
+\readlist\phrase{Une phrase de test.}
+\itemtomacro\phrase[2]\unmot
+\meaning\unmot\par
+\itemtomacro\phrase[-1]\motdelafin
+\meaning\motdelafin|
+
+\section{Listes imbriquées}
+On parle de liste \og imbriquée\fg lorsque l'on demande à \listofitems de lire une liste où les éléments sont à leur tour compris comme une liste (dont le séparateur est différent de la liste de niveau supérieur). Le nombre d'imbrication n'est pas limité, mais dans la pratique, un niveau d'imbrication de 2, voire 3, semble un maximum.
+
+\paragraph{Définir les séparateurs}\label{sep.listes.imbriquees}
+Pour indiquer que les éléments de la liste doivent eux-mêmes être compris comme des listes et que la recherche des éléments sera récursive, il faut spécifier plusieurs \verb|<séparateurs>|, chacun correspondant à un niveau d'imbrication. Pour déclarer une \verb|<liste de séparateurs>| il faut définir le \verb|<séparateur>| de cette \verb|<liste de séparateurs>| à l'aide de l'argument optionnel de la macro \verb|\setsepchar| et écrire \verb|\setsepchar[<separateur>]{<liste des séparateurs>}|.
+
+Par défaut, le \verb|<séparateur>| est \og\verb-/-\fg. Ainsi, si l'on donne l'ordre
+
+\code|\setsepchar{\\/,/ }|
+
+on indique une profondeur récursive de 3 et on choisit comme séparateur de la \verb|<liste des séparateurs>| le caractère par défaut \og\verb-/-\fg{} :
+
+\begin{itemize}
+	\item les éléments de niveau 1 sont trouvés entre les séparateurs \og\verb|\\|\fg;
+	\item les éléments de niveau 2 sont trouvés dans les éléments de niveau 1 entre les séparateurs \og\verb|,|\fg{};
+	\item enfin, les éléments de niveau 3 sont trouvés dans ceux de niveau 2 entre les séparateurs \og\verb*| |\fg.
+\end{itemize}
+
+La \verb|<profondeur>| de recherche est contenue dans la macro purement développable \verb|\nestdepth|.
+
+\paragraph{Lire et accéder aux éléments}
+Pour les listes imbriquées, les index obéissent à la règle suivante :
+
+\begin{itemize}
+	\item \verb|[]| désigne la liste principale, c'est-à-dire l'argument de \verb|\readlist|;
+	\item \verb|[<i>]| désigne l'élément \no\verb|<i>| de la liste principale;
+	\item \verb|[<i>,<j>]| désigne l'élément \no\verb|<j>| de la liste constituée par l'élément évoqué au point précédent;
+	\item \verb|[<i>,<j>,<k>]| désigne l'élément \no\verb|<k>| de la liste constituée par l'élément évoqué au point précédent;
+	\item etc.
+\end{itemize}
+
+Comme pour les liste non imbriquées, les index peuvent être négatifs.
+
+Pour lire les éléments, la syntaxe de \verb|\readlist| est exactement la même qu'avec les listes simples :
+
+\exemple|\setsepchar{\\/,/ }
+\readlist\baz{1,2 a b,3 c\\4 d e f,5,6\\7,,8, ,9 xy z}
+a) \string\baz[1] est \baz[1]\par
+b) \string\baz[1,1] est \baz[1,1]\par
+c) \string\baz[1,1,1] est \baz[1,1,1]\par
+b) \string\bar[1,2] est \baz[1,2]\par
+e) \string\baz[1,2,3] est \baz[1,2,3]\par
+f) \string\baz[-2,1,-1] est \baz[-2,1,-1]|
+
+\paragraph{L'opérateur \og||\fg}
+Cet opérateur peut se trouver dans n'importe quel niveau d'imbrication.
+
+\exemple=\setsepchar[,]{+||-,*||/}
+\readlist\nombres{1+2*3-4/5*6}
+Terme 1 : \nombres[1]\par
+Terme 2 : \nombres[2] (facteurs : \nombres[2,1] et
+          \nombres[2,2])\par
+Terme 3 : \nombres[3] (facteurs : \nombres[3,1],
+          \nombres[3,2] et \nombres[3,3])=
+
+\paragraph{Nombre d'éléments}
+La macro \verb|\listlen<macrolist>[<index>]| nécessite 2 développements pour donner le nombre d'éléments de la liste spécifiée par l'\verb|<index>|.\medbreak
+
+La \verb|<profondeur>| de l'\verb|<index>| doit être strictement inférieure à celle de la \verb|<liste>|.\medbreak
+
+Dans le cas d'un \verb|<index>| vide, \verb|\listlen<macrolist>[]| donne en 2 développements le même résultat que \verb|<macrolist>len| qui le donne en 1.
+
+\exemple|\setsepchar{\\/,/ }
+\readlist\baz{1,2 a b,3 c\\4 d e f,5,6\\7,,8, ,9 xy z}
+a) \bazlen\ ou \listlen\baz[]\par
+b) \listlen\baz[1]\par
+c) \listlen\baz[2]\par
+d) \listlen\baz[3]\par
+e) \listlen\baz[3,1]\par
+f) \listlen\baz[3,4]\par% 2 éléments vides
+g) \listlen\baz[3,5]|
+
+\paragraph{Afficher les éléments}
+La macro \verb|\showitems<macrolist>[<index>]| affiche les éléments de la liste spécifiée par \verb|<index>|, selon le même principe que \verb|\listlen|.\medbreak
+
+La \verb|<profondeur>| de l'\verb|<index>| doit être strictement inférieure à celle de la \verb|<liste>|.
+
+\exemple|\setsepchar{\\/,/ }
+\readlist\baz{1,2 a b,3 c\\4 d e f,5,6\\7,,8, ,9 xy z}
+a) \showitems\baz[]\par
+b) \showitems\baz[1]\par
+c) \showitems\baz[2]\par
+d) \showitems\baz[3]\par
+e) \showitems\baz[3,1]\par
+f) \showitems\baz[3,4]\par% 2 éléments vides
+g) \showitems\baz[3,5]|
+
+\paragraph{Éléments vides et espaces extrêmes}
+La suppression des éléments vides et/ou des espaces extrêmes intervient dans \emph{tous} les éléments, quel que soit le degré d'imbrication. Il est clair que choisir un espace comme séparateur est inutile si l'on veut utiliser \verb|\readlist*|. C'est pourquoi dans cet exemple, \og\verb|*|\fg est choisi comme séparateur.
+
+Dans cet exemple, on ne supprime que les espaces extrêmes en gardant les éléments vides.
+
+\exemple|\setsepchar{\\/,/*}
+\readlist*\baz{1, 2*a*b ,3*c\\4*d*e*f,5,6\\7,,8, ,9* xy *z}
+a) \showitems\baz[]\par
+b) \showitems\baz[1]\par
+c) \showitems\baz[2]\par
+d) \showitems\baz[3]\par
+e) \showitems\baz[3,1]\par
+f) \showitems\baz[3,4]\par
+g) \showitems\baz[3,5]% "xy" sans espaces extrêmes|
+
+\paragraph{Itérer sur une liste}
+La syntaxe \verb|\foreachitem <variable> \in <macro>[<index>]{<code>}| reste valable où désormais, l'\verb|<index>| spécifie sur quel élément (compris comme une liste) on veut itérer.\medbreak
+
+La \verb|<profondeur>| de l'\verb|<index>| doit être strictement inférieure à celle de la \verb|<liste>|.
+
+\paragraph{Assigner un élément à une macro}
+La syntaxe \verb|\itemtomacro<macroliste>[<index>]<macro>| reste valable pour assigner à \verb|<macro>| l'élément spécifié par \verb|<macroliste>[<index>]|.
+
+\exemple[55]|\setsepchar[,]{\\, }
+\readlist\poeme{J'arrive tout couvert encore de rosée\\%
+Que le vent du matin vient glacer à mon front.\\%
+Souffrez que ma fatigue à vos pieds reposée\\%
+Rêve des chers instants qui la délasseront.}% 2e strophe de << Green >>, Paul Verlaine
+\itemtomacro\poeme[2]\vers
+2e vers = \vers
+
+\itemtomacro\poeme[2,-4]\mot
+Un mot = \mot|
+
+La macro \verb|\gitemtomacro| fait une assignation globale.
+
+\section{Tokens appariés}
+Pour le découpage des items, il est possible à partir de la version 1.6, de tenir compte de la présence de caractères \emph{appariés}. Ainsi, si une liste de caractères appariés est définie, chaque item s'étend jusqu'au prochain \verb|<séparateur>| qui équilibre les tokens appariés.
+
+Pour définir une liste de tokens appariés, on utilise
+
+\code|\defpair{<tok1><tok2><tok3><tok4>...}|
+
+où les tokens sont lus deux par deux pour former les paires d'appariement. Un \verb|<token>| d'appariement doit être constitué d'un seul caractère; les macros, primitives, espaces, accolades, token «\verb|#|», ensembles de plusieurs tokens entre accolades sont interdits. Deux tokens formant une paire \emph{doivent} être différents.
+
+\exemple/\setsepchar{+||-}
+\defpair{()[]}
+\readlist\termes{1+2*[3+4*(5+6-7)+8]-9+10}
+\showitems\termes/
+
+Pour revenir au comportement par défaut, c'est-à-dire sans tokens appariés, il faut exécuter
+
+\code|\defpair{}|
+
+Dans une expression, pour stocker dans une macro ce qui se trouve entre deux tokens appariés, on peut faire appel à
+
+\code|\insidepair<tok1><tok2>{<expression>}\macro|
+
+qui mettra dans la \verb|\macro| ce qui de trouve entre la paire \verb|<tok1><tok2>| dans l'\verb|<expression>|.
+
+\exemple/\setsepchar{+||-}
+\defpair{()}
+\readlist\termes{1+2*(3+4*(5+6-7)+8)-9+10}
+\showitems\termes
+
+\itemtomacro\termes[2]\parenterm
+Dans la parenthèse extérieure :
+\insidepair()\parenterm\inbigparen
+"\inbigparen"
+
+Dans la parenthèse intérieure :
+\insidepair()\inbigparen\insmallparen
+"\insmallparen"/
+
+\section{Le code}
+Toute suggestion, remontée de bug, remarque, demande, ajout ou modification de fonctionnalité est bienvenue; dans ce cas, j'invite les utilisateurs de \listofitems à m'envoyer un email à \verb|unbonpetit@netc.fr|.\medbreak
+
+Le code ci-dessous est l'exact verbatim du fichier \verb|listofitems.tex|. J'espère que les quelques commentaires qui le parsèment de-ci de-là seront suffisants pour que l'utilisateur ou le curieux comprenne la machinerie interne de ce package :
+
+\lstinputlisting[
+		language=TeX,
+		inputencoding=latin1,
+		moretexcs={unless,ifcsname,ifdefined,detokenize,numexpr,dimexpr,glueexpr,unexpanded,expanded},
+		basicstyle=\small\ttfamily\color{black!25},
+		identifierstyle=\bfseries\color{white},%
+		backgroundcolor=\color{black!85},
+		keywordstyle=\bfseries\color{orange},
+		commentstyle=\color{cyan!66},
+		columns=fixed,
+		alsoletter={\_},
+		tabsize=2,
+		extendedchars=true,
+		showspaces=false,
+		showstringspaces=false,
+		numbers=left,
+		numberstyle=\tiny\ttfamily\color{black},
+		breaklines=true,
+		prebreak={\hbox{$\rhookswarrow$}},
+		breakindent=3em,
+		breakautoindent=true,
+		xleftmargin=1em,
+		xrightmargin=0pt,
+		lineskip=0pt,
+		numbersep=1em,
+		classoffset=1,
+		alsoletter={\_},
+		morekeywords={defpair,insidepair,setsepchar,greadlist,readlist,listlen,foreachitem,%
+			showitems,showitemsmacro,itemtomacro,gitemtomacro,ignoreemptyitems,reademptyitems},
+		keywordstyle=\bfseries\color{red!85!black},
+		classoffset=0,
+		]{listofitems.tex}
+\end{document}

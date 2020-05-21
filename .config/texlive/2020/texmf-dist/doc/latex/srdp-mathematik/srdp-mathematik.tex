@@ -1,0 +1,1155 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{geometry}
+\geometry{a4paper,left=18mm,right=18mm, top=3cm, bottom=2cm} 
+
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{eurosym}
+\usepackage{setspace}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[ngerman]{babel}
+\usepackage{srdp-mathematik}
+\usepackage{blindtext}
+\usepackage[colorlinks, bookmarks=false, 
+pagebackref=false, 
+citecolor=blue, 
+hidelinks
+]
+{hyperref}
+\makeatletter
+\renewcommand*\tableofcontents{\@starttoc{toc}}
+\makeatother
+
+\newcommand{\Monat}{%
+\ifcase\month
+ Monat 0 \or Januar \or Februar \or März  \or April \or Mai \or Juni \or Juli%
+ \or August \or September \or Oktober \or November \or Dezember
+\fi}
+
+\setcounter{Antworten}{1} %0 = Angaben ohne Lösungen
+													%1 = Angaben MIT Lösungen
+
+\pagestyle{plain} %PAGESTYLE: empty, plain, fancy
+\onehalfspacing %Zeilenabstand
+\setcounter{Zufall}{0}
+%\setcounter{secnumdepth}{1} % keine Nummerierung der Überschriften
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOKUMENT - ANFANG 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+\begin{document}
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vfill
+
+\Huge The \textit{srdp-mathematik} package v1.6\\[1cm]
+
+Documentation \\ [1cm]
+
+\flushright
+\textsc{\large Christoph Weberndorfer} \\[-0.5cm]
+\textsc{\large \Monat~\the\year} \\
+\vfill
+
+\centering
+\normalsize 
+Befehle und Unterstützung zur Erstellung von Beispielformaten im Rahmen der standardisierten schriftlichen Reife und Diplomprüfung (sRDP) in Mathematik, gemäß den Vorlagen des Bundesministeriums für Bildung, Wissenschaft und Forschung (bmbwf). 
+\vfill 
+
+\begingroup
+\let\cleardoublepage\relax
+\let\clearpage\relax
+\normalsize \tableofcontents
+\endgroup
+
+\leer
+
+
+\end{center}
+
+
+\end{titlepage}
+
+
+\section{Allgemeine Befehle}
+Die \textit{allgemeinen Befehle} erleichtern das Erstellen von Tests, Schularbeiten Prüfungen mithilfe einiger wichtigen Strukturen. Sie sollten stets verwendet werden, um die volle Funktionsfähigkeit dieses Pakets auszunutzen. 
+\vspace{1cm}
+
+\subsection{Beispielumgebungen}
+
+Jedes Beispiel sollte innerhalb einer Beispielumgebung gesetzt werden, welche bei der Formatierung und der Verarbeitung der Punkte unterstützt. Dabei werden zwei Beispiel-Typen unterschieden: \texttt{beispiel} und \texttt{langesbeispiel}.   
+
+\vspace{1cm}
+\subsubsection{\texttt{beispiel}-Umbgebung}
+
+Die \texttt{beispiel}-Umgebung dient zur Erstellung eines Beispiels einer Schularbeit, einer Prüfung, usw. Dabei sind praktisch alle Funktionen von \LaTeX, wie Text, Formeln oder Grafiken möglich. Diese Umgebung erlaubt jedoch keinen Seitenumbruch! Die Beispiele werden automatisch nummeriert.
+
+\leer
+
+\textsc{Eingabe:}
+\begin{verbatim}
+\begin{beispiel}{6} %PUNKTE DES BEISPIELS
+
+In diesen Bereich kommt das Beispiel. Dabei kann ein beliebig langer Text
+(ohne Seitenumbruch) geschrieben werden. Die Spalte mit den Punkten wird 
+dabei immer frei gehalten. Aber auch mathematische Formeln sind möglich:
+$\frac{x^2+x+5}{\sqrt{x^3}}$.
+
+\end{beispiel}
+\end{verbatim}
+
+\leer
+
+\textsc{Ausgabe:}\leer
+
+\begin{beispiel}{6} %PUNKTE DES BEISPIELS
+In diesen Bereich kommt das Beispiel. Dabei kann ein beliebig langer Text
+(ohne Seitenumbruch) geschrieben werden. Die Spalte mit den Punkten wird dabei 
+immer frei gehalten. Aber auch mathematische Formeln sind möglich:
+$\frac{x^2+x+5}{\sqrt{x^3}}$
+
+
+\end{beispiel}
+
+
+\vspace{1cm}
+
+\subsubsection{\texttt{langesbeispiel}-Umbgebung}
+
+Die \texttt{langesbeispiel}-Umgebung dient ebenso zur Erstellung eines Beispiels, funktioniert analog, erlaubt aber im Gegensatz zur \texttt{beispiel}-Umgebung Seitenumbrüche. Auch lange Beispiele werden weiterführend nummeriert.
+
+\leer
+
+\textsc{Eingabe:}
+\begin{verbatim}
+\begin{langesbeispiel} \item[8] %PUNKTE DES BEISPIELS
+
+In diesen Bereich kommt das Beispiel und funktioniert praktisch analog zur
+beispiel-Umgebung. Ist das Beispiel jedoch länger als eine Seite (z.B bei 
+Typ-2 Aufgaben), werden Seitenumbrüche automatisch gemacht. Auch hier sind
+mathematische Formeln möglich:
+$\frac{x^2+x+5}{\sqrt{x^3}}$.		
+
+\end{langesbeispiel}
+
+\end{verbatim}
+
+
+\textsc{Ausgabe:}
+
+\begin{langesbeispiel} \item[8] %PUNKTE DES BEISPIELS
+
+In diesen Bereich kommt das Beispiel und funktioniert praktisch analog zur beispiel-Umgebung. Ist das Beispiel jedoch länger als eine Seite (z.B bei Typ-2 Aufgaben), werden Seitenumbrüche automatisch gemacht. Auch hier sind mathematische Formeln möglich:
+$\frac{x^2+x+5}{\sqrt{x^3}}$.		
+
+\end{langesbeispiel}
+
+
+
+\subsubsection{Notenschlüssel}
+
+Werden für alle Beispiele die \texttt{beispiel}- oder die \texttt{langesbeispiel}-Umgebung verwendet, wird die Gesamtpunktezahl sowie der Notenschlüssel automatisch berechnet. Die Werte in Klammer geben dabei den prozentualen Notenschlüssel vor und können beliebig variiert werden:
+
+\vspace{0.4cm}
+
+\textsc{Eingabe:}
+\begin{verbatim}
+\notenschluessel{0.91}{0.8}{0.64}{0.5}
+\end{verbatim}
+
+\vspace{0.3cm}
+
+\textsc{Ausgabe:}
+\notenschluessel{0.91}{0.8}{0.64}{0.5}
+
+\normalsize
+
+
+\subsubsection{Beurteilungsraster}
+
+Der Befehl \texttt{beurteilungsraster} entspricht der aktuellen Vorgabe der Beurteilung der standardisierten Reifeprüfung (Stand 2019). Dabei müssen die Punkte für Teil 1, Ausgleichspunkte und Teil 2 angegeben werden. Die in Klammer angegebenen Werte entsprechen der bei der Reifeprüfung verwendeten prozentuellen Notenverteilung, können jedoch jederzeit verändert werden. \leer  
+
+
+\textsc{Eingabe:}
+\begin{verbatim}
+\beurteilungsraster{0.85}{0.68}{0.5}{1/3}{ % Prozentschluessel
+				T1={24}, 				% Punkte im Teil 1  
+				AP={4}, 				% Ausgleichspunkte aus Teil 2  
+				T2={20}, 				% Punkte im Teil 2
+				} 
+
+\end{verbatim}
+\textsc{Ausgabe:}\leer
+
+siehe nächste Seite \newpage
+
+
+\beurteilungsraster{0.85}{0.68}{0.5}{1/3}{ % Prozentschluessel
+				T1={24}, 				% Punkte im Teil 1  
+				AP={4}, 				% Ausgleichspunkte aus Teil 2  
+				T2={20}, 				% Punkte im Teil 2
+				}
+
+\newpage
+
+\subsection{Lösungseingabe -- Option: \texttt{[solution\_on/off]}}
+
+Es besteht die Möglichkeit, die Lösung in der erstellten \texttt{tex}-Datei zu implementieren und diese bei Bedarf in der \texttt{PDF}-Datei ein- bzw. auszublenden. Um diese Funktion nutzen zu können, muss die \texttt{solution\_on/off} Option im \texttt{srdp-mathematik}-Paket geladen werden. Diese kann durch hinzufügen durch "`\texttt{solution\_on}"' bzw. "`\texttt{solution\_off}"' aktiviert bzw. deaktiviert werden. Also:
+
+\begin{verbatim}
+\usepackage[solution_on]{srdp-mathematik}
+\end{verbatim}
+
+oder
+
+\begin{verbatim}
+\usepackage[solution_off]{srdp-mathematik}
+\end{verbatim}
+
+
+Die korrekte Lösungseingabe der vorformatierten Typ-1-Aufgaben wird bei den entsprechenden Befehlen direkt erklärt. Unabhängig davon, gibt es die Möglichkeit mithilfe des \texttt{antwort}-Befehls, beliebige Abschnitte als \textit{Antwort} zu deklarieren. (verwendeter counter: \texttt{Antworten=0, 1})   
+
+
+\subsubsection{\texttt{antwort}-Befehl}
+Für offene Antworten kann der \texttt{\textbackslash antwort\{\}}-Befehl verwendet werden. Darin können Textpassagen, mathematische Formeln oder Grafiken angegeben werden, die ausschließlich bei aktivierter Lösung (\texttt{[solution\_on]}) und in \textcolor[rgb]{1,0,0}{rot} angegeben werden. \leer
+
+
+\subsubsection{Zusatz: Optionales Argument}
+
+Der \texttt{antwort}-Befehl erlaubt ein optionales Argument. Es können dadurch zusätzliche Textpassagen angegeben werden, die \underline{ausschließlich} angezeigt werden, wenn die Lösungsanzeige deaktiviert (\texttt{[solution\_off])} ist. Das heißt: \leer
+
+\textsc{Eingabe:}
+\begin{verbatim}
+\antwort[Optionale Eingabe, die nur angezeigt wird, wenn 'solution_off' gewählt 
+wird.]
+{Dies ist die notwendige Angabe und wird in rot angezeigt und nur wenn 
+'solution_on' eingestellt ist.}  
+\end{verbatim}
+
+
+\textsc{Ausgabe}, wenn \texttt{\textbackslash usepackage[solution\_off]\{srdp-mathematik\}} eingestellt ist: \\
+
+\setcounter{Antworten}{0}
+\antwort[Optionale Eingabe, die nur angezeigt wird, wenn \texttt{'solution\_off'} gewählt wird.]
+{Dies ist die notwendige Angabe und wird in rot angezeigt und nur wenn 
+\textttt{'solution\_on'} eingestellt ist.}
+\leer
+
+\textsc{Ausgabe}, wenn \texttt{\textbackslash usepackage[solution\_on]\{srdp-mathematik\}} eingestellt ist:\\
+
+\setcounter{Antworten}{1}
+\antwort[Optionale Eingabe, die nur angezeigt wird, wenn \texttt{'solution\_off'} gewählt wird.]
+{Dies ist die notwendige Eingabe und wird in rot angezeigt und nur wenn 
+\texttt{'solution\_on'} eingestellt ist.}
+
+
+\subsection{Erstellung von Gruppen -- Option: \texttt{[random=0,1,2,\ldots]}}
+Das \texttt{srdp-mathematik}-Paket ermöglicht auch die automatische Erstellung von Gruppen für Schularbeiten, durch Vertauschung der Antwortmöglichkeiten aller Typ-1-Aufgaben. Dazu kann die \texttt{random}-Option im \texttt{srdp-mathematik}-Paket eingebunden geladen werden. Also:
+
+\begin{verbatim}
+\usepackage[random=0]{srdp-mathematik}
+\end{verbatim}
+
+oder
+
+\begin{verbatim}
+\usepackage[random=1]{srdp-mathematik}
+\end{verbatim}
+
+usw.
+
+Die Zahl "`0"' bedeutet dabei, dass keine Vertauschung stattfindet und somit die Antwortmöglichkeiten in der Reihenfolge angezeigt werden, in der sie in der \texttt{tex}-Datei eingegeben wurden. 
+
+Durch das Ersetzen der Zahl "`0"' durch die Zahlen $1, 2, 3, \ldots$ (und anschließendem Kompilieren) werden die Antwortmöglichkeiten bei \textbf{allen} Typ1-Formaten der Datei in einer zufälligen Reihenfolge vertauscht. Es können somit in kurzer Zeit mehrere Gruppen der selben Schularbeit erstellt werden. Die eingegebenen Lösungen werden gleichermaßen übernommen. \leer
+
+Die Erstellung der Gruppen ist dabei reproduzierbar. Die Reihenfolge der Antwortmöglichkeiten einer Gruppe bleibt daher immer gleich. Mithilfe des Befehls \texttt{\textbackslash Gruppe} kann die Gruppennummer innerhalb der \texttt{PDF}-Datei (z.B. am Deckblatt) angezeigt werden. (verwendeter counter: \texttt{Zufall=0, 1, 2, \ldots})
+
+%Dieses Prinzip wird exemplarisch am Multiplechoice-Format gezeigt:\leer
+%
+%\textsc{Eingabe:}
+%\begin{verbatim}
+%\multiplechoice[5]{  %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				%L1={Antwort 1},   %1. Antwortmoeglichkeit 
+				%L2={Antwort 2},   %2. Antwortmoeglichkeit
+				%L3={Antwort 3},   %3. Antwortmoeglichkeit
+				%L4={Antwort 4},   %4. Antwortmoeglichkeit
+				%L5={Antwort 5},	 %5. Antwortmoeglichkeit
+				%L6={},	 %6. Antwortmoeglichkeit
+				%L7={},	 %7. Antwortmoeglichkeit
+				%L8={},	 %8. Antwortmoeglichkeit
+				%L9={},	 %9. Antwortmoeglichkeit
+				%%% LOESUNG: %%
+				%A1=2,  % 1. Antwort
+				%A2=4,	 % 2. Antwort
+				%A3=0,  % 3. Antwort
+				%A4=0,  % 4. Antwort
+				%A5=0,  % 5. Antwort
+				%}
+%\end{verbatim}
+%
+%\setcounter{Zufall}{0}
+%\textsc{Ausgabe:}, bei \texttt{\textbackslash setcounter\{Zufall\}\{0\}}: 
+%
+%\multiplechoice[5]{  %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				%L1={Antwort 1},   %1. Antwortmoeglichkeit 
+				%L2={Antwort 2},   %2. Antwortmoeglichkeit
+				%L3={Antwort 3},   %3. Antwortmoeglichkeit
+				%L4={Antwort 4},   %4. Antwortmoeglichkeit
+				%L5={Antwort 5},	 %5. Antwortmoeglichkeit
+				%L6={},	 %6. Antwortmoeglichkeit
+				%L7={},	 %7. Antwortmoeglichkeit
+				%L8={},	 %8. Antwortmoeglichkeit
+				%L9={},	 %9. Antwortmoeglichkeit
+				%%% LOESUNG: %%
+				%A1=2,  % 1. Antwort
+				%A2=4,	 % 2. Antwort
+				%A3=0,  % 3. Antwort
+				%A4=0,  % 4. Antwort
+				%A5=0,  % 5. Antwort
+				%}
+ %
+%\setcounter{Zufall}{1}
+%\textsc{Ausgabe:}, bei \texttt{\textbackslash setcounter\{Zufall\}\{1\}}: 
+%
+%\multiplechoice[5]{  %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				%L1={Antwort 1},   %1. Antwortmoeglichkeit 
+				%L2={Antwort 2},   %2. Antwortmoeglichkeit
+				%L3={Antwort 3},   %3. Antwortmoeglichkeit
+				%L4={Antwort 4},   %4. Antwortmoeglichkeit
+				%L5={Antwort 5},	 %5. Antwortmoeglichkeit
+				%L6={},	 %6. Antwortmoeglichkeit
+				%L7={},	 %7. Antwortmoeglichkeit
+				%L8={},	 %8. Antwortmoeglichkeit
+				%L9={},	 %9. Antwortmoeglichkeit
+				%%% LOESUNG: %%
+				%A1=2,  % 1. Antwort
+				%A2=4,	 % 2. Antwort
+				%A3=0,  % 3. Antwort
+				%A4=0,  % 4. Antwort
+				%A5=0,  % 5. Antwort
+				%}
+%
+%\setcounter{Zufall}{2}
+%\textsc{Ausgabe:}, bei \texttt{\textbackslash setcounter\{Zufall\}\{2\}}: 
+%
+%\multiplechoice[5]{  %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				%L1={Antwort 1},   %1. Antwortmoeglichkeit 
+				%L2={Antwort 2},   %2. Antwortmoeglichkeit
+				%L3={Antwort 3},   %3. Antwortmoeglichkeit
+				%L4={Antwort 4},   %4. Antwortmoeglichkeit
+				%L5={Antwort 5},	 %5. Antwortmoeglichkeit
+				%L6={},	 %6. Antwortmoeglichkeit
+				%L7={},	 %7. Antwortmoeglichkeit
+				%L8={},	 %8. Antwortmoeglichkeit
+				%L9={},	 %9. Antwortmoeglichkeit
+				%%% LOESUNG: %%
+				%A1=2,  % 1. Antwort
+				%A2=4,	 % 2. Antwort
+				%A3=0,  % 3. Antwort
+				%A4=0,  % 4. Antwort
+				%A5=0,  % 5. Antwort
+				%}
+
+\subsection{Informationseingabe -- Option: \texttt{[info\_on/off]}}
+Es ist darüber hinaus möglich zusätzliche Informationen (Erläuterungen, Hilfestellungen, \ldots) hinzuzufügen und einzublenden. Dazu kann die Option \texttt{info\_on/off} im \texttt{srdp-mathematik}-Paket eingebunden werden. Die Infos werden in \textcolor[rgb]{0,0,1}{blau} angegeben und nur dann angezeigt, wenn die Option \texttt{info\_on} gewählt wurde (verwendeter counter: \texttt{info=0,1}). Also:
+
+
+\begin{verbatim}
+\usepackage[info_on]{srdp-mathematik}
+\end{verbatim}
+
+oder
+
+\begin{verbatim}
+\usepackage[info_off]{srdp-mathematik}
+\end{verbatim}
+
+				
+\subsection{Weitere allgemeine Befehle}
+Außerdem gibt es noch weitere Befehle, die die Formatierung erleichtern. 
+
+\subsubsection*{\texttt{\textbackslash leer} - Befehl}
+Eine Leerzeile, etwa zwischen zwei Beispielen. \\
+(Nach dem Befehl \texttt{\textbackslash leer} muss in der \texttt{.tex}-Datei ein Leerzeile eingefügt werden!) 
+
+\leer
+
+\subsubsection*{\texttt{\textbackslash meinlr} - Befehl}
+\begin{verbatim}
+\meinlr{Dieser Teil steht links. Wenn dieser Text länger sein sollte, 
+geht er automatisch in der nächsten Zeile weiter ohne auf die andere 
+Seite über zu gehen.}{Dieser Teil steht rechts.}
+\end{verbatim}
+Teilt die Seite in zwei gleich große Seiten. 
+
+\leer
+
+\textsc{Ausgabe:}
+
+\meinlr{Dieser Teil steht links. Wenn dieser Text länger sein sollte, 
+geht er automatisch in der nächsten Zeile weiter ohne auf die andere 
+Seite über zu gehen.}{Dieser Teil steht rechts.}
+
+
+\subsubsection*{Zusatz: Variable Spaltenbreiten bei \texttt{\textbackslash meinlr}}
+
+Der Befehl \texttt{\textbackslash meinlr} erlaubt durch die optionale Eingabe eine Abänderung der beiden Spaltenbreiten. Durch die Eingabe zwischen ca. -0.3 und 0.3 kann die Spaltenmitte nach links oder rechts verschoben und somit die Spaltenbreite variiert werden.
+
+\textsc{Eingabe:}
+
+\begin{verbatim}
+\meinlr[-0.15]{Mit einem negativen Wert wird die linke Spalte verkleinert.}
+{Die rechte Spalte wird damit automatisch vergrößert. Dadurch ist es möglich, 
+die Spaltenbreiten nach Belieben zu variieren.}
+\end{verbatim}
+
+\textsc{Ausgabe:}
+
+\meinlr[-0.15]{Mit einem negativen Wert wird die linke Spalte verkleinert.}
+{Die rechte Spalte wird damit automatisch vergrößert. Dadurch ist es möglich, 
+die Spaltenbreiten nach Belieben zu variieren.}
+
+\leer
+
+\subsubsection*{\texttt{\textbackslash meinlcr} - Befehl}
+\begin{verbatim}
+\meinlcr{Text ganz links}{Text in der Mitte. Auch hier sind längere Texte
+möglich.}{Text auf der rechten Seite.}
+\end{verbatim}
+Teilt die Seite in drei gleich große Teile
+
+\leer
+
+\textsc{Ausgabe:}
+
+\meinlcr{Text ganz links. Was passiert hier wenn dieser Teil länger ist?}{Text in der Mitte. Auch hier sind längere Texte möglich.}{Text auf der rechten Seite.}
+
+\leer
+
+
+\section{Typ-1-Aufgaben}
+
+Das \texttt{srdp-mathematik}-Paket ermöglicht die Verwendung vorgefertigter Aufgabenformate, die bei der österreichischen, standardisierten Reifeprüfung Anwendung finden.
+
+
+\subsection{\texttt{multiplechoice}-Befehl}
+
+Dieser Befehl liefert eine vollständige Formatierung für eine Multiplechoice-Aufgabe. Die Anzahl der Antwortmöglichkeiten kann dabei frei (max. 9) gewählt werden. Als Standard ist dabei das Format mit fünf Antwortmöglichkeiten eingestellt. \leer
+
+Die korrekten Antworten der Multiplechoice-Aufgabe werden dabei bei A1, A2, \ldots, A5 angegeben. Sollte beispielsweise die 1., die 4. und 5. Antwortmöglichkeit korrekt sein, muss je eine "`0"' durch 1, 4, und 5 ersetzt werden -- Die Reihenfolge dabei ist nicht relevant. Also: \\
+
+\textsc{Eingabe:}
+
+\begin{verbatim}
+\multiplechoice[5]{  %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				L1={Hier},   %1. Antwortmoeglichkeit 
+				L2={werden},   %2. Antwortmoeglichkeit
+				L3={die möglichen},   %3. Antwortmoeglichkeit
+				L4={Antworten},   %4. Antwortmoeglichkeit
+				L5={eingetragen},	 %5. Antwortmoeglichkeit
+				L6={},	 %6. Antwortmoeglichkeit
+				L7={},	 %7. Antwortmoeglichkeit
+				L8={},	 %8. Antwortmoeglichkeit
+				L9={},	 %9. Antwortmoeglichkeit
+				%% LOESUNG: %%
+				A1=1,  % 1. Antwort
+				A2=4,	 % 2. Antwort
+				A3=5,  % 3. Antwort
+				A4=0,  % 4. Antwort
+				A5=0,  % 5. Antwort
+				}
+\end{verbatim}
+
+\textsc{Ausgabe:}\vspace{0.2cm}
+
+\begin{minipage}{8cm}
+\setcounter{Antworten}{0}
+mit \texttt{\textbackslash setcounter\{Antworten\}\{0\}}:
+\begin{center}
+\multiplechoice[5]{  %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				L1={Hier},   %1. Antwortmoeglichkeit 
+				L2={werden},   %2. Antwortmoeglichkeit
+				L3={die möglichen},   %3. Antwortmoeglichkeit
+				L4={Antworten},   %4. Antwortmoeglichkeit
+				L5={eingetragen},	 %5. Antwortmoeglichkeit
+				L6={},	 %6. Antwortmoeglichkeit
+				L7={},	 %7. Antwortmoeglichkeit
+				L8={},	 %8. Antwortmoeglichkeit
+				L9={},	 %9. Antwortmoeglichkeit
+				%% LOESUNG: %%
+				A1=1,  % 1. Antwort
+				A2=4,	 % 2. Antwort
+				A3=5,  % 3. Antwort
+				A4=0,  % 4. Antwort
+				A5=0,  % 5. Antwort
+				}
+\end{center}
+\end{minipage} \hfill 
+\begin{minipage}{8cm}
+mit \texttt{\textbackslash setcounter\{Antworten\}\{1\}}:
+\setcounter{Antworten}{1}
+\begin{center}
+\multiplechoice[5]{  %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				L1={Hier},   %1. Antwortmoeglichkeit 
+				L2={werden},   %2. Antwortmoeglichkeit
+				L3={die möglichen},   %3. Antwortmoeglichkeit
+				L4={Antworten},   %4. Antwortmoeglichkeit
+				L5={eingetragen},	 %5. Antwortmoeglichkeit
+				L6={},	 %6. Antwortmoeglichkeit
+				L7={},	 %7. Antwortmoeglichkeit
+				L8={},	 %8. Antwortmoeglichkeit
+				L9={},	 %9. Antwortmoeglichkeit
+				%% LOESUNG: %%
+				A1=1,  % 1. Antwort
+				A2=4,	 % 2. Antwort
+				A3=5,  % 3. Antwort
+				A4=0,  % 4. Antwort
+				A5=0,  % 5. Antwort
+				}
+\end{center}
+\end{minipage}
+
+\leer
+
+Die Zahl in eckigen Klammern gibt dabei die gewünschte Anzahl von Antwortmöglichkeiten an. Somit sind beispielsweise drei oder sieben Antwortmöglichkeiten einstellbar. \leer
+
+Wichtig zu erwähnen ist dabei, dass ausschließlich die Zahl in eckigen Klammern die Anzahl der Antwortmöglichkeiten angibt. Werden anschließend zu wenige oder zu viele Antwortmöglichkeiten angegeben, werden Leerzeilen erzeugt oder die Eingabe wird in der Ausgabe nicht berücksichtigt. 
+
+\leer
+
+\textsc{Eingabe:} \setcounter{Antworten}{0}
+\begin{verbatim}
+\multiplechoice[3]{  %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				L1={Durch die 3},   %1. Antwortmoeglichkeit 
+				L2={in eckigen Klammern, werden},   %2. Antwortmoeglichkeit
+				L3={3 Antworten angezeigt},   %3. Antwortmoeglichkeit
+				%% LOESUNG: %%
+				A1=0,  % 1. Antwort
+				A2=0,	 % 2. Antwort
+				A3=0,  % 3. Antwort
+				A4=0,  % 4. Antwort
+				A5=0,  % 5. Antwort
+				}
+\end{verbatim}
+\leer
+
+\textsc{Ausgabe:}\leer
+
+\multiplechoice[3]{  %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				L1={Durch die 3},   %1. Antwortmoeglichkeit 
+				L2={in eckigen Klammern, werden},   %2. Antwortmoeglichkeit
+				L3={3 Antworten angezeigt},   %3. Antwortmoeglichkeit
+				%% LOESUNG: %%
+				A1=0,  % 1. Antwort
+				A2=0,	 % 2. Antwort
+				A3=0,  % 3. Antwort
+				A4=0,  % 4. Antwort
+				A5=0,  % 5. Antwort
+				}
+
+
+\textsc{Eingabe:}
+
+\begin{verbatim}
+\multiplechoice[7]{ %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				L1={Das Gleiche}, %1. Antwort 
+				L2={passiert beim Eintragen von}, %2. Antwort
+				L3={sieben Möglichkeiten.}, %3. Antwort
+				L4={Dabei werden immer 7 Antworten}, %4. Antwort
+				L5={angezeigt, unabhängig ob sie ausgefüllt},	 %5. Antwort
+				L6={sind oder nicht!},	 %6. Antwort
+				L7={},	 %7. Antwort
+				L8={},	 %8. Antwort
+				L9={},	   %9. Antwort
+				%% LOESUNG: %%
+				A1=0,  % 1. Antwort
+				A2=0,	 % 2. Antwort
+				A3=0,  % 3. Antwort
+				A4=0,  % 4. Antwort
+				A5=0,  % 5. Antwort
+				}
+\end{verbatim}
+
+\leer
+
+\textsc{Ausgabe:}
+
+\multiplechoice[7]{ %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				L1={Das Gleiche}, %1. Antwort 
+				L2={passiert beim Eintragen von}, %2. Antwort
+				L3={sieben Möglichkeiten.}, %3. Antwort
+				L4={Dabei werden immer 7 Antworten}, %4. Antwort
+				L5={angezeigt, unabhängig ob sie ausgefüllt},	 %5. Antwort
+				L6={sind oder nicht!},	 %6. Antwort
+				L7={},	 %7. Antwort
+				L8={},	 %8. Antwort
+				L9={},	   %9. Antwort
+				%% LOESUNG: %%
+				A1=0,  % 1. Antwort
+				A2=0,	 % 2. Antwort
+				A3=0,  % 3. Antwort
+				A4=0,  % 4. Antwort
+				A5=0,  % 5. Antwort
+				}
+				
+
+\newpage
+
+Die Eingabe in eckiger Klammer ist dabei optional. Wird sie nicht angegeben, wird der Standard von 5 angenommen. 
+
+\leer
+
+
+
+
+\textsc{Eingabe:}
+\begin{verbatim}
+\multiplechoice{ %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				L1={In diesem}, %1. Antwort 
+				L2={Fall wird der}, %2. Antwort
+				L3={Standard von}, %3. Antwort
+				L4={fünf Antwortmöglichkeiten}, %4. Antwort
+				L5={angenommen},	 %5. Antwort
+				L6={},	 %6. Antwort
+				L7={},	 %7. Antwort
+				L8={},	 %8. Antwort
+				L9={}	   %9. Antwort
+				}
+\end{verbatim}
+
+\textsc{Ausgabe:}
+
+\multiplechoice{ %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				L1={In diesem}, %1. Antwort 
+				L2={Fall wird der}, %2. Antwort
+				L3={Standard von}, %3. Antwort
+				L4={fünf Antwortmöglichkeiten}, %4. Antwort
+				L5={angenommen},	 %5. Antwort
+				L6={},	 %6. Antwort
+				L7={},	 %7. Antwort
+				L8={},	 %8. Antwort
+				L9={}	   %9. Antwort
+				}
+
+\leer
+\newpage
+
+\subsubsection{Add-on: \texttt{langmultiplechoice}-Befehl}
+
+Der \texttt{langmultiplechoice}-Befehl ist analog zum \texttt{multiplechoice}-Befehl zu verwenden. Der Unterschied besteht darin, dass Antwortmöglichkeiten auf zwei Spalten aufgeteilt werden. Dies ist vor allem dann sinnvoll, wenn Geogebra-Grafiken importiert werden, um eine bessere Lesbarkeit zu ermöglichen.
+
+\langmultiplechoice[6]{  %Anzahl der Antwortmoeglichkeiten, Standard: 5
+				L1={\resizebox{0.7\linewidth}{!}{\newrgbcolor{zzttqq}{0.6 0.2 0}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-0.72,-0.8)(4.45,3.74)
+\psaxes[labelFontSize=\scriptstyle,xAxis=true,yAxis=true,Dx=1,Dy=1,ticksize=-2pt 0,subticks=2]{->}(0,0)(-0.72,-0.8)(4.45,3.74)
+\pspolygon[linecolor=zzttqq,fillcolor=zzttqq,fillstyle=solid,opacity=0.1](1.29,2.88)(0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](1.29,2.88)(0.56,0.67)
+\psline[linecolor=zzttqq](0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](3.62,1.04)(1.29,2.88)
+\begin{scriptsize}
+\psdots[dotstyle=*,linecolor=blue](1.29,2.88)
+\rput[bl](1.37,3){\blue{$A$}}
+\psdots[dotstyle=*,linecolor=blue](0.56,0.67)
+\rput[bl](0.63,0.79){\blue{$B$}}
+\psdots[dotstyle=*,linecolor=blue](3.62,1.04)
+\rput[bl](3.7,1.16){\blue{$C$}}
+\end{scriptsize}
+\end{pspicture*}}},   %1. Antwortmoeglichkeit 
+				L2={\resizebox{0.7\linewidth}{!}{\newrgbcolor{zzttqq}{0.6 0.2 0}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-0.72,-0.8)(4.45,3.74)
+\psaxes[labelFontSize=\scriptstyle,xAxis=true,yAxis=true,Dx=1,Dy=1,ticksize=-2pt 0,subticks=2]{->}(0,0)(-0.72,-0.8)(4.45,3.74)
+\pspolygon[linecolor=zzttqq,fillcolor=zzttqq,fillstyle=solid,opacity=0.1](1.29,2.88)(0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](1.29,2.88)(0.56,0.67)
+\psline[linecolor=zzttqq](0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](3.62,1.04)(1.29,2.88)
+\begin{scriptsize}
+\psdots[dotstyle=*,linecolor=blue](1.29,2.88)
+\rput[bl](1.37,3){\blue{$B$}}
+\psdots[dotstyle=*,linecolor=blue](0.56,0.67)
+\rput[bl](0.63,0.79){\blue{$A$}}
+\psdots[dotstyle=*,linecolor=blue](3.62,1.04)
+\rput[bl](3.7,1.16){\blue{$C$}}
+\end{scriptsize}
+\end{pspicture*}}},   %2. Antwortmoeglichkeit
+				L3={\resizebox{0.7\linewidth}{!}{\newrgbcolor{zzttqq}{0.6 0.2 0}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-0.72,-0.8)(4.45,3.74)
+\psaxes[labelFontSize=\scriptstyle,xAxis=true,yAxis=true,Dx=1,Dy=1,ticksize=-2pt 0,subticks=2]{->}(0,0)(-0.72,-0.8)(4.45,3.74)
+\pspolygon[linecolor=zzttqq,fillcolor=zzttqq,fillstyle=solid,opacity=0.1](1.29,2.88)(0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](1.29,2.88)(0.56,0.67)
+\psline[linecolor=zzttqq](0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](3.62,1.04)(1.29,2.88)
+\begin{scriptsize}
+\psdots[dotstyle=*,linecolor=blue](1.29,2.88)
+\rput[bl](1.37,3){\blue{$A$}}
+\psdots[dotstyle=*,linecolor=blue](0.56,0.67)
+\rput[bl](0.63,0.79){\blue{$C$}}
+\psdots[dotstyle=*,linecolor=blue](3.62,1.04)
+\rput[bl](3.7,1.16){\blue{$B$}}
+\end{scriptsize}
+\end{pspicture*}}},   %3. Antwortmoeglichkeit
+				L4={\resizebox{0.7\linewidth}{!}{\newrgbcolor{zzttqq}{0.6 0.2 0}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-0.72,-0.8)(4.45,3.74)
+\psaxes[labelFontSize=\scriptstyle,xAxis=true,yAxis=true,Dx=1,Dy=1,ticksize=-2pt 0,subticks=2]{->}(0,0)(-0.72,-0.8)(4.45,3.74)
+\pspolygon[linecolor=zzttqq,fillcolor=zzttqq,fillstyle=solid,opacity=0.1](1.29,2.88)(0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](1.29,2.88)(0.56,0.67)
+\psline[linecolor=zzttqq](0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](3.62,1.04)(1.29,2.88)
+\begin{scriptsize}
+\psdots[dotstyle=*,linecolor=blue](1.29,2.88)
+\rput[bl](1.37,3){\blue{$C$}}
+\psdots[dotstyle=*,linecolor=blue](0.56,0.67)
+\rput[bl](0.63,0.79){\blue{$B$}}
+\psdots[dotstyle=*,linecolor=blue](3.62,1.04)
+\rput[bl](3.7,1.16){\blue{$A$}}
+\end{scriptsize}
+\end{pspicture*}}},   %4. Antwortmoeglichkeit
+				L5={\resizebox{0.7\linewidth}{!}{\newrgbcolor{zzttqq}{0.6 0.2 0}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-0.72,-0.8)(4.45,3.74)
+\psaxes[labelFontSize=\scriptstyle,xAxis=true,yAxis=true,Dx=1,Dy=1,ticksize=-2pt 0,subticks=2]{->}(0,0)(-0.72,-0.8)(4.45,3.74)
+\pspolygon[linecolor=zzttqq,fillcolor=zzttqq,fillstyle=solid,opacity=0.1](1.29,2.88)(0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](1.29,2.88)(0.56,0.67)
+\psline[linecolor=zzttqq](0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](3.62,1.04)(1.29,2.88)
+\begin{scriptsize}
+\psdots[dotstyle=*,linecolor=blue](1.29,2.88)
+\rput[bl](1.37,3){\blue{$C$}}
+\psdots[dotstyle=*,linecolor=blue](0.56,0.67)
+\rput[bl](0.63,0.79){\blue{$A$}}
+\psdots[dotstyle=*,linecolor=blue](3.62,1.04)
+\rput[bl](3.7,1.16){\blue{$B$}}
+\end{scriptsize}
+\end{pspicture*}}},	 %5. Antwortmoeglichkeit
+				L6={\resizebox{0.7\linewidth}{!}{\newrgbcolor{zzttqq}{0.6 0.2 0}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-0.72,-0.8)(4.45,3.74)
+\psaxes[labelFontSize=\scriptstyle,xAxis=true,yAxis=true,Dx=1,Dy=1,ticksize=-2pt 0,subticks=2]{->}(0,0)(-0.72,-0.8)(4.45,3.74)
+\pspolygon[linecolor=zzttqq,fillcolor=zzttqq,fillstyle=solid,opacity=0.1](1.29,2.88)(0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](1.29,2.88)(0.56,0.67)
+\psline[linecolor=zzttqq](0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](3.62,1.04)(1.29,2.88)
+\begin{scriptsize}
+\psdots[dotstyle=*,linecolor=blue](1.29,2.88)
+\rput[bl](1.37,3){\blue{$A$}}
+\psdots[dotstyle=*,linecolor=blue](0.56,0.67)
+\rput[bl](0.63,0.79){\blue{$B$}}
+\psdots[dotstyle=*,linecolor=blue](3.62,1.04)
+\rput[bl](3.7,1.16){\blue{$C$}}
+\end{scriptsize}
+\end{pspicture*}}},	 %6. Antwortmoeglichkeit
+				L7={},	 %7. Antwortmoeglichkeit
+				L8={},	 %8. Antwortmoeglichkeit
+				L9={},	 %9. Antwortmoeglichkeit
+				%% LOESUNG: %%
+				A1=0,  % 1. Antwort
+				A2=0,	 % 2. Antwort
+				A3=0,  % 3. Antwort
+				A4=0,  % 4. Antwort
+				A5=0,  % 5. Antwort
+				}
+
+
+\newpage
+
+\subsection{\texttt{lueckentext}-Befehl}
+Dieser Befehl dient zur Erstellung eines Lückentexts, basierend auf dem standardisierten Format des BIFIE. Der einleitenden Satz: \textit{"`Ergänze die Textlücken im folgenden Satz durch Ankreuzen der jeweils richtigen Satzteile so, dass eine mathematisch korrekte Aussage entsteht!"'} wird als Standard angenommen und automatisch angegeben. Im Bereich \texttt{\textbackslash text=\{\}} wird der Lückentext angegeben, wobei die Lücken immer mit \texttt{\textbackslash gap} eingefügt werden und automatisch nummeriert werden. Analog zu den Lösungsangaben der Multiplechoice-Aufgabe, werden die korrekten Antworten bei A1, A2 oder A3 mit 1,2 oder 3 angegeben. (hier: Lösung links: 3 und rechts: 2)
+\vspace{0.35cm}
+
+\textsc{Eingabe:}
+\begin{verbatim}
+\lueckentext{
+				text={Hier wird der Text geschrieben. Die Lücke eins hat dabei
+die \gap, die Lücke zwei hat die \gap.}, 	%Lueckentext Luecke=\gap
+				L1={Hier schreibt}, 		%1.Moeglichkeit links  
+				L2={man die Antwortmöglichkeiten}, 		%2.Moeglichkeit links
+				L3={für die erste Lücke}, 		%3.Moeglichkeit links
+				R1={und hier jene}, 		%1.Moeglichkeit rechts 
+				R2={für die Möglichkeiten}, 		%2.Moeglichkeit rechts
+				R3={der zweiten Lücke.  Theoretisch könnte dieser Text 
+				auch zweizeilig sein.}, 		%3.Moeglichkeit rechts
+				%% LOESUNG: %%
+				A1=3,   % Antwort links
+				A2=2		% Antwort rechts
+				}			
+\end{verbatim}
+
+\textsc{Ausgabe:}
+\lueckentext{
+				text={Hier wird der Text geschrieben. Die Lücke eins hat dabei
+die \gap, die Lücke zwei hat die \gap.}, 	%Lueckentext Luecke=\gap
+				L1={Hier schreibt}, 		%1.Moeglichkeit links  
+				L2={man die Antwortmöglichkeiten}, 		%2.Moeglichkeit links
+				L3={für die erste Lücke}, 		%3.Moeglichkeit links
+				R1={und hier jene}, 		%1.Moeglichkeit rechts 
+				R2={für die Möglichkeiten}, 		%2.Moeglichkeit rechts
+				R3={der zweiten Lücke.  Theoretisch könnte dieser Text 
+				auch mehrzeilig sein.}, 		%3.Moeglichkeit rechts
+				%% LOESUNG: %%
+				A1=3,   % Antwort links
+				A2=2		% Antwort rechts
+				}	
+
+
+\subsubsection{Zusatz: Variable Breiten der Boxen}
+
+Der \texttt{lueckentext}-Befehl erlaubt ein optionales Argument, um die Größen der beiden Boxen zu variieren. Dabei werden in den eckigen Klammern $[~]$ die Veränderung der linken Box (Änderung ca. zwischen -0.3 und 0.3) angegeben und die rechte Box wird automatisch angepasst. Will man etwa die linke Box vergrößern, gilt:\leer  
+
+\textsc{Eingabe:}
+
+\begin{verbatim}
+\lueckentext[0.25]{
+				text={Hier wird der Text geschrieben. Die Lücke eins hat dabei
+die \gap, die Lücke zwei hat die \gap.}, 	%Lueckentext Luecke=\gap
+				L1={In manchen Fällen sind die Antworten einer Lücke}, 		
+				%1.Moeglichkeit links  
+				L2={viel länger als die der zweite. In diesem Fall kann man}, 		
+				%2.Moeglichkeit links
+				L3={die Größen der Boxen manuell variieren. Die Eingabe ist optional. }, 
+						%3.Moeglichkeit links
+				R1={Sehr}, 		%1.Moeglichkeit rechts 
+				R2={kurze}, 		%2.Moeglichkeit rechts
+				R3={Antworten}, 		%3.Moeglichkeit rechts
+				%% LOESUNG: %%
+				A1=1,   % Antwort links
+				A2=3		% Antwort rechts 
+				}
+\end{verbatim}
+
+\begin{minipage}{1.0\textwidth}
+\textsc{Ausgabe:}
+
+
+\lueckentext[0.25]{
+				text={Hier wird der Text geschrieben. Die Lücke eins hat dabei
+die \gap, die Lücke zwei hat die \gap.}, 	%Lueckentext Luecke=\gap
+				L1={In manchen Fällen sind die Antworten einer Lücke}, 		%1.Moeglichkeit links  
+				L2={viel länger als die der zweite. In diesem Fall kann man}, 		%2.Moeglichkeit links
+				L3={die Größen der Boxen manuell variieren. Die Eingabe ist optional. }, 		%3.Moeglichkeit links
+				R1={Sehr}, 		%1.Moeglichkeit rechts 
+				R2={kurze}, 		%2.Moeglichkeit rechts
+				R3={Antworten}, 		%3.Moeglichkeit rechts
+				%% LOESUNG: %%
+				A1=1,   % Antwort links
+				A2=3		% Antwort rechts 
+				}
+
+\end{minipage}
+
+Analog funktioniert die Verkleinerung der linken Box. Dazu müssen Werte kleiner 0 angegeben
+werden.
+
+\subsubsection{\texttt{Zusatz}: Englischer Lückentext}
+Der Befehl \texttt{englueckentext} ist analog zum \texttt{lueckentext}-Befehl zu verwenden. Jedoch wird der als Standard angenommene, einleitende Satz bei Lückentextaufgaben in Englisch angezeigt. 
+
+\textsc{Eingabe:} 
+\begin{verbatim}
+\englueckentext{
+				text={Hier wird der Text einer englischen Aufgabe geschrieben. Die Lücken 
+				\gap und \gap können analog angegeben werden.}, 	%Lueckentext Luecke=\gap
+				L1={Auch}, 		%1.Moeglichkeit links  
+				L2={der}, 		%2.Moeglichkeit links
+				L3={Rest}, 		%3.Moeglichkeit links
+				R1={wird}, 		%1.Moeglichkeit rechts 
+				R2={gleich}, 		%2.Moeglichkeit rechts
+				R3={eingegeben}, 		%3.Moeglichkeit rechts
+				%% LOESUNG: %%
+				A1=1,   % Antwort links
+				A2=3		% Antwort rechts 
+				}
+\end{verbatim}
+
+\textsc{Ausgabe:}
+\englueckentext{
+				text={Hier wird der Text einer englischen Aufgabe geschrieben. Die Lücken \gap und \gap können analog angegeben werden.}, 	%Lueckentext Luecke=\gap
+				L1={Auch}, 		%1.Moeglichkeit links  
+				L2={der}, 		%2.Moeglichkeit links
+				L3={Rest}, 		%3.Moeglichkeit links
+				R1={wird}, 		%1.Moeglichkeit rechts 
+				R2={gleich}, 		%2.Moeglichkeit rechts
+				R3={eingegeben}, 		%3.Moeglichkeit rechts
+				%% LOESUNG: %%
+				A1=1,   % Antwort links
+				A2=3		% Antwort rechts 
+				}
+
+\subsection{\texttt{zuordnen}-Befehl}
+Dieser Befehl dient zum Erstellen des Zuordnungsformats von vier aus sechs Möglichkeiten.
+Die korrekten Antworten können hier frei als Buchstaben eingegeben werden. (hier: F, C, A, D)
+
+\leer
+
+\textsc{Eingabe:}
+\begin{verbatim}
+\zuordnen{
+				R1={Hier sind die vier},				% Response 1
+				R2={Antworten, zu},				% Response 2
+				R3={denen die Möglichkeiten der rechten Box richtig},				% Response 3
+				R4={zuzuordnen sind},				% Response 4
+				%% Moegliche Zuordnungen: %%
+				A={Hier trägt}, 				%Moeglichkeit A  
+				B={man den Text}, 				%Moeglichkeit B  
+				C={oder die Formeln}, 				%Moeglichkeit C  
+				D={für die sechs}, 				%Moeglichkeit D  
+				E={Möglichkeiten, die man zuordnen muss}, 				%Moeglichkeit E  
+				F={ein.}, 				%Moeglichkeit F  
+				%% LOESUNG: %%
+				A1={F},				% 1. richtige Zuordnung
+				A2={C},				% 2. richtige Zuordnung
+				A3={A},				% 3. richtige Zuordnung
+				A4={D},				% 4. richtige Zuordnung
+				}
+\end{verbatim}
+\leer
+
+\textsc{Ausgabe:}
+
+\zuordnen{
+				R1={Hier sind die vier},				% Response 1
+				R2={Antworten, zu},				% Response 2
+				R3={denen die Möglichkeiten der rechten Box richtig},				% Response 3
+				R4={zuzuordnen sind},				% Response 4
+				%% Moegliche Zuordnungen: %%
+				A={Hier trägt}, 				%Moeglichkeit A  
+				B={man den Text}, 				%Moeglichkeit B  
+				C={oder die Formeln}, 				%Moeglichkeit C  
+				D={für die sechs}, 				%Moeglichkeit D  
+				E={Möglichkeiten, die man zuordnen muss}, 				%Moeglichkeit E  
+				F={ein.}, 				%Moeglichkeit F  
+				%% LOESUNG: %%
+				A1={F},				% 1. richtige Zuordnung
+				A2={C},				% 2. richtige Zuordnung
+				A3={A},				% 3. richtige Zuordnung
+				A4={D},				% 4. richtige Zuordnung
+				}
+
+\subsubsection{Zusatz: Variable Breiten der Boxen}
+
+Der \texttt{zuordnen}-Befehl erlaubt ein optionales Argument, um die Größen der beiden Boxen zu variieren. Dabei werden in den eckigen Klammern $[~]$ die Veränderung der linken Box (Änderung ca. zwischen -0.3 und 0.3) angegeben und die rechte Box wird automatisch angepasst. Will man etwa die linke Box vergrößern, gilt:  
+ 
+\textsc{Eingabe:}
+\begin{small}
+\begin{verbatim}
+\zuordnen[0.25]{
+R1={Dabei wird die linke Box vergrößert.},				% Response 1
+				R2={Dies dient vor allem dazu,},				% Response 2
+				R3={wenn eine Seite viel Text enthält, die andere hingegen},				% Response 3
+				R4={nur ganz wenig. Wird die [ ] nicht angegeben dann wird der Standardwert
+				0 angenommen.},				% Response 4
+				%% Moegliche Zuordnungen: %%
+				A={Hier}, 				%Moeglichkeit A  
+				B={sind}, 				%Moeglichkeit B  
+				C={eher}, 				%Moeglichkeit C  
+				D={kurze}, 				%Moeglichkeit D  
+				E={Antworten}, 				%Moeglichkeit E  
+				F={möglich}, 				%Moeglichkeit F  
+				%% LOESUNG: %%
+				A1={},				% 1. richtige Zuordnung
+				A2={},				% 2. richtige Zuordnung
+				A3={},				% 3. richtige Zuordnung
+				A4={},				% 4. richtige Zuordnung
+				}
+\end{verbatim}
+
+
+
+\textsc{Ausgabe:}
+
+\zuordnen[0.25]{
+				R1={Dabei wird die linke Box vergrößert.},				% Response 1
+				R2={Dies dient vor allem dazu,},				% Response 2
+				R3={wenn eine Seite viel Text enthält, die andere hingegen},				% Response 3
+				R4={nur ganz wenig. Wird die $[~]$ nicht angegeben dann wird der Standardwert 0 angenommen.},				% Response 4
+				%% Moegliche Zuordnungen: %%
+				A={Hier}, 				%Moeglichkeit A  
+				B={sind}, 				%Moeglichkeit B  
+				C={eher}, 				%Moeglichkeit C  
+				D={kurze}, 				%Moeglichkeit D  
+				E={Antworten}, 				%Moeglichkeit E  
+				F={möglich}, 				%Moeglichkeit F  
+				%% LOESUNG: %%
+				A1={},				% 1. richtige Zuordnung
+				A2={},				% 2. richtige Zuordnung
+				A3={},				% 3. richtige Zuordnung
+				A4={},				% 4. richtige Zuordnung
+				}
+\end{small}
+
+Analog funktioniert die Verkleinerung der linken Box. Dazu müssen Werte kleiner 0 angegeben werden.
+
+
+\section{Typ-2-Aufgaben}
+Um die Struktur der Teil-2-Aufgaben ähnlich jener bei der standardisierten Reifeprüfung einhalten zu können, beinhaltet das Paket einige Befehle, die die Erstellung von Typ-2-Aufagben erleichtern.
+
+\subsection{\texttt{aufgabenstellung}-Umgebung}
+Typ-2-Aufgaben sollten innerhalb einer Prüfung mithilfe der \texttt{langesbeispiel}-Umgebung eingegeben werden, um die volle Funktionalität (wie \texttt{notenschluessel}) des Pakets zu ermöglichen. Der einleitenden Aufgabentext kann dann eingegeben werden. Für die Eingabe der Aufgabenstellung kann dann die \texttt{aufgabenstellung}-Umgebung verwendet werden.\leer
+
+\subsubsection{\texttt{\textbackslash item} und \texttt{\textbackslash Subitem\{\}}}
+Innerhalb dieser Umgebung können dann mithilfe von \texttt{\textbackslash item} (nummeriert mit a), b) ,c), \ldots) und \texttt{\textbackslash Subitem\{\}} (nummeriert mit 1), 2), \ldots) die jeweiligen Items und Subitems der Aufgabe eingegeben werden. \leer
+
+\subsubsection{Ausgleichspunkte}
+Um die notwendigen Ausgleichspunkte in den Typ-2-Aufgaben zu markieren, können die Befehle \texttt{item} und \texttt{Subitem} durch \texttt{\textbackslash Aitem} und \texttt{\textbackslash ASubitem\{\}} ersetzt werden. Dabei wird vor den geschriebenen Text noch ein \fbox{A} eingefügt -- die Nummerierung wird aber wie gewohnt fortgesetzt.  
+
+\subsection{\texttt{loesung}-Umgebung}
+Mithilfe der \texttt{loesung}-Umgebung kann die Lösungserwartung sowie der Lösungsschlüssel eingegeben werden. Analog zur Aufgabenstellung können \texttt{\textbackslash item} und \texttt{\textbackslash Subitem\{\}} verwendet werden. Die Eingabe innerhalb der \texttt{loesung}-Umgebung werden nur dann angezeigt, wenn die Lösungsanzeige aktiviert wurde. Die Nummerierung der Subitems kann man mit folgender Eingabe zurücksetzen: \texttt{\textbackslash setcounter{subitemcounter}{0}}.\leer
+
+Eine vollständige Typ-2-Aufgabe könnte also wie folgt aussehen:
+
+\textsc{Eingabe:}
+
+\begin{verbatim}
+\begin{langesbeispiel} \item[0] %PUNKTE DES BEISPIELS
+Hier steht der einleitende Text der Typ-2-Aufgabe.
+
+\begin{aufgabenstellung}
+\item Hier steht der Aufgabentext des ersten Items.
+
+\Subitem{Aufgabentext des ersten Unterpunkts} %Unterpunkt1
+\Subitem{Aufgabentext des zweiten Unterpunkts} %Unterpunkt2
+
+\end{aufgabenstellung}
+
+\begin{loesung}
+\item \subsection{Lösungserwartung:} 
+
+\Subitem{Lösungserwartung des ersten Unterpunkts} %Lösung von Unterpunkt1
+\Subitem{Lösungserwartung des zweiten Unterpunkts} %%Lösung von Unterpunkt2
+
+\setcounter{subitemcounter}{0}
+\subsection{Lösungsschlüssel:}
+ 
+\Subitem{Lösungsschlüssel des ersten Unterpunkts} %Unterpunkt1
+\Subitem{Lösungsschlüssel des ersten Unterpunkts} %Unterpunkt2
+
+\end{loesung}
+
+\end{langesbeispiel}
+\end{verbatim}
+\newpage
+
+\textsc{Ausgabe:}
+\setcounter{Antworten}{1}
+\setcounter{secnumdepth}{-1}
+\setcounter{number}{0}
+\begin{langesbeispiel} \item[0] %PUNKTE DES BEISPIELS
+Hier steht der einleitende Text der Typ-2-Aufgabe.
+
+\addtocontents{toc}{\setcounter{tocdepth}{-10}}
+\begin{aufgabenstellung}
+\item Hier steht der Aufgabentext des ersten Items.
+
+\Subitem{Aufgabentext des ersten Unterpunkts} %Unterpunkt1
+\Subitem{Aufgabentext des zweiten Unterpunkts} %Unterpunkt2
+
+\end{aufgabenstellung}
+
+\begin{loesung}
+\item \subsection*{Lösungserwartung:} 
+
+\Subitem{Lösungserwartung des ersten Unterpunkts} %Lösung von Unterpunkt1
+\Subitem{Lösungserwartung des zweiten Unterpunkts} %%Lösung von Unterpunkt2
+
+\setcounter{subitemcounter}{0}
+\subsection*{Lösungsschlüssel:}
+ 
+\Subitem{Lösungsschlüssel des ersten Unterpunkts} %Lösungschlüssel von Unterpunkt1
+\Subitem{Lösungsschlüssel des ersten Unterpunkts} %Lösungschlüssel von Unterpunkt2
+
+\end{loesung}
+
+\end{langesbeispiel}
+\addtocontents{toc}{\setcounter{tocdepth}{1}} 
+ 
+
+
+\section{Einfügen von GeoGebra-Grafiken}
+
+Folgende Schritte müssen befolgt werden, um Geogebra-Grafiken in \LaTeX-Dokumente einfügen zu können. 
+\leer
+ 
+\begin{enumerate}
+	\item Grafik in Geogebra zeichnen
+	\item Datei $\rightarrow$ Export $\rightarrow$ Grafik-Ansicht als PSTricks\ldots
+	\item Parameter einstellen 
+	\item \fbox{Erzeuge PSTricks} drücken 
+	\item Gesamten Text, der zwischen \verb|\begin{document}| und \verb|\end{document}| steht, kopieren. 
+	
+	\item Im \LaTeX-Dokument dort einfügen, wo die Grafik integriert werden soll. (Dies ist auch innerhalb von den unterschiedlichen Formaten (wie \verb|\zuordnen| oder \verb|\multiplechoice| möglich) 
+	
+	\item Die Größe der Grafik kann mithilfe des folgenden Befehls angepasst werden:
+		
+	\begin{verbatim}
+	\resizebox{0.5\linewidth}{!}{Hier wird der Text von Geogebra eingefügt}
+	\end{verbatim}
+	
+	Der Faktor 0.5 gibt die Größe der Grafik an. Mit dem Wert 0.5 wird die Größe der Grafik somit halbiert. 
+	
+\end{enumerate}
+
+\meinlr{
+\centering
+\newrgbcolor{zzttqq}{0.6 0.2 0}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-0.72,-0.8)(4.45,3.74)
+\psaxes[labelFontSize=\scriptstyle,xAxis=true,yAxis=true,Dx=1,Dy=1,ticksize=-2pt 0,subticks=2]{->}(0,0)(-0.72,-0.8)(4.45,3.74)
+\pspolygon[linecolor=zzttqq,fillcolor=zzttqq,fillstyle=solid,opacity=0.1](1.29,2.88)(0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](1.29,2.88)(0.56,0.67)
+\psline[linecolor=zzttqq](0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](3.62,1.04)(1.29,2.88)
+\begin{scriptsize}
+\psdots[dotstyle=*,linecolor=blue](1.29,2.88)
+\rput[bl](1.37,3){\blue{$A$}}
+\psdots[dotstyle=*,linecolor=blue](0.56,0.67)
+\rput[bl](0.63,0.79){\blue{$B$}}
+\psdots[dotstyle=*,linecolor=blue](3.62,1.04)
+\rput[bl](3.7,1.16){\blue{$C$}}
+\end{scriptsize}
+\end{pspicture*}
+}
+{\centering
+\resizebox{0.5\linewidth}{!}{\newrgbcolor{zzttqq}{0.6 0.2 0}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-0.72,-0.8)(4.45,3.74)
+\psaxes[labelFontSize=\scriptstyle,xAxis=true,yAxis=true,Dx=1,Dy=1,ticksize=-2pt 0,subticks=2]{->}(0,0)(-0.72,-0.8)(4.45,3.74)
+\pspolygon[linecolor=zzttqq,fillcolor=zzttqq,fillstyle=solid,opacity=0.1](1.29,2.88)(0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](1.29,2.88)(0.56,0.67)
+\psline[linecolor=zzttqq](0.56,0.67)(3.62,1.04)
+\psline[linecolor=zzttqq](3.62,1.04)(1.29,2.88)
+\begin{scriptsize}
+\psdots[dotstyle=*,linecolor=blue](1.29,2.88)
+\rput[bl](1.37,3){\blue{$A$}}
+\psdots[dotstyle=*,linecolor=blue](0.56,0.67)
+\rput[bl](0.63,0.79){\blue{$B$}}
+\psdots[dotstyle=*,linecolor=blue](3.62,1.04)
+\rput[bl](3.7,1.16){\blue{$C$}}
+\end{scriptsize}
+\end{pspicture*}}
+}
+\leer
+
+
+\centering Kopie des PSTricks-Exports von Geogebra \\
+ (Originalgröße und mit \verb|\resizebox{0.5\linewidth}{!}{|\ldots\})
+
+
+
+\end{document}
+
+
+
+
+

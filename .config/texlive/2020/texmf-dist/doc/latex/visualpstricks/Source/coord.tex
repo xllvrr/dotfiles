@@ -1,0 +1,210 @@
+
+\SbSSCT{Systèmes de coordonnées}{Coordinate systems}
+
+\SbSbSSCT{Par défaut}{Default}
+\emph{\TFRGB{coordonnées cartésiennes}{Cartesian coordinates}} :  {\red(x,y)} . ( \TFRGB{l'origine est la position actuelle}{the origin is the current position})
+
+
+
+\SbSbSSCT{Autres systèmes de coordonnées}{Other coordinate systems}
+
+\begin{itemize}
+\item \TFRGB{Activation avec la commande}{Activated with the command}  \BSS{SpecialCoor}
+\item  \TFRGB{Désactivation par la commande}{Desactivated with the command} \BSS{NormalCoor}
+\end{itemize}
+
+
+
+
+
+\psset{yunit=0.7cm,xunit=0.7cm,runit=.7cm}
+
+\psset{axesstyle=none,xticksize=3,yticksize=3}
+
+\bigskip
+\begin{tabular}{|c|c|c|c|} \hline 
+ \multicolumn{4}{|c|}{ \BS{dotnode*}[dotstyle=*]({\red 2;60})\AC{A}\ \hspace{0.5cm} \BS{nput*}\AC{45}\AC{A}\AC{A} } \\ \hline
+\TFRGB{polaire}{polar} & \TFRGB{calculé}{calculated} \footnotemark[1]& (coor1|coor2)& (coor1|coor2) \\ \hline 
+\begin{pspicture}(-.5,-.5)(3.5,3.5) 
+\psaxes(3,3)
+\dotnode*[dotstyle=*](2;60){A}\nput*{45}{A}{A}
+\end{pspicture} 
+& 
+\begin{pspicture}(-.5,-.5)(3.5,3.5) 
+\psaxes(3,3)
+\dotnode*[dotstyle=*](!3 sqrt 2){A}\nput*{45}{A}{A}
+\end{pspicture}  
+& 
+\begin{pspicture}(-.5,-.5)(3.5,3.5) 
+\psaxes(3,3)
+\dotnode*[dotstyle=*](2;30|2;60){A}\nput*{45}{A}{A}
+\end{pspicture}   
+& 
+\begin{pspicture}(-.5,-.5)(3.5,3.5) 
+\psaxes(3,3)
+\dotnode*[dotstyle=*](2,.5){B} \nput*{45}{B}{B}
+\dotnode*[dotstyle=*](1,2){C} \nput*{45}{C}{C}
+\dotnode*[dotstyle=*](B|C){A}\nput*{45}{A}{A}
+\end{pspicture} 
+\\  \hline 
+({\red 2;60})  & ({\red !3 sqrt} 2) & ({\red 2;30|2;60})& ({\red B|C}) \\ \hline 
+\end{tabular} 
+\footnotetext[1]{\TFRGB{formule de calcul en langage PostScript (voir \pageref{postcript})}{formula in the PostScript language} }
+
+
+%-----------------------------------------------
+
+\SbSbSSCT{Position relative}{Relative position}
+ 
+\psset{yunit=0.7cm,xunit=0.7cm,runit=.7cm}
+
+\psset{axesstyle=none,xticksize=3,yticksize=3}
+
+\begin{tabular}{|c|c|c|c|} \hline 
+ \multicolumn{4}{|c|}{ \BS{dotnode*}[dotstyle=*,linecolor=red]([\RDD{nodesep}=1]B)\AC{A}\ \hspace{0.5cm} \BS{nput*}\AC{45}\AC{A}\AC{A} } \\ \hline
+%\RDD{nodesep} & \RDD{offset} & {\red nodesep offset} & \RDD{angle} {\red nodesep}\\ \hline 
+\begin{pspicture}(-.5,-.5)(3.5,3.5) 
+\psaxes(3,3)
+\pnode(1,1){B} \pscircle*(B){3pt} \nput{45}{B}{B}%
+\dotnode*[dotstyle=*,linecolor=red]([nodesep=1]B){A} \nput*{45}{A}{A} %
+\end{pspicture} 
+& 
+\begin{pspicture}(-.5,-.5)(3.5,3.5) 
+\psaxes(3,3)
+\pnode(1,1){B} \pscircle*(B){3pt} \nput{45}{B}{B}%
+\dotnode*[dotstyle=*,linecolor=red]([offset=1]B){A}\nput*{45}{A}{A} %
+\end{pspicture}  
+& 
+\begin{pspicture}(-.5,-.5)(3.5,3.5) 
+\psaxes(3,3)
+\pnode(1,1){B} \pscircle*(B){3pt} \nput{45}{B}{B}%
+\dotnode*[dotstyle=*,linecolor=red]([nodesep=1,offset=1]B){A}\nput*{45}{A}{A}%
+\end{pspicture} 
+& 
+\begin{pspicture}(-.5,-.5)(3.5,3.5) 
+\psaxes(3,3)
+\pnode(1,1){B} \pscircle*(B){3pt} \nput{45}{B}{B}%
+\dotnode*[dotstyle=*,linecolor=red]([angle=25,nodesep=1]B){A}\nput*{45}{A}{A}%
+\end{pspicture} 
+\\  \hline 
+([\RDD{nodesep}=1]B) &([\RDD{offset}=1]B){A}& ([\RDD{nodesep}=1,\RDD{offset}=1]B) & ([\RDD{angle}=25,\RDD{nodesep}=1]B)\\ \hline 
+\end{tabular} 
+
+
+\newpage
+%---------------------------------------------
+
+\SbSSCT{Modification des unités par défaut}{Changing default units}
+
+\SbSbSSCT{Modification des unités des longueurs }{Changing the units of length}
+
+\begin{tabular}{|c|c|c|c|} \hline 
+ \multicolumn{4}{|c|}{ \BSS{psset}\AC{\RDD{unit}=0.5cm}\hspace{0.5cm}  \BS{psframe}(2,2) \hspace{0.5cm} \BS{psdots}(1,1) \hspace{0.5cm}\BS{pscircle}(1,1)\AC{1} } \\ \hline 
+
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*](0,0)(2,2){2cm}{2cm} 
+\psset{unit=.5cm}
+\psframe[linewidth=2pt](2,2)
+\pscircle[linecolor=red](1,1){1}
+\psdots[linecolor=red](1,1)
+\end{psgraph}
+\psset{unit=1cm}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*](0,0)(2,2){2cm}{2cm} 
+\psset{xunit=.5cm}
+\psframe[linewidth=2pt](2,2)
+\pscircle[linecolor=red](1,1){1}
+\psdots[linecolor=red](1,1)
+\end{psgraph}
+\psset{unit=1cm}
+&
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*](0,0)(2,2){2cm}{2cm}  
+\psset{yunit=.5cm}
+\psframe[linewidth=2pt](2,2)
+\pscircle[linecolor=red](1,1){1}
+\psdots[linecolor=red](1,1)
+\end{psgraph}
+\psset{unit=1cm}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*](0,0)(2,2){2cm}{2cm}  
+\psset{runit=.5cm}
+\psframe[linewidth=2pt](2,2)
+\pscircle[linecolor=red](1,1){1}
+\psdots[linecolor=red](1,1)
+\end{psgraph}   
+\psset{unit=1cm}
+\\ \hline  
+\RDD{unit}= 0.5cm & \RDD{xunit}= 0.5cm & \RDD{yunit}= 0.5cm &  \RDD{runit}= 0.5cm\\ 
+\hline 
+ \multicolumn{4}{|c|}{ \dft{} :  unit= xunit = yunit = runit = 1cm } \\ \hline 
+\end{tabular} 
+
+  
+ 
+%--------------------------------------------------
+ 
+\SbSbSSCT{Modification de l'unité des angles}{Changing the unit of angles}
+
+\begin{tabular}{|c|c|} \hline 
+ \TFRGB{angle en pourcentage}{angle expressed as a percentage} & \TFRGB{angles en radians}{angles in radians} 
+ \\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 4,yticksize=0 4,subticks=0,shift=*](-2,-2)(2,2){4cm}{4cm}  
+\degrees[1]
+\pswedge*[linecolor=blue](0,0){2}{-.25}{.50}
+\end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 4,yticksize=0 4,subticks=0,shift=*](-2,-2)(2,2){4cm}{4cm}  
+\radians
+\pswedge*[linecolor=blue](0,0){2}{-1.57}{\psPi}
+\end{psgraph}
+\\ \hline  
+\BSS{degrees}[1] & \BSS{radians} \\ 
+\BS{pswedge*}(0,0){2}\AC{{\red -0.25}}\AC{{\red 0.50}} &
+\BS{pswedge*}(0,0){2}\AC{{\red 1.57}}\AC{{\red \BS{psPi}}}\\
+\hline 
+\end{tabular} 
+
+
+\psset{yunit=1cm,xunit=1cm,runit=1cm}
+
+\psset{axesstyle=none}
+
+%--------------------------------------------------------
+\SbSSCT{Changement d'origine }{Change of origin}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 4,yticksize=0 6,subticks=0,shift=*](0,0)(6,4){6cm}{4cm} 
+\psframe[linewidth=2pt](4,2)
+\psframe[linewidth=2pt,linecolor=red,origin={1,1}](4,2)
+ \end{psgraph}
+ &
+\parbox[c]{7cm}{  
+\BS{psframe}[linewidth=2pt](4,2) \\
+\BS{psframe}[linewidth=2pt,linecolor=red,\\
+\RDD{origin}=\AC{1,1}](4,2)
+}
+\\ \hline 
+\end{tabular}
+
+
+
+\psset{axesstyle=axes,ticksize=3pt}
+
+\SbSSCT{Permutation des axes}{Permutation of the axes}
+
+
+\begin{tabular}{|c|c|}\hline
+\multicolumn{2}{|c|}{\BS{psset}\AC{\RDD{swapaxes}=true}  \BS{psframe}(2,1)} \\
+\hline
+\psset{swapaxes=true}
+\begin{pspicture}(2,2.2)
+ \psframe[linewidth=2pt](2,1)
+\end{pspicture}
+&
+\psset{swapaxes=false}
+\begin{pspicture}(2,2.2)
+\psframe[linewidth=2pt](2,1)
+\end{pspicture}  \\ 
+\hline \BS{}psset\AC{\RDD{swapaxes}=true} &  \BS{}psset\AC{{\red swapaxes}=false}\\ 
+& ({\blue \dft{} }) \\
+\hline 
+\end{tabular} 

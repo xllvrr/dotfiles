@@ -1,0 +1,26 @@
+\section{News and presentation}
+
+This package is the foundation of the \tkzNamePack{tkz-euclide} and \tkzNamePack{tkz-fct} in particular. It provides a Cartesian system that will be defined by the macro \tkzcname{tkzInit}. The package has been modified and object transfers between \tkzimp{tkz-base} and \tkzimp{tkz-euclide} have been performed. 
+In the future, the definition macros will be isolated.
+
+The main novelty is the recent replacement of the \tkzNamePack{fp} package by \tkzNamePack{xfp}. The appearance of this one is a step towards version 3 of \LATEX.
+ The next step will be the creation of a new package.
+
+Here are some of the changes. The |tkz-euclide| package brings more new features.
+\vspace{2cm}
+ \begin{itemize}\setlength{\itemsep}{10pt} 
+\item Code Improvement;
+\item  Bug correction;
+\item  The bounding box is now controlled in each macro (hopefully) to avoid the use of \tkzcname{tkzInit} followed by \tkzcname{tkzClip};
+\item Addition of macros for the  "bounding box": \tkzcname{tkzSaveBB} \tkzcname{tkzClipBB};
+\item  Logically most macros accept \TIKZ\ options. So I removed the "duplicate" options;
+\item  Removing the option "label options";
+\item Random points are now in \tkzimp{tkz-euclide} and the macro \tkzcname{tkzGetRandPointOn} is replaced by \tkzcname{tkzDefRandPointOn}. For homogeneity reasons, the points must be retrieved with \tkzcname{tkzGetPoint};
+\item The options \tkzimp{end} and \tkzimp{start} which allowed to give a label to a line are removed. You must now use the macro \tkzcname{tkzLabelLine};
+
+\item Introduction of the libraries \NameLib{quotes} and \NameLib{angles} they allows to give a label to a point.even if I am not in favour of this practice;
+
+\item Appearance of the macro \tkzcname{usetkztool}, which allows to load new "tools".
+\end{itemize}
+
+\endinput

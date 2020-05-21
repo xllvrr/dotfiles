@@ -1,0 +1,14 @@
+This directory contains some LaTeX files generated for local use at U
+of Man, School of CS that might be of more general interest.
+
+muthesis.cls      -- class files for U of Man theses and 
+third-rep.cls        Dept of CS third year reports
+
+muthesis-example  -- A starter kit for thesis writers. If this
+                     directory is missing (eg on CTAN) it can be found
+                     at our home site in Manchester
+                     ftp://ftp.cs.man.ac.uk/pub/tex 
+
+
+Graham Gough
+graham@cs.man.ac.uk

@@ -1,0 +1,65 @@
+name uantwerpendocs
+category Package
+revision 51007
+shortdesc Course texts, master theses, and exams in University of Antwerp style
+longdesc These class files implement the house style of the University
+longdesc of Antwerp. This package originated from the Faculty of Applied
+longdesc Engineering. Using these class files will make it easy for you
+longdesc to make and keep your documents compliant to this version and
+longdesc future versions of the house style of the University of
+longdesc Antwerp.
+containersize 1370040
+containerchecksum 93c494ac45f8713cdff15e03b5f17388041ecf569eea304966da980d413d542d72af79ce86a57686e790ac527c5c6e562a93b9612c03438aa7ea1acb3fe7af92
+doccontainersize 1162080
+doccontainerchecksum 94a6b8beddfa2b625fce0f75cbab43ae4fafa7cd7c5dd0568cbe46cc1a7b0218c74c5575d116c8e085bc0fddb62db0596635d549251a760ef93d93b662d40982
+docfiles size=366
+ texmf-dist/doc/latex/uantwerpendocs/LICENSE
+ texmf-dist/doc/latex/uantwerpendocs/README details="Readme"
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenbamathesis-example.pdf details="Example bachelor/master thesis"
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenbamathesis-example.tex
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpencoursetext-example.pdf details="Example course text"
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpencoursetext-example.tex
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpendocs.pdf details="Package documentation"
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenexam-example1.pdf details="Example exam (monolingual)"
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenexam-example1.tex
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenexam-example2.pdf details="Example exam (bilingual)"
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenexam-example2.tex
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenletter-example.pdf details="Example letter"
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenletter-example.tex
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenmasterthesis-example.pdf
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenmasterthesis-example.tex
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenphdthesis-example1.pdf
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenphdthesis-example1.tex
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenphdthesis-example2.pdf
+ texmf-dist/doc/latex/uantwerpendocs/uantwerpenphdthesis-example2.tex
+srccontainersize 29404
+srccontainerchecksum 76725a1498c86eaf6e585a1269b737601136337770f304d598762aa7f354a478b70849b1a98ba8bdae71c81fbf0db372c275f95396463316dbb5a9631b068b20
+srcfiles size=36
+ texmf-dist/source/latex/uantwerpendocs/uantwerpendocs.dtx
+ texmf-dist/source/latex/uantwerpendocs/uantwerpendocs.ins
+runfiles size=779
+ texmf-dist/tex/latex/uantwerpendocs/4E_PMS302_BR_ENG_RGB.eps
+ texmf-dist/tex/latex/uantwerpendocs/4E_PMS302_BR_ENG_RGB.pdf
+ texmf-dist/tex/latex/uantwerpendocs/4E_PMS302_BR_NED_RGB.eps
+ texmf-dist/tex/latex/uantwerpendocs/4E_PMS302_BR_NED_RGB.pdf
+ texmf-dist/tex/latex/uantwerpendocs/UA_HOR_DUI_CMYK.eps
+ texmf-dist/tex/latex/uantwerpendocs/UA_HOR_DUI_CMYK.pdf
+ texmf-dist/tex/latex/uantwerpendocs/UA_HOR_ENG_CMYK.eps
+ texmf-dist/tex/latex/uantwerpendocs/UA_HOR_ENG_CMYK.pdf
+ texmf-dist/tex/latex/uantwerpendocs/UA_HOR_FRA_CMYK.eps
+ texmf-dist/tex/latex/uantwerpendocs/UA_HOR_FRA_CMYK.pdf
+ texmf-dist/tex/latex/uantwerpendocs/UA_HOR_NED_CMYK.eps
+ texmf-dist/tex/latex/uantwerpendocs/UA_HOR_NED_CMYK.pdf
+ texmf-dist/tex/latex/uantwerpendocs/UA_HOR_SPA_CMYK.eps
+ texmf-dist/tex/latex/uantwerpendocs/UA_HOR_SPA_CMYK.pdf
+ texmf-dist/tex/latex/uantwerpendocs/keyboard.jpg
+ texmf-dist/tex/latex/uantwerpendocs/uantwerpenbamathesis.cls
+ texmf-dist/tex/latex/uantwerpendocs/uantwerpencoursetext.cls
+ texmf-dist/tex/latex/uantwerpendocs/uantwerpenexam.cls
+ texmf-dist/tex/latex/uantwerpendocs/uantwerpenletter.cls
+ texmf-dist/tex/latex/uantwerpendocs/uantwerpenmasterthesis.cls
+ texmf-dist/tex/latex/uantwerpendocs/uantwerpenphdthesis.cls
+catalogue-ctan /macros/latex/contrib/uantwerpendocs
+catalogue-license lppl1.3
+catalogue-topics class dissertation essay letter exam
+catalogue-version 2.4

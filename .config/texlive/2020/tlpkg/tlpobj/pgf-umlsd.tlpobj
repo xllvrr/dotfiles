@@ -1,0 +1,45 @@
+name pgf-umlsd
+category Package
+revision 33045
+shortdesc Draw UML Sequence Diagrams
+longdesc LaTeX macros to draw UML diagrams using pgf
+containersize 3528
+containerchecksum e32c27e2c779ba362435fd0901703dade14836347afd99b7f8e55dd91d5724ba69fd517c39bf52d95189351376ad505a56634c0a751bc68df36dea952e30e7a3
+doccontainersize 222752
+doccontainerchecksum de4b7c62d79400f107d94fe3101fbbf87ee6bb2cdbb04aa6c1d5eddc9271fc4090b39a79dfc18c45d9f73371f6de09707c342e2cd5ee6dece663ee4494d53ddc
+docfiles size=97
+ texmf-dist/doc/latex/pgf-umlsd/README
+ texmf-dist/doc/latex/pgf-umlsd/demo/block.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/call.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/callself.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/customize.log
+ texmf-dist/doc/latex/pgf-umlsd/demo/customize.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/distance.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/empty.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/instance.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/message.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/messcall.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/multi-threads-example.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/nested-call.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/no-thread-example.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/non-instantaneous-message.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/postlevel.log
+ texmf-dist/doc/latex/pgf-umlsd/demo/postlevel.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/prelevel.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/single-thread-example.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/sync-clock.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/thread.tex
+ texmf-dist/doc/latex/pgf-umlsd/demo/threadbias.log
+ texmf-dist/doc/latex/pgf-umlsd/demo/threadbias.tex
+ texmf-dist/doc/latex/pgf-umlsd/diagrams.pdf
+ texmf-dist/doc/latex/pgf-umlsd/logo.png
+ texmf-dist/doc/latex/pgf-umlsd/pgf-umlsd-manual.pdf details="Package documentation"
+ texmf-dist/doc/latex/pgf-umlsd/pgf-umlsd-manual.tex
+runfiles size=3
+ texmf-dist/tex/latex/pgf-umlsd/pgf-umlsd.sty
+catalogue-also pst-uml uml
+catalogue-contact-repository https://github.com/xuyuan/pgf-umlsd
+catalogue-ctan /graphics/pgf/contrib/pgf-umlsd
+catalogue-license gpl
+catalogue-topics uml pgf-tikz
+catalogue-version 0.7

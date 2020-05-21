@@ -1,0 +1,153 @@
+
+\TFRGB{Utilisation du module}{Package} \textbf{pst-coil} \label{pst-coil}
+
+\SbSbSSCT{Les 3 types de bobines}{The 3 types of coils}
+\psset{fillstyle=none,unit=1cm}
+
+\begin{center}
+\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|}  \hline  
+\rule[-1.25cm]{0pt}{2.5cm}	\pscoil(0.5,0)(4,0)  & \pszigzag(0.5,0)(4,0) & \pssin(0.5,0)(4,0) \\ \hline
+\BSS{pscoil}(0.5,0)(4,0) \BSI{pscoil}{pst-coil} & \BSS{pszigzag}(0.5,0)(4,0)  \BSI{pszigzag}{pst-coil} & \BSS{pssin}(0.5,0)(4,0)   \BSI{pssin}{pst-coil}
+\\ \hline	
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|}  \hline  
+\rule[-1.25cm]{0pt}{2.5cm}	\pscoil*(0.5,0)(4,0)  & \pszigzag*(0.5,0)(4,0) & \pssin*(0.5,0)(4,0) \\ \hline
+\textbf{\BS{}pscoil*}(0.5,0)(4,0)  & \textbf{\BS{}pszigzag*}(0.5,0)(4,0)  & \textbf{\BS{}pssin*}(0.5,0)(4,0)  \\ \hline	
+\end{tabular}
+\end{center}
+
+\SbSbSSCT{Paramètres des bobines}{Parameters of coils}
+\begin{center}
+\begin{tabular}{|p{6cm}|p{6cm}|}  \hline  
+\rule[-.7cm]{0pt}{1.4cm}	\pscoil[coilwidth=0.5cm](0.5,0)(5,0)  & \pszigzag[coilwidth=0.5cm](0.5,0)(5,0)  \\ \hline
+\BS{pscoil}[\RDD{coilwidth}=0.5cm](0.5,0)(5,0)  \RDI{coilwidth}{pst-coil} & \BS{pszigzag}[{\red coilwidth=0.5cm}](0.5,0)(5,0)  \\ \hline
+\multicolumn{2}{|c|}{\blue \dft: 1cm}\\ \hline 	
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|p{6cm}|p{6cm}|}  \hline  
+\rule[-.7cm]{0pt}{1.4cm}	\pscoil[coilheight=0.5](0.5,0)(5,0)  & \pszigzag[coilheight=0.5](0.5,0)(5,0)  \\ \hline
+\BS{pscoil}[\RDD{coilheight}=0.5](0.5,0)(5,0) \RDI{coilheight}{pst-coil} &
+ \BS{}pszigzag[{\red coilheight0.5}](0.5,0)(5,0)  \\ \hline	
+\multicolumn{2}{|c|}{\blue  \dft : 1}\\ \hline 	
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|p{6cm}|p{6cm}|}  \hline  
+\rule[-.7cm]{0pt}{1.4cm}	\pscoil[coilarm=1](0.5,0)(5,0)  & \pszigzag[coilarm=1](0.5,0)(5,0)  \\ \hline
+\BS{}pscoil[\RDD{coilarm}=1](0.5,0)(5,0) \RDI{coilarm}{pst-coil} & \BS{}pszigzag[{\red coilarm=1}](0.5,0)(5,0)  \\ \hline	
+
+\rule[-.7cm]{0pt}{1.4cm}	\pscoil[coilarmA=1](0.5,0)(5,0)  & \pszigzag[coilarmB=1](0.5,0)(5,0)  \\ \hline
+\BS{}pscoil[\RDD{coilarmA}=1](0.5,0)(5,0) \RDI{coilarmA}{pst-coil} & \BS{}pszigzag[\RDD{coilarmB}=1](0.5,0)(5,0)  \RDI{coilarmB}{pst-coil} \\ \hline
+\multicolumn{2}{|c|}{\blue  \dft : 0.5cm}\\ \hline 
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|p{6cm}|p{6cm}|}  \hline  
+\rule[-.7cm]{0pt}{1.4cm}	\pscoil[coilaspect=0](0.5,0)(5,0)  & \pscoil[coilaspect=30](0.5,0)(5,0)  \\ \hline
+\BS{}pscoil[\RDD{coilaspect}=0](0.5,0)(5,0) \RDI{coilaspect}{pst-coil} & \BS{}pscoil[{\red coilaspect=30}](0.5,0)(5,0)  \\ \hline	
+\multicolumn{2}{|c|}{ \blue \dft :45}\\ \hline 
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|p{6cm}|p{6cm}|}  \hline  
+\rule[-.7cm]{0pt}{1.4cm}	\pscoil[coilinc=1](0.5,0)(5,0)  & \pscoil[coilinc=60](0.5,0)(5,0)  \\ \hline
+\BS{}pscoil[\RDD{coilinc}=1](0.5,0)(5,0) \RDI{coilinc}{pst-coil}  & \BS{}pscoil[{\red  coilinc=30 }](0.5,0)(5,0)  \\ \hline
+\multicolumn{2}{|c|}{\blue \dft : 10}\\ \hline 	
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|p{6cm}|p{6cm}|}  \hline  
+\rule[-2cm]{0pt}{4cm}	\pszigzag[bow=1cm](0.5,0)(5,0)  & \pszigzag[bow=-1cm](0.5,0)(5,0)  \\ \hline
+\BS{pszigzag}[\RDD{bow}=1cm](0.5,0)(5,0) \RDI{bow}{pst-coil}  & 
+\BS{}pszigzag[{\red bow=-1cm}](0.5,0)(5,0)  \\ \hline
+\multicolumn{2}{|c|}{\blue \dft : 0}\\ \hline 	
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{|p{6cm}|p{6cm}|}  \hline  
+\rule[-1.5cm]{0pt}{3cm}	\pssin(0.5,0)(5,0)  & \pssin[periods=5](0.5,0)(5,0)  \\ \hline
+\textbf{\BS{}pssin}(0.5,0)(5,0)  & \BS{}pssin[\RDD{periods}=5(0.5,0)(5,0) \RDI{periods}{pst-coil}  \\ \hline
+
+\rule[-1.5cm]{0pt}{3cm}	\pssin[periods=2cm ](0.5,0)(5,0)  & \pssin[amplitude=0.5](0.5,0)(5,0)  \\ \hline
+\BS{}pssin[{\red periods=2cm}](0.5,0)(5,0)  & \BS{}pssin[\RDD{amplitude}=0.5](0.5,0)(5,0)  \RDI{amplitude}{pst-coil} \\ \hline
+
+\rule[-1.5cm]{0pt}{3cm}	\pssin[ppoints=5 ](0.5,0)(5,0)  & \pssin[ppoints=2000](0.5,0)(5,0)  \\ \hline
+\BS{}pssin[\RDD{ppoints}=5 ](0.5,0)(5,0) \RDI{ppoints}{pst-coil}  & 
+\BS{}pssin[{\red ppoints=2000}]](0.5,0)(5,0)  \\ \hline
+\multicolumn{2}{|c|}{\blue \dft:  periods = 1 , amplitude = 1 , ppoints= 360}\\ \hline 	
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|l|}  \hline 
+
+\multicolumn{1}{|c|}{
+\begin{pspicture}(0,-4)(11,2)
+\psaxes[yticksize=11,linewidth=.2mm,linecolor=black,linestyle=dashed,xticksize=-2.5 1.5]{->}(0,0)(0,-3.5)(11,1.5)
+	\pssin[linecolor=red,linewidth=2pt,function=dup sin mul .01 mul](1,0)(10,0) 
+	\pssin[linecolor=green,linewidth=2pt,function=cos](1,0)(10,0) 
+	\pssin[linecolor=cyan,linewidth=2pt,function=2 mul sin](1,0)(10,0)
+	\pssin[linecolor=blue,linewidth=2pt,function=360 div](1,0)(10,0)	
+\end{pspicture}}\\\hline
+	\BS{}pssin[linecolor=blue,linewidth=2pt,\RDD{function=360} div](1,0)(10,0) \RDI{function}{pst-coil} \\
+	\BS{}pssin[linecolor=green,linewidth=2pt,{\green function=cos}](1,0)(10,0)  \\ 
+	\BS{}pssin[linecolor=cyan,linewidth=2pt,{\cyan function=2 mul sin}](1,0)(10,0) \\ 
+	\BS{}pssin[linecolor=red,linewidth=2pt,{\red function=dup sin mul .01 mul}](1,0)(10,0)  \\	\hline
+\end{tabular}
+\end{center}
+
+
+\SbSbSSCT{Liaison de n\oe uds en bobine}{Connecting nodes with coils}
+
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{3}{|c|}{\BS{}dotnode[dotstyle=*](.5,-.5)\AC{{\red A}} \BS{}dotnode[dotstyle=*](3.5,0)\AC{{\red B}}} \\ \hline
+\begin{pspicture}(0,-1)(4 ,1) \dotnode[dotstyle=*](.5,-.5){A} \dotnode[dotstyle=*](3.5,0){B} \nccoil{->}{A}{B}  
+\end{pspicture}	
+&
+\begin{pspicture}(0,-1)(4 ,1)\dotnode[dotstyle=*](.5,-.5){A} \dotnode[dotstyle=*](3.5,0){B} \nczigzag{->}{A}{B}  
+\end{pspicture}	
+&  
+\begin{pspicture}(0,-1)(4 ,1)\dotnode[dotstyle=*](.5,-.5){A} \dotnode[dotstyle=*](3.5,0){B} \ncsin{->}{A}{B}  
+\end{pspicture}	
+\\ \hline
+\BSS{nccoil}\AC{->}\AC{A}\AC{B}  \BSI{nccoil}{pst-coil} & \BSS{nczigzag}\AC{->}\AC{A}\AC{B}  \BSI{nczigzag}{pst-coil} & \BSS{ncsin}\AC{->}\AC{A}\AC{B}   \BSI{ncsin}{pst-coil}
+\\ \hline
+\begin{pspicture}(0,-1)(4 ,1) \dotnode[dotstyle=*](.5,-.5){A} \dotnode[dotstyle=*](3.5,0){B} \pccoil{->}(A)(B)   
+\end{pspicture}	
+&
+\begin{pspicture}(0,-1)(4 ,1)\dotnode[dotstyle=*](.5,-.5){A} \dotnode[dotstyle=*](3.5,0){B}
+ \pczigzag {->}(A)(B)  
+\end{pspicture}	
+&  
+\begin{pspicture}(0,-1)(4 ,1)\dotnode[dotstyle=*](.5,-.5){A} \dotnode[dotstyle=*](3.5,0){B}
+ \pcsin{->}(A)(B)  
+\end{pspicture}
+\\ \hline
+\BSS{pccoil}\AC{->}(A)(B)  \BSI{pccoil}{pst-coil} & \BSS{pczigzag} \AC{->}(A)(B)  \BSI{pczigzag}{pst-coil} &  \BSS{pcsin}\AC{->}(A)(B)   \BSI{pcsin}{pst-coil}\\ \hline
+\begin{pspicture}(0,-1)(4 ,1) \dotnode[dotstyle=*](.5,-.5){A} \dotnode[dotstyle=*](3.5,0){B} \nccoil*{->}{A}{B}  
+\end{pspicture}	
+&
+\begin{pspicture}(0,-1)(4 ,1)\dotnode[dotstyle=*](.5,-.5){A} \dotnode[dotstyle=*](3.5,0){B} \nczigzag*{->}{A}{B}  
+\end{pspicture}	
+&  
+\begin{pspicture}(0,-1)(4 ,1)\dotnode[dotstyle=*](.5,-.5){A} \dotnode[dotstyle=*](3.5,0){B} \ncsin*{->}{A}{B}  
+\end{pspicture}	
+\\ \hline
+\textbf{\BS{}nccoil*}\AC{->}\AC{A}\AC{B}  & \textbf{\BS{}nczigzag*}\AC{->}\AC{A}\AC{B}  & \textbf{\BS{}ncsin*}\AC{->}\AC{A}\AC{B}  
+\\ \hline
+\end{tabular}
+\end{center}
+
+\psset{fillcolor=yellow}

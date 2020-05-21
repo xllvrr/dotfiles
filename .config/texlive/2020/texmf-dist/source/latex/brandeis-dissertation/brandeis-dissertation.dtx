@@ -1,0 +1,346 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2020 by Deanna Daly <gradschool@brandeis.edu>
+% -------------------------------------------------------
+% 
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+%    http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of LaTeX 
+% version 2005/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{brandeis-dissertation.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+%<package>\ProvidesPackage{brandeis-dissertation}
+%<*package>
+    [2020/04/09 v3.11 .dtx brandeis-dissertation file]
+%</package>
+%<package>\LoadClass[12pt]{article}
+%<package>\RequirePackage[margin=1in]{geometry}
+%<package>\RequirePackage{setspace}
+%<package>\RequirePackage{titlesec}
+%<package>\RequirePackage[utf8]{inputenc}
+%<package>\RequirePackage[english]{babel}
+%<package>\RequirePackage{csquotes}
+%<package>\RequirePackage{tocloft}
+%<package>\AtBeginEnvironment{quote}{\singlespacing}
+%
+%<package>\renewcommand\cfttoctitlefont{\normalsize}
+%<package>\renewcommand\cftlottitlefont{\normalsize}
+%<package>\renewcommand\cftloftitlefont{\normalsize}
+%<package>\titleformat*{\section}{\normalsize\bfseries}
+%<package>\titleformat*{\subsection}{\normalsize\bfseries}
+%<package>\titleformat*{\subsubsection}{\normalsize\bfseries}
+%<package>\newcommand{\sectionbreak}{\clearpage}
+%
+%<package>\newcommand\graduationmonth[1]{\def\@graduationmonth{#1}}
+%<package>\newcommand\graduationyear[1]{\def\@graduationyear{#1}}
+%<package>\newcommand\program[1]{\def\@program{#1}}
+%<package>\newcommand\advisor[1]{\def\@advisor{#1}}
+%<package>\newcommand\signoff[2]{\def\@signoff{#1}\def\@signofftitle{#2}}
+%<package>\newcommand\committee[1]{\def\@committee{#1}}
+%<package>\addto\captionsenglish{\renewcommand*\contentsname{Table of Contents}}
+%<package>\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+%
+%<*package>
+\newcommand{\maketitlepage}{%
+    \pagenumbering{gobble}
+    %\newgeometry{top=1.75in}
+    \begin{center}
+        \@title\\
+        \vspace{1em}
+        A Dissertation\\
+        \vspace{1em}
+        Presented to\\
+        \vspace{1em}
+        The Faculty of the Graduate School of Arts and Sciences\\
+        Brandeis University\\
+        \vspace{1em}
+        \@program\\
+        \vspace{1em}
+        \@advisor, Advisor\\
+        \vspace{1em}
+        In Partial Fulfillment\\
+        of the Requirements for the Degree\\
+        Doctor of Philosophy\\
+        \vspace{1em}
+        by\\
+        \@author\\
+        \vspace{1em}
+        \@graduationmonth\,\@graduationyear
+    \end{center}
+    \restoregeometry
+    \newpage
+    \pagenumbering{roman}
+    \setcounter{page}{2}
+}
+%</package>
+%<*package>
+\newcommand{\makeapproval}{%
+    \pagenumbering{gobble}
+    \begin{spacing}{2}
+    \noindent
+    This dissertation, directed and approved by \@author{}'s Committee, has been\\ accepted and approved by the Faculty of Brandeis University in partial fulfillment of the\\  requirements for the degree of:
+    \end{spacing}
+    
+    \hspace{3in}\textbf{DOCTOR OF PHILOSOPHY}
+    
+    \vspace{3em}
+    
+    \hspace{3in}\@signoff, \@signofftitle
+    
+	\hspace{3in}Graduate School of Arts and Sciences\\
+    \vspace{1em}
+    
+    \noindent
+    Dissertation Committee:
+
+    \noindent
+    \@committee
+    
+    \newpage
+    \setcounter{page}{3}
+}
+%</package>
+%<*package>
+\newcommand{\makecopyright}{%
+    \pagenumbering{gobble}
+    \newgeometry{top=6.2in}
+    \begin{center}
+        Copyright by\\
+        \@author{}\\
+        \vspace{1em}
+        \@graduationyear{}
+    \end{center}
+    \restoregeometry
+    \newpage
+    \pagenumbering{roman}
+    \setcounter{page}{4}
+}
+%</package>
+%<*package>
+\newenvironment{dissertation-acknowledgements}
+    {
+    %\newgeometry{top=1.4in}
+    \begin{center}
+        Acknowledgements\\
+        \vspace{1em}
+    \end{center}
+    }
+    {
+    \restoregeometry
+    }
+%</package>
+%<*package>
+\newenvironment{dissertation-abstract}
+    {
+    %\newgeometry{top=1.4in}
+    \begin{center}
+        \MakeUppercase{Abstract}\\
+        \vspace{1em}
+        \@title\\
+        \vspace{1em}
+        A dissertation presented to the Faculty of the\\
+        Graduate School of Arts and Sciences of Brandeis University\\
+        Waltham, Massachusetts\\
+        \vspace{1em}
+        By\,\@author\\
+        \vspace{2em}
+    \end{center}
+    \doublespacing
+    }
+    {
+    \restoregeometry
+    }
+%</package>
+%<*package>
+\newcommand{\startbody}{%
+    \newpage
+    \pagenumbering{arabic}
+    \doublespacing
+}
+%</package>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs         
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{brandeis-dissertation.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v3.0}{2020/02/28}{Initial version}
+% \changes{v3.1}{2020/04/09}{Formatting update}
+% \changes{v3.11}{2020/04/09}{Documentation update}
+%
+% \GetFileInfo{brandeis-dissertation.dtx}
+%
+% \DoNotIndex{\newcommand,\newenvironment}
+% 
+%
+% \title{The \textsf{brandeis-dissertation} package\thanks{This document
+%   corresponds to \textsf{brandeis-dissertation}~\fileversion, dated \filedate.}}
+% \author{Brandeis University GSAS \\ \texttt{gradschool@brandeis.edu}}
+%
+% \maketitle
+%
+% \section{Introduction}
+% 
+% This document explains how to use the \textsf{brandeis-dissertation} class in \LaTeX{} to format your dissertation according to the specifications of Brandeis University's Graduate School of Arts and Sciences. 
+% 
+% The \textsf{brandeis-dissertation} class will do the following for you:
+% \begin{itemize}
+%     \item Create your title, approval, copyright, acknowledgements, and abstract pages.
+%     \item Ensure your dissertation has the correct margins, spacing, and pagination.
+% \end{itemize}
+% 
+% \section{Usage}
+% \label{Sec:usage}
+% 
+% \subsection{Title Information}
+% \label{Sec:general}
+% 
+% The following commands are used to save information that is used to % render your title page:
+% 
+% \begin{description}
+% \item[\texttt{\textbackslash title\{\}}:] The title of your dissertation.
+% \item[\texttt{\textbackslash author\{\}}:] Your name.
+% \item[\texttt{\textbackslash graduationmonth\{\}}:] The month in which you graduate.
+% \item[\texttt{\textbackslash graduationyear\{\}}:] The year in which you graduate.
+% \item[\texttt{\textbackslash program\{\}}:] Your program.
+% \item[\texttt{\textbackslash advisor\{\}}:] Your advisor's name.
+% \item[\texttt{\textbackslash signoff\{\}\{\}}:] The name of the individual signing off on your approval page, followed by their title. This likely is the dean.
+% \item[\texttt{\textbackslash committee\{\}}:] The members of your committee, with each member separated by a double backslash (\texttt{\char`\\\char`\\}).
+% \end{description}
+% 
+% For example, including the following in your document:
+% 
+% \begin{verbatim}
+% \title{LaTeXing Your Dissertation}
+% \author{Deanna Daly}
+% \graduationmonth{May}
+% \graduationyear{2020}
+% \program{Philosophy}
+% \advisor{Alan Turing}
+% \signoff{Eric Chasalow}{Dean}
+% \committee{Bertrand Russell, Philosophy\\
+% Alfred North Whitehead, Mathematics\\
+% Ludwig Wittgenstein, Philosophy\\
+% Emmy Noether, Mathematics, Bryn Mawr College}
+% \end{verbatim}
+% 
+% would set your dissertation to one with a title of ``LaTeXing Your Dissertation'', an author of ``Deanna Daly'', a graduation time of May 2020, with the advisor ``Alan Turing'' in the Philosophy program. Your approval page should be signed off by Eric Chasalow, the dean. Your committee would be set to consist of Bertrand Russell from the Philosophy Department, Alfred North Whitehead from the Mathematics Department, and Ludwig Wittgenstein from the Philosophy Department. Your outside reader would be set to be Emmy Noether from Bryn Mawr College's Mathematics Department.
+% 
+% \subsection{Creating Front Matter}
+% 
+% The title, approval, and copyright pages of your dissertation can be % created with just one line each:
+% 
+% \begin{verbatim}
+% \maketitlepage
+% \makeapproval
+% \makecopyright
+% \end{verbatim}
+% 
+% The abstract is created with the \texttt{dissertation-abstract} environment, as in the following example:
+% 
+% \begin{verbatim}
+% \begin{dissertation-abstract}
+% I present a simple explanation of how to LaTeX your dissertation.
+% \end{dissertation-abstract}
+% \end{verbatim}
+% 
+% This will create your abstract page, with the abstract being ``I present a simple explanation of how to LaTeX your dissertation.'' You may optionally use the \texttt{dissertation-acknowledgements} environment in the same way, immediately before your abstract.
+% 
+% Table of Contents, List of Figures, etc. can be generated as usual using \LaTeX. You should precede these with \texttt{\textbackslash doublespacing} to make them double spaced.
+% 
+% To end the front matter section of your dissertation and begin the body of your dissertation, use the command \texttt{\textbackslash startbody}.
+% 
+% The rest of your dissertation may be written as normal; margins, spacing, and pagination should be set automatically, with the exception of your bibliography. To make your bibliography single spaced, you should precede it with You should precede these with \texttt{\textbackslash singlespacing}.
+% 
+% \section{Example}
+% 
+% The below example provides the source code for a simple dissertation with no figures or citations.
+% 
+% \begin{verbatim}
+% \documentclass[red]{brandeis-dissertation}
+% \usepackage[utf8]{inputenc}
+% 
+% \title{LaTeXing Your Dissertation}
+% \author{Deanna Daly}
+% \graduationmonth{May}
+% \graduationyear{2020}
+% \program{Philosophy}
+% \advisor{Alan Turing}
+% \signoff{Eric Chasalow}{Dean}
+% \committee{Bertrand Russell, Philosophy\\
+% Alfred North Whitehead, Mathematics\\
+% Ludwig Wittgenstein, Philosophy\\
+% Emmy Noether, Mathematics, Bryn Mawr College}
+% 
+% \begin{document}
+% 
+% \maketitlepage
+% \makeapproval
+% \makecopyright
+% 
+% \begin{dissertation-acknowledgements}
+% Thank you to John Burt for assisting with creating this package.
+% \end{dissertation-acknowledgements}
+% 
+% \begin{dissertation-abstract}
+% I present a simple explanation of how to LaTeX your dissertation.
+% \end{dissertation-abstract}
+% 
+% \doublespacing
+% \tableofcontents
+% 
+% \startbody
+% 
+% \section{Introduction}
+% Using \LaTeX for your dissertation is easy.
+% 
+% \section{Body}
+% You can copy paste this code, and add your own dissertation.
+% 
+% \section{Conclusion}
+% The dissertation class should help you with your formatting.
+% 
+% \end{document}
+% \end{verbatim}
+%
+% \Finale
+\endinput
+

@@ -1,0 +1,36 @@
+name mcmthesis
+category Package
+revision 53513
+shortdesc Template designed for MCM/ICM
+longdesc The package offers a template for MCM (The Mathematical Contest
+longdesc in Modeling) and ICM (The Interdisciplinary Contest in
+longdesc Modeling) for typesetting the submitted paper.
+containersize 3628
+containerchecksum 5768d3d07c88c186c9b1937efb3b4fb21cdb1cf9b05cf653657f34839e812c0072b0b0a24f05fc24cb29fe084fe8d26a099481c8b753e99c08b481957635470f
+doccontainersize 439624
+doccontainerchecksum 5bcea5b94809ebf47416a9638112979d47a64aaf7ec02e1729bd8004f7159383f2c07db03164f44fc450548a80a7905569aaddd0fbf89775f3e1f894bffb20ee
+docfiles size=122
+ texmf-dist/doc/latex/mcmthesis/LICENSE
+ texmf-dist/doc/latex/mcmthesis/LICENSE.tex
+ texmf-dist/doc/latex/mcmthesis/README.md details="Readme"
+ texmf-dist/doc/latex/mcmthesis/README.tex
+ texmf-dist/doc/latex/mcmthesis/code/mcmthesis-matlab1.m
+ texmf-dist/doc/latex/mcmthesis/code/mcmthesis-sudoku.cpp
+ texmf-dist/doc/latex/mcmthesis/figures/example-image-a.pdf
+ texmf-dist/doc/latex/mcmthesis/figures/example-image-b.pdf
+ texmf-dist/doc/latex/mcmthesis/figures/example-image-c.pdf
+ texmf-dist/doc/latex/mcmthesis/figures/mcmthesis-logo.pdf
+ texmf-dist/doc/latex/mcmthesis/mcmthesis-demo.pdf details="Example of use"
+ texmf-dist/doc/latex/mcmthesis/mcmthesis-demo.tex
+ texmf-dist/doc/latex/mcmthesis/mcmthesis.pdf details="Package documentation"
+srccontainersize 13592
+srccontainerchecksum 23016bb72ae6eb43af0903440fefcd59d0a3b3b7d23afe5a834f1497d4cfdb62b88ecf78232909a33efef3f15370efe116e193f9904b9aca9385c282773e1548
+srcfiles size=12
+ texmf-dist/source/latex/mcmthesis/mcmthesis.dtx
+runfiles size=3
+ texmf-dist/tex/latex/mcmthesis/mcmthesis.cls
+catalogue-contact-home https://github.com/latexstudio-org/mcmthesis
+catalogue-ctan /macros/latex/contrib/mcmthesis
+catalogue-license lppl1.3
+catalogue-topics dissertation class
+catalogue-version 6.3

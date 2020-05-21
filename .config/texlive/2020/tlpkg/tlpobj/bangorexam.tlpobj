@@ -1,0 +1,26 @@
+name bangorexam
+category Package
+revision 46626
+shortdesc Typeset an examination at Bangor University
+longdesc The package allows typesetting of Bangor Univesity's exam
+longdesc style. It currently supports a standard A/B choice, A-only
+longdesc compulsory and 'n' from 'm' exam styles. Marks are totalled and
+longdesc checked automatically.
+containersize 49800
+containerchecksum 9da594fb6d8dec3727dc5e437923c225aff392250c42566972a6998a4709e1853e6b7399ce64e8cbb7408a422631ee61229cc97001343ac8acee7d5c0fd20847
+doccontainersize 185696
+doccontainerchecksum 576b991d414d9a8b481dd2d76a4ba74af9db70ae720d9b81f16cb2cfd887d8a09c2bd601bf7711ec77073909aa61470f2cdd7573457ea2ed25f9e316417da9ac
+docfiles size=47
+ texmf-dist/doc/latex/bangorexam/README.txt details="Readme"
+ texmf-dist/doc/latex/bangorexam/bangorexam.pdf details="Package documentation"
+srccontainersize 49668
+srccontainerchecksum 22732c47f60e2145ba850a60afc15cc926e57ff27a9234d84cf647ae83c8b783cd8023bb419f576dbba1f5e49de95416f98639440d6001525eac3cbd4fe8ab41
+srcfiles size=64
+ texmf-dist/source/latex/bangorexam/bangorexam.dtx
+ texmf-dist/source/latex/bangorexam/bangorexam.ins
+runfiles size=60
+ texmf-dist/tex/latex/bangorexam/bangorexam.cls
+catalogue-ctan /macros/latex/contrib/bangorexam
+catalogue-license lppl1.3
+catalogue-topics exam class
+catalogue-version 1.4.0

@@ -1,0 +1,54 @@
+name tikzpeople
+category Package
+revision 43978
+shortdesc Draw people-shaped nodes in TikZ
+longdesc This package provides people-shaped nodes in the style of
+longdesc Microsoft Visio clip art, to be used with TikZ. The available,
+longdesc highly customizable, node shapes are: alice, bob, bride,
+longdesc builder, businessman, charlie, chef, conductor, cowboy,
+longdesc criminal, dave, devil, duck, graduate, groom, guard, jester,
+longdesc judge, maininblack, mexican, nun, nurse, physician, pilot,
+longdesc police, priest, sailor, santa, surgeon.
+containersize 20712
+containerchecksum 9a7cdc232e91fc0d6e5fcc67ea8c39dd2a4b482ccb6ccfd82332151117ef5121ef49bebcd2e0266492c88b57c146eaa578d2136a23f8781f3fc5f5d07f527db7
+doccontainersize 486576
+doccontainerchecksum f561978adbe443659ec0890a8a38e9c9506f311d49d11fe952eacf579db0619946f86c0c6929a215fe7a98f5f02a782d1bc528359f195e09e1f388460dc0d55c
+docfiles size=130
+ texmf-dist/doc/latex/tikzpeople/README.md details="Readme"
+ texmf-dist/doc/latex/tikzpeople/tikzpeople.pdf details="Package documentation"
+ texmf-dist/doc/latex/tikzpeople/tikzpeople.tex
+runfiles size=54
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.alice.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.bob.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.bride.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.builder.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.businessman.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.charlie.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.chef.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.conductor.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.cowboy.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.criminal.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.dave.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.devil.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.duck.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.graduate.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.groom.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.guard.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.jester.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.judge.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.maninblack.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.mexican.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.nun.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.nurse.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.physician.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.pilot.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.police.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.priest.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.sailor.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.santa.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.shape.surgeon.sty
+ texmf-dist/tex/latex/tikzpeople/tikzpeople.sty
+catalogue-ctan /graphics/pgf/contrib/tikzpeople
+catalogue-license lppl1.3
+catalogue-topics pgf-tikz
+catalogue-version 0.4

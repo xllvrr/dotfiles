@@ -1,0 +1,82 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[
+    typ=ab,
+    fach=Physik,
+    lerngruppe=9a,
+    nummer=2A,
+    datumAnzeigen,
+    namensfeldAnzeigen,
+]{schule}
+
+% Dieses Dokument gehört zu den Beispiel des LaTeX Paketes Schule und ist von den Autoren
+% des Pakets erstellt worden.
+%
+% Das Dokument steht unter der Lizenz: Creative Commons by-nc-sa Version 4.0
+% http://creativecommons.org/licenses/by-nc-sa/4.0/deed.de
+%
+% Nach dieser Lizenz darf das Dokument beliebig kopiert und bearbeitet werden,
+% sofern das Folgeprodukt wiederum unter gleichen Lizenzbedingungen vertrieben
+% und auf die ursprünglichen Urheber verwiesen wird.
+% Eine kommerzielle Nutzung ist ausdrücklich ausgeschlossen.
+
+\author{Andr'e Hilbig}
+\title{Schiefe Ebene}
+\date{2014-11-13}
+
+\usetikzlibrary{decorations.pathreplacing}
+
+\xsimsetup{
+    aufgabe/template=schule-keinenummer,
+}
+
+\newcommand{\Hintergrund}[4][0.5cm]{
+    \begin{tikzpicture}
+        \pgfmathtruncatemacro{\anzahl}{(\linewidth-\pgflinewidth)/#1}
+        \draw[gray,step=#1] (0,0) rectangle (\anzahl*#1,#2*#3) (0,0) grid (\anzahl*#1,#2*#3);
+        #4
+    \end{tikzpicture}
+}
+\newcommand{\schiefeEbene}[4]{
+    \draw[black, very thick] (#1,#2) -- (#3,#2);
+    \draw[black, very thick] (#3,#4) -- (#3,#2);
+    \draw[black, very thick] (#3,#4) -- (#1,#2);
+}
+
+\begin{document}
+\section*{\Titel}
+\enlargethispage{1ex}
+\begin{aufgabe}
+    Ein Massestück mit der Masse $m=\unit[200]{g}$ soll um eine Höhe $\Delta h=\unit[10]{cm}$ angehoben werden. Die Masse wird jedoch nicht direkt gehoben, sondern über eine schiefe Ebene hochgezogen.
+
+    \hinweis{Verwende für die Kräfte den Maßstab: $\unit[1]{N} \overset{\wedge}{=} \unit[1]{cm}$.}
+
+    \vspace*{1ex}
+
+    \Hintergrund{0.5cm}{0.85cm}{
+        \draw[decorate, black, decoration={brace, amplitude=10pt},
+            xshift=4pt, yshift=0pt] (14.5cm,11cm) -- (14.5cm,1cm) node
+            [black,midway,xshift=0.7cm] {$\Delta h$};
+        \draw[decorate,black,decoration={brace,amplitude=10pt},
+            xshift=3pt, yshift=-4pt] (14.5cm,11cm) -- (0cm,1cm) node
+            [black, midway, xshift=12pt, yshift=-16pt] {$\Delta s$};
+        \schiefeEbene{0cm}{1cm}{14.5cm}{11cm}
+        \draw[black, very thick, rotate=35, yshift=0.8cm,
+            xshift=9.4cm] (0cm,0cm) rectangle (1cm, 1cm);
+    }
+
+    \begin{teilaufgaben}
+        \teilaufgabe Konstruiere mit Hilfe eines Kräfteparallelogramms die Kraft $F_{\text{Zug}}$ mit der an  der Kiste gezogen werden muss.
+        \teilaufgabe Fülle danach die unten abgedruckte Tabelle mit deinen gemessenen Werten aus und berechne das Produkt $F_{\text{Zug}}\cdot\Delta s$.
+
+        \begin{tabular}{l|c|c|c}
+            & $F_{\text{Zug}}$ in N & $\Delta s$ in cm &  $F_{\text{Zug}}\cdot\Delta s$ in Nm\\\hline
+            \multirow{2}{*}{Schiefe Ebene A} &	& & \\
+            &	& & \\\hline
+            \multirow{2}{*}{Schiefe Ebene B} &	& & \\
+            & & & \\
+        \end{tabular}
+    \end{teilaufgaben}
+
+\end{aufgabe}
+
+\end{document}

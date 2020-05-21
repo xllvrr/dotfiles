@@ -1,0 +1,19 @@
+#!/bin/bash
+# Deploy a new LaTeX style or package.
+#
+# Usage:
+#   deploy tlc-article.cls
+#
+# Note:  
+#   I use this script to test my deployment before publishing with CTAN. 
+# ------------------------------------------------------------------------------
+main() {
+  mkdir -vp $(kpsewhich -var-value TEXMFLOCAL)/tex/latex/${1%.}
+  cp -v $1 $(kpsewhich -var-value TEXMFLOCAL)/tex/latex/${1%.}/. 
+  mktexlsr $(kpsewhich -var-value TEXMFLOCAL)
+}
+
+# ------------------------------------------------------------------------------
+# Kick start start this script.
+# ------------------------------------------------------------------------------
+main $@

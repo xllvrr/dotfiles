@@ -1,0 +1,37 @@
+name lni
+category Package
+revision 52401
+shortdesc Official class for the "Lecture Notes in Informatics"
+longdesc This is the official version of the class "lni" for submissions
+longdesc to the Lecture Notes in Informatics published by the
+longdesc Gesellschaft fur Informatik. To use it, download the file
+longdesc lni-author-template.tex and edit it in your favorite LaTeX
+longdesc editor.
+containersize 11740
+containerchecksum 8648f9a39d982e99f19af652e39ad1feb98c01ee2a06b3912dc609213673bbd685e11969507842caea4657d8ec0a33f7b3a9ceb0a4cbfd4a9c4939ac1d30e42a
+doccontainersize 367020
+doccontainerchecksum 7ee44a6ba2782b28a81c8d907ed11a07079b4e8eed3fc1d8adff80274df471637dc69e15e6012d9147116c76d2faf9beca10b22a554a03ae6985c9f68791f104
+docfiles size=96
+ texmf-dist/doc/latex/lni/CHANGELOG.md
+ texmf-dist/doc/latex/lni/CONTRIBUTING.md
+ texmf-dist/doc/latex/lni/README.md details="Readme"
+ texmf-dist/doc/latex/lni/lni-author-template.tex
+ texmf-dist/doc/latex/lni/lni-paper-example-de.bib
+ texmf-dist/doc/latex/lni/lni-paper-example-de.tex
+ texmf-dist/doc/latex/lni/lni.pdf details="Package documentation"
+srccontainersize 24584
+srccontainerchecksum ee33399c5fe757c19b4e297b184887aaf44fd011b78b2ba84b906955c2da3ff3e76c6400a9f21967ffaef8806f12a3ea3c82a4a20d24c737e0c3dc514ec5a0a0
+srcfiles size=24
+ texmf-dist/source/latex/lni/lni.dtx
+ texmf-dist/source/latex/lni/lni.ins
+runfiles size=18
+ texmf-dist/bibtex/bst/lni/lni.bst
+ texmf-dist/bibtex/bst/lni/lnig.bst
+ texmf-dist/tex/latex/lni/lni.cls
+catalogue-also biblatex-lni
+catalogue-contact-bugs https://github.com/gi-ev/LNI/issues
+catalogue-contact-repository https://github.com/gi-ev/LNI
+catalogue-ctan /macros/latex/contrib/lni
+catalogue-license lppl1.3c
+catalogue-topics journalpub class
+catalogue-version 1.6

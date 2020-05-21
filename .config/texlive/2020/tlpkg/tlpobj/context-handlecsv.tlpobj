@@ -1,0 +1,26 @@
+name context-handlecsv
+category ConTeXt
+revision 51306
+shortdesc Data merging for automatic document creation
+longdesc The package handles csv data merging for automatic document
+longdesc creation.
+depend context
+containersize 16056
+containerchecksum 10f862b7152e0efe2a8444fcf847ade2aad2c1499e146b94643a7e08a438359c2f7d1927e7e9773f3dd14475fb4535d17fb4f29ff053e7a29c9463f40c6e5598
+doccontainersize 968756
+doccontainerchecksum 39330dfaf22a83181086343ac9ea7d64025fbe779e55161b33e5a9a9802e0928bb1c16941aeb307da641835aefdfe2e431becbc0cfe40ad8bb33a3816b9b177b
+docfiles size=249
+ texmf-dist/doc/context/third/handlecsv/VERSION
+ texmf-dist/doc/context/third/handlecsv/handlecsv.epub
+ texmf-dist/doc/context/third/handlecsv/handlecsv.pdf details="Package documentation"
+runfiles size=22
+ texmf-dist/tex/context/third/handlecsv/t-handlecsv-extra.lua
+ texmf-dist/tex/context/third/handlecsv/t-handlecsv-tools.lua
+ texmf-dist/tex/context/third/handlecsv/t-handlecsv.lua
+ texmf-dist/tex/context/third/handlecsv/t-handlecsv.tex
+catalogue-contact-home http://www.handlecsv.tk
+catalogue-contact-repository https://github.com/ousia/handlecsv
+catalogue-contact-support https://github.com/ousia/handlecsv/issues
+catalogue-ctan /macros/context/contrib/context-handlecsv
+catalogue-license gpl3
+catalogue-topics context csv-support

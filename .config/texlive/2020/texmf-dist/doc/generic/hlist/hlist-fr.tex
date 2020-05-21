@@ -1,0 +1,463 @@
+% !TeX encoding = ISO-8859-1
+% Ceci est la documentation du package "hlist"
+%
+% Fichier compilé avec pdflatex
+\documentclass[french,a4paper,10pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage[bottom]{footmisc}
+\usepackage{libertine,boites,tikz,enumitem,MnSymbol,babel,xspace,listings,hlist}
+\usepackage[scaled=0.8]{luximono}
+\frenchbsetup{og=«,fg=»}
+\def\eTeX{\hbox{$\varepsilon$-\TeX}}
+\def\HLIST{\texttt{\hlstname}\xspace}
+\makeatletter
+\def\code{\expandafter\code@i\string}
+\def\code@i#1{%
+	\begingroup
+		\par\nobreak\medskip\parindent0pt
+		\leftskip.1\linewidth
+		\catcode`\^^I 13 \begingroup\lccode`\~`\^^I \lowercase{\endgroup\def~{\leavevmode\space\space\space\space}}%
+		\let\do\@makeother \dospecials
+		\ttfamily\small\@noligs
+		\obeylines\obeyspaces
+		\def\code@ii##1#1{##1\par\medbreak\endgroup}%
+		\code@ii
+}
+\long\def\grab@toks#1\relax{\gdef\right@content{#1}}
+
+\newcommand\disable@lig[1]{%
+	\catcode`#1\active
+	\begingroup
+		\lccode`\~`#1\relax
+		\lowercase{\endgroup\def~{\leavevmode\kern\z@\string#1}}%
+}
+
+\newcommand\make@car@active[1]{%
+	\catcode`#1\active
+	\begingroup
+		\lccode`\~`#1\relax
+		\lowercase{\endgroup\def~}%
+}
+
+\newcommand\exemple{%
+	\begingroup
+	\parskip\z@
+	\exemple@}
+
+\newcommand\exemple@{%
+	\medbreak\noindent
+	\begingroup
+		\let\do\@makeother\dospecials
+		\make@car@active\ { {}}%
+		\make@car@active\^^M{\par\leavevmode}%
+		\make@car@active\^^I{\space\space}%
+		\make@car@active\,{\leavevmode\kern\z@\string,}%
+		\make@car@active\-{\leavevmode\kern\z@\string-}%
+		\make@car@active\>{\leavevmode\kern\z@\string>}%
+		\make@car@active\<{\leavevmode\kern\z@\string<}%
+		\@makeother\;\@makeother\!\@makeother\?\@makeother\:% neutralise frenchb
+		\exemple@@
+}
+
+\newcommand\exemple@@[1]{%
+	\def\@tempa##1#1{\exemple@@@{##1}}%
+	\@tempa
+}
+
+\newcommand\exemple@@@[1]{%
+	\xdef\the@code{#1}%
+	\endgroup
+		\begingroup
+			\fboxrule0.4pt \fboxsep=5pt
+			\let\breakboxparindent\z@
+			\def\bkvz@top{\hrule\@height\fboxrule}%
+			\def\bkvz@bottom{\hrule\@height\fboxrule}%
+			\let\bkvz@before@breakbox\relax
+			\def\bkvz@set@linewidth{\advance\linewidth\dimexpr-2\fboxrule-2\fboxsep\relax}%
+			\def\bkvz@left{\vrule\@width\fboxrule\kern\fboxsep}%
+			\def\bkvz@right{\kern\fboxsep\vrule\@width\fboxrule}%
+			\breakbox
+				\kern.5ex\relax
+				\begingroup
+					\ttfamily\small\the@code\par
+				\endgroup
+				\kern3pt
+				\hrule height0.1pt width\linewidth depth0.1pt
+				\vskip5pt
+				\newlinechar`\^^M\everyeof{\noexpand}\scantokens{#1}\par
+			\endbreakbox
+		\endgroup
+	\medbreak
+	\endgroup
+}
+\begingroup
+	\catcode`\<13 \catcode`\>13
+	\gdef\verb{\relax\ifmmode\hbox\else\leavevmode\null\fi
+		\bgroup
+			\verb@eol@error \let\do\@makeother \dospecials
+			\verbatim@font\@noligs
+			\catcode`\<13 \catcode`\>13 \def<{\begingroup$\langle$\itshape}\def>{$\rangle$\endgroup}%
+			\@ifstar\@sverb\@verb}
+\endgroup
+\def\longfrhlstdate@i#1/#2/#3\@nil{\number#3\relax\space \ifcase#2 \or janvier\or février\or mars\or avril\or mai\or juin\or juillet\or aout\or septembre\or octobre\or novembre\or décembre\fi\space#1}
+\edef\longfrhlstdate{\expandafter\longfrhlstdate@i\hlstdate\@nil}
+\makeatother
+\begingroup
+	\catcode`\_11 
+	\gdef\cleval#1#2{%
+		\bigbreak\noindent
+		\hbox to .25\linewidth{%
+			\color{teal}\bfseries\ttfamily
+			\detokenize{#1}=$\langle$\detokenize{#2}$\rangle$\hss}\kern2.5em 
+		(\textit{Défaut} : {\color{teal}\ttfamily
+		\skv_eearg\skv_ifempty{\useKV[hlist]{#1}}
+			{\detokenize{{}}}
+			{\detokenize\expandafter\expandafter\expandafter{\useKV[hlist]{#1}}}})%
+		\par\nobreak
+	}
+\endgroup
+\begin{document}
+\parindent=0pt
+\thispagestyle{empty}
+\begin{titlepage}
+	\begingroup
+		\centering
+		\null\vskip.25\vsize
+		{\large\bfseries L'extension pour \TeX/\LaTeX\par \Huge \hlstname\par}
+		\bigbreak
+		v \hlstver
+		\smallbreak
+		\longfrhlstdate
+		\vskip1.5cm
+		Christian \bsc{Tellechea}\par
+		\texttt{unbonpetit@netc.fr}\par
+	\endgroup
+	\vskip2cm
+	\leftskip=.2\linewidth \rightskip=.2\linewidth \small
+	Cette petite extension sans prétention permet de créer des listes horizontale d'items; s'ils s'étendent sur plus d'une ligne, ils seront alignés les uns au-dessous des autres, en colonnes de largeurs égales, un peu à la manière d'un tableau.
+\end{titlepage}
+\parindent1.5em
+
+\section{Comment ça marche}
+Au tout début, j'avais écrit ce code pour présenter des questions courtes \emph{en ligne}, comme on peut le voir parfois dans les manuels scolaires, pour une économie de place verticale dans mes feuilles d'exercices ou de contrôles\footnote{On ne trouve pas ce genre de questions dans mes contrôles !} :
+
+\exemple/Qu'est ce que \TeX ?
+\begin{hlist}3
+	\hitem Une marque \emph{distributeur} de vêtements que l'on trouve dans l'enseigne Carrefour;
+	\hitem Une unité de mesure de la finesse de filaments;
+	\hitem Un logiciel de composition créé par Donald \bsc{Knuth};
+	\hitem Le nom \emph{de scène} de l'humoriste Jean-Christophe \bsc{Le Texier};
+	\hitem Une membrane coupe-vent.
+\end{hlist}/
+
+Le code initial dont je me suis servi pendant longtemps était bien plus basique que celui de cette extension; depuis, il s'est complexifié, mais les méthodes qu'il mettait en \oe uvre sont restées les mêmes. Or, j'avais programmé les listes horizontales en utilisant des \emph{boites} de \TeX{} et non pas des \emph{alignements}. Évidemment, il semble plus naturel de faire appel aux alignements de \TeX{} pour réaliser une telle tâche, mais leur mise en \oe uvre est plus délicate que celle des boites et j'ai été partisan du moindre effort (et je le suis toujours).
+
+Récemment\footnote{\texttt{http://forum.mathematex.net/latex-f6/macros-a-parametres-indefini-t16733.html\char`\#p155215}}, alors que la finalisation du code avait déjà commencée, j'ai découvert que l'extension \texttt{Tasks} offrait \emph{presque} les mêmes fonctionnalités que \HLIST. Comme \emph{presque} n'est pas synonyme d'\emph{exactement}, je me suis finalement décidé à publier cette extension. Il n'est bien entendu pas dans mon intention de dénigrer le travail de C. \bsc{Niederberger} et encore moins de considérer \HLIST comme meilleure que \texttt{Tasks}, mais au niveau des principales différences entre \texttt{Tasks} et \HLIST, on peut citer :
+\begin{itemize}
+	\item \HLIST peut être utilisé avec \TeX{} (\eTeX en réalité) alors que \texttt{Tasks} requiert \LaTeX;
+	\item les listes de \HLIST peuvent être imbriquées tandis que celles de \texttt{Tasks} ne le peuvent pas;
+	\item les changements de catcode (et donc le « verbatim ») sont possibles dans les listes de \HLIST et pas dans celles de \texttt{Tasks};
+	\item le code source de \HLIST est plus concis que celui de \texttt{Tasks} (écrit en \LaTeX3) et, contrairement à ce dernier, \HLIST ne fait appel à aucune extension tierce\footnote{Vu les facilités prétendument offertes par \LaTeX3 et les extensions chargées par \texttt{Tasks}, je suis resté médusé face à la longueur du code de \texttt{Tasks}. Je ne m'explique pas une telle différence avec la taille de \HLIST, alors que \HLIST embarque son propre système de clés/valeurs, ses macros de développement, etc. Avant de me lancer dans une critique sans ménagement de \LaTeX3 et comme j'ai un fort soupçon que quelque chose m'échappe là-dedans, je serais très reconnaissant si quelqu'un, capable de comprendre ce qui se passe, pouvait me fournir une explication.};
+	\item la documentation de \texttt{Tasks} est en anglais (son auteur est allemand); celle de \HLIST est en français. Cesser de docilement se plier à cette prétendue nécessité de fournir une documentation en anglais, fût-ce pour des extensions de \TeX/\LaTeX, compte \emph{beaucoup} à mes yeux.
+\end{itemize}
+
+En revanche, puisque les deux extensions s'appuient sur des constructions de boites, \HLIST partage avec \texttt{Tasks} le principal défaut : une coupure de page ne peut pas avoir lieu au sein d'un item qui s'étendrait sur plusieurs lignes.
+
+\section{Syntaxe}
+L'environnement \HLIST peut être appelé de ces deux manières:
+\begin{itemize}
+	\item façon \LaTeX: \begin{tabular}[t]{l}\relax\verb|\begin{hlist}[<paramètres>]<nombre>|\\\hskip2em \ttfamily contenu de l'environnement\\\verb|\end{hlist}|\end{tabular}
+	\item façon \TeX: \begin{tabular}[t]{l}\relax\verb|\hlist[<paramètres>]<nombre>|\\\hskip2em \ttfamily contenu de l'environnement\\\verb|\endhlist|\end{tabular}
+\end{itemize}
+
+Les options, décrites plus loin, seront celles qui s'appliquent à cette liste et le \verb|<nombre>| est le nombre de colonnes demandées.
+
+L'environnement \HLIST doit commencer par un item, c'est-à-dire par la macro \verb|\hitem|, éventuellement suivie des arguments optionnels suivants :
+
+\begin{enumerate}
+	\item "\verb|*|" signifiant que cet item doit commencer une nouvelle ligne;
+	\item "\texttt{>}" signifiant que cet item doit s'étendre sur toutes les colonnes restant disponibles sur la ligne en cours ;
+	\item l'argument entre crochets "\verb|[<label>]|" spécifie ce que doit être la numérotation de cet item (voir la description de cette fonctionnalité plus loin);
+	\item l'argument entre parenthèses "\verb|(<n>)|" où \verb|<n>| est un entier, indique sur combien de colonnes doit d'étendre cet item.
+\end{enumerate}
+
+Il faut noter que, s'ils sont présents tous les deux, l'argument optionnel "\verb|*|" \emph{doit} précéder "\texttt{>}". En revanche pour les deux derniers arguments optionnels, l'ordre n'a pas d'importance et donc "\verb|[<label>](<n>)|" et accepté tout comme "\verb|(<n>)[<label>]|".
+
+\exemple/\def\txtA{Après le pain, l'éducation est le premier besoin du peuple.}
+\def\txtB{Comment se fait-il que les enfants étant si intelligents,
+          la plupart des hommes soient bêtes ?\par Cela doit tenir à l'éducation.}
+\hlist3
+	\hitem \txtA			\hitem \txtB			\hitem \txtA
+	\hitem \txtA			\hitem> \txtB
+	\hitem*> \txtB
+	\hitem(2) \txtB			\hitem \txtA
+\endhlist/
+
+On peut voir à la page~\pageref{show frame} cette même liste horizontale avec des cadres tracés autour des boites, ce qui peut rendre les choses plus claires pour cet exemple, volontairement complexe et peu réaliste.
+
+\section{Choix des paramètres}
+Nous avons déjà vu qu'écrire \verb|\hlist[<paramètres>]| permet de régler des \verb|<paramètres>| spécifiques à la liste qui suit.
+
+On peut également régler des \verb|<paramètres>| pour toutes les \HLIST à venir avec
+\begin{center}
+\verb|\sethlist{<paramètres>}|
+\end{center}
+mais aussi régler des \verb|<paramètres>| \emph{par défaut} pour les \HLIST à venir avec 
+\begin{center}
+\verb|\setdefaulthlist{<paramètres>}|
+\end{center}
+
+Chaque paramètre est de la forme \verb|<clé>=<valeur>| où la \verb|<clé>| est le plus souvent constituée de deux mots (l'espace entre ces deux mots est \emph{nécessaire}). Les espaces avant et après la \verb|<clé>| et la \verb|<valeur>| sont ignorés.
+
+Lorsqu'une \verb|<clé>| est seule, elle est comprise comme un \emph{booléen} qui vaut \verb|true|. Pour indiquer qu'un booléen est faux, il faut assigner la valeur \verb|false|.
+
+Les paramètres de \emph{placement} sont résumés dans le schéma ci-dessous:\par\kern10pt \nobreak
+
+	{\ttfamily\footnotesize
+	\begin{tikzpicture}[line join=round,x=1.33cm,y=1.33cm]
+		% tracé du paragraphe précédent la hlist
+		\draw [dash pattern=on 2pt off 2pt] (11.6,7.6)--(11.1,7.6);
+		\draw(11.1,7.6)--(1.6,7.6)--(1.6,7.1)--(0,7.1)--(0,6.6)--(11.1,6.6);
+		\draw[dash pattern=on 2pt off 2pt] (11.6,6.6)--(11.1,6.6);
+		\draw[-stealth](0,8)--(1.6,8)node[midway,anchor=south]{\string\parindent};
+		% tracé du 1er label
+		\draw(1.2,5.7)--(1.8,5.7)--(1.8,5.3)--(1.2,5.3);
+		\draw[fill=lightgray](1.2,5.7)--(1.6,5.7)--(1.6,5.3)--(1.2,5.3)--cycle;
+		\draw(1.4,5.5)node[anchor=center]{\normalfont\large\bfseries1.};
+		\draw[-stealth](0,5.8)--(1,5.8)node [midway,anchor=south]{left margin};
+		\draw[-stealth](1,6.2)--(2.1,6.2)node [midway,anchor=south]{item offset};
+		\draw[line width=1pt,red](1,5.6)--(1.2,5.6);
+		\draw[-stealth](2.1,5.8)--(1.8,5.8)node [midway,anchor=south]{label sep};
+		
+		\draw[-stealth](1.8,5)--(1.2,5)node [pos=0,anchor=south east]{label width};
+		\draw[-stealth](3.2,6.6)--(3.2,5.7)node[midway,anchor=west]{\string\parskip+pre skip};
+		% tracé du 1er texte
+		\draw(2.1,5.7)--(5.5,5.7)--(5.5,4.1)--(2.1,4.1)--cycle;
+		% tracé du 2e label
+		\draw[-stealth](5.5,5.8)--(6.3,5.8)node[midway,anchor=south]{col sep};
+		\draw(6.3,5.7)--(7,5.7)--(7,5.3)--(6.3,5.3)--cycle;
+		% tracé du 2e texte
+		\draw [dash pattern=on 2pt off 2pt](9.5,5.7)--(8.9,5.7);
+		\draw(8.9,5.7)--(7.3,5.7)--(7.3,4.9)--(8.9,4.9);
+		\draw [dash pattern=on 2pt off 2pt](8.9,4.9)--(9.5,4.9);
+		% tracé 2e ligne
+		\draw(1.2,3.4)--(1.8,3.4)--(1.8,3)--(1.2,3)--cycle;
+		\draw [dash pattern=on 2pt off 2pt](3.7,3.4)--(3,3.4);
+		\draw(3,3.4)--(2.1,3.4)--(2.1,3);
+		\draw [dash pattern=on 2pt off 2pt](2.1,3)--(2.1,2.7);
+		\draw[-stealth](2.4,4.1)--(2.4,3.4)node[midway,anchor=west]{\string\parskip+item sep};
+	\end{tikzpicture}}
+	
+\section{Placement de la liste de plus haut niveau}
+\cleval{pre skip}{ressort}
+Valeur du \verb|<ressort>| vertical inséré avant la liste \emph{de plus haut niveau d'imbrication}.
+
+\cleval{post skip}{ressort}
+Valeur du \verb|<ressort>| vertical inséré après la liste \emph{de plus haut niveau d'imbrication}.
+
+\cleval{left margin}{dimension}
+Valeur du décalage vers la droite de la liste \emph{de plus haut niveau d'imbrication}.
+
+\exemple/\parindent=2em
+Ceci est un paragraphe s'étendant sur deux ligne et présentant
+une liste de questions mises en forme à l'aide de l'extension \texttt{hlist}
+et avec les paramètres par défaut :
+\hlist3% paramètres par défaut
+	\hitem Question 1					\hitem Question 2
+	\hitem Une question 3
+	\hitem Question 4					\hitem Question 5
+\endhlist
+Ceci est un paragraphe s'étendant sur deux ligne et présentant
+une liste de questions mises en forme à l'aide de l'extension \texttt{hlist}
+et avec des paramètres spécifiés par argument optionnel :
+\hlist[pre skip = 0pt , post skip = 4pt , left margin = \parindent]3
+	\hitem Question 1					\hitem Question 2
+	\hitem Une question 3
+	\hitem Question 4					\hitem Question 5
+\endhlist
+Suite du texte/
+
+\section{Label et texte des items}
+\cleval{item offset}{dimension}
+Cette \verb|<dimension>| est la distance entre la frontière gauche de la boite contenant le label et la frontière gauche de la boite contenant le texte de l'item.
+
+\cleval{label sep}{dimension}
+Espacement entre la boite contenant le label et celle contenant le texte de l'item.
+
+\cleval{label width}{dimension}
+C'est la dimension de la boite accueillant le label. Le label lui-même (en gris sur la figure) peut être plus court que cette dimension auquel cas, il faut jouer avec la clé «\verb|label align|» (voir plus bas) pour indiquer quel alignement on souhaite.
+
+Si en revanche le label est \emph{plus large} que la largeur «\verb|label width|», alors un dépassement du type «\texttt{Overful hbox}» aura lieu, sauf si on met la clé \verb|autoindent| à la valeur \verb|true| (voir plus bas).\medbreak
+
+Les trois clés «\verb|item offset|», «\verb|label sep|» et «\verb|label width|» sont en interdépendance pour le placement du label et plusieurs cas peuvent se présenter :
+
+\begin{itemize}
+	\item si l'une des 3 trois (et seulement \emph{une seule} sur les trois) vaut «\verb|*|», alors, les 2 autres sont calculées de telles sorte que l'égalité suivante soit vérifiée
+	\begin{center}
+	\verb|item offset|${}={}$\verb|label sep|${}+{}$\verb|label width|
+	\end{center}
+	\item si \verb|item offset|${}>{}$\verb|label sep|${}+{}$\verb|label width| comme c'est le cas sur la figure, alors la différence entre le membre de gauche et celui de droite (trait rouge sur la figure) est meublé avec un \verb|\hfill|;
+	\item si \verb|item offset|${}<{}$\verb|label sep|${}+{}$\verb|label width|, ce qui ne devrait pas se produire, un avertissement sera émis.
+\end{itemize}
+
+\cleval{label align}{lettre}
+Cette clé représente la consigne d'alignement du label à l'intérieur de sa boite. Elle n'a de sens que lorsque le label occupe moins de place horizontale que «\verb|label width|». On peut demander une consigne \verb|l|, \verb|r| ou \verb|c| selon que l'on souhaite un alignement à gauche, à droite ou centré.
+
+Seule le première lettre \emph{minuscule} de la valeur est prise en compte. La consigne \verb|left| est donc équivalente à \verb|l|.
+
+\cleval{label}{code}
+Le \verb|<code>| sera exécuté pour afficher le label. Pour afficher des labels en rapport avec le rang de l'item dans la liste, \HLIST met à disposition les macros suivantes :
+\begin{itemize}
+	\item \verb|\arabic{<nom>}| pour afficher un entier;
+	\item \verb|\roman{<nom>}| et \verb|\Roman{<nom>}| pour afficher des nombres romains, en minuscule ou majuscule ;
+	\item \verb|\alpha{<nom>}| et \verb|\Alpha{<nom>}| pour afficher des lettres, minuscules ou majuscules.
+\end{itemize}
+
+L'argument de ces macros est le \emph{nom} d'un compteur au format \LaTeX{}, c'est-à-dire que le registre de compteur qui se trouve derrière est \verb|\c@<nom>|\footnote{Les compteurs de \LaTeX{} pour l'environnement \texttt{enumerate}, à savoir \texttt{enumi}, \texttt{enumii}, etc sont bien évidemment admis dans les arguments des macros ci-dessus. En règle générale, tout compteur de \LaTeX{} l'est également (\texttt{section}, \texttt{equation}, \texttt{page}, \texttt{footnote} ou autre).}.
+
+\HLIST fournit les compteurs nommés «\verb|hilsti|» pour les listes de plus haut niveau, «\verb|hilstii|» pour les listes imbriquées de niveau~1, «\verb|hilstiii|» pour celle de niveau~2, etc.
+
+\cleval{pre label}{code}
+Contient le \verb|<code>| qui sera exécutée avant d'afficher le label.
+
+\cleval{post label}{code}
+Contient le \verb|<code>| qui sera exécutée après avoir affiché le label.
+
+\exemple/Exemple 1 :\hlist[label=\alpha{hlisti})]3
+	\hitem question 1 \hitem question 2 \hitem question 3 \hitem question 4
+	\endhlist
+Exemple 2:\hlist[label=---]3
+	\hitem question 1 \hitem question 2 \hitem question 3 \hitem question 4
+	\endhlist
+Exemple 3:\hlist[pre label=\begingroup\color{red}\itshape,label=\roman{hlisti}-,post label=\endgroup]3
+	\hitem question 1 \hitem question 2 \hitem question 3 \hitem question 4
+	\endhlist/
+
+Lorsque l'argument optionnel entre crochet de \verb|\hitem| est vide, aucun label ne sera affiché et la valeur «\texttt{item offset}» sera nulle pour cet item. Cela peut s'avérer utile dans le cas de listes imbriquées :
+
+\exemple|Exemple avec 2\up e label numéroté :
+\hlist3
+	\hitem question 1
+	\hitem% label numéroté pour cet item !
+		\hlist[label=\alpha{hlistii}.,col sep=1em]3
+			\hitem XX \hitem YY \hitem ZZ
+		\endhlist
+	\hitem question 3 \hitem question 4 \hitem question 5
+\endhlist
+
+Même exemple avec 2\up e label forcé à vide :
+\hlist3
+	\hitem question 1
+	\hitem[]% pas de label pour cet item !
+		\hlist[label=\arabic{hlisti}\alpha{hlistii}.]3
+			\hitem XX \hitem YY \hitem ZZ
+		\endhlist
+	\hitem question 3 \hitem question 4 \hitem question 5
+\endhlist|
+
+\cleval{pre label}{code}
+Il s'agit du \verb|<code>| qui est exécuté juste avant que le label soit affiché.
+
+\cleval{post label}{code}
+Cette valeur contient le \verb|<code>| qui est exécuté juste après l'affichage du label.
+
+\cleval{resume}{booléen}
+Lorsque cette clé est assignée à \verb|true|, la numérotation de la liste n'est pas réinitialisée lorsque la macro \verb|\hlist| est exécutée.
+
+\cleval{autoindent}{booléen}
+Lorsque la largeur du label dépasse la dimension «\verb|label width|, nous avons vu qu'un avertissement du type \texttt{Overful hbox} est produit. Lorsque la clé «\texttt{autoindent}» est mise à \verb|true|, ce dépassement se fait en \emph{indentant la première ligne du texte du label} de telle sorte que subsiste entre le label et le texte l'espace de largeur «\texttt{label sep}». Il n'y a alors plus d'avertissement émis par \TeX.
+
+Ceci fonctionne évidemment pour un schéma de label \emph{global} passé par la clé «\verb|label={<code>}|», mais trouve surtout une utilité pour des labels \emph{exceptionnels} spécifiés par \verb|\hitem[<label>]|.
+
+\exemple|\def\txt{et voici le texte de la question}
+\hlist[item sep=5pt]3
+	\hitem Question 1, \txt						\hitem Question 2, \txt						\hitem[Bonus] Question 3, \txt
+	\hitem Question 4, \txt						\hitem Question 5, \txt
+\endhlist
+Texte intermédiaire...
+\hlist[item sep=5pt,autoindent=true]3
+	\hitem Question 1, \txt						\hitem Question 2, \txt						\hitem[Bonus] Question 3, \txt
+	\hitem Question 4, \txt						\hitem Question 5, \txt
+\endhlist|
+
+\cleval{pre item}{code}
+Le code exécuté juste avant le texte de l'item.
+
+\cleval{post item}{code}
+Le code exécuté juste après le texte de l'item.
+
+\cleval{show label}{booléen}
+Cette clé, lorsqu'elle est assignée à \verb|false|, interdit l'affichage du label et donc, tout se passe comme si les dimensions \texttt{item offset}, \texttt{label width} et \texttt{label sep} valaient \verb|0pt|.
+
+\exemple|Exemple avec \texttt{show label} :
+\hlist3
+	\hitem Question 1					\hitem Question 2
+	\hitem Une question 3
+	\hitem Question 4					\hitem Question 5
+\endhlist
+Exemple sans \texttt{show label} :
+\hlist[show label=false]3
+	\hitem Question 1					\hitem Question 2
+	\hitem Une question 3
+	\hitem Question 4					\hitem Question 5
+\endhlist|
+
+\cleval{list parindent}{dimension}
+Cette clé spécifie l'indentation des paragraphes de l'item, sauf pour le premier paragraphe de chaque item qui reste non indenté.
+
+\cleval{show frame}{booléen}
+Cette clé, lorsqu'elle est assignée à \verb|true|, encadre les boites contenant le label et le texte de l'item.
+
+\label{show frame}\exemple/\def\txtA{Après le pain, l'éducation est le premier besoin du peuple.}
+\def\txtB{Comment se fait-il que les enfants étant si intelligents,
+          la plupart des hommes soient bêtes ?\par Cela doit tenir à l'éducation.}
+\hlist[show frame=true]3
+	\hitem \txtA			\hitem \txtB			\hitem \txtA
+	\hitem \txtA			\hitem> \txtB
+	\hitem*> \txtB
+	\hitem(2) \txtB			\hitem \txtA
+\endhlist/
+
+\section{Le code}
+Contrairement à mes habitudes, le code est \emph{abondamment} commenté, trop sans doute. J'espère que cela constituera une source d'information exploitable pour les utilisateurs de cette extension qui souhaitent y comprendre quelque chose ou modifier par eux-même une fonctionnalité.
+
+Toute suggestion, remontée de bug, remarque, demande, ajout ou modification de fonctionnalité est bienvenue; dans ce cas, j'invite les utilisateurs de \HLIST à m'envoyer un email.\medbreak
+
+Le code ci-dessous est l'exact verbatim du fichier \verb|hlist.tex| :
+
+\lstinputlisting[
+		language=TeX,
+		moretexcs={unless,ifcsname,ifdefined,detokenize,numexpr,dimexpr,glueexpr,unexpanded},
+		basicstyle=\small\ttfamily\color{black!25},
+		identifierstyle=\bfseries\color{white},%
+		backgroundcolor=\color{black!85},
+		keywordstyle=\bfseries\color{orange},
+		commentstyle=\color{cyan!66},
+		columns=fixed,
+		alsoletter={\_},
+		tabsize=2,
+		extendedchars=true,
+		showspaces=false,
+		showstringspaces=false,
+		numbers=left,
+		numberstyle=\tiny\ttfamily\color{black},
+		breaklines=true,
+		prebreak={\hbox{$\rhookswarrow$}},
+		breakindent=3em,
+		breakautoindent=true,
+		xleftmargin=1em,
+		xrightmargin=0pt,
+		lineskip=0pt,
+		numbersep=1em,
+		classoffset=1,
+		alsoletter={\_},
+		morekeywords={setKVdefault,setKV,useKVdefault,useKV,ifboolKV,%
+             hlist,endhlist,hitem,hlst_arabic,hlst_roman,%
+             hlst_Roman,hlst_alpha,hlst_Alpha,inithlist,%
+             sethlist,setdefaulthlist},
+		keywordstyle=\bfseries\color{red!85!black},
+		classoffset=0,
+		]{hlist.tex}
+\end{document}

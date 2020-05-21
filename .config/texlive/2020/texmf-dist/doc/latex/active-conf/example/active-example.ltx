@@ -1,0 +1,149 @@
+\documentclass[2006]{active-conf}
+
+\title{Instructions for authors preparing papers for the Active 2006 proceedings: an example of the active-conf class}
+
+%\showaffiliations
+%% This only needs to be used if necessary, see below.
+
+\author[1,2]{N.\,M.~One}
+% [1,2] refers to the affiliation of the author; 
+% uncomment \showaffiliations to see what it does
+
+\email{first@author}
+% \email{} should directly follow after the author
+% to which it corresponds, and is optional.
+
+\author{A.\,B.~Two}
+
+\address{First affiliation\\
+         City, State\\ Country, Postcode}
+% Within \address{}, \\ must be used to split information over lines.
+
+\author{H.\,F.~Three}    
+\email{third@secondaddress}
+
+\address{Second affiliation\\
+         City, State\\ Country, Postcode}
+
+% As many \note{}s as desired:
+\note{The authors acknowledge the support of a research grant.}
+\note{The second author now works in Antartica.}
+
+% Optional:
+\pdfkeywords{LaTeX, example, ACTIVE 2006} 
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This is an example of the \texttt{active-conf-2006} class, with brief instructions 
+that are in the format that should be followed by authors in preparing their papers,
+which must be submitted as PDF documents. Inclusion of an abstract in the final paper 
+is required, and must contain 200 words or less (that's at most around thirteen lines 
+of text as typeset right here), and should not include equations, numbered references 
+or footnotes. These abstracts will be printed in the conference program to help attendees 
+plan their days at the conference. The Organizing Committee may alter abstracts printed 
+in the final program to bring them into compliance with the word limit.
+\end{abstract}
+
+\section{About the article}
+The manuscript should be a contribution to the active noise and vibration control 
+literature, and not as a list of topics to be covered during the oral presentation. 
+All papers are expected to be 8--12 pages in length (including figures, tables, and illustrations). All papers submitted to this conference will be peer reviewed by the scientific committee. The members of the scientific committee are listed on the Active 
+2006 web site, \url{http://www.active2006.com}.
+
+\section{Manuscript format}
+Refer to the class documentation, \url{Active_2006_LaTeX_Docs.pdf}, 
+for full details on the features of this class. \emph{Please} only
+capitalise the first word of the title of the paper. 
+
+\section{Tables and figures}
+Please incorporate all graphics, charts, tables, illustrations, photos, etc.\ 
+into your manuscript as you would like them to appear in the final published 
+paper. An example of a floating figure is shown in \figref{example}.
+
+\begin{figure}
+  \includegraphics{example-figure}
+  \caption{This is an example of a figure. 
+           Note the caption is \emph{below} the figure.}
+  \label{fig:example}
+\end{figure}
+
+Tables and figures have some nice features to make them easier to use.
+Refer to \figref{example} and \tabref{example} for examples.
+(Note the use of \verb|\figref{...}| and \verb|\tabref{...}| in the
+previous sentence.)
+
+\begin{table}
+   \caption{This is an example of how you should tabulate data. 
+            Note that the caption is placed \emph{above} the table.}
+   \label{tab:example}
+   \begin{tabular}{@{} lcr @{}}
+      \hline
+      \multicolumn{2}{c}{Item} \\
+      \cline{1-2}
+      Animal    & Description & Price (\$)\\
+      \hline
+      Gnat      & per gram & 13.65 \\
+                & each     &  0.01 \\
+      Gnu       & stuffed  & 92.50 \\
+      Emu       & stuffed  & 33.33 \\
+      Armadillo & frozen   &  8.99 \\
+      \hline
+   \end{tabular}
+\end{table}
+
+\section{Maths}
+For your convenience, the \textsf{amsmath} and \textsf{amssymb} packages
+are loaded automatically, among others. \eqref{FxLMS_f} gives an example 
+of an equation, and this sentence gives an example of the \verb|\eqref| command.
+\begin{align}
+  \begin{bmatrix}
+    f_0[k+1] \\ f_1[k+1] \\ \vdots \\ f_{N-1}[k+1]
+  \end{bmatrix}
+  & =
+  (1 - \lambda)
+  \begin{bmatrix}
+    f_0[k] \\ f_1[k] \\ \vdots \\ f_{N-1}[k]
+  \end{bmatrix}
+  - \mu
+  \begin{bmatrix}
+    r_f[k-0] \\ r_f[k-1] \\ \vdots \\ r_f[k-(N-1)]
+  \end{bmatrix}
+  e[k+1] 
+  \label{eq:FxLMS_f}
+\end{align}
+When referring to units and numbers with units, use the \verb|\unit{}| and 
+\verb|\num{}{}| commands, respectively. Their use is shown in the following 
+examples: `The unit of acceleration is \unit{m/s^2}' and `The peak velocity of 
+the oscillation was \num{123}{m/s}'.
+\section{Notes on PDF file generation}
+If you are using a current version of \verb|pdflatex| your PDF file should be correct and include the appropriate font information to display correctly on screen and in print. 
+However is you are using the \verb|latex->dvi, dvips->ps, ps2pdf->pdf| method ensure that you use the folowing options so that the resulting PDF will display correctly on screen
+\begin{verbatim}
+latex input_file.tex
+dvips -Ppdf -GO -t a4 -o output_file.ps input_file.dvi
+ps2pdf output_file.ps output_file.pdf
+\end{verbatim}
+
+Check the man pages of \verb|dvips| for more information or use Google to find out more.  
+
+\subsection{Inspecting your PDF file}
+Submit the manuscript filename \verb|a06_XXX.pdf|, where you should replace XXX with your abstract number.
+
+Once your pdf file has been produced you may find it helpful to use Adobe 
+Acrobat to reduce the file size and make the file version 5.0 compatible. Any further metadata you wish to add (beyond the title, author, subject, and optional keywords) may also be done at this stage.
+
+\section{Citations and bibliography}
+Citations should be in standard numerical style, referencing bibliographic 
+entries that are listed in order of citation \cite{puppin+:2002,earnshaw:1842}.
+\nocite{*}% puts every item in example.bib in the bibliography of this document
+The \verb|\cite| command inserts its own non-breaking space automatically to ensure 
+that the reference isn't isolated at the beginning of a line.
+
+\bibliographystyle{unsrt}
+\bibliography{example}
+
+\end{document}
+
+ 

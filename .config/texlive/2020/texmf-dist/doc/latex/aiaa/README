@@ -1,0 +1,15 @@
+This is the file `README' for version 3.6 of the `aiaa' LaTeX package.
+
+Run aiaa.ins through LaTeX to produce the files aiaa-tc.cls and aiaa.bst.
+
+This distribution provides a LaTeX class (aiaa-tc.cls) and
+bibliography style file (aiaa.bst) that are used to create AIAA
+technical conference papers.  The distribution also contains a
+Users Manual (aiaa.pdf), AIAA paper submission instructions
+(author_guide.pdf) and two templates, a bare-bones template and
+an advanced template.
+
+For further details and support, read the Users Manual, aiaa.pdf.
+
+This software is released under the terms of the LaTeX Project Public
+License.  Copyright (C) 2004 by Bil Kleb, Bill Wood, and Erich Knausenberger.

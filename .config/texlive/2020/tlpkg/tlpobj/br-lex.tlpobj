@@ -1,0 +1,21 @@
+name br-lex
+category Package
+revision 44939
+shortdesc A Class for Typesetting Brazilian legal texts
+longdesc This class implements rules to typeset Brazilian legal texts.
+longdesc Its purpose is to be an easy-to-use implementation for the
+longdesc end-user.
+containersize 2296
+containerchecksum e4eede34a086ab025a9918798feea2c6b8b19d86782a6d93745aa82d40258e1619433eb445d0b3c1335dcb195689bb76ac8142e6c65618cea6392e243dadd915
+doccontainersize 60588
+doccontainerchecksum 3d277aeef55721a833cd613c98852c33f7ce22a8034e2fe62952409cffe1ea49ebe1f3b80f91018ea51fadef226939a14e103884dca19227193a32d1e3ba3110
+docfiles size=19
+ texmf-dist/doc/latex/br-lex/README.md details="Readme"
+ texmf-dist/doc/latex/br-lex/brlex-doc.pdf details="Package documentation" language="pt-br"
+ texmf-dist/doc/latex/br-lex/leis-exemplo.pdf details="Example of use" language="pt-br"
+ texmf-dist/doc/latex/br-lex/leis-exemplo.tex
+runfiles size=2
+ texmf-dist/tex/latex/br-lex/br-lex.cls
+catalogue-ctan /macros/latex/contrib/br-lex
+catalogue-license lppl1.3
+catalogue-topics legal class

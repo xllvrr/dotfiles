@@ -1,0 +1,8 @@
+name mathspic.x86_64-linux
+category Package
+revision 23661
+shortdesc x86_64-linux files of mathspic
+containersize 340
+containerchecksum f4081d212519716264c151fd7d10d2b2a36928c1879f31a93b00aa2ba77900dc2440329d577b75c5858e4a0110ee2e369d7b3ee9fdfea783ba367497ce61e868
+binfiles arch=x86_64-linux size=1
+ bin/x86_64-linux/mathspic

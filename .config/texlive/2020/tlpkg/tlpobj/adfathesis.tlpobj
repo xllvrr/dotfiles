@@ -1,0 +1,25 @@
+name adfathesis
+category Package
+revision 26048
+shortdesc Australian Defence Force Academy thesis format
+longdesc The bundle includes a BibTeX style file.
+containersize 9772
+containerchecksum 4eb7fda01fa1961d213eadd2f0bc9b1cf102de664dae1f37588e161af22d043319e12ca704c3223e78e963411c3f0533c845b17f7d0744b020ef2dca35b2c7b0
+doccontainersize 134660
+doccontainerchecksum 86d89f4f139c9ddfe6babb84558f7d89f57b75e28d37f659d9893ef703cef7199272e60f1233d51351b5bd8a4565393dd6f09ba69796d2ab555423c2ba23c2b8
+docfiles size=49
+ texmf-dist/doc/latex/adfathesis/README details="Package README"
+ texmf-dist/doc/latex/adfathesis/adfathesis.pdf details="Package documentation"
+ texmf-dist/doc/latex/adfathesis/template.tex
+srccontainersize 9964
+srccontainerchecksum 3d9a376183e2cb22dfd210eb6d453324d035289173c6750d67ee90379d794a50393c49f8fc40e5c51484127632f2489468b215dc510b0db0313372816fc77927
+srcfiles size=9
+ texmf-dist/source/latex/adfathesis/adfathesis.dtx
+ texmf-dist/source/latex/adfathesis/adfathesis.ins
+runfiles size=12
+ texmf-dist/bibtex/bst/adfathesis/adfathesis.bst
+ texmf-dist/tex/latex/adfathesis/adfathesis.cls
+catalogue-ctan /macros/latex/contrib/adfathesis
+catalogue-license pd
+catalogue-topics dissertation class
+catalogue-version 2.42

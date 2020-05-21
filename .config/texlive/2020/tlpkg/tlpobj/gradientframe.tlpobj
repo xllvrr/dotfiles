@@ -1,0 +1,24 @@
+name gradientframe
+category Package
+revision 21387
+shortdesc Simple gradient frames around objects
+longdesc The package provides a means of drawing graded frames around
+longdesc objects. The gradients of the frames are drawn using the color
+longdesc package.
+containersize 1368
+containerchecksum 31612230548e2167c7f1d6a13029ecc202675d6ae3e681fd915d38aa116374214916155453616da51ef3dadab06955fcbfa9bc383f12b5008adaa8a60e24e6a1
+doccontainersize 235196
+doccontainerchecksum 8b010be9e222609d13015176dee4bcc196d953caf7a8c1814e49f9e50325bc33362975338241bd5cef27d59516114113bd5ac81e3dcc6e89ea7f4d53465b3cff
+docfiles size=65
+ texmf-dist/doc/latex/gradientframe/README details="Readme"
+ texmf-dist/doc/latex/gradientframe/gradientframe.pdf details="Package documentation"
+srccontainersize 4360
+srccontainerchecksum 7ac2eaaff343101c1e9501104e2be138bbbf85d009c2eff98f10876ee814762ac2198bc800ca43b9573e206241b9e3f196ab24e053078f78138415db8ed8fb51
+srcfiles size=4
+ texmf-dist/source/latex/gradientframe/gradientframe.dtx
+runfiles size=1
+ texmf-dist/tex/latex/gradientframe/gradientframe.sty
+catalogue-ctan /macros/latex/contrib/gradientframe
+catalogue-license lppl1.3
+catalogue-topics decoration
+catalogue-version 0.2

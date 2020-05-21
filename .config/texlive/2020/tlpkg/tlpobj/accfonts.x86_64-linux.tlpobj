@@ -1,0 +1,10 @@
+name accfonts.x86_64-linux
+category Package
+revision 12688
+shortdesc x86_64-linux files of accfonts
+containersize 380
+containerchecksum 586a36b09c10e89943cbdd535902f629d5937500dc6bf3b9020c5b2cd6463d46a5629cfdfee1a8442ea62eeeffb16d7bbb3d529d9db4e4a798cc78db39020f7a
+binfiles arch=x86_64-linux size=3
+ bin/x86_64-linux/mkt1font
+ bin/x86_64-linux/vpl2ovp
+ bin/x86_64-linux/vpl2vpl

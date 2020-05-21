@@ -1,0 +1,19 @@
+name muthesis
+category Package
+revision 23861
+shortdesc Classes for University of Manchester Dept of Computer Science
+longdesc The bundle provides thesis and project report document classes
+longdesc from the University of Manchester's Department of Computer
+longdesc Science.
+containersize 8164
+containerchecksum 66345512d1713dcd352feeb46d8ad9c609d4c9364a37b47b5fc0207800f6576831e15d7be59ce13f560ebedaeac9a595f2bd7045b621fbdc8e20a3b3c553524d
+doccontainersize 628
+doccontainerchecksum 5ed08b459ffdc954f5857be1a1970e9a23d2cfc23cbb04e820b82368b1febb9bf04811e53ce6fd05cc12da302d182179d29b278fb99157e801afd05db15cbaa1
+docfiles size=1
+ texmf-dist/doc/latex/muthesis/README details="Readme"
+runfiles size=6
+ texmf-dist/tex/latex/muthesis/muthesis.cls
+ texmf-dist/tex/latex/muthesis/third-rep.cls
+catalogue-ctan /macros/latex/contrib/muthesis
+catalogue-license lppl
+catalogue-topics dissertation

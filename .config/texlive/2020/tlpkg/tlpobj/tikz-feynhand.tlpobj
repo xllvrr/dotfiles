@@ -1,0 +1,35 @@
+name tikz-feynhand
+category Package
+revision 51915
+shortdesc Feynman diagrams with TikZ
+longdesc This package lets you draw Feynman diagrams using TikZ. It is a
+longdesc low-end modification of the TikZ-Feynman package, one of whose
+longdesc principal advantages is the automatic generation of diagrams,
+longdesc for which it needs LuaTex. TikZ-FeynHand only provides the
+longdesc manual mode and hence runs in LaTeX without any reference to
+longdesc LuaTeX. In addition it provides some new styles for vertices
+longdesc and propagators, alternative shorter keywords in addition to
+longdesc TikZ-Feynman's longer ones, some shortcut commands for quickly
+longdesc customizing the diagrams' look, and the new feature of putting
+longdesc one propagator "on top" of another. It also includes a quick
+longdesc user guide for getting started, with many examples and a
+longdesc 5-minute introduction to TikZ.
+containersize 6912
+containerchecksum 5dcaa2f5c846957f3583ac5bfba14c668cc855c6dd930eb5851c19d448efdd207ff34599b09379354d0c772cb1890fac375d75d61524e64148602f4b5dde4355
+doccontainersize 316036
+doccontainerchecksum b0cf316dafb9494fc21d5657e1e3c1b4780b7c30e2fe93235d6d8538979471c31989e4203575dc66204fdb1cb11386d290feba3070e43a273b62ec59a73047d9
+docfiles size=113
+ texmf-dist/doc/latex/tikz-feynhand/README.md details="Readme"
+ texmf-dist/doc/latex/tikz-feynhand/changes.txt
+ texmf-dist/doc/latex/tikz-feynhand/shell_escape.jpg
+ texmf-dist/doc/latex/tikz-feynhand/tikz-feynhand.userguide.pdf details="Package documentation"
+ texmf-dist/doc/latex/tikz-feynhand/tikz-feynhand.userguide.tex
+runfiles size=13
+ texmf-dist/tex/latex/tikz-feynhand/tikz-feynhand.sty
+ texmf-dist/tex/latex/tikz-feynhand/tikzfeynhand.keys.code.tex
+ texmf-dist/tex/latex/tikz-feynhand/tikzlibraryfeynhand.code.tex
+catalogue-also tikz-feynman
+catalogue-ctan /graphics/pgf/contrib/tikz-feynhand
+catalogue-license gpl3+
+catalogue-topics physics pgf-tikz
+catalogue-version 1.1.0

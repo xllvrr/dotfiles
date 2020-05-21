@@ -1,0 +1,937 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{tkz-orm}
+\usepackage{pgfmanualstyle}
+
+\usetikzlibrary{fit} % fitting library
+\usetikzlibrary{positioning} % for left/right=of ...
+
+\usepackage[colorlinks=false,pdfborder={0 0 0}]{hyperref}
+% [pagebackref=true, backref=true
+\usepackage{multirow}
+
+\usepackage{makeidx}
+\makeindex
+
+\def\ormVersion{0.1.4}
+\def\ormDate{January 15, 2016}
+\newif\ifappendix
+\appendixfalse
+\appendixtrue
+
+% --------------------------------------------------------------
+%% Beginning of the documentation
+% --------------------------------------------------------------
+\title{The \tkzorm\ package\\Object-Role Model Drawing Library}
+\author{Jakob Vo\ss\footnote{jakob.voss@gbv.de}, Camil Staps\footnote{info@camilstaps.nl}}
+\date{Version \ormVersion\\\ormDate\\[5mm]\url{http://purl.org/net/tkz-orm}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}\noindent
+This package provides styles for drawing Object-Role Model (ORM2) diagrams
+in \TeX\ based on the \textsc{pgf} and \tikzname\ picture environment.
+\end{abstract}
+
+\tableofcontents
+\pagebreak
+
+\section{Introduction}
+\label{sec:introduction}
+
+\tkzorm\ is intended to help you creating Object-Role Model (ORM) diagrams. It is based on the \textsc{pgf} and \tikzname\footnote{Available at \url{http://sourceforge.net/projects/pgf/}.\\This document was created with \tikzname\ version \pgftypesetversion} picture macro package for \TeX. and provides additional styles and commands to typeset ORM2 diagrams. With \tkzorm\ you can ``program'' ORM diagrams just as you ``program'' your document when you use \LaTeX\ -- including the inherental lack of \textsc{wysiwyg}. Unless multi-touch e-paper interfaces become usable, \tkzorm\ can best be combined with a whiteboard or paper and pencil --- but you may also find ways to automatically create ORM diagrams with \tkzorm.
+
+\subsection*{Status of this package}
+This is the developer version of \tkzorm. Please send your comments to the author so the package can be improved. All parts of the package are available at least under the \LaTeX{} Project Public License\cite{LPPL} and the GNU Public license\cite{GPL2}. For details have a look at the file |LICENSE| that is part of this package. The permament URL of \tkzorm is \url{http://purl.org/net/tkz-orm} which redirects you to its current location and a collection of examples.
+
+\subsection*{ORM in a nutshell}
+Object-Role Modeling (ORM)\footnote{See \url{http://www.orm.net/}.} is a fact-oriented modeling language that evolved from the \textit{Natural-language Information Analysis Method} (NIAM) by G.M. Nijssen. The current version (ORM2) is mainly based on works of Terry Halpin. Like ERM, UML, and other data modeling languages ORM helps to identify and abstract information objects, relationships, and rules of a Universe of Discourse to be formalized and implemented on another level. ORM includes a graphical notation and a precise verbalization in natural language. Models can further be validated by populating fact tables with sample data. An overview of the ORM2 graphical notation is given in \cite{Halpin2005} and more details in \cite{Halpin2008}. An ORM model consists of object types (section~\ref{sec:objecttypes}) and predicates  (section~\ref{sec:predicates}). Each of the $n$ roles of an $n$-ary predicate is connected to an object type that plays the specific role in this predicate. Furthermore a model can contain constraints (section~\ref{sec:constraints}), subtypes (section~\ref{sec:subtyping}), and other features (section~\ref{sec:additionalfeatures}). \tkzorm also allows you to change the appearance of ORM diagrams (section~\ref{sec:generalstyles}).
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}
+    \entity (A) at (0,0) {A};
+    \entity[right=of A] (blank) {};
+    \value[right=of blank] (value) {Value type};
+    \entity[right=of value] (fixedwidth) {Person};
+    \entity[right=of fixedwidth] (tabular) {Activity\\(Code)};
+    \entity[right=of tabular] (typenamelabel) {Type name\\(.reference)};
+    \entity[right=of typenamelabel,zoomed] () {Zoomed};
+  \end{tikzpicture}
+  \caption{Examples of object types in ORM}
+\end{figure}
+
+\pagebreak
+\section{Object Types}
+\label{sec:objecttypes}\index{Object types}\index{Entities}\index{Values}
+Object types are drawn as rectangles with rounded borders. The object's type name is written as node text inside. \emph{Entity types} use solid border lines and \emph{value types} use dashed border lines. The minimal size of an object is set to 6mm$\times$6mm. This package provides the following styles for entities and values:
+
+\begin{stylekey}{entity}
+This style is to be used with nodes that represent entity types.
+\begin{codeexample}[]
+\begin{tikzpicture}
+  \node[entity] at (0,0) {Foo};
+  \node[entity] (unnamed) at (1.2,0) {};
+  \node[entity] at (2.5,0) {Person\\(.name)};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{value}
+This style is to be used with nodes that represent value types.
+\begin{codeexample}[]
+\begin{tikzpicture}
+  \node[value] {Name};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{power}
+This style is to be used with nodes that represent power types.
+\begin{codeexample}[]
+\begin{tikzpicture}
+  \node[entity,power=below:As] {A};
+  \node[entity,power=Bs] at (1.1,0) {B};
+  \node[entity,power] at (2.2,0) {C};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{sequence}
+This style is to be used with nodes that represent sequence types.
+\begin{codeexample}[]
+\begin{tikzpicture}
+  \node[entity,sequence=below:As] {A};
+  \node[entity,sequence=Bs] at (1.1,0) {B};
+  \node[entity,sequence] at (2.2,0) {C};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{every entity}
+\stylekeyheadline[]{every value}
+Each of this styles is envoked by the styles \sty{entity} or \sty{value}. Change one of this styles to change the appearance of entity or value types.
+\begin{codeexample}[width=3cm]
+\begin{tikzpicture}[
+  every entity/.style={draw=blue!50,fill=blue!20},
+  every value/.style={draw=green!50,fill=green!20}]
+  \node[entity] (P) at (0,0) {Person};
+  \node[value]  (N) at (1.5,0) {Name};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{every object}
+  This style is envoked by the styles \sty{entity} and \sty{value}. Change this style to change the common appearance of entity and value types.
+\begin{codeexample}[width=3cm]
+\begin{tikzpicture}[
+  every object/.style={shape=rectangle,draw=red}]
+  \node[entity] (P) at (0,0) {Person};
+  \node[value]  (N) at (1.5,0) {Name};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\noindent
+Since entity types and value types are very frequent node types in an ORM diagram, there are two special abbreviations for creating object types:
+
+\begin{command}{entity}
+Inside |{tikzpicture}| this is an abbreviation for |\node[entity]|.
+\end{command}
+
+\begin{command}{value}
+Inside |{tikzpicture}| this is an abbreviation for |\node[value]|.
+\end{command}
+
+
+\section{Predicates and Roles}
+\label{sec:predicates}\index{predicates}\index{roles}
+Relationship parts (\emph{roles}) played by objects are shown as boxes of fixed size (4mm$\times$2.5mm). A \emph{predicate} is a sequence of one or more concatenated role boxes. Predicates can be created with the following styles:
+
+\begin{stylekey}[\opt{\meta{number of roles}}]{roles}
+\stylekeyheadline[\opt{1}]{role}
+Shapes the current node as predicate with a given number of role boxes. Numbers from 1 to 20 are supported. The default value is 2 (binary).
+
+\begin{codeexample}[]
+\begin{tikzpicture}[orm]
+  \entity (A) at (0,1) {A};
+  \entity (B) at (2.8,1) {B}
+          edge node[roles=3] (p) {} (A);
+  \entity (C) at (1.4,0) {C} edge (p.south);
+  \node[role] at (2.2,0){} edge (C);
+  \draw (A) |- node[roles,xshift=2mm]{} (C);
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey} % roles
+
+\begin{stylekey}[\opt{\meta{number of roles}}]{vroles}
+\stylekeyheadline[\opt{1}]{vrole}
+Shapes the current node as predicate rotated by 90 degree (vertical).
+\end{stylekey} % vroles
+
+\begin{stylekey}{relation}
+\stylekeyheadline[]{relationship}
+\stylekeyheadline[]{plays}
+  This equivalent styles are to be used with connection lines between objects and roles. By default it just includes the style \sty{every orm line} which results in a solid, black line of 0.25mm width.
+% Alternatively of using this style you can enable the general style \sty{orm}
+% (see section~\ref{sec:generalstyles}) and just draw a normal line.
+\begin{codeexample}[width=3cm]
+\begin{tikzpicture}
+  \node[entity,power] (A) {A};
+  \node[roles] (r) at (1,0) {};
+  \draw[relation] (A-power) -- (r);
+  \node[vrole] at (0,-.8){} edge[relation] (A);
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\noindent
+The following table lists abbreviations that can be used for creating predicate nodes and relationship lines inside |{tikzpicture}|:
+
+\begin{table}[ht]
+\begin{tabular}{lll}
+\textbf{command(s)} & \textbf{abbreviation for} & \\
+\commandentry{unary} or \commandentry{role} & |\node[role]| & 
+  \colorbox{graphicbackground}{\tikz \unary{};} \\
+\commandentry{binary} or \commandentry{roles} & |\node[roles]| &
+  \colorbox{graphicbackground}{\tikz \binary{};} \\
+\commandentry{ternary} & |\node[roles=3]| &
+  \colorbox{graphicbackground}{\tikz \ternary{};} \\
+\commandentry{vunary} or \commandentry{vrole} & |\node[vrole]| &
+ \multirow{3}{2cm}{\colorbox{graphicbackground}{
+   \begin{tikzpicture}
+    \vunary at (0,0){} ;
+    \vbinary at (0.6,-0.2){};
+    \vternary at (1.2,-0.4){};
+   \end{tikzpicture}
+ }} \\
+\commandentry{vbinary} or \commandentry{vroles} & |\node[vroles]| \\
+\commandentry{vternary} & |\node[vroles=3]| \\
+\commandentry{plays} & |\draw[relationship]| &
+  \colorbox{graphicbackground}{\tikz \plays (0,0) -- (1,0);} \\
+\end{tabular}
+\end{table}
+
+\noindent The general style of predicates and roles can be modified by the following keys:
+
+\begin{stylekey}{every predicate}
+Changing this style to modify the common appearance of predicates.
+\begin{codeexample}[width=3cm]
+\begin{tikzpicture}[
+  every predicate/.style={draw=blue,fill=green!20}]
+  \entity at (2,0) (B) {B};
+  \entity (A) {A} edge[relation] node[roles]{} (B);
+  \vunary at (0,-0.8) (r) {} edge[relation] (A);
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{every relationship}
+  This style is envoked by the style \sty{relationship}. To change the appearance of explicit relationship lines you can change this style. Please keep in mind that nodes placed on a line by |node| in one operation inherit properties from  the line they refer to, so you should create relationship lines with \cmd{plays}.
+\begin{codeexample}[width=3cm]
+\begin{tikzpicture}[orm,
+  every relationship/.style={draw=blue,dotted}]
+  \entity (A) {A}; 
+  \plays (A) to node[roles]{} (2,0) node(B){B};
+  \vunary at (0,-0.8) (r) {} edge[relation] (A);
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\noindent
+Predicates are drawn either horizontally (\sty{roles}) or vertically (\sty{vroles}) as nodes with one or more parts. Figure~\ref{fig:hanchors} shows some of the anchors. Vertical predicates are rotated by 90 degree so |north| is at the left, |west| is at the bottom etc.
+% TODO: define better anchors or anchor aliases (start=west, end=east, top=north, bottom=south, role 1=one north)
+
+\begin{figure}[h]
+\centering
+\begin{codeexample}[width=10cm]
+\Large
+\begin{tikzpicture}
+  \node[roles=3,shape example,inner ysep=0.75cm] (s) {};
+  \foreach \anchor/\placement in
+    {one north/below, one south/above,
+     three north/below, three south/above,
+     one split/below, one split north/above, one split south/below,
+     two split/below, two split north/above, two split south/below,
+     north/below, south/above, east/below, west/below, center/above,
+     north west/above, north east/above, south west/below, south east/below}
+    \draw[shift=(s.\anchor)] plot[mark=x] coordinates{(0,0)}
+       node[\placement] {\scriptsize\texttt{s.\anchor}};
+\end{tikzpicture}
+\end{codeexample}
+\caption{Node anchors of an ORM predicate}
+\label{fig:hanchors}
+\end{figure}
+
+\noindent
+The verbalization of a predicate can be given as |label| next to a predicate. For binary relationships forward and inverse readings can be seperated by a slash. To show the inverse reading, add an arrow tip with the commands \cmd{ormleft} or \cmd{ormup}. Labels for predicates with more then two roles must contain three dots (|\ldots|) for each inner role. Role names and indices can be added by different styles.
+% TODO: Show how to change label distance with style |label distance| :
+% \begin{tikzgraphic}[orm] % needed - there is no "every label/.style={orm}"
+% \node[role,label={R}] (r1) {};                    % put the label above
+% \node[role,right=of r1,label={below:R}] (r2) {};  % put the label below
+% \node[role,right=of r2,label={[label distance=1.5mm]above:{R}},unique] (r3) {};
+% \end{tikzgraphic}
+
+\begin{figure}[h]
+\centering
+\begin{codeexample}[]
+\begin{tikzpicture}[orm]
+  \entity at (0,3) (P) {Person};
+  \entity at (3,3) (C) {Car};
+  \entity at (0,0) (L) {License};
+  \entity at (6.6,3) (M) {Maker};
+  \unary[label=valid] at (1.2,0) (V) {} edge (L);
+  \draw (P) to node[roles,
+         label=below:drives,label=\ormleft{is driven by}]{} (C);
+  \draw (P) to node[vroles,label=has,label=below:\ormup{of}]{} (L);
+  \draw (C) to node[roles,label=created by/created]{} (M);
+  \ternary[label=below:drives \ldots by] at (3,1) (t) {};
+  \plays (P) -- (t.west);
+  \plays (C) -- (t);
+  \plays (M) -- (t.east);
+\end{tikzpicture}
+\end{codeexample}
+\end{figure}
+
+\begin{stylekey}{role name}
+This style is to be used with role names. Role names can be displayed in square brackets and blue color next to a role box. % TODO: add role name as 'label' style
+\begin{codeexample}[width=3cm]
+\begin{tikzpicture}[orm]
+  \entity (A) at (0,0) {A};
+  \entity (B) at (2.8,0) {B};
+  \plays (A) edge node(r)[roles]{} (B);
+  \node[role name,
+     at=(r.north),anchor=south east] {[role1]};
+  \node[role name,
+     at=(r.north),anchor=south west] {[role2]};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}[\meta{n}\opt{\texttt{:}\meta{index}}]{index}
+Adds a role index as small label at the $n$th role box (default: $n$).
+\begin{codeexample}[]
+\begin{tikzpicture}
+\binary[index=1,index=2:X] {};
+\vroles[index=A.1,index=2:A.2] at (.8,0) {};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+
+\section{Constraints}
+\label{sec:constraints}\index{Constraints}
+ORM provides a rich set of constraints: Mandatory constraints (section~\ref{sec:mandatoryconstraints}) and uniqueness constraints (section~\ref{sec:uniquenessconstraints}) limit the way objects can be combined in predicates. External constraints (section~\ref{sec:externalconstraints}) and subtype constraints (section~\ref{sec:subtyping}) involve multiple roles or object types. All constraints are displayed in magenta and either drawn directly at an object type or role, or linked to one or more object types or role with dotted or dashed lines or arrows (see the styles \sty{limits} and \sty{limits to}). ORM2 defines a set of symbols for external (section~\ref{sec:externalconstraints}), ring (section~\ref{sec:ringconstraints}) and other types of constraints. The general \textsc{tkz-orm} constraint key \sty{constraint} only sets the font to violet. An optional key value can be used to add a predefined constraint symbol at the current position.
+
+\begin{stylekey}[\meta{color}]{constraintcolor}
+Changes the constraint color (default: |magenta!100|).
+\end{stylekey}
+
+\subsection{Uniqueness Constraints}
+\label{sec:uniquenessconstraints}
+By default every row in a fact table is unique. To express additional uniqueness constraints on one or more roles of a fact table or to explicitly express the uniqueness on the full predicate, a \emph{uniqueness bar} is drawn above or below the fact roles. If the bar spans two or more non-adjacent roles, it is drawn as dotted line above or below the excluded roles. Bars can be stacked in multiple levels. To draw uniqueness bars you can use the following styles at predicate nodes:
+
+% TODO: add preferred unique (double line)
+
+\begin{stylekey}[\opt{\meta{from}\texttt{-}\meta{to}\texttt{:}\meta{level}}]{unique}
+Draws a uniqueness constraint bar above one or more roles. All parts of the key value are optional. As default a simple uniqueness bar above (\meta{level}|=1|) the first role (\meta{from}|=1|) is drawn. To make a bar span multiple roles, use the \meta{from}|-|\meta{to} syntax. Negative levels drawn the bar below the roles.
+\begin{codeexample}[]
+\begin{tikzpicture}
+\binary[unique] at (0,0) {};
+\binary[unique=2] at (1.2,0) {};
+\ternary[unique=2-3:-1] at (0.2,-0.6) {};
+\unary[unique=1,unique=1:2] at (1.4,-0.6) {};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}[\opt{\meta{from}\texttt{-}\meta{to}\texttt{:}\meta{level}}]{skip unique}
+Draws a dotted uniqueness constraint bar. The syntax is the same as at the \sty{unique} key.
+The bar includes background color in the gaps between dots, so it can be drawn on top of 
+another bar.
+\begin{codeexample}[]
+\begin{tikzpicture}
+\ternary[unique=1-3,skip unique=2] {};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{uniqueness bar}
+\stylekeyheadline[]{skipped uniqueness bar}
+This styles can be used to draw a line in the same style as a uniqueness constraint bar or a dotted uniqueness constraint bar.
+\begin{codeexample}[width=3cm]
+\tikz\draw[uniqueness bar] (0,0) -- (2,0);
+\end{codeexample}
+\begin{codeexample}[width=3cm]
+\tikz\draw[skipped uniqueness bar] (0,0) -- (2,0);
+\end{codeexample}
+\end{stylekey}
+
+\noindent
+Please note that elementary $n$-ary predicates should only have uniqueness constraints of at least $n-1$ roles. Picture~\ref{fig:splitternary} shows how to split a ternary predicate with unique constraint bar on one role.
+
+\begin{figure}[h]
+\centering
+\begin{codeexample}[]
+\begin{tikzpicture}[orm] % needs positioning library
+  \ternary[unique] (t) at (0,0) {};
+  \entity[left=of t]  {A} edge (t);
+  \entity[above=of t] {B} edge (t);
+  \entity[right=of t] {C} edge (t);
+  \node at (2.3,0) {$\Rightarrow$};
+  \entity (A) at (3,0) {A};
+  \binary[right=of A.north east,yshift=1mm,unique] (t1) {};
+  \binary[right=of A.south east,yshift=-1mm,unique] (t2) {};
+  \plays (A) -- (t1.west); \plays (A) -- (t2.west);
+  \entity[right=of t1] {B} edge (t1);
+  \entity[right=of t2] {C} edge (t2);
+\end{tikzpicture}
+\end{codeexample}
+\caption{A ternary predicate can be split into to binary predicates}
+\label{fig:splitternary}
+\end{figure}
+
+
+\subsection{Mandatory Role Constraints}
+\label{sec:mandatoryconstraints}
+To indicate explicitly that a role is mandatory, a mandatory role dot is added to either end of the line that connects the role to its object. Usually it is placed at the object type end. This package defines the style key \sty{constraint dot} (alias \sty{cdot}) and the following keys which can be used to add mandatory role dots to lines drawn with the |to| operation.
+
+\begin{stylekey}{constraint dot}
+\stylekeyheadline[]{cdot}
+Draws the current node as mandatory role dot.
+\begin{codeexample}[]
+\tikz \node[cdot] {};
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{mandatory}
+\stylekeyheadline[]{required}
+This styles enables the \sty{relationship} style and adds a mandatory role dot at the start of a straight line.
+\begin{codeexample}[]
+\begin{tikzpicture}
+  \entity (A) {A};
+  \entity at (2,0) {B} edge[mandatory]
+          node[roles] (p) {} (A);
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{required by}
+This styles enables the \sty{relationship} style and adds a mandatory role dot at the end of a straight line.
+\begin{codeexample}[]
+\begin{tikzpicture}
+  \entity (A) {A};
+  \entity at (2,0) {B} edge[required by]
+          node[roles] (p) {} (A);
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{both required}
+\stylekeyheadline[]{both mandatory}
+This styles enables the \sty{relationship} style and adds mandatory role dots at both ends of a straight line.
+\begin{codeexample}[]
+\begin{tikzpicture}
+  \entity (A) {A};
+  \entity at (2,0) {B} edge[both required]
+          node[roles] (p) {} (A);
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\noindent To show that either of many roles is mandatory, you can add an \emph{inclusive-or} (\emph{disjunctive mandatory}) role constraint with |constraint=mandatory| as shown in section~\ref{sec:externalconstraints}. By default it is assumed that each entity or value must play at least some role. \emph{Independent object types} whose roles are collectively optional can be marked by an exclamation mark appended to its name. It is recommended not to include implied mandatory constraints unless they they refer to subtypes (section~\ref{sec:subtyping}).
+\index{Independent object types}\index{Object types!Independent}
+
+
+\subsection{External constraints}
+\label{sec:externalconstraints}
+External constraints span multiple roles that may come from different predicates. They are depicted by several circle symbols next the roles they limit, possibly linked to them with a dotted or dashed line (style \sty{limits} and \sty{limits to}). \tkzorm\ implements external constraint symbols as node shapes.
+
+\begin{stylekey}[\opt{\meta{constraint type}}]{constraint}
+  This style sets the font to ORM style on constraint color (violet). If you provide a constraint type as key value, the current node is shaped as constraint circle and the symbol of the specified constraint type is drawn. The most common constraint types are |exclusive| (alias |x|) to indicate that populations of two or more role-sequences must be mutually exclusive, |mandatory| (alias |required|, |total|, and |or|) to indicate that each at least on of two more roles must be played by an object type, and |xor| (alias |partition|) to indicates that exactely one of two or more roles must be played by an object type. These constraints can also be used in subtyping (section~\ref{sec:subtyping}). The constraint type |unique| and |preferred unique| enforces combinations of object types that play a given set of roles to always be the same. The types |equal|, |subset|, and |supset| indicate that tuples of roles have to be equal, subset or superset compared to each other (|supset| is not included in standard ORM2). The constraint type is |external| only draws the circle and can be used for custom constraints.
+  % TODO: see more about rings and collections ...
+\begin{codeexample}[]
+\begin{tikzpicture}[orm]
+  \matrix[column sep=2mm, row sep=2mm]{
+    \node[constraint=x]{};   & \node[right]{exclusive / x}; &
+    \node[constraint=or]{};  & \node[right,text width=2.8cm]
+                               {mandatory / total  required / or}; &
+    \node[constraint=xor]{}; & \node[right]{xor / partition}; \\
+    \node[constraint=unique] {}; & \node[right]{unique}; &
+    \node[constraint=preferred unique]{};&\node[right]{preferred unique};&
+    \node[constraint=external]{}; & \node[right]{external}; \\
+    \node[constraint=equal] {}; & \node[right]{equal}; &
+    \node[constraint=subset] {}; & \node[right]{subset}; &
+    \node[constraint=supset] {}; & \node[right]{supset}; \\
+  };
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+\index{\texttt{custom} constraint}
+\index{\texttt{x} constraint}
+\index{\texttt{or} constraint}
+\index{\texttt{xor} constraint}
+\index{\texttt{mandatory} constraint}
+\index{\texttt{required} constraint}
+\index{\texttt{total} constraint}
+\index{\texttt{partition} constraint}
+\index{\texttt{unique} constraint}
+\index{\texttt{preferred unique} constraint}
+\index{\texttt{equal} constraint}
+\index{\texttt{subset} constraint}
+\index{\texttt{supset} constraint}
+
+
+\begin{stylekey}{limits} % TODO: add optional parameter
+  This style is to be used with lines that connect constraint circles and roles. It can also be used to link other kinds of constraints (for instance value constraints) to the entity, value, or role they belong to.
+\begin{codeexample}[width=3cm]
+\begin{tikzpicture}
+  \unary (r1) at (0,0) {};
+  \unary (r2) at (0,-1.4) {};
+  \draw[limits] (r1) to node[constraint=x] {} (r2);
+\end{tikzpicture}
+\end{codeexample}
+  % TODO: example of subtyping constraints
+\end{stylekey}
+
+\begin{stylekey}{limits to}  % TODO: add optional parameter
+This style is to be used with directed lines that connect constraint circles and roles. The line is drawn in the same style as \sty{limits} but dashed and with an arrow tip of style \arrowtip{orm arrow} at the head.
+\begin{codeexample}[width=3.4cm]
+\begin{tikzpicture}[orm]
+  \unary[index=2] (a) at (0,0) {};
+  \unary[index=1] (b) at (0,-1.4) {};
+  \draw[limits to] (b) -- (a) 
+    node[pos=.4,constraint=subset,name=s]{};
+  \node[right=2mm of s,text width=2.3cm] 
+  {Each object that plays role 1 also plays role 2};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{command}[]{limits}
+\end{command}
+\begin{command}[]{limitsto}
+%\stylekeyheadline[]{limits to}
+Inside |{tikzpicture}| these commands can be used as abbreviations for
+|\draw[limits]| and |\draw[limits to]|.
+\begin{codeexample}[width=3.4cm]
+\begin{tikzpicture}[orm]
+\limits (0,.4) to (1,.4); \limitsto (0,0) to (1,0);
+\end{tikzpicture}
+\end{codeexample}
+\end{command}
+
+\begin{command}[\marg{constraint type name}\marg{path code}]{constraintdeclare}
+  This command declares a new constraint type. The \marg{path code} is passed to the |append after command| key to be drawn after the constraint circle. Unless you want to extend ORM you do not need to declare new constraint types. This command is for internal use only!
+\end{command}
+
+\begin{command}[\marg{alias name}\marg{existing constraint type name}]{constraintdeclarealias}
+  This command can be used to create an alias (another name) for an existing constraint type.
+  This command is for internal use only!
+\end{command}
+
+\begin{stylekey}{every constraint}
+  This style is envoked at every constraint. You can change this style to change for instance the constraint color.
+\end{stylekey}
+
+
+\subsection{Ring Constraints}
+\label{sec:ringconstraints}
+
+A ring constraint can be applied to any two roles of a predicate that are
+played by the same object type (or the same supertype). Such constraints can
+also be viewed as properties of a binary relation or as properties of a
+directed graph. There are 10 ring constraints that combined can be used in 26
+forms. The graphical syntax of `irreflexive' and `antisymmetric' provided by
+this package are slightly changed compared to the official ORM2 syntax and
+some combinations are omitted or changed.
+
+%and the two symbols for `asymmetric and
+%intransitive', and for `symmetric and intransitive' have been omitted because
+%of complexity.
+
+% TODO: additional: tree, otree
+% combined: acyclic intransitive, symmetric irreflexive etc.
+\begin{codeexample}[]
+\centering
+\begin{tikzpicture}[orm]
+  \foreach \n/\s in {0/irreflexive,1/asymmetric,2/strongly intransitive,
+                     3/antisymmetric,4/acyclic,5/acyclic intransitive,
+                     6/symmetric,7/purely reflexive,8/symmetric irreflexive,
+					 9/intransitive,10/reflexive,11/transitive}{
+    \path ($mod(\n,3)*(3.4,0)-int(\n/3)*(0,0.8)$) node [constraint=\s] {}
+         +(4mm,0) node[anchor=west] {\s}; };
+\end{tikzpicture}
+\end{codeexample}
+
+\begin{codeexample}[width=2.5cm]
+\begin{tikzpicture}[orm]
+\entity (P) {Person};
+\binary[below=of P,unique=2,label=below:mother of] (r) {};
+\plays (P) to (r.one north) (P) to (r.two north);
+\limits (r.north) to +(-1,0.4) node[constraint=acyclic]{};
+\end{tikzpicture}
+\end{codeexample}
+
+
+\subsection{Number and Value Constraints}
+Value constraints, cardinality constraints, and occurrence frequencies can simply be drawn beside the object type or role they refer to, optionally linked to with a dotted or dashed limitation line.
+
+\noindent\textbf{Frequency Constraints} specify the number of times an object can play a role. Usually it is connected to the roles with a limtation line. % TODO: better syntax as pin
+
+\begin{codeexample}[width=3cm]
+\begin{tikzpicture}
+\binary[index=1:1] (b) {};
+\limits (b.one south) -- +(0,-.4) node[constraint]{f};
+\end{tikzpicture}
+\end{codeexample}
+
+\noindent A \textbf{Value constraint} indicates which values are allowed in an object type or role. It can be defined by declaring the set of possible values enclosed in curly brackets next to an object or role type. The commands \cmd{ormbraces} and \cmd{ormvalues} are handy abbreviations to create curly brackets.
+\index{value constraints}\index{constraints!values}
+
+\begin{codeexample}[]
+\begin{tikzpicture}
+\entity (A) {A};
+\node[constraint,anchor=north west,inner ysep=0] 
+      at (A.north east) {\ormbraces{a, b, c}};
+\end{tikzpicture}
+\end{codeexample}
+
+\noindent\textbf{Value comparision-constraints} are depicted by one of four comparision operators $<$, $\le$ (|le|), $>$, and $\ge$ (|ge|). The constraints are shown at a dashed arrow between two roles in the same way as |constraint=subset| and |constraint=supset| (but the value-comparision is between instances not between sets). Equality can be stated with |constraint=equal| which should not be confused with similar looking |constraint=purely reflexive|.
+\index{value-comparision constraints}\index{constraints!value-comparision}
+\index{\texttt{<} constraint}
+\index{\texttt{>} constraint}
+\index{\texttt{le} constraint}
+\index{\texttt{ge} constraint}
+
+\begin{codeexample}[]
+\tikz \foreach \x/\s in {0/<,1/ge,2/>,3/le}{
+  \draw[limits to] (\x,0) to (\x,1.2);
+  \node[constraint=\s] at (\x,.5) {};
+};
+\end{codeexample}
+
+\noindent\textbf{Cardinality constraints} are rarely included in ORM diagrams since the are often implied by other constraints. However you can explicitely say that each population of an object type or a role includes exactely, at most, or at least a given number of instances. This is done by adding a cardinality constraint next to the object or role. The hash sign (``\#'') stands for the cardinality. 
+\index{cardinality constraints}\index{constraints!cardinality}
+
+% TODO: Use text mode instead of math?
+\begin{codeexample}[]
+\begin{tikzpicture}[orm]
+ \entity[label={[constraint]\#=$n$}] {A};
+ \entity[label={[constraint]below:1$\leq$\#$\leq$6}]
+        at (1.1,0) {A};
+ \role[label={[constraint]\#$\leq$2}] at (2,0) {};
+\end{tikzpicture}
+\end{codeexample}
+
+
+
+\subsection{Textual constraints}
+\index{textual constraints}\index{constraints!textual}
+Constraints not expressed by predefined graphical notation may be specified as textual rules. Textual rules can be displayed as footnotes with footnote numbers or signs that mark the involved elements in the diagram.
+
+\begin{stylekey}[\opt{\meta{mark}}]{rule}
+This key is to be used with nodes that contain textual rules. The optional \meta{mark} is shown as footnotes index left to the rule.
+\begin{codeexample}[]
+\begin{tikzpicture}
+\node[rule=1] {{\ormbf Each} Number identifies {\ormbf at most one} Room.};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{command}[]{rules}
+This command is an abbreviation for |\matrix[row sep=0mm,nodes={right}]| inside |{tikzpicture}|.
+Matrices are useful to draw multiple textual rules below each other.
+
+\begin{figure}[h]
+\centering
+\begin{codeexample}[]
+\begin{tikzpicture}
+  \entity (E) {Employee\ormind{1}\\(.nr)};
+  \binary[left=of E.north west,unique=2,label=\ormleft{has}] (h) {};
+  \binary[left=of E.south west,unique=1-2,
+          label=below:\ormleft{uses\ormind{2,3}}] (u) {};
+  \entity[left=of h] (Rank) {Rank\\(.code)};
+  \entity[left=of u] (Car) {CompanyCar\\(.regNr)};
+  \node[constraint=text,align=left,anchor=east] at (Rank.west) 
+      {\textbraceleft`Exec',\\`NonExec'\textbraceright};
+  \plays[mandatory] (E) to (h.east);
+  \plays (h) to (Rank) (E) to (u.east) (u) to (Car);
+  \binary[right=of E.north east,unique,label=was born on] (b) {};
+  \binary[right=of E.south east,unique,label=below:was hired on] (i) {};
+  \entity[right=1.8 of E] (Date) {Date\\(mdy)};
+  \plays[mandatory] (E) to (b.west) (E) to (i.west);
+  \plays (b.east) to (Date) (i.east) to (Date);
+  \node[role name,anchor=south west] at (b.east) {[birthdate]};
+  \node[role name,anchor=north west] at (i.east) {[hiredate]};
+  \rules at (-.4,-2) {
+    \node[rule=1] {{\ormbf For each} Employee, birthdate $<$ hiredate.}; \\
+    \node[rule=2] {
+      {\ormbf Each} Employee {\ormbf who} has Rank `NonExec' uses 
+      {\ormbf at most one} CompanyCar.};\\
+    \node[rule=3] {
+      {\ormbf Each} Employee {\ormbf who} has Rank `Exec' uses 
+      {\ormbf some} CompanyCar.};\\
+  };
+\end{tikzpicture}
+\end{codeexample}
+\end{figure}
+\end{command}
+
+\section{Subtyping}
+\label{sec:subtyping}
+
+To draw type hierarchies you can use the tree syntax of \tikzname.
+Euler diagrams are a less used alternative for simple type hierarchies.
+% TODO: add Euler diagram example
+
+\begin{stylekey}{subtype}
+Draws a subtype relationship arrow from the supertype to the subtype.
+\begin{figure}[h]
+\centering
+\begin{codeexample}[]
+\begin{tikzpicture}[
+  edge from parent/.style=subtype]
+  \node[entity] {Animal}
+    child {node[entity] {Mammal}}
+    child {node[entity] {Bird}
+      child {node[entity] {Penguin}}
+      child {node[entity] {Parrot}}
+    };
+\end{tikzpicture}
+\end{codeexample}
+\end{figure}
+\end{stylekey}
+
+\begin{stylekey}{suptype}
+Works in the same way as \sty{subtype} but with reverse direction.
+\begin{codeexample}[]
+\begin{tikzpicture}
+  \node[entity] (A) {Animal};
+  \node[entity] (S) [right=6mm of A] {Sheep};
+  \draw[suptype] (S) to (A);
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\noindent Multiple inheritance may require to select one path as primary.
+You can distinguish primary and secondary subtypes by drawing the latter
+with a dashed arrow (\sty{subinterface} or \sty{supinterface}).
+
+\begin{stylekey}{subinterface}
+\stylekeyheadline[]{supinterface}
+Draw secondary subtype/supertype relationship arrows. 
+\begin{codeexample}[]
+\begin{tikzpicture}
+  \node[entity] (A) {Animal};
+  \node[entity] (P) [right=8mm of A] {Person};
+  \draw[supinterface] (P) to (A);
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+
+\noindent
+Subtype constraints can be shown linked to the subtype arrrows:
+
+\begin{figure}[h]
+\centering
+\begin{codeexample}[]
+\begin{tikzpicture}[orm]
+\foreach \c/\x in {exclusive/0,total/2.5,partition/5}{
+  \entity (A) at (\x,0) {A} [edge from parent/.style=subtype]
+    child {node [entity] (B) {B}} child {node [entity] (C) {C}};
+  \limits ($(A)!.7!(B)$) to node[constraint=\c] {} ($(A)!.7!(C)$);
+  \node at (\x,-2) {\c};
+};
+\end{tikzpicture}
+\end{codeexample}
+\end{figure}
+
+
+\section{Additional Features}
+\label{sec:additionalfeatures}
+%\ldots partly no standard ORM2 \ldots
+
+\subsection{Duplicated and implied parts of a model}
+\label{sec:duplicatedandimplied}
+Sometimes an object type or predicate is referred to without describing all its details because it is defined in an external model or because it is shown duplicated at some other place in the same model. To indicate such an external or duplicated object type or a predicate, a shadow is added to its shape. Alternatively ORM2 allows to add a circumflex ``\^{}'' to an object type's name. A different kind of redundancy are roles and constraints that deduce from other parts of the model. ORM2 includes the possibility to shade redundant roles. This is useful for instance to show conceptual pathes or join fact types that are normally excluded. Moreover ORM allows a \emph{zooming} on object types. This means that only objects and roles connected to a given object type are shown.
+
+\begin{stylekey}{duplicated model}
+This style modifies the styles \sty{every object} and \sty{every predicate} so all object types and predicates in the current scope get a shadow.
+\begin{codeexample}[]
+\begin{tikzpicture}[orm]
+  \begin{scope}[duplicated model]
+    \entity (A) {A};
+    \node[role] (r1) [right=of A] {};
+    \node[role] (r2) [right=0 of r1] {};
+    \draw[relationship] (A) -- (r1);
+  \end{scope}
+  \entity (B) [right=of r2] {B\^{}};
+  \plays (r2) -- (B);
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey} % duplicated model
+
+\begin{stylekey}{implied model}
+  This style modifies the styles \sty{every orm line} and \sty{every object} in the current scope to draw all lines thin and all objects filled gray.
+  The style is currently broken.
+\begin{figure}[h]
+\centering
+\begin{codeexample}[]
+\begin{tikzpicture}
+  \matrix[column sep=4mm] {
+    \entity (A) {A}; & \binary (ab) {}; & \entity (B) {B}; &
+    \binary (bc) {}; & \entity (C) {C}; \\ };
+  \plays (A) -- (ab) -- (B) -- (bc) -- (C);
+  \begin{scope}[implied model]
+    \node[constraint=unique] (con) [above=of B] {};
+    \limits (ab.one north) -- (con) -- (bc.two north);
+    \ternary[unique=1-3,skip unique=2] (abc) [below=4mm of B] {};
+    \plays (A) -- (abc.west); \plays (B) -- (abc); \plays (C) -- (abc.east);
+  \end{scope}
+\end{tikzpicture}
+\end{codeexample}
+\end{figure}
+\end{stylekey}
+
+\begin{stylekey}{duplicated}
+\stylekeyheadline[]{implied}
+This styles work like \sty{duplicated model} and \sty{implied model} but only affect the current element.
+The style are currently broken.
+\begin{codeexample}[]
+\begin{tikzpicture}
+\entity[duplicated] (P) {Person};
+\value[implied,right=1.6 of P] (V) {PersonName};
+\draw[implied,both required] (P) to 
+  node[roles,unique=1,unique=2]{} (V);
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+
+\begin{stylekey}{zoomed}
+This styles visualizes an object type as {\emph zoomed} by using a thicker line.
+\begin{codeexample}[]
+\begin{tikzpicture}
+\entity at (0,0) {Normal};
+\entity[zoomed] at (2,0) {Zoomed};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+
+\subsection{Arrow heads}
+\label{sec:arrowheads}
+Constraint dots are implemented as arrow heads. The normal constraint 
+dot is drawn with arrow head |mdot| for mandatory. Furthemore there is an
+implicit mandatory constraint dot (|idot|), a deontic mandatory constraint 
+dot (|odot|), and a implied deontic mandatory constraint dot (|iodot|). You 
+\emph{should not} directly use this arrow heads but the mandatory role 
+constraints |cdot|, |required| etc. (\ref{sec:mandatoryconstraints}) which
+can be modified by other styles. This feature is not fully tested yet.
+
+\begin{codeexample}[]
+\begin{tikzpicture}[orm]
+\matrix [row sep=2mm,column sep=3mm,every entity/.style={minimum width=10mm}]{
+  \entity[label=left:strict,label=above:explicit,right] (m) {mdot}; &
+  \entity[label=above:implicit] (i) {idot}; \\
+  \entity[label=left:deontic,right] (o) {odot}; &
+  \entity (io) {iodot}; \\ };
+  \plays[mdot-idot] (m) to (i);
+  \plays[odot-iodot] (o) to (io);
+\end{tikzpicture}
+\end{codeexample}
+
+
+\subsection{Macros for text layout} 
+\label{sec:ormtext}
+The following macros can be used both in \tikzname{} pictures or normal text:
+
+\begin{command}{ormtext}
+Sets the font to the same sans-serif variant which is used in ORM diagrams.
+\end{command}
+
+\begin{command}{ormbf}
+Sets the font to a bold variant of \cmd{ormtext}.
+\end{command}
+
+\begin{command}{ormc}
+Sets the font to a \cmd{ormtext} in constraint color.
+\end{command}
+
+\begin{command}[\marg{text}]{ormsup}
+Puts some text in a superscript variant of \cmd{ormtext}.
+\end{command}
+
+\begin{command}[\marg{text}]{ormsub}
+Puts some text in a subscript variant of \cmd{ormtext}.
+\end{command}
+
+\begin{command}[\marg{text}]{ormind}
+Puts some text in a superscript variant of \cmd{ormbf}.
+\end{command}
+
+\begin{command}[\marg{text}]{ormbraces}
+Puts some text as \cmd{ormtext} in braces.
+\end{command}
+
+\begin{command}[\marg{text}]{ormvalues}
+Puts some text as \cmd{ormc} in braces in constraint color.
+\end{command}
+
+\begin{codeexample}[]
+\ormind{1}A {\ormtext Person} is not \ormbraces{0,1},~
+{\ormc Male} {\ormbf or} {\ormtext Female}, \ormup{up}~
+{\ormbf or} \ormleft{left} but \ormsub{queer}multi\ormsup{gender}!
+\end{codeexample}
+
+
+\section{Settings and Utilities}
+\label{sec:generalstyles}
+
+\begin{stylekey}{orm}
+  This style sets the font and line width and the default node distance
+\end{stylekey}
+
+\begin{stylekey}{orm-spacious}
+  If you prefer to have entities and labels typeset as circles, you can use \texttt{orm-spacious} instead of \texttt{orm}.
+\begin{codeexample}[width=3cm]
+\begin{tikzpicture}[orm-spacious]
+  \node[entity] (P) at (0,0) {Person};
+  \node[value]  (N) at (1.5,0) {Name};
+\end{tikzpicture}
+\end{codeexample}
+\end{stylekey}
+
+\begin{stylekey}{every orm line}
+  This style is envoked by all styles of this package that draw lines. By default it sets the line width to 0.3mm.
+\end{stylekey}
+
+% \begin{stylekey}{every orm object}
+% \end{stylekey}
+% For this purpose (and for subtype arrows) this package defines the arrow tip \arrowtip{orm arrow}.
+% TODO: document arrow tip \arrowtip{orm arrow}
+% TODO: replace search path with |/orm/| instad of |/tikz/|.
+
+
+\section*{Changes}
+
+\begin{description}
+  \item[\ormVersion, \ormDate]
+    Unstable developer version (at Github).
+  \item[0.1.4, January 15, 2016]
+    Power types, sequence types, \texttt{orm-spacious} added.
+  \item[0.1, January 25, 2010]
+    First release (at CTAN).
+\end{description}
+
+\ifappendix
+  \bibliographystyle{alpha}
+  \addcontentsline{toc}{section}{References and Index}
+  \bibliography{tkz-orm}
+  \printindex
+\fi
+
+\end{document}

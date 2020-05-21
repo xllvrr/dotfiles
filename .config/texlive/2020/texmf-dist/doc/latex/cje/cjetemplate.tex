@@ -1,0 +1,191 @@
+%% This is file cjetemplate.tex
+%% 2018/02/22 v1.06
+%% =========
+%%
+%% COPYRIGHT (c) 2017 Canadian Economics Association
+%% 
+%% LICENSE
+%% =======
+%%
+%% This work can be distributed and/or modified under the conditions of the LaTeX Project Public License, 
+%% either version 1.3 of this license or any later version. The latest version of this license is available at 
+%% latex-project.org/lppl.txt. Version 1.3, or later, is part of all distributions of LaTeX version 2005/12/01 or later.
+
+
+\NeedsTeXFormat{LaTeX2e}
+
+\documentclass{cje} % for use when submitting final paper for publication
+%
+ % \documentclass[review]{cje} % for use at initial submission (double spaced, with line numbers) 
+%
+% \documentclass[proof]{cje}   % for typesetters 
+%                              % (with line numbers and typesetting details)
+%
+  \usepackage{cjenatbib}
+  \usepackage{url}
+   
+  \ifx\pdftexversion\undefined
+    \usepackage[dvips]{graphicx}
+  \else
+    \usepackage[pdftex]{graphicx}
+    \usepackage{epstopdf}
+    \epstopdfsetup{suffix=}
+  \fi
+
+  \usepackage{tabularx}
+  \usepackage[figuresright]{rotating}
+  \usepackage{floatpag}
+    \rotfloatpagestyle{empty}
+  \usepackage{amsmath}
+  \usepackage{amsthm}
+  \theoremstyle{plain}% default
+    \newtheorem{theorem}{Theorem}
+    \newtheorem{lemma}{Lemma}
+    \newtheorem{proposition}{Proposition}
+    \newtheorem*{corollary}{Corollary}
+  \theoremstyle{definition}
+    \newtheorem{definition}{Definition}
+    \newtheorem{example}{Example}
+  \theoremstyle{remark}
+    \newtheorem*{remark}{Remark}
+    \newtheorem*{case}{Case}
+  \usepackage{lmodern}
+  \usepackage{upquote}
+ \usepackage{hyperref}
+ 
+   %To enable possessive citations (using \citeapos)
+\def\citeapos#1{\citeauthor{#1}'s (\citeyear{#1})}
+ 
+ %If you have landscape tables or figures
+\usepackage[figuresright]{rotating}
+\usepackage{floatpag}
+  \rotfloatpagestyle{empty}
+
+  \hypersetup{%
+    pdftitle = {Article Name},
+    pdfauthor = {Author One, Author Two, Author Three, 
+      Author Four and Author Five},
+    citecolor=blue,            
+    urlcolor=blue,
+    colorlinks = true,
+  }  	  
+
+  \bibpunct{(}{)}{,}{a}{}{;}
+
+\begin{document}
+\label{firstpage}
+
+%title
+\title[]{} %For running heads. [short running title (max. 40 characters if possible)]{full title}
+\authors{} %Summary of authors for running heads. {Author initials and family names separated by commas except before ``and''}
+
+% authors and affiliations
+\authorone{}{} %{Full name of author one}{Name of department and organization or institution; separate multiple affiliations with semi-colon}
+\authortwo{}{} %{Full name of author two}{Name of department and organization or institution; separate multiple affiliations with semi-colon}
+\authorthree{}{} %{Full name of author three}{Name of department and organization or institution; separate multiple affiliations with semi-colon} 
+\authorfour{}{} %{Full name of author four}{Name of department and organization or institution; separate multiple affiliations with semi-colon}
+
+\abstract{} %{English abstract}
+
+\resume{} %{French abstract}. If you don't provide one, leave blank. The English abstract will be translated into French for you and inserted here.
+
+\JEL{} %{JEL classification codes, separated by commas}
+
+\acknowledgements{}
+  
+\maketitle
+
+\section{}
+\subsection{}
+\subsubsection{}
+
+\begin{enumerate}
+\item 
+\item 
+\end{enumerate}
+
+\begin{extract}
+\end{extract}
+
+\begin{epigraph}
+\epigraphauthor{}
+\end{epigraph}
+
+\marginpar{} %To add margin notes for reviewers, copyeditor, etc.
+
+%Itemized lists are set off with bullet points. Itemized sublists are set off with en dashes
+\begin{itemize}%Itemized list
+\item 
+  \item 
+  \begin{itemize}%Itemized sublist
+  \item
+  \end{itemize}
+\end{itemize}
+
+\begin{table}
+\caption{}%\caption{} must appear before \label{}
+\label{}%Label with table number
+\begin{minipage}{28pc}% you need this line if your table has notes and/or  footnotes 
+% (28pc is the text width)
+\begin{tabular}{@{}lrrrr@{}}\hline
+  xxxxx\tablenote{NOTES: } & %xxxxx indicates first column heading
+  \multicolumn{1}{c}{} & %second column heading
+  \multicolumn{1}{c}{} & %third column heading
+  \multicolumn{1}{c}{} & %fourth column heading 
+  \multicolumn{1}{c}{}\\ \hline %fifth column heading and line
+   &  &  &   &  \\
+  &  &  &   &  \\
+   &  &  &   &  \\
+   &  &  &   &  \footnote{}\\%Place the footnote command to the right of the item requiring a footnote
+\finalhline
+\end{tabular}
+\end{minipage}% Use this line only if you used \begin{minipage}
+
+\begin{figure}
+\includegraphics[width=0.6\textwidth]{}
+\caption{
+  \figurenote NOTE: }
+\label{}%Label with figure number
+  
+\begin{proof}
+\end{proof}
+
+\begin{proof}[]%To replace "proof" with [another word or phrase]
+\end{proof}
+
+%Manual creation reference list
+\begin{thebibliography}{}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem[{}]{}
+Aisa, R., and F. Pueyo (2004) ``Endogenous longevity, health and
+  economic growth: A slow growth for a longer life?,'' \textit{Economics 
+  Bulletin} 9(5), 1--10
+
+% Using BibTeX and .bib file
+\bibliography{} 
+\bibliographystyle{cjebibstyle} % to impose CJE bibliography style on output
+
+
+%\oneappendix %For only one appendix (will not be numbered)
+\appendix
+\section{}
+\label{}
+
+\subsection{}
+\label{}
+
+\section{}
+\label{}
+
+
+%More than one appendix (numbered A1, A2, etc.)
+\appendix
+\section{}
+\label{}
+ 
+\section{}
+\label{}
+
+\label{lastpage}
+\end{document}

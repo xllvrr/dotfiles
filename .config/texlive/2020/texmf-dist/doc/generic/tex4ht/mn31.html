@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title></title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<meta name="originator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<!-- xhtml,th4,index --> 
+<meta name="src" content="mn.tex" /> 
+<meta name="date" content="2004-02-11 18:07:00" /> 
+<link rel="stylesheet" type="text/css" href="mn.css" /> 
+</head><body 
+>
+    <a 
+ href="mn-port.html#mn31.html" >exit</a> <h3 class="SubSectionHead"><a 
+  name="QQ1-31-41"></a>Placement of the Environment File</h3>
+    <a 
+  name="index31-41001"></a> <a 
+  name="index31-41002"></a> <a 
+  name="index31-41003"></a> <a 
+  name="index31-41004"></a> <a 
+  name="index31-41005"></a><a 
+  name="envloc"></a> The <span class="cmtt-10">tex4ht.c </span>and <span class="cmtt-10">t4ht.c </span>programs retrieve the information about their platform from an environment file.
+The programs search the file at the following locations, in the given order.
+<ul type="disc" >
+<li>The address specified within the <a 
+ href="mn38.html" >command lines</a> of <span class="cmtt-10">tex4ht </span>and <span class="cmtt-10">t4ht</span>, and identified there by the prefix &#8216;<span class="cmtt-10">-e</span>&#8217;.
+</li>
+<li>The address <span class="cmtt-10">tex4ht.env </span>in the work directory. </li>
+<li>At the location specified by an optional environment variable named <span class="cmtt-10">TEX4HTENV</span>. </li>
+<li>The address <span class="cmtt-10">tex4ht.env </span>in the <a 
+ href="mn32.html"  name="mn32.html" >root</a> directory. </li>
+<li>The address provided in the variable <a 
+ href="mn36.html#x-ENVFILE"  name="ENVFILE">ENVFILE</a> of tex4ht and t4ht during compilation. </li>
+<li>At the directories of kpathsea, to be searched by that utility, if the <span class="cmtt-10">tex4ht.c </span>and <span class="cmtt-10">t4ht.c </span>programs are compiled
+with the &#8216;<span class="cmtt-10">-DKPATHSEA</span>&#8217; switch on.
+<!--l. 5458--><p class="indent">    For instance,
+</p><!--l. 5460--><p class="indent">    <span class="cmtt-10">gcc -o tex4ht tex4ht.c -DENVFILE='&#34;~/tex4ht.dir/texmf/tex4ht/base/unix/tex4ht.env&#34;'</span>
+<span class="cmtt-10">-DKPATHSEA -DHAVE_DIRENT_H -lkpathsea</span>
+</p><!--l. 5466--><p class="noindent">or
+</p><!--l. 5468--><p class="indent">    <span class="cmtt-10">gcc -O2 -DKPATHSEA -I/usr/local/teTeX/include -L/usr/local/teTeX/lib -o tex4ht tex4ht.c</span>
+<span class="cmtt-10">-DHAVE_DIRENT_H -lkpathsea</span>
+</p><!--l. 5477--><p class="indent">    When the address of <span class="cmtt-10">tex4ht.env </span>is not explicitly given, the <span class="cmtt-10">texmf.cnf </span>file might need records similar to the
+following ones.
+</p><div class="Verbatim"><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;TEX4HTFONTSET=alias,iso8859</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;TEX4HTINPUTS=.;$TEXMF/tex4ht/base//;$TEXMF/tex4ht/ht-fonts/{$TEX4HTFONTSET}//</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;T4HTINPUTS=.;$TEXMF/tex4ht/base//</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+    </li></ul>
+<!--l. 5488--><p class="indent">    A given address may start with the character &#8216;<span class="cmtt-10">~</span>&#8217;. This character is interpreted to be the directory address of the
+root (as provided in an environment variable named <span class="cmtt-10">HOME</span>).
+</p><!--l. 5494--><p class="indent">    The file <span class="cmtt-10">tex4ht.env </span>may be renamed to &#8216;<span class="cmtt-10">.tex4ht</span>&#8217;, if your system allows names consisting only of the extension
+part.
+
+</p>
+     
+</body></html> 

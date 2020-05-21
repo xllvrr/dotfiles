@@ -1,0 +1,8 @@
+name tikztosvg.x86_64-linux
+category TLCore
+revision 55132
+shortdesc x86_64-linux files of tikztosvg
+containersize 336
+containerchecksum 779f34cc1e272e6f9edf6c4fae2cfce3d7cbd8d8bc70558afef938ed71f964a2b4690bdb6fea3d1edc7668712187a1ce016b5814c4334aca77e22f27eda7e378
+binfiles arch=x86_64-linux size=1
+ bin/x86_64-linux/tikztosvg

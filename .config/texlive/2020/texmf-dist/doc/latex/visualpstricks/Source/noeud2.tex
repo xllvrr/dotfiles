@@ -1,0 +1,378 @@
+
+
+\SbSSCT{Les Matrices de n\oe uds}{Mathematicals and graphs}
+
+ \psset{fillcolor=yellow,fillstyle=solid}
+
+\SbSbSSCT{Création de la matrice de noeuds}{Creation of the  diagram}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline  
+\psmatrix
+ A &  B \\
+ C &  D\\
+\endpsmatrix 
+& \parbox[b]{5cm}{ 
+\BSS{psmatrix} \BSI{psmatrix}{pst-node}
+
+ A \&  B \textbackslash{}\textbackslash{} 
+ 
+ C \&  D \textbackslash{}\textbackslash{} 
+ 
+\BSS{endpsmatrix}  \BSI{endpsmatrix}{pst-node}}
+\\ 
+\hline 
+\end{tabular}
+\end{center} 
+
+	
+
+\SbSbSSCT{Les 10 types de noeuds}{10 types of nodes}
+
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+\psmatrix  [mnode= R] R \\ \endpsmatrix
+&
+\psmatrix [mnode= r] r \\ \endpsmatrix
+&
+\psmatrix [mnode= C] \\ \endpsmatrix
+&
+\psmatrix [mnode= f]  \\ \endpsmatrix
+&
+\psmatrix [mnode= p] p \\ \endpsmatrix
+\\\hline 
+ [\RDD{mnode}{\red = R}]  R \RDI{mnode}{pst-node} & [{\red mnode= r}] r & [{\red mnode= C}]  C & [{\red mnode= f}]  f & [{\red mnode= p}]  p  \\
+  
+\hline 
+\psmatrix  [mnode= circle] circle \\ \endpsmatrix
+&
+\psmatrix [mnode= oval]  oval \\ \endpsmatrix
+&
+\psmatrix [mnode=dia] dia \\ \endpsmatrix
+&
+\psmatrix  [mnode= tri]  tri   \\ \endpsmatrix
+&
+\psmatrix [mnode= dot] dot \\ \endpsmatrix
+\\\hline
+ [{\red mnode= circle}] circle  & [{\red mnode= oval}]  oval & [{\red mnode=dia}] dia & [{\red mnode= tri}]  tri & [{\red mnode= dot}] dot 
+\\\hline 
+\end{tabular} 
+
+\bigskip
+\begin{tabular}{|c|c|} 	\hline  
+\BS{psmatrix}[\RDD{mnode}=tri] & \BS{psmatrix}[\RDD{emnode}=tri] \RDI{emnode}{pst-node}\\
+A \& B \& \& D \BS{}\BS{} & A \& B \& \& D \BS{}\BS{}\\ 
+  \&  \& C \& E \BS{}\BS{} &    \&  \& C \& E  \BS{}\BS{} \\
+\BS{endpsmatrix} & \BS{endpsmatrix} 	\\ 
+\hline 
+\psmatrix[mnode=tri]
+A & B & & D\\
+&  & C & E\\
+\endpsmatrix 
+& 
+\psmatrix[emnode=tri]
+A & B & & D\\
+&  & C & E\\
+\endpsmatrix  \\ 
+	\hline 
+\end{tabular} 
+
+
+
+%-----------------------------------------------------
+\SbSbSSCT{Liaison des noeuds}{Connection of the nodes}
+
+\begin{center}
+\begin{tabular}{|c|}
+\hline 
+\psmatrix[rowsep=.2cm]
+%mnode= R & mnode= r & mnode= C & mnode= f & mnode= p \\
+[mnode= R]  R & [mnode= r] r &[mnode= C]  C & [mnode= f]  f & [mnode= p]  p  \\
+%\hline
+%mnode= circle &  mnode= oval & mnode=dia & mnode= tri & mnode= dot \\
+[mnode= circle] circle  & [mnode= oval]  oval & [mnode=dia] dia & [mnode= tri]  tri & [mnode= dot] dot \\
+\ncline[linecolor=red]{1,2}{2,1}
+\ncline[linestyle=dotted]{1,3}{2,2}
+\ncline[linestyle=dotted]{1,4}{2,3}
+\ncline[linestyle=dotted]{1,5}{2,4}
+%\ncline[linecolor=red]{1,6}{2,5}
+
+\ncline[linecolor=blue]{1,1}{2,1}
+\ncline[linestyle=dotted]{1,2}{2,2}
+\ncline[linestyle=dotted]{1,3}{2,3}
+\ncline[linestyle=dotted]{1,4}{2,4}
+\ncline[linestyle=dotted]{1,5}{2,5}
+
+\ncline[linecolor=cyan]{1,1}{2,2}
+\ncline[linestyle=dotted]{1,2}{2,3}
+\ncline[linestyle=dotted]{1,3}{2,4}
+\ncline[linestyle=dotted]{1,4}{2,5}
+\endpsmatrix
+ \\ \hline 
+ \parbox[b]{8cm}{ 
+\BS{}ncline[linecolor=red]\AC{1,2}\AC{2,1} 
+
+\BS{}ncline[linecolor=blue]\AC{1,1}\AC{2,1}
+
+\BS{}ncline[linecolor=cyan]\AC{1,1}\AC{2,2} }
+ \\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+
+
+%\newpage
+%--------------------------------------------------------------
+\SbSbSSCT{\'Etiquettes sur les liaisons}{Labels on connections}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}  \hline 
+& & & \\
+\psmatrix[rowsep=1cm]
+[mnode= dot]  R & [mnode= dot] r  \\
+[mnode= dot] circle  & [mnode= dot]  oval \\
+\ncline[linecolor=red]{1,2}{2,1} <{\red A} 
+\ncline[linecolor=blue]{1,2}{2,2}<{\blue B} 
+\ncline[linecolor=green]{2,1}{2,2}<{\green C} 
+\endpsmatrix
+&
+\psmatrix[rowsep=1cm]
+[mnode= dot]  R & [mnode= dot] r  \\
+[mnode= dot] circle  & [mnode= dot]  oval \\
+ \ncline[linecolor=red]{1,2}{2,1}_{\red A}
+ \ncline[linecolor=blue]{1,2}{2,2}_{\blue B} 
+ \ncline[linecolor=green]{2,1}{2,2}_{\green C} 
+\endpsmatrix
+&
+\psmatrix[rowsep=1cm]
+[mnode= dot]  R & [mnode= dot] r  \\
+[mnode= dot] circle  & [mnode= dot]  oval \\
+  \ncline[linecolor=red]{1,2}{2,1}>{\red A}
+  \ncline[linecolor=blue]{1,2}{2,2}>{\blue B}
+  \ncline[linecolor=green]{2,1}{2,2}>{\green C} 
+%\ncline[linecolor=red]{1,2}{2,1}>{C}
+\endpsmatrix
+&
+\psmatrix[rowsep=1cm]
+[mnode= dot]  R & [mnode= dot] r  \\
+[mnode= dot] circle  & [mnode= dot]  oval \\
+   \ncline[linecolor=red]{1,2}{2,1}^{\red A}
+   \ncline[linecolor=blue]{1,2}{2,2}^{\blue B}
+   \ncline[linecolor=green]{2,1}{2,2}^{\green C}
+%\ncline[linecolor=red]{1,2}{2,1}^{D}
+\endpsmatrix\\
+\hline
+\BS{}ncline\AC{1,2}\AC{2,1}<\AC{A} & \BS{}ncline\AC{1,2}\AC{2,1}\_\AC{A} & \BS{}ncline\AC{1,2}\AC{2,1}>\AC{A} & \BS{}ncline\AC{1,2}\AC{2,1}$\wedge$\AC{A}\\
+\BS{}ncline\AC{1,2}\AC{2,2}<\AC{B} & \BS{}ncline\AC{1,2}\AC{2,2}\_\AC{B} & \BS{}ncline\AC{1,2}\AC{2,2}>\AC{B} & \BS{}ncline\AC{1,2}\AC{2,2}$\wedge$\AC{B}\\
+\BS{}ncline\AC{2,1}\AC{2,2}<\AC{C} & \BS{}ncline\AC{2,1}\AC{2,2}\_\AC{C}& \BS{}ncline\AC{2,1}\AC{2,2}>\AC{C} & \BS{}ncline\AC{2,1}\AC{2,2}$\wedge$\AC{C}\\
+\hline
+
+\end{tabular}
+\end{center}
+
+
+
+\SbSbSSCT{Les autres paramètres}{Other parameters }
+
+
+%\psset{fillcolor=green}
+
+
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline 
+\multicolumn{2}{|c|}{name}\\ \hline 
+\psmatrix[mnode= oval]
+[name=A] A &  [name=B] B\\
+ [name=C] C &  [name=D] D\\
+\endpsmatrix 
+\ncline[linecolor=red]{A}{D}
+\pcline[linecolor=blue](B)(C)
+ &
+\parbox[b]{8cm}{
+\BS{}psmatrix[mnode= oval] 
+
+[{\red \RDD{name}=A}] A \&  [{\red name=B}] B \BS{}\BS{} %\textbackslash{}\textbackslash{} \\
+\RDI{name}{pst-node}
+
+[{\red name=C}] C \&  [{\red name=D}] D \textbackslash{}\textbackslash{}
+
+\BS{}endpsmatrix  
+
+\BS{}ncline[linecolor=red]{\red \AC{A}\AC{D}} 
+
+\BS{}pcline[linecolor=blue]{\red (B)(C)}}
+\\ \hline 
+\end{tabular}                                                                              
+\end{center}
+
+
+%-------------------------------------------------------------------
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{|c|c|}\hline 
+\multicolumn{2}{|c|}{mcol   \hspace{1cm}   {\blue \dft{}:  mcol=c } }\\ \hline 
+
+\psmatrix[rowsep=.2cm,colsep=.2cm]
+paramètres  &  Position du noeud  \\
+mcol=l & [mnode= oval,mcol=l] A \\ 
+ mcol=c & [mnode= oval,mcol=c] B \\ 
+ mcol=r & [mnode= oval,mcol=r] C \\
+\endpsmatrix
+ & 
+ \parbox[b]{6cm}{
+ 
+\BS{}psmatrix[rowsep=.2cm,colsep=.2cm]
+
+paramètres  \&  Position du noeud   \textbackslash{}\textbackslash{}
+
+mcol=l \& [mnode= oval,\RDD{mcol}{\red =l}] A \textbackslash{}\textbackslash{}  \RDI{mcol}{pst-node}
+
+mcol=c \& [mnode= oval,{\red mcol=c}] B \textbackslash{}\textbackslash{} 
+
+mcol=r \& [mnode= oval,{\red mcol=r}] C \textbackslash{}\textbackslash{} 
+
+\BS{}endpsmatrix }  \\ \hline 
+\end{tabular} 
+\end{center}
+
+%=========================================================
+
+\bigskip
+
+
+\begin{center}
+\begin{tabular}{|c|}
+\hline  
+\multicolumn{1}{|c|}{radius  }\\ \hline 
+\psmatrix
+[mnode=C] A &  [mnode=C, radius=1cm] B
+\endpsmatrix 
+\\  \hline 
+\BS{}psmatrix
+
+ [mnode=C]  \& [mnode=C, \RDD{radius}{\red =1cm}] \RDI{radius}{pst-node}
+
+\BS{}endpsmatrix 
+\\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+
+
+%-------------------------------------------------------------------------
+ \bigskip
+
+\begin{center}
+\begin{tabular}{|c|}
+\hline
+\multicolumn{1}{|c|}{mnodesize \hspace{1cm} {\blue \dft{} : mnodesize= -1pt } }
+\\ \hline 
+\psmatrix[mnode=oval,rowsep=.2cm,colsep=.2cm]
+ A & B & [mnodesize=4cm]  C & D & E\\
+\endpsmatrix 
+\\ \hline  
+\parbox[b]{10cm}{
+\BS{}psmatrix[mnode=oval,rowsep=.2cm,colsep=.2cm] 
+
+ A \& B \& [ \RDD{mnodesize}{\red =4cm}]  C \& D \& E 
+ \RDI{mnodesize}{pst-node}
+ 
+\BS{}endpsmatrix }
+\\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+%-------------------------------------------------------------
+ \bigskip
+
+
+\begin{center}
+\begin{tabular}{|c|}
+\hline
+colsep   \hspace{1cm}   {\blue \dft{} :  colsep= 1.5cm}
+\\ \hline  
+\psmatrix[mnode=oval]
+A & [colsep=0cm] B & [colsep=4cm]  C & D & E\\
+\endpsmatrix 
+\\ \hline  
+A \& [ \RDD{colsep}{\red =0cm}] B \& [{\red colsep=4cm}]  C \& D \& E  \textbackslash{}\textbackslash{} \RDI{colsep}{pst-node}
+\\ 
+\hline 
+\end{tabular}
+\end{center} 
+
+
+%-------------------------------------------------------
+
+ \bigskip
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline 
+\multicolumn{3}{|c|}{rowsep \hspace{.5cm} {\blue \dft{}  : rowsep=  1.5cm } }
+\\ \hline
+\psmatrix[mnode=oval] 
+A \\
+B \\
+C \\
+\endpsmatrix 
+&   
+\psmatrix[mnode=oval,rowsep=0cm] 
+A \\
+B \\
+C \\
+\endpsmatrix 
+& 
+\psmatrix[mnode=oval,rowsep=1cm] 
+A \\
+B \\
+C \\
+\endpsmatrix
+\\ 
+\hline 
+ \RDD{rowsep}{\red =0cm} \RDI{rowsep}{pst-node}
+ &  
+{\red rowsep=1cm} 
+ &
+\dft{} 
+ \\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+%-------------------------------------------------------
+ \bigskip
+ 
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline  
+\multicolumn{2}{|c|}{\BSS{psspan} \BSI{pspan}{pst-node} }\\ \hline 
+\psmatrix[mnode=oval,rowsep=.2cm,colsep=.2cm]
+A &  B &  C & D & E\\
+A &  B &   C  \psspan{2} & D\\
+\endpsmatrix 
+&  
+\parbox[b]{6cm}{
+A \&  B \&  C \& D \& E \BS{} \BS{}
+
+A \&  B \&   C  {\red \BS{}psspan\AC{2}} \& D \BS{} \BS{} }
+\\ 
+
+\hline 
+\end{tabular} 
+\end{center}
+
+
+ 
+ \psset{fillcolor=yellow}
+
+

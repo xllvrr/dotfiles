@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{binarytree}
+
+\begin{document}
+\btreeset{%
+  draw missing,%
+  separate,%
+  level distance scales=false,%
+  sibling distance scales=false,%
+  scale=0.5}
+
+\def\arraystretch{1.5}
+\begin{tabular}{cc}
+  none scales & both scale \\
+  \BinaryTree{}{3} &
+  \BinaryTree[yscale=1.7,level distance scales,%
+                        sibling distance scales]{}{3} \\
+  level distance scales & sibling distance scales \\
+  \BinaryTree[yscale=1.7,level distance scales]{r}{3} &
+  \BinaryTree[sibling distance scales]{}{3}
+\end{tabular}
+\end{document}

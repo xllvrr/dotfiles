@@ -1,0 +1,47 @@
+%%
+%% This is file `diplomArbeit.ltx',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% fhACtitlepage.dtx  (with options: `example')
+%% fhACtitlepage: A LaTeX2e package to create a titlepage for a diploma
+%%                thesis at Fachhochschule Aachen.
+%% 
+%% Copyright (C) 2006 Juergen A. Lamers <jaloma@dokutransdata.de>
+%% 
+\documentclass[german,
+a4paper,
+abstracton,
+titlepage,
+bibtotoc,
+idxtotoc,
+liststotoc,
+pointlessnumbers,
+openright,
+twoside,
+12pt]{scrreprt}
+\usepackage{graphicx}
+\usepackage[latin1]{inputenc}
+\usepackage{german}
+\usepackage[declaration,colored]{fhACtitlepage}
+\usepackage[
+center, % Bilder grundsaetzlich zentrieren
+nocaptionlist
+]{figbib_add}
+\usepackage{gloss_add}
+\makegloss{}
+\begin{document}
+\maketitle
+\pagenumbering{roman}\setcounter{page}{1}
+\begin{abstract}
+  Alles was zur Diplomarbeit so gehört oder auch nicht\ldots
+\end{abstract}
+\clearemptydoublepage
+\tableofcontents
+\clearemptydoublepage
+\pagenumbering{arabic}\setcounter{page}{1}
+\end{document}
+\endinput
+%%
+%% End of file `diplomArbeit.ltx'.

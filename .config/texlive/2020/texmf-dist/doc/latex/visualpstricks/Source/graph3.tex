@@ -1,0 +1,291 @@
+
+
+
+\subsection{Macro psplot }
+
+%\TFRGB{syntaxe}{syntax} :  \BSS{psplot} [Options] \AC{x min}\AC{x max}\AC{fonction}
+% 
+%
+%
+% \bigskip
+
+
+\psset{yunit=1cm}
+\begin{center}
+\begin{tabular}{|l|} \hline
+
+ \multicolumn{1}{|c|}{
+ \begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=12cm , subticks=0, dx=90,Dx=90 , dy=.5,Dy=.5](0,0)(0,-1.5)(720,1.5){12cm}{5cm } 
+ \psplot[plotpoints=200,linecolor=red]{0}{720}{x sin}
+ \end{psgraph*} 
+%\pspicture(0,-1.5)(8,1.50)
+%\psset{xunit=0.01cm}
+%\psplot[plotpoints=200,linecolor=red]{0}{720}{x sin}
+%\psline{->}(800,0)
+%\endpspicture 
+}\\ \hline
+% \BS{}psset\AC{xunit=0.01cm}\\
+\textbf{\BS{psplot}}[\rnode{A}{\RDD{plotpoints}=200},linecolor=red]\rnode{B}{\AC{0}\AC{720}}\rnode{C}{\AC{x sin}}  \RDI{plotpoints}{pst-plot}  \\ \hline
+\\
+\rnode{AA}{\TFRGB{ nombre de points utilisés}{number of point used}}  \hspace{.5cm}
+\rnode{BB}{\TFRGB{unité de x en degré}{x unit : degree}}  \hspace{0.5cm}
+\rnode{CC}{\TFRGB{fonction  en langage PostScript  \footnotemark[1]}{Function in postscript code }} 
+ \\ \hline
+{\blue \dft{} :  plotpoints = 50 }
+\\ \hline 
+
+
+\end{tabular}
+\end{center}
+\footnotetext[1]{\TFRGB{formule de calcul en langage PostScript (voir \pageref{postcript})}{formula in the PostScript language} }
+
+ \ncline[linecolor=blue]{A}{AA}  \ncline[linecolor=blue]{B}{BB}  \ncline[linecolor=blue]{C}{CC}
+
+
+ %-----------------------------------------------------
+ \subsection{Macro  parametricplot}
+ 
+%\TFRGB{syntaxe}{syntax} :  \BSS{parametricplot} [Options]\AC{t min}\AC{t max}\AC{x(t) y(t) }
+%\BSI{parametricplot}{pst-plot} 
+%  \bigskip
+
+  
+%\BS{}psset\AC{xunit=2cm}\\
+
+
+%
+%\begin{psgraph*}[,xticksize= -2 2 ,yticksize=-2 2, subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5](0,0)(-2,-2)(2,2){5cm}{5cm } 
+%\parametricplot[linewidth=1.2pt,plotstyle=ccurve,linecolor=red]{0}{360}{t sin t 2 mul sin}
+%\end{psgraph*}
+ 
+
+\begin{center}
+\begin{tabular}{|c|} \hline
+\begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5](0,0)(-1.5,-1.5)(1.5,1.5){5cm}{5cm } 
+\parametricplot[linewidth=1.2pt,plotstyle=ccurve,linecolor=red]{0}{360}{t sin t 2 mul sin}
+\end{psgraph*}
+%
+%\begin{pspicture}(-5cm,-1.5)(5cm,1.5)
+%
+%\psset{xunit=2cm}
+%\parametricplot[linewidth=1.2pt,plotstyle=ccurve,linecolor=red]{0}{360}{t sin t 2 mul sin}
+%\psline{<->}(0,-1.2)(0,1.2)
+%\psline{<->}(-1.2,0)(1.2,0)
+%\end{pspicture}
+\\ \hline
+\textbf{\BS{}parametricplot}[linewidth=1.2pt,plotstyle=ccurve,linecolor=red]\\
+\rnode{A}{\AC{0}\AC{360}}\Rnode*[fillcolor=yellow,fillstyle=solid]{B}{\AC{t sin t 2 mul sin} }\hspace{1cm} (functions : $sin(t)$ et  $sin(2t)$)\\
+%\BS{psline}\AC{<->}(0,-1.2)(0,1.2)\\
+%\BS{psline}\AC{<->}(-1.2,0)(1.2,0)\\ 
+\hline
+\\ \\
+ \rnode{AA}{\TFRGB{L'unité  de t est le degré }{ t unit in degree}} \hspace{1cm} 
+\rnode{BB}{\TFRGB{Les deux fonctions doivent être écrites en langage PostScript }{the 2 functions in postcript code } !}
+\\ \hline
+\end{tabular}
+\end{center}
+ \ncline[linecolor=blue]{A}{AA}  \ncline[linecolor=blue,armA=.5cm,angleA=90]{B}{BB}  
+ 
+\newpage
+
+%=====================================================
+\SbSSCT{Graphe polaire}{Polar graph}
+
+%\TFRGB{syntaxe}{syntax} :  
+%\BS{}psplot [\RDD{polarplot}=true]\AC{angle début}\AC{angle fin}[commande postscript]\AC{équation} \RDI{polarplot}{pst-plot} 
+
+%Exemple :
+
+
+
+%\AC{}psplot[plotstyle=curve,polarplot=true,linecolor=red,algebraic=true]\AC{0}\AC{\BS{}psPiTwo}\AC{6*sin(2*x)}
+
+%\begin{psgraph*}[axesstyle=none,xticksize= -5 5 ,yticksize=-5 5, subticks=0](0,0)(-5,-5)(5,5){5cm}{5cm } 
+%\psplot[plotstyle=curve,polarplot=true,linecolor=red]{0}{360}{ x 2 mul sin 6 mul }
+%\end{psgraph*}
+
+\begin{center}
+\begin{tabular}{|c|} \hline
+\begin{psgraph*}[xticksize= -5 5 ,yticksize=-5 5, subticks=0](0,0)(-5,-5)(5,5){5cm}{5cm } 
+\psplot[plotstyle=curve,polarplot=true,linecolor=red]{0}{360}{ x 2 mul sin 6 mul }
+\end{psgraph*}
+\\ \hline
+\BS{}psplot[plotstyle=curve,{\red polarplot}=true,linecolor=red]\\
+\AC{0}\AC{360} \AC{ x 2 mul sin 6 mul }  \\  \hline ($6*sin(2*x)$)\\ \hline
+\end{tabular}
+\end{center}
+
+%\psplot[plotstyle=curve,polarplot=true,linecolor=red,algebraic=true]{0}{\psPiTwo}{6*sin(2*x)}
+
+
+\subsection{Modules infix-RPN et pst-infixplot  \cite{pst-infix}}
+% \begin{itemize}
+% \item  Ces Modules permettent de s'affranchir des équations en langage PostScript
+% \item Le module  infix-RPN utilise \BS{RPN} 
+% \item Le module  pst-infixplot donne les commandes \BS{}psPlot et \BS{}parametricPlot 
+%\end{itemize}
+%
+%
+%\bigskip
+%Exemples :
+\label{infix-RPN}
+\label{pst-infixplot}
+
+%% \multicolumn{1}{|c|}{
+% \begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=12cm , subticks=0, dx=90,Dx=90 , dy=.5,Dy=.5](0,0)(0,-1.5)(720,1.5){12cm}{5cm } 
+%\infixtoRPN{sin(x)} 
+%\psplot[plotpoints=200,linecolor=red]{0}{720}{\RPN}
+% \end{psgraph*} 
+%%\pspicture(0,-1.5)(8,1.50)
+%%\psset{xunit=0.01cm}
+%%\psplot[plotpoints=200,linecolor=red]{0}{720}{x sin}
+%%\psline{->}(800,0)
+%%\endpspicture 
+%%}
+
+
+\begin{center}
+\begin{tabular}{|l|} \hline
+ \begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=12cm , subticks=0, dx=90,Dx=90 , dy=.5,Dy=.5](0,0)(0,-1.5)(720,1.5){10cm}{3cm } 
+\infixtoRPN{sin(x)} 
+\psplot[plotpoints=200,linecolor=red]{0}{720}{\RPN}
+ \end{psgraph*} 
+%\pspicture(0,-1.5)(9cm,1.50)
+%\psset{xunit=0.01cm}
+%\infixtoRPN{sin(x)} 
+%\psplot[plotpoints=200,linecolor=red]{0}{720}{\RPN}
+%\psline{->}(800,0)
+%\endpspicture 
+\\ \hline
+ \BSS{infixtoRPN}\AC{sin(x)} \BSI{infixtoRPN}{pst-plot}  \\
+\BS{}psplot[plotpoints=200]\AC{0}\AC{720}\AC{{\red \BS{}RPN}}
+\\ \hline
+\end{tabular} 
+\end{center}
+
+
+
+\smallskip
+\begin{center}
+\begin{tabular}{|l|} \hline
+ \begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=12cm , subticks=0, dx=90,Dx=90 , dy=.5,Dy=.5](0,0)(0,-1.5)(720,1.5){10cm}{3cm } 
+\psPlot[linecolor=red]{0}{720}{sin(x)}
+ \end{psgraph*} 
+ 
+%\pspicture(0,-1.1)(9cm,1.1)
+%\psset{xunit=0.01cm}
+%\psset{plotpoints=200}
+%\psPlot[linecolor=red]{0}{720}{sin(x)}
+%\psline{->}(8cm,0)
+%\endpspicture 
+\\ \hline
+%\BS{}psset\AC{plotpoints=200} \\
+ \BSS{psPlot}\AC{0}\AC{720}\AC{sin(x)}
+\\ \hline
+\end{tabular} 
+\end{center}
+
+
+
+
+\smallskip
+\begin{center}
+\begin{tabular}{|c|} \hline
+\begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5](0,0)(-1.5,-1.5)(1.5,1.5){5cm}{5cm } 
+\parametricPlot[linecolor=red,plotpoints=200]{0}{360}{sin(t)}{sin(2*t)}
+\end{psgraph*}
+%\psset{plotpoints=200}
+%\pspicture(-2,-1.5)(2,1.5)
+%\psset{xunit=1.7cm}
+%\parametricPlot[linecolor=red,plotpoints=200]{0}{360}{sin(t)}{sin(2*t)}
+%\psline{<->}(0,-1.2)(0,1.2)
+%\psline{<->}(-1.2,0)(1.2,0)
+%\endpspicture
+\\ \hline
+ \BSS{parametricPlot}[linecolor=red,plotpoints=200]\AC{0}\AC{360}\AC{sin(t)}\AC{sin(2*t)} \\ \hline
+\end{tabular} 
+\end{center}
+
+%\newpage
+\subsection{Option algebraic}
+%\begin{itemize}
+%\item  Cette option permet de s'affranchir des équations en langage PostScript
+%\item L'unité de x ou de t est le\emph{ radian }
+%\end{itemize}
+%
+%
+%
+%\bigskip
+%%
+%\BS{}psplot[algebraic,plotpoints=200]\AC{0}\AC{12.56}\AC{ sin(x)}
+%\smallskip
+
+\begin{center}
+\begin{tabular}{|c|} \hline
+ \begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=13	 , subticks=0, dx=1,Dx=1, dy=.5,Dy=.5](0,0)(0,-1.5)(13,1.5){10cm}{3cm } 
+\psplot[algebraic,plotpoints=200,linecolor=red]{0}{12.56}{ sin(x)}
+ \end{psgraph*} 
+%\pspicture(0,-1.1)(8,1.1)
+%\psset{xunit=.5cm}
+%\psplot[algebraic,plotpoints=200,linecolor=red]{0}{12.56}{ sin(x)}
+%\psline{->}(15,0)
+%\endpspicture
+\\ \hline
+\BS{}psplot[\RDD{algebraic},plotpoints=200]\AC{0}\AC{12.56}\AC{{\red sin(x)}} \RDI{algebraic}{pst-plot} \\ \hline
+\TFRGB{L'unité de x  est le}{x unit in }\emph{ radian }
+ \\ \hline
+\end{tabular} 
+\end{center}
+\bigskip
+%
+
+\smallskip
+
+
+\begin{center}
+\begin{tabular}{|c|} \hline
+\begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5](0,0)(-1.5,-1.5)(1.5,1.5){5cm}{5cm } 
+\parametricplot[algebraic,plotpoints=200,linecolor=red]{0}{6.28}{sin(t)|sin(2*t)}
+\end{psgraph*}
+%\pspicture(-2,-1.5)(2,1.5)
+%\psset{xunit=1.7cm}
+%\parametricplot[algebraic,plotpoints=200,linecolor=red]{0}{6.28}{sin(t)|sin(2*t)}
+%\psline{<->}(0,-1.2)(0,1.2)
+%\psline{<->}(-1.2,0)(1.2,0)
+%\endpspicture 
+\\ \hline
+\BSS{parametricplot}[{\red algebraic},plotpoints=200]\AC{0}\AC{6.28}\AC{{\red sin(t)|sin(2*t)}}
+\\ \hline
+\TFRGB{L'unité de  t est le}{t unit in }\emph{ radian }
+\\ \hline
+\end{tabular} 
+\end{center}
+
+\subsection{Options VarStep et VarStepEpsilon }
+\label{var}
+
+\begin{tabular}{|c|} \hline 
+ \begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=13	 , subticks=0, dx=1,Dx=1, dy=.5,Dy=.5](0,0)(0,-1.5)(13,1.5){10cm}{3cm } 
+\psplot[algebraic,VarStep=true,linecolor=red,showpoints=true,VarStepEpsilon=1]{0}{12.56}{ sin(x)}
+ \end{psgraph*} 
+ \\ \hline   
+\BS{psplot}[algebraic,\RDD{VarStep}=true,showpoints=true,\RDD{VarStepEpsilon}=1]{0}\AC{12.56}\AC{ sin(x)}  \RDI{VarStep}{pstricks-add}   \RDI{VarStepEpsilon}{pstricks-add} 
+\\ \hline  
+ \begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=13	 , subticks=0, dx=1,Dx=1, dy=.5,Dy=.5](0,0)(0,-1.5)(13,1.5){10cm}{3cm } 
+\psplot[algebraic,VarStep=true,linecolor=red,showpoints=true,VarStepEpsilon=.1]{0}{12.56}{ sin(x)}
+ \end{psgraph*} 
+ \\ \hline  
+\BS{psplot}[algebraic,\RDD{VarStep}=true,showpoints=true,\RDD{VarStepEpsilon}=0.1]{0}\AC{12.56}\AC{ sin(x)}
+\\ \hline  
+ \begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=13	 , subticks=0, dx=1,Dx=1, dy=.5,Dy=.5](0,0)(0,-1.5)(13,1.5){10cm}{3cm } 
+\psplot[algebraic,VarStep=true,linecolor=red,showpoints=true,VarStepEpsilon=0.01]{0}{12.56}{ sin(x)}
+ \end{psgraph*} 
+ \\ \hline  
+\BS{psplot}[algebraic,\RDD{VarStep}=true,showpoints=true,\RDD{VarStepEpsilon}=.001]{0}\AC{12.56}\AC{ sin(x)}
+\\ \hline  
+
+\end{tabular} 
+
+
+
+

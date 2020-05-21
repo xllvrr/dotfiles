@@ -1,0 +1,43 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{regions}[2016/10/06 v1.2 (NLCT) Sample package to test tracklang.sty]
+
+\RequirePackage{tracklang}[2016/10/07]
+
+\DeclareOption*{\TrackLanguageTag{\CurrentOption}}
+\ProcessOptions
+
+\AnyTrackedLanguages
+{}
+{% fetch locale information from the operating system
+  \ifx\TeXOSQueryLangTag\undefined
+    \TrackLangFromEnv
+  \else
+    \TeXOSQueryLangTag{\langtag}
+    \TrackLanguageTag{\langtag}
+  \fi
+}
+
+\newcommand*{\weightunit}{kg}
+\newcommand*{\lengthunit}{mm}
+\newcommand*{\currencyunit}{}
+
+\newcommand*{\unitname}{units}
+
+\newcommand*{\RequireRegionsDialect}[1]{%
+ \TrackLangRequireDialect
+    [\TrackLangRequireResource{\CurrentTrackedTag}%
+     \TrackLangRequireResource{\CurrentTrackedLanguage}%
+    ]%
+    {regions}{#1}%
+}
+
+\AnyTrackedLanguages
+{%
+  \ForEachTrackedDialect{\this@dialect}{%
+    \RequireRegionsDialect\this@dialect
+  }%
+}
+{% no tracked languages, default already set up
+}
+
+\endinput

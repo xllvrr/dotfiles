@@ -1,0 +1,34 @@
+name hobby
+category Package
+revision 44474
+shortdesc An implementation of Hobby's algorithm for PGF/TikZ
+longdesc This package defines a path generation function for PGF/TikZ
+longdesc which implements Hobby's algorithm for a path built out of
+longdesc Bezier curves which passes through a given set of points. The
+longdesc path thus generated may by used as a TikZ 'to path'. The
+longdesc implementation is in LaTeX3.
+containersize 9624
+containerchecksum 669c768dffa4e88d831d0a03a7e518fb2c101cd0af9ca1e15e6527ccbe78a13485145bedd4ef45cbaefcc94e4bead303acb89a0d0f50c6fc3a7ab312717febad
+doccontainersize 944236
+doccontainerchecksum 7c8a353078be8b94195558d1d7a319173b4480a616c8725b99357ed3a086565c238b944b9b3baa719b354dcff9476aa7c7ffb055565df546054e662370d5d808
+docfiles size=249
+ texmf-dist/doc/latex/hobby/README
+ texmf-dist/doc/latex/hobby/hobby.pdf details="Package documentation"
+ texmf-dist/doc/latex/hobby/hobby_code.pdf details="Annotated code"
+ texmf-dist/doc/latex/hobby/hobby_doc.tex
+srccontainersize 17768
+srccontainerchecksum 216ff34f42c28fd3e2303ff5032a299668881fbe51e8c8957547dd7953b2296e984a449cc09b79268b968ec8fcb8b774453a26e88156f5b7bbc6cb78a57de7e7
+srcfiles size=29
+ texmf-dist/source/latex/hobby/hobby.dtx
+ texmf-dist/source/latex/hobby/hobby.ins
+runfiles size=19
+ texmf-dist/tex/latex/hobby/hobby.code.tex
+ texmf-dist/tex/latex/hobby/pgflibraryhobby.code.tex
+ texmf-dist/tex/latex/hobby/pml3array.sty
+ texmf-dist/tex/latex/hobby/tikzlibraryhobby.code.tex
+catalogue-contact-home https://github.com/loopspace/hobby
+catalogue-contact-repository https://github.com/loopspace/hobby
+catalogue-ctan /graphics/pgf/contrib/hobby
+catalogue-license lppl1.3
+catalogue-topics graphics-curve graphics-supp graphics-in-tex expl3
+catalogue-version 1.8

@@ -1,0 +1,508 @@
+\subsection{pstextpath}
+\label{pst-text}
+
+%\psset{doublesep=3pt}
+
+\begin{tabular}{|c|} \hline  
+\rnode{A}{position} \hspace{.5cm} \rnode{B}{\TFRGB{décalage}{offset}} \hspace{.5cm} \rnode{C}{\TFRGB{support graphique}{graphic support}}\\
+\\
+\BS{pstextpath}\rnode{AA}{\red[r]} \rnode{BB}{\cyan (0,0)}\Rnode{CC}{\Vert \AC{\BS{psline}(0, 0)(5, 1)}}\AC{\BS{red} \TFRGB{texte }{text}}
+\\ \hline 
+\begin{pspicture}(-1,-.15)(6,1.5) 
+ \pstextpath[r](0,0){\psline(0, 0)(5, 1)}{\red \TFRGB{texte}{text}}
+\end{pspicture} 
+\\ \hline 
+\end{tabular} 
+\psset{linestyle = solid}
+\ncline{A}{AA}
+\ncline{B}{BB}
+\ncline{C}{CC}
+
+\SbSbSSCT{Positionnement sur différents objets graphiques}{Positioning on different graphic objects}
+
+
+\psset{linestyle = dotted}
+\begin{tabular}{|c|c|c|} \hline  
+ \multicolumn{3}{|l|}{ \hspace{1cm} \BS{pstextpath}{\red[r]} (0,0)\AC{\BS{psline}(0, 0)(1, 1)(2, 1)(3.5, 3.5)}\AC{\BS{red} \TFRGB{à droite}{on the right}} } \\ 
+ \multicolumn{3}{|l|}{  \hspace{1cm} \BS{pstextpath}{\red[l]} (0,0)\AC{\BS{psline}(0, 0)(1, 1)(2, 1)(3.5, 3.5)}\AC{\BS{cyan} \TFRGB{à gauche}{on the left}} } \\ 
+ \multicolumn{3}{|l|}{ \hspace{1cm} \BS{pstextpath}{\red[c]} (0,0)\AC{\BS{psline}(0, 0)(1, 1)(2, 1)(3.5, 3.5)}\AC{ \TFRGB{centré}{centered} }} \\  
+ \hline
+
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+ \pstextpath[r](0,0){\psline(0, 0)(1, 1)(2, 1)(3.5, 3.5)}{\red \TFRGB{à droite}{on the right}}
+ \pstextpath[l](0,0){\psline(0, 0)(1, 1)(2, 1)(3.5, 3.5)}{\cyan \TFRGB{à gauche}{on the left}}
+ \pstextpath[c](0,0){\psline(0, 0)(1, 1)(2, 1)(3.5, 3.5)}{\TFRGB{centré}{centered}}
+ \end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+\pstextpath[r](0,0){\pspolygon(1, 0.5)(2, 3)(3.5, 1.5)(2.5,1)}{\red \TFRGB{à droite}{on the right}}
+\pstextpath[l](0,0){\pspolygon(1, 0.5)(2, 3)(3.5, 1.5)(2.5,1)}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\pspolygon(1, 0.5)(2, 3)(3.5, 1.5)(2.5,1)}{\TFRGB{centré}{centered}}
+ \end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+\pstextpath[r](0,0){\psframe(.5,.5)(3.5,3.5)}{\red \TFRGB{à droite}{on the right}}
+\pstextpath[l](0,0){\psframe(.5,.5)(3.5,3.5)}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\psframe(.5,.5)(3.5,3.5)}{\TFRGB{centré}{centered}}
+ \end{psgraph}
+
+\\ \hline  
+\BS{psline} & \BS{pspolygon} & \BS{psframe}
+\\ \hline  
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+\pstextpath[r](0,0){\psdiamond(2,2)(1.75,1.75)}{\red \TFRGB{à droite}{on the right}}
+\pstextpath[l](0,0){\psdiamond(2,2)(1.75,1.75)}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\psdiamond(2,2)(1.75,1.75)}{\TFRGB{centré}{centered}}
+ \end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+\pstextpath[r](0,0){\pstriangle(2,1)(3.5,2)}{\red \TFRGB{à droite}{on theright}}
+\pstextpath[l](0,0){\pstriangle(2,1)(3.5,2)}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\pstriangle(2,1)(3.5,2)}{\TFRGB{centré}{centered}}
+ \end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm}  
+\pstextpath[r](0,0){\psarc(1.5,2){2}{-120}{120}}{\red \TFRGB{à droite}{on the right}}
+\pstextpath[l](0,0){\psarc(1.5,2){2}{-120}{120}}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\psarc(1.5,2){2}{-120}{120}}{\TFRGB{centré}{centered}}
+\end{psgraph}
+\\ \hline 
+\BS{psdiamond}& \BS{pstriangle} & \BS{psarc}
+\\ \hline 
+
+
+\end{tabular} 
+
+\ncline{A}{AA}
+\ncline{B}{BB}
+\ncline{C}{CC}
+
+%
+%
+%
+\begin{tabular}{|c|c|c|} \hline 
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+ \pstextpath[r](0,0){\pscircle(2,2){1.5}}{\red \TFRGB{à droite}{on the right}}
+ \pstextpath[l](0,0){\pscircle(2,2){1.5}}{\cyan \TFRGB{à gauche}{on the left}}
+ \pstextpath[c](0,0){\pscircle(2,2){1.5}}{\TFRGB{centré}{centered}}
+\end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+\pstextpath[r](0,0){\psellipse(2, 2)(1.75,1)}{\red \TFRGB{à droite}{on the right}}
+\pstextpath[l](0,0){\psellipse(2, 2)(1.75,1)}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\psellipse(2, 2)(1.75,1)}{\TFRGB{centré}{centered}}
+\end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+\pstextpath[r](0,0){\psellipticarc(2, 2)(1.75,1){150}{30}}{\red \TFRGB{à droite}{on the right}}
+\pstextpath[l](0,0){\psellipticarc(2, 2)(1.75,1){150}{30}}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\psellipticarc(2, 2)(1.75,1){150}{30}}{\TFRGB{centré}{centered}}
+ \end{psgraph}
+\\ \hline 
+\BS{pscircle} & \BS{psellipse} & \BS{psellipticarc} \\ \hline 
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+\pstextpath[r](0,0){\pscurve[showpoints=true](1,1)(2,3)(3,2)(2,1)(3,1)}{\red \TFRGB{à droite}{on the right}}
+\pstextpath[l](0,0){\pscurve[showpoints=true](1,1)(2,3)(3,2)(2,1)(3,1)}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\pscurve[showpoints=true](1,1)(2,3)(3,2)(2,1)(3,1)}{\TFRGB{centré}{centered}}
+ \end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+\pstextpath[r](0,0){\psccurve[showpoints=true](1,1)(2,3)(3,2)(2,1)(3,1)}{\red \TFRGB{à droite}{on the right}}
+\pstextpath[l](0,0){\psccurve[showpoints=true](1,1)(2,3)(3,2)(2,1)(3,1)}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\psccurve[showpoints=true](1,1)(2,3)(3,2)(2,1)(3,1)}{\TFRGB{centré}{centered}}
+ \end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+\pstextpath[r](0,0){\psecurve[showpoints=true](1,1)(2,3)(3,2)(2,1)(3,1)}{\red \TFRGB{à droite}{on the right}}
+\pstextpath[l](0,0){\psecurve[showpoints=true](1,1)(2,3)(3,2)(2,1)(3,1)}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\psecurve[showpoints=true](1,1)(2,3)(3,2)(2,1)(3,1)}{\TFRGB{centré}{centered}}
+\end{psgraph}
+\\ \hline  
+\BS{pscurve} & \BS{psccurve} & \BS{psecurve}
+\\ \hline  
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+ \pstextpath[r](0,0){\pswedge(1,2){2}{-60}{60}}{\red \TFRGB{à droite}{on the right}}
+ \pstextpath[l](0,0){\pswedge(1,2){2}{-60}{60}}{\cyan \TFRGB{à gauche}{on the left}}
+ \pstextpath[c](0,0){\pswedge(1,2){2}{-60}{60}}{\TFRGB{centré}{centered}}
+ \end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none](0,0)(4,4){4cm}{4cm} 
+\pstextpath[r](0,0){\psbezier(1,0)(8,4)(-4,4)(3,0)}{\red \TFRGB{à droite}{on the right}}
+\pstextpath[l](0,0){\psbezier(1,0)(8,4)(-4,4)(3,0)}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\psbezier(1,0)(8,4)(-4,4)(3,0)}{\TFRGB{centré}{centered}}
+ \end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,ticks=none,labels=none,dx=\psPiH](0,-2)(13,2){4cm}{4cm} 
+\pstextpath[r](0,0){\psplot[algebraic,plotpoints=200]{0}{12.56}{sin(x)}}{\red \TFRGB{à droite}{on the right}}
+\pstextpath[l](0,0){\psplot[algebraic,plotpoints=200]{0}{12.56}{sin(x)}}{\cyan \TFRGB{à gauche}{on the left}}
+\pstextpath[c](0,0){\psplot[algebraic,plotpoints=200]{0}{12.56}{sin(x)}}{\TFRGB{centré}{centered}}
+ \end{psgraph}
+\\ \hline 
+\BS{pswedge} & \BS{psbezier} & \BS{psplot}[algebraic]\AC{0}\AC{12.56}\AC{sin(x)}
+\\ \hline 
+\end{tabular}
+
+%------------------------------------------------------------------------
+\bigskip
+\SbSbSSCT{Décalage}{Offset}
+\psset{linestyle = solid}
+
+\begin{tabular}{|c|c|c|c|}\hline  
+ \multicolumn{4}{|c|}{ \BS{pstextpath}[l]{\red (0,.5)}\AC{\BS{psline}(0, 0)(1, 1)}\AC{\TFRGB{texte}{text}} } \\ \hline
+\begin{pspicture}(-1.5,-.5)(1.5,1.5)
+ \psset{linewidth=0.2pt}
+\pstextpath[l](0,.5){\psline(0, 0)(1, 1)} {\TFRGB{texte}{text}}
+%\psdots(-.75,0)
+ \end{pspicture}
+&  
+ \begin{pspicture}(-1.5,-.5)(1.5,1.5)
+  \psset{linewidth=0.2pt}
+ \pstextpath[l](0,-.5){\psline(0, 0)(1, 1)}{\TFRGB{texte}{text}}
+%  \psdots(-.75,0)
+  \end{pspicture}
+&  
+  \begin{pspicture}(-1.5,-.5)(1.5,1.5)
+   \psset{linewidth=0.2pt}
+  \pstextpath[l](.5,0){\psline(0, 0)(1, 1)}{\TFRGB{texte}{text}}
+%    \psdots(-.75,0)
+   \end{pspicture}
+&  
+  \begin{pspicture}(-1.5,-.5)(1.5,1.5)
+   \psset{linewidth=0.2pt}
+  \pstextpath[l](.5,.5){\psline(0, 0)(1, 1)}{\TFRGB{texte}{text}}
+%    \psdots(-.75,0)
+   \end{pspicture}
+\\ \hline 
+(0,0.5) & (0,-0.5) & (0.5,0) & (0.5,0.5)
+\\ \hline 
+ \multicolumn{4}{|c|}{ \blue \dft : (0,\BDD{\BS{TPoffset}}) \hspace{.5cm}  \BS{TPoffset}= -0.7ex. }
+\\ \hline 
+\end{tabular} 
+
+
+
+\subsection{pscharpath}
+
+\psset{linestyle = solid}
+\TFRGB{
+\BS{DeclareFixedFont}\AC{\BS[nom]}\AC{\BS{encodage}}
+\AC{\BS{famille}}\AC{\BS{Séries}}\AC{\BS{forme}}\AC{taille}
+}{
+\BS{DeclareFixedFont}\AC{\BS[nom]}\AC{\BS{encodingdefault}}
+\AC{\BS{familydefault}}\AC{\BS{seriesdefault}}\AC{\BS{shapedefault}}\AC{taille}
+}
+
+\bigskip
+
+\rnode{E}{\TFRGB{nom de la fonte}{name}} \hspace{.5cm}
+\rnode{A}{\TFRGB{encodage}{encoding }: T1} \hspace{.5cm}
+\rnode{B}{\TFRGB{famille}{family} : Times} \hspace{.5cm} 
+\rnode{C}{\TFRGB{séries}{series} : bold} \hspace{.5cm}
+\rnode{D}{\TFRGB{forme}{shape} :  normale}
+
+\bigskip
+\begin{tabular}{|c|} \hline  
+\BSS{DeclareFixedFont}\AC{\rnode{EE}{\BS{Font}}}\AC{\rnode{AA}{T1}}\AC{\rnode{BB}{ptm}}\AC{\rnode{CC}{b}}\AC{\rnode{DD}{n}}\AC{2cm} \BSI{DeclareFixedFont}{pst-text} \\
+%
+\BSS{pscharpath}\AC{\BS{Font} PSTricks} \BSI{pscharpath}{pst-text}
+\\ \hline  
+\DeclareFixedFont{\Font}{T1}{ptm}{b}{n}{2cm}
+
+\pscharpath{\Font PSTricks}
+\\ \hline 
+\end{tabular} 
+\ncline{A}{AA}
+\ncline{B}{BB}
+\ncline{C}{CC}
+\ncline{D}{DD}
+\ncline{E}{EE}
+
+%\bigskip
+%
+%\begin{tabular}{|c|} \hline  
+%\BSS{DeclareFixedFont}\AC{\BS{RM}}\AC{T1}\AC{pcr}\AC{b}\AC{n}\AC{2cm} \\
+%%
+%\BSS{pscharpath}\AC{\BS{RM} PSTricks}
+%\\ \hline  
+%\DeclareFixedFont{\RM}{T1}{pcr}{b}{n}{2cm}
+%
+%\pscharpath{\RM PSTricks}
+%\\ \hline 
+%\end{tabular} 
+%\bigskip
+%\BSS{DeclareFixedFont}\AC{\BS{RM}}\AC{T1}\AC{ppl}\AC{b}\AC{n}\AC{2cm} \\
+%\BSS{pscharpath}\AC{\BS{RM} PSTricks}
+
+\SbSbSSCT{Quelques familles de fonte}{Some families}
+
+\begin{tabular}{|c|c|} \hline  
+\DeclareFixedFont{\Font}{T1}{ppl}{b}{n}{1.5cm}
+
+\pscharpath{\Font PSTricks}
+&
+\DeclareFixedFont{\Font}{T1}{pag}{b}{n}{1.5cm}
+
+\pscharpath{\Font PSTricks}
+\\ \hline  
+famille : ppl (Palatino)
+&
+famille : pag (AvantGarde)
+\\ \hline  
+\DeclareFixedFont{\Font}{T1}{pcr}{b}{n}{1.5cm}
+
+\pscharpath{\Font PSTricks}
+
+&
+\DeclareFixedFont{\Font}{T1}{pnc}{b}{n}{1.5cm}
+
+\pscharpath{\Font PSTricks}
+\\ \hline 
+famille : pcr (Courier)
+&
+famille : pnc (NewCenturySchoolbook)
+\\ \hline 
+
+\DeclareFixedFont{\Font}{T1}{psy}{b}{n}{1.5cm}
+
+\pscharpath{\Font PSTricks}
+&
+\DeclareFixedFont{\Font}{T1}{pzc}{b}{n}{1.5cm}
+
+\pscharpath{\Font PSTricks}
+\\ \hline 
+famille : psy (Symbol)
+&
+famille : pzc (ZapfChancery)
+\\ \hline 
+
+\DeclareFixedFont{\Font}{T1}{phv}{b}{n}{1.5cm}
+
+\pscharpath{\Font PSTricks}
+&
+\DeclareFixedFont{\Font}{T1}{pzd}{b}{n}{1.5cm}
+
+\pscharpath{\Font PSTricks}
+\\ \hline 
+famille : phv (Helvetica)
+&
+famille : pzd (ZapfDingbats)
+\\ \hline 
+
+\end{tabular} 
+\bigskip
+
+
+%---------------------------------------------------------------------------
+\SbSbSSCT{Mise en forme}{Formatting}
+
+\DeclareFixedFont{\Font}{T1}{ptm}{b}{n}{2cm}
+
+\begin{tabular}{|c|}\hline  
+ 
+\BS{pscharpath}[linecolor=lightgray]\AC{\BS{Font} PsTricks}
+\\ \hline
+\pscharpath[linecolor=lightgray]{\Font PsTricks}
+\\ \hline 
+\BS{pscharpath}[fillstyle=gradient,gradbegin=red,gradend=cyan,shadow=true]\AC{\BS{Font} PsTricks}
+\\ \hline
+\pscharpath[fillstyle=gradient,gradbegin=red,gradend=cyan,shadow=true]{\Font PsTricks}
+\\ \hline 
+\BS{pscharpath}[doubleline=true]\AC{\BS{Font} PsTricks}
+\\ \hline
+\pscharpath[doubleline=true]{\Font PsTricks}
+\\ \hline 
+\BS{pscharpath}[shadow=true]\AC{\BS{Font} PsTricks}
+\\ \hline
+\pscharpath[shadow=true]{\Font PsTricks}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|}\hline  
+\BSS{pscharpath} \TFRGB{avec astérisque}{ with asterisk}
+\\ \hline
+ \BSS{pscharpath*}\AC{\BS{Font} PsTricks} \BSI{pscharpath*}{pst-text} 
+\\ \hline
+\pscharpath*{\Font PsTricks}
+\\ \hline 
+\BS{pscharpath*}[linecolor=cyan]\AC{\BS{Font} PsTricks}
+\\ \hline
+\pscharpath*[linecolor=cyan]{\Font PsTricks}
+\\ \hline 
+\BS{pscharpath}[doubleline=true,linecolor=magenta]\AC{\BS{Font} PsTricks}
+\\ \hline
+\pscharpath[doubleline=true,linecolor=magenta]{\Font PsTricks}
+\\ \hline 
+
+%\BS{pscharpath*}[shadow=true]\AC{\BS{Font} PsTricks}
+%\\ \hline
+%\pscharpath*[shadow=true]{\Font PsTricks}
+%\\ \hline 
+\end{tabular}
+
+%--------------------------------------------------------------------------------
+\SbSbSSCT{Effets spéciaux}{Special effects}
+\DeclareFixedFont{\Font}{T1}{ptm}{b}{n}{2.5cm}
+
+\begin{tabular}{|l|} \hline  
+ \BSS{psboxfill}\AC{\BS{tiny} pstricks} \BSI{psboxfill}{pst-text} \\
+\BS{pscharpath}[{\red fillstyle=boxfill,fillangle=45}] 
+\AC{\BS{Font} PsTricks}
+\\ \hline  
+ \psboxfill{\tiny pstricks}
+\pscharpath[fillstyle=boxfill,fillangle=45]{\Font PsTricks}
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+
+
+\begin{tabular}{|l|} \hline  
+ \BS{DeclareFixedFont}\AC{\BS{Font}}\AC{T1}\AC{phv}\AC{b}\AC{n}\AC{2cm} \BSI{DeclareFixedFont}{pst-text}\\
+\BSS{pstextpath}(0,0)\AC{% \\
+\BSS{pscharpath*}[linestyle=none]\AC{\BS{Font} PsTricks}} \BSI{pstextpath}{pst-text}\\
+\AC{\BS{tiny}  PsTricks PsTricks PsTricks ...}
+\\ \hline  
+ \DeclareFixedFont{\Font}{T1}{phv}{b}{n}{3cm}
+\pstextpath(0,0){%
+\pscharpath*[linestyle=none]{\Font PsTricks}}{\tiny  PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks  PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks
+PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks
+PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks
+PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks PsTricks
+ PsTricks}
+\\ \hline 
+\end{tabular} 
+
+%--------------------------------------------------------------------------------------
+%\newpage
+\subsection{pscharclip}
+
+\begin{tabular}{|l|} \hline  
+ \BS{DeclareFixedFont}\AC{\BS{Font}}\AC{T1}\AC{pcr}\AC{b}\AC{n}\AC{2cm} \\
+ \BS{begin}\AC{pspicture*}(12,3) \\
+ \BSS{begin\AC{pscharclip}}[doubleline=true]\AC{ \\
+ \BS{rput}(6,1.5)\AC{\BS{Font} PSTricks} \\
+ } \\
+\BSS{end\AC{pscharclip}} \\
+\BS{end}\AC{pspicture*}  \BSI{pscharclip}{pst-text} \\
+\\ \hline  
+ \DeclareFixedFont{\Font}{T1}{pcr}{b}{n}{2cm}
+ \begin{pspicture*}(12,2.5)
+
+\begin{pscharclip}[doubleline=true]{ \rput(6,1.25){\Font PSTricks}}
+\end{pscharclip}
+\end{pspicture*}
+\\ \hline 
+\end{tabular} 
+
+
+
+
+
+% \DeclareFixedFont{\RM}{T1}{ptm}{b}{n}{2cm}
+% \begin{pspicture*}(10,3)
+%\begin{pscharclip*}[linewidth=0.1pt]{ \rput(4,1.5){\RM PSTricks}}
+%\end{pscharclip}
+%\end{pspicture*}
+
+%
+%\newpage
+% \pscharpath{\Font PsTricks}\\
+%\pscharpath[linecolor=lightgray]{\Font PsTricks}\\
+%
+%\pscharpath*[linecolor=lightgray]{\Font PsTricks}\\
+%
+%\pscharpath[fillstyle=gradient,gradbegin=red,gradend=cyan,shadow=true]{\Font PsTricks}\\
+%\pscharpath*[fillstyle=gradient,gradbegin=red,gradend=cyan,shadow=true]{\Font PsTricks}\\
+%
+%
+%\pscharpath[fillstyle=penrose*]{\Font PsTricks}\\
+%\pscharpath*[fillstyle=penrose*]{\Font PsTricks}\\
+%
+%\pscharpath[doubleline=true]{\Font PsTricks}\\
+%\pscharpath[fillstyle=gradient,gradbegin=red,gradend=cyan]{\Font PsTricks}\\
+%
+% \pscharpath*{\Font PsTricks}\\
+%\pscharpath*[linecolor=lightgray]{\Font PsTricks}\\
+%\pscharpath*[fillstyle=gradient,gradbegin=red,gradend=cyan]{\Font PsTricks}\\
+%\pscharpath*[fillstyle=gradient,gradbegin=red,gradend=cyan,shadow=true]{\Font PsTricks}\\
+%\pscharpath*[fillstyle=penrose*]{\Font PsTricks}\\
+%\pscharpath*[doubleline=true]{\Font PsTricks}\\
+%\newpage
+%
+%
+%\DeclareFixedFont{\Font}{T1}{ptm}{b}{n}{3cm}
+%%\begin{pspicture*}[showgrid=true](\linewidth,3cm)
+%%\begin{pscharclip}[linewidth=1pt]{%
+%%\rput(0.5\linewidth,1){\Font PSTricks}}%
+%% \end{pscharclip}
+%%\end{pspicture*}
+%
+%\newpage
+%\RDD{clipping path}, 8, 9 \\
+%\BSS{DeclareFixedFont}, 7 \\
+%\textbf{Dimension} \\
+%\BSS{linewidth}, 8, 9 \\
+%\BSS{TPoffset}, 4 \\
+%
+%
+%dvips, 3, 7 \\
+%\BSS{endpscharclip}, 8 \\
+%
+%\textbf{Environment} \\
+%minipage, 8, 9 \\
+%pscharclip, 8 \\
+%pscharclip*, 8 \\
+%pspicture, 4, 8 \\
+%pspicture*, 8 \\
+%line style, 4 \\
+%\BSS{linewidth}, 8, 9 \\
+%
+%\textbf{Macro} \\
+%\BSS{DeclareFixedFont}, 7 \\
+%\BSS{endpscharclip}, 8 \\
+%\BSS{parbox}, 4 \\
+%\BSS{psboxfill}, 10 \\
+%\BSS{pscharclip}, 8, 10 \\
+%\BSS{pscharclip*}, 8 \\
+%\BSS{pscharpath}, 7, 8, 10 \\
+%\BSS{pscharpath*}, 7 \\
+%\BSS{pscustom}, 5 \\
+%\BSS{pstextpath}, 4, 7 \\
+%\BSS{rput}, 8 \\
+%\BSS{vspace}, 4 \\
+%
+%minipage, 8, 9 \\
+%none, 4 \\
+%offset, 4 \\
+%outline font, 7 \\
+%Package \\
+%pst-text, 3, 4 \\
+%setspace, 9 \\
+%\BSS{parbox}, 4 \\
+%path, 3 \\
+%
+%\textbf{Program} \\
+%dvips, 3, 7 \\
+%\BSS{psboxfill}, 10 \\
+%\BSS{pscharclip}, 8, 10 \\
+%pscharclip, 8 \\
+%\BSS{pscharclip*}, 8 \\
+%pscharclip*, 8 \\
+%\BSS{pscharpath}, 7, 8, 10 \\
+%\BSS{pscharpath*}, 7 \\
+%\BSS{pscustom}, 5 \\
+%pspicture, 4, 8 \\
+%pspicture*, 8 \\
+%pst-text, 3, 4 \\
+%\BSS{pstextpath}, 4, 7 \\
+%\RDD{Rokicki}, 3, 7 \\
+%%\rput, 8
+%\RDD{setspace}, 9 \\
+%\BSS{TPoffset}, 4 \\
+%
+%Value \\
+%none, 4 \\
+%\BSS{vspace}, 4 \\
+%11

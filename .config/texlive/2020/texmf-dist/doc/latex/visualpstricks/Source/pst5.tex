@@ -1,0 +1,73 @@
+%\section{Notion de chemin  PSTricks }
+\SSCT{Notion de chemin  PSTricks }{Path PSTricks}
+
+\label{chem}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{pspicture}*[shift=*](-1,-1)(5,4)
+\psgrid[gridcolor=lightgray,subgridcolor=white](0,0)(0,0)(9,4)
+\pscustom[linecolor=blue]{ \psline[linecolor=red](0,0)(1,2)(2,2)  
+\psarc[linestyle=dashed](2,2){2}{-60}{60} 
+ \fill[fillstyle=solid,fillcolor=green] }
+\end{pspicture}
+&  
+\parbox[c]{8cm}{
+\BSS{pscustom}[{\red linecolor=blue}]\{ \\
+
+ \BS{psline}[{\red linecolor=red} ](0,0)(1,2)\\
+
+\BS{psarc}[{\red linestyle=dashed}](2,2)\AC{2}\{-60\}\{60\} \\ 
+
+
+ \BS{fill}[fillstyle=solid,fillcolor=green] \\ 
+ \} }
+\\ \hline 
+\end{tabular}
+\bigskip
+
+
+\begin{tabular}{|c|c|}\hline 
+\multicolumn{2}{|l|}{\BSS{pscustom} \{ \BS{psline}(0,0)(1,2)(2,2) \BS{psarc}[\RDD{liftpen}=1](2,2)\AC{2}\AC{-60}\AC{60}  } \\
+\multicolumn{2}{|l|}{
+ \BS{fill}[fillstyle=solid,fillcolor=green] \} } \\ \hline
+\begin{pspicture}*(-1,-1)(5,4)
+\psgrid[gridcolor=lightgray,subgridcolor=white](0,0)(0,0)(9,4)
+\pscustom{\psline(0,0)(1,2)(2,2)  
+\psarc[liftpen=1](2,2){2}{-60}{60} 
+ \fill[fillstyle=solid,fillcolor=green]}
+\end{pspicture}
+ &  
+\begin{pspicture}*(-1,-1)(5,4)
+\psgrid[gridcolor=lightgray,subgridcolor=white](0,0)(0,0)(9,4)
+\pscustom[linecolor=blue]{ \psline[linecolor=red](0,0)(1,2)(2,2)  
+\psarc[liftpen=2](2,2){2}{-60}{60} 
+ \fill[fillstyle=solid,fillcolor=green]}
+\end{pspicture} 
+ \\ 
+\hline \RDD{liftpen}=1 &  \RDD{liftpen}=2\\ 
+\hline 
+\end{tabular} 
+
+\bigskip
+
+
+\begin{tabular}{|c|c|} \hline 
+\multicolumn{2}{|l|}{\BSS{pscustom}[fillstyle=\RDD{eofill},fillcolor=green]\{} \\
+\multicolumn{2}{|l|}{\BS{pscircle}(2,2)\AC{2}
+\BS{pscircle}(4,2)\AC{2}\}} \\ \hline
+ \begin{pspicture}(6,4)
+\pscustom[fillstyle=eofill,fillcolor=green]{
+\pscircle(2,2){2}
+\pscircle(4,2){2}}
+\end{pspicture}
+&  
+ \begin{pspicture}(6,4)
+\pscustom[fillstyle=oefill,fillcolor=green]{
+\pscircle(2,2){2}
+\pscircle(4,2){2}}
+\end{pspicture}
+\\ \hline 
+fillstyle= \RDDD{eofill}{fillstyle} & fillstyle= \RDDD{oefill}{fillstyle}\\ 
+\hline 
+\end{tabular} 
+

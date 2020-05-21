@@ -1,0 +1,811 @@
+%% This file does many tests with fonts installed in OFS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% February 2004                              Petr Olsak
+% April 2004 
+
+% You can print probe-texts or tables of fonts of choosen families.
+% The interactive mode is activated if you type on command prompt:
+
+% Usage:  tex ofstest [file1, file2, ...]
+%    or:  csplain ofstest [file1, file2, ...]
+%    or:  tex ofstest
+%         * <enter>
+%
+% and follow the notices on the screen.
+% 
+% You can \input this macro in your document. 
+% The interactive mode is disabled automatically in this situation. Example:
+%
+% \input ofstest [a35]
+% \cfam Times   \tables \text \mixed 
+% \cfam Courier \tables \text \mixed
+% \end
+
+{\nopagenumbers} % usage:  tex ofstest [a35]  or  csplain ofstest [a35]
+
+\ifx\setfonts\undefined \input ofs \relax \fi
+
+\ifx\protectreading\undefined 
+   \errmessage{Sorry, I need the OFS version <May 2004> at least.}
+\endinput \fi
+
+\let\displaymessage=\wlog
+
+\loadingenc=1
+
+\let\stmath=\relax
+
+\ifx\chyph\undefined 
+   \def\textlang{en}
+   \def\fotenc{8t}
+\else 
+   \chyph 
+   \def\textlang{cz}
+   \def\fotenc{8z}
+\fi
+
+\fontdef\rmfont   [CMRoman-rm/10]
+\fontdef\itfont   [CMRoman-it/10]
+\fontdef\boldfont [CMRoman-bf/10]
+\fontdef\nttfont  [CMTypewriter-rm/10]
+\fontdef\lttfont  [Courier-rm/7pt]
+
+\parindent=10pt
+\emergencystretch=3em
+\advance\hoffset by22mm
+
+\hsize=143mm
+
+\lineskiplimit=-5pt
+
+\headline={\lttfont \spaceskip=0pt
+  OFS test \csname datum:\textlang\endcsname \ \dotfill \ \the\pageno}
+\footline={}
+
+%%% Main loop of the program
+
+\def\runtest {\versiontext \testinteractive \readfamily \onestep}
+
+\def\testinteractive{\ifnum\inputlineno=0 \else \let\readfamily=\relax
+  \let\onestep=\relax \let\trydeclare=\relax \fi}
+
+\def\onestep {
+   \message{^^J*** What to do with family \thisfamily\space?^^J 
+      \space\space\space (type command or \string\help): }
+   \read-1 to \command
+   \if \relax \expandafter\expandafter\expandafter \noexpand 
+              \expandafter  \readfirsttoken \command:\end
+   \else \expandafter \def\expandafter \command
+         \expandafter {\expandafter \cfam \command}
+   \fi
+   \ifx \thisfamily\astik
+      \def\loopcommands{} 
+      \expandafter \pickuploopcommands \command ^^X
+      \ifx \loopcommands\empty \else
+         \bgroup
+            \def\ofslistfamily ##1{%
+               \def\tmpa ####1!.####2/{\def\thisfamily{####2}}%
+               \expandafter\tmpa\string##1/%
+               \loopcommands\relax
+            }%
+            \def\ofslisttext ##1{\if^^J\readfirsttoken ##1:\end 
+               \edef\fromfile{\readothertokens ##1:\end}%
+               \else  \edef\fromfile{##1}\fi}
+            \ofslistfamilies
+         \egroup
+      \fi
+   \fi
+   \command \relax
+   \onestep
+}
+\long\def\pickuploopcommands #1#2^^X{%
+   \ifx \list  #1 \addloopcommand #1 \fi
+   \ifx \table #1 \addloopcommand #1 \fi
+   \ifx \text  #1 \addloopcommand #1 \fi
+   \ifx \mixed #1 \addloopcommand #1 \fi
+   \ifx \math  #1 \addloopcommand #1 \fi
+   \ifx \abet  #1 \addloopcommand #1 \fi
+   \ifx \chars #1 \addloopcommand #1 \fi
+   \ifx \all   #1 \addloopcommand #1 \fi
+   \def\tmpa{#2}
+   \let\next=\pickuploopcommands
+   \ifx \tmpa\empty \def\next^^X{}\fi
+   \ifx \tmpa\space \def\next ##1^^X{}\fi
+   \next #2^^X
+}
+\def\addloopcommand #1{\expandafter\def 
+   \expandafter\loopcommands \expandafter{\loopcommands#1}}
+
+%%% \cfam
+
+\def\thisfamily{*}
+
+\def\readfamily {\message{^^J*** Type family name without brackets (or ? or *): }
+   \read-1 to \response
+   \expandafter \testfirsttoken \response ^^X
+   \if \noexpand\nextchar \relax \let\nextread=\readfamily
+       \ifx\nextchar\par \showfonts \hint \fi
+       \expandafter \response \expandafter \relax 
+   \else \expandafter \reset \response \to\thisfamily
+       \expandafter \testfamily \fi
+   \nextread
+}
+\def\testfamily {
+   \knownfam \thisfamily? \iftrue \let\nextread=\relax
+   \else \ifx\thisfamily\onequestion \showfonts \hint
+         \let\nextread=\readfamily
+   \else \ifx\thisfamily\astik
+         \let\nextread=\relax
+   \else \message{ ... Sorry, unknown family.^^J
+                   ... use exactly upper/lower letters^^J} \hint
+         \let\nextread=\readfamily
+   \fi \fi \fi
+}
+\def\nreadfamily #1 {\edef\tmpa{#1}%
+   \ifx\tmpa\onequestion \help
+   \else
+   \knownfam #1? \iftrue \edef\thisfamily{#1}
+   \else \ifx\tmpa\astik \edef\thisfamily{#1}\else
+      \message{ ... Sorry, unknown family "#1".^^J}\fi \fi \fi
+}
+\def\cfam{\let\interact=\readfamily \let\nointeract=\nreadfamily
+   \futurelet \nextchar \donextchar}
+
+\def\donextchar {\if \noexpand\nextchar \relax
+    \expandafter \interact
+    \else \expandafter \nointeract \fi}
+
+\def\reset #1 \to #2{\def#2{#1}}
+
+\def\testfirsttoken{\futurelet \nextchar \ignorerest}
+\long\def\ignorerest #1^^X{}
+
+\let\famlist=\showfonts
+
+\def\onequestion{?} \def\astik{*} 
+\def\hint{\immediate\write16 
+   { ... you can read more declaration files by \string\decl}}
+    
+%%% Help texts
+      
+\def\help {\message{commands:^^J
+   \noexpand\list ..... List all variants of the family \thisfamily^^J
+   \string  \table(s) . Tables of all variants of the family \thisfamily^^J
+   \noexpand\abet ..... One line alphabet/digits sample for each variant^^J
+   \noexpand\chars .... Print list of available characters including TeX sequences^^J
+   \noexpand\text ..... One paragraph in all variants of the family \thisfamily^^J
+   \noexpand\mixed .... Paragraph with fonts combined from 
+                  \string\rm, \string\bf, \string\it \space and \string\bi^^J
+   \noexpand\math ..... Mathematics text combined by fonts from \thisfamily^^J
+   \noexpand\all ...... The same as \noexpand\list \noexpand\table \noexpand\abet 
+                   \noexpand\chars \noexpand\text \noexpand\mixed \noexpand\math^^J
+   \noexpand\setsize .. Set size of fonts (current size is "\fosize")^^J 
+   \noexpand\cfam ..... Change current family^^J
+   FamName ... The same as \noexpand\cfam FamName^^J
+   \noexpand\rem ...... Remove current family or family given in parameter from \string\famlist^^J
+   -----------------------------^^J
+   \noexpand\famlist .. Show list of all declared families (the same as \string\showfonts)^^J
+   \noexpand\decl ..... Input next declaration file^^J
+   \noexpand\remdecl .. Remove all families of given declaration file from famlist^^J
+   \noexpand\help ..... This text^^J
+   \noexpand\morehelp . Show more help information^^J
+   \noexpand\fontusage \space The help screen of the OFS^^J
+   \noexpand\end ...... End of this session
+}}
+\def\morehelp {\message{
+   You can type the group of commands on the one "command" prompt.^^J
+   For example: \noexpand\list\noexpand\tables\noexpand\text \end^^J
+   -- program lists all variants, prints tables and texts and exits.^^J
+   ---------------------------^^J
+   If the family is choosen as * then the commands^^J
+   \string\list, \string\table, \string\abet, \string\text, 
+   \string\mixed, \string\math^^J
+   will be applied to all families actually declared. Others^^J 
+   commands will be run only once after the loop over families is done.^^J
+   ---------------------------^^J
+   The commands 
+   \string\cfam, \string\setsize, \string\decl, \string\rem, \string\remdecl^^J
+   can be typed alone (interactive dialog will be started)^^J
+   OR with one parameter separed by space or endline (no dialog is used)^^J
+   Example: \noexpand\cfam Times \noexpand\setsize 12pt \string\table^^J
+   ---------------------------^^J
+   You can type other TeX commands on the "command" prompt.^^J
+   Examples: \string\def\string\fotenc{8t} (another font encoding,
+             current: "\fotenc")^^J
+   \space\space \baselineskip 11pt (another baselineskip,
+             current: "\the\baselineskip")^^J
+   \space\space \string\def\string\fomenc{CM} (another math enconding,
+             current: "\fomenc")^^J
+   \space\space \string\def\string\textlang{en} (another language of samples,
+             current: "\textlang")^^J
+   \space\space \noexpand\notables (the \noexpand\all command will not
+             print tables)
+}}
+\def\versiontext {\message{This is ofstest macro, version <May. 2004>}}
+
+\def\notables {\let\table=\relax}
+
+%%% \list
+
+\def\list {\ifx\thisfamily\astik \else
+   \registeredfam \thisfamily? \iftrue
+   \gdef\newmodifylist{}
+   \message{^^J [\thisfamily/\fosize], encoding: \fotenc, variants:}
+   {\let\modifyenc=\ofsaddenctolist \def\modifyread ##1;{}\scanvariants \listvariant }
+   \expandafter \ifx \csname ffe?\thisfamily:\endcsname \relax
+      \immediate\write16 { \space\space All font encodings are allowed.
+                 \ifx\eenc\empty\else Extra: \eenc.\fi}
+   \else 
+      \immediate\write16 { \space\space Registered font encodings: 
+                 \csname ffe?\thisfamily:\endcsname.
+                 \ifx\eenc\empty\else Extra: \eenc.\fi}
+   \fi
+   \ifx\newmodifylist\empty \else
+      \immediate\write16 { \space\space Modifications: { \modlist}}
+   \fi
+   \else \warnaboutskip {list}
+   \fi \fi
+}
+\def\listvariant {%
+   \calculatemetricfile \fontfile\fosize
+   \if|\eenc|\else
+     {\edef\fotenc{\eenc}
+      \calculatemetricfile \fontfile \fosize
+      \xdef\efontfile{\metricfile}}
+   \fi
+   \immediate\write16{ \space\space
+   \texvariant\space (\fontvariant) \space\space\space\metricfile\fosize
+   \if|\eenc|\else \space + \efontfile\fosize\fi}
+}
+
+\def\scanvariants #1{%
+   {\let\loadtextfam=\testloadtextfam
+    \let\newvariant=\testnewvariant
+    \let\addtoenc=\ofsaddenctolist
+    \def\runvariant{%
+       \expandafter \ifx \csname reg!.\fontfile\endcsname \empty 
+       \else #1\fi}
+    \csname fam!.\thisfamily\endcsname
+    \expandafter \gdef\expandafter \newmodifylist\expandafter {\newmodifylist}%
+    \escapechar=-1 
+    \expandafter \savelist \meaning \newmodifylist^^X}
+}
+\def\testloadtextfam  #1;#2;#3;#4;#5;{\tryloadenc{#5}%
+   \if|#1|\else \savevariant {}#1;\rm {#5}           \runvariant \fi
+   \if|#2|\else \savevariant {Bold}#2;\bf {#5}       \runvariant \fi
+   \if|#3|\else \savevariant {Italic}#3;\it {#5}     \runvariant \fi
+   \if|#4|\else \savevariant {BoldItalic}#4;\bi {#5} \runvariant \fi
+}
+\def\testnewvariant #1#2#3(#4) #5;#6;{%
+   \def\texvariant{\string #2}\def\fontvariant{#4}%
+   \def\fontfile{#5}\edef\eenc{#6}%
+   \runvariant}
+
+\let\oriloadtextfam=\loadtextfam
+\let\orinewvariant=\newvariant
+
+\def\savevariant #1#2#3;#4#5{\def\texvariant{\string #4}\xdef\eenc{#5}%
+   \if(#2 \savethisvariant #2#3;\else \savethisvariant (#1) #2#3;\fi}
+\def\savethisvariant (#1) #2;{\def\fontvariant{#1}\def\fontfile{#2}}
+
+\def\savelist #1->#2^^X{\gdef\modlist{#2}}
+
+\def\warnaboutskip #1{\wlog {The \noexpand\fotenc "\fotenc" 
+   is unregistered in \thisfamily. 
+   \expandafter\noexpand\csname#1\endcsname skipped.}}
+
+%%% \setsize
+
+\def\isetsize {\message{%
+   *** Type the new font size (in OFS fortmat)^^J
+   \space\space\space (Examples: "12", "12pt", "4mm", "scaled1200", "mag1.2"): }
+   \read -1 to\response
+   \expandafter \ifx \response\par \else
+      \expandafter \reset \response \to\response
+      \expandafter \setfosize \expandafter \fosize \response:\fi}
+
+\def\setsize {\let\interact=\isetsize
+   \def\nointeract ##1 {\setfosize\fosize ##1:}
+   \futurelet \nextchar \donextchar}
+
+%%% \decl
+
+\def\declare {\message{^^J*** Type declaration file name (allfonts for example): }
+   \read-1 to \infile 
+   \input \infile
+}
+\def\ndeclare #1 {\input #1 
+   \ifx \thisfamily\onequestion \expandafter \readfamily \fi
+}
+\def\decl {\let\interact=\declare \let\nointeract=\ndeclare
+   \futurelet \nextchar \donextchar}
+
+\let\trydeclare=\declare
+
+\def\rundeclare {\versiontext \testinteractive \trydeclare \readfamily \onestep}
+
+
+%%% \rem
+
+\def\removecode {\ifx\removefamily\astik
+      \message{ ... Sorry, you cannot remove * (all) families.^^J
+                ... use \noexpand\cfam to declare the family name^^J
+                ... use \noexpand\undecl to remove more families.^^J
+                ... use \noexpand\remove FamilyName to remove FamilyName} 
+   \else \doremovefam \fi
+}
+\def\doremovefam {
+   \knownfam \removefamily? \iftrue
+      \edef\act{\def\noexpand\tmpa   
+         ####1\noexpand\ofslistfamily 
+         \expandafter\noexpand\csname fam!.\removefamily\endcsname
+         ####2^^X{\gdef\noexpand\ofslistfamilies{####1####2}}}\act
+      \expandafter \tmpa\ofslistfamilies^^X%
+      \global \expandafter \let \csname fam!.\removefamily\endcsname = \relax
+      \message{ ... \removefamily\space is removed from declaration famlist}
+      \ifx\removefamily\thisfamily \def\thisfamily{*} \fi
+      \ifx\removefamily\savefamily \def\savefamily{*} \fi
+   \else
+      \message{ ... Sorry, the family \removefamily\space is not declared^^J} 
+   \fi
+}
+\def\rem {\def\interact{\edef\removefamily{\thisfamily}\removecode}
+   \def\nointeract ##1 {\def\removefamily{##1}\removecode}
+   \futurelet \nextchar \donextchar
+}
+
+
+%%% \remdecl
+
+\def\remdeclcode {%
+   \ifx\response\defaultstext \def\thisdecl{defaults:}
+   \else \edef\thisdecl{\response.tex:}
+   \fi
+   \bgroup
+      \def\ofslisttext ##1##2\ofslisttext{\if^^J\readfirsttoken ##1:\end
+            \edef\tmpa{\readothertokens ##1:\end}%
+         \else \edef\tmpa{##1}\fi
+         \ifx\tmpa\thisdecl ##2\def\ofslisttext ####1####2^^X{}\fi            
+         \ofslisttext}
+      \def\ofslistfamily ##1{\def\tmpa ####1!.####2/{####2}%
+         \edef\removefamily{\expandafter\tmpa\string ##1/}%
+         \doremovefam}
+      \expandafter \ofslistfamilies \expandafter \ofslisttext 
+         \expandafter {\thisdecl}%
+         \message { ... Sorry, the \thisdecl\space is not present 
+                   in declaration list}\ofslisttext{}^^X%
+   \egroup
+}
+\def\defaultstext{defaults}
+
+\def\iremdeclcode {\message{%
+   *** What part of famlist should be removed ?^^J
+   \space\space\space (type "defaults" or declaration file name without ".tex"): }
+   \read-1 to\response
+   \expandafter \ifx \response\par \else
+      \expandafter \reset \response \to\response
+      \remdeclcode
+   \fi
+}
+\def\remdecl {\let\interact=\iremdeclcode
+   \def\nointeract ##1 {\def\response{##1}\remdeclcode}
+   \futurelet \nextchar \donextchar
+}
+
+%%% \text
+
+\def\text{\ifx\thisfamily\astik \else 
+   \registeredfam \thisfamily? \iftrue
+      \expandafter \ifx \csname ffe?\thisfamily:\endcsname \relax
+         \warnaboutnontext \text
+      \else
+         \message{^^J} \message{ [\thisfamily/\fosize]:}
+         \scanvariants \runtext
+      \fi
+   \else \warnaboutskip {text}
+   \fi\fi
+}
+\def\runtext {%
+   \message{\texvariant\space text}   
+   \calculatemetricfile \fontfile \fosize
+   {\let\loadtextfam=\oriloadtextfam
+    \let\newvariant=\orinewvariant
+    \setfonts [\thisfamily/] 
+    \font\ttfont=cmtt10 \fosize\relax
+    \bgroup \let\string=\egroup \texvariant
+    {\escapechar=-1 \xdef\tmp{\texvariant}}  
+    \fontdef\fn [\thisfamily-\tmp/!] \fn 
+    \nofontmessages
+    \startparagraph 1 \indent \csname text:\textlang\endcsname
+    \medskip\penalty-200}}
+
+\def\actualfont #1{{\def\texvariant{rm} \xdef\act{%
+   \noexpand\fontdef \noexpand #1[\thisfamily-\texvariant/!]}}
+   \act #1}
+
+\def\startparagraph #1{\par
+   \ifdim\fontdimen3\the\font=0pt \raggedright \fi
+   \ifdim\fontdimen2\the\font=0pt \rightskip=0pt plus \hsize\fi
+   \noindent\llap {\lttfont \vtop{\hsize=5cm 
+     \noindent\hfill\thisfamily 
+     \if1#1\space\texvariant\fi 
+     \if2#1\space(\fomenc)\break \null\hfill 
+         \mathsizes \vskip-\baselineskip \else  
+     \if3#1\else \break \null\hfill \thesize/\theskip
+        \vskip-\baselineskip\fi\fi
+     }\kern12pt}\ignorespaces
+}
+\def\theskip{\the\baselineskip}
+\def\thesize{\expandafter\ignoreat\fosize:}
+\def\ignoreat at#1:{#1}
+\def\mathsizes{[%
+   \expandafter\ignoreat\textfosize:/%
+   \expandafter\ignoreat\scriptfosize:/%
+   \expandafter\ignoreat\scriptscriptfosize:]}
+
+\def\famplusvariant{\thisfamily\if|\fontvariant|\else-\fontvariant\fi}
+
+%%% \abet
+
+\def\abet {\ifx\thisfamily\astik \else 
+   \registeredfam \thisfamily? \iftrue
+   \removelastskip
+   \message{^^J} \message{ [\thisfamily/\fosize]:}
+   \noindent{\lttfont [\thisfamily/\thesize] (enc: \fotenc),
+      declared in
+      \ifx\fromfile\undefined \findfromfile \else \fromfile\fi}\par
+   \scanvariants \runabet
+   \medskip \penalty-200
+   \else \warnaboutskip {abet}
+   \fi\fi
+}
+\def\runabet {%
+   \message{\texvariant\space abet}   
+   \calculatemetricfile \fontfile \fosize
+   {{\escapechar=-1 \xdef\tmp{\texvariant}}
+    \fontdef\fn [\thisfamily-\tmp/!] \fn 
+    \hbox{\llap{\lttfont (\fontvariant) \texvariant\kern12pt}% 
+       \csname abet:\textlang\endcsname}
+}}
+\def\findfromfile {\bgroup
+   \def\fromfile{??}%
+   \def\ofslisttext ##1{\if^^J\readfirsttoken ##1:\end 
+      \edef\fromfile{\readothertokens ##1:\end}%
+      \else  \edef\fromfile{##1}\fi}%
+   \def\ofslistfamily ##1{\expandafter 
+      \ifx \csname fam!.\thisfamily\endcsname ##1%
+         \def\tmpa####1^^X{}%
+         \expandafter \tmpa
+      \fi}%
+      \ofslistfamilies^^X\fromfile
+   \egroup
+}
+\def\all {\list \abet \chars \table \text \mixed \math \vfil\break}
+
+\def\chars {\ifx\thisfamily\astik \else
+   \registeredfam \thisfamily? \iftrue
+   \expandafter \ifx \csname ffe?\thisfamily:\endcsname \relax
+      \warnaboutnontext \chars 
+   \else
+   \message{^^J} \message{ [\thisfamily/]: \string\chars}
+   \bgroup
+   \setfonts[\thisfamily-rm/]
+   \let\characterdef=\listcharacter
+   \let\characterdel=\characternodef
+   \let\accentdef=\listaccent
+   \let\accentdel=\accentnodef
+   \def\modifydef##1;##2{}
+   \def\protectreading##1 {}
+   \let\printcharacterwarn=\boxik
+   \let\printaccentwarn=\boxikdbl
+   \raggedright \rightskip=0pt plus 10em
+   \noindent \llap{\lttfont \thisfamily~(\fotenc)\kern12pt}%
+             \expandafter \let\csname enc:ofs-\fotenc\endcsname =\relax
+             {\def\par{}\endlinechar=-1 \input ofs-\fotenc.tex }
+   \if |\extraenc|\else \par 
+             \noindent \llap{\lttfont Extra metric~(\extraenc)\kern12pt}%
+             \expandafter \let\csname enc:ofs-\extraenc\endcsname =\relax
+             {\def\par{}\endlinechar=-1 \input ofs-\extraenc.tex }
+   \fi
+   \ifx\newmodifylist\empty \else \par
+             {\escapechar=-1 \expandafter \savelist \meaning \newmodifylist^^X}
+             \noindent \llap{\lttfont Modifications\kern12pt}%
+             {\lttfont\char`\{\ \modlist\char`\}} \newmodifylist
+   \fi
+   \medskip \penalty-200
+   \egroup \fi
+   \else \warnaboutskip {chars}
+   \fi \fi
+}   
+\def\listcharacter #1#2#3 {\def\tmpa{#2#3}%
+%   \message{\string#1}%
+   \ifx\tmpa\astik \hbox{\lttfont \string#1:}~{\print#1{}{}}\spc \fi
+   \ifx\tmpa\fotenc \hbox{\lttfont \string#1:}~{\print#1{}{}}\spc \fi
+   \ifx\tmpa\extraenc \hbox{\lttfont \string#1:}~{\print#1{}{}}\spc \fi
+   \def\tmpa{tmpa}\futurelet \tmpb \docharacterdef}
+\def\print #1{{\savetokenname#1\tmpb\global\let\tmpb=\tmpb}\printcharacter{\tmpb}}
+\def\listaccent #1#2#3#4 {\def\tmpa{#3#4}%
+%   \message{\string#1 \string#2}%
+   \ifx\tmpa\astik \hbox{\lttfont \string#1~\string#2:}~{#1 #2{}{}}\spc \fi
+   \ifx\tmpa\fotenc \hbox{\lttfont \string#1~\string#2:}~{#1 #2{}{}}\spc \fi
+   \ifx\tmpa\extraenc \hbox{\lttfont \string#1~\string#2:}~{#1 #2{}{}}\spc \fi
+   \def\tmpa{tmpa}\futurelet \tmpb \docharacterdef}
+\def\boxik#1{\lower1.7pt\vbox{\hrule\hbox{\vrule height6pt depth2pt
+   \kern.2em\lttfont?\kern.2em\vrule}\hrule}}
+\def\boxikdbl#1#2{\boxik.}
+\def\spc{\hskip.8em\relax}
+
+%%% \mixed \math
+
+\def\mixed{\ifx\thisfamily\astik \else 
+   \registeredfam \thisfamily? \iftrue
+      \expandafter \ifx \csname ffe?\thisfamily:\endcsname \relax
+         \warnaboutnontext \mixed 
+      \else
+         \message{^^J} \message{ [\thisfamily/\fosize]: mixed text}
+         {\setfonts [\thisfamily/] 
+          \nofontmessages
+          \startparagraph 0 \noindent
+          \csname mix:\textlang\endcsname
+          \medskip\penalty-200}
+      \fi
+   \else \warnaboutskip {mixed}
+   \fi \fi
+}
+\def\math{\ifx\thisfamily\astik \else 
+   \registeredfam \thisfamily? \iftrue
+      \expandafter \ifx \csname ffe?\thisfamily:\endcsname \relax
+         \warnaboutnontext \math
+      \else
+         {\setfonts [\thisfamily/]
+          \def\mathfonts{\defaultmathfonts}
+          \def\mathchars{\defaultmathchars \let\mathchars=\relax}
+          \stmath \setmath[//] \lineskiplimit=-.5pt 
+          \message{^^J} \message{ [\thisfamily/\fosize] 
+                 (\string\fomenc: \fomenc) \mathsizes: math text}
+          \nofontmessages
+          \startparagraph 2 \noindent
+          \ifx\vecfam\undefined \else \def\bi{\fam\vecfam}\fi
+          \ifx\msbmfam\undefined \def\N{{\bf N}}\else \def\N{{\fam\msbmfam N}}\fi
+          \ifx\varmathbb\undefined \else \def\N{\varmathbb{N}}\fi
+          \delimiterfactor=950
+          \csname math:\textlang\endcsname
+          \medskip\penalty-200}
+      \fi
+   \else \warnaboutskip {math}
+   \fi \fi
+}
+\def\psenc{PS}
+
+\def\warnaboutnontext #1{%
+   \message{ [\thisfamily/] is probably non text font, \string#1 skipped.^^J
+          \space\space (The family has no registered text encodings.)}%
+}
+   
+
+%%% \table
+
+\def\table{\ifx\thisfamily\astik \else 
+   \registeredfam \thisfamily? \iftrue
+   \message{^^J} \message{ [\thisfamily/\fosize]:}
+   \scanvariants \runtable
+   \else \warnaboutskip {table}
+   \fi \fi
+}
+\let\tables=\table
+
+\def\runtable {\onetable
+    \if |\eenc|\else {\edef\fotenc{\eenc}\onetable} \fi}
+
+\def\onetable{
+    \calculatemetricfile \fontfile \fosize
+    \vfil\break
+    \noindent 
+     {\rmfont Table of {\boldfont \famplusvariant}, 
+      \hfil\break E\ifx\fotenc\eenc xtra e\fi ncoding: \fotenc, 
+       fontfile: {\nttfont\metricfile\fosize},\hfil\break 
+      command: {\nttfont \string\selectfont [\thisfamily/\fosize]\texvariant
+      \ifx\fotenc\eenc \string\setextrafont\fi}}\par
+   \message{\texvariant\space \ifx\fotenc\eenc ex-\fi table}
+   {\font \fn=\metricfile\fosize\relax \fn \knuthstable}
+   \vfil\break
+}
+
+%% Z Knuthova testfont:
+
+\newcount\mm \newcount\n \newcount\p \newdimen\dim
+\chardef\other=12
+\def\oct#1{\hbox{\rmfont'{}\kern-.2em\itfont#1\/\kern.05em}} % octal constant
+\def\hexx#1{\hbox{\nttfont"#1}} % hexadecimal constant
+\def\setdigs#1"#2{\gdef\h{#2}% \h=hex prefix; \0\1=corresponding octal
+ \mm=\n \divide\mm by 64 \xdef\0{\the\mm}%
+ \multiply\mm by-64 \advance\mm by\n \divide\mm by 8 \xdef\1{\the\mm}}
+\def\testrow{\setbox0=\hbox{\penalty 1\def\\{\char"\h}%
+ \\0\\1\\2\\3\\4\\5\\6\\7\\8\\9\\A\\B\\C\\D\\E\\F%
+ \global\p=\lastpenalty}} % \p=1 if none of the characters exist
+\def\oddline{\cr
+  \noalign{\nointerlineskip}
+  \multispan{19}\hrulefill&
+  \setbox0=\hbox{\lower 2.3pt\hbox{\hexx{\h x}}}\smash{\box0}\cr
+  \noalign{\nointerlineskip}}
+\newif\ifskipping
+\def\evenline{\loop\skippingfalse
+ \ifnum\n<256 \mm=\n \divide\mm 16 \chardef\next=\mm
+ \expandafter\setdigs\meaning\next \testrow
+ \ifnum\p=1 \skippingtrue \fi\fi
+ \ifskipping \global\advance\n 16 \repeat
+ \ifnum\n=256 \let\next=\endchart\else\let\next=\morechart\fi
+ \next}
+\def\morechart{\cr\noalign{\hrule\penalty5000}
+ \chartline \oddline \mm=\1 \advance\mm 1 \xdef\1{\the\mm}
+ \chartline \evenline}
+\def\chartline{&\oct{\0\1x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&}
+\def\chartstrut{\lower4.5pt\vbox to14pt{}}
+\def\knuthstable{$$\global\n=0
+  \halign to\hsize\bgroup
+    \chartstrut##\tabskip0pt plus10pt&
+    &\hfil##\hfil&\vrule##\cr
+    \lower6.5pt\null
+    &&&\oct0&&\oct1&&\oct2&&\oct3&&\oct4&&\oct5&&\oct6&&\oct7&\evenline}
+\def\endchart{\cr\noalign{\hrule}
+  \raise11.5pt\null&&&\hexx 8&&\hexx 9&&\hexx A&&\hexx B&
+  &\hexx C&&\hexx D&&\hexx E&&\hexx F&\cr\egroup$$\par}
+\def\:{\setbox0=\hbox{\char\n}%
+  \ifdim\ht0>7.5pt\reposition
+  \else\ifdim\dp0>2.5pt\reposition\fi\fi
+  \box0\global\advance\n 1 }
+\def\reposition{\setbox0=\vbox{\kern2pt\box0}\dim=\dp0
+  \advance\dim 2pt \dp0=\dim}
+\def\centerlargechars{
+  \def\reposition{\setbox0=\hbox{$\vcenter{\kern2pt\box0\kern2pt}$}}}
+
+%%% texts in various languages
+
+\def\langdef #1 {\expandafter\def \csname#1\endcsname}
+
+\characternodef \textbullet     * 0
+\characternodef \ellipsis       * 0
+\characternodef \fullbar        * 0
+\characternodef \brokenbar      * 0
+\characternodef \onequarter     * 0
+\characternodef \onehalf        * 0
+\characternodef \threequarters  * 0
+\characternodef \trademark      * 0
+\characternodef \registered     * 0
+\characternodef \ligct          * 0
+\characternodef \ligst          * 0
+\characternodef \ligft          * 0
+\characternodef \longs          * 0
+\characternodef \longst         * 0
+\characternodef \sterling       * 0
+\characternodef \euro           * 0
+\characternodef \franc          * 0
+\characternodef \cent           * 0
+\characternodef \yen            * 0
+\characternodef \degree         * 0
+\characternodef \vardigits      * 0
+\characternodef \textbraceleft  * 0
+\characternodef \textbraceright * 0
+
+
+\langdef datum:cz {\the\day.~\the\month. \the\year}
+
+\langdef datum:en {\the\year/\the\month/\the\day}
+
+\langdef text:cz {%
+   Tento text je naps\'an p\'ismem \famplusvariant \space 
+   za pou\v zit\'i \TeX{}ov\-sk\'e metriky 
+   {\ttfont \fontname\fn}. V\v s\'imejme si m\'en\v e
+   obvykl\'ych slov, jako je slovo \v s\v tast\-n\'y (p\'ismeno \v t uprost\v red slova),
+   nebo t\v reba slovensk\'e ko\v lko. V\v e\v rme, \v ze v\'ysledn\'y text p\r ujde nejen
+   p\v re\v c\'ist, ale bude i typograficky pokud mo\v zno v~po\v r\'adku. Tak\'e je t\v reba
+   \clqq sledovat chov\'an\'i\crqq{} na\v sich \clqq{}uvozovek\crqq. A~co takhle \frqq
+   francouzsk\'e uvozovky po \v cesk\'em zp\r usobu\flqq?
+   \par
+   0123456789,
+   \knownchar\vardigits? \iftrue{\vardigits 0123456789}, \fi
+   ligatury: fi, fl, ffi, ffl, --, ---, 
+   kerny: Tel, T\v el, T\'el, VLTAVA.
+
+   Znaky: \dag, \ddag, \textbullet,
+       \P, \ellipsis,
+       \textbraceleft, \fullbar, \brokenbar, \textbraceright, 
+       \onequarter, \onehalf, \threequarters, 
+       \trademark,  \copyright, \registered,
+       \ligct, \ligst, \ligft, \longs, \longst, 
+       \S, \sterling, \euro, \franc, \cent, 
+       \yen, \degree C.
+   \par\nobreak\medskip 
+       {\spaceskip=.3em minus .2em \relax
+       \'A \'a \"A \"a \v C \v c \v D \v d \'E \'e \v E \v e \'I \'i \'L \'l \v L \v l \v N \v n \'O \'o \^O \^o \"O \"o \v R \v r \'R \'r
+       \v S \v s \v T \v t \'U \'u \r U \r u \"U~\"u~\'Y~\'y~\v Z~\v z.}
+}
+\langdef text:en {%
+   This text is written by the font \famplusvariant.
+   The \TeX{} font metric {\ttfont \fontname\fn} is used here.
+   Notice how this font looks in the current paragraph.
+   We try to write somethink in ``english quotes''.
+   Digits: 0123456789, {\vardigits 0123456789} 
+   ligatures: fi, fl, ffi, ffl, --, ---, 
+   kerning: Te, Ti, AVA.
+
+   Characters: \dag, \ddag, \textbullet,
+       \P, \ellipsis,
+       \textbraceleft, \fullbar, \brokenbar, \textbraceright, 
+       \onequarter, \onehalf, \threequarters, 
+       \trademark,  \copyright, \registered,
+       \ligct, \ligst, \ligft, \longs, \longst, 
+       \S, \pound, \euro, \franc, \cent, 
+       \yen, \degree C.
+}
+\langdef abet:cz {%
+   ABCDEOPQRSVWXYZ 0123456789 \&\%?!-\v Z\v z\v s\v c\v e\'a\'e\v t\r u,
+   acbdefghijklmnopqrstuvwxyz%
+}
+\langdef abet:en {%
+   ABCDEOPQRSVWXYZ 0123456789 \&\%?!- ``--'' ---:
+   acbdefghijklmnopqrstuvwxyz%
+}
+\langdef mix:cz {%
+   {\bf P\v r\'iklad.} Nyn\'i zjist\'ime, zda je mo\v zn\'e kombinovat z\'akladn\'i \v rez s~tu\v cn\'ym
+   (resp. polotu\v cn\'ym) \v rezem a s~kurz\'ivou 
+   v~rodin\v e p\'isma {\it\thisfamily}. Pro vyzna\v cov\'an\'i je vhodn\'e pou\v z\'it {\it kurz\'ivu\/} a
+   u\v z m\'en\v e {\bf tu\v cnou variantu} a prakticky v\r ubec se nehod\'i pou\v z\'it
+   {\bi tu\v cnou a sklon\v enou variantu}.
+   Zcela nevhodn\'e je vyzna\v covat podtr\v zen\'im nebo prostrk\'an\'im.
+   To lid\'e s~dobr\'ym vychov\'an\'im ned\v elaj\'i.
+   {\it Vyzna\v cen\'i m\'a b\'yt takov\'e, aby p\v ri \v cten\'i bylo vyzna\v cen\'e m\'isto z\v reteln\v e 
+   odli\v sn\'e, ale p\v ri pohledu z~d\'alky z\r ustal text odstavce stejnom\v ern\v e \v sed\'y.}
+   Tomu nejl\'epe vyhovuje kurz\'iva, ale ne ve v\v sech rodin\'ach p\'isma je zda\v ril\'a
+   kuz\'iva k~dispozici.
+}
+\langdef mix:en {%
+   {\bf Example.} We try to combine the normal variant with the bold
+   (semibold) and italic variants in the font family {\it\thisfamily}.
+   The best selection to mark the text is the {\it italic}, not so good
+   one is the {\bf bold variant} and somewhat unsuitable
+   one is the {\bi bold italic variant}. The marking of the text by
+   underline or by letter spacing is totally unsiutable. 
+   {\it The marked text have to be good distinguised while reading
+   but if you look at the paragraph from more distance the best is to
+   view the uniform-gray area.} The best solution of this task is to
+   use the italic, if this variant is ready in used font family.
+}
+\langdef math:cz {%
+   {\bf Pozn\'amka.} Funkci Gamma v bod\v e $x$ zna\v c\'ime $\Gamma(x)$ a
+   po\v c\'it\'ame ji podle vzorce:
+   $$ \Gamma(x) = \int_0^\infty e^{-t} t^{x-1} {\rm d}t \quad (x>0).$$
+   Speci\'aln\v e pro $x=n\in\N$ je $\Gamma(n) = (n-1)\,!$ a pro
+   $\alpha\in(0,1)$ je
+   $$ \Gamma(\alpha)\,\Gamma(1-\alpha) = {\pi \over \sin \pi \alpha}.$$
+   {\bf Definice.} Nech\v t $\bi A$ je \v ctvercov\'a matice s~$n$ sloupci a
+   \v r\'adky a s~prvky $a_{i,j}$. Pak \v c\'islo
+   $$ \mathop{\rm det}{\bi A} = \left|{\bi A}\right| = 
+   \sum_{\Pi=(j_1,j_2,\ldots,j_n)} \mathop{\rm sgn}\Pi\cdot
+              a_{1,j_1}\,a_{2,j_2}\cdots a_{n,j_n} $$
+   naz\'yv\'ame {\it determinantem\/} matice $\bi A$.
+}
+\langdef math:en {%
+   {\bf Notice.} The value of the function Gamma in the real
+   number~$x$ can be calculaded by:
+   $$ \Gamma(x) = \int_0^\infty e^{-t} t^{x-1} {\rm d}t \quad (x>0).$$
+   Especially, for $n\in\N$ is $\Gamma(n) = (n-1)\,!$ and for
+   $\alpha\in(0,1)$ is
+   $$ \Gamma(\alpha)\,\Gamma(1-\alpha) = {\pi \over \sin \pi \alpha}.$$
+   {\bf Definition.} Let $\bi A$ is a square matrix with $n$ columns
+   and rows and with elements $a_{i,j}$. The number
+   $$ \mathop{\rm det}{\bi A} = \left|{\bi A}\right| = 
+   \sum_{\Pi=(j_1,j_2,\ldots,j_n)} \mathop{\rm sgn}\Pi\cdot
+              a_{1,j_1}\,a_{2,j_2}\cdots a_{n,j_n} $$
+   is called {\it determinant\/} of the matrix $\bi A$.   
+}
+
+%%% Brackets after \input ofstest
+
+\def\processOFSoption #1,{\if ^^X#1\let\next=\runtest
+   \else \input #1 \fi \next}
+\def\testOFSoptions {\ifx [\tmpa \expandafter \readOFSoptions 
+   \else \expandafter \rundeclare \fi}
+
+\endOFSmacro
+

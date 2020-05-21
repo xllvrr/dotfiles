@@ -1,0 +1,14 @@
+name texilikecover
+category Package
+revision 15878
+shortdesc A cover-page package, like TeXinfo
+longdesc The package creates document cover pages, like those that
+longdesc TeXinfo produces.
+containersize 956
+containerchecksum fc73ce5601a10d638ea78fe815978d395001a73be75084539498644ac7f3fea0f3a57e95bd80e5f38659891adfd9c817e6068acfe04972a836938d733e0d4382
+runfiles size=1
+ texmf-dist/tex/latex/texilikecover/texilikecover.sty
+catalogue-ctan /macros/latex/contrib/misc/texilikecover.sty
+catalogue-license lppl
+catalogue-topics covers
+catalogue-version 0.1

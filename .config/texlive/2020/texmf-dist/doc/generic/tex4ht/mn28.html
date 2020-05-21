@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>F scripts</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<meta name="originator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<!-- xhtml,th4,index --> 
+<meta name="src" content="mn.tex" /> 
+<meta name="date" content="2004-02-11 18:07:00" /> 
+<link rel="stylesheet" type="text/css" href="mn.css" /> 
+</head><body 
+>
+<ul >
+<li>For instance
+<div class="Verbatim"><span class="cmtt-10">&nbsp;Fif</span><span class="cmtt-10">&nbsp;exist</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;DEL</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;Fif</span><span class="cmtt-10">&nbsp;exist</span><span class="cmtt-10">&nbsp;zz%%4.ppm</span><span class="cmtt-10">&nbsp;DEL</span><span class="cmtt-10">&nbsp;zz%%4.ppm</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;Fdvips</span><span class="cmtt-10">&nbsp;-T</span><span class="cmtt-10">&nbsp;14in,14in</span><span class="cmtt-10">&nbsp;-Ppdf</span><span class="cmtt-10">&nbsp;-f</span><span class="cmtt-10">&nbsp;%%1</span><span class="cmtt-10">&nbsp;-pp</span><span class="cmtt-10">&nbsp;%%2</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;-o</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;Fgswin32c</span><span class="cmtt-10">&nbsp;-sDEVICE=ppm</span><span class="cmtt-10">&nbsp;-sOutputFile=zz%%4.ppm</span><span class="cmtt-10">&nbsp;-q</span><span class="cmtt-10">&nbsp;-dbatch</span><span class="cmtt-10">&nbsp;-dNOPAUSE</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;-c</span><span class="cmtt-10">&nbsp;quit</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;Fmove</span><span class="cmtt-10">&nbsp;zz%%4.ppm</span><span class="cmtt-10">&nbsp;yz%%4.ppm</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;Fpnmcrop</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;yz%%4.ppm</span><span class="cmtt-10">&nbsp;&gt;</span><span class="cmtt-10">&nbsp;zz%%4.ppm</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;Fif</span><span class="cmtt-10">&nbsp;exist</span><span class="cmtt-10">&nbsp;%%3</span><span class="cmtt-10">&nbsp;DEL</span><span class="cmtt-10">&nbsp;%%3</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;Fppmtogif</span><span class="cmtt-10">&nbsp;-interlace</span><span class="cmtt-10">&nbsp;-transparent</span><span class="cmtt-10">&nbsp;1,1,1</span><span class="cmtt-10">&nbsp;zz%%4.ppm</span><span class="cmtt-10">&nbsp;&gt;</span><span class="cmtt-10">&nbsp;%%3</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+<!--l. 5273--><p class="noindent"></p></li>
+<li>The specialized scripts may, for instance, maintain global caches of gifs for cutting down on recompilation time.
+</li></ul>
+
+     
+</body></html> 

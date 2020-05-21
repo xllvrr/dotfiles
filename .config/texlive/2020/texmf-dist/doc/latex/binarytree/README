@@ -1,0 +1,83 @@
+Package 'binarytree' for LaTeX: Draw binary trees with TikZ.
+
+========================== LICENCE =========================
+Copyright (C) 2016 by Aleksandrina Nikolova
+<aayla.secura.1138@gmail.comaayla.secura.1138@gmail.com>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either
+version 1.3 of this license or (at your option) any later
+version. The latest version of this license is in:
+  http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of
+LaTeX version 2005/12/01 or later.
+
+=========================== ABOUT ==========================
+The 'binarytree' package provides an easy but flexible way
+to draw binary trees using TikZ. It provides a macro
+\BinaryTree which takes two arguments: a path specification
+and a number indicating the maximum depth of the tree. The
+path specification and the setting of various options
+determine the style for each edge of the tree. The options
+can be set either by passing them as an optional argument to
+\BinaryTree, or by calling \btreeset.
+
+There is support for the external library of TikZ which does
+not affect externalization of the rest of the TikZ figures
+in the document (externalization is enabled locally for each
+\BinaryTree). There is an option to use automatic file
+naming: this is useful if the trees are often moved around
+or new ones are added in between, in which case using the
+default naming will cause all of them to be rebuilt.
+Instead, giving a unique name to each tree will have TikZ
+use the already compiled image no matter where in the
+document it is or how many times it has been used. This
+feature is still in its very infancy and more control over
+how the file name is generated is planned for the future.
+
+======================= INSTALLATION =======================
+Extract all of the files and run latex on binarytree.ins:
+  latex binarytree.ins
+
+Move the generated binarytree.sty into a TeX searchable
+directory, for example on Linux:
+  mkdir -p <TeX folder>/tex/latex/binarytree
+  mv binarytree.sty <TeX folder>/tex/latex/binarytree
+The local user TeX directory is in
+'C:\Documents and Settings\<user name>\texmf' on Windows,
+'~/texmf' on Linux or '~/Library/texmf' on OS X.
+
+If you wish to (re)create the documentation:
+  pdflatex binarytree.dtx
+  pdflatex binarytree.dtx
+  makeindex -s gglo.ist -o binarytree.gls binarytree.glo
+  makeindex -s gind.ist -o binarytree.ind binarytree.idx
+  pdflatex binarytree.dtx
+  pdflatex binarytree.dtx
+
+========================== TESTING =========================
+Provided are four files to test the package (also included
+as examples in the documentation:
+* 'examples/binarytree-ex1.tex' draws two trees, names them
+  as nodes and uses them in a simple graph. To recompile it,
+  simply run:
+    pdflatex examples/binarytree-ex1.tex
+* 'examples/binarytree-ex2.tex' draws 4 identically
+  structured trees using different level and sibling
+  distance scalings. To recompile it, simply run:
+    pdflatex examples/binarytree-ex2.tex
+* 'examples/binarytree-ex3.tex' draws a square with arrows
+  on each side! To recompile it, simply run:
+    pdflatex examples/binarytree-ex3.tex
+* 'examples/binarytree-ex4.tex' draws a similar square twice
+  and exports them using the external library. It uses the
+  'list and make' mode, so it generates
+  'examples/binarytree-ex4.figlist' and
+  'examples/binarytree-ex4.makefile', requiring manual
+  compilation of the exported figure:
+    pdflatex examples/binarytree-ex4.tex
+    make -f examples/binarytree-ex4.makefile
+    pdflatex examples/binarytree-ex4.tex
+
+========================== CHANGES =========================
+v1.0 First published version of the 'binarytree' package

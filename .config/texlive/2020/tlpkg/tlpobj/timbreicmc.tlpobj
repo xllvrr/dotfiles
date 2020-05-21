@@ -1,0 +1,27 @@
+name timbreicmc
+category Package
+revision 49740
+shortdesc Typeset documents with ICMC/USP watermarks
+longdesc With this package you can typeset documents with ICMC/USP Sao
+longdesc Carlos watermarks. ICMC is acronym for "Instituto de Ciencias
+longdesc Matematicas e de Computacao" of the "Universidade de Sao Paulo"
+longdesc (USP), in the city of Sao Carlos-SP, Brazil.
+containersize 15436
+containerchecksum 01e0e06769810e07389006e9443a836de76e95fea6133e7aab1f47cc554c3912a8aeb43bbf33d06cf9f3a8550a9eb9ec23830ab96ebbb84629ec957d7050e9a9
+doccontainersize 701320
+doccontainerchecksum ebe4cf57814e6699127a30031c801efe583505098c707a97bece8dff93ff0cd4939cf047802ed38e645c339592e1a062c512dcb5d027192122e4c98ce41d1eac
+docfiles size=195
+ texmf-dist/doc/latex/timbreicmc/README.md details="Readme"
+ texmf-dist/doc/latex/timbreicmc/timbreicmc.pdf details="Package documentation"
+srccontainersize 20352
+srccontainerchecksum eae8ea0badfc036dd6c5908c95bda4e829bebc90e4d50cbf766937701a6f631ec9f39269d09889c5c2bf15a3dd24ddd8062829e5bf735c291e4338085749607f
+srcfiles size=20
+ texmf-dist/source/latex/timbreicmc/timbreicmc.dtx
+ texmf-dist/source/latex/timbreicmc/timbreicmc.ins
+runfiles size=16
+ texmf-dist/tex/latex/timbreicmc/timbreicmc.sty
+catalogue-also watermark
+catalogue-ctan /macros/latex/contrib/timbreicmc
+catalogue-license lppl1.3c
+catalogue-topics watermark
+catalogue-version 2.0

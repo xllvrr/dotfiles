@@ -1,0 +1,19 @@
+name gradstudentresume
+category Package
+revision 38832
+shortdesc A generic template for graduate student resumes
+longdesc The package offers a template for graduate students writing an
+longdesc academic CV. The goal is to create a flexible template that can
+longdesc be customized based on each specific individual's needs.
+containersize 1704
+containerchecksum b66b3b8f7cf16f17758e4dae3bcd45f6e6e5cbc0dcfd6fc42f8dbc08abb572f16b96d5de4ba634b27cd16a1c4177bc62644d3eb5ac6060e66d9ca6d3f5df4eee
+doccontainersize 2924
+doccontainerchecksum e7b166b87a5dce9941d6bd931dec91124a118ba127075aedbe70fc9fe415a8083911f90f094ddede551eef197baee9cfa4ab6ac65c8ae081cd8938f872ad7bb2
+docfiles size=3
+ texmf-dist/doc/latex/gradstudentresume/README.txt details="Readme"
+ texmf-dist/doc/latex/gradstudentresume/example.tex
+runfiles size=1
+ texmf-dist/tex/latex/gradstudentresume/gradstudentresume.cls
+catalogue-ctan /macros/latex/contrib/gradstudentresume
+catalogue-license lppl1.3
+catalogue-topics cv class

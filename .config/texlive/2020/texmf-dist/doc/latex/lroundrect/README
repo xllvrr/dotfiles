@@ -1,0 +1,26 @@
++AMDG
+
+This document is copyright 11EE (2015) by Donald P. Goodman, and is
+released publicly under the LaTeX Project Public License.  The
+distribution and modification of this work is constrained by the
+conditions of that license.  See
+	http://www.latex-project.org/lppl.txt
+for the text of the license.  This document is released
+under version 1.3 of that license, and this work may be distributed
+or modified under the terms of that license or, at your option, any
+later version.
+
+This work has the LPPL maintenance status 'maintained'.
+
+The Current Maintainer of this work is Donald P. Goodman
+(dgoodmaniii@gmail.com).
+
+This work consists of the files lroundrect.dtx and lroundrect.ins,
+along with the generated files lroundrect.sty and lroundrect.pdf,
+along with this README.
+
+The lroundrect macros for LaTeX provide ways to use the
+extremely configurable rounded rectangles of the |roundrect|
+Metapost package with LaTeX.  It is chiefly useful for
+examples, but also has macros for particular types of boxes
+which are useful on their own.

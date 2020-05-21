@@ -1,0 +1,96 @@
+\hsize=\dimexpr 21cm-2in \relax
+\vsize=\dimexpr 29.7cm-2in \relax
+\parindent 0pt
+
+\font\xviibf=cmbx17
+\font\xivbf=cmbx14
+\font\xivtt=cmtt14
+
+\def\cmd#1{{\tentt \string#1}}
+\def\Cmd#1{{\xivtt \string#1}}
+\def\Par{\par\medskip}
+\newcount\cntsection
+\def\section#1{%
+  \par\bigskip
+  \advance \cntsection by 1
+  {\xivbf \the\cntsection.\ #1}
+  \par\medskip
+}
+
+\input randomlist
+
+%%% begin document %%%
+
+\centerline{\xviibf Torture test for pdftex and etex}
+\par\vskip10mm
+
+\section{Test for \Cmd{\NewList} (and \Cmd{\ShowList})}
+
+\NewList{MyList}
+\ShowList{MyList}
+
+\section{Tests for \Cmd{\Insert...}}
+
+With \cmd{\InsertFirstItem}
+\InsertFirstItem{MyList}{first}
+\InsertFirstItem{MyList}{second}
+\InsertFirstItem{MyList}{third}
+\InsertFirstItem{MyList}{fourth}
+\ShowList{MyList}
+\Par
+
+We test \cmd{\ClearList} since we'll use it many times:
+\ClearList{MyList}
+\ShowList{MyList}
+\Par
+
+With \cmd{\InsertLastItem}
+\InsertLastItem{MyList}{first}
+\InsertLastItem{MyList}{second}
+\InsertLastItem{MyList}{third}
+\InsertLastItem{MyList}{fourth}
+\ShowList{MyList}
+\ClearList{MyList}
+\Par
+
+With \cmd{\InsertItem} with indexes 0, 0, 2, 1
+\InsertItem{MyList}{0}{first}
+\InsertItem{MyList}{0}{second}
+\InsertItem{MyList}{2}{third}
+\InsertItem{MyList}{1}{fourth}
+\ShowList{MyList}
+\ClearList{MyList}
+\Par
+
+\RLsetrandomseed{3}
+With \cmd{\InsertRandomItem} (seed = 3)
+\InsertRandomItem{MyList}{first}
+\InsertRandomItem{MyList}{second}
+\InsertRandomItem{MyList}{third}
+\InsertRandomItem{MyList}{fourth}
+\ShowList{MyList}
+\ClearList{MyList}
+\Par
+
+\vfill\break
+With \cmd{\InsertList}
+\NewList{OtherList}
+\InsertLastItem{MyList}{first of Mylist}
+\InsertLastItem{MyList}{second of Mylist}
+\InsertLastItem{MyList}{third of Mylist}
+\InsertLastItem{MyList}{fourth of Mylist}
+\InsertLastItem{OtherList}{first of Otherlist}
+\InsertLastItem{OtherList}{second of Otherlist}
+\InsertLastItem{OtherList}{third of Otherlist}
+\InsertLastItem{OtherList}{fourth of Otherlist}
+\ShowList{MyList}
+\ShowList{OtherList}
+Insertion at index 2
+\InsertList{MyList}{2}{OtherList}
+\ShowList{MyList}
+\ShowList{OtherList}
+\ClearList{MyList}
+\ClearList{OtherList}
+\Par
+
+\bye

@@ -1,0 +1,44 @@
+%%
+%% This is file `bgteuglochar.ist',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% bgteucls.dtx  (with options: `glostyle2')
+%% 
+%%   bgteubner class bundle
+%% 
+%%   Copyright 2003--2015 Harald Harders
+%% 
+%%   This program may be distributed and/or modified under the
+%%   conditions of the LaTeX Project Public License, either version 1.3
+%%   of this license or (at your opinion) any later version.
+%%   The latest version of this license is in
+%%      http://www.latex-project.org/lppl.txt
+%%   and version 1.3 or later is part of all distributions of LaTeX
+%%   version 1999/12/01 or later.
+%% 
+%%   This program consists of all files listed in manifest.txt.
+%% 
+%%   This Makeindex style file is intended to be used with the bgteubner
+%%   document class. It may or may not work together with other document
+%%   classes.
+%% 
+%%   harald.harders@gmx.de
+%% 
+quote '>'
+heading_prefix "\\glossarynewchar{"
+heading_suffix "}\n"
+symhead_positive "Symbole"
+numhead_positive "Zahlen"
+headings_flag   1
+keyword    "\\glossaryentry"
+preamble   "\\begin{theglossary}\n\\hhclsiscorrectglossarytrue\n"
+postamble  "\n\n\\end{theglossary}\n"
+group_skip "\n"
+delim_0    ""
+delim_1    ""
+delim_2    ""
+delim_n    "\\glossarypagedelim"
+delim_r    "\\glossarypagerange"
+item_0 "\n \\item ["

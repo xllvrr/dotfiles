@@ -1,0 +1,590 @@
+% This is the AMERICAN ENGLISH package documentation for "listofitems"
+\documentclass[american]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{listofitems,babel,xspace}
+\usepackage[bottom]{footmisc}
+\usepackage{libertine}\usepackage[italic]{mathastext}
+\usepackage[scaled=0.8]{luximono}
+\usepackage[margin=3cm]{geometry}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{listings,MnSymbol}
+\def\listofitems{\textsf{\loiname}\xspace}
+\def\eTeX{\hbox{$\varepsilon$-\TeX}}
+\makeatletter
+\def\code{\expandafter\code@i\string}
+\def\code@i#1{%
+	\begingroup
+		\par\nobreak\medskip\parindent0pt
+		\leftskip.1\linewidth
+		\catcode`\^^I 13 \begingroup\lccode`\~`\^^I \lowercase{\endgroup\def~{\leavevmode\space\space\space\space}}%
+		\let\do\@makeother \dospecials
+		\ttfamily\small\@noligs
+		\obeylines\obeyspaces
+		\def\code@ii##1#1{##1\par\medbreak\endgroup}%
+		\code@ii
+}
+\long\def\grab@toks#1\relax{\gdef\right@content{#1}}
+
+\newcommand\disable@lig[1]{%
+	\catcode`#1\active
+	\begingroup
+		\lccode`\~`#1\relax
+		\lowercase{\endgroup\def~{\leavevmode\kern\z@\string#1}}%
+}
+
+\newcommand\exemple[1][65]{%
+	\edef\par@@indent{\the\parindent}%
+	\par\nobreak\vskip5pt \noindent
+	\def\part@coeff{#1}%
+	\relax\leavevmode\null
+	\bgroup
+		\let\do\@makeother\dospecials
+		\catcode`\^^M\active \catcode`\ \active
+		\begingroup
+			\lccode`\~`\ \lowercase{\def~{ {}}}%
+			\lccode`\~`\^^M\lowercase{\endgroup\def~{\par\noexpand\leavevmode}}%
+		\@makeother:\disable@lig,\disable@lig-%
+		\exemple@@
+}
+
+\newcommand\exemple@@[1]{%
+	\def\@tempa##1#1{%
+		\xdef\left@content{##1}%
+		\egroup
+		\def\right@content{##1}%
+		\begingroup
+			\newlinechar`\^^M\everyeof{\relax}%
+			\expandafter\grab@toks\scantokens\expandafter{\right@content}%
+		\endgroup
+		\exemple@@@
+		}%
+	\@tempa
+}
+
+\begingroup
+\catcode`#=12
+\gdef\exemple@@@{%
+	\begingroup
+      \fboxsep1pt\relax
+		\edef\part@left{\the\dimexpr0.\part@coeff\linewidth-\fboxsep-\fboxrule}%
+		\edef\part@right{\the\dimexpr\linewidth-0.\part@coeff\linewidth-\fboxsep-\fboxrule}%
+		\fbox{%
+			\parbox[c]\part@left{\vskip5pt\relax\ttfamily\footnotesize\left@content\vskip5pt}%
+			\parbox[c]\part@right{\vskip5pt\relax\normalfont\footnotesize\right@content\vskip5pt}%
+		}%
+		\vskip7.5pt\relax
+	\endgroup
+}
+\endgroup
+\begingroup
+	\catcode`\<13 \catcode`\>13
+	\gdef\verb{\relax\ifmmode\hbox\else\leavevmode\null\fi
+		\bgroup
+			\verb@eol@error \let\do\@makeother \dospecials
+			\verbatim@font\@noligs
+			\catcode`\<13 \catcode`\>13 \def<{\begingroup$\langle$\itshape}\def>{$\rangle$\endgroup}%
+			\@ifstar\@sverb\@verb}
+\endgroup
+\makeatother
+% FOR AMERICAN-ENGLISH VERSION
+\usepackage{setspace}
+\setstretch{1.01}
+\usepackage{enumitem}
+\newcommand\no[1]{number #1}
+\let\bsc\textsc
+\def\americanloidate{\expandafter\americanloidatei\loidate/}
+\def\americanloidatei#1/#2/#3/{\number#3\relax\space\ifcase #2 \or January\or February\or March\or April\or May\or 
+  June\or July\or August\or September\or October\or November\or December\fi{} #1}
+%\newcommand\flag[1]{\textcolor{red}{#1}}% DIAGNOSTIC FLAG FOR FURTHER TRANSLATION
+%\newcommand\cflag[1]{\textcolor{blue}{#1}}% DIAGNOSTIC FLAG FOR FURTHER TRANSLATION
+%
+\begin{document}
+\parindent=0pt
+\thispagestyle{empty}
+\begin{titlepage}
+	\renewcommand\thefootnote{\fnsymbol{footnote}}
+	\begingroup
+		\centering
+		\null\vskip.25\vsize
+		{\large\bfseries Package\par \Huge \listofitems\par}
+		\bigbreak
+		v\loiver
+		\smallbreak
+		\americanloidate
+		\vskip1.5cm
+		{Christian \bsc{Tellechea}\footnote{\texttt{unbonpetit@netc.fr}}\par Steven B. \bsc{Segletes}\footnote{steven.b.segletes.civ@mail.mil}}
+		\par
+	\endgroup
+	\vskip2cm
+	\leftskip=.2\linewidth \rightskip=.2\linewidth \small
+This simple package is designed to read a list of items whose
+  parsing separator may be selected by the user. 
+Once the list is read, its items are stored in a structure that behaves 
+  as a dimensioned array.
+As such, it becomes very easy to access an item
+  in the list by its number. 
+For example, if the list is stored in the
+  macro \verb|\foo|, the item \no3 is designated by \verb|\foo[3]|.
+
+A component may, in turn, be a list with a parsing delimiter different from
+  the parent list, paving the way for
+  nesting and employing a syntax reminiscent of an array of
+  several dimensions of the type \verb|\foo[3,2]| to access the item \no2
+  of the list contained within the item \no3 of the top-tier list.
+\end{titlepage}
+\def\listofitems{\textsf\loiname\xspace}
+
+\section{Preface}
+\fbox{\vbox{\hsize\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax\textbf{Important}: As of version 1.62, \listofitems requires a \TeX{} engine that provides the \texttt{\string\expanded} primitive. If this is not available, an error message will be issued and version 1.61 will be loaded (last version working without the primitive \texttt{\string\expanded}); it is strongly recommended that you update your \LaTeX{} distribution in order to take advantage of the newer \TeX{} engines that provide for the use of this new primitive.}}\medbreak
+
+This package loads no external packages, must be used with the 
+  \eTeX{} engine, and must be called in (pdf)\hskip0pt(Xe)\hskip0pt(lua)\LaTeX{} with
+  the invocation
+\code|\usepackage{listofitems}|
+
+and under (pdf)(Xe)(Lua)\TeX {} by way of 
+\code|\input listofitems.tex|
+
+\section{Read a Simple List}
+\paragraph{Set the parsing separator}
+The default parsing separator is the comma and if we want change it, we must do so
+  before reading a list of items, with the definition 
+  \verb|\setsepchar{<parsing-separator>}|. 
+A \verb|<parsing-separator>| is a set of tokens which possess catcodes different from 
+  1 and 2 (the opening and closing braces), 14 (usually 
+  \verb|%|) and 15. 
+The token of catcode 6 (usually \verb|#|) is accepted only if it
+  is followed by an integer, denoting the argument of a macro; 
+In no case should this token be provided alone as the \verb|<parsing-separator>|. 
+Commands can be included in this set of tokens,
+including the \TeX{} primitive \verb|\par|.%
+\smallbreak
+The parsing-separator \verb|<delimiter>| ``\verb-/-'' is reserved by default 
+  for nested lists (see page 3). %\ref{nested.list.delimiters}). 
+It is therefore not proper to write "\verb-\setsepchar{/}-" 
+  because the \listofitems{} package would misunderstand that you want to read 
+  a nested list.
+To set ``\verb-/-'' as the \verb|<parsing-separator>| for a simple list,
+  it is necessary, using the optional argument, to choose
+  a different parsing-separator \verb|<delimiter>| for nested lists, 
+  for example ``\verb|.|'', and write ``\verb+\setsepchar[.]{/}+''.
+\medbreak
+
+It is not possible to select \verb-|- as the \verb|<delimiter>| because it would 
+  conflict with the logical \textbf{OR}, denoted ``\verb-||-'' (see below).
+However, one can work around this limitation, at one's own peril, writing 
+  ``\verb-\setsepchar{{|}}-''.
+
+\paragraph{Read a list}
+To read the list of items, the \verb|\readlist<macro-list>{<list>}| should be called. 
+In so doing, the \verb|<list>| is read and the items are stored in a macro, denoted
+  \verb|<macro-list>| which therefore acts as a table with the items of the
+  \verb|<list>|. 
+If braces appear as part of a list item, they
+  \emph{must} be balanced.
+Tokens possessing the catcodes 6, 14 and 15 are not allowed in the lists.
+
+For example, to set the \verb|<macro-list>| named \verb|\foo|, we can write
+\code|\setsepchar{,}
+\readlist\foo{12,abc, x y ,{\bfseries z}, ,\TeX,,!}|
+\setsepchar{,}
+\readlist\foo{12,abc, x y ,{\bfseries z}, ,\TeX,,!}
+
+If the \verb|<list>| is contained in a macro, then this macro is expanded. 
+Therefore, we can simply employ the syntax 
+  \verb|\readlist<macro-list><macro>|
+as in
+
+\code|\setsepchar{,}
+\def\List{12,abc, x y ,{\bfseries z}, ,\TeX,,!}
+\readlist\foo\List|
+
+The macro \verb|\greadlist| makes \emph{global} assignments and therefore, enables the use of \verb|<macro-list>| outside of the group where \verb|\greadlist| has been executed.
+
+\paragraph{Access an item}
+The macro \verb|\foo| \emph{requires} a numeric argument in square brackets, 
+  which we symbolically denote as $i$, indicating the rank of the item 
+  you wish to access. 
+So \verb|\foo[1]| is\footnote{\texttt{\textbackslash 
+  foo[}$i$\texttt] requires 2 expansions to give the item.} ``\verb|12|''. Similarly, \verb|\foo[4]| is 
+  ``\verb|{\bfseries z}|''.
+
+The number $i$ can also be negative in which case the counting is done from the end
+  of the list: $-1$ represents the last item, $-2$ the penultimate, etc. 
+If the number of items is $n$, then the argument $-n$ is the first item.
+\medbreak
+
+In general, if a \verb|<list>| has a length $n$, then the index $i$ can be in the 
+  interval $[1\,;n]$ or $[-n\,;-1]$. 
+Otherwise, a compilation error occurs.
+
+If the index is empty, \verb|\foo[]| produces the complete \verb|<list>|.
+
+The macro \verb|\foosep| is created. It is used with the syntax 
+  \verb|\foosep[<index>]| and allows access to the parsing-separator that follows the 
+  item of rank \verb|<index>|. 
+The last parsing-separator (the one following the last item) is empty. 
+If the \verb|<index>| is empty, \verb|\foosep[]| is empty.
+
+\paragraph{Select several possible parsing separators}
+To specify several possible separators, use the \textbf{OR} operator,
+  denoted ``\verb-||-''. 
+One can use this feature, for example, to isolate the terms in an
+  algebraic sum:
+
+\exemple/\setsepchar{+||-}
+\readlist\term{17-8+4-11}
+1) \term[1] (parsing separator = \termsep[1])\par
+2) \term[2] (parsing separator = \termsep[2])\par
+3) \term[3] (parsing separator = \termsep[3])\par
+4) \term[4] (parsing separator = \termsep[4])/
+
+\paragraph{Number of items}
+If we write \verb|\readlist<macro-list>{<list>}|, then the macro \verb|<macro-list>len|
+  con\-tains\footnote{That is to say, it is 
+  purely expandable and grows into a number.}
+  the number of the items in \verb|<list>|.
+In the example with \verb|\foo|, the macro \verb|\foolen| expands to \foolen.
+
+\paragraph{View all items}
+For purposes of debugging, the macro \verb|\showitems<macro-list>| includes all 
+  items from a list, while the star version displays these items ``detokenized.''
+  \footnote{The primitive \texttt{\string\detokenize}, conducting this 
+  decomposition, inserts a space after each control sequence.}
+
+\exemple/\showitems\foo\par
+\showitems*\foo/
+
+The presentation of each list item is assigned to the macro \verb|\showitemsmacro| 
+  whose code is
+
+\code|\newcommand\showitemsmacro[1]{%
+	\begingroup\fboxsep=0.25pt \fboxrule=0.5pt \fbox{\strut#1}\endgroup
+	\hskip0.25em\relax}|
+
+It is therefore possible ---~and desirable~--- to redefine it if we desire a
+ different presentation effect.\medbreak
+
+The macro \verb|\fbox| and associated dimensions \verb|\fboxsep| and 
+  \verb|\fboxrule|, are defined by \listofitems, when \textit{not} 
+  compiled under \LaTeX{}, to achieve the same result \textit{as if}
+  performed under \LaTeX.
+
+\paragraph{Suppression of extreme (leading/trailing) spaces}
+By default, \listofitems reads and retains the spaces located at 
+  the beginning and end of an item. 
+For these spaces to be ignored when reading the \verb|<list>|, execute the starred 
+  version \verb|\readlist*<macro>{<list>}|:
+
+\exemple|\setsepchar{,}
+\readlist*\foo{12,abc, x y ,{\bfseries z}, ,\TeX,,!}
+\showitems\foo|
+
+\paragraph{Managing empty items}
+By default, the \listofitems package retains and accounts for empty items. 
+Thus, in the previous ex\-am\-ple, the 2nd expansion of \verb|\foo[7]| is empty. 
+For empty items of the list (i.e., those list items defined by two 
+  consecutive parsing delimiters) to be ignored, we must,
+  before invoking \verb|\readlist|,
+  execute the macro \verb|\ignoreemptyitems| . 
+To return to the default package behavior, simply execute the macro 
+  \verb|\reademptyitems|.
+
+This option can be used alone or in combination with \verb|\readlist*|, 
+  in which case the suppression of extreme (leading/trailing) spaces occurs
+  \textit{before} \textsf{listofitems} ignores the empty list items:
+
+\exemple|\setsepchar{,}
+\ignoreemptyitems
+\readlist\foo{12,abc, x y ,{\bfseries z}, ,\TeX,,!}
+a) number of items = \foolen\par
+   \showitems\foo
+
+\readlist*\foo{12,abc, x y ,{\bfseries z}, ,\TeX,,!}
+b) number of items = \foolen\par
+   \showitems\foo|
+
+\paragraph{Iterate over a list}
+Once a list read by \verb|\readlist| and stored in a \verb|<macro-list>|, one may 
+  iterate over the list with the syntax
+  \verb|\foreachitem <variable> \in <macro-list>{<code>}|: 
+The \verb|<variable>| is a macro chosen by the user that will loop over the value 
+  of each item in the list.
+
+The macro \verb|<variable>cnt| represents the sequence number of the item in 
+  \verb|<variable>|.
+
+\exemple|\setsepchar{ }% parsing-separator = space
+\readlist\phrase{One phrase to test.}
+\foreachitem\word\in\phrase{List item number \wordcnt{}: \word\par}|
+
+\paragraph{Assign an item to a macro}
+The \verb|\itemtomacro<macro-list>[index]<macro>| assigns to the \verb|<macro>|
+  the item designated by \verb|<macro-list>[index]|. 
+The \verb|<macro>| thus defined is purely expandable provided that the tokens 
+  in the items are expandable.
+
+\exemple|\setsepchar{ }% parsing-separator = space
+\readlist\phrase{One phrase to test.}
+\itemtomacro\phrase[2]\aword
+\meaning\aword\par
+\itemtomacro\phrase[-1]\wordattheend
+\meaning\wordattheend|
+
+\section{Nested Lists}
+We speak of a list being ``nested'' when asking \listofitems to read a list where 
+  the items are, in turn, understood as being a list (implying a parsing
+  separator different from the top-tier list). 
+The nesting depth is not limited, but in practice, a depth of 
+  2 or 3 will usually suffice.
+
+\paragraph{Defining the parsing separators}\label{nested.list.delimiters}
+To indicate that a list will be nested, so that 
+  the list parsing will be performed recursively, one must specify multiple
+  parsing separators, each corresponding to the particular tier of nesting.
+This list of parsing separators is itself given as a delimited list to
+  the macro \verb|\setsepchar|, with the syntax
+    \verb|\setsepchar[<delimiter>]{<delimited-list-of-parsing-separators>}|.
+
+By default, the \verb|<delimiter>| is ``\texttt{/}''.
+Thus, writing
+
+\code|\setsepchar{\\/,/ }|
+
+indicates a recursive depth of 3, with the parsing-separator list delimiter defaulting
+  to ``\texttt{/}'':
+
+\begin{itemize}[itemsep=0pt,topsep=0pt,partopsep=0pt,parsep=0pt,label=---]
+	\item Tier 1 items are parsed between ``\verb|\\|'' delimiters;
+	\item Tier 2 items are found within Tier 1 items, parsed between ``\verb|,|'' delimiters; 
+	\item finally, the Tier 3 items are found within Tier 2 items, parsed between the
+           ``\verb*| |'' delimiters.
+\end{itemize}
+
+The \verb|<depth>| of nesting is contained in the purely expandable macro \verb|\nestdepth|.
+
+\paragraph{Read and access list items}
+For nested lists, the use of
+  indices obey the following rules:
+
+\begin{itemize}[itemsep=0pt,topsep=0pt,partopsep=0pt,parsep=0pt,label=---]
+	\item \verb|[]| is the main list, i.e., the argument of \verb|\readlist|;
+	\item \verb|[<i>]| means the item \no\verb|<i>| of the main list;
+	\item \verb|[<i>,<j>]| means the item \no\verb|<j>| of the list 
+               mentioned in the previous point (a subitem);
+	\item \verb|[<i>,<j>,<k>]| means the item \no\verb|<k>| of the 
+                list mentioned in the previous point (a sub-subitem);
+	\item etc.
+\end{itemize}
+
+As in the case of a non-nested list, the index may be negative.
+
+To read items, the syntax of \verb|\readlist| is exactly the same as 
+  that for simple (non-nested) lists:
+
+\exemple|\setsepchar{\\/,/ }
+\readlist\baz{1,2 a b,3 c\\4 d e f,5,6\\7,,8, ,9 xy z}
+a) \string\baz[1] is \baz[1]\par
+b) \string\baz[1,1] is \baz[1,1]\par
+c) \string\baz[1,1,1] is \baz[1,1,1]\par
+b) \string\bar[1,2] is \baz[1,2]\par
+e) \string\baz[1,2,3] is \baz[1,2,3]\par
+f) \string\baz[-2,1,-1] is \baz[-2,1,-1]|
+
+\paragraph{The operator ``||''}
+This operator may be employed at any level of nesting.
+
+\exemple=\setsepchar[,]{+||-,*||/}
+\readlist\numbers{1+2*3-4/5*6}
+Term 1: \numbers[1]\par
+Term 2: \numbers[2] (factors: \numbers[2,1] and
+         \numbers[2,2])\par
+Term 3: \numbers[3] (factors: \numbers[3,1],
+         \numbers[3,2] and \numbers[3,3])=
+
+\paragraph{Number of list items}
+The macro \verb|\listlen<macro-list>[<index>]| requires 2 expansions
+  in order to
+  give the number of items in the list specified by the \verb|<index>|.
+The \verb|<depth>| of the \verb|<index>| must be strictly less than that
+  of the list.
+
+For the case where the \verb|<index>| is empty, 
+  \verb|\listlen<macro-list>[]|, with 2 expansions, yields the identical result 
+  as \verb|<macro-list>len| with 1 expansion.
+
+\exemple|\setsepchar{\\/,/ }
+\readlist\baz{1,2 a b,3 c\\4 d e f,5,6\\7,,8, ,9 xy z}
+a) \bazlen\ or \listlen\baz[]\par
+b) \listlen\baz[1]\par
+c) \listlen\baz[2]\par
+d) \listlen\baz[3]\par
+e) \listlen\baz[3,1]\par
+f) \listlen\baz[3,4]\par% 2 empty items
+g) \listlen\baz[3,5]|
+
+\paragraph{Displaying list items}
+The macro \verb|\showitems<macrolist>[<index>]| displays items from the list specified by
+  \verb|<index>|, in the same manner as \verb|\listlen|.
+The \verb|<depth>| of the \verb|<index>| must be strictly less than 
+  that of the \verb|<list>|.
+
+\exemple|\setsepchar{\\/,/ }
+\readlist\baz{1,2 a b,3 c\\4 d e f,5,6\\7,,8, ,9 xy z}
+a) \showitems\baz[]\par
+b) \showitems\baz[1]\par
+c) \showitems\baz[2]\par
+d) \showitems\baz[3]\par
+e) \showitems\baz[3,1]\par
+f) \showitems\baz[3,4]\par% 2 empty items
+g) \showitems\baz[3,5]|
+
+
+
+\paragraph{Empty items and extreme (leading/trailing) spaces}
+The removal of empty items and/or leading/\allowbreak trailing spaces will occur in \emph{all} 
+  the items, regardless of the degree of nesting. 
+It is clear that a space, ``\verb*| |'', is useless as a parsing separator if you want 
+  to use \verb|\readlist*|. 
+Therefore, in the following example, ``\verb|*|'' is instead selected as the (3rd-tier)
+  parsing separator. 
+
+Further, we remove only the extreme spaces, but retain empty items.
+
+\exemple|\setsepchar{\\/,/*}
+\readlist*\baz{1, 2*a*b ,3*c\\4*d*e*f,5,6\\7,,8, ,9* xy *z}
+a) \showitems\baz[]\par
+b) \showitems\baz[1]\par
+c) \showitems\baz[2]\par
+d) \showitems\baz[3]\par
+e) \showitems\baz[3,1]\par
+f) \showitems\baz[3,4]\par
+g) \showitems\baz[3,5]% "xy" without extreme spaces|
+
+\paragraph{Iterate over a list}
+The syntax \verb|\foreachitem <variable> \in <macro>[<index>]{<code>}| 
+  remains valid where now the \verb|<index>| specifies the item 
+  (understood as a list) on which to iterate.
+The \verb|<depth>| of the \verb|<index>| must be strictly less than 
+  that of the \verb|<list>|.
+
+
+\paragraph{Assign an item to a macro}
+The syntax \verb|\itemtomacro<macro-list>[<index>]<macro>| remains valid to assign 
+  to \verb|<macro>| the item specified by \verb|<macro-list>[<index>]|.
+
+\exemple[55]|\setsepchar[,]{\\, }
+\readlist\poem{There once was a runner named Dwight\\%
+Who could speed even faster than light.\\%
+He set out one day\\%
+In a relative way\\%
+And returned on the previous night.}
+\itemtomacro\poem[2]\verse
+2nd verse = \verse
+
+\itemtomacro\poem[2,-4]\word
+A word = \word|
+
+The macro \verb|\gitemtomacro| makes a global assignment.
+
+\section{Balanced Tokens}
+
+For the parsing of items, it is possible, with version 1.6, to take into 
+  account the presence of \emph{balanced tokens}. 
+Thus, if a list of paired tokens is defined, then each parsed item
+  in the list will extend to the first \verb|<separator>|, while assuring
+  that any paired tokens are balanced (i.e., occur in matched pairs within
+  the item).
+
+To define a list of balanced-token pairs, we use
+
+\code|\defpair{<tok1><tok2><tok3><tok4>...}|
+
+where the token list is read in pairs to form each matched-token pair. 
+A \verb|<token>| that serves within a matched pair must consist of 
+  a single character---% 
+macros, primitives, spaces, braces, the token 
+  "\verb|#|", as well as sets of several-tokens-between-%
+  braces are all forbidden. 
+The two tokens which form a pair \emph{must} be different from 
+  each other.
+
+\exemple/\setsepchar{+||-}
+\defpair{()[]}
+\readlist\terms{1+2*[3+4*(5+6-7)+8]-9+10}
+\showitems\terms/
+
+To return to the package's default behavior, that is, without 
+  paired tokens, you must execute
+
+\code|\defpair{}|
+
+In an expression, in order to store in a macro that which
+  is between two matched tokens, we can call on
+
+\code|\insidepair<tok1><tok2>{<expression>}\macro|
+
+which will put in the \verb|\macro| that which lies between the pair 
+  \verb|<tok1><tok2>| in the \verb|<expression>|.
+
+\exemple/\setsepchar{+||-}
+\defpair{()}
+\readlist\terms{1+2*(3+4*(5+6-7)+8)-9+10}
+\showitems\terms
+
+\itemtomacro\terms[2]\parenterm
+In the outer parenthesis:
+\insidepair()\parenterm\inbigparen
+"\inbigparen"
+
+In the inner parenthesis:
+\insidepair()\inbigparen\insmallparen
+"\insmallparen"/
+
+\section{The Code}
+
+Any suggestion, bug report, remark, request, addition or modification 
+  of functionality is welcome; in this case, I invite users of 
+  \listofitems to send me an email to \verb|unbonpetit@netc.fr|.\medbreak
+
+The code below is the exact verbatim of the file \verb|listofitems.tex|. 
+I hope that the few comments scattered throughout it will
+  be enough for the user or the curious to understand the internal 
+  machinery of this package:
+
+
+\lstinputlisting[
+		language=TeX,
+		inputencoding=latin1,
+		moretexcs={unless,ifcsname,ifdefined,detokenize,numexpr,dimexpr,glueexpr,unexpanded,expanded},
+		basicstyle=\small\ttfamily\color{black!25},
+		identifierstyle=\bfseries\color{white},%
+		backgroundcolor=\color{black!85},
+		keywordstyle=\bfseries\color{orange},
+		commentstyle=\color{cyan!66},
+		columns=fixed,
+		alsoletter={\_},
+		tabsize=2,
+		extendedchars=true,
+		showspaces=false,
+		showstringspaces=false,
+		numbers=left,
+		numberstyle=\tiny\ttfamily\color{black},
+		breaklines=true,
+		prebreak={\hbox{$\rhookswarrow$}},
+		breakindent=3em,
+		breakautoindent=true,
+		xleftmargin=1em,
+		xrightmargin=0pt,
+		lineskip=0pt,
+		numbersep=1em,
+		classoffset=1,
+		alsoletter={\_},
+		morekeywords={defpair,insidepair,setsepchar,greadlist,readlist,listlen,foreachitem,%
+			showitems,showitemsmacro,itemtomacro,gitemtomacro,ignoreemptyitems,reademptyitems},
+		keywordstyle=\bfseries\color{red!85!black},
+		classoffset=0,
+		]{listofitems.tex}
+\end{document}

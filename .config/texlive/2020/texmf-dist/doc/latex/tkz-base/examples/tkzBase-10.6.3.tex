@@ -1,0 +1,13 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 88 (Section 10.6.3 : \tkzcname{tkzClip} et l'option \tkzname{space})
+
+\begin{tikzpicture}
+ \tkzInit[xmax=3, ymax=3]
+ \tkzGrid  \tkzAxeXY
+ \tkzClip[space=-0.5]
+ \draw[red] (-0.5,-0.5)--(3.5,3.5);
+\end{tikzpicture}
+
+\end{document}

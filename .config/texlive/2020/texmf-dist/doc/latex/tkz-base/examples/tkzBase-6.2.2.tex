@@ -1,0 +1,13 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 21 (Section  6.2.2 : Position of the graduations with \tkzname{xlabel style})
+
+\begin{tikzpicture}
+ \tkzInit[xmin=1000,xmax=4000,xstep=1000]
+ \tkzDrawX
+ \tikzset{xlabel style/.append style={rotate=-30}}
+ \tkzLabelX[below right=3 pt,inner sep = 1pt]
+\end{tikzpicture}
+
+\end{document}

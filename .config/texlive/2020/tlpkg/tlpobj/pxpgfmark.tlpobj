@@ -1,0 +1,20 @@
+name pxpgfmark
+category Package
+revision 30212
+shortdesc e-pTeX driver for PGF inter-picture connections
+longdesc The distributed drivers do not support the PGF feature of
+longdesc "inter-picture connections" under e-pTeX and dvipdfmx. The
+longdesc package uses existing features of dvipdfmx to fix this problem
+containersize 792
+containerchecksum eb341eaebbe2fca860c2592c0d24f6b5c4ef0f1e6b2bd731d48c1994ded7afa01bd5cb365d3f30147f68855777defc3384038aa652240178fc948b5225cb4c08
+doccontainersize 1640
+doccontainerchecksum 8a80eade76fa7b5e5b919136e499eddb5ff534042fc56eb8223e80124bde97a39a65d31370037cf425042a1ae516e5888c8751388899ae65a8b561f091693c97
+docfiles size=2
+ texmf-dist/doc/latex/pxpgfmark/LICENSE
+ texmf-dist/doc/latex/pxpgfmark/README details="Readme"
+runfiles size=1
+ texmf-dist/tex/latex/pxpgfmark/pxpgfmark.sty
+catalogue-ctan /graphics/pgf/contrib/pxpgfmark
+catalogue-license mit
+catalogue-topics graphics-drv
+catalogue-version 0.2

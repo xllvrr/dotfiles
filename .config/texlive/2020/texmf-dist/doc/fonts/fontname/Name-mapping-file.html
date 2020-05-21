@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+<title>Filenames for TeX fonts</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Filenames for TeX fonts">
+<meta name="generator" content="makeinfo 4.6">
+<!--
+This document is in the public domain and may be used freely.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+Node:&nbsp;<a name="Name%20mapping%20file">Name mapping file</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Long-naming-scheme.html#Long%20naming%20scheme">Long naming scheme</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Long-names.html#Long%20names">Long names</a>
+<hr><br>
+</div>
+
+<h3 class="section">A fontname mapping file</h3>
+
+<p>At the moment, most implementations of TeX look up a TFM file (as
+part of the <code>\font</code> command), by searching for a file with the name
+given by the user (possibly in any of series of directories).  But if we
+also looked TFM names up in <em>another</em> file (or set of files), which
+specifies the actual filename, the fontname given in the TeX source
+file could be almost anything at all, of any length.
+
+   <p>In version 5.851d of Web2c, I implemented this mapping file.  Each file
+<code>texfonts.map</code> in a search path is read for abbreviations. The file
+has a straightforward format: each line specifies the filename and the
+TeX name for one font, separated by whitespace.  Extra information on
+the line is ignored; then more information could be specified for the
+benefit of DVI-reading programs in the same file.  Comments start with
+<code>%</code> and continue to the end of the line.
+
+   <p>Besides allowing long names, this sort of mapping file has other
+benefits.  TeX source or DVI files can be more easily transported,
+because the font names in a particular file can be made work on every
+system.  Also, when combined with a consistent naming scheme, macros
+could be written to access any of a number of fonts.  Right now, each
+font family has to have specialized macros written to deal with it.
+
+   <p>Incidentally, Professor Knuth has approved this as a legitimate
+"system-dependent" extension; a TeX with such a feature can still
+be called "TeX".
+
+   </body></html>
+

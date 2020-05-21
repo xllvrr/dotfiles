@@ -1,0 +1,34 @@
+name adigraph
+category Package
+revision 49862
+shortdesc Augmenting directed graphs
+longdesc This LaTeX package provides the means to easily draw augmenting
+longdesc oriented graphs, as well as cuts on them, to demonstrate steps
+longdesc of algorithms for solving max-flow min-cut problems. This
+longdesc package requires the other LaTeX packages fp, xparse, xstring,
+longdesc and TikZ (in particular the TikZ calc library).
+containersize 5644
+containerchecksum 6a4684925e542a6ab0e3b97280059dc47fc892efdb99858370dca9dff91074d98030a93f964a5172bfa95a6dbf41f7a639977b0559332178ab8e4ca9dcb20e10
+doccontainersize 482896
+doccontainerchecksum 763f94d22e939c255cb0b920183403d7c753dd4d77483b79f82f4a302375bee4ea42357091866ddc392b554c6dfb707c624fabfc3f92fb6ae07853e3ddbc8594
+docfiles size=156
+ texmf-dist/doc/latex/adigraph/LICENSE
+ texmf-dist/doc/latex/adigraph/README.md details="Readme"
+ texmf-dist/doc/latex/adigraph/adigraph-large.png
+ texmf-dist/doc/latex/adigraph/adigraph_documentation.pdf details="Documentation"
+ texmf-dist/doc/latex/adigraph/adigraph_documentation.tex
+ texmf-dist/doc/latex/adigraph/adigraph_working_test.pdf
+ texmf-dist/doc/latex/adigraph/adigraph_working_test.tex
+ texmf-dist/doc/latex/adigraph/img_examples/example_0.jpg
+ texmf-dist/doc/latex/adigraph/img_examples/example_1.jpg
+ texmf-dist/doc/latex/adigraph/img_examples/example_2.jpg
+ texmf-dist/doc/latex/adigraph/img_examples/example_3.jpg
+ texmf-dist/doc/latex/adigraph/img_examples/pyadigraph.png
+runfiles size=6
+ texmf-dist/tex/latex/adigraph/adigraph.sty
+catalogue-contact-bugs https://github.com/LucaCappelletti94/adigraph/issues
+catalogue-contact-repository https://github.com/LucaCappelletti94/adigraph
+catalogue-ctan /graphics/pgf/contrib/adigraph
+catalogue-license mit
+catalogue-topics pgf-tikz diagram
+catalogue-version 1.7.1

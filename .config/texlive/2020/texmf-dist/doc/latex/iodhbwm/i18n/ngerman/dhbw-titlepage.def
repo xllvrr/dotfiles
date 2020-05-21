@@ -1,0 +1,55 @@
+\begin{titlepage}
+	\centering
+	\begin{minipage}[c]{.25\textwidth}
+		\includegraphics[width=\linewidth,keepaspectratio]{dhbw-logo}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[c]{.25\textwidth}
+		\raggedleft
+		\includegraphics[width=\linewidth,keepaspectratio]{example-image}
+	\end{minipage}
+    
+    \bigskip
+    
+    \Large\textsc{Arbeit}
+    
+    \normalsize
+    des Studiengangs Informationstechnik\par
+    der Dualen Hochschule Baden-Württemberg \getDHBWLocation
+    
+    \rule{\textwidth}{.5mm}\bigskip
+    
+    \textsc{\large Thema \ifcsempty{iodhbwm@thesis@second@title}{}{A}}
+    
+    {\bfseries \getThesisTitle}\bigskip
+    
+    \ifcsempty{iodhbwm@thesis@second@title}{}{%
+        \textsc{\large Thema B}\par
+        %\tikz{\node (1) [draw, rounded rectangle] {Kolloquium};}
+        {\bfseries \getThesisSecondTitle}
+    }{}
+    
+    \rule{\textwidth}{.5mm}
+    
+    \vfill
+    
+    \par
+    \centering{\bfseries\large \getAuthor}\par
+    \today
+    
+    \vfill
+    
+    \small{%
+    \begin{tabularx}{\textwidth}{@{}lX@{}}
+    \toprule
+    Bearbeitungszeitraum: & \getProcessingPeriod\\
+    Matrikelnummer, Kurs: & \getStudentId\\
+    Abteilung: & \getInstituteSection\\
+    Ausbildungsfirma: & \getInstitute\\
+	Standort: & \getLocation\\
+    Betreuer: & \getSupervisor\\
+    Unterschrift Betreuer & \rule[-.5cm]{.5\columnwidth}{.5pt}
+    \end{tabularx}
+    }
+    \cleardoublepage
+\end{titlepage}

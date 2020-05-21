@@ -1,0 +1,1027 @@
+\relax
+\documentclass[twocolumn]{article}
+\usepackage[specification]{fontdoc}[2004/11/28]
+
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+
+\showbranches
+
+\begin{document}
+
+\title{\texttt{OT1} encoding draft specification}
+\author{Lars Hellstr\"om}
+\date{2004/12/16}
+\maketitle
+
+\begin{abstract}
+  The \texttt{OT1} encoding is an attempt to describe the encoding of 
+  the text fonts in Donald~E.~Knuth's \emph{Computer Modern} family 
+  of fonts~\cite{ComputerModern}. This is an impossibile goal, since 
+  these fonts present no less than five different encodings, but they 
+  are nontheless largely treated by \LaTeX\ as having identical 
+  encodings. Due to the ambiguities this creates, and in view of that 
+  the \texttt{T1} encoding supersedes \texttt{OT1} as text font 
+  encoding, there is little point in using the text commands for 
+  distiguishing mandatory features of \texttt{OT1} from the ordinary.
+  
+  \texttt{OT1} is however also used as a math font encoding (to go 
+  with \texttt{OML}, \texttt{OMS}, and \texttt{OMX}), and that use is 
+  today the by far most important since there is no obvious alternative 
+  to the standard math font set-up. Therefore this specification 
+  considers a feature of the encoding to be mandatory if it is 
+  (i)~necessary for the standard math set-up or (ii)~is a text feature 
+  which works for all encoding variants.
+\end{abstract}
+
+\encoding
+\needsfontinstversion{1.928}
+
+
+
+\begincomment
+\section{Encoding variants}
+
+This document aims to record all the encoding variations that are 
+present within the set of fonts classified by \LaTeX\ as having the 
+\texttt{OT1} encoding. It turns out that they can all be described 
+using only two parameters. One of these might be called 
+`\textit{ligaturing}' as one factor it affects is how many ligatures 
+there will be in the font. The other parameter is best called 
+`\textit{italicizing}' as it is different between italic and 
+non-italic fonts. Most of the Computer Modern fonts have 
+\(\mathit{ligaturing} = 2\) and \(\mathit{italicizing} = 0\).
+
+\endcomment
+\setint{ligaturing}{2}
+\setint{italicizing}{0}
+
+
+\begincomment
+
+
+\section{Mandatory characters}
+
+\subsection{Latin letters}
+\endcomment
+
+\nextslot{16}
+\setslot{dotlessi}
+  \Unicode{0131}{LATIN SMALL LETTER DOTLESS I}
+  \comment{A dotless i `\i', used to produce accented letters such as
+     `\=\i'. It is not used for math.}
+\endsetslot
+
+\setslot{dotlessj}
+  \Unicode{F6BE}{LATIN SMALL LETTER DOTLESS J}
+  \comment{A dotless j `\j', used to produce accented letters such as
+     `\=\j'. It is not used for math. The Unicode standard does not 
+     define this character, but Adobe has assigned code point 
+     \texttt{U+F6BE} (which is in the private use subarea assigned by 
+     Adobe) to it.}
+\endsetslot
+
+\nextslot{25}
+\setslot{germandbls}
+  \Unicode{00DF}{LATIN SMALL LETTER SHARP S}
+  \comment{This slot is not used in math.}
+\endsetslot
+
+\setslot{ae}
+  \Unicode{00E6}{LATIN SMALL LETTER AE}
+  \comment{This slot is not used in math.}
+\endsetslot
+
+\setslot{oe}
+  \Unicode{0153}{LATIN SMALL LIGATURE OE}
+  \comment{This is a single letter, and should not be faked with `oe'. 
+     It is not used in math.}
+\endsetslot
+
+\setslot{oslash}
+  \Unicode{00F8}{LATIN SMALL LETTER O WITH STROKE}
+  \comment{This slot is not used in math.}
+\endsetslot
+
+\setslot{AE}
+  \Unicode{00C6}{LATIN CAPITAL LETTER AE}
+  \comment{This slot is not used in math.}
+\endsetslot
+
+\setslot{OE}
+  \Unicode{0152}{LATIN CAPITAL LIGATURE OE}
+  \comment{This is a single letter, and should not be faked with 
+     `OE'. It is not used in math.}
+\endsetslot
+
+\setslot{Oslash}
+  \Unicode{00D8}{LATIN CAPITAL LETTER O WITH STROKE}
+  \comment{This slot is not used in math.}
+\endsetslot
+
+
+\nextslot{65}
+\setslot{A}
+  \Unicode{0041}{LATIN CAPITAL LETTER A}
+  \label{A}
+\endsetslot
+
+\setslot{B}
+  \Unicode{0042}{LATIN CAPITAL LETTER B}
+\endsetslot
+
+\setslot{C}
+  \Unicode{0043}{LATIN CAPITAL LETTER C}
+\endsetslot
+
+\setslot{D}
+  \Unicode{0044}{LATIN CAPITAL LETTER D}
+\endsetslot
+
+\setslot{E}
+  \Unicode{0045}{LATIN CAPITAL LETTER E}
+\endsetslot
+
+\setslot{F}
+  \Unicode{0046}{LATIN CAPITAL LETTER F}
+\endsetslot
+
+\setslot{G}
+  \Unicode{0047}{LATIN CAPITAL LETTER G}
+\endsetslot
+
+\setslot{H}
+  \Unicode{0048}{LATIN CAPITAL LETTER H}
+\endsetslot
+
+\setslot{I}
+  \Unicode{0049}{LATIN CAPITAL LETTER I}
+\endsetslot
+
+\setslot{J}
+  \Unicode{004A}{LATIN CAPITAL LETTER J}
+\endsetslot
+
+\setslot{K}
+  \Unicode{004B}{LATIN CAPITAL LETTER K}
+\endsetslot
+
+\setslot{L}
+  \Unicode{004C}{LATIN CAPITAL LETTER L}
+\endsetslot
+
+\setslot{M}
+  \Unicode{004D}{LATIN CAPITAL LETTER M}
+\endsetslot
+
+\setslot{N}
+  \Unicode{004E}{LATIN CAPITAL LETTER N}
+\endsetslot
+
+\setslot{O}
+  \Unicode{004F}{LATIN CAPITAL LETTER O}
+\endsetslot
+
+\setslot{P}
+  \Unicode{0050}{LATIN CAPITAL LETTER P}
+\endsetslot
+
+\setslot{Q}
+  \Unicode{0051}{LATIN CAPITAL LETTER Q}
+\endsetslot
+
+\setslot{R}
+  \Unicode{0052}{LATIN CAPITAL LETTER R}
+\endsetslot
+
+\setslot{S}
+  \Unicode{0053}{LATIN CAPITAL LETTER S}
+\endsetslot
+
+\setslot{T}
+  \Unicode{0054}{LATIN CAPITAL LETTER T}
+\endsetslot
+
+\setslot{U}
+  \Unicode{0055}{LATIN CAPITAL LETTER U}
+\endsetslot
+
+\setslot{V}
+  \Unicode{0056}{LATIN CAPITAL LETTER V}
+\endsetslot
+
+\setslot{W}
+  \Unicode{0057}{LATIN CAPITAL LETTER W}
+\endsetslot
+
+\setslot{X}
+  \Unicode{0058}{LATIN CAPITAL LETTER X}
+\endsetslot
+
+\setslot{Y}
+  \Unicode{0059}{LATIN CAPITAL LETTER Y}
+  \label{Y}
+\endsetslot
+
+\setslot{Z}
+  \Unicode{005A}{LATIN CAPITAL LETTER Z}
+\endsetslot
+
+
+\nextslot{97}
+\setslot{a}
+  \Unicode{0061}{LATIN SMALL LETTER A}
+\endsetslot
+
+\setslot{b}
+  \Unicode{0062}{LATIN SMALL LETTER B}
+\endsetslot
+
+\setslot{c}
+  \Unicode{0063}{LATIN SMALL LETTER C}
+\endsetslot
+
+\setslot{d}
+  \Unicode{0064}{LATIN SMALL LETTER D}
+\endsetslot
+
+\setslot{e}
+  \Unicode{0065}{LATIN SMALL LETTER E}
+\endsetslot
+
+\setslot{f}
+  \Unicode{0066}{LATIN SMALL LETTER F}
+  \ifnumber{\int{ligaturing}}={2}\then
+    \ligature{LIG}{f}{ff}
+    \ligature{LIG}{i}{fi}
+    \ligature{LIG}{l}{fl}
+  \Fi
+\endsetslot
+
+\setslot{g}
+  \Unicode{0067}{LATIN SMALL LETTER G}
+\endsetslot
+
+\setslot{h}
+  \Unicode{0068}{LATIN SMALL LETTER H}
+\endsetslot
+
+\setslot{i}
+  \Unicode{0069}{LATIN SMALL LETTER I}
+\endsetslot
+
+\setslot{j}
+  \Unicode{006A}{LATIN SMALL LETTER J}
+\endsetslot
+
+\setslot{k}
+  \Unicode{006B}{LATIN SMALL LETTER K}
+\endsetslot
+
+\setslot{l}
+  \Unicode{006C}{LATIN SMALL LETTER L}
+\endsetslot
+
+\setslot{m}
+  \Unicode{006D}{LATIN SMALL LETTER M}
+\endsetslot
+
+\setslot{n}
+  \Unicode{006E}{LATIN SMALL LETTER N}
+\endsetslot
+
+\setslot{o}
+  \Unicode{006F}{LATIN SMALL LETTER O}
+\endsetslot
+
+\setslot{p}
+  \Unicode{0070}{LATIN SMALL LETTER P}
+\endsetslot
+
+\setslot{q}
+  \Unicode{0071}{LATIN SMALL LETTER Q}
+\endsetslot
+
+\setslot{r}
+  \Unicode{0072}{LATIN SMALL LETTER R}
+\endsetslot
+
+\setslot{s}
+  \Unicode{0073}{LATIN SMALL LETTER S}
+\endsetslot
+
+\setslot{t}
+  \Unicode{0074}{LATIN SMALL LETTER T}
+\endsetslot
+
+\setslot{u}
+  \Unicode{0075}{LATIN SMALL LETTER U}
+\endsetslot
+
+\setslot{v}
+  \Unicode{0076}{LATIN SMALL LETTER V}
+\endsetslot
+
+\setslot{w}
+  \Unicode{0077}{LATIN SMALL LETTER W}
+\endsetslot
+
+\setslot{x}
+  \Unicode{0078}{LATIN SMALL LETTER X}
+\endsetslot
+
+\setslot{y}
+  \Unicode{0079}{LATIN SMALL LETTER Y}
+\endsetslot
+
+\setslot{z}
+  \Unicode{007A}{LATIN SMALL LETTER Z}
+\endsetslot
+
+
+\begincomment
+\subsection{Greek letters}
+\endcomment
+
+\nextslot{0}
+\setslot{Gamma}
+  \Unicode{0393}{GREEK CAPITAL LETTER GAMMA}
+\endsetslot
+
+\setslot{Delta}
+  \Unicode{0394}{GREEK CAPITAL LETTER DELTA}
+\endsetslot
+
+\setslot{Theta}
+  \Unicode{0398}{GREEK CAPITAL LETTER THETA}
+\endsetslot
+
+\setslot{Lambda}
+  \Unicode{039B}{GREEK CAPITAL LETTER LAMBDA}
+  % Unicode's preferred name for this character seems to be
+  % GREEK CAPITAL LETTER LAMDA, i.e., without the `B'. Why?
+  % GREEK CAPITAL LETTER LAMBDA is listed as an alternative name.
+\endsetslot
+
+\setslot{Xi}
+  \Unicode{039E}{GREEK CAPITAL LETTER XI}
+\endsetslot
+
+\setslot{Pi}
+  \Unicode{03A0}{GREEK CAPITAL LETTER PI}
+\endsetslot
+
+\setslot{Sigma}
+  \Unicode{03A3}{GREEK CAPITAL LETTER SIGMA}
+\endsetslot
+
+\setslot{Upsilon1}
+  \Unicode{03D2}{GREEK UPSILON WITH HOOK SYMBOL}
+  \comment{This is primarily a math character and it is should 
+    be visually distinct from the character in slot~\ref{Y}. This is 
+    not generally the case for the normal Upsilon 
+    \textunicode{03A5}{GREEK CAPITAL LETTER UPSILON}, which is by 
+    the way what usually has the glyph name \texttt{Upsilon}. 
+    An argument for the latter is however that all the purely 
+    mathematical Upsilons that exist in the Unicode standard are 
+    described as variants of the non-hook character.}
+\endsetslot
+
+\setslot{Phi}
+  \Unicode{03A6}{GREEK CAPITAL LETTER PHI}
+\endsetslot
+
+\setslot{Psi}
+  \Unicode{03A8}{GREEK CAPITAL LETTER PSI}
+\endsetslot
+
+\setslot{Omega}
+  \Unicode{03A9}{GREEK CAPITAL LETTER OMEGA}
+\endsetslot
+
+
+\begincomment
+\subsection{Digits}
+\endcomment
+
+\nextslot{48}
+\setslot{zero}
+  \Unicode{0030}{DIGIT ZERO}
+\endsetslot
+
+\setslot{one}
+  \Unicode{0031}{DIGIT ONE}
+\endsetslot
+
+\setslot{two}
+  \Unicode{0032}{DIGIT TWO}
+\endsetslot
+
+\setslot{three}
+  \Unicode{0033}{DIGIT THREE}
+\endsetslot
+
+\setslot{four}
+  \Unicode{0034}{DIGIT FOUR}
+\endsetslot
+
+\setslot{five}
+  \Unicode{0035}{DIGIT FIVE}
+\endsetslot
+
+\setslot{six}
+  \Unicode{0036}{DIGIT SIX}
+\endsetslot
+
+\setslot{seven}
+  \Unicode{0037}{DIGIT SEVEN}
+\endsetslot
+
+\setslot{eight}
+  \Unicode{0038}{DIGIT EIGHT}
+\endsetslot
+
+\setslot{nine}
+  \Unicode{0039}{DIGIT NINE}
+\endsetslot
+
+
+\begincomment
+\subsection{Accents}
+\endcomment
+
+\nextslot{18}
+\setslot{grave}
+   \Unicode{0300}{COMBINING GRAVE ACCENT}
+\endsetslot
+
+\setslot{acute}
+  \Unicode{0301}{COMBINING ACUTE ACCENT}
+\endsetslot
+
+\setslot{caron}
+  \Unicode{030C}{COMBINING CARON}
+  \comment{The caron or h\'a\v cek accent `\v{}'.}
+\endsetslot
+
+\setslot{breve}
+  \Unicode{0306}{COMBINING BREVE}
+\endsetslot
+
+\setslot{macron}
+  \Unicode{0304}{COMBINING MACRON}
+\endsetslot
+
+\setslot{ring}
+  \Unicode{030A}{COMBINING RING ABOVE}
+  \comment{The text definition of `\verb|\r{A}|' assumes that this 
+    glyph has the same width as that in slot~\ref{A}.}
+\endsetslot
+
+\setslot{cedilla}
+  \Unicode{0327}{COMBINING CEDILLA}
+  \comment{This slot is not required for math, but is used by 
+    the \cs{c} \LaTeX\ command.}
+\endsetslot
+
+
+\nextslot{94}
+\setslot{circumflex}
+  \Unicode{0302}{COMBINING CIRCUMFLEX ACCENT}
+  \Unicode{005E}{CIRCUMFLEX ACCENT}
+\endsetslot
+
+\ifnumber{\int{ligaturing}}>{0}\then
+
+\setslot{dotaccent}
+  \Unicode{0307}{COMBINING DOT ABOVE}
+  \label{dotaccent}
+\endsetslot
+
+\begincomment
+\par\medskip
+Note that the \(\mathit{ligaturing} = 0\) assignment to 
+slot~\ref{underscore} is ordinary, not mandatory.
+\endcomment
+
+\Fi
+
+
+\nextslot{126}
+\setslot{tilde}
+  \Unicode{0303}{COMBINING TILDE}
+  \Unicode{007E}{TILDE}
+\endsetslot
+
+\setslot{dieresis}
+  \Unicode{0308}{COMBINING DIAERESIS}
+\endsetslot
+
+
+\begincomment
+\subsection{Symbols}
+\endcomment
+
+\nextslot{33}
+\setslot{exclam}
+  \Unicode{0021}{EXCLAMATION MARK}
+  \Ligature{LIG}{quoteleft}{exclamdown}
+\endsetslot
+
+\skipslots{1}
+
+\setslot{numbersign}
+  \Unicode{0023}{NUMBER SIGN}
+  \comment{This slot is not used for math.}
+\endsetslot
+
+\ifnumber{\int{italicizing}}={0}\then
+
+\setslot{dollar}
+  \Unicode{0024}{DOLLAR SIGN}
+\endsetslot
+
+\Else
+
+\setslot{sterling}
+  \Unicode{00A3}{POUND SIGN}
+\endsetslot
+
+\Fi
+
+\setslot{percent}
+  \Unicode{0025}{PERCENT SIGN}
+  \comment{This slot is not used for math.}
+\endsetslot
+
+\setslot{ampersand}
+  \Unicode{0026}{AMPERSAND}
+  \comment{This slot is not used for math.}
+\endsetslot
+
+\setslot{quoteright}
+  \Unicode{2019}{RIGHT SINGLE QUOTATION MARK}
+  \comment{This slot is not used for math.}
+  \ifnumber{\int{ligaturing}}>{0}\then
+    \Ligature{LIG}{quoteright}{quotedblright}
+  \Fi
+\endsetslot
+
+\setslot{parenleft}
+  \Unicode{0028}{LEFT PARENTHESIS}
+\endsetslot
+
+\setslot{parenright}
+  \Unicode{0029}{RIGHT PARENTHESIS}
+\endsetslot
+
+\setslot{asterisk}
+  \Unicode{002A}{ASTERISK}
+  \comment{This slot is not used for math.}
+\endsetslot
+
+\setslot{plus}
+  \Unicode{002B}{PLUS SIGN}
+\endsetslot
+
+\setslot{comma}
+  \Unicode{002C}{COMMA}
+  \comment{This slot is not used for math.}
+\endsetslot
+
+\setslot{hyphen}
+  \Unicode{002D}{HYPHEN-MINUS}
+  \comment{This slot is not used for math.}
+  \ifnumber{\int{ligaturing}}>{0}\then
+    \Ligature{LIG}{hyphen}{endash}
+  \Fi
+\endsetslot
+
+\setslot{period}
+  \Unicode{002E}{FULL STOP}
+  \comment{This slot is not used for math.}
+\endsetslot
+
+\setslot{slash}
+  \Unicode{002F}{SOLIDUS}
+\endsetslot
+
+\nextslot{58}
+\setslot{colon}
+  \Unicode{003A}{COLON}
+\endsetslot
+
+\setslot{semicolon}
+  \Unicode{003B}{SEMICOLON}
+\endsetslot
+
+\skipslots{1}
+
+\setslot{equal}
+  \Unicode{003D}{EQUALS SIGN}
+\endsetslot
+
+\skipslots{1}
+
+\setslot{question}
+  \Unicode{003F}{QUESTION MARK}
+  \Ligature{LIG}{quoteleft}{questiondown}
+\endsetslot
+
+\setslot{at}
+  \Unicode{0040}{COMMERCIAL AT}
+  \comment{This slot is not used for math.}
+\endsetslot
+
+\nextslot{91}
+\setslot{bracketleft}
+  \Unicode{005B}{LEFT SQUARE BRACKET}
+\endsetslot
+
+\skipslots{1}
+
+\setslot{bracketright}
+  \Unicode{005D}{RIGHT SQUARE BRACKET}
+\endsetslot
+
+\nextslot{96}
+\setslot{quoteleft}
+  \Unicode{2018}{LEFT SINGLE QUOTATION MARK}
+  \comment{This slot is not used for math.}
+  \ifnumber{\int{ligaturing}}>{0}\then
+    \Ligature{LIG}{quoteleft}{quotedblleft}
+  \Fi
+\endsetslot
+
+
+
+\begincomment
+\section{Ordinary characters}
+
+\subsection{Letters}
+\endcomment
+
+\ifnumber{\int{ligaturing}}={2}\then
+
+\nextslot{11}
+\setslot{ff}
+  \charseq{
+    \Unicode{0066}{LATIN SMALL LETTER F}
+    \Unicode{0066}{LATIN SMALL LETTER F}
+  }
+  \comment{This glyph should be two characters wide in a monowidth 
+    font.}
+  \ligature{LIG}{i}{ffi}
+  \ligature{LIG}{l}{ffl}
+\endsetslot
+
+\setslot{fi}
+  \charseq{
+    \Unicode{0066}{LATIN SMALL LETTER F}
+    \Unicode{0069}{LATIN SMALL LETTER I}
+  }
+  \comment{This glyph should be two characters wide in a monowidth 
+    font.}
+\endsetslot
+
+\setslot{fl}
+  \charseq{
+    \Unicode{0066}{LATIN SMALL LETTER F}
+    \Unicode{006C}{LATIN SMALL LETTER L}
+  }
+  \comment{This glyph should be two characters wide in a monowidth 
+    font.}
+\endsetslot
+
+\setslot{ffi}
+  \charseq{
+    \Unicode{0066}{LATIN SMALL LETTER F}
+    \Unicode{0066}{LATIN SMALL LETTER F}
+    \Unicode{0069}{LATIN SMALL LETTER I}
+  }
+  \comment{This glyph should be three characters wide in a monowidth 
+    font.}
+\endsetslot
+
+\setslot{ffl}
+  \charseq{
+    \Unicode{0066}{LATIN SMALL LETTER F}
+    \Unicode{0066}{LATIN SMALL LETTER F}
+    \Unicode{006C}{LATIN SMALL LETTER L}
+  }
+  \comment{This glyph should be three characters wide in a monowidth 
+    font.}
+\endsetslot
+
+\Fi
+
+\nextslot{"8A}
+\setslot{Lslash}
+  \Unicode{0141}{LATIN CAPITAL LETTER L WITH STROKE}
+  \comment{The letter `\L'.}
+\endsetslot
+
+\nextslot{"AA}
+\setslot{lslash}
+  \Unicode{0142}{LATIN SMALL LETTER L WITH STROKE}
+  \comment{The letter `\l'.}
+\endsetslot
+
+
+\begincomment
+\subsection{Accents}
+\endcomment
+
+\ifnumber{\int{ligaturing}}>{0}\then
+
+\nextslot{125}
+\setslot{hungarumlaut}
+  \Unicode{030B}{COMBINING DOUBLE ACUTE ACCENT}
+  \comment{The long Hungarian umlaut `\H{}'.}
+\endsetslot
+
+\Fi
+
+\begincomment
+\subsection{Symbols}
+\endcomment
+
+\ifnumber{\int{ligaturing}}<{2}\then
+
+\nextslot{11}
+\setslot{arrowup}
+  \Unicode{2191}{UPWARDS ARROW}
+\endsetslot
+
+\setslot{arrowdown}
+  \Unicode{2193}{DOWNWARDS ARROW}
+\endsetslot
+
+\setslot{quotesingle}
+  \Unicode{0027}{APOSTROPHE}
+\endsetslot
+
+\setslot{exclamdown}
+  \Unicode{00A1}{INVERTED EXCLAMATION MARK}
+\endsetslot
+
+\setslot{questiondown}
+  \Unicode{00BF}{INVERTED QUESTION MARK}
+\endsetslot
+
+\Fi
+
+\nextslot{32}
+\ifnumber{\int{ligaturing}}>{0}\then
+
+\setslot{lslashslash}
+  \comment{When this character is followed by 
+     \textunicode{004C}{LATIN CAPITAL LETTER L} then the combined 
+     result is \textunicode{0141}{LATIN CAPITAL LETTER L WITH STROKE}; 
+     this is used by the \cs{L} command. When this character is 
+     followed by \textunicode{006C}{LATIN SMALL LETTER L} then the 
+     combined result is \textunicode{0142}{LATIN SMALL LETTER L WITH 
+     STROKE}; this is used by the \cs{l} command. There are no further  
+     semantics for this character.}
+  \ligature{LIG}{L}{Lslash}
+  \ligature{LIG}{l}{lslash}
+  \comment{These ligatures, and the characters they point to, were 
+     added by Alan Jeffrey early in \textsf{fontinst} development in 
+     order to allow the character in this slot to exhibit the correct 
+     behaviour even in fonts where there is no corresponding glyph.}
+\endsetslot
+
+\Else
+
+\setslot{visiblespace}
+  \Unicode{2423}{OPEN BOX}
+  \comment{A visible space glyph `\textvisiblespace'.}
+\endsetslot
+
+\Fi
+
+
+\nextslot{34}
+\ifnumber{\int{ligaturing}}>{0}\then
+
+\setslot{quotedblright}
+  \Unicode{201D}{RIGHT DOUBLE QUOTATION MARK}
+\endsetslot
+
+\Else
+
+\setslot{quotedbl}
+  \Unicode{0022}{QUOTATION MARK}
+\endsetslot
+
+\Fi
+
+\nextslot{60}
+\ifnumber{\int{ligaturing}}={2}\then
+
+\setslot{exclamdown}
+  \Unicode{00A1}{INVERTED EXCLAMATION MARK}
+\endsetslot
+
+\skipslots{1}
+
+\setslot{questiondown}
+  \Unicode{00BF}{INVERTED QUESTION MARK}
+\endsetslot
+
+\Else
+
+\setslot{less}
+  \Unicode{003C}{LESS-THAN SIGN}
+\endsetslot
+
+\skipslots{1}
+
+\setslot{greater}
+  \Unicode{003E}{GREATER-THAN SIGN}
+\endsetslot
+
+\Fi
+
+\nextslot{92}
+\ifnumber{\int{ligaturing}}>{0}\then
+
+\setslot{quotedblleft}
+  \Unicode{201C}{LEFT DOUBLE QUOTATION MARK}
+\endsetslot
+
+\Else
+
+\setslot{backslash}
+  \Unicode{005C}{REVERSE SOLIDUS}
+\endsetslot
+
+\nextslot{95}
+\setslot{underscore}
+  \Unicode{005F}{LOW LINE}
+  \label{underscore}
+\endsetslot
+
+\begincomment
+\par\medskip
+Note that the \(\mathit{ligaturing} > 0\) assignment to 
+slot~\ref{dotaccent} is mandatory, not ordinary.
+\endcomment
+
+\Fi
+
+
+\nextslot{123}
+\ifnumber{\int{ligaturing}}>{0}\then
+
+\setslot{endash}
+  \Unicode{2013}{EN DASH}
+  \Ligature{LIG}{hyphen}{emdash}
+\endsetslot
+
+\setslot{emdash}
+  \Unicode{2014}{EM DASH}
+  \comment{In a monowidth font this character is preferably given the 
+     width of two normal characters.}
+\endsetslot
+
+\Else
+
+\setslot{braceleft}
+  \Unicode{007B}{LEFT CURLY BRACKET}
+\endsetslot
+
+\setslot{bar}
+  \Unicode{007C}{VERTICAL LINE}
+\endsetslot
+
+\setslot{braceright}
+  \Unicode{007D}{RIGHT CURLY BRACKET}
+\endsetslot
+
+\Fi
+
+
+\begincomment
+\section{Fontdimens}
+\endcomment
+
+\setfontdimen{1}{italicslant}    % italic slant
+\setfontdimen{2}{interword}      % interword space
+\setfontdimen{3}{stretchword}    % interword stretch
+\setfontdimen{4}{shrinkword}     % interword shrink
+\setfontdimen{5}{xheight}        % x-height
+\setfontdimen{6}{quad}           % quad
+\setfontdimen{7}{extraspace}     % extra space after .
+
+
+\begincomment
+\section{Coding scheme}
+\endcomment
+
+\ifnumber{\int{ligaturing}}={2}\then
+
+\setstr{codingscheme}{TEX TEXT}
+
+\Else\ifnumber{\int{ligaturing}}={1}\then
+
+\setstr{codingscheme}{TEX TEXT WITHOUT F-LIGATURES}
+
+\Else
+
+\setstr{codingscheme}{TEX TYPEWRITER TEXT}
+
+\Fi\Fi
+
+
+\endencoding
+
+
+\section{Discussion}
+
+
+\subsection{\texttt{OT1} as math font encoding}
+
+As source for the math requirements on the \texttt{OT1} encoding 
+was used the standard \LaTeX\ math set-up~\cite{fontdef}. Those 
+definitions that make use of \texttt{OT1} fonts either use the 
+\texttt{operators} symbol font\slash font family~0 or have math 
+class~7 (\cs{mathalpha}).
+
+There are two slots used for math that have different assignments 
+in different encoding variants. Slot 36 (\texttt{dollar}\slash 
+\texttt{sterling}) depends on the $\mathit{italicizing}$, and is used 
+by the commands \cs{mathdollar} (called by \verb|\$|) and 
+\cs{mathsterling} (called by \cs{pounds}). This works because these 
+commands explicitly take the character from a font with the correct 
+$\mathit{italicizing}$.
+
+Slot~95 (\texttt{dotaccent}\slash \texttt{underline}) depends on the 
+$\mathit{ligaturing}$ and is used by the \cs{dot} command. This 
+command does \emph{not} work for fonts with \(\mathit{ligaturing}=0\), 
+and hence e.g.\ the formula \verb|$\mathtt{\dot{x}}$| does not produce 
+a typewriter dotted `x', but rather an `x' and underscore printed on 
+top of each other. This is thus an error, but due to that it is 
+unlikely that the error will be missed by the author who encounters 
+it, the error is probably harmless.
+
+
+\subsection{\texttt{OT1} as text font encoding}
+
+The sources used to determine the text requirements on the 
+\texttt{OT1} encoding were~\cite{ltoutenc}.
+
+It turns out that there are LICR commands which rely on non-mandatory 
+features of the font. It is mostly for the \(\mathit{ligaturing} = 0\) 
+fonts that commands produce incorrect results. The following commands 
+work with all \texttt{OT1} fonts which have \(\mathit{ligaturing} > 0\) 
+but fail with the others: \cs{L}, \cs{l}, \cs{.}, \cs{H}, 
+\cs{textemdash}, \cs{textendash}, and \cs{textquotedblleft}.
+In addition, the command \cs{textquotedblright} produces a 
+reasonable, but not exactly correct, result.
+
+Traditionally the \cs{textexclamdown} and \cs{textquestiondown} have 
+only worked for fonts which have \(\mathit{ligaturing} = 2\), but 
+that can be fixed; see~\cite{latex/3368}.
+
+
+\section{Changes}
+
+The changes made to this specification since the original 2001/09/09 
+version are as follows.
+
+2004/12/16: Changed the f-ligatures to character sequences, which 
+makes more sense for \texttt{CMap}s. Incremented needed versions 
+accordingly. /LH
+
+
+\begin{thebibliography}{9}
+\bibitem{ltoutenc}
+  Johannes Braams, David Carlisle, Alan Jeffrey, Frank Mittelbach, 
+  Chris Rowley, and Rainer Sch\"opf:
+  \textit{ltoutenc.dtx}, v\,1.91 (2000);
+  the file \texttt{ltoutenc.dtx} in the \LaTeX\ base distribution. 
+\bibitem{latex/3368}
+  Lars Hellstr\"om:
+  \textit{\texttt{OT1} def.\ of \cs{textexclamdown} and 
+  \cs{textquestiondown}}, \LaTeX\ bugs database entry 
+  \textbf{latex/3368}, 2001.
+%   ; \textsc{http:}/\slash \texttt{www.latex-project.org}\slash
+%   \texttt{cgi-bin}\slash \texttt{ltxbugs2html\discretionary{?}{}{?}%
+%   pr=latex/3368}.
+\bibitem{ComputerModern}
+  Donald E. Knuth:
+  \textit{Computer Modern Typefaces}, 
+  volume E of \textit{Computers \& Typesetting},
+  Ad\-di\-son--Wes\-ley, 1986, xvi+588\,pp.;
+  ISBN~0-201-13446-2.
+\bibitem{fontdef}
+  Frank Mittelbach and Rainer Sch\"opf:
+  \textit{The \texttt{fontdef.dtx} file}, v\,2.2x (1999);
+  the file \texttt{fontdef.dtx} in the \LaTeX\ base distribution. 
+\end{thebibliography}
+
+
+\end{document}
+
+
+

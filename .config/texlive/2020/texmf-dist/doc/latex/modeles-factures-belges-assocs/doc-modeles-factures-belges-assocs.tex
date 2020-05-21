@@ -1,0 +1,495 @@
+\documentclass[a4paper,10pt]{article}
+%\usepackage[utf8x]{inputenc}
+\usepackage{fontspec} 
+%\usepackage[T1]{fontenc}
+\usepackage[french]{babel} 
+
+%\usepackage{layout}
+%\usepackage{geometry}
+%\usepackage{setspace}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{eurosym}
+%\usepackage{bookman}
+%\usepackage{charter}
+%\usepackage{newcent}
+\usepackage{lmodern}
+%\usepackage{mathpazo}
+%\usepackage{mathptmx}
+\usepackage[colorlinks=true, urlcolor=magenta]{hyperref}
+%\usepackage{verbatim}
+%\usepackage{moreverb}
+\usepackage{listings}
+%\usepackage{fancyhdr}
+%\usepackage{wrapfig}
+\usepackage{color}
+\usepackage{colortbl}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{mathrsfs}
+%\usepackage{amsthm}
+%\usepackage{makeidx}
+%\usepackage{multirow}
+%\usepackage{graphicx}
+\usepackage{calctab}
+\usepackage{dtk-logos}
+
+
+\author{\textsc{Sebille} Robert}
+\date{\today} 
+\title{Modèles de factures belges pour les associations}
+
+\definecolor{grisfonce}{gray}{0.3}
+\definecolor{grisclair}{gray}{0.7}
+
+\definecolor{gristresclair}{gray}{0.97}
+
+\lstset{ 
+basicstyle=\footnotesize,
+numbers=none,
+%numberstyle=\normalsize,
+%numbersep=7pt,
+breakatwhitespace=false, % sets if automatic breaks should only happen at whitespace
+breaklines=true, 
+backgroundcolor=\color{gristresclair}, 
+frame=single,
+}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Documentation de l'extension \og Modèles de factures belges pour les associations \fg. L'extension comprend plusieurs modèles, disponibles dans les fichiers en général nommés facture-<nom-modele>.tex.
+\end{abstract}
+
+
+\tableofcontents
+\newpage
+
+\section{Généralités}
+
+\subsection{De quoi ai-je besoin pour créer une facture?}
+\begin{itemize}
+	\item D'une distribution Texlive (ou équivalent) avec le paquet \og modeles-factures-belges-associations\ \fg installé;
+	\item du modele de facture que j'ai choisi, en général nommé \og facture-<nom-modele>.tex\ \fg;
+	\item de manière préférable, d'un éditeur \LaTeX{} (mais ça peut fonctionner avec un éditeur texte normal) et de quelques connaissance de bases en \LaTeX{}
+	\item du compilateur \XeLaTeX{} 
+\end{itemize}
+
+\paragraph*{NB:} vous pouvez renommer le modèle de départ comme vous voulez, autant de fois que vous avez besoin de factures différentes; exemple:
+\begin{enumerate}
+	\item facture-<nom-modele>.tex $ \rightarrow $ XXXXMM0AA-facture-jeanne.tex;
+	\item facture-<nom-modele>.tex $ \rightarrow $ XXXYMMAA-facture-jules.tex;
+	\item facture-<nom-modele>.tex $ \rightarrow $ XXXXMM1AA-facture-jeanne.tex;
+	\item etc.
+\end{enumerate} 
+
+\subsection{La déclaration \textbackslash usepackage[Arg]\{modeles-factures-belges-associations\}}
+
+\begin{lstlisting}
+La déclaration \usepackage[Arg]{modeles-factures-belges-associations}, dans le préambule de <facture-<nom-modele>.tex, doit comporter au moins 1 argument [Arg] de langue pour babel: french, english, etc.  
+
+L'encodage par defaut pour \usepackage{inputenc} est UTF8, mais vous pouvez utiliser l'option [latin1] pour forcer l'encodage latin1.
+\end{lstlisting}
+
+
+\noindent
+Exemples d'options pour \textbackslash usepackage[Arg]\{modeles-factures-belges-associations\}:
+
+\begin{lstlisting}
+% retourne un encodage latin1 en français:
+\usepackage[latin1, french]{modeles-factures-belges-associations} 
+
+% retourne un encodage utf8 en français et anglais:
+\usepackage[french, english]{modeles-factures-belges-associations}
+
+% retourne un encodage utf8 en français:    
+\usepackage[french]{modeles-factures-belges-associations} 
+\end{lstlisting}
+
+\subsection{Quelques unités monétaires courantes}%
+\label{sub:unites_monetaire_courantes}
+
+Attention, le symbole \euro{} exige le package \textbackslash usepackage\{eurosym\}.%
+
+\begin{center}%
+\begin{tabular}{|l|l|c|}%
+\hline%
+\rowcolor{grisclair} \textbf{Unité} & \textbf{Code} & \textbf{Résultat} \\%
+\hline%
+Euro &  \textbackslash euro\{\} & \euro{} \\%
+\hline%
+Livre anglaise & \textbackslash pounds\{\} & \pounds{} \\%
+\hline%
+Dollar américain & \textbackslash \$\{\} & \${} \\%
+\hline%
+Yen japonais & \textbackslash textyen\{\} & \textyen{} \\%
+\hline%
+\end{tabular}%
+\end{center}%
+
+\subsection{Les unités de longueurs}%
+\label{sub:unites_longueurs}
+
+\begin{center}%
+\begin{tabular}{|l|l|l|}%
+\hline%
+\rowcolor{grisclair} \textbf{Nom} & \textbf{Symbole} & \textbf{Valeur} \\%
+\hline%
+point &  pt & 35 mm \\%
+\hline%
+millimètre &  mm & millimètre \\%
+\hline%
+ex &  ex & hauteur d'un \emph{x} dans la fonte courante \\%
+\hline%
+em &  em & largeur d'un \emph{m} dans la fonte courante \\%
+\hline%
+centimètre & cm & centimètre \\%
+\hline%
+pouce & in & 2,54 cm \\%
+\hline%
+\end{tabular}%
+\end{center}%
+
+
+\subsection{Les abréviations de civilités}%
+\label{sub:abreviations_civilites}
+
+\begin{center}%
+\begin{tabular}{|l|l|l|}%
+\hline%
+\rowcolor{grisclair} \textbf{Unité} & \textbf{Code} & \textbf{Résultat} \\%
+\hline%
+madame & M\textbackslash up\{me\} & M\up{me}\\%
+\hline%
+mesdames & M\textbackslash up\{mes\} & M\up{mes}\\%
+\hline%
+mademoiselle & M\textbackslash up\{lle\} & M\up{lle}\\%
+\hline%
+mesdemoiselles & M\textbackslash up\{lles\} & M\up{lles}\\%
+\hline%
+maître & M\textbackslash up\{e\} & M\up{e}\\%
+\hline%
+maîtres & M\textbackslash up\{es\} & M\up{es}\\%
+\hline%
+monsieur & M. & M.\\%
+\hline%
+messieurs & MM. & MM.\\%
+\hline%
+\end{tabular}%
+\end{center}%
+
+
+\subsection{\'{E}crire les nombres en lettres en typographie française}%
+\label{sub:ecrire_nombres_en_lettres}
+Ce résumé est entièrement tiré de l'article \og \href{https://www.francaisfacile.com/exercices/exercice-francais-2/exercice-francais-53446.php}{ÉCRIRE LES NOMBRES EN LETTRES} \fg\ du site \href{https://www.francaisfacile.com/}{Francaisfacile.com}. Veuillez consulter ce site pour toute information complémentaire.
+
+\begin{itemize}
+    \item Les noms des nombres sont (presque tous) invariables en genre et en nombre.
+    \item Les nombres de 0 à 19 sont invariables; dix-sept, dix-huit, dix-neuf prennent un trait d’union;
+    \begin{itemize}
+        \item sauf zéro qui, si il est un nom, prend alors un \og s \fg\ au pluriel (exemple, s'écrire avec deux zéros). 
+        \item Un s'accorde en genre (mais pas en nombre), y compris dans les nombres plus grands que 20.
+    \end{itemize}
+    \item Les nombres de 20 à 99;
+    \begin{itemize}
+        \item Les nombres composés jusqu'à cent prennent un trait d'union sauf lorsqu'il y a \og et \fg.
+        \item Cela vaut pour les particularismes: septante, septante et un, septante-deux.
+    \end{itemize}
+    \item Les nombres de 100 à 999;
+    \begin{itemize}
+        \item comme quatre-vingts, les multiples de cent prennent un \og s \fg;
+        \item pas de « s » à cent devant mille.
+    \end{itemize}
+    \item 1000 et après;
+    \begin{itemize}
+        \item mille est invariable.
+        \item million et milliard s'accordent au pluriel.
+    \end{itemize}
+    \item 1000 et après;
+    \begin{itemize}
+        \item Depuis la réforme de 1990, on peut mettre des traits d'union partout (cent soixante et onze $ \rightarrow $ cent-soixante-et-onze), excepté pour million et milliard.
+        \item On écrit deux cents millions, deux cents milliards mais deux cent mille (pas de \og s \fg\ à \og cent devant mille \fg).
+    \end{itemize}
+\end{itemize}
+
+\section{Différences entre les modèles:}
+Cette documentation correspond essentiellement au modèle basique. Les différences et  spécificités propres aux différents modèles seront reprises dans leurs fichiers README-<nom-modele>.md, contenu dans leurs divers répertoires \og /modeles/<nom-modele>/\fg.
+\paragraph*{Résultat des commandes (c.--à--d., les factures elle~même):} Vous pourrez les visualiser dans les fichiers articles-<nom-modele>.pdf, résultat des compilations de leurs équivalents .tex. Exemple:
+\begin{enumerate}
+    \item facture-basique.tex $ \rightarrow $ facture-basique.pdf.
+    \item facture-<autre-modele>.tex $ \rightarrow $ facture-<autre-modele>.pdf.
+    \item etc.
+\end{enumerate}
+
+
+
+
+\section{Commandes}
+
+Comme vous le savez déjà, grâce à vos connaissance de base en \LaTeX{}, une commande dans ce langage ressemblera à \textbackslash NomCommande\{\} et une variable à \textbackslash nomVariable. Les variables contiennent des valeurs qui nous seront utiles, et les commandes serviront le plus souvent à simplifier les \og choses\ \fg pour construire la facture.
+
+Vous aurez peut~être remarqué aussi que toutes les commandes et variables de nos modèles débutent par \textbackslash rsfb\dots
+
+\begin{lstlisting}
+\rsfbNomDeLaCommande{}
+\rsfbnomDeLaVariable
+\end{lstlisting}
+
+Il y a en effet vraiment peu de chance qu'une commande \LaTeX{} commence un jour par 
+un \textbackslash rsfb\dots, comme dans \og \emph{r}obert \emph{s}ebille \emph{f}actures \emph{b}elges \fg. \
+Les spécialistes pourront appeller cela une \og protection contre le manque d'espace de nommage en \LaTeX{}\ \fg; mais on n'est pas des spécialistes ;), continuons \ldots.
+
+ 
+\subsection{Commandes en général}
+
+Dans le modèle basique, la commande suivante sert à donner au compilateur de facture le n\textsuperscript{o} de compte en banque où payer, ainsi qu'une date limite de paiement, et produira (alignée à droite dans ce modèle) le résultat suivant: \\
+
+\og A payer au compte bancaire BEXX XXXX XXXX XXXX avant le JJ mois AAAA. \fg. \\
+
+Elle sera présentée et documentée à l'intérieur du modèle, en générale de cette manière, prête à l'emploi:
+
+\begin{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Entrée du compte bancaire créditeur %%
+%% et de la date limite de paiement.   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \compteBancaireEtDateLimiteDePaiement{n° compte}{JJ mois AAAA}
+\rsfbCompteBancaireEtDateLimiteDePaiement{BE95 0011 8359 9858}{JJ mois AAAA}
+\end{lstlisting}
+
+La plupart des entrées ressembleront à celle ci-dessus, ou seront expliquées de manière utilisables directement. \\
+
+Certaines entrées demanderont une explication plus élaborée, c'est le cas du tableau des adresses (qui facture?, à qui?, lieu de livraison?) et de celui des produits (ce qu'on facture et combien); voici:
+
+
+\subsection{Tableau des adresses: expédition, facturation, livraison}
+
+\emph{On ouvre l'entête du tableau des adresses:}
+\begin{lstlisting}
+% À n'utiliser qu'une seule fois; 
+% on sera bien avisé de ne pas toucher à cette commande.
+\rsfbEnteteTableauAdresses{}
+\end{lstlisting}
+
+Les titres du tableau (expédition, facturation, livraison) peuvent être modifiés via les commandes:
+\begin{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%
+%% Titres tableaux %%
+%%%%%%%%%%%%%%%%%%%%%
+%% Titres du tableau d'adresses; utile si utilisé, le plus fréquent
+\rsfbExpedition{Expedition}
+\rsfbFacturation{Facturation}
+\rsfbLivraison{Livraison}
+\end{lstlisting}
+
+
+La monnaie du tableau (\euro{} \${} \pounds{} \textyen{}) peut être modifiée via la commande:
+\begin{lstlisting}
+% Unité monétaire dans les titres du tableau
+\rsfbMonnaieTableauProduits{\euro}
+\end{lstlisting}
+
+\paragraph{Entrée d'une ligne d'adresses:} \emph{C'est la commande la plus complexe du modèle, c'est pourquoi elle est illustrée par plusieurs exemples, aussi bien dans ce document que dans le modèle.}
+
+\begin{lstlisting}
+% Syntaxe
+\rsfbLigneTableauAdresses{itemAdresseExpedition}{itemAdresseFacturation}{itemAdresseLivraison}
+\end{lstlisting}
+
+\begin{itemize}
+    \item Il y a 3 types d'adresses: adresse d'expédition;  adresse de facturation;  adresse de livraison.
+    \item Elles sont présentées en tableau, dans l'ordre décrit ci-dessous.
+    \item Chaque argument de la commande reprend un élément d'une adresse.
+\end{itemize}
+
+\emph{Voici un 1\up{er} exemple simple:}
+\begin{lstlisting}
+\rsfbLigneTableauAdresses{Prénom \textsc{Nom}}{\textsc{Org 1}}{\textsc{Org 2}}
+\rsfbLigneTableauAdresses{}{Nom organisation 1}{Nom organisation 2}
+\rsfbLigneTableauAdresses{N\up{o} 1, rue Delarue1}{N\up{o} 2, rue Delarue2}{N\up{o} 3, rue Delarue3}
+\rsfbLigneTableauAdresses{\textsc{CCC1 Ville1}}{\textsc{CCC2 Ville2}}{\textsc{CCCC Ville3}}
+\end{lstlisting}
+
+qui donnera un résultat semblable au tableau ci-dessous:
+\begin{flushleft}
+\begin{tabular}{p{0.3\textwidth}p{0.3\textwidth}p{0.3\textwidth}}
+\hline
+ Prénom \textsc{Nom} & \textsc{Org 1} & \textsc{Org 2}\\
+ Nom organisation 1 & Nom organisation 2 &  \\
+ N\up{o} 1, rue Delarue1 & N\up{o} 2, rue Delarue2 & N\up{o} 3, rue Delarue3\\
+ \textsc{CCC1 Ville1} & \textsc{CCC2 Ville2} & \textsc{CCC3 Ville3}\\
+\hline
+\end{tabular}
+\end{flushleft}
+
+
+\emph{Voici un 2\up{e} exemple complexe (avec des lignes vides);} c'est celui qui est compilé par défaut dans \og facture-basique.pdf \fg.
+\begin{lstlisting}
+\rsfbLigneTableauAdresses{Prénom \textsc{Nom}}{ \textsc{Fbg}~\textsc{Bgf}}{Voir facturation}
+\rsfbLigneTableauAdresses{}{Fédération belge de gong}{}
+\rsfbLigneTableauAdresses{}{Belgische gong federatie}{}
+\rsfbLigneTableauAdresses{N\up{o}, rue Delarue1}{DelarueStraat, no}{}
+\rsfbLigneTableauAdresses{\textsc{CCC1 Ville1}}{\textsc{CCC2 Ville2}}{}
+\rsfbLigneTableauAdresses{\href{mailto:user@domain.tld}{user@domain.tld}}{\textsc{(Entité)}}{}
+\rsfbLigneTableauAdresses{+32 684 037 078}{}{}
+\end{lstlisting}
+
+qui donnera un résultat semblable au tableau ci-dessous:
+\begin{flushleft}
+\begin{tabular}{p{0.3\textwidth}p{0.3\textwidth}p{0.3\textwidth}}
+\hline
+ \emph{Expédition} & \emph{Facturation} & \emph{Livraison} \\
+ Prénom \textsc{Nom} & \textsc{Fbg Bgf} & Voir facturation \\
+  & Fédération belge de gong &  \\
+  & Belgische gong federatie &  \\
+ N o , rue Delarue1 & DelarueStraat, no &  \\
+ CCC1 Ville1 & CCC1 Ville1 &  \\
+ \href{mailto:user@domain.tld}{user@domain.tld} & (Entité) &  \\
+ +32 684 037 078 &  &  \\ 
+\hline
+\end{tabular}
+\end{flushleft}
+
+
+\emph{Et un 3\up{e}, si ça vous intéresse, un exemple avec des lignes vides:}
+\begin{lstlisting}
+\rsfbLigneTableauAdresses{}{}{}
+\rsfbLigneTableauAdresses{}{}{}
+\rsfbLigneTableauAdresses{}{}{}
+\rsfbLigneTableauAdresses{}{}{}
+\end{lstlisting}
+qui ne donne évidemment, tel quel, aucun résultat.
+
+
+\emph{Enfin, on ferme le pied du tableau des adresses:}
+\begin{lstlisting}
+% À n'utiliser qu'une seule fois; 
+% on sera bien avisé de ne pas toucher à cette commande.
+\rsfbPiedTableauAdresses{}
+\end{lstlisting}
+
+\subsection{Tableau des produits, avec le package calctab}
+
+On ne va pas réinventer le monde, mais simplement réutiliser les commandes
+simples et efficaces du package calctab, dans son environnement xcalctab. Voici tel quel un extrait de facture-basique.tex
+
+ 
+\begin{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tableau des produits, avec le package calctab, %%
+%% on choisit xcalctab, DEBUT                     %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% On ne va pas réinventer le monde, mais simplement 
+%% réutiliser les commandes simples et efficaces du 
+%% package calctab, dans son environnement xcalctab 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Ensuite le tableau des produits avec nature, 
+%% quantité, coût et TVA
+
+% On ouvre l'environnement xcalctab
+\begin{xcalctab}
+%% calctab est en police police sans empattements 
+%% (sf, pour sans serif), 
+%% on remet en normalfont de ce document
+\normalfont
+%% On ajoute des produits 
+% \amount{nature}{quantité}{prix unitaire}
+%% si amount comporte un id comme ci-dessous, 
+%% on pourra lui appliquer une remise (-) (ou une taxe (+))
+%% avec la commande \perc[identificateur]{Intitulé}{+/-pourcentage}
+%% une id s'écrit ainsi: [id=identificateur] identificateur = 1 seul mot entier!
+% \amount[id=identificateur]{nature}{quantité}{prix unitaire}
+%% Simple, non?
+
+% produits (avec ou sans id)
+\amount[id=un]{Produit Un}{5}{100,20}
+\amount[id=deux]{Produit Deux}{2}{1000,40}
+\amount[id=trois]{Produit Trois}{1}{500,0}
+% Le champ addition des prix hors tva, peut avoir sa propre id
+\add[id=phtva,un,deux,trois]{Prix HTVA}
+
+% TVA, idem:
+\perc[id=tva6,un]{TVA}{6}
+\perc[id=tva21,deux,trois]{TVA}{21}
+
+% Grand total:
+\add[phtva,tva6,tva21]{Total}
+
+% On ferme l'environnement xcalctab
+\end{xcalctab}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tableau des produits, avec le package calctab, FIN  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{lstlisting}
+
+
+\paragraph{Et ci-dessous, le résultat:} le tableau des produits, avec le package calctab.
+
+\emph{Les totaux sont calculés automatiquement!}
+
+\ctcurrency{\euro}
+\ctdescription{Nature}
+\ctontraslation{sur}
+\ctheaderone{Quantité}
+\ctheadertwo{Prix unit.}
+
+
+\begin{xcalctab}
+\normalfont
+\amount[id=un]{Produit Un}{5}{100,20}
+\amount[id=deux]{Produit Deux}{2}{1000,40}
+\amount[id=trois]{Produit Trois}{1}{500,0}
+\add[id=phtva,un,deux,trois]{Prix HTVA}
+
+\perc[id=tva6,un]{TVA}{6}
+\perc[id=tva21,deux,trois]{TVA}{21}
+
+% Grand total:
+\add[phtva,tva6,tva21]{Total}
+
+% On ferme l'environnement xcalctab
+\end{xcalctab}
+
+
+\subsection{Un texte libre sous le tableau des produits}
+
+Enfin, sous le tableau des produits, un espace où vous pouvez exprimer du texte libre, \ldots
+
+\begin{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, DEBUT. %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\paragraph*{Description du produit:}
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla rhoncus est ac viverra lacinia. Etiam pulvinar tempus rutrum. Maecenas vel metus metus. 
+
+\paragraph*{\'{E}tendue des fournitures:}
+\begin{itemize}
+    \item La livraison du produit Un s'étend sur 5 semaines, du JJ/MM/AAAA au JJ/MM/AAAA, 1 quantité par semaine;
+    \item La livraison des produits Deux \& Trois s'étend sur 2 mois, du JJ/MM/AAAA au JJ/MM/AAAA, 1 quantité par semaine.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, FIN. %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\end{lstlisting}
+
+et qui donnerait ceci: \\
+
+\paragraph*{Description du produit:}
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla rhoncus est ac viverra lacinia. Etiam pulvinar tempus rutrum. Maecenas vel metus metus. 
+
+\paragraph*{\'{E}tendue des fournitures:}
+\begin{itemize}
+    \item La livraison du produit Un s'étend sur 5 semaines, du JJ/MM/AAAA au JJ/MM/AAAA, 1 quantité par semaine;
+    \item La livraison des produits Deux \& Trois s'étend sur 2 mois, du JJ/MM/AAAA au JJ/MM/AAAA, 1 quantité par semaine.
+\end{itemize}
+
+
+\end{document}

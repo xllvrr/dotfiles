@@ -1,0 +1,103 @@
+**************************************************
+*   LATEX STYLES FOR AMERICAN GEOPHYICAL UNION   *
+**************************************************
+            News from 1999 August 20
+
+       (AGU++ (v1.6b and later) is now compatible with AGUTeX-5.01)
+
+When the American Geophysical Union (AGU) finally come out with its own
+official LaTeX package for producing manuscripts and camera-ready copy for its
+journals, they also dramatically altered the format of the journals.  Thus my
+unofficial LaTeX package for AGU (art-jgr and art-grl) became not only
+superfluous but obsolete.
+
+However, in looking over the instructions and coding of the official package,
+I realized that not only were some imperfections present, but many useful
+features of my styles were missing. The most noticeable of these is the means
+of using author-year citations with BibTeX in an automated manner.
+
+The coding imperfections are related to the way in which figure captions and
+tables are treated: they must be placed at the end of the document, and if an
+appendix is present, then the automatic numbering system will consider them as
+appendix figures and tables (numbered A1, A2, ...). To avoid this, explicit
+numbers must be given, something that violates the essential principles of a
+formatting program like LaTeX. A second implication of this treatment is that
+preprints will be missing the figures and tables in the text. In my older
+system, neither of these problems occurred.
+
+BY POPULAR DEMAND, I undertook to write an extension to the official AGU
+package, called AGU++ (for AGU doubly-ionized or super-charged, as you
+please). It includes my extra features without changing any of the formats of
+the original package. The user should prepare his documents in the manner
+described by the AGU, except that figures, tables, and plates are to be
+included *in the text*. A number of extra commands are available to control
+and/or enable the extra features.
+
+I have now come up with version 1.5 for use with the new release of AGUTeX
+(4.0) in August 1996. It turns out that I overlooked some problems, especially
+with appendices, and these have been fixed up in version 1.5a (October 1996).
+I have also added a notation environment to improve writing lists of notations.
+
+There is a problem with AGU's planotable when it is continued to another page;
+spurious new pages are added apparently arbitrarily. This problem is repaired
+in AGU++ version 1.5b, released January 1997.
+
+Version 1.5c in March 1997 simply changed the manual and sample file 
+slightly to emphasize the preferred way of treating literature citations. The 
+BibTeX style file agu.bst (version 2.0) released with several improvements.
+
+Version 1.5d in April 1997 fixes a bug so that AGUPLUS can be used with 
+amsmath. Agu.bst (version 2.1) fixes up handling of notes, and no longer 
+prints the journal `number'.
+
+Version 1.6 in February 1999 simply changes the copyright notice to be 
+consistent with the LaTeX Project Public License.
+
+Versoion 1.6b in August 1999 adds the option paleo to be consistent with
+AGUTeX-5.01.
+
+As in the previous versions, it consists of a class file AGUPLUS.CLS that loads
+the standard ARTICLE.CLS and then one of the AGUTEX files. It also fixes up
+AGUTEX so that it runs under LaTeX2e.
+
+In addition, an AGUPLUS.STY file is provided that will run under the old 2.09
+LaTeX. This must be loaded as an option to the ARTICLE style.
+WARNING: I no longer test the 2.09 version very much so it could have bugs.
+         It is not really supported any more.
+
+
+Details on how to use AGUTeX with AGU++ are to be found in the manual
+AGUPLUS.TEX. 
+
+The set consists of the files:
+
+aguplus.cls     The LaTeX2e class file
+aguplus.sty     The LaTeX 2.09 style file (use at own risk!)
+aguplus.tex     A manual, to be LaTeXed (under AGUTeX and AGU++)
+changes.vxx     A list of changes since the beginning to version xx
+samplus.tex     A sample paper
+agu.bst         A bibliography style file with AGU formats 
+                  (Now version 2.1d with some corrections over previous versions)
+agufull.bst     An alternative to agu.bst which lists ALL authors; agu.bst 
+                  limits the number of authors to 9.
+geophys.tex     A listing of the shorthand journal names in agu.bst
+sample.bib      A BibTeX data base, for use with samplus.tex
+
+(The agu.bst and agufull.bst files contains shorthands for journals in the 
+fields of physics and geophysics. For example, a BibTeX entry of 
+  journal = jgr  
+is sufficient to specify the journal as JGR,  instead of  
+  journal = "J. Geophys. Res."  
+A list of all such shorthands can be printed by processing shorthnd.tex.)
+
+NOTE: this package does not contain AGUTeX itself. This is because AGU++ is
+still unofficial. (The AGU is considering what they want to do with it.)
+The official package can be obtained from anonymous FTP server 
+           kosmos.agu.org
+in directory   agutex
+
+Patrick W. Daly
+Max-Planck-Institut f\"ur Aeronomie
+D-37191 Katlenburg-Lindau
+
+daly@linmpi.mpg.de

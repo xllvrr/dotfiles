@@ -1,0 +1,54 @@
+\relax
+\encoding
+\immediate\write16{\the\csname slot_number\endcsname,\the\csname 
+slot_index\endcsname}
+% \ifnum 1=\apa
+%    \expandafter\show \csname name-0\endcsname
+% %    \tracingmacros=1
+% %    \tracingcommands=2
+% \fi
+\inputetx{ot1}
+\immediate\write16{\the\csname slot_number\endcsname,\the\csname 
+slot_index\endcsname}
+
+% \tracingmacros=1
+% \tracingcommands=2
+
+\nextslot{32}
+\setrightboundary{space}
+
+\nextslot{172}
+\setrightboundary{omega}
+
+\setleftboundary{space}
+\endsetleftboundary
+
+% \tracingcommands=0
+% \tracingmacros=0
+
+
+\immediate\write16{\the\csname slot_number\endcsname,\the\csname 
+slot_index\endcsname}
+
+
+\inputetx{t1}
+
+\immediate\write16{\the\csname slot_number\endcsname,\the\csname 
+slot_index\endcsname}
+
+
+\setleftboundary{compwordmark}
+\endsetleftboundary
+
+
+\setcommand\resetslot#1\endsetslot{}
+
+\nextslot{`l}
+\resetslot{lambda}
+  \comment{The letter `$\lambda$'.}
+\endsetslot
+
+\immediate\write16{\the\csname slot_number\endcsname,\the\csname 
+slot_index\endcsname}
+
+\endencoding

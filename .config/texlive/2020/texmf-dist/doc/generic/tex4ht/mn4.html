@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>common sources of
+problems</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<meta name="originator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<!-- xhtml,th4,index --> 
+<meta name="src" content="mn.tex" /> 
+<meta name="date" content="2004-02-11 18:07:00" /> 
+<link rel="stylesheet" type="text/css" href="mn.css" /> 
+</head><body 
+>
+    <a 
+  name="index4-8006"></a><p class="rightline"><a 
+ href="mn3.html#mn4.html" >up</a></p>
+    <h3 class="SubSectionHead"><a 
+  name="QQ1-4-9"></a>Some Sources of Problems for MathML</h3>
+<!--l. 1960--><p class="noindent">
+</p><ol type="a" >
+<li>Broken math formulas, such as &#8216;<span 
+class="cmtt-10">$R=\{x|x$ is real $\}$</span>&#8217; instead of &#8216;<span 
+class="cmtt-10">$R=\{x|x \mbox{ is real } \}$</span>&#8217;.
+</li>
+<li>Math mode employment for presenting nonmath content, such as &#8216;<span 
+class="cmtt-10">$$\vbox{...}$$ </span>&#8217; instead of
+&#8216;<span 
+class="cmtt-10">\begin{center}\vbox{...}\end{center}</span>&#8217;. </li>
+<li>Unmatched parentheses within entries of arrays, such as &#8216;<span 
+class="cmtt-10">\begin{array}...(... &amp; ...)...\end{array}</span>&#8217; instead
+of &#8216;<span 
+class="cmtt-10">\begin{array}...\mathrel( ... &amp; ...\mathrel)...\end{array}</span>&#8217;. </li>
+<li>Incorrect annotation of delimiters, such as &#8216;<span 
+class="cmtt-10">\bigl\{...\bigr|...\bigr\}</span>&#8217; instead of &#8216;<span 
+class="cmtt-10">\bigl\{...\bigg|...\bigr</span>&#8217;
+</li>
+<li>Empty bases for subscripts and superscripts, such as &#8216;<span 
+class="cmtt-10">{}^{...}, {}_{...}</span>&#8217; instead of &#8216;<span 
+class="cmtt-10">{\csname</span>
+
+<span 
+class="cmtt-10">HCode\endcsname{}}^{...}, {\csname HCode\endcsname{}}_{...}</span>&#8217;. </li>
+<li>Use of the operators &#8216;<span 
+class="cmtt-10">^</span>&#8217; and &#8216;<span 
+class="cmtt-10">_</span>&#8217;, instead of &#8216;<span 
+class="cmtt-10">\sb</span>&#8217; and &#8216;<span 
+class="cmtt-10">\sp</span>&#8217;, outside the presence of TeX4ht. (TeX4ht becomes active
+only at the &#8216;<span 
+class="cmtt-10">\begin{document}</span>&#8217; command. The &#8216;<span 
+class="cmtt-10">early_</span>&#8217; and &#8216;<span 
+class="cmtt-10">early^</span>&#8217; options extend this awareness to the
+preambles of the source latex documents.)
+    </li></ol>
+
+     
+</body></html> 

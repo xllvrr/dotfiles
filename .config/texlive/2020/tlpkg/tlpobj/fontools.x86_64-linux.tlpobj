@@ -1,0 +1,10 @@
+name fontools.x86_64-linux
+category Package
+revision 25997
+shortdesc x86_64-linux files of fontools
+containersize 384
+containerchecksum acbb15b69e6a81e5d28aca9b6f36d639e0114f63d2aee04eb0575eacf5e26a17c488063a5fe1fbd7fb579fd9e4b59a11d97399b7dca84ab4d9f2121f49254ba1
+binfiles arch=x86_64-linux size=3
+ bin/x86_64-linux/afm2afm
+ bin/x86_64-linux/autoinst
+ bin/x86_64-linux/ot2kpx

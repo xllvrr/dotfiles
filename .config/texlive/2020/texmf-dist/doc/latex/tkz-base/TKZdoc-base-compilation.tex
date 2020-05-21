@@ -1,0 +1,46 @@
+\section{Compilation of examples}
+%–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\subsection{Installation test}  
+The code below allows you to test your installation of \tkzname{tkz-base}. Please note that \NamePack{xfp} as well as \NamePack{numprint} must be present as well as version 3.01 (or higher) of \tkzNamePack{pgf}. All examples and this documentation have been compiled using Lua\LATEX. 
+
+\medskip
+\begin{minipage}{0.45\textwidth}
+{%\setlength\linewidth{12cm}
+\begin{tkzltxexample}[right margin=6pt]  
+\documentclass{standalone}
+\usepackage{tkz-base}
+\begin{document}
+\begin{tikzpicture}
+ \tkzInit[xmax=4,ymax=4]
+ \tkzGrid
+ \tkzAxeXY
+\end{tikzpicture}
+\end{document}
+\end{tkzltxexample}}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}
+ \tkzInit[xmax=4,ymax=4]
+ \tkzGrid
+ \tkzAxeXY
+\end{tikzpicture}
+\end{minipage}
+
+\emph{Notes on this test} 
+
+\begin{enumerate}
+\item The compilation of this document and examples is obtained with \tkzimp{lua\LATEX}.
+\item In principle, \tkzNamePack{tkz-base} is not loaded by the user, it will be loaded by another package like \tkzNamePack{tkz-euclide} or \tkzNamePack{tkz-fct}. \tkzNamePack{tkz-base} loads \tkzNamePack{numprint} with the option \tkzNamePack{autolanguage}, \tkzNamePack{xfp} and of course {\TIKZ}.
+\item \TIKZ\  seems that version 3 of pgf has fixed those problems. In case of difficulty, it is recommended to load the \NameLib{babel} library with \tkzcname{usetikzlabry\{babel\}}. Another possibility is to compile with Lua\LATEX.
+\end{enumerate} 
+
+
+\subsection {\tkzNamePack{xfp} and \tkzNamePack{numprint}} 
+
+
+\tkzNamePack{xfp} now replaces \tkzNamePack{fp} in this package. One of the advantages for the user is a simplified syntax. It allows to manage calculations on large or very small numbers with precision. This slows down the compilation a bit, so it is better not to overuse it. \tkzNamePack{xfp} is used above all, to obtain correct graduations.                           
+
+\tkzNamePack{numprint} was present when I started to write this series of packages, since \tkzNamePack{siunitx} has grown and I can understand that some people prefer it. In a future version, I plan to leave the choice of the package for displaying numbers.
+
+
+\endinput        

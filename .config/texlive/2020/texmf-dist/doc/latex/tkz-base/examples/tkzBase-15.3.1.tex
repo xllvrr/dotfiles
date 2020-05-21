@@ -1,0 +1,31 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 102 (Section 15.3.1 : Two scatter plots)
+
+\begin{tikzpicture}
+\tkzInit[xmax=5.5,ymin=1000,%
+         ymax=6000,ystep=2000]
+\tkzGrid[color=orange!30]
+\tkzDrawX[label=$m$,below=13pt]
+\tkzDrawY[above left,label=$R(m)$]
+\tkzLabelX[below right,font=\scriptsize]
+\tkzLabelY[font=\scriptsize]
+\tkzDefSetOfPoints{1/2000,2/3000,3/2000,
+    4/2500,5/4200}
+\tkzDefSetOfPoints[prefix=P]{1/3200,2/4100,
+    3/3300,4/3300,5/5000}
+\tkzSetUpMark[mark=heart,color=black,
+   fill=red!30,size=4pt]
+\tkzJoinSetOfPoints[thick,color=blue,double]
+\tkzDrawSetOfPoints
+\tkzJoinSetOfPoints[prefix=P,thick,color=orange]
+\tkzDrawSetOfPoints[prefix=P,mark=square*,
+     mark size=4pt,
+     mark options={color=blue,fill=blue!40}]
+\tkzText[draw,color = red,
+        fill  = orange!20](3,5800)%
+        {Recette en fonction du mois}
+\end{tikzpicture}
+
+\end{document}

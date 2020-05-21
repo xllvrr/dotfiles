@@ -1,0 +1,25 @@
+name elocalloc
+category Package
+revision 42712
+shortdesc Local allocation macros for LaTeX 2015
+longdesc Local allocation macros, with names taken from etex.sty but
+longdesc with implementation based on the LaTeX 2015 allocation macros.
+containersize 1084
+containerchecksum 7bd72984c7bc1530e2659364b5e93b643db1accc8a034f6fe8333e26ecc12b8dca9cf40ada0b5986576e266e0eb7c801f9a3e4c2cb7dbe4d8c373ba0f0486ba9
+doccontainersize 154148
+doccontainerchecksum 6b2d6f65683912405cc97b81a7cef07b4eb21be4304a12b5e0e11087d809d32023ea8067a81c01d45851943af2efc4eb4018f3a0e7a39e08bdc821f87264d9cc
+docfiles size=39
+ texmf-dist/doc/latex/elocalloc/README.txt details="Readme"
+ texmf-dist/doc/latex/elocalloc/elocalloc.pdf details="Package documentation"
+srccontainersize 2216
+srccontainerchecksum c1dfe4848af6e1cdb57496b8f42f5f1744494857648ca1db92a770f9983d0ec7a4c3398a3a7b7d473204da475ffd0e33ea10606201edcd86f9cda3bf5bdf24f4
+srcfiles size=3
+ texmf-dist/source/latex/elocalloc/elocalloc.dtx
+ texmf-dist/source/latex/elocalloc/elocalloc.ins
+runfiles size=1
+ texmf-dist/tex/latex/elocalloc/elocalloc.sty
+catalogue-also etex-pkg
+catalogue-ctan /macros/latex/contrib/elocalloc
+catalogue-license lppl
+catalogue-topics macro-supp
+catalogue-version 0.03

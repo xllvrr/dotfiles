@@ -1,0 +1,21 @@
+name callouts
+category Package
+revision 44899
+shortdesc Put simple annotations and notes inside a picture
+longdesc The package defines the annotation environment in which
+longdesc callouts, notes, arrows, and the like can be placed to describe
+longdesc certain parts of a picture.
+containersize 1488
+containerchecksum a440d3815f5c5a6d291ce4d7a20bc8483bebe190a0e6944de9f5be78a23eef119f41740ca0fbae4515b6ea7f2aefff90a62005883c44e8d70c6aec0a58c777ee
+doccontainersize 200208
+doccontainerchecksum 0801298bd110f2e484b45c66626c790217666f3351aeeab87881d7f32ada1868222a21f2a7861afaacdea302ad269d2062aaf5fa9d13fdf8efb93efaeb499bb6
+docfiles size=77
+ texmf-dist/doc/latex/callouts/A319neo.jpg
+ texmf-dist/doc/latex/callouts/README.md details="Readme"
+ texmf-dist/doc/latex/callouts/callouts.pdf details="Package documentation"
+ texmf-dist/doc/latex/callouts/callouts.tex
+runfiles size=1
+ texmf-dist/tex/latex/callouts/callouts.sty
+catalogue-ctan /graphics/pgf/contrib/callouts
+catalogue-license lppl
+catalogue-topics graphics pgf-tikz

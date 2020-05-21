@@ -1,0 +1,1754 @@
+% \iffalse meta-comment
+%
+% File: expkv.dtx Copyright (C) 2020 Jonathan P. Spratte
+%
+% This work  may be  distributed and/or  modified under  the conditions  of the
+% LaTeX Project Public License (LPPL),  either version 1.3c  of this license or
+% (at your option) any later version.  The latest version of this license is in
+% the file:
+%
+%   http://www.latex-project.org/lppl.txt
+%
+% ------------------------------------------------------------------------------
+%
+%<*driver>^^A>>=
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+\input l3docstrip.tex
+\askforoverwritefalse
+\preamble
+
+--------------------------------------------------------------
+expkv -- an expandable key=val implementation
+E-mail: jspratte@yahoo.de
+Released under the LaTeX Project Public License v1.3c or later
+See http://www.latex-project.org/lppl.txt
+--------------------------------------------------------------
+
+Copyright (C) 2020 Jonathan P. Spratte
+
+This  work may be  distributed and/or  modified under  the conditions  of the
+LaTeX Project Public License (LPPL),  either version 1.3c  of this license or
+(at your option) any later version.  The latest version of this license is in
+the file:
+
+  http://www.latex-project.org/lppl.txt
+
+This work is "maintained" (as per LPPL maintenance status) by
+  Jonathan P. Spratte.
+
+This work consists of the file  expkv.dtx
+and the derived files           expkv.pdf
+                                expkv.sty
+                                expkv.tex
+
+\endpreamble
+% stop docstrip adding \endinput
+\postamble
+\endpostamble
+\generate{\file{expkv.sty}{\from{expkv.dtx}{pkg}}}
+\generate{\file{expkv.tex}{\from{expkv.dtx}{tex}}}
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+%
+\IfFileExists{expkv.tex}{\input{expkv.tex}}{}
+\ProvidesFile{expkv.dtx}
+  [\csname ekvDate\endcsname\ an expandable key=val implementation]
+\PassOptionsToPackage{full}{textcomp}
+\documentclass{l3doc}
+\RequirePackage[oldstylenums,nott]{kpfonts}
+\input{glyphtounicode}
+\pdfgentounicode=1
+\RequirePackage{xfp} ^^A required for an example
+\RequirePackage{listings}
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\RequirePackage{collcell}
+\RequirePackage{siunitx}
+\RequirePackage{xcolor}
+\RequirePackage{caption}
+\RequirePackage{microtype}
+\RequirePackage{accsupp}
+\RequirePackage{enumitem}
+\lstset
+  {
+    ,flexiblecolumns=false
+    ,basewidth=.53em
+    ,gobble=2
+    ,basicstyle=\fontfamily{jkp}\itshape
+    ,morekeywords=^^A
+      {^^A
+        \ekvdef,\ekvdefNoVal,\ekvlet,\ekvletNoVal,\ekvletkv,\ekvletkvNoVal,^^A
+        \ekvset,\ekvparse,\ekvVersion,\ekvDate,\ekvifdefined,^^A
+        \ekvifdefinedNoVal,\ekvbreak,\ekvbreakPreSneak,\ekvbreakPostSneak,^^A
+        \ekvsneak,\ekvsneakPre,\ekvchangeset
+      }
+    ,morecomment=[l]\%
+    ,commentstyle=\color[gray]{0.4}
+    ,literate={\{}{{\CodeSymbol\{}}{1}
+              {\}}{{\CodeSymbol\}}}{1}
+    ^^A,literate=*{<key>}{\key}{4}{<set>}{\set}{4}
+  }
+\newcommand*\CodeSymbol[1]{\textbf{#1}}
+\RequirePackage{randtext}
+\let\metaORIG\meta
+\protected\def\meta #1{\texttt{\metaORIG{#1}}}
+\renewcommand*\thefootnote{\fnsymbol{footnote}}
+\definecolor{expkvred}{HTML}{9F393D}
+\colorlet{expkvgrey}{black!75}
+\makeatletter
+\newcommand*\expkv
+  {^^A
+    \texorpdfstring
+      {^^A
+        \mbox
+          {^^A
+            \BeginAccSupp{ActualText=expkv}^^A
+            \href{https://github.com/Skillmon/tex_expkv}
+              {^^A
+                \rmfamily
+                \bfseries
+                {\color{expkvgrey}e\kern-.05em x\kern-.05em}^^A
+                \lower.493ex
+                  \hbox{{\color{expkvgrey}P}\kern-.1em{\color{expkvred}k}}^^A
+                \kern-.18em{\color{expkvred}v}^^A
+              }^^A
+            \EndAccSupp{}^^A
+          }^^A
+      }
+      {expkv}^^A
+  }
+\newcommand*\expkvpkg[1]
+  {^^A
+    \texorpdfstring
+      {^^A
+        \mbox
+          {^^A
+            \BeginAccSupp{ActualText=expkv-#1}^^A
+            \href{https://github.com/Skillmon/tex_expkv-#1}
+              {^^A
+                \rmfamily
+                \bfseries
+                {\color{expkvgrey}e\kern-.05em x\kern-.05em}^^A
+                \lower.493ex
+                  \hbox{{\color{expkvgrey}P}\kern-.1em{\color{expkvred}k}}^^A
+                \kern-.18em{\color{expkvred}v}^^A
+                {\color{expkvgrey}^^A
+                  \kern.05em\rule[-.1ex]{.08em}{1.2ex}\kern.05em\textsc{#1}^^A
+                }^^A
+              }^^A
+            \EndAccSupp{}^^A
+          }^^A
+      }
+      {expkv-#1}^^A
+  }
+\newcommand*\expkvd{\expkvpkg{def}}
+\newcommand*\expkvc{\expkvpkg{cs}}
+\newcommand\kv{\meta{key}=\meta{value}}
+\newcommand\key{\meta{key}}
+\newcommand\val{\meta{value}}
+\newcommand\set{\meta{set}}
+\hypersetup{linkcolor=red!80!black,urlcolor=purple!80!black}
+\DoNotIndex{\def,\edef,\,,\=,\begingroup,\catcode,\chardef,\csname,\endcsname}
+\DoNotIndex{\endgroup,\endinput,\errmessage,\expandafter,\input,\let,\long}
+\DoNotIndex{\protected,\ProvidesFile,\ProvidesPackage,\relax,\space}
+\DoNotIndex{\@,\unexpanded,\string,\expanded}
+\DoNotIndex{\ifcsname}
+\DoNotIndex{\ifx}
+\DoNotIndex{\else}
+\DoNotIndex{\fi}
+\@gobble\fi ^^A ignoring \ifx and \ifcsname, but only one \fi
+\@ifdefinable\gobbledocstriptag{\def\gobbledocstriptag#1>{}}
+\newcommand*\pmso[1] ^^A poor man's strike out
+  {^^A
+    \leavevmode
+    \begingroup
+      \sbox0{#1}^^A
+      \rlap{\vrule height .6ex depth -.5ex width \wd0\relax}^^A
+      \usebox0\relax
+    \endgroup
+  }
+\makeatother
+\begin{document}
+  \title
+    {^^A
+      \texorpdfstring
+        {^^A
+          \huge\expkv
+          \\[\medskipamount]
+          \Large an expandable \kv\ implementation^^A
+        }{expkv - an expandable <key>=<value> implementation}^^A
+    }
+  \date{\ekvDate\space v\ekvVersion}
+  \author{Jonathan P. Spratte\thanks{\protect\randomize{jspratte@yahoo.de}}}
+  \DocInput{expkv.dtx}
+\end{document}
+%</driver>^^A=<<
+% \fi
+%
+% \maketitle
+% \renewcommand*\thefootnote{\arabic{footnote}}
+%
+% \begin{abstract}
+% \noindent\parfillskip=0pt
+% \expkv\ provides a small interface for \kv\ parsing. The parsing macro is
+% fully expandable, the \meta{code} of your keys might be not. \expkv\ is pretty
+% fast, but not the fastest available \kv\ solution (\pkg{keyval} is one and a
+% half times as fast, but not expandable and it might strip braces it shouldn't
+% have stripped).
+% \end{abstract}
+%
+% \tableofcontents
+%
+% \begin{documentation}^^A>>=
+%
+% \section{Documentation}
+%
+% \expkv\ provides an expandable \kv\ parser. The \kv\ pairs should be given as
+% a comma separated list and the separator between a \key\ and the associated
+% \val\ should be an equal sign. Both, the commas and the equal signs, might be
+% of category 12 (other) or 13 (active). To support this is necessary as for
+% example \pkg{babel} turns characters active for some languages, for instance
+% the equal sign is turned active for Turkish.
+%
+% \expkv\ is usable as generic code or as a \LaTeX\ package. To use it, just
+% use one of:
+% \begin{lstlisting}
+% \usepackage{expkv} % LaTeX
+% \input expkv       % plainTeX
+% \end{lstlisting}
+% The \LaTeX\ package doesn't do more than \file{expkv.tex}, except calling
+% |\ProvidesPackage| and setting things up such that \file{expkv.tex} will use
+% |\ProvidesFile|.
+%
+% In the \expkv\ family are other packages contained which provide additional
+% functionality. Those packages currently are:
+% \begin{description}[format=\expkvpkg]
+%   \item[def]
+%     a key-defining frontend for \expkv\ using a \kv\ syntax
+%   \item[cs]
+%     define expandable \kv\ macros using \expkv
+% \end{description}
+% Note that while the package names are stylised with a vertical rule, their
+% names are all lower case with a hyphen (\emph{e.g.}, \file{expkv-def}).
+%
+% \subsection{Setting up Keys}\label{sec:define}
+% \expkv\ provides a rather simple approach to setting up keys, similar to
+% \pkg{keyval}. However there is an auxiliary package named \expkvd\ which
+% provides a more sophisticated interface, similar to well established packages
+% like \pkg{pgfkeys} or \pkg{l3keys}.
+%
+% Keys in \expkv\ (as in almost all other \kv\ implementations) belong to a
+% \emph{set} such that different sets can contain keys of the same name. Unlike
+% many other implementations \expkv\ doesn't provide means to set a default
+% value, instead we have keys that take values and keys that don't (the latter
+% are called |NoVal| keys by \expkv), but both can have the same name (on the
+% user level).
+%
+% The following macros are available to define new keys. Those macros containing
+% ``|def|'' in their name can be prefixed by anything allowed to prefix |\def|
+% (but \emph{don't} use |\outer|, keys defined with it won't ever be usable),
+% prefixes allowed for |\let| can prefix those with ``|let|'' in their name,
+% accordingly. Neither \set\ nor \key\ are allowed to be empty for new keys and
+% must not contain a |\par| or tokens that expand to it -- they must be legal
+% inside of |\csname ...\endcsname|.
+%
+% \begin{function}{\ekvdef}
+%   \begin{syntax}
+%     \cs{ekvdef}\marg{set}\marg{key}\marg{code}
+%   \end{syntax}
+%   Defines a \key\ taking a value in a \set\ to expand to \meta{code}. In
+%   \meta{code} you can use |#1| to refer to the given value.
+% \end{function}
+%
+% \begin{function}{\ekvdefNoVal}
+%   \begin{syntax}
+%     \cs{ekvdefNoVal}\marg{set}\marg{key}\marg{code}
+%   \end{syntax}
+%   Defines a no value taking \key\ in a \set\ to expand to \meta{code}.
+% \end{function}
+%
+% \begin{function}{\ekvlet}
+%   \begin{syntax}
+%     \cs{ekvlet}\marg{set}\marg{key}\meta{cs}
+%   \end{syntax}
+%   Let the value taking \key\ in \set\ to \meta{cs}, there are no checks on
+%   \meta{cs} enforced.
+% \end{function}
+%
+% \begin{function}{\ekvletNoVal}
+%   \begin{syntax}
+%     \cs{ekvletNoVal}\marg{set}\marg{key}\meta{cs}
+%   \end{syntax}
+%   Let the no value taking \key\ in \set\ to \meta{cs}, it is not checked
+%   whether \meta{cs} exists or that it takes no parameter.
+% \end{function}
+%
+% \begin{function}{\ekvletkv}
+%   \begin{syntax}
+%     \cs{ekvletkv}\marg{set}\marg{key}\marg{set2}\marg{key2}
+%   \end{syntax}
+%   Let the \key\ in \set\ to \meta{key2} in \meta{set2}, it is not checked
+%   whether that second key exists.
+% \end{function}
+%
+% \begin{function}{\ekvletkvNoVal}
+%   \begin{syntax}
+%     \cs{ekvletkvNoVal}\marg{set}\marg{key}\marg{set2}\marg{key2}
+%   \end{syntax}
+%   Let the \key\ in \set\ to \meta{key2} in \meta{set2}, it is not checked
+%   whether that second key exists.
+% \end{function}
+%
+% \subsection{Parsing Keys}
+%
+% \begin{function}{\ekvset}
+%   \begin{syntax}
+%     \cs{ekvset}\marg{set}\{\kv,\ldots\}
+%   \end{syntax}
+%   Splits \kv\ pairs on commas. From both \key\ and \val\ up to one space is
+%   stripped from both ends, if then only a braced group remains the braces are
+%   stripped as well. So |\ekvset{foo}{bar=baz}| and
+%   |\ekvset{foo}{ {bar}= {baz} }| will both do
+%   \texttt{\cs[no-index]{\meta{foobarcode}}\{baz\}}, so you can hide commas,
+%   equal signs and spaces at the ends of either \key\ or \val\ by putting
+%   braces around them. If you omit the equal sign the code of the key created
+%   with the |NoVal| variants described in \autoref{sec:define} will be
+%   executed. If \kv\ contains more than a single unhidden equal sign, it will
+%   be split at the first one and the others are considered part of the value.
+%   |\ekvset| should be nestable.
+% \end{function}
+%
+% \begin{function}{\ekvparse}
+%   \begin{syntax}
+%     \cs{ekvparse}\meta{cs1}\meta{cs2}\{\kv,\ldots\}
+%   \end{syntax}
+%   This macro parses the \kv\ pairs and provides those list elements which are
+%   only keys as the argument to \meta{cs1}, and those which are a \kv\ pair to
+%   \meta{cs2} as two arguments. It is fully expandable as well and returns the
+%   parsed list in |\unexpanded|, which has no effect outside of an |\expanded|
+%   or |\edef| context\footnotemark.
+%   If you need control over the necessary steps of expansion you
+%   can use |\expanded| around it.
+%
+%   |\ekvbreak|, |\ekvsneak|, and |\ekvchangeset| and their relatives don't work
+%   in |\ekvparse|.  It is analogue to \pkg{expl3}'s |\keyval_parse:NNn|, but
+%   not with the same parsing rules -- |\keyval_parse:NNn| throws an error on
+%   multiple equal signs per \kv\ pair and on empty \key\ names in a \kv\ pair,
+%   both of which |\ekvparse| doesn't deal with.
+%
+%   As a small example:
+% \begin{lstlisting}
+% \ekvparse\handlekey\handlekeyval{foo = bar, key, baz={zzz}}
+% \end{lstlisting}
+%   would expand to
+% \begin{lstlisting}
+% \handlekeyval{foo}{bar}\handlekey{key}\handlekeyval{baz}{zzz}
+% \end{lstlisting}
+%   and afterwards |\handlekey| and |\handlekeyval| would have to further handle
+%   the \key. There are no macros like these two contained in \expkv, you have
+%   to set them up yourself if you want to use |\ekvparse| (of course the names
+%   might differ). If you need the results of |\ekvparse| as the argument for
+%   another macro, you should use |\expanded| as only then the input stream will
+%   contain the output above:
+% \begin{lstlisting}
+% \expandafter\handle\expanded{\ekvparse\k\kv{foo = bar, key, baz={zzz}}}
+% \end{lstlisting}
+%   would expand to
+% \begin{lstlisting}
+% \handle\kv{foo}{bar}\k{key}\kv{baz}{zzz}
+% \end{lstlisting}
+% \end{function}
+% \footnotetext 
+%   {^^A
+%     This is a change in behaviour, previously (v0.3 and before) \cs{ekvparse}
+%     would expand in exactly two steps. This isn't always necessary, but makes
+%     the parsing considerably slower. If this is necessary for your application
+%     you can put an \cs[no-index]{expanded} around it and will still be faster
+%     since you need only a single \cs[no-index]{expandafter} this way.^^A
+%   }.
+%
+% \subsection{Miscellaneous}
+%
+% \subsubsection{Other Macros}
+%
+% \expkv\ provides some other macros which might be of interest.
+%
+% \begin{function}{\ekvVersion,\ekvDate}
+%   These two macros store the version and date of the package.
+% \end{function}
+% \begin{function}{\ekvifdefined,\ekvifdefinedNoVal}
+%   \begin{syntax}
+%     \cs{ekvifdefined}\marg{set}\marg{key}\marg{true}\marg{false}
+%     \cs{ekvifdefinedNoVal}\marg{set}\marg{key}\marg{true}\marg{false}
+%   \end{syntax}
+%   These two macros test whether there is a \key\ in \set. It is false if
+%   either a hash table entry doesn't exist for that key or its meaning is
+%   |\relax|.
+% \end{function}
+%
+% \begin{function}{\ekvbreak,\ekvbreakPreSneak,\ekvbreakPostSneak}
+%   \begin{syntax}
+%     \cs{ekvbreak}\marg{after}
+%   \end{syntax}
+%   Gobbles the remainder of the current |\ekvset| macro and its argument list
+%   and reinserts \meta{after}. So this can be used to break out of |\ekvset|.
+%   The first variant will also gobble anything that has been sneaked out using
+%   |\ekvsneak| or |\ekvsneakPre|, while |\ekvbreakPreSneak| will put
+%   \meta{after} before anything that has been smuggled and |\ekvbreakPostSneak|
+%   will put \meta{after} after the stuff that has been sneaked out.
+% \end{function}
+%
+% \begin{function}{\ekvsneak,\ekvsneakPre}
+%   \begin{syntax}
+%     \cs{ekvsneak}\marg{after}
+%   \end{syntax}
+%   Puts \meta{after} after the effects of |\ekvset|. The first variant will put
+%   \meta{after} after any other tokens which might have been sneaked before,
+%   while |\ekvsneakPre| will put \meta{after} before other smuggled stuff.
+%   This reads and reinserts the remainder of the current |\ekvset| macro and
+%   its argument list to do its job. A small usage example is shown in
+%   \autoref{sec:sneakex}.
+% \end{function}
+%
+% \begin{function}{\ekvchangeset}
+%   \begin{syntax}
+%     \cs{ekvchangeset}\marg{new-set}
+%   \end{syntax}
+%   Replaces the current set with \meta{new-set}, so for the rest of the current
+%   |\ekvset| call, that call behaves as if it was called with
+%   \texttt{\cs[no-index]{ekvset}\marg{new-set}}. Just like |\ekvsneak| this
+%   reads and reinserts the remainder of the current |\ekvset| macro to do its
+%   job. It is comparable to using \texttt{\meta{key}/.cd} in \pkg{pgfkeys}.
+% \end{function}
+%
+% \bigskip
+%
+% \begin{function}{\ekv@name,\ekv@name@set,\ekv@name@key}
+%   \begin{syntax}
+%     \cs{ekv@name}\marg{set}\marg{key}\\
+%     \cs{ekv@name@set}\marg{set}\\
+%     \cs{ekv@name@key}\marg{key}
+%   \end{syntax}
+%   The names of the macros that correspond to a key in a set are build with
+%   these macros. The default definition of |\ekv@name@set| is
+%   ``\texttt{\csname ekv@name@set\endcsname{\set}}'' and the default of
+%   |\ekv@name@key| is ``\texttt{\csname ekv@name@key\endcsname{\key}}''.
+%   The complete name is build using |\ekv@name| which is equivalent to
+%   \texttt{\cs[no-index]{ekv@name@set}\marg{set}\cs{ekv@name@key}\marg{key}}.
+%   For |NoVal| keys an additional |N| gets appended irrespective of these
+%   macros' definition, so their name is
+%   \cs[no-index]{\csname ekv@name\endcsname{\set}{\key}N}. You might redefine
+%   |\ekv@name@set| and |\ekv@name@key| locally but \emph{don't redefine}
+%   |\ekv@name|!
+% \end{function}
+%
+% \subsubsection{Bugs}
+%
+% Just like \pkg{keyval}, \expkv\ is bug free. But if you find \pmso{bugs}hidden
+% features\footnote{Thanks, David!} you can tell me about them either via mail
+% (see the first page) or directly on GitHub if you have an account there:
+% \url{https://github.com/Skillmon/tex_expkv}
+%
+% \subsubsection{Comparisons}
+%
+% Comparisons of speed are done with a very simple test key and the help of the
+% \pkg{l3benchmark} package. The key and its usage should be equivalent to
+% \begin{lstlisting}
+% \protected\ekvdef{test}{height}{\def\myheight{#1}}
+% \ekvset{test}{ height = 6 }
+% \end{lstlisting}
+% and only the usage of the key, not its definition, is benchmarked. For the
+% impatient, the essence of these comparisons regarding speed and buggy
+% behaviour is contained in \autoref{tab:comp}.
+%
+% As far as I know \expkv\ is the only fully expandable \kv\ parser. I tried to
+% compare \expkv\ to every \kv\ package listed on
+% \href{https://ctan.org/topic/keyval}{CTAN}, however, one might notice that
+% some of those are missing from this list. That's because I didn't get the
+% others to work due to bugs, or because they just provide wrappers around other
+% packages in this list.
+%
+% In this subsubsection is no benchmark of |\ekvparse| and |\keyval_parse:NNn|
+% contained, as most other packages don't provide equivalent features to my
+% knowledge. |\ekvparse| is slightly faster than |\ekvset|, but keep in mind
+% that it does less. The same is true for |\keyval_parse:NNn| compared to
+% |\keys_set:nn| of \pkg{expl3} (where the difference is much bigger).
+%
+% \paragraph{\pkg{keyval}} is about $1.6$ times faster and has a comparable
+% feature set just a slightly different way how it handles keys without values.
+% That might be considered a drawback, as it limits the versatility, but also as
+% an advantage, as it might reduce doubled code. Keep in mind that as soon as
+% someone loads \pkg{xkeyval} the performance of \pkg{keyval} gets replaced by
+% \pkg{xkeyval}'s.
+%
+% Also \pkg{keyval} has a bug, which unfortunately can't really be resolved
+% without breaking backwards compatibility for \emph{many} documents, namely it
+% strips braces from the argument before stripping spaces if the argument isn't
+% surrounded by spaces, also it might strip more than one set of braces. Hence
+% all of the following are equivalent in their outcome, though the last two
+% lines should result in something different than the first two:
+% \begin{lstlisting}[belowskip=0pt]
+% \setkeys{foo}{bar=baz}
+% \setkeys{foo}{bar= {baz}}
+% \setkeys{foo}{bar={ baz}}
+% \setkeys{foo}{bar={{baz}}}
+% \end{lstlisting}
+%
+% \paragraph{\pkg{xkeyval}} is roughly seventeen times slower, but it provides
+% more functionality, e.g., it has choice keys, boolean keys, and so on. It
+% contains the same bug as \pkg{keyval} as it has to be compatible with it by
+% design (it replaces \pkg{keyval}'s frontend), but also adds even more cases in
+% which braces are stripped that shouldn't be stripped, worsening the situation.
+%
+% \paragraph{\pkg{ltxkeys}} is over 370 times slower -- which is funny, because
+% it aims to be ``[\ldots] faster [\ldots] than these earlier packages
+% [referring to \pkg{keyval} and \pkg{xkeyval}].'' It needs more time to parse
+% zero keys than four of the packages in this comparison need to parse 100 keys.
+% Since it aims to have a bigger feature set than \pkg{xkeyval}, it most
+% definitely also has a bigger feature set than \expkv. Also, it can't parse
+% |\long| input, so as soon as your values contain a |\par|, it'll throw errors.
+% Furthermore, \pkg{ltxkeys} doesn't strip outer braces at all by design, which,
+% imho, is a weird design choice. In addition \pkg{ltxkeys} loads
+% \pkg{catoptions} which is known to introduce bugs (e.g., see
+% \url{https://tex.stackexchange.com/questions/461783}).
+%
+% \paragraph{\pkg{l3keys}} is around six times slower, but has an, imho, great
+% interface to define keys. It strips \emph{all} outer spaces, even if somehow
+% multiple spaces ended up on either end. It offers more features, but is pretty
+% much bound to \pkg{expl3} code. Whether that's a drawback is up to you. Note
+% that this comparison uses the version contained in \TeX Live 2019 (frozen)
+% which is a bit slower than versions starting with \TeX Live 2020.
+%
+% \paragraph{\pkg{pgfkeys}} is around $2.7$ times slower for one key,
+% but has an \emph{enormous} feature set.
+% It has the same or a very similar bug \pkg{keyval} has. The brace bug (and
+% also the category fragility) can be fixed by \pkg{pgfkeyx}, but this package
+% was last updated in 2012 and it slows down |\pgfkeys| by factor~$8$. Also I
+% don't know whether this might introduce new bugs.
+%
+% \paragraph{\pkg{kvsetkeys} with \pkg{kvdefinekeys}} is about $3.7$ times
+% slower, but it works even if commas and equals have category codes different
+% from 12 (just as some other packages in this list). Else the features of the
+% keys are equal to those of \pkg{keyval}, the parser has more features, though.
+%
+% \paragraph{\pkg{options}} is $1.5$ times slower for only a single value. It
+% has a much bigger feature set. Unfortunately it also suffers from the
+% premature unbracing bug \pkg{keyval} has.
+%
+% \paragraph{\pkg{simplekv}} is hard to compare because I don't speak French (so
+% I don't understand the documentation) and from what I can see, there is no
+% direct way to define the equivalent test key. Nevertheless, I tested the
+% closest possible equivalent of my test key while siding for \pkg{simplekv}'s
+% design not forcing something into it it doesn't seem to be designed for. It is
+% almost seven times slower and has hard to predict behaviour regarding brace
+% and space stripping, similar to \pkg{keyval}. The tested definition was:
+% \begin{lstlisting}[belowskip=0pt]
+% \usepackage{simplekv}
+% \setKVdefault[simplekv]{height={ abc}}                     % key setup
+% \setKV[simplekv]{ height = 6 }                             % benchmarked
+% \end{lstlisting}
+%
+% \paragraph{\pkg{yax}} is over twenty times slower. It has a pretty strange
+% syntax, imho, and again a direct equivalent is hard to define. It has the
+% premature unbracing bug, too. Also somehow loading \pkg{yax} broke
+% \pkg{options} for me. The tested definition was:
+% \begin{lstlisting}[belowskip=0pt]
+% \usepackage{yax}
+% \defactiveparameter yax {\storevalue\myheight yax:height } % key setup
+% \setparameterlist{yax}{ height = 6 }                       % benchmarked
+% \end{lstlisting}
+%
+% \begin{table}
+%   \def\fnsym{\textcolor{red!80!black}{*}}%
+%   \sisetup{round-precision=1, round-mode=places}%
+%   \begingroup
+%   \centering
+%   \newcommand*\yes{\textcolor{red!80!black}  {yes}}^^A
+%   \newcommand*\no {\textcolor{green!80!black}{no}}^^A
+%   \caption[Comparison of \kv\ packages]
+%     {^^A
+%       Comparison of \kv\ packages. The packages are ordered from
+%       fastest to slowest for one \kv\ pair. Benchmarking was done using
+%       \pkg{l3benchmark} and the scripts in the \file{Benchmarks} folder
+%       of the \href{https://github.com/Skillmon/tex_expkv}{git repository}.
+%       The columns $p_i$ are the polynomial coefficients of a linear fit to the
+%       run-time, $p_0$ can be interpreted as the overhead for initialisation
+%       and $p_1$ the cost per key. The $T_0$ column is the actual mean ops
+%       needed for an empty list argument, as the linear fit doesn't match that
+%       point well in general. The column ``BB'' lists whether the
+%       parsing is affected by some sort of brace bug, ``CF'' stands for
+%       category code fragile and lists whether the parsing breaks with active
+%       commas or equal signs.^^A
+%       \label{tab:comp}^^A
+%     }
+%   \begin{tabular}
+%       {>{\collectcell\pkg}l<{\endcollectcell}*3{S[table-format=4.1]}ccc}
+%     \toprule
+%     \rmfamily Package & {$p_1$} & {$p_0$} & {$T_0$}& BB & CF & Date \\
+%     \midrule
+%     keyval    &   13.423 &    2.594 &    6.928 & \yes & \yes & 2014-10-28 \\
+%     \expkv    &   19.718 &    7.256 &    9.611 & \no  & \no  & 2020-04-07 \\
+%     options   &   23.436 &   15.618 &   19.920 & \yes & \yes & 2015-03-01 \\
+%     pgfkeys   &   24.577 &   46.244 &   52.770 & \yes & \yes & 2020-01-08 \\
+%     kvsetkeys & {\fnsym} & {\fnsym} &   39.760 & \no  & \no  & 2019-12-15 \\
+%     l3keys    &  108.001 &   56.299 &   50.710 & \no  & \no  & 2020-02-25 \\
+%     simplekv  &  149.181 &   25.712 &    8.070 & \yes & \yes & 2017-08-08 \\
+%     xkeyval   &  248.777 &  234.420 &  161.900 & \yes & \yes & 2014-12-03 \\
+%     yax       &  443.584 &  170.471 &  115.700 & \yes & \yes & 2010-01-22 \\
+%     ltxkeys   & 3516.032 & 5254.811 & 5487.000 & \no  & \no  & 2012-11-17 \\
+%     \bottomrule
+%   \end{tabular}
+%   \par
+%   \endgroup
+%   \medskip
+%   \fnsym For \pkg{kvsetkeys} the linear model used for the other
+%   packages is a poor fit, \pkg{kvsetkeys} seems to have approximately
+%   quadratic run-time, the coefficients of the second degree polynomial fit are
+%   $p_2=\num{7.473}$, $p_1=\num{51.276}$, and $p_0=\num{49.568}$. Of course the
+%   other packages might not really have linear run-time, but at least from 1~to
+%   20~keys the fits don't seem too bad (the maximum ratio $p_2/p_1$
+%   for the other packages is \num{3.478e-3}). If one extrapolates the fits
+%   for 100 \kv\ pairs one finds that most of them match pretty well, the
+%   exception being \pkg{ltxkeys}, which behaves quadratic as well with
+%   $p_2=\num{11.396}$, $p_1=\num{3276.713}$, and $p_0=\num{6132.315}$.
+% \end{table}
+%
+% \subsection{Examples}
+%
+% \subsubsection{Standard Use-Case}
+%
+% Say we have a macro for which we want to create a \kv\ interface. The macro
+% has a parameter, which is stored in the dimension |\ourdim| having a default
+% value from its initialization. Now we want to be able to change that dimension
+% with the |width| key to some specified value. For that we'd do
+% \begin{lstlisting}
+% \newdimen\ourdim
+% \ourdim=150pt
+% \protected\ekvdef{our}{width}{\ourdim=#1\relax}
+% \end{lstlisting}
+% as you can see, we use the set |our| here. We want the key to behave different
+% if no value is specified. In that case the key should not use its initial
+% value, but be smart and determine the available space from
+% \cs[no-index]{hsize}, so we also define
+% \begin{lstlisting}
+% \protected\ekvdefNoVal{our}{width}{\ourdim=.9\hsize}
+% \end{lstlisting}
+% Now we set up our macro to use this \kv\ interface
+% \begin{lstlisting}
+% \protected\def\ourmacro#1{\begingroup\ekvset{our}{#1}\the\ourdim\endgroup}
+% \end{lstlisting}
+% Finally we can use our macro like in the following\\
+% \begin{minipage}{6cm}
+% \begin{lstlisting}
+% \ourmacro{}\par
+% \ourmacro{width}\par
+% \ourmacro{width=5pt}\par
+% \end{lstlisting}
+% \end{minipage}^^A
+% \begin{minipage}{\dimexpr\linewidth-6cm\relax}
+%   \newdimen\ourdim\ourdim=150pt
+%   \protected\ekvdef{our}{width}{\ourdim=#1\relax}^^A
+%   \protected\ekvdefNoVal{our}{width}{\ourdim=.9\hsize}^^A
+%   \protected\def\ourmacro#1^^A
+%     {\begingroup\ekvset{our}{#1}\the\ourdim\endgroup}^^A
+%   \ourmacro{}\par
+%   \ourmacro{width}\par
+%   \ourmacro{width=5pt}\par
+% \end{minipage}
+%
+% \paragraph{The same key using \protect\expkvd}
+% Using \expkvd\ we can set up the equivalent key using a \kv\ interface, after
+% the following we could use |\ourmacro| in the same way as above. \expkvd\ will
+% allocate and initialise |\ourdim| and define the |width| key |\protected| for
+% us, so the result will be exactly the same -- with the exception that the
+% default will use |\ourdim=.9\hsize\relax| instead.
+% \begin{lstlisting}
+% \input expkv-def                 % or \usepackage{expkv-def}
+% \ekvdefinekeys{our}
+%   {
+%     dimen    width = \ourdim,
+%     qdefault width = .9\hsize,
+%     initial  width = 150pt
+%   }
+% \end{lstlisting}
+%
+% \subsubsection{An Expandable \kv\ Macro Using \cs[no-index]{ekvsneak}}
+% \label{sec:sneakex}
+%
+% Let's set up an expandable macro, that uses a \kv\ interface. The problems
+% we'll face for this are:
+% \begin{enumerate}
+%   \item ignoring duplicate keys
+%   \item default values for keys which weren't used
+%   \item providing the values as the correct argument to a macro (ordered)
+% \end{enumerate}
+%
+% First we need to decide which \kv\ parsing macro we want to do this with,
+% |\ekvset| or |\ekvparse|. For this example we also want to show the
+% usage of |\ekvsneak|, hence we'll choose |\ekvset|. And we'll have to use
+% |\ekvset| such that it builds a parsable list for our macro internals. To
+% gain back control after |\ekvset| is done we have to put an internal of our
+% macro at the start of that list, so we use an internal key that uses
+% |\ekvsneakPre| after any user input.
+%
+% To ignore duplicates will be easy if the value of the key used last will be
+% put first in the list, so the following will use |\ekvsneakPre| for the
+% user-level keys. If we wanted some key for which the first usage should be the
+% binding one we would use |\ekvsneak| instead for that key.
+%
+% Providing default values can be done in different ways, we'll use a simple
+% approach in which we'll just put the outcome of our keys if they were used
+% with default values before the parsing list terminator.
+%
+% Ordering the keys can be done simply by searching for a specific token for
+% each argument which acts like a flag, so our sneaked out values will include
+% specific tokens acting as markers.
+%
+% Now that we have answers for our technical problems, we have to decide what
+% our example macro should do. How about we define a macro that calculates the
+% sine of a number and rounds that to a specified precision? As a small extra
+% this macro should understand input in radian and degree and the used
+% trigonometric function should be selectable as well. For the hard part of this
+% task (expandably evaluating trigonometric functions) we'll use the \pkg{xfp}
+% package.
+%
+% First we set up our keys according to our earlier considerations and set up
+% the user facing macro |\sine|. The end marker of the parsing list will be a
+% |\sine@stop| token, which we don't need to define and we put our defaults
+% right before it.
+%
+% \begin{lstlisting}
+% \RequirePackage{xfp}
+% \makeatletter
+% \ekvdef{expex}{f}{\ekvsneakPre{\f{#1}}}
+% \ekvdef{expex}{round}{\ekvsneakPre{\rnd{#1}}}
+% \ekvdefNoVal{expex}{degree}{\ekvsneakPre{\deg{d}}}
+% \ekvdefNoVal{expex}{radian}{\ekvsneakPre{\deg{}}}
+% \ekvdefNoVal{expex}{internal}{\ekvsneakPre{\sine@rnd}}
+% \newcommand*\sine[2]
+%   {\ekvset{expex}{#1,internal}\rnd{3}\deg{d}\f{sin}\sine@stop{#2}}
+% \end{lstlisting}
+% For the sake of simplicity we defined the macro |\sine| with two mandatory
+% arguments, the first being the \kv\ list, the second the argument to the
+% trigonometric function. We could've used \pkg{xparse}'s facilities here to
+% define an expandable macro which takes an optional argument instead.
+%
+% Now we need to define some internal macros to extract the value of each key's
+% last usage (remember that this will be the group after the first special
+% flag-token). For that we use one delimited macro per key.
+% \begin{lstlisting}
+% \def\sine@rnd#1\rnd#2#3\sine@stop{\sine@deg#1#3\sine@stop{#2}}
+% \def\sine@deg#1\deg#2#3\sine@stop{\sine@f#1#3\sine@stop{#2}}
+% \def\sine@f#1\f#2#3\sine@stop{\sine@final{#2}}
+% \end{lstlisting}
+% After the macros |\sine@rnd|, |\sine@deg|, and |\sine@f| the macro
+% |\sine@final| will see
+% \texttt
+%   {^^A
+%     \cs[no-index]{sine@final}^^A
+%     \marg{f}\marg{degree/radian}\marg{round}\marg{num}^^A
+%   }.
+% Now |\sine@final| has to expandably deal with those arguments such that the
+% |\fpeval| macro of \pkg{xfp} gets the correct input. Luckily this is pretty
+% straight forward in this example. In |\fpeval| the trigonometric functions
+% have names such as |sin| or |cos| and the degree taking variants |sind| or
+% |cosd|. And since the |degree| key puts a |d| in |#2| and the |radian| key
+% leaves |#2| empty all we have to do to get the correct function name is stick
+% the two together.
+% \begin{lstlisting}
+% \newcommand*\sine@final[4]{\fpeval{round(#1#2(#4),#3)}}
+% \makeatother
+% \end{lstlisting}
+% Let's test our macro:\\
+% \begin{minipage}{.7\linewidth}
+%   \begin{lstlisting}[gobble=4]
+%   \sine{}{60}\par
+%   \sine{round=10}{60}\par
+%   \sine{f=cos,radian}{pi}\par
+%   \edef\myval{\sine{f=tan}{1}}\texttt{\meaning\myval}
+%   \end{lstlisting}
+% \end{minipage}\hfill
+% \begin{minipage}{.2\linewidth}
+%   \makeatletter
+%   \ekvdef{expex}{f}{\ekvsneakPre{\f{#1}}}^^A
+%   \ekvdef{expex}{round}{\ekvsneakPre{\rnd{#1}}}^^A
+%   \ekvdefNoVal{expex}{degree}{\ekvsneakPre{\deg{d}}}^^A
+%   \ekvdefNoVal{expex}{radian}{\ekvsneakPre{\deg{}}}^^A
+%   \ekvdefNoVal{expex}{internal}{\ekvsneakPre{\sine@rnd}}^^A
+%   \newcommand*\sine[2]
+%     {\ekvset{expex}{#1,internal}\rnd{3}\deg{d}\f{sin}\sine@stop{#2}}^^A
+%   \def\sine@rnd#1\rnd#2#3\sine@stop{\sine@deg#1#3\sine@stop{#2}}^^A
+%   \def\sine@deg#1\deg#2#3\sine@stop{\sine@f#1#3\sine@stop{#2}}^^A
+%   \def\sine@f#1\f#2#3\sine@stop{\sine@final{#2}}^^A
+%   \newcommand*\sine@final[4]{\fpeval{round(#1#2(#4),#3)}}^^A
+%   \makeatother
+%   \sine{}{60}\par
+%   \sine{round=10}{60}\par
+%   \sine{f=cos,radian}{pi}\par
+%   \edef\myval{\sine{f=tan}{1}}\texttt{\meaning\myval}
+% \end{minipage}
+%
+% \paragraph{The same macro using \protect\expkvc}
+% Using \expkvc\ we can set up something equivalent with a bit less code. The
+% implementation chosen in \expkvc\ is more efficient than the example above and
+% way easier to code.
+% \begin{lstlisting}
+% \makeatletter
+% \ekvcSplitAndForward\sine\sine@
+%   {
+%     f=sin,
+%     unit=d,
+%     round=3,
+%   }
+% \ekvcSecondaryKeys\sine
+%   {
+%     nmeta degree={unit=d},
+%     nmeta radian={unit={}},
+%   }
+% \newcommand*\sine@[4]{\fpeval{round(#1#2(#4),#3)}}
+% \makeatother
+% \end{lstlisting}
+% The resulting macro will behave just like the one previously defined, but will
+% have an additional |unit| key, since in \expkvc\ every argument must have a
+% value taking key which defines it.
+%
+%
+% \subsection{Error Messages}
+%
+% \expkv\ should only send messages in case of errors, there are no warnings and
+% no info messages. In this subsection those errors are listed.
+%
+% \subsubsection{Load Time}
+%
+% \file{expkv.tex} checks whether \eTeX\ is available. If it isn't, an error
+% will be thrown using |\errmessage|:
+% \begin{lstlisting}
+% ! expkv Error: e-TeX required.
+% \end{lstlisting}
+%
+% \subsubsection{Defining Keys}
+%
+% If you get any error from \expkv\ while you're trying to define a key, the
+% definition will be aborted and gobbled.
+%
+% If you try to define a key with an empty set name you'll get:
+% \begin{lstlisting}
+% ! expkv Error: empty set name not allowed.
+% \end{lstlisting}
+%
+% Similarly, if you try to define a key with an empty key name:
+% \begin{lstlisting}
+% ! expkv Error: empty key name not allowed.
+% \end{lstlisting}
+%
+% Both of these messages are done in a way that doesn't throw additional errors
+% due to |\global|, |\long|, etc., not being used correctly if you prefixed one
+% of the defining macros.
+%
+% \subsubsection{Using Keys}
+%
+% This subsubsection contains the errors thrown during |\ekvset|. The errors are
+% thrown in an expandable manner by providing an undefined macro. In the
+% following messages \lstinline|<key>| gets replaced with the problematic key's
+% name, and \lstinline|<set>| with the corresponding set. If any errors during
+% \kv\ handling are encountered, the entry in the comma separated list will be
+% omitted after the error is thrown and the next \kv\ pair will be parsed.
+%
+% If you're using an undefined key you'll get:
+% \begin{lstlisting}
+% ! Undefined control sequence.
+% <argument> \! expkv Error:
+%                            unknown key (`<key>', set `<set>').
+% \end{lstlisting}
+%
+% If you're using a key for which only a normal version and no |NoVal| version
+% is defined, but don't provide a value, you'll get:
+% \begin{lstlisting}
+% ! Undefined control sequence.
+% <argument> \! expkv Error:
+%                            value required (`<key>', set `<set>').
+% \end{lstlisting}
+%
+% If you're using a key for which only a |NoVal| version and no normal version
+% is defined, but provide a value, you'll get:
+% \begin{lstlisting}
+% ! Undefined control sequence.
+% <argument> \! expkv Error:
+%                            value forbidden (`<key>', set `<set>').
+% \end{lstlisting}
+%
+% If you're using a set for which you never executed one of the defining macros
+% from \autoref{sec:define} you'll get a low level \TeX\ error, as that isn't
+% actively tested by the parser (and hence will lead to undefined behaviour and
+% not be gracefully ignored). The error will look like
+% \begin{lstlisting}
+% ! Missing \endcsname inserted.
+% <to be read again>
+%                    \! expkv Error: Set `<set>' undefined.
+% \end{lstlisting}
+%
+% \subsection{License}
+%
+% Copyright \textcopyright\ 2020\unless\ifnum\year=2020--\the\year\fi\
+% Jonathan P. Spratte
+%
+% \medskip\noindent
+% This work may be distributed and/or modified under the conditions of the
+% \LaTeX\ Project Public License (LPPL), either version 1.3c of this license or
+% (at your option) any later version. The latest version of this license is in
+% the file:
+%
+% \url{http://www.latex-project.org/lppl.txt}
+%
+% \noindent
+% This work is ``maintained'' (as per LPPL maintenance status) by
+%
+% \mbox{Jonathan P. Spratte}.
+%
+% \end{documentation}^^A=<<
+%
+% \begin{implementation}^^A>>=
+%
+% \clearpage
+%
+% \section{Implementation}^^A>>=
+%^^A the LaTeX package >>=
+% \subsection{The \LaTeX\ Package}
+% First we set up the \LaTeX\ package. That one doesn't really do much except
+% |\input|ting the generic code and identifying itself as a package.
+% \gobbledocstriptag
+%<*pkg>
+%    \begin{macrocode}
+\def\ekv@tmp
+  {%
+    \ProvidesFile{expkv.tex}%
+      [\ekvDate\space v\ekvVersion\space an expandable key=val implementation]%
+  }
+\input{expkv.tex}
+\ProvidesPackage{expkv}%
+  [\ekvDate\space v\ekvVersion\space an expandable key=val implementation]
+%    \end{macrocode}
+% \gobbledocstriptag
+%</pkg>
+%^^A=<<
+%^^A main file >>=
+% \subsection{The Generic Code}
+% The rest of this implementation will be the generic code.
+% \gobbledocstriptag
+%<*tex>
+%
+% We make sure that it's only input once:
+%    \begin{macrocode}
+\expandafter\ifx\csname ekvVersion\endcsname\relax
+\else
+  \expandafter\endinput
+\fi
+%    \end{macrocode}
+%
+% Check whether \eTeX\ is available -- \expkv\ requires \eTeX.
+%    \begin{macrocode}
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname numexpr\endcsname\relax
+  \errmessage{expkv requires e-TeX}
+  \expandafter\endinput
+\fi
+%    \end{macrocode}
+%
+% \begin{macro}{\ekvVersion,\ekvDate}
+% We're on our first input, so lets store the version and date in a macro.
+%    \begin{macrocode}
+\def\ekvVersion{1.2}
+\def\ekvDate{2020-04-10}
+%    \end{macrocode}
+% \end{macro}
+%
+% If the \LaTeX\ format is loaded we want to be a good file and report back who
+% we are, for this the package will have defined |\ekv@tmp| to use
+% |\ProvidesFile|, else this will expand to a |\relax| and do no harm.
+%    \begin{macrocode}
+\csname ekv@tmp\endcsname
+%    \end{macrocode}
+%
+% Store the category code of |@| to later be able to reset it and change it to
+% 11 for now.
+%    \begin{macrocode}
+\expandafter\chardef\csname ekv@tmp\endcsname=\catcode`\@
+\catcode`\@=11
+%    \end{macrocode}
+% |\ekv@tmp| might later be reused to gobble any prefixes which might be
+% provided to |\ekvdef| and similar in case the names are invalid, we just
+% temporarily use it here as means to store the current category code of |@| to
+% restore it at the end of the file, we never care for the actual definition of
+% it.
+%
+% \begin{macro}[internal]
+%   {
+%     \@gobble,\@firstofone,\@firstoftwo,\@secondoftwo,
+%     \ekv@gobbleto@stop,\ekv@fi@secondoftwo,\ekv@gobble@mark,
+%     \ekv@gobble@from@mark@to@stop
+%   }
+% Since branching tests are often more versatile than |\if...\else...\fi|
+% constructs, we define helpers that are branching pretty fast. Also here are
+% some other utility functions that just grab some tokens. The ones that are
+% also contained in \LaTeX\ don't use the |ekv| prefix.
+%    \begin{macrocode}
+\long\def\@gobble#1{}
+\long\def\@firstofone#1{#1}
+\long\def\@firstoftwo#1#2{#1}
+\long\def\@secondoftwo#1#2{#2}
+\long\def\ekv@fi@secondoftwo\fi\@firstoftwo#1#2{\fi#2}
+\long\def\ekv@gobbleto@stop#1\ekv@stop{}
+\def\ekv@gobble@mark\ekv@mark{}
+\long\def\ekv@gobble@from@mark@to@stop\ekv@mark#1\ekv@stop{}
+%    \end{macrocode}
+% \end{macro}
+% As you can see |\ekv@gobbleto@stop| uses a special marker |\ekv@stop|. The
+% package will use three such markers, the one you've seen already, |\ekv@mark|
+% and |\ekv@nil|. Contrarily to how for instance \pkg{expl3} does things, we
+% don't define them, as we don't need them to have an actual meaning. This has
+% the advantage that if they somehow get expanded -- which should never happen
+% if things work out -- they'll throw an error directly.
+%
+% \begin{macro}[internal]
+%   {
+%     \ekv@ifempty,\ekv@ifempty@,\ekv@ifempty@true,\ekv@ifempty@false,
+%     \ekv@ifempty@true@F,\ekv@ifempty@true@F@gobble,
+%     \ekv@ifempty@true@F@gobbletwo
+%   }
+% We can test for a lot of things building on an if-empty test, so lets define a
+% really fast one. Since some tests might have reversed logic (true if something
+% is not empty) we also set up macros for the reversed branches.
+%    \begin{macrocode}
+\long\def\ekv@ifempty#1%
+  {%
+    \ekv@ifempty@\ekv@ifempty@A#1\ekv@ifempty@B\ekv@ifempty@true
+      \ekv@ifempty@A\ekv@ifempty@B\@secondoftwo
+  }
+\long\def\ekv@ifempty@#1\ekv@ifempty@A\ekv@ifempty@B{}
+\long\def\ekv@ifempty@true\ekv@ifempty@A\ekv@ifempty@B\@secondoftwo#1#2{#1}
+\long\def\ekv@ifempty@false\ekv@ifempty@A\ekv@ifempty@B\@firstoftwo#1#2{#2}
+\long\def\ekv@ifempty@true@F\ekv@ifempty@A\ekv@ifempty@B\@firstofone#1{}
+\long\def\ekv@ifempty@true@F@gobble\ekv@ifempty@A\ekv@ifempty@B\@firstofone#1#2%
+  {}
+\long\def\ekv@ifempty@true@F@gobbletwo
+    \ekv@ifempty@A\ekv@ifempty@B\@firstofone#1#2#3%
+  {}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@ifblank@}
+% The obvious test that can be based on an if-empty is if-blank, meaning a test
+% checking whether the argument is empty or consists only of spaces. Our version
+% here will be tweaked a bit, as we want to check this, but with one leading
+% |\ekv@mark| token that is to be ignored.
+%    \begin{macrocode}
+\long\def\ekv@ifblank@\ekv@mark#1{\ekv@ifempty@\ekv@ifempty@A}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@ifdefined}
+% We'll need to check whether something is defined quite frequently, so why not
+% define a macro that does this. The following test is expandable, slower than
+% the typical expandable test for undefined control sequences, but faster for
+% defined ones. Since we want to be as fast as possible for correct input, this
+% is to be preferred.
+%    \begin{macrocode}
+\def\ekv@ifdefined#1%
+  {%
+    \expandafter
+    \ifx\csname\ifcsname #1\endcsname #1\else relax\fi\endcsname\relax
+      \ekv@fi@secondoftwo
+    \fi
+    \@firstoftwo
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ekv@name,\ekv@name@set,\ekv@name@key}
+% The keys will all follow the same naming scheme, so we define it here.
+%    \begin{macrocode}
+\def\ekv@name#1#2{\ekv@name@set{#1}\ekv@name@key{#2}}
+\def\ekv@name@set#1{ekv#1(}
+\def\ekv@name@key#1{#1)}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@undefined@set}
+% We can misuse the macro name we use to expandably store the set-name in a
+% single token -- since this increases performance drastically, especially for
+% long set-names -- to throw a more meaningful error message in case a set isn't
+% defined. The name of |\ekv@undefined@set| is a little bit misleading, as it is
+% called in either case inside of |\csname|, but the result will be a control
+% sequence with meaning |\relax| if the set is undefined, hence will break the
+% |\csname| building the key-macro which will throw the error message.
+%    \begin{macrocode}
+\def\ekv@undefined@set#1{! expkv Error: Set `#1' undefined.}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@checkvalid}
+% We place some restrictions on the allowed names, though, namely sets and
+% keys are not allowed to be empty -- blanks are fine (meaning \mbox{set-
+% or} key-names consisting of spaces). The |\def\ekv@tmp| gobbles any \TeX\
+% prefixes which would otherwise throw errors. This will, however, break the
+% package if an |\outer| has been gobbled this way. I consider that good,
+% because keys shouldn't be defined |\outer| anyways.
+%    \begin{macrocode}
+\protected\def\ekv@checkvalid#1#2%
+  {%
+    \ekv@ifempty{#1}%
+      {%
+        \def\ekv@tmp{}%
+        \errmessage{expkv Error: empty set name not allowed}%
+      }%
+      {%
+        \ekv@ifempty{#2}%
+          {%
+            \def\ekv@tmp{}%
+            \errmessage{expkv Error: empty key name not allowed}%
+          }%
+          \@secondoftwo
+      }%
+    \@gobble
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ekvifdefined,\ekvifdefinedNoVal}
+% And provide user-level macros to test whether a key is defined.
+%    \begin{macrocode}
+\def\ekvifdefined#1#2{\ekv@ifdefined{\ekv@name{#1}{#2}}}
+\def\ekvifdefinedNoVal#1#2{\ekv@ifdefined{\ekv@name{#1}{#2}N}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}
+%   {\ekvdef,\ekvdefNoVal,\ekvlet,\ekvletNoVal,\ekvletkv,\ekvletkvNoVal}
+% Set up the key defining macros |\ekvdef| etc.
+%    \begin{macrocode}
+\protected\long\def\ekvdef#1#2#3%
+  {%
+    \ekv@checkvalid{#1}{#2}%
+      {%
+        \expandafter\def\csname\ekv@name{#1}{#2}\endcsname##1{#3}%
+        \expandafter\ekv@defset\csname\ekv@undefined@set{#1}\endcsname{#1}%
+      }%
+  }
+\protected\long\def\ekvdefNoVal#1#2#3%
+  {%
+    \ekv@checkvalid{#1}{#2}%
+      {%
+        \expandafter\def\csname\ekv@name{#1}{#2}N\endcsname{#3}%
+        \expandafter\ekv@defset\csname\ekv@undefined@set{#1}\endcsname{#1}%
+      }%
+  }
+\protected\def\ekvlet#1#2#3%
+  {%
+    \ekv@checkvalid{#1}{#2}%
+      {%
+        \expandafter\let\csname\ekv@name{#1}{#2}\endcsname#3%
+        \expandafter\ekv@defset\csname\ekv@undefined@set{#1}\endcsname{#1}%
+      }%
+  }
+\protected\def\ekvletNoVal#1#2#3%
+  {%
+    \ekv@checkvalid{#1}{#2}%
+      {%
+        \expandafter\let\csname\ekv@name{#1}{#2}N\endcsname#3%
+        \expandafter\ekv@defset\csname\ekv@undefined@set{#1}\endcsname{#1}%
+      }%
+  }
+\protected\def\ekvletkv#1#2#3#4%
+  {%
+    \ekv@checkvalid{#1}{#2}%
+      {%
+        \expandafter\let\csname\ekv@name{#1}{#2}\expandafter\endcsname
+        \csname\ekv@name{#3}{#4}\endcsname
+        \expandafter\ekv@defset\csname\ekv@undefined@set{#1}\endcsname{#1}%
+      }%
+  }
+\protected\def\ekvletkvNoVal#1#2#3#4%
+  {%
+    \ekv@checkvalid{#1}{#2}%
+      {%
+        \expandafter\let\csname\ekv@name{#1}{#2}N\expandafter\endcsname
+        \csname\ekv@name{#3}{#4}N\endcsname
+        \expandafter\ekv@defset\csname\ekv@undefined@set{#1}\endcsname{#1}%
+      }%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@defset}
+%   In order to enhance the speed the set name given to |\ekvset| will be turned
+%   into a control sequence pretty early, so we have to define that control
+%   sequence.
+%    \begin{macrocode}
+\protected\def\ekv@defset#1#2%
+  {%
+    \ifx#1\relax
+      \edef#1##1{\ekv@name@set{#2}\ekv@name@key{##1}}%
+    \fi
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ekvset}
+% Set up |\ekvset|, which should not be affected by active commas and equal
+% signs. The equal signs are a bit harder to cope with and we'll do that later,
+% but replacing the active commas with commas of category other can be done
+% beforehand. That's why we define |\ekvset| here with a temporary meaning just
+% to set up the things with two different category codes. |#1| will be a
+% \texttt{,\textsubscript{13}} and |#2| will be a \texttt{=\textsubscript{13}}.
+%    \begin{macrocode}
+\def\ekvset#1#2{%
+\endgroup
+\long\def\ekvset##1##2%
+  {%
+    \expandafter\ekv@set\csname\ekv@undefined@set{##1}\endcsname
+      \ekv@mark##2#1\ekv@stop#1{}%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@set}
+% |\ekv@set| will split the \kv\ list at active commas. Then it has to check
+% whether there were unprotected other commas and resplit there.
+%    \begin{macrocode}
+\long\def\ekv@set##1##2#1%
+  {%
+%    \end{macrocode}
+% Test whether we're at the end, if so invoke |\ekv@endset|,
+%    \begin{macrocode}
+    \ekv@gobble@from@mark@to@stop##2\ekv@endset\ekv@stop
+%    \end{macrocode}
+% else go on with other commas,
+%    \begin{macrocode}
+    \ekv@set@other##1##2,\ekv@stop,%
+%    \end{macrocode}
+% and get the next active comma delimited \kv\ pair.
+%    \begin{macrocode}
+    \ekv@set##1\ekv@mark
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@endset}
+% |\ekv@endset| is a hungry little macro. It will eat everything that remains
+% of |\ekv@set| and unbrace the sneaked stuff.
+%    \begin{macrocode}
+\long\def\ekv@endset
+    \ekv@stop\ekv@set@other##1,\ekv@stop,\ekv@set##2\ekv@mark
+    ##3%
+  {##3}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@eq@other,\ekv@eq@active}
+%   Splitting at equal signs will be done in a way that checks whether there is
+%   an equal sign and splits at the same time. This gets quite messy and the
+%   code might look complicated, but this is pretty fast (faster than first
+%   checking for an equal sign and splitting if one is found). The splitting
+%   code will be adapted for |\ekvset| and |\ekvparse| to get the most speed,
+%   but some of these macros don't require such adaptions. |\ekv@eq@other| and
+%   |\ekv@eq@active| will split the argument at the first equal sign and insert
+%   the macro which comes after the first following |\ekv@mark|. This allows for
+%   fast branching based on \TeX's argument grabbing rules and we don't have to
+%   split after the branching if the equal sign was there.
+%    \begin{macrocode}
+\long\def\ekv@eq@other##1=##2\ekv@mark##3##4\ekv@stop
+  {%
+    ##3##1\ekv@stop\ekv@mark##2%
+  }
+\long\def\ekv@eq@active##1#2##2\ekv@mark##3##4\ekv@stop
+  {%
+    ##3##1\ekv@stop\ekv@mark##2%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@set@other}
+%   The macro |\ekv@set@other| is guaranteed to get only single \kv\ pairs.
+%    \begin{macrocode}
+\long\def\ekv@set@other##1##2,%
+  {%
+%    \end{macrocode}
+%   First we test whether we're done.
+%    \begin{macrocode}
+    \ekv@gobble@from@mark@to@stop##2\ekv@endset@other\ekv@stop
+%    \end{macrocode}
+%   If not we split at the equal sign of category other.
+%    \begin{macrocode}
+    \ekv@eq@other##2\ekv@nil\ekv@mark\ekv@set@eq@other@a
+      =\ekv@mark\ekv@set@eq@active\ekv@stop
+%    \end{macrocode}
+%   And insert the set name and the next recursion step of |\ekv@set@other|.
+%    \begin{macrocode}
+    ##1%
+    \ekv@set@other##1\ekv@mark
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@set@eq@other@a, \ekv@set@eq@other@b}
+%   The first of these two macros runs the split-test for equal signs of
+%   category active. It will only be inserted if the \kv\ pair contained at
+%   least one equal sign of category other and |##1| will contain everything up
+%   to that equal sign.
+%    \begin{macrocode}
+\long\def\ekv@set@eq@other@a##1\ekv@stop
+  {%
+    \ekv@eq@active##1\ekv@nil\ekv@mark\ekv@set@eq@other@active@a
+      #2\ekv@mark\ekv@set@eq@other@b\ekv@stop
+  }
+%    \end{macrocode}
+%   The second macro will have been called by |\ekv@eq@active| if no active
+%   equal sign was found. All it does is remove the excess tokens of that
+%   test and forward the \kv\ pair to |\ekv@set@pair|.
+%    \begin{macrocode}
+\long\def\ekv@set@eq@other@b
+    ##1\ekv@nil\ekv@mark\ekv@set@eq@other@active@a\ekv@stop\ekv@mark
+  {%
+    \ekv@strip{##1}\ekv@set@pair
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@set@eq@other@active@a,\ekv@set@eq@other@active@b}
+%   |\ekv@set@eq@other@active@a| will be called if the \kv\ pair was wrongly
+%   split on an equal sign of category other but has an earlier equal sign of
+%   category active. |##1| will be the contents up to the active equal sign and
+%   |##2| everything that remains until the first found other equal sign. It has
+%   to reinsert the equal sign and passes things on to
+%   |\ekv@set@eq@other@active@b| which calls |\ekv@set@pair| on the then
+%   correctly split \kv\ pair.
+%    \begin{macrocode}
+\long\def\ekv@set@eq@other@active@a##1\ekv@stop##2\ekv@nil\ekv@mark
+  {%
+    \ekv@set@eq@other@active@b{##1}##2=%
+  }
+\long\def\ekv@set@eq@other@active@b##1%
+  {%
+    \ekv@strip{##1}\ekv@set@pair
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@set@eq@active, \ekv@set@eq@active@}
+%   |\ekv@set@eq@active| will be called when there was no equal sign of category
+%   other in the \kv\ pair. It removes the excess tokens of the prior test and
+%   split-checks for an active equal sign.
+%    \begin{macrocode}
+\long\def\ekv@set@eq@active
+    ##1\ekv@nil\ekv@mark\ekv@set@eq@other@a\ekv@stop\ekv@mark
+  {%
+    \ekv@eq@active##1\ekv@nil\ekv@mark\ekv@set@eq@active@
+      #2\ekv@mark\ekv@set@noeq\ekv@stop
+  }
+%    \end{macrocode}
+%   If an active equal sign was found in |\ekv@set@eq@active| we'll have to pass
+%   the now split \kv\ pair on to |\ekv@set@pair|.
+%    \begin{macrocode}
+\long\def\ekv@set@eq@active@##1\ekv@stop
+  {%
+    \ekv@strip{##1}\ekv@set@pair
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@set@noeq}
+%   If no active equal sign was found by |\ekv@set@eq@active| there is no equal
+%   sign contained in the parsed list entry. In that case we have to check
+%   whether the entry is blank in order to ignore it (in which case we'll have
+%   to gobble the set-name which was put after these tests by |\ekv@set@other|).
+%   Else this is a |NoVal| key and the entry is passed on to |\ekv@set@key|.
+%    \begin{macrocode}
+\long\def\ekv@set@noeq##1\ekv@nil\ekv@mark\ekv@set@eq@active@\ekv@stop\ekv@mark
+  {%
+    \ekv@ifblank@##1\ekv@nil\ekv@ifempty@B\ekv@ifempty@true@F@gobble
+      \ekv@ifempty@A\ekv@ifempty@B\@firstofone
+      {\ekv@strip{##1}\ekv@set@key}%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@endset@other}
+%   All that's left for |\ekv@set@other| is the macro which breaks the recursion
+%   loop at the end. This is done by gobbling all the remaining tokens.
+%    \begin{macrocode}
+\long\def\ekv@endset@other
+    \ekv@stop
+    \ekv@eq@other##1\ekv@nil\ekv@mark\ekv@set@eq@other@a
+    =\ekv@mark\ekv@set@eq@active\ekv@stop
+    ##2%
+    \ekv@set@other##3\ekv@mark
+  {}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ekvbreak,\ekvbreakPreSneak,\ekvbreakPostSneak}
+% Provide macros that can completely stop the parsing of |\ekvset|, who knows
+% what it'll be useful for.
+%    \begin{macrocode}
+\long\def\ekvbreak##1##2\ekv@stop#1##3{##1}
+\long\def\ekvbreakPreSneak ##1##2\ekv@stop#1##3{##1##3}
+\long\def\ekvbreakPostSneak##1##2\ekv@stop#1##3{##3##1}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ekvsneak,\ekvsneakPre}
+% One last thing we want to do for |\ekvset| is to provide macros that just
+% smuggle stuff after |\ekvset|'s effects.
+%    \begin{macrocode}
+\long\def\ekvsneak##1##2\ekv@stop#1##3%
+  {%
+    ##2\ekv@stop#1{##3##1}%
+  }
+\long\def\ekvsneakPre##1##2\ekv@stop#1##3%
+  {%
+    ##2\ekv@stop#1{##1##3}%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ekvparse}
+% Additionally to the |\ekvset| macro we also want to provide an |\ekvparse|
+% macro, that has the same scope as |\keyval_parse:NNn| from \pkg{expl3}.
+% This is pretty analogue to the |\ekvset| implementation, we just put an
+% |\unexpanded| here and there instead of other macros to stop the |\expanded|
+% on our output.
+%    \begin{macrocode}
+\long\def\ekvparse##1##2##3%
+  {%
+    \ekv@parse##1##2\ekv@mark##3#1\ekv@stop#1%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@parse}
+%    \begin{macrocode}
+\long\def\ekv@parse##1##2##3#1%
+  {%
+    \ekv@gobble@from@mark@to@stop##3\ekv@endparse\ekv@stop
+    \ekv@parse@other##1##2##3,\ekv@stop,%
+    \ekv@parse##1##2\ekv@mark
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@endparse}
+%    \begin{macrocode}
+\long\def\ekv@endparse
+    \ekv@stop\ekv@parse@other##1,\ekv@stop,\ekv@parse##2\ekv@mark
+  {}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@parse@other}
+%    \begin{macrocode}
+\long\def\ekv@parse@other##1##2##3,%
+  {%
+    \ekv@gobble@from@mark@to@stop##3\ekv@endparse@other\ekv@stop
+    \ekv@eq@other##3\ekv@nil\ekv@mark\ekv@parse@eq@other@a
+      =\ekv@mark\ekv@parse@eq@active\ekv@stop
+    ##1##2%
+    \ekv@parse@other##1##2\ekv@mark
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@parse@eq@other@a,\ekv@parse@eq@other@b}
+%    \begin{macrocode}
+\long\def\ekv@parse@eq@other@a##1\ekv@stop
+  {%
+    \ekv@eq@active##1\ekv@nil\ekv@mark\ekv@parse@eq@other@active@a
+      #2\ekv@mark\ekv@parse@eq@other@b\ekv@stop
+  }
+\long\def\ekv@parse@eq@other@b
+    ##1\ekv@nil\ekv@mark\ekv@parse@eq@other@active@a\ekv@stop\ekv@mark
+  {%
+    \ekv@strip{##1}\ekv@parse@pair
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]
+%   {\ekv@parse@eq@other@active@a,\ekv@parse@eq@other@active@b}
+%    \begin{macrocode}
+\long\def\ekv@parse@eq@other@active@a##1\ekv@stop##2\ekv@nil\ekv@mark
+  {%
+    \ekv@parse@eq@other@active@b{##1}##2=%
+  }
+\long\def\ekv@parse@eq@other@active@b##1%
+  {%
+    \ekv@strip{##1}\ekv@parse@pair
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@parse@eq@active,\ekv@parse@eq@active@}
+%    \begin{macrocode}
+\long\def\ekv@parse@eq@active
+    ##1\ekv@nil\ekv@mark\ekv@parse@eq@other@a\ekv@stop\ekv@mark
+  {%
+    \ekv@eq@active##1\ekv@nil\ekv@mark\ekv@parse@eq@active@
+      #2\ekv@mark\ekv@parse@noeq\ekv@stop
+  }
+\long\def\ekv@parse@eq@active@##1\ekv@stop
+  {%
+    \ekv@strip{##1}\ekv@parse@pair
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@parse@noeq}
+%    \begin{macrocode}
+\long\def\ekv@parse@noeq
+    ##1\ekv@nil\ekv@mark\ekv@parse@eq@active@\ekv@stop\ekv@mark
+  {%
+    \ekv@ifblank@##1\ekv@nil\ekv@ifempty@B\ekv@ifempty@true@F@gobbletwo
+      \ekv@ifempty@A\ekv@ifempty@B\@firstofone
+      {\ekv@strip{##1}\ekv@parse@key}%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@endparse@other}
+%    \begin{macrocode}
+\long\def\ekv@endparse@other
+    \ekv@stop
+    \ekv@eq@other##1\ekv@nil\ekv@mark\ekv@parse@eq@other@a
+    =\ekv@mark\ekv@parse@eq@active\ekv@stop
+    ##2%
+    \ekv@parse@other##3\ekv@mark
+  {}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@parse@pair,\ekv@parse@pair@}
+%    \begin{macrocode}
+\long\def\ekv@parse@pair##1##2\ekv@nil
+  {%
+    \ekv@strip{##2}\ekv@parse@pair@{##1}%
+  }
+\long\def\ekv@parse@pair@##1##2##3##4%
+  {%
+    \unexpanded{##4{##2}{##1}}%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@parse@key}
+%    \begin{macrocode}
+\long\def\ekv@parse@key##1##2##3%
+  {%
+    \unexpanded{##2{##1}}%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% Finally really setting things up with |\ekvset|'s temporary meaning:
+%    \begin{macrocode}
+}
+\begingroup
+\catcode`\,=13
+\catcode`\==13
+\ekvset,=
+%    \end{macrocode}
+%
+% \begin{macro}{\ekvchangeset}
+% Provide a macro that is able to switch out the current \set\ in |\ekvset|.
+% This operation is slow (by comparison, it should be slightly faster than
+% |\ekvsneak|), but allows for something similar to \pkg{pgfkeys}'s
+% \texttt{\meta{key}/.cd} mechanism. However this operation is more expensive
+% than |/.cd| as we can't just redefine some token to reflect this, but have to
+% switch out the set expandably, so this works similar to the |\ekvsneak| macros
+% reading and reinserting the remainder of the \kv\ list.
+%    \begin{macrocode}
+\def\ekvchangeset#1%
+  {%
+    \expandafter\ekv@changeset\csname\ekv@undefined@set{#1}\endcsname\ekv@mark
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@changeset}
+% This macro does the real change-out of |\ekvchangeset|. We introduced an
+% |\ekv@mark| to not accidentally remove some braces which we have to remove
+% again.
+%    \begin{macrocode}
+\long\def\ekv@changeset#1#2\ekv@set@other#3#4\ekv@set#5%
+  {%
+    \ekv@gobble@mark#2\ekv@set@other#1#4\ekv@set#1%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}[internal]{\ekv@set@pair}
+%   |\ekv@set@pair| gets invoked with the space and brace stripped key-name as
+%   its first argument, the value as the second argument, and the set name as
+%   the third argument. It builds the key-macro name and provides everything to
+%   be able to throw meaningful error messages if it isn't defined.
+%   |\ekv@set@pair@| will space and brace strip the value if the macro is
+%   defined and call the key-macro. Else it'll branch into the error messages
+%   provided by |\ekv@set@pair|.
+%    \begin{macrocode}
+\long\def\ekv@set@pair#1#2\ekv@nil#3%
+  {%
+    \expandafter\ekv@set@pair@
+      \csname
+        \ifcsname #3{#1}\endcsname
+          #3{#1}%
+        \else
+          relax%
+        \fi
+      \endcsname
+      {#2}%
+      {%
+        \ekv@ifdefined{#3{#1}N}%
+          \ekv@err@noarg
+          \ekv@err@unknown
+          #3{#1}%
+      }%
+  }
+\long\def\ekv@set@pair@#1#2%
+  {%
+    \ifx#1\relax
+      \ekv@fi@secondoftwo
+    \fi
+    \@firstoftwo
+    {\ekv@strip{#2}#1}%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@set@key}
+% Analogous to |\ekv@set@pair|, |\ekv@set@key| builds the |NoVal| key-macro and
+% provides an error-branch. |\ekv@set@key@| will test whether the key-macro is
+% defined and if so call it, else the errors are thrown.
+%    \begin{macrocode}
+\long\def\ekv@set@key#1#2%
+  {%
+    \expandafter\ekv@set@key@
+      \csname
+        \ifcsname #2{#1}N\endcsname
+          #2{#1}N%
+        \else
+          relax%
+        \fi
+      \endcsname
+      {%
+        \ekv@ifdefined{#2{#1}}%
+          \ekv@err@reqval
+          \ekv@err@unknown
+          #2{#1}%
+      }%
+  }
+\def\ekv@set@key@#1%
+  {%
+    \ifx#1\relax
+      \ekv@fi@secondoftwo
+    \fi
+    \@firstoftwo#1%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@err,\ekv@err@}
+% Since |\ekvset| is fully expandable as long as the code of the keys is (which
+% is unlikely) we want to somehow throw expandable errors, in our case via
+% undefined control sequences.
+%    \begin{macrocode}
+\begingroup
+\edef\ekv@err
+  {%
+    \endgroup
+    \unexpanded{\long\def\ekv@err}##1%
+      {%
+        \unexpanded{\expandafter\ekv@err@\@firstofone}%
+        {\unexpanded\expandafter{\csname ! expkv Error:\endcsname}##1.}%
+        \unexpanded{\ekv@stop}%
+      }%
+  }
+\ekv@err
+\def\ekv@err@{\expandafter\ekv@gobbleto@stop}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]
+%   {
+%     \ekv@err@common,\ekv@err@common@,
+%     \ekv@err@unknown,\ekv@err@noarg,\ekv@err@reqval
+%   }
+% Now we can use |\ekv@err| to set up some error messages so that we can later
+% use those instead of the full strings.
+%    \begin{macrocode}
+\long\def\ekv@err@common #1#2{\expandafter\ekv@err@common@\string#2{#1}}
+\long\def\ekv@err@common@#1`#2' #3.#4#5{\ekv@err{#4 (`#5', set `#2')}}
+\long\def\ekv@err@unknown#1#2{\ekv@err@common{unknown key}#1{#2}}
+\long\def\ekv@err@noarg  #1#2{\ekv@err@common{value forbidden}#1{#2}}
+\long\def\ekv@err@reqval #1#2{\ekv@err@common{value required}#1{#2}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}[internal]{\ekv@strip,\ekv@strip@a,\ekv@strip@b,\ekv@strip@c}
+% Finally we borrow some ideas of \pkg{expl3}'s \pkg{l3tl} to strip spaces
+% from keys and values. This |\ekv@strip| also strips one level of outer braces
+% \emph{after} stripping spaces, so an input of | {abc} | becomes |abc| after
+% stripping. It should be used with |#1| prefixed by |\ekv@mark|. Also this
+% implementation at most strips \emph{one} space from both sides.
+%    \begin{macrocode}
+\def\ekv@strip#1%
+  {%
+    \long\def\ekv@strip##1%
+      {%
+        \ekv@strip@a
+          ##1%
+          \ekv@nil
+          \ekv@mark#1%
+          #1\ekv@nil{}%
+        \ekv@stop
+      }%
+    \long\def\ekv@strip@a##1\ekv@mark#1##2\ekv@nil##3%
+      {%
+        \ekv@strip@b##3##1##2\ekv@nil
+      }%
+    \long\def\ekv@strip@b##1#1\ekv@nil
+      {%
+        \ekv@strip@c##1\ekv@nil
+      }%
+    \long\def\ekv@strip@c\ekv@mark##1\ekv@nil##2\ekv@stop##3%
+      {%
+        ##3{##1}%
+      }%
+  }
+\ekv@strip{ }
+%    \end{macrocode}
+% \end{macro}
+%
+% Now everything that's left is to reset the category code of |@|.
+%    \begin{macrocode}
+\catcode`\@=\ekv@tmp
+%    \end{macrocode}
+%
+% \gobbledocstriptag
+%</tex>
+%^^A=<<
+%
+%^^A=<<
+%
+% \end{implementation}^^A=<<
+%
+% \clearpage
+% \PrintIndex
+%
+\endinput
+%
+^^A vim: ft=tex fdm=marker fmr=>>=,=<<

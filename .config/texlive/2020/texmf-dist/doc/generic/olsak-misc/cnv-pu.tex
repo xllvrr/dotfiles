@@ -1,0 +1,266 @@
+
+% cnv-pu.tex -- The conversion table for UNICODE output for PFD outlines 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% April 2005                                                  Petr Olsak
+
+% You can use cnv.tex + this table with your macros in plain if you
+% need to save the PDF outlines in UNICODE octal strings.
+
+% You can use cnv.tex + this table with hyperref in LaTeX if you don't
+% want to use the inputenc package. Eight-bit tokens are used as single
+% non-active accented characters from the alphabet of your language. 
+% In such a case you can type:
+%
+% \usepackage{czech}     % IL2 font encoding is declared here
+%                        % You can use another package which defines
+%                        % \encodingdefault.
+% \input cnv-pu.tex      % font encoding declared before is used here
+% \usepackage{hyperref}  
+% \def\pdfstringdef #1#2{% \pdfstringdef re-definition
+%    \bgroup \escapechar=`\\%
+%    \def\cnvtable{pu}\cnvin{#2}%
+%    \xdef #1{\string\376\string\377\cnvout}\egroup }
+
+% Sorry, the following conversion table is not considered to be definite.
+% If you add some usual conversion rules, please, send the result to
+% the author <petr@olsak.net>. I'll be very pleased to add your additions
+% to my cnv.tex distribution. 
+
+\ifx\cnvin\undefined  \input cnv \fi
+
+\bgroup
+
+\let\predefmethod=\gdef
+\let\findefmethod=\xdef
+\let\cnvaccentmethod=\gdef
+
+\def\declchar #1#2#3     {\findef {#1} {#2#3}}
+\def\declaccent #1#2#3#4 {\cnvaccent #1#2{#3#4}}
+
+\def\0{\string\0} \def\1{\string\1} \def\2{\string\2} \def\3{\string\3}
+
+\gdef\cnvdefault #1{}         % undeclared tokens will be removed
+\xdef\cnvadefault {\000\077}  % undeclared accents are converted to "?"
+
+\def\cnvtable{pu}  % PdfUnicode conversion table
+
+\declchar  { }  \000\040
+\declchar  !    \000\041
+\declchar  "    \000\042
+\declchar  #    \000\043
+\declchar  \#   \000\043
+%\declchar  $   \000\044
+\declchar  \$   \000\044
+\declchar  \%   \000\045
+\declchar  &    \000\046
+\declchar  \&   \000\046
+\declchar  '    \000\047
+\declchar  (    \000\050
+\declchar  )    \000\051
+\declchar  *    \000\052
+\declchar  +    \000\053
+\declchar  ,    \000\054
+\declchar  -    \000\055
+\declchar  .    \000\056
+\declchar  /    \000\057
+\declchar  0    \000\060
+\declchar  1    \000\061
+\declchar  2    \000\062
+\declchar  3    \000\063
+\declchar  4    \000\064
+\declchar  5    \000\065
+\declchar  6    \000\066
+\declchar  7    \000\067
+\declchar  8    \000\070
+\declchar  9    \000\071
+\declchar  :    \000\072
+\declchar  ;    \000\073
+\declchar  <    \000\074
+\declchar  =    \000\075
+\declchar  >    \000\076
+\declchar  ?    \000\077
+\declchar  @    \000@
+\declchar  A    \000A
+\declchar  B    \000B
+\declchar  C    \000C
+\declchar  D    \000D
+\declchar  E    \000E
+\declchar  F    \000F
+\declchar  G    \000G
+\declchar  H    \000H
+\declchar  I    \000I
+\declchar  J    \000J
+\declchar  K    \000K
+\declchar  L    \000L
+\declchar  M    \000M
+\declchar  N    \000N
+\declchar  O    \000O
+\declchar  P    \000P
+\declchar  Q    \000Q
+\declchar  R    \000R
+\declchar  S    \000S
+\declchar  T    \000T
+\declchar  U    \000U
+\declchar  V    \000V
+\declchar  W    \000W
+\declchar  X    \000X
+\declchar  Y    \000Y
+\declchar  Z    \000Z
+\declchar  [    \000\133
+\declchar  \\   \000\134
+\declchar  ]    \000\135
+\declchar  ^    \000\136
+\declchar  _    \000\137
+\declchar  `    \000\140
+\declchar  a    \000a
+\declchar  b    \000b
+\declchar  c    \000c
+\declchar  d    \000d
+\declchar  e    \000e
+\declchar  f    \000f
+\declchar  g    \000g
+\declchar  h    \000h
+\declchar  i    \000i
+\declchar  j    \000j
+\declchar  k    \000k
+\declchar  l    \000l
+\declchar  m    \000m
+\declchar  n    \000n
+\declchar  o    \000o
+\declchar  p    \000p
+\declchar  q    \000q
+\declchar  r    \000r
+\declchar  s    \000s
+\declchar  t    \000t
+\declchar  u    \000u
+\declchar  v    \000v
+\declchar  w    \000w
+\declchar  x    \000x
+\declchar  y    \000y
+\declchar  z    \000z
+\declchar  \{   \000\173
+\declchar  |    \000\174
+\declchar  \}   \000\175
+\declchar  \~   \000\176
+\declchar  ~    \000\040
+
+\declchar  \O   \000\330
+\declchar  \o   \000\370
+\declchar  \AA  \000\305
+\declchar  \aa  \000\345
+\declchar  \AE  \000\306
+\declchar  \ae  \000\346
+\declchar  \OE  \001\122
+\declchar  \oe  \001\123
+\declchar  \ss  \000\337
+\declchar  \L   \001\101
+\declchar  \l   \001\102
+
+% etc...
+
+\predef \TeX    {TeX}
+\predef \LaTeX  {La\TeX}
+\predef \LaTeXe {\LaTeX2e}
+\predef \eTeX   {e-\TeX}
+\predef \MF     {Metafont}
+\predef \MP     {Metapost}
+
+\predef \uv #1{\clqq #1\crqq}
+
+\declchar \clqq  \000\214
+\declchar \crqq  \000\215
+
+% etc...
+
+% The \declaccent macro depends on the expansion of \'a etc.
+% If these sequences expand to a single token then this token is stored
+% to the conversion table too: it means that \'a and a native a-acute
+% are both converted to \000\341.
+% In order to prepare the \'a (etc) expansion we need to test if we are
+% in LaTeX (\fontencoding is defined) or not. In non-LaTeX case, we run the
+% \csaccents macro (or \relax if not defined). This macro redefines \'
+% (etc.) macros as expandable in csplain format.
+
+\ifx\fontencoding\undefined
+   \csname csaccents\endcsname
+\else
+   \fontencoding{\encodingdefault}\selectfont
+\fi
+
+\declaccent  \' A  \000\301
+\declaccent  \' a  \000\341
+\declaccent  \` A  \000\300
+\declaccent  \` a  \000\340
+\declaccent  \" A  \000\304
+\declaccent  \" a  \000\344
+\declaccent  \v C  \001\014
+\declaccent  \v c  \001\015
+\declaccent  \v D  \001\016
+\declaccent  \v d  \001\017
+\declaccent  \' E  \000\311
+\declaccent  \' e  \000\351
+\declaccent  \v E  \001\032
+\declaccent  \v e  \001\033
+\declaccent  \" E  \000\313
+\declaccent  \" e  \000\353
+\declaccent  \' I  \000\315
+\declaccent  \' i  \000\355
+\declaccent  \' L  \001\071
+\declaccent  \' l  \001\072
+\declaccent  \v L  \001\075
+\declaccent  \v l  \001\076
+\declaccent  \v N  \001\107
+\declaccent  \v n  \001\110
+\declaccent  \^ O  \000\324
+\declaccent  \^ o  \000\364
+\declaccent  \' O  \000\323
+\declaccent  \' o  \000\363
+\declaccent  \" O  \000\326
+\declaccent  \" o  \000\366
+\declaccent  \' R  \001\124
+\declaccent  \' r  \001\125
+\declaccent  \v R  \001\130
+\declaccent  \v r  \001\131
+\declaccent  \v S  \001\140
+\declaccent  \v s  \001\141
+\declaccent  \v T  \001\144
+\declaccent  \v t  \001\145
+\declaccent  \r U  \001\156
+\declaccent  \r u  \001\157
+\declaccent  \' U  \000\332
+\declaccent  \' u  \000\372
+\declaccent  \" U  \000\334
+\declaccent  \" u  \000\374
+\declaccent  \' Y  \000\335
+\declaccent  \' y  \000\375
+\declaccent  \v Z  \001\175
+\declaccent  \v z  \001\176
+
+% dirty trick: LaTeX has a bad conception in \@sect macro: this macro
+% mixes the \ifnum calculation with the real text of the section
+% in one parameter of \addtocontentsline. We need to expand the \ifnum
+% but not expand the other text:
+
+\predef \ifnum #1\fi {\cnvexpandtext{\ifnum#1\fi}}
+
+% -- and --- ligatures:
+
+\predef -{\cnvexec \futurelet \nextchar \testtwodash}
+\gdef\testtwodash {\ifx-\nextchar \expandafter \twodash
+   \else \expandafter \cnvnext \expandafter \onedash \fi}
+\gdef\twodash #1{\futurelet \nextchar \testthreedash}
+\gdef\testthreedash {\ifx-\nextchar \expandafter \threedash
+   \else \expandafter \cnvnext \expandafter \twodash \fi}
+\gdef\threedash #1{\cnvnext \threedash}
+\findef\onedash   {\000\055}  % normal minus
+\findef\twodash   {\000\205}  % endash
+\findef\threedash {\000\204}  % emdash
+
+\egroup
+
+
+
+
+
+
+

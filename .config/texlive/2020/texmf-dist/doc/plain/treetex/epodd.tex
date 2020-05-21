@@ -1,0 +1,1189 @@
+% This is epodd.tex, the description of the treetex macro package as it will
+% appear in EP-ODD in summer 89. It is in some aspects more general
+% than tree_doc.tex and corrects an error in the computation of
+% the number of registers used by treetex. The user interface of
+% treetex is explained in more detail in tree_doc.tex.
+
+\documentstyle[12pt,fullpage]{article}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\def\addcontentsline#1#2#3{\relax}% Some captions are too long for some
+     % TeX installations (buffer size too small)
+
+\newenvironment{lemma}{\begingroup\samepage\begin{lemmma}\ }{\end{lemmma}%
+     \endgroup}
+\newtheorem{lemmma}{Lemma}[section]
+\newenvironment{proof}{\begin{prooof}\rm\ \nopagebreak}{\end{prooof}}
+\newcommand{\proofend}{\qquad\ifmmode\Box\else$\Box$\fi}
+\newtheorem{prooof}{Proof}
+\renewcommand{\theprooof}{}   % makes shure that prooof doesn't get numbers
+\newenvironment{Figure}{\begin{figure}\vspace{1\baselineskip}}%
+                       {\vspace{1\baselineskip}\end{figure}}
+\newlength{\figspace}         % space between figures in a single
+\setlength{\figspace}{30pt}   % Figure environment
+
+\newcommand{\var}[1]{{\it #1\/}}     % use it for names of variables
+\newcommand{\emph}[1]{{\em #1\/}}    % use it for emphazided text
+                                     % (This notion sticks to the
+                                     % applicative style of markup.)
+\renewcommand{\O}{{\rm O}}           % O-notation, also for math mode
+\newcommand{\T}{{\cal T}}            % the set T in math mode
+\newcommand{\TreeTeX}{Tree\TeX}
+\newcommand{\fig}[1]{Figure~\ref{#1}}
+\let\p\par
+
+\input treetex
+\Treestyle{\vdist{20pt}\minsep{16pt}}
+\dummyhalfcenterdim@n=2pt
+
+% \def\Tree#1\end#2{\end{Tree}}  % Trees are not processed
+% \let\endTree\relax                  %
+
+\def\Node(#1,#2){\put(#1,#2){\circle*{4}}}
+\def\Edge(#1,#2,#3,#4,#5){\put(#1,#2){\line(#3,#4){#5}}}
+
+\def\enode{\node{\external\type{dot}}}
+\def\inode{\node{\type{dot}}}
+
+\def\e{\node{\external\type{dot}}}
+\def\i{\node{\type{dot}}}
+\def\il{\node{\type{dot}\leftonly}}
+\def\ir{\node{\type{dot}\rightonly}}
+
+\newcommand{\stack}[3]{%
+     \vtop{\settowidth{\hsize}{#1}%
+     \setlength{\leftskip}{0pt plus 1fill}%
+     \setlength{\baselineskip}{#2}#3}}
+
+\let\multic\multicolumn
+
+\newlength{\hd} % hidden digit
+\setbox0\hbox{1}
+\settowidth{\hd}{\usebox{0}}
+\newcommand{\ds}{\hspace{\hd}} % digit space
+
+\newcommand{\ccol}[1]{\multicolumn{1}{c}{#1}}
+
+\hyphenation{post-or-der sym-bol Karls-ruhe bool-ean}
+
+\begin{document}
+
+\bibliographystyle{plain}
+
+\title{Drawing Trees Nicely with \TeX\thanks{This work was supported by
+     a Natural Sciences and Engineering Research Council of Canada
+     Grant~A-5692, a Deutsche Forschungsgemeinschaft Grant~Sto167/1-1,
+     and a grant from the Information Technology Research  Centre.
+     It was begun during the first author's stay with
+     the Data Structuring Group in Waterloo.}}
+\author{Anne Br\"uggemann-Klein\thanks{Institut f\"ur Informatik,
+     Universit\"at Freiburg, Rheinstr.~10--12, 7800~Freiburg,
+     West~Germany}\ \and Derick Wood\thanks{Data
+     Structuring Group, Department of Computer Science, University of
+     Waterloo, Waterloo, Ontario N2L~3G1, Canada}}
+\date{}
+\maketitle
+
+\begin{abstract}
+
+We present a new solution to the tree drawing problem that
+integrates an excellent tree drawing algorithm into one of the best text
+processing systems available. More precisely, we present a \TeX{} macro package
+called \TreeTeX{} that produces drawings of trees from a purely logical
+description. Our approach has three advantages: Labels
+for nodes can be handled in a reasonable way; porting
+\TreeTeX{} to any site running \TeX{} is a trivial operation; and
+modularity in the description of a tree and \TeX{}'s macro capabilities
+allow for libraries of subtrees and tree classes.
+
+In addition, \TreeTeX{} has an option that produces
+drawings that make the
+\emph{structure} of the trees more obvious to the human eye,
+even though they may not be as aesthetically pleasing.
+
+\end{abstract}
+
+\section{Introduction}
+
+The problem of successfully integrating pictures and text in a
+document processing environment is tantalizing and difficult.
+Although there are systems available that allow such integration, they
+fall short in many ways, usually in document quality. Furthermore,
+most authors using document  preparation systems are neither book 
+designers nor graphic artists.  Just as modern document preparation
+systems do not expect an author to be a book designer, so we would
+prefer that they do not expect an author to be a graphic artist. The
+second author, Wood, needed to draw many trees in a series of papers
+on trees and in a projected book on trees. This problem enabled us
+to tackle the integration issue for one subarea of graphics, namely,
+tree drawing. We had the decided advantage that there already existed good
+algorithms to draw trees {\em without any author intervention}.
+Previous experience of the integration of pictures and text had been
+uninspiring; the  systems expected the author to prepare each picture
+in total. For example, a tree could be built up from smaller
+subtrees but the relative placement of them was left to the author.
+This situation continues to hold today with the drawing facilities
+available on most personal computers, and, because of this, the
+resulting figures still appear to be ``hand-drawn.'' Additionally,
+they are of inferior quality when compared with the quality of
+the surrounding text.
+
+In this paper we present an entirely new solution that integrates
+a tree drawing algorithm into one of the best text processing
+systems available. More precisely, we  describe \TreeTeX{}, a
+\TeX{} macro package that produces an aesthetically pleasing
+drawing of a tree from a purely logical description.
+We made two fundamental design
+decisions that heavily influenced the method of implementation.
+First, we wanted to allow an author to label the nodes of a tree.
+This decision means that the tree drawing package must be able to
+typeset labels exactly as they would be typeset by the typesetting
+program. There are two reasons for this. Text should be typeset
+consistently, wherever it appears in a document, and the tree
+drawing program needs to know the dimensions of the typeset labels.
+Second, we wanted to ensure that the program could be ported
+easily to other installations and sites, so that other, putative
+users would be able to use it easily.
+Indeed, \TreeTeX{} has been used successfully to typeset trees in
+\cite{BaezaTrees}, \cite{KWIFIP}, and \cite{OAPD}.
+
+By basing our package on \TeX{}, which for more subjective
+reasons we preferred over other typesetting systems such as
+troff, we could ensure wide interest
+in the package. By implementing it as a \TeX{} macro package
+instead of a preprocessor
+we made porting trivial and, furthermore, this also ensured
+consistency of typeset text within a document.
+The down side of this decision is that we had  to program with
+\TeX{} macros, not an experience to be recommended, and we had to live
+with the inherent register limitations of \TeX{}.
+
+This paper consists of a further nine  sections. In Sections~2, 3 and~4,
+we discuss the aesthetics of tree drawing and the algorithm of
+Reingold and Tilford~\cite{TidierTrees}. In Sections~5, 6, and~7, we
+describe our method of incorporating tree drawing into \TeX{}. Then,
+in the last three short sections, we consider the expected number of
+registers \TeX{} needs to draw a tree, the user interface (and three
+\TreeTeX{} examples), and discussion of, among other things, the
+performance  of \TreeTeX{}.
+
+\section{Aesthetical criteria for drawing trees}
+
+In this paper, we are dealing with ordered
+trees in the sense of~\cite{ACP}, specifically binary and unary-binary
+trees. A {\em binary tree\/} is a finite set of nodes that either
+is empty, or consists of a root and two disjoint binary trees called
+the left and right subtrees of the root. A {\em unary-binary tree\/} is
+a finite set of nodes that either is empty, or consists of a root and
+two disjoint unary-binary trees, or consists of a root and one
+nonempty unary-binary tree. An {\em extended binary tree\/} is a binary tree
+in which each node has either two nonempty subtrees or two
+empty subtrees.
+
+There are some basic agreements on how such trees should be drawn, reflecting
+the top-down and left-right ordering of nodes in a tree.
+In \cite{TidierTrees} and \cite{TidyTrees} these basic agreements were
+formalized as the following axioms.
+
+\begin{enumerate}
+\item[1.] Trees impose a distance on the nodes; no node
+          should be closer to the root than any of its
+          ancestors.
+\item[2.] Nodes on the same level should lie on a straight
+          line, and the straight lines defining the levels should be
+          parallel.
+\item[3.] The relative order of nodes on any level should be the same
+          as in the level order traversal of the tree.
+\end{enumerate}
+
+These axioms guarantee that trees are drawn as planar graphs: edges do
+not intersect except at nodes. Two further axioms improve the aesthetical
+appearance of trees.
+
+\begin{enumerate}
+\item[4.] In a unary-binary tree, each left child should be positioned
+          to the left of its parent, each
+          right child to the right of its parent, and each unary child
+          should be positioned below its parent.
+\item[5.] A parent should be centered over its children.
+\end{enumerate}
+
+An additional axiom deals with the problem of tree drawings becoming too wide
+and therefore exceeding the physical limit of the output medium:
+
+\begin{enumerate}
+\item[6.] Tree drawings should occupy as little width as possible without
+          violating the other axioms.
+\end{enumerate}
+
+In \cite{TidyTrees}, Wetherell and Shannon introduce two algorithms for
+tree drawings, the first of which fulfills axioms~1--5, and the second
+1--6. However, as Reingold and Tilford in \cite{TidierTrees}
+point out, there is a lack of symmetry in the algorithms of
+Wetherell and Shannon which may lead to unpleasant results;
+therefore, Reingold and Tilford introduce a new structured
+axiom.
+
+\begin{enumerate}
+\item[7.] A subtree of a given tree should be
+          drawn the same way regardless of where it occurs in the tree.
+\end{enumerate}
+
+Axiom~7 allows the same tree to be drawn differently only when it occurs as
+a subtree in different trees.
+Reingold and Tilford give an algorithm which fulfills axioms~1--5
+and~7. Although
+this algorithm doesn't fulfill axiom~6,
+the aesthetical improvements are well worth the additional space.
+\fig{algorithms} illustrates the benefits of axiom~7, and \fig{narrowtrees}
+shows that the algorithm of Reingold and Tilford violates axiom~6.
+
+\begin{Figure}
+\centering
+\leavevmode\noindent
+\begin{Tree}
+\enode
+\enode\enode\inode\enode\enode\inode\inode\inode
+\node{\external\type{dot}\rght{\unskip\hskip2\mins@p\hskip2\dotw@dth}}
+\enode\enode\inode\enode\enode\inode\inode\inode
+\inode
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\qquad
+\begin{Tree}
+\enode
+\enode\enode\inode\enode\enode\inode\inode\inode
+\enode
+\enode\enode\inode\enode\enode\inode\inode\inode
+\inode
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\
+\caption{The left tree is drawn by the algorithm of Wetherell and Shannon,
+and the tidier right one is drawn by the algorithm of Reingold and Tilford.}
+\label{algorithms}
+
+\vspace{\figspace}
+\centering
+\leavevmode\noindent
+\begin{Tree}
+\enode\enode\enode\enode\enode\enode\enode\enode\enode
+\enode\inode\inode\inode
+\enode\inode\inode\inode
+\enode\inode\inode\inode
+\enode\inode\inode\inode
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\qquad
+\begin{Tree}
+\enode\enode\enode\enode\enode\enode\enode\enode
+\node{\external\type{dot}\rght{\unskip\hskip\mins@p\hskip\dotw@dth}}
+\enode\inode\inode\node{\type{dot}\rght{\unskip\hskip\mins@p\hskip\dotw@dth}}
+\enode\inode\inode\node{\type{dot}\rght{\unskip\hskip\mins@p\hskip\dotw@dth}}
+\enode\inode\inode\node{\type{dot}\rght{\unskip\hskip\mins@p\hskip\dotw@dth}}
+\enode\inode\inode\inode
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\
+\caption{The left tree is drawn by the algorithm of Reingold and Tilford, but
+the right tree shows that narrower drawings fulfilling all aesthetic axioms
+are possible.}
+\label{narrowtrees}
+\end{Figure}
+
+
+\section{The algorithm of Reingold and Tilford}
+
+The algorithm of Reingold and Tilford (hereafter called ``the RT~algorithm'')
+takes a modular approach to the
+positioning of nodes. The relative positions of the nodes in a subtree
+are calculated independently of the rest of the tree. After the
+relative positions of two subtrees have been calculated, they can be
+joined as siblings in a larger tree by placing them as close
+together as possible and centering the parent node above them.
+Incidentally, this modular approach is the reason that the
+algorithm fails to fulfill axiom~6; see~\cite{Complexity}.
+Two sibling subtrees are placed as close together as possible,
+during a postorder traversal, as follows.
+Imagine that the two subtrees of a binary node
+have been drawn and cut out of paper along
+their contours. Then, starting with the two subtrees superimposed at their
+roots, move them apart until a minimal agreed upon distance
+between the trees is obtained at each level. This can be done gradually.
+Initially, their roots are separated by some agreed upon minimum
+distance; then, at the next level, they are pushed
+apart until the minimum separation is established there.
+This process is continued at successively lower levels until the
+last level of the shorter subtree is reached. At some levels no movement may be
+necessary, but at no level are the two subtrees moved closer
+together. When the process is complete, the position of the
+subtrees is fixed relative to their parent, which is centered over them.
+Assured that the subtrees will never be placed closer together,
+the postorder traversal is continued.
+
+A nontrivial implementation of
+this algorithm has been obtained by Reingold and Tilford in~\cite{TidierTrees} 
+that runs in time $\O(N)$, where $N$ is the number of
+nodes of the tree to be drawn.
+Their crucial idea is to keep track of the contour of the subtrees
+by special pointers, called threads, such that whenever
+two subtrees are joined, only the
+top part of the trees down to the lowest level of the
+smaller tree need to be taken into account.
+
+The nodes are positioned on a fixed grid and are
+considered to have zero width; labeling is not provided. 
+Although the algorithm only draws binary trees, it is easily 
+extended to multiway trees.
+
+\section{Improving human perception of trees}
+
+It is common understanding in book design that aesthetics and readability
+don't necessarily coincide, and---as Lamport (\cite{LaTeX}) puts it---%
+``documents are meant to be read, not hung in museums.'' 
+Therefore, readability is more important than aesthetics.
+
+When it comes to tree drawings, readability means that the structure of
+a tree must be easily recognizable. This criterion is not always met
+by the RT~algorithm. As an example, there are trees whose structure is 
+different even though they have the same number
+of nodes on each level. The RT~algorithm might assign identical positions to
+these nodes making it very hard to perceive the structural differences.
+Hence, we have modified the RT~algorithm such that additional white space
+is inserted between subtrees of
+\emph{significant} nodes. Here a binary node
+is called significant if the minimum distance
+between its two subtrees is achieved \emph{below} their root level.
+Setting the amount of additional white space to zero retains the original RT~%
+placement. The effect of having nonzero additional white space between
+the subtrees of significant
+nodes is illustrated in \fig{addspace}.
+
+Another feature we have added to the RT~algorithms is the possibility to draw
+an unextended binary tree with the same placement of nodes as its
+associated extended version;
+this makes the structure of a tree more prominent; see \fig{extended}.
+We define the \emph{associated extended version}
+of a binary tree to be the binary tree obtained by replacing each empty subtree
+having a nonempty sibling with a subtree consisting of one node. 
+
+\begin{Figure}
+\centering
+\leavevmode\noindent
+\begin{Tree}
+\e\il\e\e\i\i\il % the left subtree
+\e\ir\il % the right subtree
+\i
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\qquad
+\begin{Tree}
+\e\il\il\il % the left subtree
+\e\e\i\e\i\il % the right subtree
+\i
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\qquad
+\adds@p10pt
+\begin{Tree}
+\e\il\e\e\i\node{\type{dot}\lft{$\longrightarrow$}}\il % the left subtree
+\e\ir\il % the right subtree
+\node{\type{dot}\lft{$\longrightarrow$}}
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\qquad
+\begin{Tree}
+\e\il\il\il % the left subtree
+\e\e\i\e\i\il % the right subtree
+\node{\type{dot}\lft{$\longrightarrow$}}
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\
+\adds@p0pt
+
+\caption{The nodes of the first two trees are placed in the same positions
+by the RT~algorithm, although the structure of the two trees is different.
+The alternative drawings highlight the structural differences 
+of the trees by adding additional white space between the subtrees of
+($\longrightarrow$) significant nodes.}
+\label{addspace}
+\end{Figure}
+
+\begin{Figure}
+\centering
+\leavevmode\noindent
+\begin{Tree}
+\e\e\i\il\e\e\i\i
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\hbox{}\qquad
+\begin{Tree}
+\e\e\i\e\i\e\ir\i
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\hbox{}\\
+\extended
+\begin{Tree}
+\e\e\i\il\e\e\i\i
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\hbox{}\qquad
+\begin{Tree}
+\e\e\i\e\i\e\ir\i
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\hbox{}\\
+\noextended
+\begin{Tree}
+\e\e\i\e\i\e\e\i\i
+\end{Tree}
+\hskip\leftdist\box\TeXTree\hskip\rightdist\
+\caption{As in the previous figure, the nodes of the first two trees
+are placed in the same position by the RT algorithm,
+although their structure is different. The modified
+RT~algorithms highlights the structural differences of the trees by 
+drawing them like their identical extended
+version (given in the third row), but suppressing the additional nodes.}
+\label{extended}
+\end{Figure}
+
+
+\section{Trees in a document preparation environment}
+
+Drawings of trees do not usually appear by themselves,
+but are included in some text
+that is itself typeset by a text processing system. Therefore, a typical
+scenario is a pipe of three stages. First, we have a tree drawing
+program that calculates the positioning of the nodes of the tree to
+be drawn and outputs a description of the tree drawing in
+some graphics language; this is followed by
+a graphics system that transforms this
+description into an intermediate language that can be interpreted by the output
+device; and, finally, we have the
+text processing system that integrates the output of the
+graphics system into the text.
+
+This scenario loses its linear structure once nodes have to be labeled, since
+the labeling influences the positioning of the nodes. Labels usually occur
+inside, to the left of, to the right of, or beneath nodes (the latter only for
+external nodes). Their widths should certainly be taken into account
+by the  tree drawing algorithm. But the labels have to be typeset first
+to determine their extensions,
+preferably by the typesetting program that
+is used for the regular text, because this ensures uniformity in the textual
+parts of the document and provides the author with the full power of a
+text processing system for composing the labels. Hence, a more complex
+communication scheme than a simple pipe is required.
+
+Although a system of two processes running simultaneously might be the most
+elegant solution, we wanted a system that is easily portable to
+widely different machines at our sites
+including personal computers with single process
+operating systems.
+Therefore, we decided to use a text processing system
+having programming facilities powerful enough to 
+program a tree drawing algorithm and graphics facilities powerful enough
+to draw a tree. One text processing system
+rendering outstanding typographic quality and satisfactory programming
+facilities is \TeX, developed by Knuth at Stanford University;
+see~\cite{TeXbook}.
+The \TeX{} system includes the following programming facilities.
+
+\begin{enumerate}
+\item[1.] Datatypes:\\
+     integers~(256), dimensions\footnote{The term \emph{dimension} is used
+     in \TeX\ to describe physical measurements of typographical objects;
+     for example, the length of a word.}~(512), 
+     boxes~(256), tokenlists~(256), and
+     boolean variables~(unrestricted).
+\item[2.] Elementary statements:\\
+     $a:=\rm const$, $a:=b$ (all types);\\
+     $a:=a+b$, $a:=a*b$, $a:=a/b$ (integers and dimensions); and\\
+     horizontal and vertical nesting of boxes.
+\item[3.] Control constructs:\\
+     if-then-else statements testing relations between integers,
+     dimensions, boxes, or boolean variables.
+\item[4.] Modularization constructs:\\
+     macros with up to 9~parameters (can be viewed as procedures without
+     the concept of local variables).
+\end{enumerate}
+
+Although the programming
+facilities of \TeX{} hardly exceed the abilities of a Turing machine,
+they are sufficient to
+handle small programs. How about the graphics facilities?
+Although \TeX{} has no built-in graphics facilities, it
+allows the placement of characters in arbitrary positions on
+the page. Therefore, complex pictures can be synthesized from elementary
+picture elements treated as characters. Lamport has included such
+a picture drawing environment in his macro package \LaTeX, using
+quarter circles of different sizes and line segments (with and without
+arrow heads) of different slopes as basic elements; see~\cite{LaTeX}.
+These elements are sufficient for drawing trees.
+
+This survey of \TeX's capabilities implies that \TeX{} may be a suitable
+text processing system to implement a tree drawing algorithm directly.
+We base our algorithm on the RT~algorithm, because this algorithm
+gives, aesthetically, the most pleasing results. In the first version
+presented here, we
+restrict ourselves to unary-binary trees, although our method is
+applicable to arbitrary multiway trees. But to take advantage
+of the text processing environment, we expand the algorithm to allow
+labeled nodes.
+
+In contrast to previous tree drawing programs, we feel no necessity to
+position the nodes of a tree on a fixed grid. While this may be
+reasonable for a plotter with a coarse resolution, it is certainly not
+necessary for \TeX, a system that is capable of handling
+arbitrary dimensions
+and producing device \emph{independent} output.
+
+
+\section{A representation method for \TeX{}trees}
+
+The first problem to be solved in implementing our tree drawing algorithm
+is how to choose a good internal representation
+for trees. A straightforward adaptation
+of the implementation by Reingold and Tilford requires, for each node,
+at least:
+%
+\begin{enumerate}
+\item two pointers to the children of the node,
+\item two dimensions for the offset to the left and the right child (these
+      may be different once there are labels of different widths to the
+      left and right of the nodes),
+\item two dimensions for the $x$- and $y$-coordinates of the final
+      position of the nodes,
+\item three or four labels, and
+\item one token to store the geometric shape (circle, square, framed text, etc.)
+      of the node.
+\end{enumerate}
+%
+Because these data are used frequently in calculations, they should be
+stored in registers (that's what variables are called in \TeX)
+rather than being recomputed, to obtain
+reasonably fast performance. This gives a total of $10N$ registers for
+a tree with $N$ nodes, which quickly exceeds
+\TeX's limited supply of registers. Therefore, we present a
+modified algorithm hand-tailored to the abilities of \TeX{}.
+We start with the following observation.
+Suppose a unary-binary tree is built bottom-up, using a postorder
+traversal. This can be done by repeating the following three steps in
+an order determined by the tree to be built.
+
+\begin{enumerate}
+\item Create a new subtree consisting of one external node.
+\item Create a new subtree by appending the two subtrees last created 
+      to a new binary node; see \fig{Construct}.
+\item Create a new subtree by appending the subtree created last as a left,
+      right, or unary subtree of a new node; see \fig{Construct}.
+\end{enumerate}
+
+(A pointer to) each subtree that has been
+created in steps 1--3 is pushed onto a stack, and
+steps 2 and 3 remove two trees or one tree, respectively,
+from the stack before the push
+operation is carried out. The tree to be built is
+the tree remaining on the stack.
+
+\begin{Figure}
+\centering
+\begin{Tree}
+\treesymbol{\lvls{2}}%
+\hspace{-\l@stlmoff}\usebox{\l@sttreebox}\hspace{\l@strmoff}
+$+$
+\treesymbol{\lvls{2}}%
+\hspace{-\l@stlmoff}\usebox{\l@sttreebox}\hspace{\l@strmoff}\quad
+$\Longrightarrow$\quad
+\treesymbol{\lvls{2}}%
+\treesymbol{\lvls{2}}%
+\node{\type{dot}}%
+\hspace{-\l@stlmoff}\raisebox{\vd@st}{\usebox\l@sttreebox}\hspace{\l@strmoff}%
+\end{Tree}
+
+\vskip\baselineskip
+
+\begin{Tree}
+\treesymbol{\lvls{2}}%
+\hspace{-\l@stlmoff}\usebox{\l@sttreebox}\hspace{\l@strmoff}\quad
+$\Longrightarrow$\quad
+\treesymbol{\lvls{2}}%
+\node{\leftonly\type{dot}}%
+\hspace{-\l@stlmoff}\raisebox{\vd@st}{\usebox\l@sttreebox}\hspace{\l@strmoff}%
+\quad or\quad
+\treesymbol{\lvls{2}}%
+\node{\unary\type{dot}}%
+\hspace{-\l@stlmoff}\raisebox{\vd@st}{\usebox\l@sttreebox}\hspace{\l@strmoff}%
+\quad or\quad
+\treesymbol{\lvls{2}}%
+\node{\rightonly\type{dot}}%
+\hspace{-\l@stlmoff}\raisebox{\vd@st}{\usebox\l@sttreebox}\hspace{\l@strmoff}%
+\end{Tree}
+
+\caption{Construction steps 2 and 3}
+\label{Construct}
+\end{Figure}
+
+This tree traversal is performed twice in the RT~algorithm.
+During the first pass,
+at each execution of steps 2 or~3, the relative positions of the
+subtree(s) and of the new node are computed.
+A closer examination of the RT~algorithm reveals that information about the
+subtree's coordinates is not needed during this pass; the contour information
+alone is sufficient. Complete information is only needed in the second
+traversal, when the tree is really drawn. This is where we can use
+a special feature of \TeX{} that allows us to save registers.
+Unlike Pascal, \TeX{} has the capability of
+storing a drawing in a single box register that can be positioned freely in
+later drawings. This means that in our implementation the two passes
+of the original RT~algorithm can be woven into a single pass,
+storing the contour and drawing of each subtree on the stack.
+Although the latter is a complex object, it takes only one of
+\TeX's precious registers.
+
+
+\section{The internal representation}
+
+Given a tree, the corresponding \TeX{}tree is a box containing
+the ``drawing'' of the tree, together with some additional
+information about the contour of the tree.
+The reference point of a \TeX{}tree-box is always in the root of the
+tree. The height, depth, and width of the box of a \TeX{}tree are
+of no importance in this context.
+
+The additional information about the contour of the tree is stored in some
+registers for numbers and dimensions and
+is needed in order to put subtrees together to form a larger tree.
+An array \var{loff} of dimensions contains for each
+level of the tree the horizontal offset between the
+left end of the leftmost node at the current level and the
+left end of the leftmost node at the next level.
+The horizontal offset between the root
+and the leftmost node of the whole tree is hold in \var{lmoff}, and 
+the horizontal offset between the root and the leftmost node at
+the bottom level of the tree is hold in \var{lboff}.
+Finally, \var{ltop} holds the distance between the reference point
+of the tree and the leftmost end of the root.
+We use
+\var{roff}, \var{rmoff}, \var{rboff}, and \var{rtop}
+as the corresponding variables for ``left'' replaced by ``right.'' Finally,
+\var{height} holds the height of the tree, and \var{type} holds the
+geometric shape of the root of the tree. \fig{TeXtree} shows an example 
+\TeX{}tree, that is a tree drawing and the corresponding additional information.
+
+\begin{Figure}
+\centering
+\begin{Tree}
+\e\ir\ir\e
+  \node{\type{dot}\rightonly\rght{\unskip\vrule height.8pt width5pt depth0pt}}%
+  \i % A
+\end{Tree}
+\leavevmode
+\stack{-10pt}{\vd@st}{%
+     -10pt\\10pt\\10pt\\\var{loff}}%
+\hspace{1em}%
+\hspace{\leftdist}\usebox{\TeXTree}\hspace{\rightdist}%
+\hspace{1em}%
+\stack{-10pt}{\vd@st}{%
+     15pt\\5pt\\-10pt\\\var{roff}}%
+
+\vskip\baselineskip\raggedright
+height:~3, type:~dot, ltop:~2pt, rtop:~2pt, lmoff:~-10pt, rmoff:~20pt, lboff:~10pt,
+rboff:~10pt.
+
+\caption{A \TeX{}tree consists of the drawing of the tree and the additional 
+information. The width of the dots is 4pt, the minimal separation between
+adjacent nodes is 16pt, making for a distance of 20pt center to center.
+The length of the small rule labeling 
+one of the nodes is 5pt. The column left (right)
+of the tree drawing is the array \var{loff} (\var{roff}),
+describing the left (right) contour of the tree. At each level,
+the dimension given is the horizontal
+offset between the border at the current and 
+at the next level. The offset between
+the left border of the root node and the leftmost node at level~1 is -10pt,
+the offset between the right border of the root node and the rightmost node at
+level~1 is 15pt, etc.}
+\label{TeXtree}
+\end{Figure}
+
+Given two \TeX{}trees \var{A} and \var{B},
+how can a new \TeX{}tree \var{C} be built that
+consists of a new root and has \var{A} and \var{B} as subtrees?
+An example is given in \fig{AddInfo}.
+First we determine which tree is higher; this is
+\var{B} in the example.
+Then we have to compute the minimal distance
+between the roots of \var{A} and \var{B}, such that at all levels
+of the trees there is free space of at least \var{minsep} between
+the trees when they are drawn side by side.
+For this purpose we keep track of two values, \var{totsep} and
+\var{currsep}. The variables \var{totsep} and \var{currsep}
+hold the total distance between the roots and the distance
+between the rightmost node of \var{A} and the leftmost node
+of \var{B} at the current level. To calculate
+\var{totsep} and \var{currsep}, we start at level 0 and
+visit each level of the trees until we reach the bottommost level
+of the smaller tree; this is \var{A} in our example.
+
+\begin{Figure}
+\centering
+\begin{Tree}
+\e\ir\ir\e
+  \node{\type{dot}\rightonly\rght{\unskip\vrule height.8pt width5pt depth0pt}}%
+  \i % A
+\end{Tree}
+\leavevmode
+A: \stack{-10pt}{\vd@st}{%
+     -10pt\\10pt\\10pt\\\ \\\var{loff}(\var{A})}%
+\hspace{1em}%
+\hspace{\leftdist}\usebox{\TeXTree}\hspace{\rightdist}%
+\hspace{1em}%
+\stack{-10pt}{\vd@st}{%
+     15pt\\5pt\\-10pt\\\ \\\var{roff}(\var{A})}%
+\qquad
+\begin{Tree}
+\e\il\e\i\il\il\ir % B
+\end{Tree}
+\leavevmode
+B: \stack{-10pt}{\vd@st}{%
+     10pt\\-10pt\\-10pt\\-10pt\\-10pt\\\ \\\var{loff}(\var{B})}%
+\hspace{1em}%
+\hspace{\leftdist}\usebox{\TeXTree}\hspace{\rightdist}%
+\hspace{1em}%
+\stack{-10pt}{\vd@st}{%
+     10pt\\-10pt\\-10pt\\10pt\\-30pt\\\ \\\var{roff}(\var{B})}%
+\\[\figspace]
+\begin{Tree}
+\e\ir\ir\e
+  \node{\type{dot}\rightonly\rght{\unskip\vrule height.8pt width5pt depth0pt}}%
+  \i % A
+\e\il\e\i\il\il\ir % B
+\i % C
+\end{Tree}
+\leavevmode
+C: \stack{-10pt}{\vd@st}{%
+     -20\\-10pt\\%
+     \makebox[0pt][r]{\var{loff}(\var{A})$\smash{\left\{\vrule height\vd@st
+          depth\vd@st width0pt\right.}$ }%
+     10pt\\10pt\\%
+     \makebox[0pt][r]{$\longrightarrow$ }%
+     10pt\\%
+     \makebox[0pt][r]{\raisebox{-.5\vd@st}{\var{loff}(\var{B})$\smash
+          {\left\{\vrule height.5\vd@st
+          depth.5\vd@st width0pt\right.}$ }}%
+     \makebox[0pt][r]{-}10pt\\\ \\\var{loff}(\var{C})}%
+\hspace{1em}%
+\hspace{\leftdist}\usebox{\TeXTree}\hspace{\rightdist}%
+\hspace{1em}%
+\stack{-10pt}{\vd@st}{%
+     20pt\\10pt\\-10pt\\-10pt%
+     \makebox[0pt][l]{\raisebox{-.5\vd@st}{
+          $\smash{\left\}\vrule height2.5\vd@st
+          depth2.5\vd@st width0pt\right.}$\var{roff}(\var{B})}}%
+     \\10pt\\-30pt\\\ \\\var{roff}(\var{C})}%
+
+\vspace{\figspace}
+\centering
+\begin{tabular}{|l|r|r|r|}
+\hline
+&\multic{1}{c|}{\var{A}}&\multic{1}{c|}{\var{B}}&\multic{1}{c|}{\var{C}}\\
+\hline
+height&\multic{1}{c|}{3}&  \multic{1}{c|}{5}&  \multic{1}{c|}{6}\\
+type&  \multic{1}{c|}{dot}&\multic{1}{c|}{dot}&\multic{1}{c|}{dot}\\
+ltop&  2pt&                2pt&                2pt\\
+rtop&  2pt&                2pt&                2pt\\
+lmoff& -10pt&              -30pt&              -30pt\\
+rmoff& 20pt&               10pt&               30pt\\
+lboff& 10pt&               -30pt&              -10pt\\
+rboff& 10pt&               -30pt&              -10pt\\
+\hline
+\end{tabular}\qquad
+\begin{tabular}{|c|r|r|}
+\hline
+\multic{1}{|c|}{level}&\multic{1}{c|}{\var{totsep}}&
+                      \multic{1}{c|}{\var{currsep}}\\
+\hline
+0&20pt&0/16pt\\
+1&25pt&11/16pt\\
+2&40pt&1/16pt\\
+3&40pt&16pt\\
+\hline
+\end{tabular}
+\caption{The \TeX{}trees \var{A} and~\var{B} are combined to form the
+larger \TeX{}\-tree~\var{C}. The first table gives the additional
+information of the three \TeX{}trees,
+and the second table gives the
+history of the computation for \var{totsep} and \var{currsep}.}
+\label{AddInfo}
+\end{Figure}
+
+At level 0, the distance between the roots of \var{A} and \var{B}
+should be at least \var{minsep}. Therefore, we set
+$\var{totsep}:=\var{minsep} + \var{rtop}(\var{A})
++ \var{ltop}(\var{B})$ and $\var{currsep}:=\var{minsep}$.
+Using $\var{roff}(\var{A})$ and $\var{loff}(\var{B})$, we can
+calculate \var{currsep} for the next level.
+If $\var{currsep} < \var{minsep}$, we have to increase \var{totsep} by
+the difference and update \var{currsep}. This process is
+repeated until we reach the lowest level of \var{A}
+at which point \var{totsep} holds the final distance between the
+nodes of \var{A} and \var{B}, as calculated by the RT~algorithm.
+If the root of \var{C} is a significant node, then the additional space,
+which is 0pt by default, is added to \var{totsep}.
+However, the approach of synthesizing
+drawings from simple graphics characters allows only a finite
+number of orientations for the tree edges; therefore, \var{totsep}
+must be increased slightly to fit the next orientation
+available.
+
+Now we are ready to build the box of \TeX{}tree~\var{C}.
+Simply put \var{A} and~\var{B} side by side, with the reference
+points \var{totsep}~units apart, insert a new node
+above them, and connect the parent and children by edges.
+Next, we compute the additional information
+for \var{C}. This can be done by using the additional information
+for \var{A} and~\var{B}.
+Note that most components of $\var{roff}(\var{C})$ and
+$\var{lroff}(\var{C})$ are the same as in the higher tree, which
+is \var{B} in our case.
+So, if we can avoid moving this information around, 
+the number of counters we have to access to update the additional information
+for \var{C} is within a small constant of the height of~\var{A}.
+Hence, we can apply the same argument as
+in~\cite{TidierTrees}, which gives
+us a running time of $\O(N)$ for drawing a tree with N nodes.
+
+We must design the allocation of storage registers for
+the additional information of \TeX{}trees carefully to fulfill the
+following requirement. If a new tree is built from
+two subtrees, the additional information of the new tree
+shares storage with its larger subtree.
+Organizational overhead, that is,
+pointers that keep track of the locations of different parts of additional
+information, must be avoided.
+This means that the additional information
+for one \TeX{}tree should be stored in a sequence
+of consecutive dimension registers
+such that only one pointer for access to the first element
+in this sequence is needed. On the other hand, each parent
+tree is higher and, therefore, needs more storage than its subtrees.
+So we must ensure that there is always enough space in the sequence
+for more information.
+
+The obvious way to fulfill these requirements is to use a stack and to
+allow only the topmost \TeX{}trees of this stack to be
+combined into a larger tree at any time.
+This leads to the following allocation of registers: A contiguous sequence of
+box registers contains the treeboxes of the subtrees in the stack. A
+contiguous sequence of token registers contains the type information for the
+nodes of the subtrees in the stack. For each subtree in the stack,
+a contiguous sequence of dimension registers contains the contour
+information of the subtree. The ordering of these groups of dimension
+registers reflects the ordering of the subtrees in the
+stack. Finally, a contiguous sequence of counter registers contains
+the height and the address of the first dimension register for
+each subtree in the stack. Four address counters store the addresses
+of the last treebox, type information, height, and address of contour
+information. A sketch of the register organization for a stack of \TeX{}trees
+is provided in \fig{Registers}.
+
+\begin{Figure}
+Dimension registers\\
+\var{lmoff}(1) \var{rmoff}(1) \var{lboff}(1) \var{rboff}(1) \var{ltop}(1)
+               \var{rtop}(1)\\
+\var{loff}($h_1$) \var{roff}($h_1$) \dots\ \var{loff}(1) \var{roff}(1)\\
+\dots\\
+\var{lmoff}($n$) \var{rmoff}($n$) \var{lboff}($n$) \var{rboff}($n$)
+                 \var{ltop}($n$) \var{rtop}($n$)\\
+\var{loff}($h_n$) \var{roff}($h_n$) \dots\ \var{loff}(1) \var{roff}(1)\\
+\mbox{}\\
+Counter registers\\
+\var{lasttreebox} \var{lasttreeheight} \var{lasttreeinfo} \var{lasttreetype}\\
+\var{treeheight}(1) \var{diminfo}(1) \dots\ \var{treeheight}($n$)
+                    \var{diminfo}($n$)\\
+\mbox{}\\
+Box registers\\
+\var{treebox}(1) \dots\ \var{treebox}($n$)\\
+\mbox{}\\
+Token registers\\
+\var{type}(1) \dots\ \var{type}($n$)
+
+\caption{\var{lasttreebox}, \var{lasttreeheight}, \var{lasttreeinfo},
+\var{lasttreetype} contain pointers to \var{treebox}($n$)
+\var{treeheight}($n$), \var{lmoff}($n$), \var{type}($n$),
+\var{diminfo}($i$) contains a pointer to
+\var{lmoff}($i$). Unused dimension registers are
+allowed between the dimension registers of subsequent trees. The counter
+registers \var{lasttreebox},\ldots,\var{diminfo}($n$) serve as a directory
+mechanism to access the \TeX{}trees on the stack.}
+\label{Registers}
+\end{Figure}
+
+
+When a new node is pushed onto the stack, the treebox, type information,
+height, address of contour information, and contour information are
+stored in the next free registers of the appropriate type, and the
+four address counters are updated accordingly.
+
+When a new tree is formed from the topmost subtrees on the stack,
+the treebox, type information, height, and address of contour information
+of the new tree are sorted in the registers formerly used by the bottommost
+subtree that has occurred in the construction step, 
+and the four address registers are
+updated accordingly. This means that this information for the subtrees
+is no longer accessible. The contour information of the new subtree
+is stored in the same registers as the contour information of the larger
+subtree used in the construction, apart from the left and right offset
+of the root to the left and right child, which are stored in the
+following dimension registers. This means that gaps can occur
+between the contour information of subtrees in the
+stack, namely when the right subtree, which is in a higher position in the
+stack, is higher than the left one. To avoid these
+gaps, the user can specify an option \verb.\lefttop. when entering a
+binary node, which makes the topmost tree in the stack the
+left subtree of the node.
+
+This stack concept also has consequences for the design of the user interface
+that is discussed in Section~\ref{Interface}.
+
+\section{Space cost analysis}
+
+Suppose we want to draw a unary-binary tree $T$ of height $h$ having
+$N$ nodes\footnote{The height $h$ and the number of nodes $N$ refer to the
+drawing of the tree. $N$ is the number of circles, squares,~etc., actually
+drawn, and $h$ is the number of levels in the drawing minus 1.}.
+According to our internal representation,
+for each subtree in the stack we need:
+
+\begin{enumerate}
+\item one box register to store the box of the \TeX{}tree;
+\item one token register to store the type of the root of the subtree;
+\item $2h^\prime+6$ dimension registers to store the additional
+      information, where $h^\prime$ is the height of the
+      subtree; and
+\item three counter registers to store the register numbers of the
+      box register, the token register, and the first dimension register above.
+\end{enumerate}
+
+\begin{lemma}
+Let $T$ be a unary-binary tree of height~$h$ and size~$N$; then:
+\begin{enumerate}
+\item at any time, there are at most $h+1$ subtrees of $T$ on the
+      stack; and
+\item for each set $\T$ of subtrees of $T$ that are on the stack
+      simultaneously we have
+      $$\sum_{T^\prime\in \T}({\rm ht}(T^\prime)+1) \le N$$
+\end{enumerate}
+\end{lemma}
+
+The lemma implies that our implementation 
+uses at most $9h+2N$~registers. 
+To compare this with the
+$10N$ registers used in the straightforward implementation,
+an estimation of the average height of a tree with $N$ nodes is
+needed. Several results, depending on the type of trees and of the
+randomization model, are cited in \fig{Stat}, which
+compares the number of registers used in a straightforward
+implementation with the average number of registers used in our
+implementation. This table shows clearly the advantage of our
+implementation.
+
+\begin{Figure}
+\centering
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+&registers&\multicolumn{3}{c|}{average registers}\\
+\cline{3-5}
+nodes&(straight-&&unary-binary&binary\\
+&forward)&binary trees&trees&search trees\\
+$N$&&($2\sqrt{\pi N}$) \cite{BinaryTrees}&
+     ($\sqrt{3\pi N}$) ~\cite{BinaryTrees}&
+     ($4.311\log N$) \cite{BinarySearchTrees}\\
+\hline
+\ds10 & \ds100 & 120.89 & 107.37 & 109.34 \\
+\ds20 & \ds200 & 182.68 & 163.56 & 156.23 \\
+\ds30 & \ds300 & 234.75 & 211.33 & 191.96 \\
+\ds40 & \ds400 & 281.78 & 254.75 & 223.12 \\
+\ds50 & \ds500 & 325.60 & 295.37 & 251.78 \\
+\ds60 & \ds600 & 367.13 & 334.02 & 278.86 \\
+\ds70 & \ds700 & 406.93 & 371.17 & 304.84 \\
+\ds80 & \ds800 & 445.36 & 407.13 & 330.02 \\
+\ds90 & \ds900 & 482.67 & 442.12 & 354.59 \\
+100 & 1000 & 519.04 & 476.30 & 378.68 \\
+\hline
+\end{tabular}
+
+\caption{The numbers of registers used by a straightforward implementation
+(second column) and by our modified implementation (third to fifth column)
+of the RT~algorithm are
+given for different types of trees and randomization models.
+The formulas in parentheses indicate the average height of the respective 
+classes of trees.}
+\label{Stat}
+\end{Figure}
+
+
+\section{The user interface}\label{Interface}
+
+The user interface of \TreeTeX{} has been designed in the spirit of
+the thorough separation of the logical description of document components
+and their layout; see~\cite{DocumentFormatting,GML}. This concept
+ensures both uniformity and flexibility of document layout and frees
+authors from layout problems that have nothing to do with the
+substance of their work. For some powerful implementations and projects
+see \cite{Tables,Karlsruhe,LaTeX,Grif,Scribe}.
+
+The description of a tree consists of a description of its nodes
+in postorder. Each description of a node, in turn, has to specify
+the outdegree, the geometric shape and the labels of the node.
+Defaults are provided for all specifications,
+thereby allowing the user to omit many definitions
+if the defaults match what he or she wants.
+
+A separate style command defines layout parameters for tree drawings
+that are valid for all trees of a document.
+Layout parameters include the font to be used for labels, the diameter
+of circle nodes, the vertical distance between two subsequent levels
+of the tree, and the minimal horizontal distance between nodes.
+
+Standard versions of \TeX{} provide only a limited number of
+font and circle sizes. Hence, the user of the style command must make
+sure that the specified sizes can be realized. This is especially
+cumbersome when everything has to be magnified for later reproduction
+with reduction. But the style variables can be made parametric for
+installations that provide scalable fonts and replace \LaTeX{}'s
+circle- and line-drawing commands with routines that provide arbitrary
+diameters and slopes.
+
+Three examples of tree descriptions are given in 
+Figures~\ref{firstex}--\ref{lastex}.
+A more detailed description of the user interface is 
+given in~\cite{Exeter}.
+
+\section{Conclusions}
+
+We hope that, by now, we have convinced the reader of the main advantages
+of \TreeTeX{}: It integrates graphics and text; it is portable to all
+sites running \TeX{}; 
+and it is easy to use for the author, because it derives the drawing 
+of a tree from a purely structural description. But our decision to
+implement \TreeTeX{} as a \TeX{} macro package has also some
+drawbacks, both for the programmer and for the user of the system.
+
+>From the programmer's point of view, \TeX{}'s macro language is
+a low level programming language. Hence, maintaining and extending
+the package is a more tedious task than it would be if we had used
+a higher level language with better support for modularization.
+
+>From the author's point of view, \TreeTeX{}'s limitations lie in
+speed, size of trees, and graphical primitives.
+Typesetting all the trees in this article takes about two~minutes on
+a VAX~750, and typesetting a complete binary tree with 63~internal
+and 64~external nodes takes about one~minute on the same machine.
+The size of the trees is limited by three factors, namely,
+the number of registers, the complexity of the nested boxes that
+contain the drawing of a tree, and the limited number of slopes
+that are available for the edges, the latter being the most severe 
+problem at present. Hence, the main area of application for
+\TreeTeX{} is modest use such as in textbooks; displaying
+large amounts of statistical data, for example, is out of the question.
+
+Currently edges and circular nodes are drawn from \LaTeX{}'s set of 
+predefined graphical characters. Hence, \TreeTeX{} cannot draw
+arbitrarily wide trees or large circular nodes. We consider
+this restriction, however, to be a temporary one, since a committee inside
+the \TeX{} Users Group is  working on standard graphic 
+extensions to \TeX{} that will remove these limitations.
+
+As to further developments of \TreeTeX{}, it would be desirable to
+draw larger classes of trees, for example multiway trees, and to allow
+labels not only for nodes, but also for edges and whole subtrees.
+
+
+\Treestyle{\vdist{60pt}}
+\dummyhalfcenterdim@n=10pt
+
+\begin{Figure}
+\centering
+\begin{Tree}
+\node{\external\bnth{first}\cntr{1}\lft{Beeton}}
+\node{\external\cntr{3}\rght{Kellermann}}
+\node{\cntr{2}\lft{Carnes}}
+\node{\external\cntr{6}\lft{Plass}}
+\node{\external\bnth{last}\cntr{8}\rght{Tobin}}
+\node{\cntr{7}\rght{Spivak}}
+\node{\leftonly\cntr{5}\rght{Lamport}}
+\node{\cntr{4}\rght{Knuth}}
+\end{Tree}
+
+\hspace{\leftdist}\usebox{\TeXTree}\hspace{\rightdist}\
+
+\begin{verbatim}
+\begin{Tree}
+\node{\external\bnth{first}\cntr{1}\lft{Beeton}}
+\node{\external\cntr{3}\rght{Kellermann}}
+\node{\cntr{2}\lft{Carnes}}
+\node{\external\cntr{6}\lft{Plass}}
+\node{\external\bnth{last}\cntr{8}\rght{Tobin}}
+\node{\cntr{7}\rght{Spivak}}
+\node{\leftonly\cntr{5}\rght{Lamport}}
+\node{\cntr{4}\rght{Knuth}}
+\end{Tree}
+
+\hspace{\leftdist}\usebox{\TeXTree}\hspace{\rightdist}
+\end{verbatim}
+
+\caption{This is an example of a tree that includes labels.}
+\label{firstex}
+\end{Figure}
+
+\begin{Figure}
+\centering
+\begin{Tree}
+\node{\external\type{frame}\bnth{first}\cntr{Beeton}}
+\node{\external\type{frame}\cntr{Kellermann}}
+\node{\type{frame}\cntr{Carnes}}
+\node{\external\type{frame}\cntr{Plass}}
+\node{\external\type{frame}\bnth{last}\cntr{Tobin}}
+\node{\type{frame}\cntr{Spivak}}
+\node{\leftonly\type{frame}\cntr{Lamport}}
+\node{\type{frame}\cntr{Knuth}}
+\end{Tree}
+
+\hspace{\leftdist}\usebox{\TeXTree}\hspace{\rightdist}\
+
+\begin{verbatim}
+\begin{Tree}
+\node{\external\type{frame}\bnth{first}\cntr{Beeton}}
+\node{\external\type{frame}\cntr{Kellermann}}
+\node{\type{frame}\cntr{Carnes}}
+\node{\external\type{frame}\cntr{Plass}}
+\node{\external\type{frame}\bnth{last}\cntr{Tobin}}
+\node{\type{frame}\cntr{Spivak}}
+\node{\leftonly\type{frame}\cntr{Lamport}}
+\node{\type{frame}\cntr{Knuth}}
+\end{Tree}
+
+\hspace{\leftdist}\usebox{\TeXTree}\hspace{\rightdist}
+\end{verbatim}
+\caption{This is an example of a tree with framed center labels.}
+\end{Figure}
+
+\begin{Figure}
+\Treestyle{\treefonts{\small\it}\nodesize{16pt}\vdist{40pt}\minsep{16pt}}
+\centering
+\begin{Tree}
+\node{\external\bnth{first}\cntr{1}\lft{Beeton}}
+\node{\external\cntr{3}\rght{Kellermann}}
+\node{\cntr{2}\lft{Carnes}}
+\node{\external\cntr{6}\lft{Plass}}
+\node{\external\bnth{last}\cntr{8}\rght{Tobin}}
+\node{\cntr{7}\rght{Spivak}}
+\node{\leftonly\cntr{5}\rght{Lamport}}
+\node{\cntr{4}\rght{Knuth}}
+\end{Tree}
+
+\hspace{\leftdist}\usebox{\TeXTree}\hspace{\rightdist}\
+
+\caption{This tree was produced from the same logical description as in
+Figure~\ref{firstex}, but with different style parameters}
+\label{lastex}
+\end{Figure}
+
+\clearpage
+\bibliography{trees}
+\end{document}
+
+

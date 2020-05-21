@@ -109,10 +109,11 @@ super + a ; {1-7,g,q}
 	$BROWSER, \
 	thunderbird, \
 	joplin-desktop, \
-	rambox, \
+	messenger, \
 	discord, \
 	darktable, \
 	zoom, \
+	steam, \
 	designer-qt5, \
 	}
 

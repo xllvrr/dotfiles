@@ -1,0 +1,52 @@
+ Ryerson University Thesis Class
+
+ Copyright (C) 2009 by J.V. Lassaline <jvl@ryerson.ca>
+ -------------------------------------------------------
+ 
+ This file may be distributed and/or modified under the
+ conditions of the LaTeX Project Public License, either version 1.3c
+ of this license or (at your option) any later version.
+ The latest version of this license is in:
+
+    http://www.latex-project.org/lppl.txt
+
+ and version 1.3c or later is part of all distributions of LaTeX 
+ version 2008/05/04 or later.
+
+This is a class definition for formatting a thesis, dissertation or
+project subject to Ryerson University School of Graduate Studies
+policy. The following files are provided: 
+
+	README
+	ryethesis.ins
+	ryethesis.dtx
+	ryethesis.pdf
+	ryesample.tex
+	ryesample.bib
+	ryesample.pdf
+	figure1.pdf
+
+To create the class file 'ryethesis.cls', 
+run LaTeX on the install file 'ryethesis.ins'. 
+
+To re-create the class and usage documentation 'ryethesis.pdf', 
+run LaTeX on the file 'ryethesis.dtx'.
+
+For a sample thesis using most of the available options, see
+'ryesample.tex'. This LaTeX file will include a figure 'figure1.pdf',
+which requires that you use pdflatex, xelatex, or similar. Run BiBTeX
+to process the cited references from the file 'ryesample.bib'. You
+will also need to recreate the nomenclature, glossary, and index. See
+'ryesample.tex' for details or examine the output log messages. Using
+pdflatex, the sequence of commands is:
+
+pdflatex ryesample
+bibtex ryesample
+makeindex -s nomencl.ist -o ryesample.nls ryesample.nlo
+makeindex ryesample
+makeglossaries ryesample
+pdflatex ryesample
+pdflatex ryesample
+
+Feel free to send bug reports to the author above.
+

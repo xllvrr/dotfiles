@@ -1,0 +1,70 @@
+A University of California at Davis Thesis/Dissertation LaTeX Class
+Copyright (C) 2009-2016 Ryan Scott
+
+2016/04/23 v1.3 UCDavis thesis class
+
+Please read the manual ucdavisthesis.pdf for more information and change log.
+
+This file may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either
+version 1.2 of this license or (at your option) any later
+version. The latest version of this license is in:
+
+http://www.latex-project.org/lppl.txt
+
+and version 1.2 or later is part of all distributions of
+LaTeX version 1999/12/01 or later.
+
+The ucdavisthesis class is a LaTeX class that allows you to create a 
+dissertation or thesis which conforms (to the best of my knowledge) to 
+UC Davis formatting requirements as of April 2016. The output document
+has the necessary preliminary pages, margins, page number placement, etc.
+This class also provides most of the macros available in the report class on 
+which it is based, allowing for chapters, sections, etc. Please check the
+Graduate Studies web page (http://gradstudies.ucdavis.edu/students/filing.html) 
+for any changes or updates to their requirements.
+
+Several useful features include:
+- Two different draft modes (draftcls or draft) with
+  * configurable running headers
+  * black margin box to locate margin violations
+- -example dissertation illustrating
+  * some basic LaTeX usage 
+  * different LaTeX styles/techniques for
+     -pictures/figures/tables
+     -general formatting
+  *BibTeX usage example
+
+Installing the ucdavisthesis class from a .dtx file
+
+Many LaTeX packages are supplied as a .dtx file, possibly with a .ins
+file. This is a literate programming format. To get the materials that
+LaTeX needs, such as the .cls file, you should run LaTeX on these.
+
+First, run LaTeX on ucdavisthesis.ins.  If you are using a terminal,
+you can type at the command prompt: latex ucdavisthesis.ins (or
+pdflatex ucdavisthesis.ins).  If you are using a front-end like WinEdt, 
+load/open ucdavisthesis.ins and click on whatever button you use to 
+LaTeX your documents (don't use TeXify).  This will create the files
+containing the package code; ucdavisthesis.cls, ucdthesis10.clo, 
+ucdthesis11.clo, ucdthesis12.clo, ucdthesis13.clo. If the .ins file 
+doesn't succeed in moving the files to the correct location, they will 
+need to be put in an appropriate directory such as 
+\Local TeX Files\tex\latex\ucdavisthesis
+or whatever you use for a local tex directory.
+
+Finally, if you did not download the documentation (ucdavisthesis.pdf),
+you can produce the package documentation by running LaTeX on the 
+ucdavisthesis.dtx file. As above, at a terminal you would enter 
+latex ucdavisthesis.dtx (or pdflatex ucdavisthesis.dtx), while from 
+a front-end you would load/open ucdavisthesis.dtx and click on the
+appropriate button.  This will create ucdavisthesis.dvi (or 
+ucdavisthesis.pdf). Note, it is tricky to create correctly formatted
+cross references (index) in the documentation, so I recommend that you
+just use the precompiled version.
+
+Please see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=install-unpack
+for more installation help.
+
+
+

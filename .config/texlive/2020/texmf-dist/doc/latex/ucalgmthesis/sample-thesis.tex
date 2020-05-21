@@ -1,0 +1,169 @@
+% A Sample Thesis for the University of Calgary
+% =============================================
+
+% This is a sample LaTeX document to build a University of Calgary
+% graduate thesis according to the guidelines of the Faculty of
+% Graduate Studies, available here:
+% https://grad.ucalgary.ca/current-students/thesis-based-students/thesis/building-thesis
+
+% To use this sample for your own thesis, rename this file, make any changes
+% necessary, then add the content of your thesis t othe included files
+% frontmatter.tex, chapter1.tex, etc.
+
+% First, we load the UCalgary Memoir Thesis class ucalgmthesis,
+% available at https://github.com/rzach/ucalgmthesis
+
+% By default (without options), this produces a 1-1/2 spaced thesis in
+% 11 point font without running heads. See the README file for a
+% description of all package options.
+
+% In our sample we give three options: Option utopia sets the thesis in a
+% nice font. Option headers produces running heads. Option manuscript
+% formats the page in a way suitable for reading and commenting: 12 pt type,
+% double spaced, approx. 25 lines per page, with approx. 72 characters
+% per line. For filing in the Vault, remove that option to produce a
+% more compact thesis with a slightly better layout.
+
+\documentclass[utopia,headers,manuscript]{ucalgmthesis}
+
+% Using LaTeX? Then you're probably using math, and so you want to use
+% the AMS math commands and define some theorem environments! But you
+% can take these out or use your own favorite theorem package.
+
+\usepackage{amsmath,amsthm}
+
+\newtheorem{thm}{Theorem}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % please number all of them together!
+
+% microtype makes everything look better
+
+\usepackage{microtype}
+
+% We'll need some colored links, so we load xcolor and hyperref. But
+% you can take that out if you don't want links at all.
+
+\usepackage[dvipsnames]{xcolor}
+
+% You can turn off the boxes around links made by hyperref. Then links
+% will appear in a different color, and per guidelines, all links must
+% be blue or black. For blue links say
+
+\usepackage[colorlinks,allcolors=MidnightBlue]{hyperref} 
+
+% For black links, 
+% \usepackage[hidelinks]{hyperref}
+
+% If you prefer hyperref's boxes around links (which don't print), you
+% can also change their color. With boxes around links, you probably
+% don't want everything in the table of contents to be a link, so we
+% only make the page numbers links.
+%
+% \usepackage[allbordercolors=Periwinkle,linktocpage]{hyperref}
+
+% The table of contents in your PDF reader's sidebar is just titles by
+% default, but it's nice to also have chapter and section numbers for
+% easy navigation.
+
+\usepackage[numbered]{bookmark}
+
+% For author-year references, you probably want to use natbib with a
+% bibliography style appropriate for your discipline; or check out
+% latexbib!
+
+\usepackage[round]{natbib}
+\bibliographystyle{plainnat}
+
+% The blindtext package produces the ``lorem ipsum''
+% texts in this sample and can safely be removed.
+
+\usepackage{blindtext}
+
+% Now we put in the information for the thesis title page.
+
+% Full Name
+
+\author{Jane Mary Doe}
+
+% Full Title
+
+\title{An Important Contribution to the Literature}
+
+% Official name of the degree
+
+\degree{Doctor of Philosophy}
+
+% The name of the graduate program (not the department!)
+
+\prog{Graduate Program in Philosophy}
+
+% The month (for the final version: when you file, not when you defended)
+
+\monthname{May}
+
+% The year
+
+\thesisyear{2019}
+
+% Tell hyperref to put author and title into the PDF metadata
+
+\hypersetup{pdfinfo={Title={\thetitle},Author={\theauthor}}}
+
+% If you want memoir to produce endnotes, turn them on here
+
+\makepagenote
+
+% Often you only want to output a single chapter so you can send it to
+% your supervisor. Use includeonly and make sure everything you don't
+% always want compiled to PDF is include'd from a separate file. For
+% instance, to produce a PDF only of chapter 1, endnotes and
+% bibliography, say
+
+% \includeonly{chapter1,backmatter}
+
+% To compile only the title page, which you need when submitting your
+% thesis, say
+
+% \includeonly{titlepage}
+
+% and then copy the resulting PDF to a separate file.
+
+\begin{document}
+
+\frontmatter
+
+% titlepage.tex just makes the titlepage; it's in its own file so you
+% can typeset it alone using includeonly.
+
+\include{titlepage}
+
+% frontmatter.tex contains the abstract, preface, acknowledgments, and
+% the commands to produce the table of contents, list of tables, etc.
+
+\include{frontmatter}
+
+% The main matter of the thesis contains the actual content, separated
+% into chapters.
+
+\mainmatter
+
+\include{chapter1}
+
+\include{chapter2}
+
+% The back matter includes commands to produce endnotes, index,
+% glossary, bibiliography, and the like.
+
+\backmatter
+
+\include{backmatter}
+
+% The appendix contains material that would clutter up the main text,
+% such as program code, survey instruments, or interview transcripts.
+% Remove it if you don't have an appendix.
+
+\appendix
+
+\include{appendix}
+
+\end{document}

@@ -1,0 +1,94 @@
+Polskie robaczki w standardzie ISO-Latin2.
+=======================================================================
+
+   CAP (C albo Pascal)  ---  makra do sk³adu programów w C i Pascalu
+
+=======================================================================
+
+
+ Zawarto¶æ
+-----------
+Ten pakiet makr sk³ada siê z trzech plików:
+  cap_c.tex     ---  makra do sk³adu programów w jêzyku C
+  cap_pas.tex   ---  makra do sk³adu programów w Pascalu
+  cap_comm.tex  ---  pomocnicze makra i deklaracje u¿ywane do sk³adania
+                     programów w obu jêzykach; ten plik nie zawiera
+                     ¿adnych makr po¿ytecznych dla u¿ytkownika
+
+
+ Programy w C
+--------------
+W pliku cap_c.tex znajduj± siê definicje dwóch makr:
+
+  1. \BeginC ... \EndC
+       Pomiêdzy te komendy nale¿y wstawiæ dowolny program ¼ród³owy
+       w jêzyku C. Tre¶æ programu zostanie sformatowana z wykorzystaniem
+       odpowiednich czcionek. Rozpoznawane s± nastêpuj±ce elementy
+       programu:
+        * s³owa kluczowe --- domy¶lnie wyró¿niane s± pogrubieniem
+        * teksty --- wszystko to, co wewn±trz apostrofów; domy¶lnie pochylone
+        * komentarze --- zarówno /*takie...*/ jak i  //takie... ,
+          ale nie zagnie¿d¿one; kursywa typewriter
+        * symbole --- operatory, nawiasy, itp.; typewriter
+        * dyrektywy kompilatora --- sk³adane pochylon± czcionk± typewriter
+        * identyfikatory --- wszystko, co nie jest ¿adnym z powy¿szych;
+          kursywa
+       Makro nie ingeruje w uk³ad programu. Wciêcia s± pozostawione takie,
+       jakie s± w programie ¼ród³owym. Podzia³ na linie równie¿ nie jest
+       zmieniany.
+       UWAGA: W trakcie kompilacji makro \BeginC ... \EndC wczytuje ca³y
+       program do pamiêci TeXa. Z tego powodu mo¿na spodziewaæ siê k³opotów
+       sk³adaj±c tym makrem bardzo du¿y program. W mojej konfiguracji
+       (emTeX pod DOSem) wszystko dzia³a bez zarzutu je¶li program jest
+       nie wiêkszy ni¿ oko³o 15KB. Je¶li NAPRAWDÊ konieczne jest wstawnienie
+       ogromnego programu bezpo¶rednio do pliku TeXowego, konieczny bêdzie
+       podzia³ programu na mniejsze czê¶ci, z których ka¿da bêdzie ujêta
+       w komendy \BeginC ... \EndC.
+
+  2. \InputC{nazwapliku}
+       Wstawia program w jêzyku C z pliku zewnêtrznego. Program zostanie
+       sformatowany jak w poprzednim przypadku. Przypomnienie dla pracuj±cych
+       pod DOSem: w nazwie pliku wszystkie wty³ciachy nale¿y zast±piæ
+       ciachami.
+       To makro nie nak³ada ¯ADNYCH ograniczeñ na rozmiar programu --- czyta
+       wskazany plik linia po linii, wiêc nie grozi mu wyczerpanie pamiêci.
+
+Lista s³ów kluczowych znajduje siê w pliku cap_c.tex. Nie gwarantujê, ¿e
+jest kompletna, wiêc w razie potrzeby mo¿na j± poprawiæ.
+
+
+ Programy w Pascalu
+--------------------
+Aby sk³adaæ programy w Pascalu nale¿y za³±czyæ plik cap_pas.tex. Zawiera
+on równie¿ dwa makra:
+
+  1. \BeginPascal ... \EndPascal
+
+  2. \InputPascal{nazwapliku}
+
+Dzia³aj± one analogicznie. W przypadku \BeginPascal ... \EndPascal
+obowi±zuj± podobne ograniczenia na wielko¶æ formatowanego programu.
+W programie rozpoznawane s± zarówno {takie} jak i (*takie*) komentarze.
+
+Lista s³ów kluczowych pochodzi z Pomocy Borland Delphi. W razie potrzeby
+mo¿na j± zmodyfikowaæ.
+
+
+ Wspólne
+---------
+Czcionki u¿ywane do sk³adania programów s± zadeklarowane na pocz±tku
+pliku cap_comm.tex. W razie potrzeby mo¿na je ³atwo przedefiniowaæ.
+Osoby u¿ywaj±ce czcionek PL zamiast CM bêd± musia³y zmodyfikowaæ dwie
+linie w tym pliku. S± one wyra¼nie zaznaczone.
+
+
+ Uwaga
+-------
+Je¶li modyfikujesz który¶ z plików, zaznacz wyra¼nie swoje zmiany. Nie
+chcê braæ odpowiedzialno¶ci na modyfikacje wprowadzone przez innych.
+
+
+------------
+
+  Micha³ Gulczyñski
+  mgulcz@we.tuniv.szczecin.pl

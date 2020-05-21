@@ -1,0 +1,164 @@
+\documentclass[12pt,a4paper,parskip=half,chapterprefix,bibliography=totoc,footheight=57pt,numbers=noendperiod]{scrreprt}
+\usepackage[
+    typ=leit,
+    fach=Informatik,
+    farbig,
+    module={Lizenzen},
+    lizenz={cc-by-nc-sa-4},
+]{schule}
+
+% Dieses Dokument gehört zu den Beispiel des LaTeX Paketes Schule und ist von den Autoren
+% des Pakets erstellt worden.
+%
+% Das Dokument steht unter der Lizenz: Creative Commons by-nc-sa Version 4.0
+% http://creativecommons.org/licenses/by-nc-sa/4.0/deed.de
+%
+% Nach dieser Lizenz darf das Dokument beliebig kopiert und bearbeitet werden,
+% sofern das Folgeprodukt wiederum unter gleichen Lizenzbedingungen vertrieben
+% und auf die ursprünglichen Urheber verwiesen wird.
+% Eine kommerzielle Nutzung ist ausdrücklich ausgeschlossen.
+
+\title{Beispiel Leitprogramm}
+
+\author{Fachgruppe Informatische Bildung in NRW der Gesellschaft für Informatik}
+\usepackage{gitfile-info}
+\usepackage{qrcode}
+\ifoot*{Version vom \gfiGetDate{}}
+\ofoot*{\lizenzSymbol ~\qrcode{http://ddi.uni-wuppertal.de/material/materialsammlung/}}
+
+\renewcommand{\ttdefault}{pcr}
+
+\usepackage[
+    language=ngerman,
+    backend=biber,
+    sortlocale=de_DE,
+    style=authoryear,
+    bibencoding=UTF8,
+    block=space,
+    autocite=inline % \autocite[..][..]{..} erzeugt Literaturverweise mit runden Klammern
+]{biblatex}
+\addbibresource[location=remote,type=file]{http://uni-w.de/1v} %Komplett.bib
+
+\usepackage{blindtext}
+
+\begin{document}
+    \begin{titlepage}
+        \begin{center}
+            \begin{Large}
+                Leitprogramm als
+            \end{Large}
+        \end{center}
+        \begin{center}
+            \begin{huge}
+                Beispiel
+            \end{huge}
+        \end{center}
+        \begin{center}
+            Stand \gfiGetDay. \monatWort{\gfiGetMonth} \gfiGetYear
+        \end{center}
+        \vfil
+        \begin{center}
+            \begin{tikzpicture}
+                \draw(0,0) rectangle (6cm,8cm);
+                \draw(0,0) -- (6cm,8cm);
+                \draw(6cm,0) -- (0,8cm);
+            \end{tikzpicture}
+        \end{center}
+    \end{titlepage}
+
+    \tableofcontents
+
+\chapter{Vorwort}
+    Hier ist Vorworttext. Eine komplettes Leitprogramm gibt es in der Materialsammlung (siehe \autocite{Pieper2014}). Dort sind welche zu verschiedenen Themen vorhanden.
+
+    \blindtext
+
+\chapter{Weiteres Kapitel}
+    Ein weiteres Kapitel mit Blindtext und einer Aufgabe: \blindtext
+
+    \begin{aufgabe}
+        Heute ganz wichtig aufpassen.
+    \end{aufgabe}
+
+
+    \section{Abschnitt}
+        \blindtext
+
+        \blindtext
+
+        \begin{aufgabe}
+            Mache etwas mit dieser Aufgabe und schreibe es in das Feld.
+            \TextFeld{3cm}
+        \end{aufgabe}
+
+    \section{Weitere Abschnitt}
+        Ein weiterer Abschnitt mit gleich zwei Aufgaben:
+        \begin{aufgabe}
+            Mache noch etwas. Nutze auch die Hinweise.
+            \begin{bearbeitungshinweis}
+                Wenn du diesen Hinweis gelesen hast, dann bist du deiner Aufgabe nachgekommen.
+            \end{bearbeitungshinweis}
+        \end{aufgabe}
+        \begin{aufgabe}
+            Entspanne dich und schau in die Lösung
+        \end{aufgabe}
+        \begin{loesung}
+            Du bist bei dieser Lösung zur Entspannung genau richtig.
+        \end{loesung}
+
+        \begin{hinweisBox}
+            An dieser Stelle steht ein Hinweis auf andere Dinge.
+        \end{hinweisBox}
+
+
+\chapter{Zwei Kapitel sind zu wenig}
+    Deshalb kommt hier noch eine Aufgabe
+    \begin{aufgabe} Mach folgendes
+        \begin{enumerate}
+            \item Lege dich hin
+            \item Schlaf ein
+            \item
+        \end{enumerate}
+        \TextFeld{3cm}
+    \end{aufgabe}
+    \begin{bearbeitungshinweis}
+        Hinweis
+    \end{bearbeitungshinweis}
+    \begin{loesung}
+        Zu dieser Aufgabe kommt auch eine Lösung noch dazu
+    \end{loesung}
+
+    Und eine Aufgabe mit Teilaufgaben
+    \begin{aufgabe}
+        \begin{teilaufgaben}
+            \teilaufgabe erste Teilaufgabe mit einem etwas längeren Text, der auch eine Zeile wirklich überschreitet
+            \TextFeld{3cm}
+            \teilaufgabe zweite Teilaufgabe
+            \TextFeld{3cm}
+            \teilaufgabe Dritte
+        \end{teilaufgaben}
+        \begin{bearbeitungshinweis}
+            \begin{teilaufgaben}
+                \teilaufgabe Erster Hinweis
+                \teilaufgabe Zweiter Hinweis
+                \teilaufgabe Dritter Hinweis
+            \end{teilaufgaben}
+        \end{bearbeitungshinweis}
+        \begin{loesung}
+            \begin{teilaufgaben}
+                \teilaufgabe Erste Lösung
+                \teilaufgabeOhneLoesung
+                \teilaufgabe Dritter Lösung (zweite gibt es nicht)
+            \end{teilaufgaben}
+        \end{loesung}
+    \end{aufgabe}
+
+\chapter{Hinweisliste}
+    \bearbeitungshinweisliste
+
+\chapter{Lösungen}
+    \printsolutions
+
+\printbibliography
+
+\end{document}

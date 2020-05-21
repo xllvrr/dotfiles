@@ -1,0 +1,45 @@
+
+\psset{unit=1cm,fillcolor=yellow,fillcolor=white}
+
+
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{\BSS{psRandom}\AC{\BS{}pspolygon(0,.5)(1,2)(3,2)(4,0)(2,.5)} \BSI{psRandom}{pstricks-add}  }\\ \hline
+\begin{pspicture}(4,2.5)
+\psRandom{\pspolygon(0,.5)(1,2)(3,2)(4,0)(2,.5)}
+\end{pspicture}
+&
+\begin{pspicture}(4,2.5)
+\psRandom(1,1)(2,2){\pspolygon(0,.5)(1,2)(3,2)(4,0)(2,.5)}
+\end{pspicture}
+&
+\begin{pspicture}(4,2.5)
+\psRandom(0,0)(4,2){\pspolygon(0,.5)(1,2)(3,2)(4,0)(2,.5)}
+\end{pspicture} \\ \hline
+\BS{psRandom}\AC{\BS{}pspolygon \dots }&
+\BS{psRandom}{\red (1,1)(2,2)}\AC{\dots }&
+\BS{psRandom}{\red (0,0)(4,2)}\AC{\dots }\\ \hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{\BS{psRandom}[{\red options}](0,0)(4,2)\AC{\BS{}pspolygon(0,.5)(1,2)(3,2)(4,0)(2,.5)}}\\ \hline
+\begin{pspicture}(4,2.5)
+\psRandom[randomPoints=100](0,0)(4,2){\pspolygon(0,.5)(1,2)(3,2)(4,0)(2,.5)}
+\end{pspicture}
+&
+\begin{pspicture}(4,2.5)
+\psRandom[color](0,0)(4,2){\pspolygon(0,.5)(1,2)(3,2)(4,0)(2,.5)}
+\end{pspicture}
+&
+\begin{pspicture}(4,2.5)
+\psRandom[dotstyle=+](0,0)(4,2){\pspolygon(0,.5)(1,2)(3,2)(4,0)(2,.5)}
+\end{pspicture} \\ \hline
+\RDD{randomPoints}=100 \RDI{randomPoints}{pstricks-add} &
+\RDD{color}  \RDI{color}{pstricks-add}&
+\RDD{dotstyle}=+  \RDI{dotstyle}{pstricks-add}
+ \\ \hline  
+{\blue \dft :  1000} & &   \\ \hline  
+\end{tabular}
+\end{center}

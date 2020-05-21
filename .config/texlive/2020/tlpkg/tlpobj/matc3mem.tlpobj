@@ -1,0 +1,28 @@
+name matc3mem
+category Package
+revision 35773
+shortdesc Class for MatematicaC3 textbooks
+longdesc The class is a development of memoir, with additions
+longdesc (specifically, mathematical extensions) that provide support
+longdesc for writing the books for the Matematica C3 project to produce
+longdesc free mathematical textbooks for use in Italian high schools.
+containersize 2508
+containerchecksum e0736f75126aca9506e1cfcbd321645e731e2dec7f3ae2c045201dd8c729044689e358724b77ef9d99aaf3ff742802857d488e3f2f78e781b64af711c7fdce12
+doccontainersize 390784
+doccontainerchecksum 2038d84ab20c6763163769b62a35fa4e95dbd3e76b0e2cf1c4a25694488ddb5b9be8b40f81a1702600d918618455bcae46d22fa101a1a95978b996714de41dfe
+docfiles size=98
+ texmf-dist/doc/latex/matc3mem/Makefile
+ texmf-dist/doc/latex/matc3mem/README details="Readme"
+ texmf-dist/doc/latex/matc3mem/matc3mem.pdf details="Package documentation (in Italian)" language="it"
+srccontainersize 7308
+srccontainerchecksum cd8ad4afa288ca175c06df2de15cb7ae048f3b69ff6b96225f134c022efaaa5223fdba1b2b80f75ad3ab6e3ac79d38b41794cdbfecce1ac6ffd2ed47cfb69649
+srcfiles size=7
+ texmf-dist/source/latex/matc3mem/matc3mem.dtx
+ texmf-dist/source/latex/matc3mem/matc3mem.ins
+runfiles size=2
+ texmf-dist/tex/latex/matc3mem/matc3mem.cls
+catalogue-also matc3
+catalogue-ctan /macros/latex/contrib/matc3mem
+catalogue-license lppl1.3
+catalogue-topics maths
+catalogue-version 1.1

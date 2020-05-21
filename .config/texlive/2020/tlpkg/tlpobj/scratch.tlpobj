@@ -1,0 +1,27 @@
+name scratch
+category Package
+revision 50073
+shortdesc Draw programs like "scratch"
+longdesc This package is now obsolete. From now on, scratch at
+longdesc scratch.mit.edu is now version3 with a new design. Please, use
+longdesc the "scratch3" package to draw blocks with the new design. This
+longdesc package permits to draw program charts in the style of the
+longdesc scatch project (scratch.mit.edu). It depends on the other LaTeX
+longdesc packages TikZ and simplekv.
+containersize 8388
+containerchecksum fcee832dbad22e76387bbd10f7ea8e3127a6fac45ea1b42feb183506cd5c89c258cafb052d75e4d14b431a57e638fc84fc751bbb8fa700420197a0d2e33ead48
+doccontainersize 506808
+doccontainerchecksum af7057f28ac0539a555db5774d3d29e01ba10fa78744712a5d76f95229c45022f682c321a551cb5070ab3e370b2d9e861c0b04b73365e828fe665b3f8aeb7730
+docfiles size=131
+ texmf-dist/doc/latex/scratch/README details="Readme"
+ texmf-dist/doc/latex/scratch/scratch-fr.pdf details="Package documentation (French)" language="fr"
+ texmf-dist/doc/latex/scratch/scratch-fr.tex
+runfiles size=13
+ texmf-dist/tex/latex/scratch/scratch.sty
+catalogue-also tikzcodeblocks
+catalogue-contact-bugs https://framagit.org/unbonpetit/scratch/issues
+catalogue-contact-repository https://framagit.org/unbonpetit/scratch/tree/master
+catalogue-ctan /obsolete/macros/latex/contrib/scratch
+catalogue-license lppl1.3c
+catalogue-topics games pgf-tikz obsolete
+catalogue-version 0.41

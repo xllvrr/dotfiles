@@ -1,0 +1,35 @@
+
+\label{ann}
+
+\begin{tabular}{|c|c|}	\hline  
+\psCancel{Objet}
+&
+\psCancel{$\dfrac{1}{2}$}
+\\ \hline 
+\BSS{psCancel}\AC{Objet} \BSI{psCancel}{pstricks-add}& \BSS{psCancel}\AC{\$\BS{dfrac}\AC{1}\AC{2}\$} 
+\\ \hline
+& \\ 
+\psCancel*{Objet}
+& 
+\psCancel*[opacity=0.5]{Objet} \\
+& \\ 	\hline  
+\BSS{psCancel*}\AC{Objet} & \BSS{psCancel*}[opacity=0.5]\AC{Objet} 
+\\ \hline 
+\end{tabular} 
+
+
+\bigskip
+
+
+\begin{tabular}{|c|c|c|}	\hline 
+\multicolumn{3}{|c|}{\BS{psCancel}[\RDD{cancelType}=x]\AC{Objet} \RDI{cancelType}{pstricks-add} } \\ \hline
+& &\\
+\psCancel[cancelType=x]{Objet}
+ &  
+\psCancel[cancelType=s]{Objet} 
+ &  
+\psCancel[cancelType=b]{Objet} \\
+& &
+ \\ \hline  
+[cancelType=x] & [cancelType=s] & [cancelType=b] \\ \hline 
+\end{tabular} 

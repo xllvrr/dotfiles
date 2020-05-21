@@ -1,0 +1,70 @@
+
+%\TFRGB{Utilisation du module}{Package}  \textbf{pst-grad} 
+\label{pst-grad}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|} \hline 
+\multicolumn{4}{|c|}{\BS{}psframe[fillstyle=\RDDD{gradient}{fillstyle}](0.5,.5)(2.5,2.5)   } \\ \hline
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient](0.5,.5)(2.5,2.5)
+\end{pspicture}
+&
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient,gradbegin=green](0.5,.5)(2.5,2.5)
+\end{pspicture}
+&
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient,gradend=green](0.5,.5)(2.5,2.5)
+\end{pspicture}
+&
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient,gradbegin=red,gradend=green](0.5,.5)(2.5,2.5)
+\end{pspicture} \\ \hline
+{\blue \dft}  & 
+\RDD{gradbegin}=green \RDI{gradbegin}{pst-grad} & 
+\RDD{gradend}=green \RDI{gradend}{pst-grad} & 
+{\red gradbegin}=red \\
+& & & {\red gradend}=green \\ \hline \hline
+
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient,gradlines=5](0.5,.5)(2.5,2.5)
+\end{pspicture}
+&
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient,gradmidpoint=0.7](0.5,.5)(2.5,2.5)
+\end{pspicture}
+&
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient,gradangle=45](0.5,.5)(2.5,2.5)
+\end{pspicture}
+&
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient,gradangle=90](0.5,.5)(2.5,2.5)
+\end{pspicture} \\ \hline
+\RDD{gradlines}=5  \RDI{gradlines}{pst-grad} & \RDD{gradmidpoint}=0.7  \RDI{gradmidpoint}{pst-grad} & \RDD{gradangle}=45  \RDI{gradangle}{pst-grad} & \RDD{gradangle}=90  \RDI{gradangle}{pst-grad} \\ \hline
+{\blue \dft  : 500} & {\blue \dft  : 0.9} &  \multicolumn{2}{c|}{\blue \dft  : 0}\\ \hline 
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|} \hline 
+\multicolumn{4}{|c|}{\BS{}psframe[  fillstyle=gradient,\RDD{GradientCircle}=true ](0.5,.5)(2.5,2.5)  \RDI{GradientCircle}{pst-grad} } \\ \hline
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient,GradientCircle=true](0.5,.5)(2.5,2.5)
+\end{pspicture}
+&
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient,GradientCircle=true,GradientScale=.5](0.5,.5)(2.5,2.5)
+\end{pspicture}
+&
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient,GradientCircle=true,GradientScale=2](0.5,.5)(2.5,2.5)
+\end{pspicture}
+&
+\begin{pspicture}(3,3)
+\psframe[fillstyle=gradient,GradientCircle=true,GradientPos={(1,1)}](0.5,.5)(2.5,2.5)
+\end{pspicture}\\ \hline
+  & \RDD{GradientScale}=.5  \RDI{GradientScale}{pst-grad} & \RDD{GradientScale}=2  \RDI{GradientScale}{pst-grad} &  \RDD{GradientPos}=\AC{(1,1)} \RDI{GradientPos}{pst-grad} \\ \hline
+\end{tabular}
+\end{center}

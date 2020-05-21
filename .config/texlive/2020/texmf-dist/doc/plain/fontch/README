@@ -1,0 +1,360 @@
+README File of the package fontch.tex   V2.2 2010/04/12
+ fontch.tex:  Macros for changing fonts and sizes in plain TeX
+
+ Rodrigo Medina  rmedina@ivic.gob.ve
+
+Suggested locations: .../texmf/tex/plain/fontch/
+                     .../texmf/doc/plain/fontch/README
+Licence: LPPL
+
+Components
+----------
+The fontch V2.2 package is composed of the following files:
+   README         -- this file 
+   fontch.tex     -- main macros
+   bsymbols.tex   -- macros for boldface  symbols
+   TS1mac.tex     -- macros for the TS1 companion symbols
+   DSmac.tex      -- auxiliary file for the DStroke option
+   fontch.pdf     -- manual of fontch
+   fontch_doc.tex -- source of manual
+
+Description
+-----------
+       This package allows, in plain TeX, to change with a single
+command the size of all fonts that are used for text input and math input.
+Main text fonts of sizes 8, 10, 12, 14, 20 and 24 points are available.
+Fonts of sizes 5, 6, 7 and 9 points are used in subscripts and subscripts of
+subscripts of other main sizes.
+In addition fontch gives support to:
+   - boldface math-italic and boldface math symbols,
+   - T1 Latin Modern fonts,
+   - TS1 companion symbol fonts.
+   - AMS fonts for boldface math,
+   - Double Stroke fonts for blackboard bold symbols
+ 
+Requirements
+-------------
+- In order to use the T1 options LMTone and LMTSone, you need to have installed
+  the Latin Modern fonts of version 1.000 or larger. Older versions of LM fonts,
+  where the cork encoded fonts had names as cork-lmr10 (instead of ec-lmr10) 
+  are incompatible with fontch-2.1. For those fonts you can use fontch-2.0
+  which is incompatible with the new naming convention. The old package is in
+  CTAN:/tex-archive/obsolete/macros/plain/contrib/fontch20.tar.gz
+- In order to use the AMSfont option you need to have installed the AMS fonts.
+- In order to use the DStroke option ou need to have installed the Double
+  Stroke fonts.
+
+Installation
+------------
+        You have only to put the macro files fontch.tex, bsymbols.tex,
+ TS1mac.tex and DSmac.tex in any sensible place in the texmf tree, like
+       .../texmf/tex/plain/fontch/
+
+It is also commendable to put this README file in a proper place such as
+
+       .../texmf/doc/plain/fontch/README
+
+Usage
+-----
+   For using fontch.tex with the original TeX OT1 fonts (Computer Modern)
+just put at the beginning of the document:
+ \input fontch.tex
+
+The file bsymbols.tex provides macro definitions for boldface versions
+of math symbols. For using it just input the file where you need it.
+
+The fontch package has four options for handling different kinds of fonts:
+
+  -  LMTone     for Latin Modern T1 fonts.
+  -  LMTSone    for the TS1 companion symbol font.
+  -  AMSfont    for AMS fonts used for boldface math.
+  -  DStroke    for Doublestroke fonts providing blackboard-boldface symbols.
+
+The four options are independent. They are activated by setting the
+corresponding variable before calling  fontch.tex. For example for
+activating all the four options and using the macros for bold math
+put at the beginning of the document:
+
+ \let\AMSfont\relax
+ \let\DStroke\relax 
+ \let\LMTone\relax
+ \let\LMTSone\relax
+ \input fontch.tex
+ \input bsymbols.tex
+
+NOTES:
+-----
+ (1) There is one modification of the standard behavior of plain TeX. Plain
+     TeX defines for the font #3 the same font (tenex) for text, script and
+     scriptscript. That is aw full. The fontch package uses sevenex for
+     script and fiveex for scriptscript, as for the other fonts.
+     
+ (2) The use of files il1-t1.tcx or il2-t1.tcx is recommended together
+     with the LMT1 fonts.
+
+ (3) Only the cmcs, cmmib, cmbsy and cmex AMS fonts are supported. These
+     are used for small caps and for boldface math-italic and boldface
+     Greek symbols. The other AMS fonts like the Euler, Cyrillic and extra
+     symbols are not supported.
+
+ (4) Only the roman Doublestroke font is supported. The sans serif version
+     is not supported.
+
+ (5) There are two main uses of boldface math. One case is the use of
+     isolated bold  characters or symbols inside a formula. For this case
+     fontch provides bold versions of math symbols and the macro \mb for bold
+     math-italic characters.  The plain TeX macro "\bf" yields roman-bold
+     characters in math mode.  The name of the bold version of a math symbol
+     is obtained adding the prefix "bf" to the name of the normal symbol. For
+     example a boldface italic "a" is {\mb a}, a boldface roman "P" is
+     {\bf P}, a boldface \Sigma is \bfSigma, a boldface \iff is \bfiff.
+
+     The other case is when one wants to write a complete formula in
+     boldface, for example inside a title. For this case fontch has the
+     macro \setmathbold that changes the font families 1 (cmmi) and 2 (cmsy)
+     to the bold versions cmmib and cmmbsy. The macro  \unsetmathbold resets
+     the families 1 and 2 to their original values. These macros should be
+     put before and after the formula.
+
+ (6) Usually the macro \setmathbold does not change the whole formula to
+     boldface. This is due to the fact that in math mode some symbols
+     come from family #0 (cmr) or #3 (cmex) such as "+" or \int. Fontch
+     provides macros for the symbols that come from family #0, For
+     example the bold version of "(" is \bflparen.
+
+ (7) Math symbols of family #3 (cmex) do not have bold versions. In particular
+     \int, \sum and \prod. Nevertheless \smallint is of cmsy and does have
+     a bold version.
+
+Modifications from version 2.1
+------------------------------
+Version 2.2 is a minor bug correction version.
+The main change is the inclusion of the fontch.pdf file.
+
+Modifications from version 2.0
+------------------------------
+Version 2.1 is a minor bug correction version.
+The main change is the change in the name of
+the cork-encoded LM font files to the new
+naming conventions. (cork-lmr10 -> ec-lmr10, etc.)
+Fontch-2.1 is compatible with LM-1.000 or newer versions.
+Older versions of LM fonts are not compatible.
+
+Modifications from version 1.3
+------------------------------
+
+Version 2.0 is a mayor revision.
+
+There are many improvements such as
+ -- Proper handling of smallcaps
+ -- Support for bold-math
+ -- Support for AMS fonts
+ -- Support for blackboard boldface
+ -- Correction of bugs and scaling.
+
+The behavior of V2.0 should be compatible with V1.3 except for case explained
+in Note (1).
+-----------------------------------------------------
+%%%%%%%%% Commands of fontch %%%%%%
+
+General Commands
+----------------
+The package fontch defines the following commands valid for any option.
+
+Commands for changing font size:
+        \eightpoint      -- Change to small type
+        \tenpoint        -- Change to normal type
+        \twelvepoint     -- Change to large type
+        \fourteenpoint   -- Change to very large type
+        \twentypoint     -- Change to huge type
+        \twentyfourpoint -- Change to immense type
+
+Commands for changing family, most already in plain TeX.
+
+        \rm            -- Roman
+        \sl            -- Slanted
+        \it            -- Italic
+        \bf            -- Boldface
+        \tt            -- Teletype
+        \sf            -- Sans Serif (new)
+        \sc            -- Small Caps
+        \cal           -- Calligraphic
+        \mit           -- Math Italic
+        \mb            -- Math Boldface (new)
+        \bcal          -- Boldface calligraphic (new)
+        \oldstyle      -- Old style digits
+        \boldstyle     -- Boldface old style digits (new)
+        \setmathbold   -- set families 1 and 2 to cmmib and cmmbsy (new)
+        \unsetmathbold -- reset families 1 and 2 to cmmi and cmmsy (new)
+
+Command for changing line spacing
+        \doublespace   -- Double Space for ten & twelve points
+
+
+
+Macros of bold symbols (Requires input of bsymbols.tex)
+----------------------
+Symbols that have a keyword 
+  bold_keyword = bf + normal_keyword
+
+Symbols that do not have a keyword
+  \bfexcl        -- !
+  \bflparen      -- (
+  \bfrparen      -- )
+  \bfplus        -- +
+  \bfcomma       -- ,
+  \bfcolon       -- :
+  \bfsemicolon   -- ;
+  \bfequal       -- =
+  \bflbraket     -- [
+  \bfrbraket     -- ]
+  \bflt          -- <
+  \bfslash       -- /
+  \bfgt          -- >
+  \bfminus       -- -
+  \bfvert        -- |
+  \bfVert        -- \|
+
+Command of the DStroke option
+-----------------------------
+ \ds  -- Double Stroke
+                               
+Commands of the LMT1 option
+---------------------------
+
+Redefined Plain TeX Commands:
+  \i , \j , \ae , \AE, \oe , \OE , \o , \O ,
+  \ss , \SS , \aa , \AA , \l , \L ,
+  \Gamma , \Delta , \Theta , \Lambda , \Xi , \Pi ,
+  \Sigma , \Upsilon , \Phi , \Psi , \Omega , \hbar
+
+New T1 Commands for non-latin1 characters
+
+        \lh  -- l'
+        \Lh  -- L'
+        \dh  -- d'
+        \th  -- t'
+        \dbar -- d slash
+        \Edh
+        \edh
+        \ij
+        \IJ
+        \nj
+        \NJ
+        \thorn
+        \Thorn
+        \smallzero
+        \lguille   -- left guillemot (does not appear in il1-t1.tcx)
+        \rguille   -- right guillemot (does not appear in il1-t1.tcx)
+        \vispace   -- visible space
+
+Redefined plain TeX accents
+  \` , \' , \^ , \~ , \" , \H , \v , \u , \= , \. , \b , \c
+
+Redefined plain TeX math-accents
+  \acute,\grave,\ddot,\tilde,\bar,\breve,\check,\hat,\dot
+
+New T1 accents
+        \r   -- ring accent
+        \k   -- ogonek
+
+New T1 math-accent
+        \ring
+
+Commands of the LMTS1 option
+----------------------------
+
+TS1 symbols
+        \tcchar{#1} -- Character of TS1 table
+
+Redefined plain TeX commands
+        \t{#1} --  tie-after-accent
+        \P     --  pilcrow
+        \S     --  section
+        \dag   --  dagger
+        \ddag  --  double dagger
+        \copyright
+
+Most TS1 symbols (in increasing charcode order)
+Some are text versions of symbols of the math mode.
+
+        \arrowl      -- left arrow
+        \arrowr      -- right arrow
+        \blank
+        \dollar
+        \caster      -- centered asterisk
+        \sequals     -- short equals
+        \anglel
+        \angler
+        \mho
+        \bigcircle
+        \Ohm
+        \bbracketl   -- left double square bracket
+        \bbracketr   -- right double square bracket
+        \arrowu      -- up arrow
+        \arrowd      -- down arrow
+        \textstar    -- star
+        \born
+        \died
+        \leaf
+        \married
+        \music
+        \doublevert  -- Double vertical bar
+        \perthousand
+        \bull        -- bullet (is in manmac)
+        \centigrade
+        \olddollar
+        \oldcent
+        \florin
+        \Colon
+        \won
+        \naira
+        \guarani
+        \peso
+        \lira
+        \recipe
+        \interrobang -- Question+Exclamation
+        \gnaborretni -- Question+Exclamation upside-down
+        \dong
+        \TM
+        \pertenth    -- per ten thousand
+        \npilcrow    -- narrow pilcrow
+        \baht
+        \numero
+        \abzueglich
+        \aestimated  -- Big e
+        \openbull
+        \SM
+        \qbrackl     -- left quill bracket
+        \qbrackr     -- right quill bracket
+        \cent
+        \sterling
+        \currency
+        \yen
+        \brokenvert  -- broken vertical bar
+        \feminine
+        \copyleft
+        \lognot      -- logical not
+        \circledP
+        \registered
+        \degree
+        \plusminus
+        \twoup
+        \threeup
+        \micro
+        \centereddot
+        \reference
+        \oneup
+        \masculine
+        \root
+        \onequarter
+        \onehalf
+        \threequarters
+        \euro
+        \texttimes
+        \textdiv
+
+Bugs
+----
+  Comments and bugs reports are welcome at rmedina@ivic.gob.ve
+-.-

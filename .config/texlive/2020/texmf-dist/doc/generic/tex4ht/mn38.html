@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>overview</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<meta name="originator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<!-- xhtml,th4,index --> 
+<meta name="src" content="mn.tex" /> 
+<meta name="date" content="2004-02-11 18:07:00" /> 
+<link rel="stylesheet" type="text/css" href="mn.css" /> 
+</head><body 
+>
+    <a 
+ href="mn37.html#mn38.html" >exit overview</a>
+    <h3 class="SubSectionHead"><a 
+  name="QQ1-38-48"></a>The Translation Process</h3>
+    <a 
+  name="index38-48001"></a> <a 
+  name="index38-48002"></a> <a 
+  name="index38-48003"></a> <a 
+  name="index38-48004"></a> <a 
+  name="index38-48005"></a>The system can be activated with a sequence of commands of the following form, typically embedded within
+a script.
+<div class="Verbatim"><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;latex</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;x</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;(or</span><span class="cmtt-10">&nbsp;`tex</span><span class="cmtt-10">&nbsp;x')</span><span class="cmtt-10">&nbsp;</span>
+
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;latex</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;x</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;latex</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;x</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;tex4ht</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;x</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;t4ht</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;x</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+<!--l. 6011--><p class="indent">    The three compilations with La(TeX) are needed to ensure proper links. The approach is illustrated in the
+following picture.
+
+</p><!--l. 6016--><p class="indent">    <img 
+src="mn4x.gif" alt="                                  --html
+                                  |  files
+        ----|            -------| |
+    ----|   |----     ----      ----     --
+x.tex    TeX |    x.dvi   |tex4ht | | x.idv   | ----|
+        -----            -------  |        --t4ht---gif &amp; css
+                                  |        | -----    files
+                                  ---x.lg---
+"   />
+</p><!--l. 6051--><p class="indent">
+</p><dl > <dt>x.tex</dt><dd>
+<!--l. 6054--><p class="indent">    This is a source TeX/LaTeX/OtherTeX file that imports the style files <span class="cmtt-10">tex4ht.sty </span>and <span class="cmtt-10">*.4ht</span>. The style files
+define the features for the output.
+</p>
+    </dd><dt>tex4ht</dt><dd>
+<!--l. 6060--><p class="indent">    <a 
+  name="index38-48006"></a> <a 
+  name="index38-48007"></a>The output of TeX is a standard dvi file interleaved with special instructions for the postprocessor <span class="cmtt-10">tex4ht </span>to
+use. The special instructions come from implicit and explicit requests made in the source file through commands of
+TeX4ht.
+</p><!--l. 6067--><p class="indent">    The utility <span class="cmtt-10">tex4ht </span>translates the dvi code into standard text, while obeying the requests it gets from the
+special instructions. The special instructions may request the creation of files, insertion of html code, filtering of
+pictures, and so forth.
+</p><!--l. 6072--><p class="indent">    In the extreme case that the source code contains no commands of TeX4ht, tex4ht gets pure dvi code and it
+outputs (almost) plain text with no hypertext elements in it.
+</p><!--l. 6076--><p class="indent">    The special (<span class="cmtt-10">\special</span>) instructions seeded in the dvi code are not understood by dvi processors other than
+those of TeX4ht.
+</p>
+    </dd><dt>x.idv</dt><dd>
+<!--l. 6081--><p class="indent">    <a 
+  name="index38-48008"></a> <a 
+  name="index38-48009"></a>This is a dvi file extracted from <span class="cmtt-10">x.dvi</span>, and it contains the pictures needed in the html files.
+</p>
+    </dd><dt>x.lg</dt><dd>
+<!--l. 6088--><p class="indent">    <a 
+  name="index38-48010"></a>This is a log file listing the pictures of x.idv, the gif files that should be created, CSS information, and user
+directives introduced through the &#8216;<span class="cmtt-10">\Needs{...}</span>&#8217; command.
+</p>
+    </dd><dt>t4ht</dt><dd>
+<!--l. 6095--><p class="indent">    This is an interpreter for executing the requests made in the <span class="cmtt-10">x.lg </span>script.
+</p>
+    </dd></dl>
+    <h3 class="SubSectionHead"><a 
+  name="QQ1-38-49"></a>A Reflection at the System Messages</h3>
+<div class="Verbatim"><span class="cmtt-10">This</span><span class="cmtt-10">&nbsp;is</span><span class="cmtt-10">&nbsp;TeX,</span><span class="cmtt-10">&nbsp;Version</span><span class="cmtt-10">&nbsp;3.14159</span><span class="cmtt-10">&nbsp;(Web2C</span><span class="cmtt-10">&nbsp;7.3.1)</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmsy-10"><img src="cmsy10-28.gif" alt="&lt;==" class="cmsy10--28" /> </span><span class="cmbx-10">invoke</span><span class="cmbx-10">&nbsp;&#8216;latex</span><span class="cmbx-10">&nbsp;x&#8217;</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">LaTeX2e</span><span class="cmtt-10">&nbsp;&lt;1998/12/01&gt;</span><span class="cmtt-10">&nbsp;patch</span><span class="cmtt-10">&nbsp;level</span><span class="cmtt-10">&nbsp;1</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Babel</span><span class="cmtt-10">&nbsp;&lt;v3.6x&gt;</span><span class="cmtt-10">&nbsp;and</span><span class="cmtt-10">&nbsp;hyphenation</span><span class="cmtt-10">&nbsp;patterns</span><span class="cmtt-10">&nbsp;for</span><span class="cmtt-10">&nbsp;american,</span><span class="cmtt-10">&nbsp;french,</span><span class="cmtt-10">&nbsp;german,</span><span class="cmtt-10">&nbsp;ngerman,</span><span class="cmtt-10">&nbsp;n</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">ohyphenation,</span><span class="cmtt-10">&nbsp;loaded.</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(x.tex</span><span class="cmtt-10">&nbsp;(/usr/share/texmf/tex/latex/base/article.cls</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Document</span><span class="cmtt-10">&nbsp;Class:</span><span class="cmtt-10">&nbsp;article</span><span class="cmtt-10">&nbsp;1999/01/07</span><span class="cmtt-10">&nbsp;v1.4a</span><span class="cmtt-10">&nbsp;Standard</span><span class="cmtt-10">&nbsp;LaTeX</span><span class="cmtt-10">&nbsp;document</span><span class="cmtt-10">&nbsp;class</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(/usr/share/texmf/tex/latex/base/size10.clo))</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(n/tex4ht.dir/tex4ht.sty)</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(n/tex4ht.dir/tex4ht.sty</span><span class="cmtt-10">&nbsp;</span>
+
+<br /><span class="cmtt-10">---</span><span class="cmtt-10">&nbsp;needs</span><span class="cmtt-10">&nbsp;---</span><span class="cmtt-10">&nbsp;tex4ht</span><span class="cmtt-10">&nbsp;x</span><span class="cmtt-10">&nbsp;---</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(tex4ht.tmp)</span><span class="cmtt-10">&nbsp;(x.xref)</span><span class="cmtt-10">&nbsp;(n/tex4ht.dir/html4.4ht)</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(n/tex4ht.dir/picmath4.4ht)</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(n/tex4ht.dir/latex.4ht</span><span class="cmtt-10">&nbsp;(n/tex4ht.dir/html4.4ht)</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(n/tex4ht.dir/picmath4.4ht))</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(n/tex4ht.dir/fontmath.4ht</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(n/tex4ht.dir/html4.4ht)</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(n/tex4ht.dir/picmath4.4ht))</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(n/tex4ht.dir/article.4ht</span><span class="cmtt-10">&nbsp;(n/tex4ht.dir/html4.4ht</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">)</span><span class="cmtt-10">&nbsp;(n/tex4ht.dir/picmath4.4ht)))</span><span class="cmtt-10">&nbsp;(x.aux)</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">---</span><span class="cmtt-10">&nbsp;file</span><span class="cmtt-10">&nbsp;x.css</span><span class="cmtt-10">&nbsp;---</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">[1]</span><span class="cmtt-10">&nbsp;(x.aux)</span><span class="cmtt-10">&nbsp;)</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Output</span><span class="cmtt-10">&nbsp;written</span><span class="cmtt-10">&nbsp;on</span><span class="cmtt-10">&nbsp;x.dvi</span><span class="cmtt-10">&nbsp;(1</span><span class="cmtt-10">&nbsp;page,</span><span class="cmtt-10">&nbsp;4460</span><span class="cmtt-10">&nbsp;bytes).</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Transcript</span><span class="cmtt-10">&nbsp;written</span><span class="cmtt-10">&nbsp;on</span><span class="cmtt-10">&nbsp;x.log.</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">This</span><span class="cmtt-10">&nbsp;is</span><span class="cmtt-10">&nbsp;TeX,</span><span class="cmtt-10">&nbsp;Version</span><span class="cmtt-10">&nbsp;3.14159</span><span class="cmtt-10">&nbsp;(Web2C</span><span class="cmtt-10">&nbsp;7.3.1)</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmsy-10"><img src="cmsy10-28.gif" alt="&lt;==" class="cmsy10--28" /> </span><span class="cmbx-10">invoke</span><span class="cmbx-10">&nbsp;&#8216;latex</span><span class="cmbx-10">&nbsp;x&#8217;</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">LaTeX2e</span><span class="cmtt-10">&nbsp;&lt;1998/12/01&gt;</span><span class="cmtt-10">&nbsp;patch</span><span class="cmtt-10">&nbsp;level</span><span class="cmtt-10">&nbsp;1</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">.......................</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">This</span><span class="cmtt-10">&nbsp;is</span><span class="cmtt-10">&nbsp;TeX,</span><span class="cmtt-10">&nbsp;Version</span><span class="cmtt-10">&nbsp;3.14159</span><span class="cmtt-10">&nbsp;(Web2C</span><span class="cmtt-10">&nbsp;7.3.1)</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmsy-10"><img src="cmsy10-28.gif" alt="&lt;==" class="cmsy10--28" /> </span><span class="cmbx-10">invoke</span><span class="cmbx-10">&nbsp;&#8216;latex</span><span class="cmbx-10">&nbsp;x&#8217;</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">LaTeX2e</span><span class="cmtt-10">&nbsp;&lt;1998/12/01&gt;</span><span class="cmtt-10">&nbsp;patch</span><span class="cmtt-10">&nbsp;level</span><span class="cmtt-10">&nbsp;1</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">.......................</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">tex4ht.c</span><span class="cmtt-10">&nbsp;(1999-11-10-03-50)</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmsy-10"><img src="cmsy10-28.gif" alt="&lt;==" class="cmsy10--28" /> </span><span class="cmbx-10">invoke</span><span class="cmbx-10">&nbsp;&#8216;tex4ht</span><span class="cmbx-10">&nbsp;x&#8217;</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(tex4ht.env)</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(n/tex4ht.dir/tex4ht.fls)</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(/usr/share/texmf/fonts/tfm/public/cm/cmr10.tfm)</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">(n/tex4ht.dir/ht-fonts/iso8859/cm/cmr.htf)</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">[1</span><span class="cmtt-10">&nbsp;file</span><span class="cmtt-10">&nbsp;x.html</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;file</span><span class="cmtt-10">&nbsp;x.css</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;file</span><span class="cmtt-10">&nbsp;tex4ht.tmp</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">]</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Execute</span><span class="cmtt-10">&nbsp;script</span><span class="cmtt-10">&nbsp;`x.lg'</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">t4ht.c</span><span class="cmtt-10">&nbsp;(1999-12-30-21-14)</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;</span><span class="cmsy-10"><img src="cmsy10-28.gif" alt="&lt;==" class="cmsy10--28" /> </span><span class="cmbx-10">invoke</span><span class="cmbx-10">&nbsp;&#8216;t4ht</span><span class="cmbx-10">&nbsp;x&#8217;</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Entering</span><span class="cmtt-10">&nbsp;tex4ht.env</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Entering</span><span class="cmtt-10">&nbsp;x.lg</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">.......................</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+
+     
+</body></html> 

@@ -1,0 +1,550 @@
+% !TeX program = XeLaTeX
+\documentclass[12pt]{ltxdoc}
+
+\usepackage{amssymb}
+\usepackage{showexpl}
+\lstset{%
+ basicstyle=\ttfamily\small,
+ keywordstyle=\ttfamily\small,
+ commentstyle=\itshape\ttfamily\small,
+ numbers = left,
+ numbersep = .5em,
+ numberstyle=\scriptsize\sffamily,
+ breaklines=true,
+ escapeinside={/*}{*/},
+ backgroundcolor=\color{black!10},
+ breakautoindent=true,
+ captionpos=t,
+ language = TeX
+}
+\lstdefinestyle{mc}{
+  name=mc,
+  language=[LaTeX]TeX,
+  columns=fullflexible,
+  numbers=left,
+  numberfirstline=1,
+  firstnumber=auto,
+  numbersep=.5em,
+}
+
+\usepackage{metalogo}
+
+\usepackage{booktabs}
+\usepackage{hyperref}
+\hypersetup{
+ pdftitle={Lab reports with professionalism: the CHS Physics Report package for LaTeX},
+ pdfauthor={Gary Zhang},
+ pdfnewwindow=true,
+ colorlinks=true,
+ linkcolor=black,
+ urlcolor=blue
+}
+\usepackage{chs-physics-report}
+\geometry{left = 4cm, right = 4cm}
+\usepackage{fontspec}
+\setsansfont[Ligatures = TeX]{Calibri}
+\setmathsf{CMU Sans Serif}
+\setmonofont[Scale = .9]{Courier New}
+
+\sectionstyle{\rmfamily\bfseries\Large}
+\subtitlestyle{\normalsize}
+\title{\hspace*{-3.25cm}\parbox{\textwidth + 6.5cm}{\centering\fontspec{Latin Modern Roman}[Scale = .93] Writing lab reports with professionalism:\\the CHS Physics Report package}\vspace{2mm}}\makeatletter
+\author{Gary Zhang\footnoteDuplic@teDuplic@te{\sffamily Correspondence may be sent to \texttt{garyzhang00 \char`\$\char`\@\char`\$\  gmail.com}}}
+
+
+\def\@workedWith{\\2017-11-23}
+\def\LaTeX{ L\kern -.21em{\sbox \z@ T\vbox to\ht \z@ {\hbox {\check@mathfonts \fontsize \sf@size \z@ \math@fontsfalse \selectfont A}\vss }}\kern -.1em\TeX}% Otherwise, it really sucks when viewed in Calibri
+\makeatother
+
+\let\sfsum\undefined
+\let\sfprod\undefined
+\DeclareMathOperator*{\sfsum}{\fontfamily{lmss}\fontsize{.9cm}{1cm}\selectfont\text{Σ}}
+\DeclareMathOperator*{\sfprod}{\fontfamily{lmss}\fontsize{.9cm}{1cm}\selectfont\text{\MakeUppercase{π}}}
+
+\begin{document}
+\maketitle\vspace{13mm}
+\sffamily
+
+\section{Abstract}
+
+
+The CHS Physics Report package may be used to stylize lab reports written in \LaTeX. The package also provides some useful commands to expedite the process of writing a lab report by providing a commands that are otherwise not very readily available to use in \LaTeX. It is compatible with many other \LaTeX\ packages and may be used, among other possibilities, for reports in physics.
+
+\section{Introduction}
+
+I wrote this package in order to accomplish my goal of writing Lab Reports for Mr.\ James' AP Physics C class at Carmel High School. Because all my documents largely took the same form, I wound up writing a package in order to simplify the files I used for writing my reports. As my style of writing lab reports has drawn questions of repeating my successes with lab reports, especially amongst AP Physics 1 students at Carmel High, it looks like I have to write the documentation for this package! \emph{Sigh!}
+
+In all seriousness though, the intended purpose of this package is to typeset a highly technical document, for any type of science class. Although it is not designed to help to write reports in chemistry and biology, a few additional packages may supply this functionality if desired. Consequently, this package may be a nice little souvenir to keep for your other classes to use to write the professional-appearing reports you need. And you \emph{can} keep it too! That's because the code for the CHS Physics Report package has been released into the public domain through the use of the CC0 license,\footnote{\sffamily A copy of the CC0 license may be found at\\ \url{https://creativecommons.org/publicdomain/zero/1.0/legalcode}.} with the exception of a small segment written by Stefan Kottwitz that I have slightly edited, available under a \href{https://creativecommons.org/licenses/by-sa/3.0/legalcode}{CC BY-SA 3.0 License}. However, although this package may be freely used to write your reports in other AP courses, this package is neither supported nor endorsed by the CollegeBoard, which has no affiliation with this package.
+
+To install this package, follow the directions found at 
+
+\begin{minipage}{\textwidth - 2\parindent}\url{https://artofproblemsolving.com/wiki/index.php?title=LaTeX:Packages#Making_Your_Own}.\end{minipage}
+
+To learn how to use \LaTeX, 
+the \href{https://artofproblemsolving.com/wiki/index.php?title=LaTeX}{Art of Problem Solving Wiki} has a mathematics-oriented guide to \LaTeX\ that avoids most of the technical details and goes straight into how to use it to typeset mathematics. 
+
+\section{Features}
+
+The CHS Physics Report package calls upon these packages:
+\begin{multicols}{2}
+\begin{itemize}
+\item{amsmath}\vspace{-.8\parskip}
+\item{fancyhdr}\vspace{-.8\parskip}
+\item{geometry} - by default, this is set to \verb|\geometry{top = 2.5cm,| \verb|bottom = 2.5cm}|\vspace{-.8\parskip}
+\item{transparent}\vspace{-.8\parskip}
+\item{calc}\vspace{-.8\parskip}
+\item{graphicx}\vspace{-.8\parskip}
+\item{titlesec}\vspace{-.8\parskip}
+\item{color} - unnecessary because of xcolor\vspace{-.8\parskip}
+\item{}{xcolor} with option \texttt{svgnames}\vspace{-.8\parskip}
+\item{letltxmacro}
+\end{itemize}
+\end{multicols}
+\noindent Some of these packages are included for convenience, not because they are so crucial that they are inseparable from the lab reports. For example, the packages \makebox{transparent}, xcolor, and graphicx are loaded because the Physics C lab reports that we submitted always were required to have a sketch of the setup of our lab; these packages are useful for inputting a \texttt{pdf\char`\_tex} file generated by Inkscape, among other uses. 
+
+Additional packages that you may want to use alongside the CHS Physics Report package include the following.\vspace{-.5\parskip} \renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\bfseries\sffamily{#1}}
+\begin{description}
+\item[amssymb] -\; allows the typesetting of certain symbols, such as blackboard bold
+\item[booktabs] -\; helps to format tables to be neater so that they better display data
+\item[hyperref] -\; may be used to create hyperlinks, links within your document, PDF bookmarks, and formatted URLs; also can add PDF metadata
+\item[lmodern and fontenc] -\; when both the lmodern (Latin Modern) and fontenc packages are called, and fontenc is loaded with option \verb|T1|, the quality of copying and pasting from your PDF is improved. You don't want to know what happens when you use fontenc without lmodern or an equivalent. (Note that lmodern sets your font; you may use other font packages such as newtxtext as an alternative.)
+\item[fontspec] -\; fontspec is an alternative to the combination of  lmodern and fontenc, and it lets you use any font you want; however, you must use \begingroup\let\nLaTeX\LaTeX\def\LaTeX{\!\makebox{\nLaTeX}}\XeLaTeX\endgroup\ or \makebox{Lua\hspace{-.22em}\LaTeX}\ in order to use fontspec
+\item[pdfpages] -\; lets you include pages from another PDF as  \emph{entire}, \emph{separate} pages. Note that if you want to include a page from another PDF (such as a one-page graph or a table) but you do not want to include it as an \emph{entirely new} page, then you would not use pdfpages, but rather, as a figure on your current page, then you would say \verb|\includegraphics{your_file.pdf}|
+\item[soul] -\; provides working underlining
+\end{description}
+
+\subsection{Package options}
+
+The CHS Physics Report package provides options to control page style and the style of mathematical notation. There are two page style options: \texttt{light} and \texttt{standard}, which are mutually exclusive. The \texttt{standard} option is used by default; just by calling \\[\parskip]\indent\verb|\usepackage{chs-physics-report}|, \\[\parskip]you get the \verb|standard| option. To select the \texttt{light} option, load the package with\\[\parskip]\indent\verb|\usepackage[light]{chs-physics-report}|.\\[\parskip] The \verb|light| option is generally more suitable for short reports of one or two pages. It places your name, the names of those you worked with, and the title of your report in the header, with a black line beneath these three things.
+
+There are two mathematics style options: \verb|display| and \verb|inline-math|, which are mutually exclusive to each other, but not to the page style options. Like the \texttt{standard} option, the \verb|display| option is the default option and results in large, display style math even when you use \verb|$|\emph{math text}\verb|$|. To use the \verb|inline-math| option, load the package with\\[2.5mm]\indent\verb|\usepackage[inline-math]{chs-physics-report}|\\[2.5mm]The \verb|inline-math| option is what \LaTeX\ does normally without this package. (This package basically reverses what \LaTeX\ does by default.) The following code illustrates the difference between these two math options.
+
+\begin{lstlisting}[numbers = none, pos = t]
+The series $\sum_{n = 1}^\infty\frac{1}{n(n + 1)} = 1$ is called
+a telescoping series because you don't need a telescope to see
+it; the series is its own telescope.
+
+\[K = \frac{1}{2}mv^2\]
+\end{lstlisting}
+
+\pagebreak
+
+\noindent\begin{minipage}{.5\textwidth}\centering
+\bfseries Using \texttt{display} (default)
+\end{minipage}
+\begin{minipage}{.5\textwidth}\centering
+\bfseries Using \texttt{inline-math}
+\end{minipage}\\\fbox{\begin{minipage}[c][4cm][t]{.5\textwidth - 2\fboxsep-2\fboxrule}\rmfamily\small
+The series $\sum_{n = 1}^\infty\dfrac{1}{n(n + 1)} = 1$ is called
+a telescoping series because you don't need a telescope to see
+it; the series is its own telescope.
+
+\[K = \frac{1}{2}mv^2\]
+\end{minipage}}\fbox{\begin{minipage}[c][4cm][t]{.5\textwidth - 2\fboxsep-2\fboxrule}\rmfamily\small
+The series $\textstyle\sum_{n = 1}^\infty\textstyle\frac{1}{n(n + 1)} = 1$ is called
+a telescoping series because you don't need a telescope to see
+it; the series is its own telescope.
+
+\[K = \frac{1}{2}mv^2\]\end{minipage}}
+
+\subsection{Document title and styles}
+
+\DescribeMacro{\title}\DescribeMacro{\name}\DescribeMacro{\ww}
+To set the title, your name, and the names of those you worked with, use the \cs{title}, \cs{name}, and \cs{ww} commands, respectively. These each have one argument, and you should probably place them in the preamble of your document. 
+
+The \cs{author} macro may be used in place of \cs{name}; both are defined to be identical. The CHS Physics Report package redefines some \LaTeX\ internal commands relating to titles, so be aware that this package may not be compatible with other packages or document classes that set titles. If you are using the \verb|light| option, the title will automatically appear; however, if you are using the \texttt{standard} option, you must enter \cs{maketitle} at the beginning of your document to make your title appear. As always, you may only use \cs{maketitle} once. 
+
+\DescribeMacro{\titlestyle}\DescribeMacro{\subtitlestyle}
+To change the style of the main title of your lab report, you may insert the appropriate style macros as arguments of \cs{titlestyle}. To change the style of the subtitles (your name and those you worked with), insert the appropriate style macros as arguments of \cs{subtitlestyle}. Do note that these macros are those that change an entire group of text, such as \cs{itshape} or \cs{bfseries}; they do \textsc{not} include macros such as \cs{emph} or \cs{textbf}. To change the style of the section headers, \cs{sectionstyle}\DescribeMacro{\sectionstyle}\ takes the appropriate style macros as arguments. Do note that while \cs{titlestyle} and \cs{subtitlestyle} apply styles in \emph{addition} to the default styles, \cs{sectionstyle} \emph{resets} the default style, and \emph{then} applies the styles you chose! (There's no good reason for this design; I just wound up writing the package like this.) However, all of these three macros reset their previous values if called a second time.
+
+These are the default values for each: \vspace{-2mm}
+\begin{itemize}
+\item Title: \verb|\Huge\bfseries| with \texttt{standard} and \verb|\small\itshape| with \texttt{light}\vspace{-1mm}
+\item Subtitle: \cs{small}\vspace{-1mm}
+\item Section: \verb|\Large\bfseries|
+\end{itemize}
+
+By the way, if you want to center your section header, \cs{centering} will not work. You are better off redefining the section style by  \verb|\titlesection|\marg{style macros}\verb|{\thesection $\bullet$}{0mm}{}|.
+
+The following code illustrates the macros discussed.
+
+\noindent\hspace*{3.5mm}\begin{minipage}{\textwidth - 3.5mm}
+\begin{lstlisting}[numbers = left, language = TeX]
+\documentclass[12pt]{article}
+\usepackage{chs-physics-report}
+
+\subtitlestyle{\itshape}
+% sets subtitle (name and names of those worked with) to italic
+
+\title{Exploring ancient death trap sites: an anthropological survey}
+\name{Hugo First}
+\ww{Dooby Careful}
+
+\begin{document}
+
+\maketitle
+
+\section{Abstract}
+
+To enter, or not to enter, that is the question.
+\end{document}
+\end{lstlisting}
+\end{minipage}
+
+This produces the following: 
+
+\noindent\hspace{-25mm}\begingroup\setlength{\fboxsep}{0pt}%
+\fbox{%
+\begin{minipage}{\textwidth-4\fboxrule+5cm}
+\rmfamily\vspace{1mm}
+\begin{center}
+{\bfseries\Huge Exploring ancient death trap sites: an anthropological survey}\\{\small\itshape{}Hugo First\\Worked with Dooby Careful}\\[7.11317pt]
+
+\parbox{386.6729pt}{{\bfseries\Large%
+  \hspace{-13mm}\makebox[13mm][l]%
+  {%
+    1%
+    \hspace{\fill}%
+    {\raisebox{1.7pt}{\fontsize{14.4pt}{0pt}\selectfont$\bullet$}}%
+    \hspace{\fill}\hspace{.3mm}%
+  }Abstract}\\[16pt]To enter, or not to enter, that is the question.}
+\end{center}\vspace{1mm}
+\end{minipage}}
+\endgroup
+
+\pagebreak
+
+\subsection{Content macros}
+
+\DescribeMacro{\fig} This macro takes one argument, and outputs it after the word {\rmfamily\textsc{Figure}}. 
+
+\rmfamily
+\begin{LTXexample}[pos = o, numbers = none]
+\fig 1 is a graph of the height
+of the object as it falls off
+the cliff with respect to time.
+If you replace the $y$-axis
+with my grade in this class,
+\fig1 will still remain true.
+\end{LTXexample}
+\sffamily
+
+\DescribeMacro{\haiku}\DescribeMacro{\haikus}These macros provide an  easy way to add a haiku to your lab report. The outputs of these macros depend on whether you are using the \texttt{light} or \texttt{standard} options. Also, the distinction between \texttt{\char`\\haiku} and \texttt{\char`\\haiku\underline{s}} only exists when using the \verb|light| option. 
+
+With the \texttt{standard} option:\vspace*{-\parskip}
+\rmfamily\small\begin{LTXexample}[pos = o,numbers = none]
+\haiku{\itshape
+One two three four five\\
+Ay Bee See Dee Ea Eff Gee\\
+Refrigerator
+}
+\end{LTXexample}\sffamily
+
+\normalsize With the \texttt{light} option:
+
+\begingroup
+\def\haiku{\hspace{-55pt}\emph{Haiku:}\hspace{35.25pt}}
+\def\haikus{\hspace{-60pt}\emph{Haikus:}\hspace{35.25pt}}
+\noindent\hspace*{3.5mm}\begin{minipage}{\textwidth - 3.5mm}
+\begin{lstlisting}[numbers = left]
+\haiku{\itshape
+One two three four five / Ay Bee See Dee Ea Eff Gee / Refrigerator
+}
+
+\haikus{\itshape
+One two three four five / Ay Bee See Dee Ea Eff Gee / Refrigerator\\
+\indent\indent This is not really / a haiku but it does have / enough syllables
+}
+\end{lstlisting}
+\end{minipage}
+
+\noindent\hspace{-25mm}\begingroup\setlength{\fboxsep}{0pt}%
+\fbox{%
+\begin{minipage}{\textwidth-4\fboxrule+5cm}
+\rmfamily\vspace{1mm}
+\centering\parbox{386.6729pt}{
+\haiku{\itshape
+\hspace{18pt}One two three four five / Ay Bee See Dee Ea Eff Gee / Refrigerator
+}
+
+\haikus{\itshape
+\hspace{18pt}One two three four five / Ay Bee See Dee Ea Eff Gee / Refrigerator\\
+\hspace*{36pt}This is not really / a haiku but it does have / enough syllables
+}}
+\vspace{1mm}
+\end{minipage}}
+\endgroup\endgroup
+
+I personally prefer to employ italic in my haikus; this is why \cs{itshape} is present. However, you can set your haikus however you want. 
+
+\pagebreak
+
+To \DescribeMacro{\diff} typeset the upright letter \emph d in a differential instead of using the italic letters normally given in math mode, \cs{diff} provides an easy shortcut.\vspace{-1mm}
+
+\begin{LTXexample}[pos = o, numbers = none]
+\[
+\frac{\diff^2 x}{\diff t^2} = a
+\]
+\end{LTXexample}\vspace{-1mm}
+
+\DescribeMacro{\sqrt}The CHS Physics Report package also redefines the square root to have a descender, which serves to distinguish what is in the square root from what is outside the square root. The code used to implement the new square root comes from Stefan Kottwitz with some of my own edits, and is available under a CC BY-SA 3.0 license. It is the only part of the package not in the public domain. \vspace{-1mm}
+
+\begin{LTXexample}[pos = o, numbers = none]
+\[
+\sqrt[4]{\frac{1}{9}} =
+\frac{1}{\sqrt{3}}
+\]
+\end{LTXexample}\vspace{-1mm}
+
+\DescribeMacro{\sfsum}\DescribeMacro{\sfprod}Oh, by the way, since we are on the topic of math, here are two macros from a long time ago that I forgot to remove when writing this package. They allow you to use sans-serif sum and product notation. You can have fun with them if you would like to use them, but they are largely useless for physics lab reports, and they are still here as part of my early experiences with \TeX. However, these macros are so badly designed that I will not give an explanation of how to (functionally) use them. 
+The example below uses sans-serif math, although the code to do so is not shown.
+
+\renewcommand{\geq}{\geqslant}
+
+\fontfamily{lmss}\selectfont
+
+\noindent\begin{minipage}{.5\textwidth - 10pt}
+\begin{lstlisting}[numbers = none]
+\[\raisebox{-.4em}{$\sfsum_{n=
+1}^\infty$}\frac{1}{n^2}=
+\frac{\pi^2}{6}\]
+\[\raisebox{-.4em}{$\sfprod_{n=
+1}^k$}\frac{n + 1}{n} = k + 1
+\quad\forall k\geq 1\]
+\end{lstlisting}\end{minipage}
+\hspace{7.3pt}\fbox{
+\begin{minipage}{.5\textwidth - 9.5pt}
+\[\raisebox{-.4em}{$\sfsum_{\emph n=
+\text1}^{\text{∞}}$}\frac{\text1}{\emph{n}^\text{\hspace{.8pt}2}}=
+\frac{\pi^\text{2}}{\text6}\]
+\[\raisebox{-.4em}{$\sfprod_{\emph{n}=\text1}^{\emph k}$}\frac{\emph n + \text1}{\emph n} = \emph k + \text1
+\quad\forall \emph k\geq\text1\]
+\end{minipage}}\sffamily
+
+
+\DescribeMacro{\footnote}Footnotes are also redefined so that they do not cause confusion with exponents. Now each footnote looks\ldots\footnote{\sffamily Something like this! (There never has been a good way to illustrate what footnotes look like without actually adding a footnote in the documentation at the very bottom of the page. It's not even really possible to have small boxes of code on the side; I have to awkwardly break off my sentence and end it in a footnote to show what a footnote looks like.)}
+
+\DescribeMacro{\degree}\DescribeMacro{\degrees} The macros \cs{degree} and \cs{degrees} are used to output a degree symbol. They only work in math mode and are compatible with other packages that also implement a \cs{degree} command.\vspace{-2mm}
+
+\rmfamily
+\begin{LTXexample}[pos = o, numbers = none]
+If the potato is at $91\degrees
+$C, then is the angle of its
+temperature in degrees or
+centigrade?
+\end{LTXexample}
+
+\vspace{1mm}
+
+\sffamily
+
+\section{Implementation}
+
+The following section details the implementation of the CHS Physics Report package. I do explain many of the idiosyncrasies and inefficiencies within this package, although I do not plan on making any further major changes to this package in the future. That's partly to keep the portability of the package, and partly because I like that the date on the package is all prime numbers. However, if you're thinking about editing it for your own use, go ahead! Except for the code by Stefan Kottwitz, all of the package is in the public domain, so feel free to edit your version of the package to how you'd like it.
+
+First, we initiate the CHS Physics Report package and load the various packages that it uses.
+\begin{lstlisting}[style = mc]
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chs-physics-report}[2017/11/23 CHS Physics Lab Report]
+\RequirePackage{amsmath}
+\RequirePackage{fancyhdr}
+\RequirePackage{geometry}
+\geometry{top = 2.5cm, bottom = 2.5cm}
+\RequirePackage{transparent}
+\RequirePackage{calc}
+\RequirePackage{graphicx}
+\RequirePackage{titlesec}
+\RequirePackage{color}
+\RequirePackage[svgnames]{xcolor}
+\RequirePackage{letltxmacro}
+\end{lstlisting}\vspace{4mm}
+
+The code below was written by Stefan Kottwitz on TeX StackExchange to change the look of square roots. I have edited his code to improve the resolution of the square root at up to 15000\% zoom, and to improve the spacing of the square root. This code is available under the \href{https://creativecommons.org/licenses/by-sa/3.0/legalcode}{CC BY-SA 3.0} License.
+\begin{lstlisting}[style = mc]
+\let\oldr@@t\r@@t
+\def\r@@t#1#2{%
+\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.167\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.478pt\box2}}
+\LetLtxMacro{\oldsqrt}{\sqrt}
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2\!}}
+\end{lstlisting}
+
+The code that follows, however, is in the public domain. \pagebreak
+
+Here, we define macros that hold the values of our title information and style information (those with an \char`\@ \ in their name). We then define commands to help us set the value of our style commands (\cs{titlestyle}, \cs{subtitlestyle}, and \cs{sectionstyle}).
+\begin{lstlisting}[style = mc]
+\let\@title\undefined
+\let\@author\undefined
+\def\@titleArgs{}
+\def\@subTitleArgs{}
+\def\@sectionArgs{\Large\bfseries}
+\newcommand{\titlestyle}[1]{\def\@titleArgs{#1}}
+\newcommand{\subtitlestyle}[1]{\def\@subTitleArgs{#1}}
+\newcommand{\sectionstyle}[1]{\def\@sectionArgs{#1}}
+\end{lstlisting}\vspace{4mm}
+
+The following is the definition of the \verb|light| option. It defines a page style \texttt{light-first-page} for the first page of the lab report, and another page style \texttt{light} for all other pages. The \texttt{light-first-page} style is the page style for the page at which the document begins (i.e. the first page), but because \texttt{light} is document's page style, only the first page has the \texttt{light-first-page} style, which sets the lab report's title. 
+
+Other things that we do are to define the macros for writing haikus and to ensure that \cs{maketitle} throws a warning because the title is in the header of the first page. It is helpful to throw a warning if a user switches from the \texttt{standard} option to the \texttt{light} option, although not completely necessary.
+\begin{lstlisting}[style = mc]
+\DeclareOption{light}{
+  \fancypagestyle{light}{
+    \fancyhf{}
+    \cfoot{\textsf{\textbf{-\raisebox{-.7pt}{\thepage}-}}}
+    \renewcommand{\headrulewidth}{0pt}
+  }
+  \fancypagestyle{light-first-page}{
+    \fancyhf{}
+    \lhead{
+        \emph{\small\@titleArgs\@title}\\
+    }
+    \rhead{
+        {\small\@subTitleArgs\@author%
+        \@workedWith}%
+    }
+    \cfoot{\textsf{\textbf{-\raisebox{-.7pt}{\thepage}-}}
+    }
+    \renewcommand{\headrulewidth}{.6pt}
+    \fancyhfoffset{13mm}
+  }
+  \pagestyle{light}
+  \AtBeginDocument{\thispagestyle{light-first-page}}
+  \def\haiku{\hspace{-55pt}\emph{Haiku:}\hspace{35.25pt}}
+  \def\haikus{\hspace{-60pt}\emph{Haikus:}\hspace{35.25pt}}
+  \def\maketitle{\PackageWarning{chs-physics-report}{
+    Remember that maketitle is no longer useful 
+    because you are using the light option of 
+    CHS Physics Report, so all the information 
+    that would have been included in maketitle 
+    is now in the header of the first page.}}
+}
+\end{lstlisting}\vspace{4mm}
+
+
+The \texttt{standard} option is much shorter.
+\begin{lstlisting}[style = mc]
+\DeclareOption{standard}{
+  \renewcommand{\maketitle}{%
+    \begin{center}{\Huge\textbf{\@titleArgs\@title}}\\%
+    {\small\@subTitleArgs\@author\@workedWith}
+    \end{center}
+  }
+  \ifx\@workedWith\undefined
+    \def\@workedWith{{Please set the names of those whom you %
+      worked with by typing \texttt{\char`\\%
+      ww\{\textrm{\emph{others in your lab group}}\}}}}
+  \fi
+  % for compatibility with the light option:
+  \newcommand{\haiku}[1]{\begin{center}#1\end{center}}
+  \newcommand{\haikus}[1]{\begin{center}#1\end{center}}
+}
+\end{lstlisting}\vspace{4mm}
+
+In the event that \cs{@author}, \cs{@title}, or \cs{@workedWith} is not defined, we define them so that they tell the user to define them ahead of time. You may think that it would be best to throw an error if they are undefined, but I have tried \cs{errmessage} and \cs{PackageError} for these if statements, and neither work better than what I have here, bad though it is. The reason is that the package is called before the document begins, so these commands are necessarily undefined before \TeX\ reaches \cs{title}, \cs{name}, and \cs{ww}.
+
+You will probably notice that I have a conditional to check if \cs{@workedWith} is defined, but I already have such a conditional in the \texttt{standard} option (shown above above). The two are different, although the package definitely could be made more efficient. However, I do not want to alter this package any further, so I will not make any such changes.
+\begin{lstlisting}[style = mc]
+\ifx\@author\undefined
+  \author{Please enter your name by using \texttt{\char`\\%
+  name\char`\{\emph{your name}\char`\}}}
+\fi
+
+\ifx\@title\undefined
+  \title{Please set the title by typing %
+    \texttt{\char`\\%
+    title\char`\{{\emph{title of lab report}}\char`\}}}
+\fi
+\ifx\@workedWith\undefined
+  \def\@workedWith{{\\Please set the names of those whom you %
+    worked with by typing \texttt{\char`\\%
+    ww\char`\{{\emph{others in your lab group}}\char`\}}}}
+\fi
+\end{lstlisting}
+\vspace{5mm}
+
+Now, we select the \texttt{display} and \texttt{standard} options as our default options, and we've finished handling package options.
+\begin{lstlisting}[style = mc]
+\DeclareOption{display}{\everymath{\displaystyle}}
+
+\DeclareOption{inline-math}{\everymath{}}
+
+\ExecuteOptions{display,standard}
+
+\ProcessOptions\relax
+\end{lstlisting}\vspace{4mm}
+
+We set \cs{parskip} and we define \cs{fig} and \cs{diff}.
+\begin{lstlisting}[style = mc]
+\setlength{\parskip}{2.5mm}
+\newcommand{\fig}[1]{\textsc{Figure~#1}}
+\newcommand{\diff}{\mathrm d}
+\end{lstlisting}
+\vspace{4mm}
+
+Sans-serif math operators:
+\begin{lstlisting}[style = mc]
+\@ifpackageloaded{amsmath}{\DeclareMathOperator*{\sfsum}{\fontsize{.9cm}{1cm}\text{$\mathsf\Sigma$}}
+\DeclareMathOperator*{\sfprod}{\fontsize{.9cm}{1cm}\text{$\mathsf\Pi$}}}
+\end{lstlisting}\vspace{4mm}
+
+At this point, we create the style used for sections. The first matter of business is to set a distance that will determine how far from the text each section number will go. This distance, which we will call \cs{@boxwidth}, is normally set to 13~mm. If you need two-digit section numbers (10,11,12\ldots), you may find it helpful to increase this distance.
+\begin{lstlisting}[style = mc]
+\newlength{\@boxwidth}
+\setlength{\@boxwidth}{13 mm} 
+\end{lstlisting}
+Next, we use titlesec to construct a box of width \cs{@boxwidth}.  We place the section number in the box, and we place a bullet point to the right of the section number. We then uniformly fill the space in the box, by placing in \verb|\hspace{\fill}| between the bullet point and the section number, and by placing another \verb|\hspace{\fill}| between the bullet point and the right side of the box.
+\begin{lstlisting}[style = mc]
+\titleformat{\section}
+{%
+  \@sectionArgs%
+}
+{\hspace{-\@boxwidth}%
+  \makebox[\@boxwidth][l]%
+  {%
+    \thesection%
+    \hspace{\fill}%
+    {\raisebox{1.7pt}{\fontsize{14.4pt}{0pt}\selectfont$\bullet$}}%
+    \hspace{\fill}\hspace{.3mm}%
+  }%
+}
+{0cm}
+{}
+\end{lstlisting}
+\vspace{4mm}
+
+We change the style of footnotes. I know that what I have here is not a best practice, but I didn't know that when I first wrote the package! For best practices, I should have used \cs{textsuperscript} and made a \cs{@oldfootnote} macro.
+\begin{lstlisting}[style = mc]
+\let\footnoteDuplic@teDuplic@te\footnote
+\def\footnoteDuplic@te#1{$^\text{Note }$\footnoteDuplic@teDuplic@te{#1}}
+\let\footnote\footnoteDuplic@te
+\end{lstlisting}\vspace{4mm}
+
+To define \cs{degree} and \cs{degrees}, we use \cs{providecommand} instead of \cs{newcommand} so that if other packages that define either one of these are loaded, there will not be an error due to conflicting definitions.
+\begin{lstlisting}[style = mc]
+\providecommand{\degree}{^\circ}
+\providecommand{\degrees}{\degree}
+\end{lstlisting}\vspace{4mm}
+
+We define \cs{name} and \cs{ww} to set the values of title information. 
+\begin{lstlisting}[style = mc]
+\newcommand{\name}[1]{\author{#1}}
+\newcommand{\ww}[1]{\def\@workedWith{\\Worked with #1}}
+\end{lstlisting}\vspace{4mm}
+
+
+And we're done!
+\begin{lstlisting}[style = mc]
+\endinput
+\end{lstlisting}
+
+\section{Having trouble?}
+
+
+If you can't get your document to compile as you'd like to, even if your problem is unrelated to this package, you can always contact me. Emails are fine, although if you see me in the hallways, you may always ask a question. If you would like to find me before school, my first class is physics on blue days, and my first class is statistics (A322) on gold days.\vspace{1cm}
+
+\noindent``The most common mistake is spending too long on \TeX\ coding and not getting the document written.''
+
+\hspace{\fill}--\mbox{David Carlisle}
+\end{document}

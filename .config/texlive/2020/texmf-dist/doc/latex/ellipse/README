@@ -1,0 +1,39 @@
+This is the README file for the ellipse package.
+
+VERSION
+
+Version 1.0, December 2015
+
+SUMMARY
+
+Adds the ability to draw ellipses and elliptical arcs on top of the standard LaTeX2e picture environment. 
+
+LaTeX has many advanced graphics packages now, the most extensive are tikz and
+pstricks.  However, these are also large packages that take long to load and
+may not always work on all drivers. The standard pict2e package removes many
+of the previous limitations of the `old' LaTeX |picture| environment and makes
+it a _lean and portable_ alternative to the more full featured packages.
+However, even though it can draw circles and circle arcs well, it lacks the
+ability to draw ellipses, ovals, and elliptical arcs. This package adds these
+functions on top of the standard pict2e primitives  (i.e. the \cbezier command).
+
+LICENSE
+
+Copyright (c) 2015 Daan Leijen.
+
+This software is author-maintained. Permission is granted to copy,
+distribute and/or modify this software under the terms of the
+LaTeX Project Public License, version 1.3 or higher. This software
+is provided 'as it is', without warranty of any kind, either
+expressed or implied, including, but not limited to, the implied
+warranties of merchantability and fitness for any particular purpose.
+
+RELATED PACKAGES
+
+pict2e.sty
+
+AUTHOR
+
+Daan Leijen (daan@microsoft.com)
+
+

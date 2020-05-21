@@ -1,0 +1,27 @@
+\section{FAQ}
+
+\subsection{General Questions}
+\begin{itemize}\setlength{\itemsep}{10pt} 
+\item \tkzimp{Why \tkzNamePack{tkz-base} ?} As a Mathematics teacher, I needed tools that would allow me to write my lessons and exercises quickly. \TIKZ\ was perfect for that, but I was wasting too much time on details. I wanted to create a syntax that was both close to that of \LATEX and math so I could memorize better. So I created a module for each branch of mathematics I taught. \tkzNamePack{tkz-base} is the common part of all these modules. \tkzNamePack{tkz-euclide} and \tkzNamePack{tkz-berge} are the ones I invested the most in.
+    
+\item  \tkzimp{Relationship with \TIKZ?} \TIKZ\ is a great package for describing drawings. My packages are based on it. That said, it is in no way comparable. My packages are only useful for people who want to create mathematical figures.
+\end{itemize} 
+     
+\subsection{Most common errors}  
+ \begin{itemize}\setlength{\itemsep}{10pt} 
+    
+\item \tkzimp{Error unknown option: "label options"}. This option is no longer available. You can now directly use the options in \TIKZ.
+ 
+ \item \tkzimp{Error with \tkzcname{tkzDrawPoint}  or \tkzcname{tkzDefPoint} }\tkzcname{tkzDrawPoint(A,B)} when you need \tkzcname{tkzDrawPoints}. This is true with all macros that allow you to define multiple objects. The singular form allows you to use custom options. On the other hand, it is possible to use the plural form for a single object.
+ 
+ 
+ \item \tkzimp{Propagation of a style} It is possible to restrict the propagation of a style by placing a piece of code in a group or in a \tkzimp{scope} environment or between parentheses.
+  
+ \item  \tkzimp{The use of the comma} even in a Mathematical mode \$2.5\$ needs to be protected in a TeX group, for example \{\$2,5\$\}. 
+ 
+\item  \tkzcname{tkzDrawSegments\{B,B' C,C'\}} is a mistake. Only macros that define an object use braces.  
+  \item If an error occurs in a calculation when passing parameters, then it is better to make these calculations before calling the macro.
+  \item Do not mix the syntax of \tkzNamePack{pgfmath} and \tkzNamePack{xfp}.
+ \end{itemize} 
+
+\endinput

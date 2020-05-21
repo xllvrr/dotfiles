@@ -1,0 +1,327 @@
+
+ \TFRGB{
+ Syntaxe :  
+ \BS{psChart}[options]\AC{liste de valeurs }\AC{liste des valeurs décalées }\AC{rayon}}
+ {Syntax :  
+ \BS{psChart}[options]{value list }{list shifted values }{radius}}
+ 
+ 
+ 
+\psset{fillstyle=solid,unit=1cm}
+ 
+\begin{center}
+\begin{tabular}{|c|c|}  \hline 
+\begin{pspicture}(-2.5,-1.5)(2.5,1.5)
+\psChart{1,2,3,4,5}{}{1cm}
+\end{pspicture} 
+&
+\begin{pspicture}(-2.5,-1.5)(2.5,1.5)
+\psChart{1,2,3,4,5}{2,5}{1cm}
+\end{pspicture}
+\\ \hline
+\BSS{psChart}\AC{1,2,3,4,5}\AC{}\AC{1cm} \BSI{psChart}{pstricks-add} &
+\textbf{\BS{}psChart}\AC{1,2,3,4,5}{\red \AC{2,5}}\AC{1cm}
+\\ \hline
+\end{tabular}
+\end{center}
+
+% \subsubsection{Paramètres}
+\begin{center}
+\begin{tabular}{|c|c|c|}  \hline 
+\begin{pspicture}(-2,-1.5)(2,1.5)
+\psChart[chartColor=color]{1,1,1,1,1,1,1,1,1,1,1 }{1}{1cm}
+\end{pspicture}
+&
+\begin{pspicture}(-2.5,-1.5)(2.5,1.5)
+\psChart[userColor={orange,teal,red!20}]{1,2,3}{1}{1cm}
+\end{pspicture}
+&
+\begin{pspicture}(-2,-1.5)(2,1.5)
+\psChart[chartColor=color,shadow=true]{1,2,3}{1}{1cm}
+\end{pspicture}
+
+\\ \hline
+\RDD{chartColor}=color \RDI{chartColor}{pstricks-add} & \RDD{userColor}=\AC{orange,teal,red!20}  \RDI{userColor}{pstricks-add} & 
+\RDD{shadow}=true  \RDI{shadow}{pstricks-add}
+\\ \hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}  \hline 
+\begin{pspicture}(-2,-2)(2,2)
+\psChart[chartColor=color,chartSep=5pt]{1,2,3}{1}{1cm}
+\end{pspicture}
+&
+\begin{pspicture}(-2,-2)(2,2)
+\psChart[chartColor=color,chartSep=5pt]{1,2,3}{1,2}{1cm}
+\end{pspicture}
+&
+\begin{pspicture}(-2,-2)(2,2)
+\psChart[chartColor=color,chartSep=5pt]{1,2,3}{1,2,3}{1cm}
+\end{pspicture}
+\\ \hline
+\multicolumn{3}{|c|}{\RDD{chartSep}=5pt  par défaut : 10pt  \RDI{chartSep}{pstricks-add} } \\ \hline
+%chartColor=color & userColor={blue,green,red,cyan,orange} 
+%\\ \hline
+%{\red chartSep}=.5cm & 
+%\\ \hline
+\end{tabular}
+\end{center}
+%------------------------------------------------------------------
+\SbSSCT{Etiquettes}{Labels}
+\begin{center}
+\begin{tabular}{|c|c|c|}  \hline 
+\multicolumn{3}{|c|}{\TFRGB{3 positions possibles}{Three possible positions}} \\ \hline
+\begin{pspicture}(-2,-1.5)(2,1.5)
+\psChart[chartColor=color]{1,2}{}{1cm}
+\psdots[dotstyle=*,dotscale=2,linecolor=green](psChartO1)
+\psdots[dotstyle=*,dotscale=2,linecolor=green](psChartO2)
+\end{pspicture} 
+&
+\begin{pspicture}(-2,-1.5)(2,1.5)
+\psChart[chartColor=color]{1,2}{}{1cm}
+\psdots[dotstyle=*,dotscale=2,linecolor=green](psChartI1)
+\psdots[dotstyle=*,dotscale=2,linecolor=green](psChartI2)
+\end{pspicture}
+&
+\begin{pspicture}(-2,-1.5)(2,1.5)
+\psChart[chartColor=color]{1,2}{}{1cm}
+\psdots[dotstyle=*,dotscale=2,linecolor=green](psChart1)
+\psdots[dotstyle=*,dotscale=2,linecolor=green](psChart2)
+\end{pspicture}
+\\ \hline
+\BS{}psdots(\BDD{psChartO1})  & \BS{}psdots(\BDD{psChartI1})  & \BS{}psdots(\BDD{psChart1}) \\ 
+\BS{}psdots(\BDD{psChartO2})  & \BS{}psdots(\BDD{psChartI2})  & \BS{}psdots(\BDD{psChart2}) \\ \hline
+\end{tabular}
+\end{center}
+
+
+
+%---------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{|c|c|}  \hline 
+\multicolumn{2}{|c|}{\TFRGB{Liaison des points}{Connection of the points}} \\ \hline
+\begin{pspicture}(-2,-2)(2,2)
+\psChart[chartColor=color,chartNodeO=2]{1,2}{}{1cm}
+\pcline[linecolor=green](psChartO1)(psChartI1)
+\pcline[linecolor=green](psChartO2)(psChart2)
+\end{pspicture} 
+&
+\begin{pspicture}(-3,-1.5)(3,1.5)
+\psChart[chartColor=color,chartNodeI=.5]{1,2}{}{1cm}
+\ncline[linecolor=green]{psChartO1}{psChartI1}
+\ncline[linecolor=green]{psChartO2}{psChart2}
+\end{pspicture}
+\\ \hline
+\BS{}pcline(psChartO1)(psChartI1)
+ &
+\BS{}ncline\AC{psChartO1}\AC{psChartI1}
+\\ 
+\BS{}pcline(psChartO2)(psChart2)
+ &
+\BS{}ncline\AC{psChartO2}\AC{psChart2} \\ 
+\hline
+\end{tabular}
+\end{center}
+
+%----------------------------------------------------------
+\begin{center}
+\begin{tabular}{|c|c|}  \hline 
+\multicolumn{2}{|c|}{\TFRGB{Attachement des étiquettes aux points}{labels attachment points}} \\ \hline
+\begin{pspicture}(-3,-2.5)(3,2.5)
+\psChart[chartColor=color]{1,2}{}{1cm}
+\rput*[l](psChartO1){psChartO1}
+\rput*[l](psChartO2){O2}
+\end{pspicture} 
+&
+\begin{pspicture}(-3,-2.5)(3,2.5)
+\psChart[chartColor=color]{1,2}{}{1cm}
+\rput*[l](psChartI1){psChartI1}
+\rput*[l](psChartI2){I2}
+\end{pspicture}
+\\ \hline
+\BS{}rput*[l](\BDD{psChartO1)}\AC{psChartO1} &
+\BS{}rput*[l](\BDD{psChartI1})\AC{psChartI1} 
+\\ 
+\BS{}rput*[l](\BDD{psChartO2})\AC{O2} &
+\BS{}rput*[l](\BDD{psChartI2})\AC{I2} 
+\\ 
+\hline
+\end{tabular}
+\end{center}
+\newpage
+\begin{center}
+\begin{tabular}{|c|c|}  \hline 
+\begin{pspicture}(-2,-2.5)(2,2.5)
+\psChart[chartColor=color,chartNodeO=2]{1,2}{}{1cm}
+\psdots[dotstyle=*,dotscale=2,linecolor=green](psChartO1)
+\psdots[dotstyle=*,dotscale=2,linecolor=green](psChartO2)
+\end{pspicture} 
+&
+\begin{pspicture}(-2,-2.5)(2,2.5)
+\psChart[chartColor=color,chartNodeI=.5]{1,2}{}{1cm}
+\psdots[dotstyle=*,dotscale=2,linecolor=green](psChartI1)
+\psdots[dotstyle=*,dotscale=2,linecolor=green](psChartI2)
+\end{pspicture}
+\\ \hline
+\RDD{chartNodeO}=2 \RDI{chartNodeO}{pstricks-add} & \RDD{chartNodeI}=.5 \RDI{chartNodeI}{pstricks-add}\\ 
+par défaut : 1.5 & par défaut : .75 \\ 
+\hline
+\end{tabular}
+\end{center}
+%--------------------------------------------------------
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}  \hline
+\multicolumn{10}{|c|}{\TFRGB{Couleurs de remplissage}{Filling color }}\\
+\multicolumn{10}{|c|}{\BS{}psframe[fillcolor=\BDD{chartFillColor1}(1,1) à \BS{}psframe[fillcolor=\BDD{chartFillColor10}(1,1)}\\ \hline
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=chartFillColor1](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=chartFillColor2](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=chartFillColor3](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=chartFillColor4](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=chartFillColor5](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=chartFillColor6](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=chartFillColor7](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=chartFillColor8](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=chartFillColor9](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=chartFillColor10](1,1)
+\end{pspicture}
+\\ \hline
+
+\end{tabular}
+\end{center}
+%------------------------------------------
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}  \hline
+\multicolumn{10}{|c|}{\TFRGB{Couleurs complémentaires}{More colors}}\\
+\multicolumn{10}{|c|}{\BS{}psframe[fillcolor=\BDD{-chartFillColor1}(1,1) à \BS{}psframe[fillcolor=\BDD{-chartFillColor10}(1,1)}\\ \hline
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=-chartFillColor1](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=-chartFillColor2](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=-chartFillColor3](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=-chartFillColor4](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=-chartFillColor5](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=-chartFillColor6](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=-chartFillColor7](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=-chartFillColor8](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=-chartFillColor9](1,1)
+\end{pspicture}
+&
+\begin{pspicture}(1,1.2)
+\psframe[fillcolor=-chartFillColor10](1,1)
+\end{pspicture}
+\\ \hline
+
+\end{tabular}
+\end{center}
+
+%\begin{pspicture}(12,1)
+%\psframe[fillcolor=chartFillColor1](1,1)
+%\psframe[fillcolor=chartFillColor2](1,0)(2,1)
+%\psframe[fillcolor=chartFillColor3](2,0)(3,1)
+%\psframe[fillcolor=chartFillColor4](3,0)(4,1)
+%\psframe[fillcolor=chartFillColor5](4,0)(5,1)
+%\psframe[fillcolor=chartFillColor6](5,0)(6,1)
+%\psframe[fillcolor=chartFillColor7](6,0)(7,1)
+%\psframe[fillcolor=chartFillColor8](7,0)(8,1)
+%\psframe[fillcolor=chartFillColor9](8,0)(9,1)
+%\psframe[fillcolor=chartFillColor10](9,0)(10,1)
+%
+%
+%\end{pspicture} 
+
+%\begin{pspicture}(12,1)
+%\psframe[fillcolor=-chartFillColor1](1,1)
+%\psframe[fillcolor=-chartFillColor2](1,0)(2,1)
+%\psframe[fillcolor=-chartFillColor3](2,0)(3,1)
+%\psframe[fillcolor=-chartFillColor4](3,0)(4,1)
+%\psframe[fillcolor=-chartFillColor5](4,0)(5,1)
+%\psframe[fillcolor=-chartFillColor6](5,0)(6,1)
+%\psframe[fillcolor=-chartFillColor7](6,0)(7,1)
+%\psframe[fillcolor=-chartFillColor8](7,0)(8,1)
+%\psframe[fillcolor=-chartFillColor9](8,0)(9,1)
+%\psframe[fillcolor=-chartFillColor10](9,0)(10,1)
+%\end{pspicture} 
+%
+%\begin{center}
+%\begin{tabular}{|c|c|}  \hline 
+%\begin{pspicture}(-3,-3)(3,3)
+%\psChart[chartColor=color,chartNodeO=1.2]{1,2,3,4,5 }{3}{2cm}
+%\rput[l](psChartO1){O1}
+%\rput[l](psChartO2){\textcolor{chartFillColor2}{O2}}
+%\rput[l](psChartO3){\textcolor{-chartFillColor3}{O3}}
+%\rput[l](psChartO4){\textcolor{-chartFillColor4}{O4}}
+%\rput[l](psChartO5){\textcolor{chartFillColor5}{O5}}
+%\end{pspicture} 
+%&
+%\begin{pspicture}(-3,-3)(3,3)
+%\psChart[chartColor=color,shadow=true,shadowsize=5pt,chartNodeI=.5]{1,2,3,4,5 }{}{2cm}
+%\rput*[l](psChartI1){I1}
+%\rput[l](psChartI2){I2}
+%\rput*[c](psChartI3){I3}
+%\rput*[c](psChart4){4}
+%\rput*[l](psChart5){5}
+%%\psdots[dotstyle=*,dotscale=2](psChartI4)
+%  \end{pspicture} 
+%  \\ \hline
+%\BS{}rput[l]\AC(psChartO1){O1} &  \BS{}rput*[l](psChartI1)\AC{I1} \\  
+%\BS{}rput[l](psChartO2){\BS{}textcolor\AC{chartFillColor2}\AC{O2}} & 
+%\BS{}rput[l](psChartI2)\AC{I2} \\
+%
+%\hline
+%  \end{tabular}
+%  \end{center}

@@ -1,0 +1,28 @@
+name musuos
+category Package
+revision 24857
+shortdesc Typeset papers for the department of music, Osnabruck
+longdesc The package provides a LaTeX class for typesetting term papers
+longdesc at the institute of music and musicology of the University of
+longdesc Osnabruck, Germany, according to the specifications of Prof.
+longdesc Stefan Hahnheide. A BibLaTeX style is provided.
+containersize 3756
+containerchecksum 3ad7bc18f20b0df70f6c92f7816d4e5bc90070a392788d93caffaba39f25e516a1ca4a6ef5438dbe55b514822d2882e7dfb809eaa4fb1380475fd624ec3efb9f
+doccontainersize 509936
+doccontainerchecksum a2bc27d789cbd6833961d41ee6d697004fa7539810aafa8749af918572dbd20e2f267bb7435c068fd604540d0a75d1a558fea38a8cc7748c9dcf087c17469a61
+docfiles size=127
+ texmf-dist/doc/latex/musuos/README details="Readme"
+ texmf-dist/doc/latex/musuos/musuos-doc.ist
+ texmf-dist/doc/latex/musuos/musuos.pdf details="Package documentation"
+srccontainersize 15972
+srccontainerchecksum 55cbd375a48388b310c52e26b02b6dcd56f7d50761addaf275de656a2668bbb0c436c742649cfa07355e626c3ee01572960fc0177ce4226f764db2b5c3e04598
+srcfiles size=14
+ texmf-dist/source/latex/musuos/musuos.dtx
+ texmf-dist/source/latex/musuos/musuos.ins
+runfiles size=3
+ texmf-dist/tex/latex/musuos/musuos.cls
+catalogue-also biblatex-musuos
+catalogue-ctan /macros/latex/contrib/musuos
+catalogue-license lppl
+catalogue-topics dissertation music
+catalogue-version 1.1d

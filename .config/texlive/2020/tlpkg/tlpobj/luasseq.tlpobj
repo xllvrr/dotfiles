@@ -1,0 +1,25 @@
+name luasseq
+category Package
+revision 37877
+shortdesc Drawing spectral sequences in LuaLaTeX
+longdesc The package is an update of the author's sseq package, for use
+longdesc with LuaLaTeX. This version uses less memory, and operates
+longdesc faster than the original; it also offers several enhancements.
+containersize 10232
+containerchecksum 400e95fd898152e8d8e989084ca9cd115516850edb6e8d102eddaaf278f29213c8a4828dde01ca202db68d6cd2b2685bda71f63ad7a92eb586a4c303d2e9d02b
+doccontainersize 224504
+doccontainerchecksum 7ac8f5df74cede5734c9c47048cbb3b079155910a89ebf0c7adb169b4b61751f6255b2c07614d44a55e8dad43bb35693bf224d0f750bff28987c7c5f1a8a5bc4
+docfiles size=56
+ texmf-dist/doc/lualatex/luasseq/README
+ texmf-dist/doc/lualatex/luasseq/luasseq.pdf details="Package documentation"
+srccontainersize 10964
+srccontainerchecksum 4946e994a3ce2712e6da73a9969cbf2634726191845332e4464ce8d446c09235e94798c878e9e060e3a7b3bc3a27c37a299b9d30f1da6368b67875b551ee9d0d
+srcfiles size=11
+ texmf-dist/source/lualatex/luasseq/luasseq.dtx
+ texmf-dist/source/lualatex/luasseq/luasseq.ins
+runfiles size=11
+ texmf-dist/scripts/luasseq/luasseq.lua
+ texmf-dist/tex/lualatex/luasseq/luasseq.sty
+catalogue-ctan /macros/luatex/latex/luasseq
+catalogue-license lppl
+catalogue-topics maths luatex

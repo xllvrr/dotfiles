@@ -1,0 +1,420 @@
+2014-04-30  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.texi
+	Updated the formatting to work with Makeinfo 5.
+
+	* mf2pt1.texi, mf2pt1.pl
+	Updated the version number to 2.5a and the copyright year to 2014.
+
+2014-04-30  Karl Berry	<karl@freefriends.org>
+
+	* mf2pt1.texi
+	Standardized the dir entry.
+
+2012-06-29  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.texi, mf2pt1.pl
+	Increased the version number from 2.4.6 to 2.5.	 Updated the
+	Acknowledgments section.
+
+2012-06-29  Michael Ummels  <michael@ummels.de>
+
+	* mf2pt1.mp:
+	Made the to_bp function round to nearest rather than round up.
+
+2012-06-29  Michael Ummels  <michael@ummels.de>
+
+	* mf2pt1.pl:
+	Changed the computation of character widths to use TeX points
+	instead of PostScript points.
+
+2012-03-24  Scott Pakin	 <scott+mf@pakin.org>
+
+	* README, mf2pt1.pl, mf2pt1.texi, mf2pt1.mp:
+	Updated the copyright date from 2011 to 2012 and increased the
+	version number from 2.4.5 to 2.4.6.
+
+2012-03-24  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.pl:
+	Modified the code to pass "nonstopmode" to the Metafont
+	invocation.
+
+2011-08-02  Scott Pakin	 <scott+mf@pakin.org>
+
+	* README, mf2pt1.pl, mf2pt1.texi:
+	Updated the copyright date from 2008 to 2011 and increased the version
+	number from 2.4.4 to 2.4.5.
+
+2011-08-02  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.pl:
+	Prevented non-integer arguments from being passed to hsbw in the
+	definition of ".notdef".
+
+2008-01-27  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.pl, mf2pt1.texi:
+	Increased the version number from 2.4.3 to 2.4.4
+
+2008-01-27  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.pl: Modified to sort the MetaPost output files so that
+	the glyph order in the PFB is the same as in the MF sources.
+
+2008-01-13  Scott Pakin	 <scott+mf@pakin.org>
+
+	* README, mf2pt1.mp, mf2pt1.pl:
+	Updated the copyright year from 2007 to 2008 and increased the version
+	number from 2.4.2 to 2.4.3.
+
+	* mf2pt1.texi:
+	Modified to format the document with a ragged bottom instead of the
+	default flush bottom.
+
+2008-01-13  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.mp: Bug fix: Patched the is_clockwise macro to prevent it
+	from failing so often.
+
+	* mf2pt1.mp:
+	Bug fix: Changed "=" to ":=" in the makeline function.
+
+2007-06-30  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.mp, mf2pt1.pl:
+	Renamed "bbox" to "glyph_dimensions".
+
+2007-05-28  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.texi: Updated the version to 2.4 and documented --bpppix.
+
+2007-05-28  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.pl:
+	Bug fix: Modified to set bpppix before calling get_bboxes.
+
+	* mf2pt1.mp, mf2pt1.pl:
+	Added a --bpppix option to change the number of big points per pixel.
+
+2007-05-26  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.pl:
+	Documented --version.  Rewrote the option descriptions as full
+	sentences.  Increased the version number to 2.4.
+
+2007-02-04  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.texi:
+	Retypeset the parameter example and added a section showing how to
+	recover the original definitions of filldraw, unfilldraw, and
+	pencircle.
+
+	* mf2pt1.mp: Made minor modifications.
+
+	* README, mf2pt1.mp, mf2pt1.pl, mf2pt1.texi:
+	Updated the copyright date and increased the version number from 2.2 to 2.3.
+
+	* mf2pt1.mp:
+	Modified to back up the original (mfplain.mp) definitions of
+	pencircle, filldraw, and unfilldraw.
+
+2007-02-04  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.pl:
+	Bug fix: Made the default underline thickness a positive number.
+
+2006-07-08  Scott Pakin	 <scott+mf@pakin.org>
+
+	* README:
+	Rewrote the description to compare mf2pt1 to TeXtrace and mftrace.
+
+2006-05-29  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.texi:
+	Updated the documentation to match the latest code.  Specifically, the
+	new format for .enc files and the new new defaults for underline
+	thickness and position are now correct.
+
+	* mf2pt1.pl:
+	Corrected the handling of the underline thickness and position.
+
+	* README, mf2pt1.mp: Updated the license agreement to LPPL 1.3c.
+
+	* mf2pt1.pl:
+	Completely rewrote the command-line processing code so that (a)
+	command-line options override options specified in the .mf file and
+	(b) the --encoding flag works as intended.
+
+2005-12-04  Scott Pakin	 <scott+mf@pakin.org>
+
+	* README, mf2pt1.mp, mf2pt1.pl, mf2pt1.texi:
+	Increased the acceptable LPPL version number from 1.2 to 1.3a.
+
+2005-12-04  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.mp: Patched the clockwise and counterclockwise functions
+	to circumvent the turning-number bug in MetaPost.
+
+2005-02-27  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.texi:
+	Proofread and updated accordingly.  Also, increased the version number
+	from 1.2 to 2.0.
+
+	* mf2pt1.pl: Increased the version number from 1.2 to 2.0.
+
+2005-02-26  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.texi:
+	Wrote an Acknowledgments section.  Corrected the @MF macro.  Added PDF
+	metadata.  Added a @dircategory and @direntry.
+
+2005-02-20  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.pl, mf2pt1.texi:
+	Added a --ffscript option which lets the user override the default
+	FontForge script.
+
+	* mf2pt1.texi:
+	Removed the mention of roex.mf because, according to Werner Lemberg,
+	it doesn't work with MetaPost.	Inserted in its place a pointer to a
+	6Jan2005 article on the MetaPost mailing list which includes an
+	overlap-removal library as an attachment.
+
+	* mf2pt1.texi: Added mention of the "t1" and "asis" font encodings.
+
+	* mf2pt1.pl:
+	Added Ralf Stubner's T1 encoding vector.  Replaced "FontType-1.0" with
+	"FontType1-1.0", as directed by Ralf.  Added Werner Lemberg's "asis"
+	font encoding.
+
+	* mf2pt1.mp:
+	Reintroduced the Angle macro as it turns out it's still needed.
+
+2005-02-20  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.pl:
+	Replaced the FontForge script with one that performs a lot more
+	font cleanup.
+
+2005-02-14  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.mp:
+	Replaced the Angle and is_clockwise functions with the improved
+	versions provided by Boguslaw Jackowski.
+
+2005-02-06  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.mp:
+	Incorporated a turningnumber bug workaround.
+
+2005-02-06  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.texi:
+	Documented the environment variables that mf2pt1 honors and replaced
+	all occurrences of @ifinfo with @ifnottex so as not to preclude HTML
+	generation.
+
+	* mf2pt1.texi:
+	Documented the glyph_name command, the new way of dumping MetaPost
+	memory, the --rounding option, and the fact that mf2pt1 now invokes
+	t1asm and fontforge automatically.
+
+	* mf2pt1.pl:
+	Modified to tell FontForge to fix any overlapping paths found in
+	the font.
+
+	* mf2pt1.mp:
+	Added a user-callable glyph_name macro which enables a character to
+	specify explicitly the PostScript glyph name associated with it.
+
+	* mf2pt1.pe:
+	Removed; <fontname>.pe is now generated automatically by mf2pt1.pl.
+
+	* mf2pt1.pl:
+	Modified to automatically try running the output through t1asm and
+	fontforge.
+
+	* mf2pt1.pl:
+	Hoisted extraction of the font extension above MF2PT1_CMD and assigned
+	the value to $charnum instead of leaving it for a long time in $1.
+	Renamed $dx[123]m and $dy[123]m to $dx[123]d and $dy[123]d (for
+	"denominator").	 Renamed "precision" to "rounding".  Added blank lines
+	after each section of output.
+
+	* mf2pt1.pl:
+	Made the following changes: replaced --mem with -mem; renamed $gn
+	to $gname and used ?: for assignment to it; cleaned up the spacing
+	around the frac_string and frac_approx uses; cleaned up the
+	`rmoveto' comment; fixed the "good" lines comment; renamed $dxm
+	and $dym to $dxd and $dyd (for "denominator"); fixed the precision
+	warnings; moved Werner's new functions to the top of the file with
+	the others; added prototypes for those functions; and, added a SEE
+	ALSO for FontForge.
+
+	* mf2pt1.mp: Modified the comments to be more compatible with mftinc.
+
+2005-02-06  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.pl:
+	Incorporated various changes up to and including 4Feb2005.
+
+2005-01-30  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.pe:
+	Created: FontForge script to autohint all of the characters in a
+	given font.
+
+2005-01-30  Werner Lemberg  <wl@gnu.org>
+
+	* mf2pt1.mp: Patched charwd.
+
+	* mf2pt1.pl: Performed a major revision of the code.
+
+2005-01-08  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.pl:
+	Bug fix: Corrected rounding to work properly on negative numbers.
+	Bug fix: Corrected the check for hvcurveto suitability.
+	Added my e-mail address to the --help output.
+	Cleaned up the code by moving subroutine definitions above the main program.
+
+2005-01-03  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.pl:
+	Made rounding actually round.  Added code to dump font parameters.
+	Corrected definitions of $underlinepos and $underlinethick to defer
+	computation until $designsize is defined.
+
+	* mf2pt1.texi:
+	Changed "PfaEdit" in all occurences to "FontForge" and mentioned its
+	"Remove Overlap" feature.
+
+	* mf2pt1.pl: Cleaned up command-line processing.
+
+2005-01-02  Scott Pakin	 <scott+mf@pakin.org>
+
+	* README, mf2pt1.mp, mf2pt1.pl, mf2pt1.texi:
+	Updated the year from 2004 to 2005.
+
+	* README, mf2pt1.mp, mf2pt1.pl, mf2pt1.texi:
+	Added support for custom encodings and updated the copyright year and
+	my e-mail address.
+
+2001-06-19  Scott Pakin	 <scott+mf@pakin.org>
+
+	* README: Removed angled brackets to avoid confusing HTML renderings.
+
+	* README: Description of mf2pt1 and a pointer to the user manual
+
+	* mf2pt1.texi: Proofread and modified text accordingly.
+
+2001-06-17  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.texi:
+	Added more Future Work (specifically, additional encodings).
+
+	* mf2pt1.texi: Added a Future Work section.
+
+2001-06-04  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.mp, mf2pt1.pl, mf2pt1.texi: Added license information.
+	N.B.  The previous log message was supposed to indicate that
+	font_underline_position and font_underline_thickness now work in
+	Metafont units within the .mf file.
+
+2001-06-02  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.texi: Made various modifications.
+
+	* mf2pt1.pl:
+	Wrote some POD documentation and added a --help option to display
+	excerpts from it.
+
+	* mf2pt1.texi: Added a font parameter usage example.
+
+	* mf2pt1.texi: Added more text to the Usage section.
+
+	* mf2pt1.texi: Added the start of a Usage section.
+
+	* mf2pt1.texi: User documentation for mf2pt1
+
+2001-06-01  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.mp: Modified comments to use LaTeX and mftinc.
+
+2001-05-30  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.mp, mf2pt1.pl:
+	Added PostScript-specific font parameters.
+
+2001-05-21  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.mp, mf2pt1.pl:
+	Modified to convert the Metafont font_slant to a Type 1 ItalicAngle.
+
+2001-05-20  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.pl: Added command-line options.
+
+2001-05-16  Scott Pakin	 <scott+mf@pakin.org>
+
+2001-05-15  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.mp:
+	Rewrote to use the turningnumber to determine if a path runs
+	clockwise or counterclockwise instead of calculating that
+	manually.
+
+2001-05-12  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.pl:
+	Added a warning message for characters that lack a beginchar.
+
+2001-05-10  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.pl:
+	Bug fix: Argument to font_size is now correctly treated as TeX
+	points, not PostScript points.
+
+	* mf2pt1.mp:
+	Made using_pencircle robust to scaling (although not to rotation).
+
+	* mf2pt1.mp:
+	Introduced a special case to drawdot and undrawdot: If the pen
+	looks like a circular pen, draw a clean circle instead of the
+	jagged pen path.
+
+2001-05-09  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.mp, mf2pt1.pl:
+	Modified mf2pt1 to honor the font-specified design size (the font_size
+	command in Metafont).
+
+	* mf2pt1.mp:
+	Added and improved the implementations of more Plain Metafont
+	primitives.
+
+2001-05-05  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.mp: Added a draw macro.
+
+2001-05-04  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.mp: Added an undrawdot macro.
+
+	* mf2pt1.mp: Defined "safe" versions of the various fill commands.
+	Made is_clockwise more robust.
+
+	* mf2pt1.mp:
+	Added code to replace the primitive pencircle with a non-primitive
+	approximation.
+
+	* mf2pt1.mp:
+	Added (but do not yet use) a clockwise function for determining path
+	direction.
+
+2001-04-29  Scott Pakin	 <scott+mf@pakin.org>
+
+	* mf2pt1.pl: Corrected curveto handling.

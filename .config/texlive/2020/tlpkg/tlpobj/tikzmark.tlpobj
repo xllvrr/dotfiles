@@ -1,0 +1,30 @@
+name tikzmark
+category Package
+revision 52293
+shortdesc Use TikZ's method of remembering a position on a page
+longdesc The tikzmark package defines a command to "remember" a position
+longdesc on a page for later (or earlier) use, primarily (but not
+longdesc exclusively) with TikZ.
+containersize 5440
+containerchecksum 4f1040ee866eba68c6bf622d694cbbf417455691a08bb91169cf7a3a3a6e63d7136e1b976ee2e8e89361d5fd8871afab2dbeb7d26e04f4b51992f6e71854bba1
+doccontainersize 414492
+doccontainerchecksum 6575708cf87fc25c080001b6836df3dfa33474b594970a4dd4f2e772a9e3ed8dd6c3ed4f2ecb7866415606c983dfe36184f8ac9fbfb60852f5feae3dc90b98bc
+docfiles size=105
+ texmf-dist/doc/latex/tikzmark/README details="Readme"
+ texmf-dist/doc/latex/tikzmark/README.txt
+ texmf-dist/doc/latex/tikzmark/tikzmark.pdf details="Package documentation"
+srccontainersize 17652
+srccontainerchecksum 1e9aab19f1d7ce4923b2092cf69e0841e0bc99f68ef983887ad499045a47c071457da72a878f2db49655ee31f18e433c8f98d58869f122fc5c8867757d36d670
+srcfiles size=18
+ texmf-dist/source/latex/tikzmark/tikzmark.dtx
+ texmf-dist/source/latex/tikzmark/tikzmark.ins
+runfiles size=7
+ texmf-dist/tex/latex/tikzmark/tikzlibrarytikzmark.code.tex
+ texmf-dist/tex/latex/tikzmark/tikzmarklibrarylistings.code.tex
+catalogue-contact-bugs https://github.com/loopspace/tikzmark/issues
+catalogue-contact-home https://github.com/loopspace/tikzmark
+catalogue-contact-repository https://github.com/loopspace/tikzmark
+catalogue-ctan /graphics/pgf/contrib/tikzmark
+catalogue-license lppl1.3c
+catalogue-topics pgf-tikz graphics-supp
+catalogue-version 1.8

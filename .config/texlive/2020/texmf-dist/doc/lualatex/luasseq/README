@@ -1,0 +1,6 @@
+Version 2015-07-16 contains compatibility fixed for lualatex bundled with TeXLive 2014.
+
+Required for use: luasseq.lua and luasseq.sty
+
+To get luasseq.sty: lualatex luasseq.ins (requires luasseq.dtx)
+To get the documentation luasseq.pdf: lualatex luasseq.dtx

@@ -1,0 +1,17 @@
+                The
+          “ecgdraw” package
+               v0.1
+
+            2016/06/29
+
+Maintainers: Marco Scavino and Ezio Aimé
+E-mail    : scavino.marco93@gmail.com, ezio.aimé@fastwebnet.it
+            Comments, bug reports and suggestions are welcome.
+Licence   : Released under the LaTeX Project Public License v1.3c or
+            later, see http://www.latex-project.org/lppl.txt
+
+----------------------------------------------------------------------
+
+This package provides the \ECG{<code>} command which draws ECG.
+The <code> represents a series of abbreviations which allow to draw
+different types of wave.

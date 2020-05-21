@@ -1,0 +1,245 @@
+% \iffalse meta-comment
+%
+% Copyright 2019-2020
+% The LaTeX3 Project and any individual authors listed elsewhere
+% in this file.
+%
+% This file is part of the LaTeX base system.
+% -------------------------------------------
+%
+% It may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3c
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%    https://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2008 or later.
+%
+% This file has the LPPL maintenance status "maintained".
+%
+% The list of all files belonging to the LaTeX base distribution is
+% given in the file `manifest.txt'. See also `legal.txt' for additional
+% information.
+%
+% The list of derived (unpacked) files belonging to the distribution
+% and covered by LPPL is defined by the unpacking scripts (with
+% extension .ins) which are part of the distribution.
+%
+% \fi
+% Filename: ltnews32.tex
+%
+% This is issue 32 of LaTeX News.
+
+\NeedsTeXFormat{LaTeX2e}[2020-02-02]
+
+\documentclass{ltnews}
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern,url,hologo}
+
+\usepackage{csquotes}
+\usepackage{multicol}
+
+\providecommand\meta[1]{$\langle$\textit{#1}$\rangle$}
+\providecommand\option[1]{\texttt{#1}}
+\providecommand\env[1]{\texttt{#1}}
+
+
+\providecommand\XeTeX{\hologo{XeTeX}}
+\providecommand\LuaTeX{\hologo{LuaTeX}}
+\providecommand\pdfTeX{\hologo{pdfTeX}}
+\providecommand\MiKTeX{\hologo{MiKTeX}}
+\providecommand\CTAN{\textsc{ctan}}
+\providecommand\TL{\TeX\,Live}
+\providecommand\githubissue[2][]{\ifhmode\unskip\fi
+     \quad\penalty500\strut\nobreak\hfill
+     \mbox{\small\slshape(%
+       \href{https://github.com/latex3/latex2e/issues/\getfirstgithubissue#2 \relax}%
+          	    {github issue#1 #2}%
+           )}%
+     \par\smallskip}
+
+% simple solution right now (just link to the first issue if there are more)
+\def\getfirstgithubissue#1 #2\relax{#1}
+
+\providecommand\sxissue[1]{\ifhmode\unskip\fi
+     \quad\penalty500\strut\nobreak\hfill
+     \mbox{\small\slshape(\url{https://tex.stackexchange.com/#1})}\par}
+
+\providecommand\gnatsissue[2]{\ifhmode\unskip\fi
+     \quad\penalty500\strut\nobreak\hfill
+     \mbox{\small\slshape(%
+       \href{https://www.latex-project.org/cgi-bin/ltxbugs2html?pr=#1\%2F#2}%
+          	    {gnats issue #1/#2}%
+           )}%
+     \par}
+
+\let\cls\pkg
+\providecommand\env[1]{\texttt{#1}}
+
+\vbadness=1400  % accept slightly empty columns
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iffalse % only for TUB production
+\usepackage{graphicx}
+\makeatletter
+% Xe\TeX{} requires reflecting the first E, hence we complain if the
+% graphics package is not present.  (For plain documents, this can be
+% loaded via Eplain.)  Also, at Barbara's suggestion, if the current
+% font is slanted, we rotate by 180 instead of reflecting so there is at
+% least a chance to look ok.  (The magic values here seem more or less
+% ok for \texttt{cmsl} and \texttt{cmti}.)
+%
+%    \begin{macrocode}
+\def\tubreflect#1{%
+  \@ifundefined{reflectbox}{%
+    \TBerror{A graphics package must be loaded for \string\XeTeX}%
+  }{%
+    \ifdim \fontdimen1\font>0pt
+      \raise 1.6ex \hbox{\kern.1em\rotatebox{180}{#1}}\kern-.1em
+    \else
+      \reflectbox{#1}%
+    \fi
+  }%
+}
+\def\tubhideheight#1{\setbox0=\hbox{#1}\ht0=0pt \dp0=0pt \box0 }
+\def\XekernbeforeE{-.125em}
+\def\XekernafterE{-.1667em}
+\DeclareRobustCommand{\Xe}{\leavevmode
+  \tubhideheight{\hbox{X%
+    \setbox0=\hbox{\TeX}\setbox1=\hbox{E}%
+    \ifdim \fontdimen1\font>0pt \def\XekernbeforeE{0em}\fi
+    \lower\dp0\hbox{\raise\dp1\hbox{\kern\XekernbeforeE\tubreflect{E}}}%
+    \kern\XekernafterE}}}
+\def\XeTeX{\Xe\TeX}
+\def\XeLaTeX{\Xe{\kern.11em \LaTeX}}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\publicationmonth{October}
+\publicationyear{2020}
+
+\publicationissue{32}
+
+\begin{document}
+
+%\addtolength\textheight{4.2pc}   % only for TUB
+
+\maketitle
+{\hyphenpenalty=10000 \spaceskip=3.33pt \hbadness=10000 \tableofcontents}
+
+\setlength\rightskip{0pt plus 3em}
+
+
+\medskip
+
+
+\section{Introduction}
+
+This document is under construction \ldots
+
+
+
+\section{Other changes to the \LaTeX{} kernel}
+
+
+\subsection{\cs{symbol} in math mode for large Unicode values}
+
+The \LaTeXe{} kernel defines the command \cs{symbol}, which allows
+characters to be typeset by entering their `slot number'. With the
+\LuaTeX{} and \XeTeX{} engines, these slot numbers can extend to very
+large values to accomodate Unicode characters in the upper Unicode
+planes (e.g., bold mathematical capital A is slot number
+\texttt{"1D400} in hex or \texttt{119808} in decimal).  The \XeTeX{}
+engine did not allow \cs{symbol} in math mode for values above
+$2^{16}$, and this limitation has now been lifted.
+%
+\githubissue{124}
+
+
+\subsection{Spacing issues when using \cs{linethickness}}
+
+In some circumstances the use of \cs{linethickness} introduced a
+spurious space that shifted objects in a \texttt{picture} environments
+to the right. This has been corrected.
+%
+\githubissue{270}
+
+
+\subsection{Better support for uncommon font series defaults}
+
+If a font family was set up with fairly unusual font series defaults,
+e.g.,
+\begin{verbatim}
+\renewcommand\ttdefault{lmvtt}
+\DeclareFontSeriesDefault[tt]{md}{lm}
+\DeclareFontSeriesDefault[tt]{bf}{bm}
+\end{verbatim}
+then a switch between the main document families, e.g.,
+\verb=\ttfamily...\rmfamily= did not always correctly continued
+typesetting in medium or bold series if that involved adjusting the
+values used by \verb=\mdseries= or \verb=\bfseries=.  This has now
+been corrected.
+%
+\githubissue{291}
+
+
+\subsection{Adjusting \texttt{fleqn}}
+
+In \pkg{amsmath} the \cs{mathindent} parameter used with the
+\texttt{fleqn} design is a rubber length paramter allowing for setting
+it to a value such as \texttt{1em minus 1em}, i.e., so the the normal
+indentation can be reduced in case of very wide math displays.
+This is now also supported by the \LaTeX{} standard classes.
+
+In addition a compressable space between formula and equation number
+in the \texttt{equation} environment got added when the \texttt{fleqn}
+option is used so that a very wide formula doesn't bump into the
+equation number.
+%
+\githubissue{252}
+
+
+
+\section{Changes to packages in the \pkg{graphics} category}
+
+\subsection{Generate a warning if existing color definition is changed}
+
+If a color is defined twice using \cs{DefineNamedColor}, no
+info text \texttt{Redefining color ... in named color model ...} is written
+to the log file, because of a typo in the check. This has been corrected.
+%
+\gnatsissue{graphics}{3635}
+
+
+\section{Changes to packages in the \pkg{tools} category}
+
+\subsection{Support stretchable glue in \texttt{w}-columns}
+
+If stretchable glue, e.g., \cs{dotfill}, is used in \env{tabular}
+columns made with the \pkg{array} package, it stretches as it would in
+normal paragraph text. The one exception were \texttt{w}-columns (but
+not \texttt{W}-columns) were it got forced to its nominal width (which
+in case if \cs{hfill} or \cs{dotfill} is 0\,pt). This has been
+corrected and now \texttt{w}-columns behave like all other column
+types in this respect.
+%
+\githubissue{270}
+
+
+
+\section{Changes to packages in the \pkg{amsmath} category}
+
+\subsection{Placement corrections for two accent commands}
+
+The accent commands \cs{dddot} and \cs{ddddot} (producing triple and
+quatruple dot accents) moved the base character vertically in certain
+situations if it was a single glyph,
+e.g., \verb=$Q \dddot{Q}$=
+were not at the same baseline. This has been corrected.
+%
+\githubissue{126}
+
+
+\end{document}

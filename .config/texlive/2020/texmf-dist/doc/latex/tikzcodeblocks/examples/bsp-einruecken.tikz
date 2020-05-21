@@ -1,0 +1,8 @@
+\begin{tikzpicture}[codeblocks]
+\einruecken{
+	\node[grundlage,pinlow](grund){dauerhaft};
+}
+\node[logik,unter={grund}{1}{0}](wenn1){wenn \tikz\node[platzhalter,boden,keinezacken]{\dropdown{modus}}; \dropdown{=} \intbox{1} };
+
+%\draw[->] (grund.south west) |- (wenn1.west);
+\end{tikzpicture}

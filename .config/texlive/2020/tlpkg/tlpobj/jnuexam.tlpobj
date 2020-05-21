@@ -1,0 +1,37 @@
+name jnuexam
+category Package
+revision 52696
+shortdesc Exam class for Jinan University
+longdesc The package provides an exam class for Jinan University
+longdesc (China).
+containersize 7192
+containerchecksum 9fc6ed0fc12a0eec779a511de2582cb6278b4576569cfad310a26bae0ae024336b335b2ff9760f0055463302c51933ad291a25f542a7974c56e17c3013c480c3
+doccontainersize 592236
+doccontainerchecksum b9650a69d2f8b7c78e165d35c3b8cfebb8e76886f5b20a0592ab6b50ec63a659c5b76c6cbe02b8c5aaad5a7733623fd8c73bed624dbe9651bbb2263339f9019d
+docfiles size=228
+ texmf-dist/doc/latex/jnuexam/README details="Readme"
+ texmf-dist/doc/latex/jnuexam/exam-a-a3input.pdf
+ texmf-dist/doc/latex/jnuexam/exam-a-a3input.tex
+ texmf-dist/doc/latex/jnuexam/exam-a-a3split.pdf
+ texmf-dist/doc/latex/jnuexam/exam-a-a3split.tex
+ texmf-dist/doc/latex/jnuexam/exam-a-empty.pdf
+ texmf-dist/doc/latex/jnuexam/exam-a-empty.tex
+ texmf-dist/doc/latex/jnuexam/exam-a.pdf
+ texmf-dist/doc/latex/jnuexam/exam-a.tex
+ texmf-dist/doc/latex/jnuexam/exam-b-a3input.pdf
+ texmf-dist/doc/latex/jnuexam/exam-b-a3input.tex
+ texmf-dist/doc/latex/jnuexam/exam-b-a3split.pdf
+ texmf-dist/doc/latex/jnuexam/exam-b-a3split.tex
+ texmf-dist/doc/latex/jnuexam/exam-b-empty.pdf
+ texmf-dist/doc/latex/jnuexam/exam-b-empty.tex
+ texmf-dist/doc/latex/jnuexam/exam-b.pdf
+ texmf-dist/doc/latex/jnuexam/exam-b.tex
+ texmf-dist/doc/latex/jnuexam/jnuexam.pdf details="Package documentation" language="zh"
+ texmf-dist/doc/latex/jnuexam/jnuexam.tex
+runfiles size=6
+ texmf-dist/tex/latex/jnuexam/jnuexam.cls
+catalogue-contact-home https://lvjr.bitbucket.io/jnuexam.html
+catalogue-ctan /macros/latex/contrib/jnuexam
+catalogue-license lppl1.3
+catalogue-topics exam class chinese
+catalogue-version 0.7

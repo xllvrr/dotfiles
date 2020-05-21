@@ -1,0 +1,123 @@
+                       The fbithesis package
+
+                  ($Date: 2008-02-17 23:54:50 +0100 (So, 17. Feb 2008) $)
+
+                 Copyright (C) 2002-2008 Andre Dierker
+
+Purpose:
+  This is a LaTeX2e package providing a new document-class tuned for
+  research reports or internal reports like master/phd-theses at the
+  University of Dortmund.
+
+  At the Department of Computer Science at the University of Dortmund
+  there are cardboard cover pages for internal reports like
+  master/phd-theses.  The main function of the LaTeX2e document-class
+  provided by this package is a replacement for the \maketitle command
+  to typeset a title page that is adjusted to these cover pages.
+
+Files:
+  fbithesis.dtx       Docstrip archive
+                        To generate the documentation, run this
+                        through LaTeX.
+  fbithesis.dtx.asc   Signature file
+                        To verify the docstrip archive, run e.g.
+                        gpg --verify fbithesis.dtx.asc
+
+Generated Files:
+  fbithesis.ins  Batch file, run through LaTeX
+                   The file will be generated if you run
+                   fbithesis.dtx through LaTeX.
+  fbithesis.drv  Driver for documentation
+                   The file will be generated from fbithesis.ins.
+                   To generate customized documentation, edit this
+                   file and run it through LaTeX.
+  fbithesis.cls  LaTeX package
+                   It will be generated, if you run fbithesis.ins
+                   through LaTeX.
+  fbithesis.cfg  Configuration file
+                   It will be generated, if you run fbithesis.ins
+                   through LaTeX.
+  fbithesis.dvi  Package documentation, will be generated from
+                   fbithesis.drv
+  example.tex    Example file which demonstrates the possibilities of
+                   this package.  It will be generated, if you run
+                   fbithesis.ins through LaTeX.
+  README         This file.  It will be generated if you run
+                   fbithesis.dtx through LaTeX.
+
+Installation:
+
+  LaTeX fbithesis.dtx   Creates docstrip installation file
+                          fbithesis.ins and this file
+  (La)TeX fbithesis.ins Creates class file fbithesis.cls, example
+                          file example.tex and documentation driver
+                          fbithesis.drv
+
+  Docstrip options available:
+    package - to produce a (LaTeX2e) class file (.cls)
+    driver  - to produce a driver file to print the documentation
+    example - to produce an example file, which demonstrates the
+                possibilities of the package
+
+  Move fbithesis.cls into a directory searched by LaTeX. (If you don't
+                        know where this could be simply drop the file
+                        into your thesis' directory)
+  LaTeX fbithesis.dtx   Creates the (LaTeX2e) documentation.
+
+    optionally:
+  Edit fbithesis.drv    and customize the documentation driver to your wishes.
+  LaTeX fbithesis.drv   Generates customized documentation.
+                          Depending on your customization you will
+                          have to run
+                          makeindex fbithesis.idx -s gind.ist -o fbithesis.ind
+                          and/or
+                          makeindex fbithesis.glo -s gglo.ist -o fbithesis.gls
+                          or (if you are using docindex
+                          makeindex fbithesis.idx -s docindex.ist -o fbithesis.ind
+                          and/or
+                          makeindex fbithesis.glo -s docindex.ist -o fbithesis.gls
+  LaTeX example.tex     Demonstrates the possibilities of this
+                          package.
+
+Contact:
+  E-Mail:    dierker@kand.de
+  Address:   Andre Dierker, Natruper Str. 49, D-49076 Osnabrück, Germany
+
+Legal stuff:
+  README, the ReadMe file for the fbithesis package
+  Copyright (C) 2002-2008  Andre Dierker
+
+  This file is part of the fbithesis package.
+  -------------------------------------------
+
+  There is no warranty for the fbithesis package.  I provide the
+  Work `as is', without warranty of any kind, either expressed or
+  implied, including, but not limited to, the implied warranties of
+  merchantability and fitness for a particular purpose.  The entire
+  risk as to the quality and performance of the program is with you.
+  Should the Work prove defective, you assume the cost of all
+  necessary servicing, repair, or correction.
+
+  This Work may be distributed and/or modified under the
+  conditions of the LaTeX Project Public License, either version 1.3
+  of this license or (at your option) any later version.
+
+  The latest version of this license is in
+    http://www.latex-project.org/lppl.txt
+  and version 1.3 or later is part of all distributions of LaTeX
+  version 2005/12/01 or later.
+
+  This is a generated file.  It may not be distributed without the
+  original source file fbithesis.dtx.
+
+  This Work has the LPPL maintenance status "author-maintained".
+
+  The Current Maintainer of this work is Andre Dierker.
+
+  This Work consists of all files listed above in this file. See
+  the sections ``Files'' and ``Generated Files''.
+
+  Files generated by means of unpacking this program using the
+  docstrip program may be distributed at the distributor's
+  discretion.  However if they are distributed then a copy of
+  this Work must be distributed together with them.

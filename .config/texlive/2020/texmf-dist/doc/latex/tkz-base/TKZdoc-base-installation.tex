@@ -1,0 +1,41 @@
+\section{Installation}
+
+\NamePack{tkz-base} is now on the server of the \tkzname{CTAN}\footnote{\NamePack{tkz-base} is part of \NameDist{TeXLive} and \tkzname{tlmgr} allows to install it, it is also part of \NameDist{MikTeX} under \NameSys{Windows}.}. If you want to test a beta version, just put the following files in a texmf folder that your system will be able to find.
+
+\subsection{Files present}
+%–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+Before testing the installation, you can verify that the \tkzname{tkzbase} folder contains the following files:
+
+\begin{itemize}
+\item  \tkzname{tkz-base.cfg}
+\item  \tkzname{tkz-base.sty}
+\item  \tkzname{tkz-lib-marks.tex}
+\item  \tkzname{tkz-obj-axes.tex}
+\item  \tkzname{tkz-obj-grids.tex}
+\item  \tkzname{tkz-obj-marks.tex}
+\item  \tkzname{tkz-obj-points.tex}
+\item  \tkzname{tkz-obj-rep.tex}
+\item  \tkzname{tkz-tools-arith.tex}
+\item  \tkzname{tkz-tools-base.tex}
+\item  \tkzname{tkz-tools-BB.tex}
+\item  \tkzname{tkz-tools-math.tex}
+\item  \tkzname{tkz-tools-misc.tex}
+\item  \tkzname{tkz-tools-modules.tex}
+\item  \tkzname{tkz-tools-print.tex}
+\item  \tkzname{tkz-tools-text.tex} 
+\item  \tkzname{tkz-tools-utilities.tex}
+\end{itemize}
+
+The one with the main macros is \tkzname{tkz-tools-base.tex},
+it's called \tkzname{tkz-base} which handles all the files. 
+The various tools are in files beginning with \tkzname{tkz-tools}, the mathematical objects created are in files whose name has for prefix \tkzname{tkz-obj}. Finally \tkzname{tkz-base.cfg} whose presence is not mandatory allows to modify many default values.
+ 
+Moreover, \TIKZ\ is loaded with the following libraries:
+
+\begin{tkzltxexample}[]
+\usetikzlibrary{angles, arrows, arrows.meta, babel, calc, decorations, decorations.markings,decoration.shapes, decorations.text, decorations.pathmorphing,
+decorations.pathreplacing, intersections, patterns, plotmarks, positioning, quotes,
+shapes.misc, through}
+\end{tkzltxexample}
+
+\endinput

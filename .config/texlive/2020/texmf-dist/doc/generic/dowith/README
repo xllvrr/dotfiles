@@ -1,0 +1,64 @@
+
+               README for the `dowith' package
+
+      Apply Command to Each Item in a List of Arguments 
+               in TeX's Macro Expansion Buffer
+
+                  (C) Uwe Lueck 2012/11/19
+
+
+`dowith.sty' provides macros for applying a command to all items
+in a list of macro arguments, and also for extending and reducing 
+macros storing such lists. "Brace groups" are single items of 
+such lists, as opposed to token lists. Iteration is implemented 
+within TeX's expansion processor, so works within \write as with 
+`blog.sty'. Loop and list macros in other packages are discussed 
+in the documentation. There is no need for e-TeX to which some
+of them refer. 
+
+`domore.sty' extends `dowith.sty' in order to apply multi-
+parameter macros to a list and to insert "separator material" 
+between resulting items. One application has been generating 
+inline lists of links that are separated by ` | '.
+
+The packages are "generic", i.e., should also work with Plain TeX, 
+relying on the `plainpkg' package for some minimal LaTeX-like 
+behaviour.
+
+KEYWORDS: programming structures; 
+          macro programming, loops, list macros
+
+RELATED PACKAGES: catoptions, etextools, etoolbox, forarray, 
+forloop, loops, multido, moredefs, lmake, texapi, xfor, xspace
+
+LICENSE:
+
+The package file `dowith.sty', `domore.sty' and the 
+documentation files `dowith.pdf', `domore.pdf', `dowith.tex', 
+and `domore.tex' can be redistributed and/or modified under the 
+terms of the LaTeX Project Public License; either version 1.3c 
+of the License, or any later version, see
+
+    http://www.latex-project.org/lppl.txt
+
+We did our best to help you, but there is NO WARRANTY.
+
+The `dowith' package is author-maintained in the sense of
+this license.
+
+The latest public version of the package is available at
+
+    http://mirror.ctan.org/macros/generic/dowith/
+
+A TDS version of the package is available as
+
+    http://mirror.ctan.org/install/macros/generic/dowith.tds.zip
+
+The file `dowith.RLS' provides RELEASE info accessible by LaTeX 
+FILE info packages, see 
+
+    http://ctan.org/pkg/latexfileinfo-pkgs
+
+Please report bugs, problems, and suggestions via
+
+    http://www.contact-ednotes.sty.de.vu 

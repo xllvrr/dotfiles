@@ -1,0 +1,58 @@
+\psset{llx=-.2cm,lly=-.2cm,urx=.2cm,ury=.2cm,xAxisLabel={}, yAxisLabel={}}
+ 
+\begin{tabular}{|c|l|} \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*,labelsep = 2pt,labelFontSize=\scriptscriptstyle](0,0)(2,2){1cm}{1cm}
+\dotnode[dotstyle=*,linecolor=blue,dotscale=2](1,1){A} \nput{45}{A}{A} 
+ \end{psgraph}
+&  
+\TFRGB{un n\oe ud de base}{Basic node}
+\\ \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*,labelsep = 2pt,labelFontSize=\scriptscriptstyle](0,0)(2,2){1cm}{1cm}
+\dotnode[dotstyle=*,linecolor=red,dotscale=2](1,1){A} \nput{45}{A}{A} 
+ \end{psgraph}
+&  
+\TFRGB{un n\oe ud calculé}{Calculated node}
+\\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*,labelsep = 2pt,labelFontSize=\scriptscriptstyle](0,0)(2,2){1cm}{1cm}
+\dotnode[dotstyle=*,dotscale=2,linecolor=blue](1,1){A}
+% Asterisk 
+ \end{psgraph}
+&  
+\TFRGB{un point}{a point}
+\\ \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*,labelsep = 2pt,labelFontSize=\scriptscriptstyle](0,0)(2,2){1cm}{1cm}
+\psline[linewidth=2pt,linecolor=blue](2,2)
+ \end{psgraph}
+&  
+\TFRGB{un élément de base}[Base element] 
+\\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*,labelsep = 2pt,labelFontSize=\scriptscriptstyle](0,0)(2,2){1cm}{1cm}
+\psline[linewidth=2pt,linecolor=red](2,2)
+ \end{psgraph}
+&  
+\TFRGB{un élément supplémentaire}{Additional element} 
+\\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*,labelsep = 2pt,labelFontSize=\scriptscriptstyle](0,0)(2,2){1cm}{1cm}
+\psline[linewidth=2pt,linecolor=green](2,2)
+\psline[linewidth=2pt,linecolor=cyan](1,0)(2,1)
+ \end{psgraph}
+&  
+\TFRGB{autres éléments supplémentaires}{Other additional element} 
+\\ \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*,labelsep = 2pt,labelFontSize=\scriptscriptstyle](0,0)(2,2){1cm}{1cm}
+\psline[linestyle=dashed](2,2)
+\psline[linestyle=dotted](1,0)(2,1)
+ \end{psgraph}
+&  
+\TFRGB{construction pour expliquer une commande, une option ou un paramètre}{to  highlight the command, the option oe a parameter }
+\\ \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 2,yticksize=0 2,subticks=0,shift=*,labelsep = 2pt,labelFontSize=\scriptscriptstyle](0,0)(2,2){1cm}{1cm}
+\psframe[fillstyle=solid,fillcolor=yellow](.5,.5)(1.5,1.5)
+
+ \end{psgraph}
+&  
+\TFRGB{couleur de remplissage par défaut  : blanc}{Filling color (\dft : white)}
+\\ \hline 
+\end{tabular}  
+
+\psset{llx=-.5cm,lly=-.5cm,urx=.2cm,ury=.2cm,xAxisLabel={}, yAxisLabel={}} 

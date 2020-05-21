@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>Unix</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<meta name="originator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<!-- xhtml,th4,index --> 
+<meta name="src" content="mn.tex" /> 
+<meta name="date" content="2004-02-11 18:07:00" /> 
+<link rel="stylesheet" type="text/css" href="mn.css" /> 
+</head><body 
+>
+    <a 
+ href="mn.html#mn-unix.html" >exit Unix</a>
+    <h3 class="SubSectionHead"><a 
+  name="QQ1-22-38"></a>A Setup for Unix Environments</h3>
+<ol type="a" >
+<li>Establish a directory , say,&#8216;<span class="cmtt-10">~/tex4ht.dir</span>&#8217;.
+<!--l. 4402--><p class="noindent"></p></li>
+<li> <a 
+  name="index22-38001"></a>Download the file <a 
+ href="tex4ht.zip" >tex4ht.zip</a> into the directory <span class="cmtt-10">tex4ht.dir </span>and <a 
+ href="http://www.info-zip.org/pub/infozip/" >unzip</a> it.
+    <p class="rightline"><span class="cmbx-10">Compile the Postprocessors</span></p>
+<!--l. 4428--><p class="noindent"></p></li>
+<li> <a 
+  name="index22-38002"></a> <a 
+  name="index22-38003"></a>Compile <span class="cmtt-10">~/tex4ht.dir/temp/tex4ht.c </span>into an executable <span class="cmtt-10">tex4ht </span>file with a command similar to the following
+one.
+<!--l. 4436--><p class="indent">    <span class="cmtt-10">gcc -o tex4ht tex4ht.c -DENVFILE='&#34;~/tex4ht.dir/texmf/tex4ht/base/unix/tex4ht.env&#34;'</span>
+<span class="cmtt-10">-DHAVE_DIRENT_H</span>
+</p><!--l. 4441--><p class="indent">    The switch &#8216;<span class="cmtt-10">-DENVFILE='&#34;~/tex4ht.dir/texmf/tex4ht/base/unix/tex4ht.env&#34;'</span>&#8217; may be omitted, if the
+program can reach the environment file in an <a 
+ href="mn31.html#envloc">alternative</a> manner.
+</p><!--l. 4451--><p class="noindent"></p></li>
+<li>Compile <span class="cmtt-10">~/tex4ht.dir/temp/t4ht.c </span>with a command similar to following one.
+<!--l. 4456--><p class="indent">    <span class="cmtt-10">gcc -o t4ht t4ht.c -DENVFILE='&#34;~/tex4ht.dir/texmf/tex4ht/base/unix/tex4ht.env&#34;'</span>
+</p><!--l. 4459--><p class="indent">    Again, the switch &#8216;<span class="cmtt-10">-DENVFILE='&#34;~/tex4ht.dir/texmf/tex4ht/base/unix/tex4ht.env&#34;'</span>&#8217; may be omitted, if
+the program can reach the environment file in an <a 
+ href="mn31.html#envloc">alternative</a> manner.
+</p><!--l. 4467--><p class="noindent"></p></li>
+<li>Move the executable files <span class="cmtt-10">tex4ht </span>and <span class="cmtt-10">t4ht </span>to directory <span class="cmtt-10">~/tex4ht.dir/bin/unix/</span>.
+<p class="rightline"><span class="cmbx-10">Update the Pointers in the Environment File</span></p> </li>
+<li> <a 
+  name="index22-38004"></a> <a 
+  name="index22-38005"></a>Replace in <a 
+ href="tex4ht-env-unix.txt" ><span class="cmtt-10">~/tex4ht.dir/texmf/tex4ht/base/unix/tex4ht.env</span></a> the line(s) starting with the character &#8216;<span class="cmtt-10">t</span>&#8217;, with
+alternative lines which state what directories should be searched for the tfm files of TeX and LaTeX. The directory
+names must be preceded with the character &#8216;<span class="cmtt-10">t</span>&#8217; at column 1 and, if their subdirectories are also to be searched, the
+names should be appended with the character &#8216;<span class="cmtt-10">!</span>&#8217; (<a 
+ href="mn35.html#alt-tfm">insight</a>).
+<!--l. 4486--><p class="noindent"></p></li>
+<li> <a 
+  name="index22-38006"></a>If needed, adjust the paths in the &#8216;<span class="cmtt-10">i</span>&#8217; records of <span class="cmtt-10">tex4ht.env</span>. These records are used for searching htf fonts, and
+they are similar to the &#8216;<span class="cmtt-10">t</span>&#8217; (<a 
+ href="mn39.html#alt-htf">insight</a>).
+<!--l. 4495--><p class="noindent"></p></li>
+<li> <a 
+  name="index22-38007"></a>The entry &#8216;<span class="cmtt-10">l~/tex4ht.dir/filename</span>&#8217; in <span class="cmtt-10">tex4ht.env </span>points to the address where the <a 
+ href="mn34.html#TEX4HTWR">bookkeeping file</a>
+should reside. Modify the path to fit your platform. The character &#8216;<span class="cmtt-10">l</span>&#8217; should precede the address,
+and be placed at the first column. Make sure the access mode of the directory permits writing into
+files.
+    <p class="rightline"><span class="cmbx-10">Update the Bitmap Generating Scripts in the Environment File</span></p>
+<!--l. 4509--><p class="noindent"></p></li>
+<li> <a 
+  name="index22-38008"></a> <a 
+  name="index22-38009"></a>The file <span class="cmtt-10">tex4ht.env </span>contains the following default script, of calls to system utilities for translating dvi pictures
+into gif.<a 
+  name="dv2gif"></a>
+<div class="Verbatim"><span class="cmtt-10">Gdvips</span><span class="cmtt-10">&nbsp;-Ppdf</span><span class="cmtt-10">&nbsp;-mode</span><span class="cmtt-10">&nbsp;ibmvga</span><span class="cmtt-10">&nbsp;-D</span><span class="cmtt-10">&nbsp;110</span><span class="cmtt-10">&nbsp;-f</span><span class="cmtt-10">&nbsp;%%1</span><span class="cmtt-10">&nbsp;-pp</span><span class="cmtt-10">&nbsp;%%2</span><span class="cmtt-10">&nbsp;&gt;</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Ggs</span><span class="cmtt-10">&nbsp;-sDEVICE=ppm</span><span class="cmtt-10">&nbsp;-sOutputFile=zz%%4.ppm</span><span class="cmtt-10">&nbsp;-r110x110</span><span class="cmtt-10">&nbsp;-dTextAlphaBits=2</span><span class="cmtt-10">&nbsp;-dGraphicsAlphaBits=2</span><span class="cmtt-10">&nbsp;-q</span><span class="cmtt-10">&nbsp;-dbatch</span><span class="cmtt-10">&nbsp;-dNOPAUSE</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;-c</span><span class="cmtt-10">&nbsp;quit</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Gconvert</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;-crop</span><span class="cmtt-10">&nbsp;0x0</span><span class="cmtt-10">&nbsp;-density</span><span class="cmtt-10">&nbsp;110x110</span><span class="cmtt-10">&nbsp;-transparent</span><span class="cmtt-10">&nbsp;'#FFFFFF'</span><span class="cmtt-10">&nbsp;zz%%4.ppm</span><span class="cmtt-10">&nbsp;%%3</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Grm</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Grm</span><span class="cmtt-10">&nbsp;zz%%4.ppm</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+<!--l. 4524--><p class="indent">    The entry <span class="cmtt-10">%%1 </span>is a parameter refering to a dvi file, the <span class="cmtt-10">%%2 </span>is a parameter indicating a page number, the <span class="cmtt-10">%%3 </span>is
+a parameter standing for an output file name, and <span class="cmtt-10">%%4 </span>is a parameter providing the jobname.
+</p><!--l. 4530--><p class="indent">    You may replace this script with an <a 
+ href="mn23.html"  name="mn23.html" >alternative sequence</a> of system calls. In such a case, place one command per line, and mark each of these lines with the character &#8216;<span class="cmtt-10">G</span>&#8217;
+at the first column.
+</p><!--l. 4568--><p class="indent">    The <a 
+ href="http://www.radicaleye.com/dvips.html" >dvips</a> utility translates dvi files into postscript. The <span class="cmtt-10">convert </span>utility, provided within the distribution of
+<a 
+ href="http://www.imagemagick.org/" >ImageMagick</a>, translates postscript files into gif.
+</p><!--l. 4574--><p class="indent">    The script employs the Metafont mode &#8216;<span class="cmtt-10">ibmvga</span>&#8217; of resolution &#8216;<span class="cmtt-10">110</span>&#8217;; the available modes are listed in file
+<span class="cmtt-10">modes.mf </span>of Metafont.
+</p><!--l. 4578--><p class="noindent"></p></li>
+<li>Instead of employing the G scripts, glyphs can rely on specialized <a 
+ href="mn24.html"  name="mn24.html" >F scripts</a> of similar nature for creating gifs.
+    <p class="rightline"><span class="cmbx-10">Update the Other Scripts in the Environment File</span></p>
+<!--l. 4602--><p class="noindent"></p></li>
+<li><a 
+  name="mvscript"></a>If needed, replace the scripts &#8216;<span class="cmtt-10">Mmv %%1 %%2%%3</span>&#8217; and &#8216;<span class="cmtt-10">Ccp %%1 %%2%%3</span>&#8217; in <span class="cmtt-10">tex4ht.env </span>with alternative scripts for
+moving and copying files. The parameter <span class="cmtt-10">%%1 </span>stands for the source file(s), the parameter <span class="cmtt-10">%%2 </span>provides the target
+directory name, and the parameter <span class="cmtt-10">%%3 </span>refers to the target file name(s).
+<!--l. 4625--><p class="noindent"></p></li>
+<li><a 
+  name="accscript"></a>If needed, replace the script &#8216;<span class="cmtt-10">Achmod %%1 %%2%%3</span>&#8217; in <span class="cmtt-10">tex4ht.env </span>with an alternative script for changing access
+mode of files. The parameter <span class="cmtt-10">%%1 </span>stands for access mode, the parameter <span class="cmtt-10">%%2 </span>refers to a directory name, and the
+parameter <span class="cmtt-10">%%3 </span>refers to file(s).
+<!--l. 4632--><p class="noindent"></p></li>
+<li> <a 
+  name="index22-38010"></a>Postprocessing of files can be requested with &#8216;<span class="cmtt-10">.</span>&#8217; scripts. The files are selected by their extension names, as listed
+following the period symbols. The parameter &#8216;<span class="cmtt-10">%%1</span>&#8217; provides the file names, and the parameter &#8216;<span class="cmtt-10">%%0</span>&#8217; provides the
+jobnames.
+<!--l. 4639--><p class="indent">    Postprocessing of files can also be requested with &#8216;<span class="cmtt-10">X</span>&#8217; scripts. The file names are accessed through the
+parameter &#8216;<span class="cmtt-10">%%1</span>&#8217;, and their extensions through the parameter &#8216;<span class="cmtt-10">%%2</span>&#8217;. Consider setting a &#8216;<span class="cmtt-10">X</span>&#8217; script for
+<a 
+ href="mn25.html"  name="mn25.html" >validation</a> and other applications.
+</p>
+    <p class="rightline"><span class="cmbx-10">Set the Script Files</span></p> </li>
+<li>Ensure proper paths within the htlatex-like scripts in &#8216;<span class="cmtt-10">~/tex4ht.dir/bin/unix/</span>&#8217;. If you use a command different
+than <span class="cmtt-10">latex </span>for compiling LaTeX source files, fix also the references to <span class="cmtt-10">latex </span>in the scripts. Check also the
+appropriateness of the commands for compiling TeX and TeXi files. <p class="rightline"><span class="cmbx-10">Make the System Globally Known</span></p>
+</li>
+<li>Inform the operating system where the scripts reside, say, by adding the directory &#8216;<span class="cmtt-10">~/tex4ht.dir/bin/unix/</span>&#8217; into
+the <span class="cmtt-10">path </span>variable within the <span class="cmtt-10">.login </span>file. For instance,
+<!--l. 4711--><p class="indent">    <span class="cmtt-10">set path=($path ~/tex4ht.dir/bin/unix/)</span>
+</p><!--l. 4714--><p class="noindent"></p></li>
+<li>Let LaTeX and TeX know where the new style files reside, say, by adding the directory
+&#8216;<span class="cmtt-10">~/tex4ht.dir/texmf/tex/generic/tex4ht/</span>&#8217; to the environment variable <span class="cmtt-10">TEXINPUT</span>. For instance,
+<!--l. 4718--><p class="indent">    <span class="cmtt-10">setenv TEXINPUTS .:~/tex4ht.dir/texmf/tex//:/usr/local/share/texmf/tex//</span>
+</p><!--l. 4720--><p class="noindent"></p></li>
+<li>If your TeX system uses a registry database to locate files, make sure to refresh it (e.g., run texhash for kpathsea, or
+mktexlsr for some Linux systems).
+    <p class="rightline"><span class="cmbx-10">Test the Installation</span></p> </li>
+<li>Move <span class="cmtt-10">testa.tex </span>and <span class="cmtt-10">testb.tex </span>from <span class="cmtt-10">~/tex4ht.dir/temp/ </span>to your work directory </li>
+<li>Compile &#8216;<span class="cmtt-10">testa.tex</span>&#8217; with the command &#8216;<span class="cmtt-10">ht latex testa</span>&#8217; </li>
+<li>Compile &#8216;<span class="cmtt-10">testb.tex</span>&#8217; with the command &#8216;<span class="cmtt-10">htlatex testb</span>&#8217;
+    </li></ol>
+
+     
+</body></html> 

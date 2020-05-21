@@ -1,0 +1,455 @@
+%\subsection{Objets en 3D}
+\psset{dotstyle=*,dotscale=2,drawCoor=true,fillstyle=none}
+
+\begin{tabular}{|c|c|c|}
+\hline  
+\begin{pspicture}(-2,-2)(2,2)
+\pstThreeDCoor[xMin=-2,xMax=2,yMin=-2,yMax=2,zMin=-2,zMax=2]
+\pstThreeDDot(-1,1,1)
+\pstThreeDDot(1.5,-1,3)
+\end{pspicture}
+&  
+\begin{pspicture}(-2,-2.25)(2,2.25)
+\pstThreeDCoor[xMin=-2,xMax=2,yMin=-2,yMax=2,zMin=-2,zMax=2]
+\pstThreeDDot(-1,1,1)
+\pstThreeDDot(1.5,-1,3)
+\pstThreeDLine[linewidth=3pt,linecolor=blue](-1,1,1)(1.5,-1,3)
+\end{pspicture}
+&
+\begin{pspicture}(-3,-4.25)(3,3.25)
+\pstThreeDCoor[xMin=-4,xMax=4,yMin=-3,yMax=5,zMin=-4,zMax=3]
+\pstThreeDTriangle[drawCoor=true,linecolor=blue,linewidth=2pt,fillstyle=none](3,1,2)(1,4,-1)(-2,2,0)
+\end{pspicture}
+\\ \hline 
+\BSS{pstThreeDDot}(-1,1,1) & \BSS{pstThreeDLine} & \BSS{pstThreeDTriangle} \\
+\BSS{pstThreeDDot}(1.5,-1,3) &(-1,1,1)(1.5,-1,-1) & (3,1,2)(1,4,-1)(-2,2,0) \\ 
+\hline 
+%------------------------------------------------------------------------------
+\begin{pspicture}(-3,-2)(4,5)
+\pstThreeDCoor[xMin=-3,xMax=3,yMin=-1,yMax=4,zMin=-1,zMax=3]
+\pstThreeDSquare[linewidth=2pt,drawCoor=false](-2,2,3)(3,0,0)(0,1,-1)
+\pstThreeDDot[linecolor=red](-2,2,3)
+\end{pspicture}
+& 
+\begin{pspicture}(-2,-2.25)(2,5)
+\pstThreeDCoor[xMax=3,yMax=2,zMax=4,yMin=-1.5]
+%\pstThreeDDot[linecolor=red,drawCoor=true](1,0.5,0.5)
+\pstThreeDEllipse(2,-1,2)(-1,1,0)(1,0,-1)
+\pstThreeDDot[linecolor=red,drawCoor=true](2,-1,2)
+\pstThreeDLine[linewidth=1pt,linecolor=red,linestyle=dashed](2,-1,2)(1,0,2)
+\pstThreeDLine[linewidth=.5pt,linecolor=red,linestyle=dashed](2,-1,2)(1,-1,2)
+\pstThreeDLine[linewidth=.5pt,linecolor=red,linestyle=dashed](1,-1,2)(1,0,2)
+
+\pstThreeDLine[linewidth=1pt,linecolor=cyan,linestyle=dashed](2,-1,2)(3,-1,1)
+\pstThreeDLine[linewidth=.5pt,linecolor=cyan,linestyle=dashed](2,-1,2)(3,-1,2)
+\pstThreeDLine[linewidth=.5pt,linecolor=cyan,linestyle=dashed](3,-1,2)(3,-1,1)
+\end{pspicture}
+& 
+\begin{pspicture}(-2,-2.25)(2,5)
+\pstThreeDCoor[xMax=3,yMax=2,zMax=4,yMin=-1.5]
+%\pstThreeDDot[linecolor=red,drawCoor=true](1,0.5,0.5)
+\pstThreeDCircle(2,-1,2)(-1,1,0)(1,0,-1)
+\pstThreeDDot[linecolor=red,drawCoor=true](2,-1,2)
+\pstThreeDLine[linewidth=1pt,linecolor=red,linestyle=dashed](2,-1,2)(1,0,2)
+\pstThreeDLine[linewidth=.5pt,linecolor=red,linestyle=dashed](2,-1,2)(1,-1,2)
+\pstThreeDLine[linewidth=.5pt,linecolor=red,linestyle=dashed](1,-1,2)(1,0,2)
+
+\pstThreeDLine[linewidth=1pt,linecolor=cyan,linestyle=dashed](2,-1,2)(3,-1,1)
+\pstThreeDLine[linewidth=.5pt,linecolor=cyan,linestyle=dashed](2,-1,2)(3,-1,2)
+\pstThreeDLine[linewidth=.5pt,linecolor=cyan,linestyle=dashed](3,-1,2)(3,-1,1)
+\end{pspicture}
+\\ \hline 
+\BSS{pstThreeDSquare} 	& \BSS{pstThreeDEllipse} 	&  \\ 
+\Rnode*[fillcolor=green]{E}{(-2,2,3)}  \Rnode*[fillcolor=yellow]{F}{(3,0,0)(0,1,-1)} 
+& 
+\Rnode*[fillcolor=green]{A}{(2,-1,2)} \Rnode*[fillcolor=yellow]{B}{(-1,1,0)(1,0,-1)} 
+&   
+\BSS{pstThreeDCircle} 
+\Rnode*[fillcolor=green]{C}{(1,-1,2)} \Rnode*[fillcolor=yellow]{D}{\AC{2}}
+\\
+& & \\
+ \rnode{EE}{position} \hspace{.5cm} \rnode{FF}{2 \TFRGB{vecteurs}{vectors}} 
+& \rnode{AA}{\TFRGB{centre}{center}} \hspace{.5cm} \rnode{BB}{2 \TFRGB{vecteurs}{vectors}}    
+& \rnode{CC}{\TFRGB{centre}{center}} \hspace{.5cm} \rnode{DD}{2 \TFRGB{vecteurs}{vectors}}
+\\ \hline  
+\ncline[linecolor=blue]{A}{AA}  \ncline[linecolor=blue]{B}{BB}
+\ncline[linecolor=blue]{C}{CC}  \ncline[linecolor=blue]{D}{DD}
+\ncline[linecolor=blue]{E}{EE}  \ncline[linecolor=blue]{F}{FF}
+%----------------------------------------------------------------------------------------
+\begin{pspicture}(-2.5,-2)(2,6)
+\pstThreeDCoor[zMax=6]
+\pstIIIDCylinder{1.5}{4}
+\end{pspicture} 
+&  
+\begin{pspicture}(-2,-2)(2,6)
+\pstThreeDCoor[zMax=6]
+\psCylinder{1.5}{4}
+\end{pspicture}
+& 
+\begin{pspicture}(-2,-1)(2,6)
+\pstThreeDCoor[xMax=2,yMax=2,zMin=0,zMax=6,IIIDticks]%
+\pstParaboloid{4}{2}
+\end{pspicture}
+\\ \hline 
+\BSS{pstIIIDCylinder}\AC{1.5}\AC{4} & \BSS{psCylinder}\AC{1.5}\AC{4} & \BSS{pstParaboloid}\AC{4}\AC{2} 
+\\  \hline 
+%-------------------------------------------------------  
+\begin{pspicture}(-2,-1.25)(3,4.25)
+\pstThreeDCoor[xMin=-2,xMax=1,yMin=-1,yMax=3,zMin=-1,zMax=4]
+\pstThreeDBox[linewidth=2pt,drawCoor=false](-1,2,2)(0,0,2)(2,0,0)(0,1,0)
+\pstThreeDDot[linecolor=red,drawCoor=true](-1,2,2)
+\end{pspicture}
+&
+\begin{pspicture}(-4,-2.25)(6,4.25)
+ \pstThreeDCoor[xMin=-3,xMax=1,yMin=-1,yMax=2,zMin=-1,zMax=4]
+ \psBox(-1,1,2){-3}{1}{2}
+ \pstThreeDDot[linecolor=red,drawCoor=true](-1,1,2)
+ \end{pspicture}
+ &
+\begin{pspicture}(-4,-2.25)(2,4.25)
+ \pstThreeDCoor[xMin=-3,yMax=2]
+\pstThreeDSphere(1,-1,2){2}
+ \pstThreeDDot[dotstyle=x,linecolor=red,drawCoor=true](1,-1,2)
+\end{pspicture} 
+ 
+\\ \hline 
+\BSS{pstThreeDBox} 
+& 
+&  \\
+ \Rnode*[fillcolor=green]{A}{(-1,1,2)} \Rnode*[fillcolor=yellow]{B}{(0,0,2)(2,0,0)(0,1,0)} 
+ &
+\BSS{psBox} \Rnode*[fillcolor=green]{C}{(-1,1,2)} \Rnode*[fillcolor=yellow]{D}{\AC{-3}\AC{1}\AC{2}} 
+&\BSS{pstThreeDSphere} 
+\Rnode*[fillcolor=green]{E}{(1,-1,2)} \Rnode*[fillcolor=yellow]{F}{\AC{2}} 
+\\
+ & &  \\
+\rnode{AA}{position} \hspace{.5cm} \rnode{BB}{\TFRGB{vecteurs en}{vectors}  X Y Z}   
+ 
+  &
+\rnode{CC}{position} \hspace{.5cm} \rnode{DD}{\TFRGB{vecteurs en}{vectors} X Y Z}
+&
+\rnode{EE}{\TFRGB{centre}{center}} \hspace{.5cm} \rnode{FF}{\TFRGB{rayon}{radius}} 
+ \ncline[linecolor=blue]{A}{AA}  \ncline[linecolor=blue]{B}{BB}    
+ \ncline[linecolor=blue]{E}{EE}  \ncline[linecolor=blue]{F}{FF} 
+ \ncline[linecolor=blue]{C}{CC}  \ncline[linecolor=blue]{D}{DD} \\ \hline 
+\end{tabular}
+
+
+%---------------------------------------------------------
+\SbSbSSCT{Portion d ellipse ou de cercle}{Portion of ellipse or circle}
+
+\begin{tabular}{|c|c|c|} \hline 
+  \multicolumn{3}{|c|}{ \BS{pstThreeDEllipse}[\RDD{beginAngle}=60](2,-1,2)(-1,1,0)(1,0,-1) } \\ \hline
+\begin{pspicture}(-4,-2.25)(2,5)
+\pstThreeDCoor[xMax=2,yMax=2,zMax=2]
+\pstThreeDEllipse[beginAngle=60](2,-1,2)(-1,1,0)(1,0,-1)
+\end{pspicture}
+&  
+\begin{pspicture}(-4,-2.25)(2,5)
+\pstThreeDCoor[xMax=2,yMax=2,zMax=2]
+\pstThreeDEllipse[endAngle=300](2,-1,2)(-1,1,0)(1,0,-1)
+\end{pspicture}
+&  
+\begin{pspicture}(-4,-2.25)(2,5)
+\pstThreeDCoor[xMax=2,yMax=2,zMax=2]
+\pstThreeDEllipse[beginAngle=60,endAngle=300](2,-1,2)(-1,1,0)(1,0,-1)
+\end{pspicture}
+\\ \hline
+ \RDD{beginAngle}=60 & \RDD{endAngle}=300 &  \RDD{beginAngle}=60\\ 
+{\blue \dft : beginAngle=0} &{\blue \dft : endAngle=360} &\RDD{endAngle}=300  \\
+\hline 
+\end{tabular} 
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{pstThreeDCircle}[\RDD{endAngle}=300](2,-1,2)(-1,1,0)(1,0,-1) } \\ \hline
+\begin{pspicture}(-4,-2.25)(2,5)
+\pstThreeDCoor[xMax=2,yMax=2,zMax=2]
+\pstThreeDCircle[beginAngle=60](2,-1,2)(-1,1,0)(1,0,-1)
+\end{pspicture}
+&  
+\begin{pspicture}(-4,-2.25)(2,5)
+\pstThreeDCoor[xMax=2,yMax=2,zMax=2]
+\pstThreeDCircle[endAngle=300](2,-1,2)(-1,1,0)(1,0,-1)
+\end{pspicture}
+&  
+\begin{pspicture}(-4,-2.25)(2,5)
+\pstThreeDCoor[xMax=2,yMax=2,zMax=2]
+\pstThreeDCircle[beginAngle=60,endAngle=300](2,-1,2)(-1,1,0)(1,0,-1)
+\end{pspicture}
+\\ \hline
+\RDD{beginAngle}=60 & \RDD{endAngle}=300 &  \RDD{beginAngle}=60\\ 
+{\blue \dft : beginAngle=0  } &{\blue \dft : endAngle=360} &  \RDD{endAngle}=300 \\
+\hline 
+\end{tabular}
+
+%---------------------------------------------------
+\subsubsection{\emph{increment}}
+
+\begin{tabular}{|c|c|c|c|} \hline 
+ \multicolumn{2}{|c|}{ \TFRGB{incrément angulaire}{ angle step} } &  \multicolumn{2}{|c|}{\TFRGB{incrément vertical}{ height  step} } \\ \hline
+\begin{pspicture}(-3.5,-2)(3.5,6)
+\pstThreeDCoor %[zMax=1]
+\psCylinder[increment=45]{1.5}{5}
+\end{pspicture}
+ & 
+\begin{pspicture}(-3.5,-2)(3.5,6)
+\pstThreeDCoor 
+\psCylinder[increment=20]{1.5}{5}
+\end{pspicture}
+ & 
+\begin{pspicture}(-3.5,-2)(3.5,6)
+\pstThreeDCoor
+\psCylinder[Hincrement=1]{1.5}{5}
+\end{pspicture} 
+&
+\begin{pspicture}(-3.5,-2)(3.5,6)
+\pstThreeDCoor
+\psCylinder[Hincrement=.1]{1.5}{5}
+\end{pspicture}
+ \\ \hline   
+\RDD{increment}=45 & \RDD{increment}=20 & \RDD{Hincrement}=1& \RDD{Hincrement}=.1 \\  \hline 
+ \multicolumn{2}{|c|}{\blue \dft : increment=.1}  &  \multicolumn{2}{|c|}{\blue \dft : Hincrement=0.5} \\  \hline 
+\end{tabular} 
+\bigskip
+
+\begin{tabular}{|c|c|c|c|} \hline  
+ \multicolumn{2}{|c|}{ \BS{pstThreeDSphere}[\RDD{increment}=3](1,-1,2)\AC{2} } 
+ &  \multicolumn{2}{|c|}{ \BS{pstParaboloid}[\RDD{increment}=3](4)\AC{2} } 
+ \\ \hline
+\begin{pspicture}(-4,-1)(1,4.25)
+\pstThreeDSphere[increment=3](1,-1,2){2}
+\end{pspicture}
+&  
+\begin{pspicture}(-4,-1)(1,4.25)
+\pstThreeDSphere[increment=20](1,-1,2){2}
+\end{pspicture}
+&
+\begin{pspicture}(-3,-1)(3,5)
+\pstParaboloid[increment=3,showInside=false]{4}{2}
+\end{pspicture}
+&  
+\begin{pspicture}(-3,-1)(3,5)
+\pstParaboloid[increment=20,showInside=false]{4}{2}
+\end{pspicture}
+\\ \hline 
+increment=3 & increment=20 & increment=3 & increment=20
+\\ \hline 
+ \multicolumn{4}{|c|}{\blue \dft : increment = 10 }
+\\ \hline 
+\end{tabular}  
+
+%---------------------------------------------------------------------------
+\subsubsection{showInside}
+
+
+\begin{tabular}{|c|c|c|}
+\hline  
+\begin{pspicture}(-4,-2.25)(6,4.25)
+%\pstThreeDCoor[zMax=6]
+ \psBox[showInside=false]{-3}{1}{2}
+\end{pspicture} 
+&
+\begin{pspicture}(-4,-2.25)(6,4.25)
+%\pstThreeDCoor[xMax=2,yMax=2,zMin=0,zMax=6,IIIDticks]%
+\pstParaboloid[showInside=true]{3}{2}
+\end{pspicture}
+
+\\ \hline 
+ \BS{psBox}[\RDD{showInside}=false]\AC{-3}\AC{1}\AC{2}  &  \BS{pstParaboloid}[\RDD{showInside}=true]\AC{3}\AC{2}
+ \\  \hline 
+\begin{pspicture}(-4,-2.25)(6,4.25)
+%\pstThreeDCoor[zMax=6]
+ \psBox[showInside=true]{-3}{1}{2}
+\end{pspicture}
+&
+\begin{pspicture}(-4,-2.25)(6,4.25)
+\pstParaboloid[showInside=false]{3}{2}% Hoehe 5 und Radius 1
+\end{pspicture}
+\\  \hline 
+ \BS{psBox}[\RDD{showInside}=true]\AC{-3}\AC{1}\AC{2}  &  \BS{pstParaboloid}[\RDD{showInside}=false]\AC{3}\AC{2}
+ \\  \hline 
+\end{tabular} 
+%------------------------------------------------------------
+
+\subsubsection{SegmentColor}
+
+\begin{tabular}{|c|c|} \hline  
+ \multicolumn{2}{|l|}{\BS{pstParaboloid}[showInside=false, \RDD{SegmentColor}=\AC{[cmyk]\AC{0 0 1 0}}]\AC{4}\AC{5}} \\
+ \multicolumn{2}{|l|}{\BS{pstThreeDSphere}[\RDD{SegmentColor}=\AC{[cmyk]\AC{0,1,0,0}}](1,-1,2)\AC{2}}
+\\ \hline  
+
+\begin{pspicture}(-4,-1)(4,4.25)
+\pstParaboloid[showInside=false, SegmentColor={[cmyk]{0 0 1 0}}]{3}{3}%
+\end{pspicture}
+&
+\begin{pspicture}(-4,-1)(1,4.25)
+\pstThreeDSphere[SegmentColor={[cmyk]{0,1,0,0}}](1,-1,2){2}
+\end{pspicture}
+\\  \hline 
+\end{tabular} 
+
+
+
+
+%-----------------------------------------------------------------------
+\SbSSCT{Placer des objets en 3D}{How to place objects in 3D picture}
+\subsubsection{pstThreeDPut}
+
+
+\psset{fillcolor=yellow,fillstyle=solid}
+\begin{tabular}{|c|c|} \hline  
+\begin{pspicture}[shift=*](-4,-2.5)(4,4.25)
+\pstThreeDDot[drawCoor=true](2,3,2)
+\pstThreeDCoor[linecolor=blue]
+\pstThreeDPut(2,3,2){\DFR}
+\end{pspicture}
+& 
+\parbox{8cm}{ 
+ \BSS{pstThreeDPu}t(2,3,2)\AC{\BS{DFR}} \\
+ 
+\BS{pstThreeDDot}[drawCoor=true](2,3,2)}
+\\ \hline  
+\end{tabular} 
+
+
+\bigskip
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ \multicolumn{5}{|c|}{  \BS{pstThreeDPut}[\RDD{pOrigin}=lb](2,3,2)\AC{\BS{psframebox}\AC{ texte}} } \\ \hline
+\begin{pspicture}(-3,-2.5)(3,4.25)
+\pstThreeDDot[linecolor=red,drawCoor=true](2,3,2)
+\pstThreeDCoor[linecolor=blue]
+\pstThreeDPut[pOrigin=lt](2,3,2){\psframebox{texte}}
+\end{pspicture}
+&
+\begin{pspicture}(-3,-2.5)(3,4.25)
+\pstThreeDDot[linecolor=red,drawCoor=true](2,3,2)
+\pstThreeDCoor[linecolor=blue]
+\pstThreeDPut[pOrigin=lB](2,3,2){\psframebox{texte}}
+\end{pspicture}
+&
+\begin{pspicture}(-3,-2.5)(3,4.25)
+\pstThreeDDot[linecolor=red,drawCoor=true](2,3,2)
+\pstThreeDCoor[linecolor=blue]
+\pstThreeDPut[pOrigin=lb](2,3,2){\psframebox{texte}}
+
+\end{pspicture}
+&
+\begin{pspicture}(-3,-2.5)(3,4.25)
+\pstThreeDDot[linecolor=red,drawCoor=true](2,3,2)
+\pstThreeDCoor[linecolor=blue]
+\pstThreeDPut[pOrigin=t](2,3,2){\psframebox{texte}}
+\end{pspicture}
+&
+\begin{pspicture}(-3,-2.5)(3,4.25)
+\pstThreeDDot[linecolor=red,drawCoor=true](2,3,2)
+\pstThreeDCoor[linecolor=blue]
+\pstThreeDPut[pOrigin=c](2,3,2){\psframebox{texte}}
+\end{pspicture}
+\\ \hline
+pOrigin=lt & pOrigin=lB & pOrigin=lb &  pOrigin=t & pOrigin=c \\ \hline
+\begin{pspicture}(-3,-2.5)(3,4.25)
+ \pstThreeDCoor[linecolor=blue]
+ \pstThreeDPut[pOrigin=B](2,3,2){\psframebox{texte}}
+\pstThreeDDot[linecolor=red,drawCoor=true](2,3,2)
+\end{pspicture}
+&
+\begin{pspicture}(-3,-2.5)(3,4.25)
+
+ \pstThreeDCoor[linecolor=blue]
+ \pstThreeDPut[pOrigin=b](2,3,2){\psframebox{texte}}
+\pstThreeDDot[linecolor=red,drawCoor=true](2,3,2)
+\end{pspicture}
+&
+\begin{pspicture}(-3,-2.5)(3,4.25)
+\pstThreeDDot[linecolor=red,drawCoor=true](2,3,2)
+ \pstThreeDCoor[linecolor=blue]
+ \pstThreeDPut[pOrigin=rt](2,3,2){\psframebox{texte}}
+\end{pspicture}
+&
+\begin{pspicture}(-3,-2.5)(3,4.25)
+\pstThreeDDot[linecolor=red,drawCoor=true](2,3,2)
+ \pstThreeDCoor[linecolor=blue]
+ \pstThreeDPut[pOrigin=rB](2,3,2){\psframebox{texte}}
+\end{pspicture}
+&
+\begin{pspicture}(-3,-2.5)(3,4.25)
+\pstThreeDDot[linecolor=red,drawCoor=true](2,3,2)
+ \pstThreeDCoor[linecolor=blue]
+ \pstThreeDPut[pOrigin=rb](2,3,2){\psframebox{texte}}
+
+\end{pspicture}
+ \\ \hline 
+ pOrigin=B & pOrigin=b & pOrigin=rt &  pOrigin=rB & pOrigin=rb \\ \hline
+\end{tabular} 
+
+
+
+%-------------------------------------------------------------------------
+\subsubsection{\BS{pstPlanePut}}
+
+\begin{tabular}{|c|c|c|}
+\hline  
+\multicolumn{3}{|l|}{   \BSS{pstPlanePut}[\RDD{plane}=xy](0,0,3)\AC{\BS{DFR}}}\\
+\multicolumn{3}{|l|}{   \BSS{pstPlanePut}[\RDD{plane}=xy](0,0,-3)\AC{\BS{psframebox}\AC{ texte}} }  
+\\ \hline
+\begin{pspicture}(-4,-4)(3.5,4.5)
+\pstThreeDDot[linecolor=red](0,0,-2)
+\pstThreeDDot[linecolor=red](0,0,2)
+\pstThreeDCoor[xMin=-4,yMin=-4,zMin=-4]
+\pstPlanePut[plane=xy](0,0,-2){\psframebox{texte}}
+\pstPlanePut[plane=xy](0,0,2){\DFR}
+\end{pspicture}
+&
+\begin{pspicture}(-4,-4)(3.5,4.5)
+\pstThreeDDot[linecolor=red](0,0,-2)
+\pstThreeDDot[linecolor=red](0,0,2) 
+\pstThreeDCoor[xMin=-4,yMin=-4,zMin=-4]
+\pstPlanePut[plane=yz](0,0,-2){\psframebox{texte}}
+\pstPlanePut[plane=yz](0,0,2){\DFR }
+\end{pspicture}
+&
+\begin{pspicture}(-4,-4)(3.5,4.5)
+\pstThreeDDot[linecolor=red](0,0,-2)
+\pstThreeDDot[linecolor=red](0,0,2) 
+\pstThreeDCoor[xMin=-4,yMin=-4,zMin=-4]
+\pstPlanePut[plane=xz](0,0,-2){\psframebox{texte}}
+\pstPlanePut[plane=xz](0,0,2){\DFR}
+\end{pspicture}
+\\ \hline 
+\RDD{plane}=xy & \RDD{plane}=yz &  \RDD{plane}=xz  \\ \hline 
+ 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|c|} \hline  
+ \multicolumn{3}{|l|}{   \BSS{pstPlanePut}[plane=xy,\RDD{planecorr}=normal](0,0,2)\AC{\BS{DFR}}} \\
+  \multicolumn{3}{|l|}{   \BSS{pstPlanePut}[plane=xy,\RDD{planecorr}=normal ](0,0,-2)\AC{\BS{psframebox}\AC{texte}} }  \\ \hline
+\begin{pspicture}(-4,-4)(3.5,4.5)
+ \pstThreeDCoor[xMin=-4,yMin=-4,zMin=-4]
+\pstPlanePut[plane=xy,planecorr=normal](0,0,-2){\psframebox{texte}}
+\pstPlanePut[plane=xy,planecorr=normal](0,0,2){\DFR}
+\pstThreeDDot[linecolor=red](0,0,-2)
+\pstThreeDDot[linecolor=red](0,0,2) 
+\end{pspicture}
+&
+\begin{pspicture}(-4,-4)(3.5,4.5)
+\pstThreeDCoor[xMin=-4,yMin=-4,zMin=-4]
+\pstPlanePut[plane=xy,planecorr=xyrot](0,0,-2){\psframebox{texte}}
+\pstPlanePut[plane=xy,planecorr=xyrot](0,0,2){\DFR}
+\pstThreeDDot[linecolor=red](0,0,-2)
+\pstThreeDDot[linecolor=red](0,0,2) 
+\end{pspicture}
+&
+\begin{pspicture}(-4,-4)(3.5,4.5)
+\pstThreeDCoor[xMin=-4,yMin=-4,zMin=-4]
+\pstPlanePut[plane=xy,planecorr=off](0,0,-2){\psframebox{texte}}
+\pstPlanePut[plane=xy,planecorr=off](0,0,2){\DFR}
+\pstThreeDDot[linecolor=red](0,0,-2)
+\pstThreeDDot[linecolor=red](0,0,2) 
+\end{pspicture}
+ \\ \hline 
+planecorr=normal &  planecorr=xyrot & planecorr=off
+  \\ \hline 
+\end{tabular}

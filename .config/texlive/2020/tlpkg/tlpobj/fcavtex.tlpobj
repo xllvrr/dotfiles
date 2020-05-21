@@ -1,0 +1,28 @@
+name fcavtex
+category Package
+revision 38074
+shortdesc A thesis class for the FCAV/UNESP (Brazil)
+longdesc This package provides a class and a bibliography style for the
+longdesc FCAV-UNESP (Faculdade de Ciencias Agrarias e Veterinarias de
+longdesc Jaboticabal UNESP) brazilian university, written based on the
+longdesc institution rules for thesis publications.
+containersize 16180
+containerchecksum db440d7310805a7f3d918996e577a07c5d8dff72e6d667f00c1ffe5d88e3bcb689e794837609d9a0760530e923f9a28d3e5c052cad4c38e23ae03454e0ec26c4
+doccontainersize 332084
+doccontainerchecksum 2060c70b6a926aae23c145f11c7c6e255f684f925bf5447ee98fdd6f6290d64fc5a92ccf8cbf85e0c6f0d6fee869a2d947e3df8726fffa4a5d2c87c217beef59
+docfiles size=89
+ texmf-dist/doc/latex/fcavtex/README details="Readme (in Brazilian Portuguese)" language="pt"
+ texmf-dist/doc/latex/fcavtex/examples/basico-cap1.tex
+ texmf-dist/doc/latex/fcavtex/examples/basico-principal.pdf
+ texmf-dist/doc/latex/fcavtex/examples/basico-principal.tex
+ texmf-dist/doc/latex/fcavtex/examples/basico-resumo.tex
+ texmf-dist/doc/latex/fcavtex/manual/fcavtex.pdf details="Package documentation (Brazilian Portuguese)" language="pt"
+ texmf-dist/doc/latex/fcavtex/manual/fcavtex.tex
+runfiles size=20
+ texmf-dist/bibtex/bst/fcavtex/fcavtex.bst
+ texmf-dist/tex/latex/fcavtex/fcavtex.cls
+catalogue-contact-repository https://github.com/waltermaldonado/fcavTeX
+catalogue-ctan /macros/latex/contrib/fcavtex
+catalogue-license lppl1.3
+catalogue-topics dissertation class
+catalogue-version 1.1

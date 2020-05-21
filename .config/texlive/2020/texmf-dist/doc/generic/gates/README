@@ -1,0 +1,26 @@
+This is the README file for the Gates package.
+Author: Paul Isambert.
+E-mail: zappathustra AT free DOT fr
+Comments and suggestions are welcome.
+Date: May 2012.
+Version: 0.2.
+
+Gates helps writing code in a modular fashion: macros are broken into
+small chunks with names, which can be externally controlled and/or
+augmented with new ones. Code thus written can be easily modified.
+
+Gates is implemented independantly for both TeX and Lua; the former
+requires the texapi package, while the latter can run with any Lua
+interpreter (not just LuaTeX).
+
+The files in this distribution are:
+
+gates.tex     - TeX implementation
+gates.sty     - wrapper for LaTeX
+t-gates.tex   - wrapper for LaTeX
+gates.lua     - Lua implementation
+gates-doc.tex - master file for the doc
+gates-doc.txt - text of the doc (readable in a text editor)
+gates-doc.pdf - typeset doc
+
+Licensing of this package is covered by LPPL.

@@ -1,0 +1,28 @@
+name pixelart
+category Package
+revision 46740
+shortdesc A package to draw pixel-art pictures
+longdesc A LaTeX package to draw single-color pixel-art pictures using
+longdesc TikZ.
+containersize 1588
+containerchecksum 9f9839c0d286262560f24c7bb83603c227addb9d5e969aae8d0d943cf305c25b06f74b3a2a3fcac9e6ab5f2473ea0e11b94283b71ee3794bad21c22212d05e28
+doccontainersize 154092
+doccontainerchecksum 8ac425c6345b95739a4864f89c967170ec121e0bdcc4b1c3aec9b60430ae7c240073439270db1311f9383c139bbc485aa2a39248c4ac5f788b8ce37345e6c65c
+docfiles size=45
+ texmf-dist/doc/latex/pixelart/CHANGELOG.md
+ texmf-dist/doc/latex/pixelart/LICENSE.txt
+ texmf-dist/doc/latex/pixelart/README.md details="Readme"
+ texmf-dist/doc/latex/pixelart/pixelart.pdf details="Package documentation"
+srccontainersize 6560
+srccontainerchecksum 7e8962f9b1989fe23c62dac7003e0e1bb5ef1ccade7b2e07f761f3cd6c44ebda85758fd2a2b438ce725179772d8520ebaa2037920844000714229b53d6d99ccf
+srcfiles size=6
+ texmf-dist/source/latex/pixelart/pixelart.dtx
+ texmf-dist/source/latex/pixelart/pixelart.ins
+runfiles size=1
+ texmf-dist/tex/latex/pixelart/pixelart.sty
+catalogue-contact-bugs https://framagit.org/spalax/pixelart/issues
+catalogue-contact-repository https://framagit.org/spalax/pixelart
+catalogue-ctan /graphics/pixelart
+catalogue-license lppl1.3
+catalogue-topics graphics
+catalogue-version 0.2.0

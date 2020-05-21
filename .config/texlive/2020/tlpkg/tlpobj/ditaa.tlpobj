@@ -1,0 +1,30 @@
+name ditaa
+category Package
+revision 48932
+shortdesc Use ditaa diagrams within LaTeX documents
+longdesc With this package ditaa (DIagrams Through Ascii Art) diagrams
+longdesc can be embedded directly into LaTeX files.
+containersize 1184
+containerchecksum 1aa2fab8150212ae8dbda9d0138a4c396f47256f93582ed38d9449f9440daba9e07dc0be397c49981e2d1813b7e41d2002fb7ff914382606f417f2738a8d2735
+doccontainersize 105808
+doccontainerchecksum 345d6d7d3f21d2dc728b93e2cbfeb4fc1f589797e852604809b1ff3e7bca53414d684571faf8245c740a50205e7d8787afd5304beb89efd3545a389ec4a74331
+docfiles size=34
+ texmf-dist/doc/latex/ditaa/README details="Readme"
+ texmf-dist/doc/latex/ditaa/ditaa.pdf details="Package documentation"
+ texmf-dist/doc/latex/ditaa/ditaa.tex
+ texmf-dist/doc/latex/ditaa/example.tex
+ texmf-dist/doc/latex/ditaa/resources/ditaa/ditaaexample.ditaa
+ texmf-dist/doc/latex/ditaa/resources/ditaa/ditaaexample.png
+ texmf-dist/doc/latex/ditaa/resources/ditaa/ditaaexample2.ditaa
+ texmf-dist/doc/latex/ditaa/resources/ditaa/ditaaexample2.png
+runfiles size=1
+ texmf-dist/tex/latex/ditaa/ditaa.sty
+catalogue-contact-announce https://github.com/dakusui/latex-ditaa/wiki/Announcements
+catalogue-contact-bugs https://github.com/dakusui/latex-ditaa/issues
+catalogue-contact-development https://github.com/dakusui/latex-ditaa/issues/1
+catalogue-contact-home https://github.com/dakusui/latex-ditaa
+catalogue-contact-repository https://github.com/dakusui/latex-ditaa.git
+catalogue-ctan /macros/latex/contrib/ditaa
+catalogue-license lppl
+catalogue-topics diagram
+catalogue-version 0.9

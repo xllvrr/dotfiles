@@ -1,0 +1,29 @@
+name pgfopts
+category Package
+revision 34573
+shortdesc LaTeX package options with pgfkeys
+longdesc The pgfkeys package (part of the pgf distribution) is a
+longdesc well-designed way of defining and using large numbers of keys
+longdesc for key-value syntaxes. However, pgfkeys itself does not offer
+longdesc means of handling LaTeX class and package options. This package
+longdesc adds such option handling to pgfkeys, in the same way that
+longdesc kvoptions adds the same facility to the LaTeX standard keyval
+longdesc package.
+containersize 1944
+containerchecksum 39b29273305a894c37bbb8f2edc899eb69cabed78623ec5ac66d6a75fd7d6b344c1fe4813f56383acd1c51acdd099fcaf3e97af294c5fd63ffe47e25e9cb9caa
+doccontainersize 175604
+doccontainerchecksum 8c5df446fe33e40503caeb8740becb28b3328490fb6aac2cf858645a5d896681d6448e5160cd32e7220c164838fb65dcfd85a22a6c6b9205511f6055f23dcabf
+docfiles size=45
+ texmf-dist/doc/latex/pgfopts/LICENSE
+ texmf-dist/doc/latex/pgfopts/README details="Readme"
+ texmf-dist/doc/latex/pgfopts/pgfopts.pdf details="Package documentation"
+srccontainersize 6008
+srccontainerchecksum ba4043a5ecaf21c1afc3328160c6832b67103a9b9c278665f0ebd91f21d842f85eb70e7a2d7385d66f9910006205d59042aafc994a2eb62762f3dfb5917c10f6
+srcfiles size=5
+ texmf-dist/source/latex/pgfopts/pgfopts.dtx
+runfiles size=2
+ texmf-dist/tex/latex/pgfopts/pgfopts.sty
+catalogue-ctan /macros/latex/contrib/pgfopts
+catalogue-license lppl1.3
+catalogue-topics keyval package-supp
+catalogue-version 2.1a

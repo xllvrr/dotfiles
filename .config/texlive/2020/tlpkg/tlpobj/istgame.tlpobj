@@ -1,0 +1,29 @@
+name istgame
+category Package
+revision 49848
+shortdesc Draw Game Trees with TikZ
+longdesc This LaTeX package provides macros based on TikZ to draw a game
+longdesc tree. The main idea underlying its core macros is the
+longdesc completion of a whole tree by using a sequence of simple
+longdesc 'parent-child' tree structures, with no longer nested relations
+longdesc involved (like the use of 'grandchildren' or
+longdesc 'great-grandchildren'). Using this package you can draw a game
+longdesc tree as easily as drawing a game tree with pen and paper. This
+longdesc package depends on expl3, TikZ, and xparse. The 'ist' prefix
+longdesc stands for "it's a simple tree" or "In-Sung's simple tree."
+containersize 18008
+containerchecksum 3380e604bb3153d94ed21ca3c5fa16bcf0d81ff3ff878a3f19ee3f1beea0ab32185ea9d8b0118eaddfb15e483d040bbc5f915ab7bd3033978518fd30aeb5f609
+doccontainersize 751764
+doccontainerchecksum 9838728c32479b6a1229d2f9e9755209c07520bd691452bfba81a62f21ba929237bc916c5f49523610516aec6c054d080086c82be277eedd5fe4b0006b4be8e5
+docfiles size=250
+ texmf-dist/doc/latex/istgame/README.txt details="Readme"
+ texmf-dist/doc/latex/istgame/istgame-doc-v2.0.tex
+ texmf-dist/doc/latex/istgame/istgame-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/istgame/istgame-doc.tex
+ texmf-dist/doc/latex/istgame/istgame.ist
+runfiles size=29
+ texmf-dist/tex/latex/istgame/istgame.sty
+catalogue-ctan /graphics/pgf/contrib/istgame
+catalogue-license lppl1.3c
+catalogue-topics pgf-tikz games tree
+catalogue-version 2.0

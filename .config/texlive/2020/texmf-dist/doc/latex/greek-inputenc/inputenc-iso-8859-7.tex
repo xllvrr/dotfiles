@@ -1,0 +1,84 @@
+%% LyX 2.4.0dev created this file.  For more info, see https://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[greek,english]{article}
+\usepackage{lmodern}
+\usepackage[LGR,T1]{fontenc}
+\usepackage[iso-8859-7]{inputenc}
+\usepackage{textcomp}
+\usepackage{babel}
+\usepackage{xfrac}
+\usepackage{textalpha}
+
+\newcommand{\nd}{\textlatin{\sfrac{n}{d}}}
+
+\newcommand{\topic}{\medskip\noindent}
+
+\begin{document}
+
+\subsection*{Input encoding ISO 8859-7}
+
+Greek:
+
+... 0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+A: \foreignlanguage{greek}{\textlatin{\small NBSP} ¡ ¢ £ ¤ \nd{} ¦ §
+   			   ¨ © ª « ¬ \textlatin{\small SHY} \nd{} ¯}
+
+B: \foreignlanguage{greek}{° ± ² ³ ´ µ ¶ ·
+   			   ¸ ¹ º » ¼ ½ ¾ ¿}
+
+C: \foreignlanguage{greek}{À Á Â Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï}
+
+D: \foreignlanguage{greek}{Ð Ñ \nd{} Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß}
+
+E: \foreignlanguage{greek}{à á â ã ä å æ ç è é ê ë ì í î ï}
+
+F: \foreignlanguage{greek}{ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ \nd}
+
+
+\topic English (with package `textalpha'):
+
+... 0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+A: {\textlatin{\small NBSP} ¡ ¢ £ ¤ \nd{} ¦ §
+    ¨ © ª « ¬ \textlatin{\small SHY} \nd{} ¯}
+
+B: {° ± ² ³ ´ µ ¶ ·
+    ¸ ¹ º » ¼ ½ ¾ ¿}
+
+C: {À Á Â Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï}
+
+D: {Ð Ñ \nd{} Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß}
+
+E: {à á â ã ä å æ ç è é ê ë ì í î ï}
+
+F: {ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ \nd}
+
+\topic
+{\footnotesize
+Legend:
+
+SHY: Soft Hyphen
+    
+NBSP: No Break Space
+    
+\nd: not defined in LGR font encoding
+}
+
+
+\subsubsection*{Test No Break Space and Soft Hyphen}
+
+\begin{description}
+
+\item[|] \hfill $\leftarrow$ margins $\rightarrow$ \hfill |
+\item[NBSP:] 
+  \begin{flushleft} (flush left) No Break Space No Break Space
+   No Break Space No Break Space No Break Space
+  \end{flushleft}
+  
+\item[SHY:] \ldots{} Soft­Hyphen Soft­Hyphen Soft­Hyphen
+  Soft­Hyphen Soft­Hyphen Soft­Hyphen
+\item[|] \hfill $\leftarrow$ margins $\rightarrow$ \hfill |
+\end{description}
+
+\end{document}

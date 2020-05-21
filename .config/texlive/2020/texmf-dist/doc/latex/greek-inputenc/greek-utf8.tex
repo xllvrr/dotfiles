@@ -1,0 +1,503 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage{cmap} % fix search and cut-and-paste in Acrobat Reader
+\usepackage[LGR,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textalpha}
+\usepackage{alphabeta}
+\usepackage{textcomp}
+\usepackage[colorlinks]{hyperref}
+\usepackage{bookmark}
+% \usepackage{parskip}
+\usepackage{booktabs}
+
+\usepackage{lmodern}
+% \usepackage{kerkis}
+% \usepackage{gfsdidot}
+
+% Greek utf8 definitions work with and without "Babel", 
+% with monotonic, polytonic, and ancient Greek variants.
+% However, this document uses babel language switches, so it requires Babel:
+\usepackage[greek,english]{babel}
+% \languageattribute{greek}{polutoniko}
+\languageattribute{greek}{ancient}
+
+\begin{document}
+
+\title{Greek Unicode with 8-bit TeX and \emph{inputenc}}
+\author{Günter Milde}
+\maketitle
+
+\begin{abstract}
+The definitions in \texttt{lgrenc.dfu} provide UTF-8 support for
+the Greek script based on \emph{inputenc} and the \emph{LaTeX internal
+character representation} macros (LICRs) defined in the \emph{greek-fontenc}
+package.
+\end{abstract}
+
+\section{Requirements}
+
+The \href{http://www.ctan.org/pkg/inputenc}{\emph{inputenc}} standard
+package enables the use of non-ASCII characters with 8-bit TeX. However, it
+misses definitions for Greek characters. The \emph{greek-inputenc} package
+extends \emph{inputenc} to allow the use of Greek literals in the document
+source.
+
+As with all \emph{inputenc} definitions, this only works if the active font
+encoding supports the characters. For the Greek script, this is usually the
+non-standard \emph{LGR} font encoding set up by
+\href{http://www.ctan.org/pkg/greek-fontenc}{\emph{greek-fontenc}}.
+% e.g. Π produces:
+% ! LaTeX Error: Command \textPi unavailable in encoding T1.
+% just like Ж produces:
+% ! LaTeX Error: Command \CYRZH unavailable in encoding T1.
+
+\section{Usage}
+
+There are several alternatives to activate Greek Unicode input for 8-bit TeX%
+\footnote{
+  The XeTeX and LuaTeX engines use utf8 as native input encoding. They do
+  not require (and, except in 8-bit compatibility mode, do not work with)
+  the \emph{inputenc} and \emph{greek-inputenc} packages.}
+%
+(see also the source document \url{greek-utf8.tex}):
+
+
+\begin{itemize}
+
+\item
+Define the LGR font encoding and the UTF8 input encoding (the order does not
+matter), e.g.,
+%
+\begin{verbatim}
+  \usepackage[T1,LGR]{fontenc}
+  \usepackage[utf8]{inputenc}
+\end{verbatim}
+%
+Ensure that LGR is the active font encoding whenever a Greek character is
+used in the text (see below).
+
+\item
+For text in the Greek language, it is recommended to use the
+\href{http://www.ctan.org/pkg/babel}{\emph{Babel}} package with the Greek
+language definitions in
+\href{http://www.ctan.org/pkg/babel-greek}{\emph{babel-greek}}. Babel sets
+the font encoding automatically to LGR and Greek Unicode characters work as
+expected. Write in the preamble, e.g.,
+%
+\begin{verbatim}
+  \usepackage[utf8]{inputenc}
+  \usepackage[LGR,T1]{fontenc}
+  \usepackage[english,greek,german]{babel}
+\end{verbatim}
+%
+and use \verb+\foreignlanguage+ or \verb+\selectlanguage+ to set the text
+language to Greek (see the
+\href{http://www.ctan.org/pkg/babel-greek}{\emph{babel-greek}} documentation
+for detailled examples).
+
+\begin{quote}
+  \greekscript
+  Τί φήις; Ἱδὼν ἐνθέδε παῖδ’ ἐλευθέραν
+  τὰς πλησίον Νύμφας στεφανοῦσαν, Σώστρατε,
+  ἐρῶν άπῆλθες εὐθύς;
+\end{quote}
+
+\item
+In combination with the \emph{textalpha} package from
+\href{http://www.ctan.org/pkg/greek-fontenc}{\emph{greek-fontenc}}, Greek Unicode
+characters can be used in text with any font encoding -- just like the
+symbols provided by the ``textcomp'' package (i.e. with some limitations
+described in
+\href{http://mirrors.ctan.org/language/greek/greek-fontenc/textalpha-doc.pdf}%
+{textalpha-doc}). With the preamble lines
+%
+\begin{verbatim}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textalpha}
+\end{verbatim}
+%
+it is straightforward to write about π-mesons, γ-radiation, or a 50\,kΩ
+resistor.
+
+\item
+In combination with the \emph{alphabeta} package (also from
+\href{http://www.ctan.org/pkg/greek-fontenc}{\emph{greek-fontenc}}),
+Greek Unicode literals can also be used in math mode:
+%
+\begin{verbatim}
+  \usepackage[utf8]{inputenc}
+  \usepackage{alphabeta}
+\end{verbatim}
+\[
+   \tan β = \frac{\sin β}{\cos β}.
+\]
+
+\end{itemize}
+
+\section{Warning: unsafe ASCII input}
+
+LGR is no ``standard font encoding''. Latin characters and some other ASCII
+symbols are mapped to Greek equivalents if LGR is the active font encoding.
+(See
+\href{http://mirrors.ctan.org/language/babel/contrib/greek/usage.pdf}{usage.pdf}
+for a description of this Latin-Greek transliteration.)
+
+This means you need an explicit language and/or font-encoding switch for
+Latin words and abbreviations in Greek text, e.g., not
+\foreignlanguage{greek}{((ηία αντίσταση 750-kΩ))} but
+\foreignlanguage{greek}{((ηία αντίσταση 750-\textlatin{k}Ω))}
+
+Special care is also required with the question mark characters:
+\begin{itemize}
+  \item The Unicode standard says character 003B SEMICOLON and not 037E GREEK
+  	QUESTION MARK, is the preferred character for a `Greek question
+	mark' (erotimatiko),
+  \item The LGR font encoding maps a SEMICOLON to a middle dot (ano teleia),
+	while the Latin question mark ``?'' is mapped to the erotimatiko.
+\end{itemize}
+As a result, only the deprecated character 037E GREEK QUESTION MARK works
+with both, Xe/LuaTeX and 8-bit TeX. Compare the source \url{greek-utf8.tex}
+and the PDF output:
+
+\begin{center}
+\begin{tabular}{lll}
+  Latin (T1) & Greek (LGR) & question mark character \\
+  \midrule
+  Τί φήις; & \foreignlanguage{greek}{Τί φήις;} & 037E GREEK QUESTION MARK \\
+  Τί φήις; & \foreignlanguage{greek}{Τί φήις;} & 003B SEMICOLON \\
+  Τί φήις? & \foreignlanguage{greek}{Τί φήις?} & 003F QUESTION MARK \\
+\end{tabular}
+\end{center}
+
+
+\section{Supported Characters}
+
+Unicode definitions exist for all non-ASCII characters that can be rendered
+with an LGR-encoded font.
+
+
+\subsection{Greek and Coptic}
+
+\begin{tabular}{rrrrrrrrrrrrrrrrr}
+\toprule
+    & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & A & B & \textlatin C & D & E & F\\
+\midrule
+\textlatin{370} & * & * & * & * & ʹ & ͵ & * & * &   &   & ͺ & * & * & * & ; &  \\
+\textlatin{380} &   &   &   &   & ΄ & ΅ & Ά & · & Έ & Ή & Ί &   & Ό &   & Ύ & Ώ\\
+\textlatin{390} & ΐ & Α & Β & Γ & Δ & Ε & Ζ & Η & Θ & Ι & Κ & Λ & Μ & Ν & Ξ & Ο\\
+\textlatin{3A0} & Π & Ρ &   & Σ & Τ & Υ & Φ & Χ & Ψ & Ω & Ϊ & Ϋ & ά & έ & ή & ί\\
+\textlatin{3B0} & ΰ & α & β & γ & δ & ε & ζ & η & θ & ι & κ & λ & μ & ν & ξ & ο\\
+\textlatin{3C0} & π & ρ & ς & σ & τ & υ & φ & χ & ψ & ω & ϊ & ϋ & ό & ύ & ώ &  \\
+\textlatin{3D0} & * & * & * & * & * & * & * & * & Ϙ & ϙ & Ϛ & ϛ & Ϝ & ϝ & * & ϟ\\
+\textlatin{3E0} & Ϡ & ϡ & * & * & * & * & * & * & * & * & * & * & * & * & * & *\\
+\textlatin{3F0} & * & * & * & * & * & * & * & * & * & * & * & * & * & * & * & *\\
+\bottomrule
+\end{tabular}
+
+ \noindent
+legend: * glyph missing in LGR, [space] Unicode point not defined
+
+
+\subsection{Greek Extended}
+
+\begin{tabular}{rrrrrrrrrrrrrrrrr}
+\toprule
+      & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & A & B & \textlatin C & D & E & F\\
+\midrule
+\textlatin{1F00} & ἀ & ἁ & ἂ & ἃ & ἄ & ἅ & ἆ & ἇ & Ἀ & Ἁ & Ἂ & Ἃ & Ἄ & Ἅ & Ἆ & Ἇ\\
+\textlatin{1F10} & ἐ & ἑ & ἒ & ἓ & ἔ & ἕ &   &   & Ἐ & Ἑ & Ἒ & Ἓ & Ἔ & Ἕ &   &  \\
+\textlatin{1F20} & ἠ & ἡ & ἢ & ἣ & ἤ & ἥ & ἦ & ἧ & Ἠ & Ἡ & Ἢ & Ἣ & Ἤ & Ἥ & Ἦ & Ἧ\\
+\textlatin{1F30} & ἰ & ἱ & ἲ & ἳ & ἴ & ἵ & ἶ & ἷ & Ἰ & Ἱ & Ἲ & Ἳ & Ἴ & Ἵ & Ἶ & Ἷ\\
+\textlatin{1F40} & ὀ & ὁ & ὂ & ὃ & ὄ & ὅ &   &   & Ὀ & Ὁ & Ὂ & Ὃ & Ὄ & Ὅ &   &  \\
+\textlatin{1F50} & ὐ & ὑ & ὒ & ὓ & ὔ & ὕ & ὖ & ὗ &   & Ὑ &   & Ὓ &   & Ὕ &   & Ὗ\\
+\textlatin{1F60} & ὠ & ὡ & ὢ & ὣ & ὤ & ὥ & ὦ & ὧ & Ὠ & Ὡ & Ὢ & Ὣ & Ὤ & Ὥ & Ὦ & Ὧ\\
+\textlatin{1F70} & ὰ & ά & ὲ & έ & ὴ & ή & ὶ & ί & ὸ & ό & ὺ & ύ & ὼ & ώ &   &  \\
+\textlatin{1F80} & ᾀ & ᾁ & ᾂ & ᾃ & ᾄ & ᾅ & ᾆ & ᾇ & ᾈ & ᾉ & ᾊ & ᾋ & ᾌ & ᾍ & ᾎ & ᾏ\\
+\textlatin{1F90} & ᾐ & ᾑ & ᾒ & ᾓ & ᾔ & ᾕ & ᾖ & ᾗ & ᾘ & ᾙ & ᾚ & ᾛ & ᾜ & ᾝ & ᾞ & ᾟ\\
+\textlatin{1FA0} & ᾠ & ᾡ & ᾢ & ᾣ & ᾤ & ᾥ & ᾦ & ᾧ & ᾨ & ᾩ & ᾪ & ᾫ & ᾬ & ᾭ & ᾮ & ᾯ\\
+\textlatin{1FB0} & ᾰ & ᾱ & ᾲ & ᾳ & ᾴ &   & ᾶ & ᾷ & Ᾰ & Ᾱ & Ὰ & Ά & ᾼ & ᾽ & ι & ᾿\\
+\textlatin{1FC0} & ῀ & ῁ & ῂ & ῃ & ῄ &   & ῆ & ῇ & Ὲ & Έ & Ὴ & Ή & ῌ & ῍ & ῎ & ῏\\
+\textlatin{1FD0} & ῐ & ῑ & ῒ & ΐ &   &   & ῖ & ῗ & Ῐ & Ῑ & Ὶ & Ί &   & ῝ & ῞ & ῟\\
+\textlatin{1FE0} & ῠ & ῡ & ῢ & ΰ & ῤ & ῥ & ῦ & ῧ & Ῠ & Ῡ & Ὺ & Ύ & Ῥ & ῭ & ΅ & `\\
+\textlatin{1FF0} &   &   & ῲ & ῳ & ῴ &   & ῶ & ῷ & Ὸ & Ό & Ὼ & Ώ & ῼ & ´ & ῾ &  \\
+\bottomrule
+\end{tabular}
+
+
+\subsection{Other Unicode Blocks}
+
+\begin{description}
+
+\item [Latin-1 Supplement]: \ensuregreek{¨ « ¯ ´ · »}
+\item [IPA Extensions]: \ensuregreek{ə} LATIN SMALL LETTER SCHWA
+\item [Spacing Modifier Letters]:
+      \ensuregreek{˘a} (here followed by letter alpha)
+\item [General Punctuation]:
+      \ensuregreek{– — ‘ ’ ‰} ZWNJ (zero width no joiner, prevents kerning
+      and ligatures, e.g. \ensuregreek{A‌‌U} vs. \ensuregreek{AU} and
+      \ensuregreek{'‌a} vs. \ensuregreek{'a})
+\item [Currency Symbols]: \ensuregreek{€}
+\item [Letter-like Symbols]: Ω  % OHM SIGN, preferred representation is 03A9
+\item [Ancient Greek Numbers]: \ensuregreek{
+      𐅄 % \textPiDelta{} % GREEK ACROPHONIC ATTIC FIFTY
+      𐅅 % \textPiEta{}   % GREEK ACROPHONIC ATTIC FIVE HUNDRED
+      𐅆 % \textPiChi{}   % GREEK ACROPHONIC ATTIC FIVE THOUSAND
+      𐅇 % \textPiMu{}    % GREEK ACROPHONIC ATTIC FIFTY THOUSAND
+      }
+\end{description}
+
+\newpage
+
+\section{Test up/downcasing}
+
+Capital Greek letters have diacritics (except the dialytika) to the left
+(instead of above) and drop them in uppercase, e.g.
+\foreignlanguage{greek}{μαΐστρος $\mapsto$ \MakeUppercase{μαΐστρος}}.
+
+Tonos and dasia on the first vowel of a diphthong (\ensuregreek{άι, άυ, έι})
+imply a \emph{hiatus}. A dialytika must be placed on the second
+vowel if they are dropped (\ensuregreek{\MakeUppercase{\'ai, \'au, \'ei}}).
+
+The auto-hiatus feature in lgrxenc.def works with the Latin
+transcription and with character-macros (%
+\ensuregreek{\MakeUppercase{%
+  \'ai,
+  \'\textalpha \textupsilon,
+  \'\textepsilon \textiota
+}})
+and also if the first character is wrapped in \verb+\ensuregreek+ (as done by
+the lgrenc.dfu definition for accented characters) or a literal Unicode
+character
+(\ensuregreek{\MakeUppercase{%
+  \ensuregreek{\'\textalpha}\textiota,
+  ά\textupsilon,
+  ά\textiota
+}})
+but not if the second character of the diphthong is a Unicode literal
+(\ensuregreek{\MakeUppercase{%
+  \'\textalpha ι,
+  άυ,
+  \'\textepsilon ι
+}}).
+
+Therefore, the diaresis is missing in the following examples:
+\ensuregreek{άυλος  $\mapsto$ \MakeUppercase{άυλος},
+           ἄυλος  $\mapsto$ \MakeUppercase{ἄυλος},
+           μάινα  $\mapsto$ \MakeUppercase{μάινα},
+           κέικ,  $\mapsto$ \MakeUppercase{κέικ},
+           ἀυπνία $\mapsto$ \MakeUppercase{ἀυπνία}}.
+
+Fixing this shortcoming requires knowledge of what
+\verb+\LGR@ifnextchar+ ``sees'' when the next character is an upcased
+Unicode literal.
+
+As an ugly workaround, use \verb+\textiota+ resp. \verb+\textupsilon+
+for the character that should get the diaresis:
+\ensuregreek{ἀ\textupsilon{}πνία $\mapsto$ \MakeUppercase{ἀ\textupsilon{}πνία}}.
+
+
+
+The following subsections test MakeUppercase and MakeLowercase with all
+characters defined in lgrenc.dfu:
+
+\subsection{Greek and Coptic}
+
+\newcommand{\GreekAndCoptic}{ʹ͵ͺ; ΄ ΅Ά·ΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫϘϚϜϠ}
+\newcommand{\greekandcoptic}{άέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώϙϛϝϟϡ}
+
+Characters of the Greek and Coptic Unicode Block:
+\begin{quote}
+  \selectlanguage{greek}
+  \GreekAndCoptic\\
+  \greekandcoptic
+\end{quote}
+MakeUppercase:
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeUppercase{\GreekAndCoptic}\\
+  \MakeUppercase{\greekandcoptic}
+\end{quote}
+Letters and ypogegrammeni upcased, tonos dropped, dialytika kept.
+
+There is no capital Koppa in LGR, therefore \ensuregreek{ϟ} is left unchanged
+with MakeUppercase.
+
+
+MakeLowercase:
+
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeLowercase{\GreekAndCoptic}\\
+  \MakeLowercase{\greekandcoptic}
+\end{quote}
+
+The lowercase of \ensuregreek{Σ} is the «auto-sigma» (\verb+\textautosigma+):
+\ensuregreek{ΣΣ $\mapsto$ \MakeLowercase{ΣΣ}}. Add a ZWNJ or use the
+\verb+\noboundary+ macro to prevent conversion to final sigma:
+\ensuregreek{\MakeLowercase{ΣΣ‌}}. The lowercase of GREEK LETTER STIGMA
+\ensuregreek{Ϛ} is \ensuregreek{\MakeLowercase{Ϛ}}.
+
+
+\subsection{Greek extended}
+
+MakeUppercase:
+
+% \selectlanguage{greek}
+
+\MakeUppercase{ ἀ ἁ ἂ ἃ ἄ ἅ ἆ ἇ Ἀ Ἁ Ἂ Ἃ Ἄ Ἅ Ἆ Ἇ }\\
+\MakeUppercase{ ἐ ἑ ἒ ἓ ἔ ἕ     Ἐ Ἑ Ἒ Ἓ Ἔ Ἕ     }\\
+\MakeUppercase{ ἠ ἡ ἢ ἣ ἤ ἥ ἦ ἧ Ἠ Ἡ Ἢ Ἣ Ἤ Ἥ Ἦ Ἧ }\\
+\MakeUppercase{ ἰ ἱ ἲ ἳ ἴ ἵ ἶ ἷ Ἰ Ἱ Ἲ Ἳ Ἴ Ἵ Ἶ Ἷ }\\
+\MakeUppercase{ ὀ ὁ ὂ ὃ ὄ ὅ     Ὀ Ὁ Ὂ Ὃ Ὄ Ὅ     }\\
+\MakeUppercase{ ὐ ὑ ὒ ὓ ὔ ὕ ὖ ὗ   Ὑ   Ὓ   Ὕ   Ὗ }\\
+\MakeUppercase{ ὠ ὡ ὢ ὣ ὤ ὥ ὦ ὧ Ὠ Ὡ Ὢ Ὣ Ὤ Ὥ Ὦ Ὧ }\\
+\MakeUppercase{ ὰ ά ὲ έ ὴ ή ὶ ί ὸ ό ὺ ύ ὼ ώ     }\\
+\MakeUppercase{ ᾀ ᾁ ᾂ ᾃ ᾄ ᾅ ᾆ ᾇ ᾈ ᾉ ᾊ ᾋ ᾌ ᾍ ᾎ ᾏ }\\
+\MakeUppercase{ ᾐ ᾑ ᾒ ᾓ ᾔ ᾕ ᾖ ᾗ ᾘ ᾙ ᾚ ᾛ ᾜ ᾝ ᾞ ᾟ }\\
+\MakeUppercase{ ᾠ ᾡ ᾢ ᾣ ᾤ ᾥ ᾦ ᾧ ᾨ ᾩ ᾪ ᾫ ᾬ ᾭ ᾮ ᾯ }\\
+\MakeUppercase{ ᾰ ᾱ ᾲ ᾳ ᾴ   ᾶ ᾷ Ᾰ Ᾱ Ὰ Ά ᾼ ᾽ ι ᾿ }\\
+\MakeUppercase{ ῀ ῁ ῂ ῃ ῄ   ῆ ῇ Ὲ Έ Ὴ Ή ῌ ῍ ῎ ῏ }\\
+\MakeUppercase{ ῐ ῑ ῒ ΐ     ῖ ῗ Ῐ Ῑ Ὶ Ί   ῝ ῞ ῟ }\\
+\MakeUppercase{ ῠ ῡ ῢ ΰ ῤ ῥ ῦ ῧ Ῠ Ῡ Ὺ Ύ Ῥ ῭ ΅ ` }\\
+\MakeUppercase{     ῲ ῳ ῴ   ῶ ῷ Ὸ Ό Ὼ Ώ ῼ ´ ῾   }
+\selectlanguage{english}
+
+MakeLowercase:
+
+% \selectlanguage{greek}
+\MakeLowercase{ ἀ ἁ ἂ ἃ ἄ ἅ ἆ ἇ Ἀ Ἁ Ἂ Ἃ Ἄ Ἅ Ἆ Ἇ }\\
+\MakeLowercase{ ἐ ἑ ἒ ἓ ἔ ἕ     Ἐ Ἑ Ἒ Ἓ Ἔ Ἕ     }\\
+\MakeLowercase{ ἠ ἡ ἢ ἣ ἤ ἥ ἦ ἧ Ἠ Ἡ Ἢ Ἣ Ἤ Ἥ Ἦ Ἧ }\\
+\MakeLowercase{ ἰ ἱ ἲ ἳ ἴ ἵ ἶ ἷ Ἰ Ἱ Ἲ Ἳ Ἴ Ἵ Ἶ Ἷ }\\
+\MakeLowercase{ ὀ ὁ ὂ ὃ ὄ ὅ     Ὀ Ὁ Ὂ Ὃ Ὄ Ὅ     }\\
+\MakeLowercase{ ὐ ὑ ὒ ὓ ὔ ὕ ὖ ὗ   Ὑ   Ὓ   Ὕ   Ὗ }\\
+\MakeLowercase{ ὠ ὡ ὢ ὣ ὤ ὥ ὦ ὧ Ὠ Ὡ Ὢ Ὣ Ὤ Ὥ Ὦ Ὧ }\\
+\MakeLowercase{ ὰ ά ὲ έ ὴ ή ὶ ί ὸ ό ὺ ύ ὼ ώ     }\\
+\MakeLowercase{ ᾀ ᾁ ᾂ ᾃ ᾄ ᾅ ᾆ ᾇ ᾈ ᾉ ᾊ ᾋ ᾌ ᾍ ᾎ ᾏ }\\
+\MakeLowercase{ ᾐ ᾑ ᾒ ᾓ ᾔ ᾕ ᾖ ᾗ ᾘ ᾙ ᾚ ᾛ ᾜ ᾝ ᾞ ᾟ }\\
+\MakeLowercase{ ᾠ ᾡ ᾢ ᾣ ᾤ ᾥ ᾦ ᾧ ᾨ ᾩ ᾪ ᾫ ᾬ ᾭ ᾮ ᾯ }\\
+\MakeLowercase{ ᾰ ᾱ ᾲ ᾳ ᾴ   ᾶ ᾷ Ᾰ Ᾱ Ὰ Ά ᾼ ᾽ ι ᾿ }\\
+\MakeLowercase{ ῀ ῁ ῂ ῃ ῄ   ῆ ῇ Ὲ Έ Ὴ Ή ῌ ῍ ῎ ῏ }\\
+\MakeLowercase{ ῐ ῑ ῒ ΐ     ῖ ῗ Ῐ Ῑ Ὶ Ί   ῝ ῞ ῟ }\\
+\MakeLowercase{ ῠ ῡ ῢ ΰ ῤ ῥ ῦ ῧ Ῠ Ῡ Ὺ Ύ Ῥ ῭ ΅ ` }\\
+\MakeLowercase{     ῲ ῳ ῴ   ῶ ῷ Ὸ Ό Ὼ Ώ ῼ ´ ῾   }
+\selectlanguage{english}
+
+\subsection{Other Unicode Blocks}
+
+MakeUppercase does not change non-letter symbols and the letter shwa:
+\begin{quote}
+  \greekscript
+  \MakeUppercase{¨ « ¯ ´ · »}
+  \MakeUppercase{ə}
+  \MakeUppercase{˘a}
+  \MakeUppercase{– — ‘ ’ ‰ a‌u}
+  \MakeUppercase{€}
+  % \MakeUppercase{Ω}
+  \MakeUppercase{
+  𐅄 % GREEK ACROPHONIC ATTIC FIFTY
+  𐅅 % GREEK ACROPHONIC ATTIC FIVE HUNDRED
+  𐅆 % GREEK ACROPHONIC ATTIC FIVE THOUSAND
+  𐅇 % GREEK ACROPHONIC ATTIC FIFTY THOUSAND
+  }
+\end{quote}
+MakeLowercase does not change non-letter symbols, either:
+\begin{quote}
+  \greekscript
+  \MakeLowercase{¨ « ¯ ´ · »}
+  \MakeLowercase{ə}
+  \MakeLowercase{˘A}
+  \MakeLowercase{– — ‘ ’ ‰ A‌‌U}
+  \MakeLowercase{€}
+  % \MakeLowercase{Ω}
+  \MakeLowercase{
+  𐅄 % GREEK ACROPHONIC ATTIC FIFTY
+  𐅅 % GREEK ACROPHONIC ATTIC FIVE HUNDRED
+  𐅆 % GREEK ACROPHONIC ATTIC FIVE THOUSAND
+  𐅇 % GREEK ACROPHONIC ATTIC FIFTY THOUSAND
+  }
+\end{quote}
+
+\section{Test kerning/ligatures}
+
+
+check for kerning and unwanted ligatures:
+
+\begin{quote}
+  \greekscript
+
+Αἀα Αἁα Αἂα Αἃα Αἄα Αἅα Αἆα Αἇα ΑἈα ΑἉα ΑἊα ΑἋα ΑἌα ΑἍα ΑἎα ΑἏα
+
+Αἐα Αἑα Αἒα Αἓα Αἔα Αἕα ΑἘα ΑἙα ΑἚα ΑἛα ΑἜα ΑἝα
+
+Αἠα Αἡα Αἢα Αἣα Αἤα Αἥα Αἦα Αἧα ΑἨα ΑἩα ΑἪα ΑἫα ΑἬα ΑἭα ΑἮα ΑἯα
+
+Αἰα Αἱα Αἲα Αἳα Αἴα Αἵα Αἶα Αἷα ΑἸα ΑἹα ΑἺα ΑἻα ΑἼα ΑἽα ΑἾα ΑἿα
+
+Αὀα Αὁα Αὂα Αὃα Αὄα Αὅα ΑὈα ΑὉα ΑὊα ΑὋα ΑὌα ΑὍα
+
+Αὐα Αὑα Αὒα Αὓα Αὔα Αὕα Αὖα Αὗα ΑὙα ΑὛα ΑὝα ΑὟα
+
+Αὠα Αὡα Αὢα Αὣα Αὤα Αὥα Αὦα Αὧα ΑὨα ΑὩα ΑὪα ΑὫα ΑὬα ΑὭα ΑὮα ΑὯα
+
+Αὰα Αάα Αὲα Αέα Αὴα Αήα Αὶα Αία Αὸα Αόα Αὺα Αύα Αὼα Αώα
+
+Αᾀα Αᾁα Αᾂα Αᾃα Αᾄα Αᾅα Αᾆα Αᾇα Αᾈα Αᾉα Αᾊα Αᾋα Αᾌα Αᾍα Αᾎα Αᾏα
+
+Αᾐα Αᾑα Αᾒα Αᾓα Αᾔα Αᾕα Αᾖα Αᾗα Αᾘα Αᾙα Αᾚα Αᾛα Αᾜα Αᾝα Αᾞα Αᾟα
+
+Αᾠα Αᾡα Αᾢα Αᾣα Αᾤα Αᾥα Αᾦα Αᾧα Αᾨα Αᾩα Αᾪα Αᾫα Αᾬα Αᾭα Αᾮα Αᾯα
+
+Αᾰα Αᾱα Αᾲα Αᾳα Αᾴα Αᾶα Αᾷα ΑᾸα ΑᾹα ΑᾺα ΑΆα Αᾼα Α᾽α Αια Α᾿α
+
+Α῀α Α῁α Αῂα Αῃα Αῄα Αῆα Αῇα ΑῈα ΑΈα ΑῊα ΑΉα Αῌα Α῍α Α῎α Α῏α
+
+Αῐα Αῑα Αῒα Αΐα Αῖα Αῗα ΑῘα ΑῙα ΑῚα ΑΊα Α῝α Α῞α Α῟α
+
+Αῠα Αῡα Αῢα Αΰα Αῤα Αῥα Αῦα Αῧα ΑῨα ΑῩα ΑῪα ΑΎα ΑῬα Α῭α Α΅α Α`α
+
+Αῲα Αῳα Αῴα Αῶα Αῷα ΑῸα ΑΌα ΑῺα ΑΏα Αῼα Α´α Α῾α
+
+\end{quote}
+
+\end{document}
+
+
+Problems with text-extraction from PDF with Kerkis:
+
+     0  1 2 3 4  5   6 7  8  9  A  B  C D E    F
+370  *  * * *  ΄  ͵  * *         ι *  * *   ;
+380            ΄ ΅  ΄Α   ΄Ε ΄Η  ΄Ι   ΄Ο   ΄Υ  ΄Ω
+390   ΐ Α Β Γ ∆  Ε   Ζ Η Θ    Ι Κ  Λ Μ  Ν Ξ    Ο
+3Α0  Π  Ρ   Σ Τ  Υ  Φ  Χ Ψ   Ω   Ϊ Ϋ  ά έ  ή    ί
+3Β0  ΰ  α ϐ γ δ  ε   Ϲ η  ϑ   ι κ  λ  µ ν  ξ   ο
+3῝0  π  ϱ ς σ τ  υ   ϕ χ  ψ  ω   ϊ ϋ  ό ύ  ώ
+3∆0  *  * * * *  *   * *     Ϟ  Ϝ  ϝ  Ϝ ϝ  *   ϟ
+3Ε0     ϡ * * *  *   * *  *  *  *  *  * *  *   *
+3Φ0  *  * * * *  *   * *  *  *  *  *  * *  *   *
+
+
+0387    GREEK ANO TELEIA    missing
+03B6    zeta                      replaced by 03F9      GREEK CAPITAL LUNATE SIGMA SYMBOL
+03B8    GREEK SMALL LETTER THETA  replaced by 03D1      GREEK THETA SYMBOL
+03C1    GREEK SMALL LETTER RHO    replaced by 03F1      GREEK RHO SYMBOL
+03C6    GREEK SMALL LETTER PHI    replaced by 03D5      GREEK PHI SYMBOL
+
+
+and GFS Didot:
+
+       0   1   2  3  4  5   6 7  8  9  A  B  C D  E   F
+370 *      *   *  *   ´  ͵ *  *         ι *  * *   ;
+380                   ´  ῆ Α
+                         ´ ´    ´Ε ´Η  ´Ι   ´Ο   ´Υ  ´Ω
+390 ῆ  ´ι Α   Β   Γ  ∆  Ε Ζ   Η  Θ  Ι  Κ  Λ Μ  Ν  Ξ   Ο
+3Α0 Π      Ρ       Σ  Τ  Υ Φ   Χ Ψ   Ω   ῆ
+                                        Ι ῆ
+                                          Υ  ά έ  ή    ί
+3Β0 ῆ ´υ  α    β  γ  δ  ε ζ   η  ϑ   ι κ  λ  μ ν  ξ   ο
+ 3῝0 π    ρ    ς  σ  τ  υ φ   χ  ψ  ω   ι
+                                        ῆ υ
+                                          ῆ  ό ύ ώ
+3∆0 *      *   *  *  *  * *   *           Ϛ  Ϝ Ϝ  *   Ϟ
+3Ε0            *  *  *  * *   *  *  *   * *  * *  *   *
+3Φ0 *      *   *  *  *  * *   *  *  *   * *  * *  *   *

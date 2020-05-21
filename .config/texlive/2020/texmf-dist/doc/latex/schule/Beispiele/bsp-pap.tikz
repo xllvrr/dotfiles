@@ -1,0 +1,16 @@
+\begin{tikzpicture}[pap]
+\node[startstop] (s1){Los!};
+\node[verzweigung, below = of s1] (v1) {Lieblingsfach Informatik?};
+\node[unterprogramm, right = of v1] (up1) {\nodepart[text width=7em]{two} Pro\-gram\-mie\-re ein Spiel};
+	\node[aktion, below = of up1] (a1) {führe es aus!};
+\node[einausgabe, below = of v1] (ea1) {ERROR 1337};
+\node[startstop, below = of ea1] (e1){Ende};
+
+\draw[linie] (s1)--(v1);
+\draw[linie] (v1)--(up1)  node[near start, above] {ja};
+\draw[linie] (v1)--(ea1) node[near start, right] {nein};
+\draw[linie] (up1)--(a1);
+
+\draw[linie] (a1) |- ($(e1.north) + (0,0.5)$); 
+\draw[linie] (ea1)--(e1);
+\end{tikzpicture}

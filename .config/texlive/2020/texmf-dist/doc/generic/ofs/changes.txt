@@ -1,0 +1,58 @@
+
+2001/08/24  OFS released
+2001/08/27  \ifknownfam added
+            files allfonts.tex, allfonts.sty added
+2001/08/30  \dots and \ldotp definitions added in ofsdef.tex
+2001/09/10  a little changes in comments 
+            readme.ofs released
+2001/11/15  Bug removing: \warnT <-> \warnF in ofs.tex
+            macros in ofsdoc.tex work now with PDFTeX version 14
+2002/06/10  Bug in a35.tex fixed: pgk.. -> pbk.. (one Bookman metric).
+            ofs.tex: \savefontid + \restorefontid added.
+            ofsmtdef.tex: new file for MathTimes support included.
+2002/06/18  ofsmtdef.tex: bugfix \mathcode`=="2244 -> \mathcode`=="3244
+2002/06/26  ofs.tex: bug in \savefontid fixed: \relax added after fontmetric
+2002/10/27  ofs.tex: The (Variant) in \loadtextfam introduced
+                     \addcmd introduced
+                     \def\relax{} in \setfosize macro added
+                     \ifx\sgfamily\newfamily added in \setfontfamily
+            ofs.sty: \addcmd introduced
+            ofsdef.tex: The (Variants) for Times+Helvetica added.
+            a35.tex: The (Variants) added.
+            ofscatal.tex: a new macro package ofscatal.tex introduced
+            ofsdoc.tex,ps,pdf: The documentation upgraded.
+2003/02/25  ofs.sty: \setfonts sets catcode of "-" (bug fixed by Z. Wagner)
+            ofsdoc-e.tex,ps,pdf: (English documentation) released
+            ofsdoc.tex,ps,pdf: little corrections
+2003/03/27  ofsmtdef.tex: \skewchar settings, if Times then mtmi loaded
+            ofsdef.tex: \skewchar settings, warning for bad \fomenc added
+2004/02/*   ofs for plain very improved: \loadingenc,
+            \modifyenc, \modifydef, \modifylist,
+            \registerenc, \ofshexbox, \ofshexboxdef, 
+            \defaultextraenc, \extraenc, \tryloadenc, 
+            \knownfam, \registeredfam, \knownchar, 
+            \printaccentwarn, \printcharacterwarn, \characterdel, \accentdel,
+            support for EC fonts for plain added,
+            support for 8c encoding added,
+            you can re-declare declared font family,
+            \sum, \int, \prod in displaystyle redefined in PS math. encoding.
+            The interactive ofstest.tex macro introduced,
+            Czech documentation upgraded.
+2004/03/12  ofs-8c.tex: \text.. prefixes added to math names from plain.
+2004/03/13  ofs.tex: \characterdef does not re-define macros,
+                     \tryloadenc is called from \loadtextfam
+                     \showfonts + \listfamilies reimplemented
+            ofs-{8z,8t,8c,6s}.tex: changes according to new \characterdef 
+            slido.tex: changes according to new \characterdef
+2004/05/12  ofs.tex: many new features (see ofs.tex or ofsdoc.tex)
+            ofsdef.tex: upgraded
+            ofsdoc.tex: upgraded
+            ofsdoc-e.tex: upgraded
+            many ofs-<encoding>.tex files added
+            a117.tex, amsfn.tex, mtfn.tex, txfn.tex, pantyk.tex added
+            ofsmtdef.tex is only wrapper file to mtfn.tex
+2004/05/20  ofs.tex: \catcode`\|=12 set temporary to avoid ConTeXt conflict
+2006/03/30  ofs.tex: \restorefontid: {} -> \begingroup\endgroup because
+                     {} makes empty \hbox in math mode.
+2010/02/10  pantyk.tex corrected
+

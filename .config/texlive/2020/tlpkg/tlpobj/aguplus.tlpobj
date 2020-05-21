@@ -1,0 +1,34 @@
+name aguplus
+category Package
+revision 17156
+shortdesc Styles for American Geophysical Union
+longdesc This bundle started as an extension to the AGU's own published
+longdesc styles, providing extra facilities and improved usability. The
+longdesc AGU now publishes satisfactory LaTeX materials of its own; the
+longdesc author of aguplus recommends that users switch to using the
+longdesc official distribution.
+containersize 28708
+containerchecksum 73bd9b7f01a4911fb25aa7d388c5827c62a01a786ece4317f5b702de4c281bd05f82568780f4396bf289fcbb348abd2a3eca6620fd8e3f801d23aff7a05e104e
+doccontainersize 330372
+doccontainerchecksum 48b9c010f746b8a85bbf1093b3dd39c2a853d74b20feb71bfebf2ded8d6f4c44538e6e20b24c65849e8adea9d34ff15498e847b1521bfca11d18fc23d18e10f2
+docfiles size=103
+ texmf-dist/doc/latex/aguplus/README details="Readme"
+ texmf-dist/doc/latex/aguplus/README.aguplus
+ texmf-dist/doc/latex/aguplus/aguplus.pdf details="Package documentation"
+ texmf-dist/doc/latex/aguplus/aguplus.tex
+ texmf-dist/doc/latex/aguplus/changes.v16b
+ texmf-dist/doc/latex/aguplus/geophys.tex
+ texmf-dist/doc/latex/aguplus/sample.bib
+ texmf-dist/doc/latex/aguplus/samplus.tex
+runfiles size=74
+ texmf-dist/bibtex/bst/aguplus/agu.bst
+ texmf-dist/bibtex/bst/aguplus/agu04.bst
+ texmf-dist/bibtex/bst/aguplus/agufull.bst
+ texmf-dist/bibtex/bst/aguplus/agufull04.bst
+ texmf-dist/tex/latex/aguplus/aguplus.cls
+ texmf-dist/tex/latex/aguplus/aguplus.sty
+ texmf-dist/tex/latex/aguplus/agupp.sty
+catalogue-ctan /macros/latex/contrib/aguplus
+catalogue-license lppl
+catalogue-topics journalpub
+catalogue-version 1.6b

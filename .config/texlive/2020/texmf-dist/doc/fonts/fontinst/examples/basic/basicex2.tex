@@ -1,0 +1,50 @@
+%
+% basicex2.tex
+%
+% fontinst command file for writing map file fragments for 
+% the raw fonts used by the fonts made in basicex.tex.
+%
+
+\input finstmsc.sty
+
+% At this point, you might want to change some settings
+% to make the map file fragments written better adjusted
+% to your particular system. Some common examples are:
+% 
+%   \resetstr{PSfontsuffix}{.pfb}
+% 
+% which is useful if the actual fonts are in PFB format.
+% 
+%   \AssumeLWFN
+% 
+% This is useful if the font files are named according to
+% the old Mac OS Classic convention for PostScript fonts
+% (names like AGarBolIta).
+
+\adddriver{dvips}{dvips.map}
+% This causes a .map file for dvips to be written. 
+% It is probably better to choose a name that has to 
+% do with the fonts than to use `dvips.map'.
+% In some systems, there is a program updmap which combines
+% several small .map files such as this one into a large
+% psfonts.map file. 
+\adddriver{dvipdfm}{dvipdfm.map}
+% Similar file for dvipdfm.
+\adddriver{pltotf}{pltotf-script.sh}
+% A shell script that runs pltotf on those .pl files
+% which you need to turn into .tfm files.
+\adddriver{debug}{mapdump.txt}
+% This file contains the available data in a human-readable
+% format. This is useful if your dvi driver uses some other
+% kind of map file.
+
+\input basicex.recs
+% This is where all the work is done.
+
+\donedrivers
+% This closes the files and does some cleanup.
+
+\bye
+
+
+

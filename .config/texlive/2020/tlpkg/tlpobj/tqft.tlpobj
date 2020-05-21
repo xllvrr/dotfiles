@@ -1,0 +1,31 @@
+name tqft
+category Package
+revision 44455
+shortdesc Drawing TQFT diagrams with TikZ/PGF
+longdesc The package defines some node shapes useful for drawing TQFT
+longdesc diagrams with TikZ/PGF. That is, it defines highly customisable
+longdesc shapes that look like cobordisms between circles, such as those
+longdesc used in TQFT and other mathematical diagrams.
+containersize 6808
+containerchecksum 0bd44773d17cdaac4e3490dbca1fe038bb18e50d057d6adee53b32d6127ec844e3ae9b8f0f671969c8a00e0df01eca9fd93f27e85fc1ebcf03966e6c82b53f8f
+doccontainersize 692732
+doccontainerchecksum 0b6c66aefec59955214299a99eaf4949900fb294e7f1eb904efdfc0de3aa85c5fa38961073ba3f7a3c60f26688c28e6f1bb5ea2c32751062fb3231edc4607f0f
+docfiles size=193
+ texmf-dist/doc/latex/tqft/README
+ texmf-dist/doc/latex/tqft/tqft.pdf details="Package documentation"
+ texmf-dist/doc/latex/tqft/tqft_code.pdf details="Annotated code"
+ texmf-dist/doc/latex/tqft/tqft_doc.tex
+srccontainersize 12520
+srccontainerchecksum afea6aaf0250f9c9307479d587e844b3f391e387a4d2b6bf83b1eb2e63459d132cf0da38160bbcbeba0eaf1fc8401c9c21dec9dbc8a5e54aebeb1bd25a357445
+srcfiles size=21
+ texmf-dist/source/latex/tqft/tqft.dtx
+ texmf-dist/source/latex/tqft/tqft.ins
+runfiles size=14
+ texmf-dist/tex/latex/tqft/tikzlibrarytqft.code.tex
+ texmf-dist/tex/latex/tqft/tqft.sty
+catalogue-contact-home https://github.com/loopspace/TQFT
+catalogue-contact-repository https://github.com/loopspace/TQFT
+catalogue-ctan /macros/latex/contrib/tqft
+catalogue-license lppl1.3
+catalogue-topics diagram graphics-use
+catalogue-version 2.1

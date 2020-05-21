@@ -1,0 +1,69 @@
+\section{Style Use}
+
+\subsection{Modification of \tkzname{\tkznameofpack}}
+\tkzname{tkz-base.sty} has a default configuration file. Its existence is not mandatory, but if it exists, you can modify it to get different default styles. I only give a quick description of this file, as it may evolve soon.
+
+In \tkzname{tkz-base.cfg}, you can set the axes, the reference (if used), the grid, etc. as well as the styles which are linked to these objects.
+ It is possible to modify the styles of the points and segments.
+
+It is also possible to define the dimensions of a drawing by default by modifying \tkzname{xmin}, \tkzname{xmax}, \tkzname{ymin} and \tkzname{ymax}.   
+
+
+\begin{tkzltxexample}[small]
+\def\tkz@xa{0}
+\def\tkz@xb{10}
+\def\tkz@ya{0}
+\def\tkz@yb{10}
+\end{tkzltxexample} 
+
+These lines are used to define the values of \tkzname{xmin}, \tkzname{xmax}, etc.
+
+You can change them, for example:
+
+\begin{tkzltxexample}[small]
+\def\tkz@xa{-5}
+\def\tkz@xb{-5}
+\def\tkz@ya{5}
+\def\tkz@yb{5}
+\end{tkzltxexample}
+
+Here's a list of used styles you'll find in \tkzname{tkz-base.cfg}
+
+\begin{itemize}
+\item xlabel style
+\item xaxe style
+\item ylabel style
+\item yaxe style
+\item rep style
+\item line style
+\item point style
+\item mark style
+\item compass style
+\item vector style
+\item arrow coord style
+\item xcoord style
+\item ycoord style
+\end{itemize}
+
+\subsection{Use \tkzcname{tikzset}} 
+It's better to use \tkzcname{tikzset} now rather than \tkzcname{tikzstyle}\ and it's possible to use \tkzname{tkz-base.cfg}.
+
+If you want to change the appearance of the axes of the  orthogonal coordinate system, for example place arrows at each end or remove them. This can be done in \tkzname{tkz-base.cfg} or in your code.
+
+\begin{tkzltxexample}[small] 
+\tikzset{xaxe style/.style ={>=latex,<->}}  
+\end{tkzltxexample}
+
+The transformation will be valid for the entire document. Note that \tkzname{xmin} has been modified, in fact the arrow and the line corresponding to the graduation merge.
+
+\begin{tkzexample}[latex=7cm,small]
+\tikzset{xaxe style/.style = {<->}} 
+\tikzset{xlabel style/.style={below=6pt}} 
+\begin{tikzpicture}
+  \tkzInit[xmin=-0.5,xmax=5]  
+  \tkzDrawX 
+  \tkzLabelX
+\end{tikzpicture}
+\end{tkzexample}
+
+\endinput

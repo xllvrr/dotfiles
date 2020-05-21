@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 78 (Section  8.12.3 : Example with \tkzcname{tkzPointShowCoord} and \tkzname{xstep})
+
+\begin{tikzpicture}[xscale=3,yscale=2]
+   \tkzInit[xmax=15,ymax=15,
+           xstep=10,ystep=10]
+   \tkzAxeXY
+   \tkzDefPoint(10,10){a} \tkzDrawPoint(a)
+   \tkzPointShowCoord(a)
+   \tkzLabelPoint(a){$A_1$}
+\end{tikzpicture}
+
+\end{document}

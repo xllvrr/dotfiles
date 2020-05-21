@@ -1,0 +1,23 @@
+name iscram
+category Package
+revision 45801
+shortdesc A LaTeX class to publish article to ISCRAM conferences
+longdesc LaTeX class to publish article to ISCRAM (International
+longdesc Conference on Information Systems for Crisis Response and
+longdesc Management).
+containersize 2980
+containerchecksum 6111c93a14c28572c17a1336fdf00ddd16b6c04b34b4a10a1b4a5e46742852b949cc99438397895de36632c9f2fd57c4940a0ffa458ac148b4a5e49707e5ca79
+doccontainersize 269984
+doccontainerchecksum 24f5ebac7b8bfa826cb9ebaaeac0ec82db18807c5c3417dac53c6b636f6cb32b60901ef51f0d545cbe185ef0eef034404d3120c1211bf65c4ed4d155c67e19d2
+docfiles size=75
+ texmf-dist/doc/latex/iscram/HMI.pdf
+ texmf-dist/doc/latex/iscram/README details="Readme"
+ texmf-dist/doc/latex/iscram/iscram-class-doc.bib
+ texmf-dist/doc/latex/iscram/iscram-class-doc.pdf details="Package documenatation"
+ texmf-dist/doc/latex/iscram/iscram-class-doc.tex
+runfiles size=2
+ texmf-dist/tex/latex/iscram/iscram.cls
+catalogue-ctan /macros/latex/contrib/iscram
+catalogue-license lppl1.3
+catalogue-topics confproc
+catalogue-version 1.1

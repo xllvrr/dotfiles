@@ -1,0 +1,18 @@
+name chem-journal
+category Package
+revision 15878
+shortdesc Various BibTeX formats for journals in Chemistry
+longdesc Various BibTeX formats for journals in Chemistry, including
+longdesc Reviews in Computational Chemistry, Journal of Physical
+longdesc Chemistry, Journal of Computational Chemistry, and Physical
+longdesc Chemistry Chemical Physics.
+containersize 4992
+containerchecksum afe7c82f6e139c1321759ef9125f262d504bf602c1c5e16a11d41cc00ea47dac3f2befd602a863a12c46beaac4c50fe6fcdb145c5c6582c9d44c2740aa1b7743
+runfiles size=20
+ texmf-dist/bibtex/bst/chem-journal/jcc.bst
+ texmf-dist/bibtex/bst/chem-journal/jpc.bst
+ texmf-dist/bibtex/bst/chem-journal/pccp.bst
+ texmf-dist/bibtex/bst/chem-journal/revcompchem.bst
+catalogue-ctan /biblio/bibtex/contrib/chem-journal
+catalogue-license gpl
+catalogue-topics chemistry bibtex-supp journalpub

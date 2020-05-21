@@ -1,0 +1,15 @@
+% This is file debug1.tex
+% Type
+%  pdflatex debug1
+% for a very basic test of your latex (or pdflatex) installation.  The
+% file debug1.log should not contain any error messages and debug1.pdf
+% should read correctly in a pdf reader.
+%
+\documentclass{article}
+%
+\newcommand\Angle[1]{\setbox0=\hbox{$\mskip 7mu minus 4mu#1$}%
+    \raise.21ex\hbox{$/$}\hskip-0.95ex\underline{\raise\dp0\hbox{\box0}}}
+%
+\begin{document}
+  $120\Angle{50^{\circ}}$
+\end{document}

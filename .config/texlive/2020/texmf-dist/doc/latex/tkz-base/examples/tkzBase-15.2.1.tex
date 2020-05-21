@@ -1,0 +1,23 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 100 (Section 15.2.1 : Link the points of a scatter plot with \tkzcname{tkzJoinSetOfPoints})
+
+\begin{tikzpicture}[scale=1]
+\tkzInit[xmax=5,
+         ymin=1000,ymax=6000,ystep=1000]
+\tkzDrawX[label=$m$,below=13pt]
+\tkzDrawY[label=$R(m)$]
+\tkzLabelX[font=\scriptsize]
+\tkzLabelY[font=\scriptsize]
+\tkzDefSetOfPoints{%
+   1/2000,2/3000,4/2500,5/4200}
+\tkzJoinSetOfPoints[%
+      thick,
+      color=brown]
+\tkzDrawSetOfPoints[%
+      mark=ball
+	,mark size=3pt]
+\end{tikzpicture}
+
+\end{document}

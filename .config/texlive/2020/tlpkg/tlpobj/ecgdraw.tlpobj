@@ -1,0 +1,26 @@
+name ecgdraw
+category Package
+revision 41617
+shortdesc Draws electrocardiograms (ECG)
+longdesc This package provides the \ECG{<code>} command which draws
+longdesc electrocardiograms (ECG). The <code> represents a series of
+longdesc abbreviations which allow to draw different types of wave.
+containersize 3236
+containerchecksum 419650d8ad24b9e08523953596a79c318740b2dcb7fd18a7c7a17019fe17cc66439c0acf56a7a7f8176349df0d80b44640511269d498cfa19aba6fb1f353923f
+doccontainersize 725824
+doccontainerchecksum 24968ada8568861eb973967b33827642e1201d002f73d40de5183a38d5f447a2fb93feb1db32807829c071d1a1147039e34ed4c287886260453b9c9737693986
+docfiles size=204
+ texmf-dist/doc/latex/ecgdraw/README details="Readme"
+ texmf-dist/doc/latex/ecgdraw/archivio.tex
+ texmf-dist/doc/latex/ecgdraw/ecgdraw.pdf details="Package documentation"
+ texmf-dist/doc/latex/ecgdraw/ecgdraw_ita.pdf details="Package documentation" language="it"
+srccontainersize 12636
+srccontainerchecksum 27ea4e0f4d184883eb0515cc95b7b797ea215626fb5c4003fc02bb490b6f3edf1d9422a7f764df28372d9ded429dbe47645bdaa8fa57c4517ef438096ac68801
+srcfiles size=13
+ texmf-dist/source/latex/ecgdraw/ecgdraw.dtx
+runfiles size=3
+ texmf-dist/tex/latex/ecgdraw/ecgdraw.sty
+catalogue-ctan /graphics/ecgdraw
+catalogue-license lppl1.3
+catalogue-topics medical
+catalogue-version 0.1

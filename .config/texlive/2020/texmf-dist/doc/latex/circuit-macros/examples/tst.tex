@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+% Custimize your packages here:
+\usepackage[dvips]{graphicx}
+\usepackage{pstricks,pst-slpe,pst-grad}
+\usepackage{boxdims}
+\usepackage{upgreek}
+\usepackage{siunitx}
+\usepackage{amssymb}
+%
+%\addtolength{\textwidth}{2cm}
+\addtolength{\textwidth}{10cm} % for Tubediags.ps
+%\addtolength{\textheight}{3cm}
+\addtolength{\textheight}{10cm} % for Tubediags.ps
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\hoffset}{-0.5in}
+\newbox\graph
+\pagestyle{empty}
+\thispagestyle{empty}
+%
+\begin{document}
+  \noindent\vspace{2ex}\input{test.tex}\box\graph
+\end{document}

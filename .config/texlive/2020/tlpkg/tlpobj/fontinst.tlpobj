@@ -1,0 +1,187 @@
+name fontinst
+category Package
+revision 53562
+shortdesc Help with installing fonts for TeX and LaTeX
+longdesc TeX macros for converting Adobe Font Metric files to TeX metric
+longdesc and virtual font format. Fontinst helps mainly with the number
+longdesc crunching and shovelling parts of font installation. This means
+longdesc in practice that it creates a number of files which give the
+longdesc TeX metrics (and related information) for a font family that
+longdesc (La)TeX needs to do any typesetting in these fonts. Fontinst
+longdesc furthermore makes it easy to create fonts containing glyphs
+longdesc from more than one base font, taking advantage of (e.g.)
+longdesc "expert" font sets. Fontinst cannot examine files to see if
+longdesc they contain any useful information, nor automatically search
+longdesc for files or work with binary file formats; those tasks must
+longdesc normally be done manually or with the help of some other tool,
+longdesc such as the pltotf and vptovf programs.
+depend fontinst.ARCH
+containersize 85736
+containerchecksum 1703570199fbc41d589817f83b5782bef5552030ab54646d464423f0788b1f2f3a5017a92846de55ee696b4ccbe1d46b2220382f7446ac7cafc9970c58d1b5ba
+doccontainersize 1019508
+doccontainerchecksum dc7aca7d63e13fb908df02363542abebb1760b66669bf360c2ab33e790ae6d3ac0ac1808849efab2784c39499ee1eb5e2fe43091d41b0270a4c402c2394f6fec
+docfiles size=463
+ texmf-dist/doc/fonts/fontinst/README details="Readme"
+ texmf-dist/doc/fonts/fontinst/encspecs/encspecs.tex
+ texmf-dist/doc/fonts/fontinst/encspecs/omxdraft.etx
+ texmf-dist/doc/fonts/fontinst/encspecs/ot1draft.etx
+ texmf-dist/doc/fonts/fontinst/encspecs/t1draft.etx
+ texmf-dist/doc/fonts/fontinst/examples/basic/basicex.tex
+ texmf-dist/doc/fonts/fontinst/examples/basic/basicex2.tex
+ texmf-dist/doc/fonts/fontinst/examples/eurofont/Makefile
+ texmf-dist/doc/fonts/fontinst/examples/eurofont/eurofont.map
+ texmf-dist/doc/fonts/fontinst/examples/eurofont/eurofont.tex
+ texmf-dist/doc/fonts/fontinst/examples/mathptm/Makefile
+ texmf-dist/doc/fonts/fontinst/examples/mathptm/fontptcm.tex
+ texmf-dist/doc/fonts/fontinst/examples/mathptm/mathtest.tex
+ texmf-dist/doc/fonts/fontinst/examples/mathptm/resetsy.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptm/unsetmu.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptm/zrhax.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptm/zrmhax.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptm/zrmkern.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptm/zrvhax.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptm/zryhax.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/Makefile
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/fontptcmx.tex
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/mathptmx.sty
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/mathtestx.tex
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/resetsy.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/unsetmu.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/zrhax.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/zrmhax.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/zrmkernx.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/zrvhax.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/zryhax.mtx
+ texmf-dist/doc/fonts/fontinst/examples/mathptmx/zrykernx.mtx
+ texmf-dist/doc/fonts/fontinst/manual/fontinst.pdf details="Package documentation"
+ texmf-dist/doc/fonts/fontinst/manual/fontinst.tex
+ texmf-dist/doc/fonts/fontinst/manual/intro98.pdf details="Package introductioon"
+ texmf-dist/doc/fonts/fontinst/manual/intro98.tex
+ texmf-dist/doc/fonts/fontinst/manual/roadmap.eps
+ texmf-dist/doc/fonts/fontinst/talks/et99-font-tables.pdf
+ texmf-dist/doc/fonts/fontinst/talks/et99-font-tutorial.pdf
+ texmf-dist/doc/fonts/fontinst/test/cc-pl.enc
+ texmf-dist/doc/fonts/fontinst/test/comparemetrics.sty
+ texmf-dist/doc/fonts/fontinst/test/comparepls.tex
+ texmf-dist/doc/fonts/fontinst/test/fadrr.mtx
+ texmf-dist/doc/fonts/fontinst/test/multislot-test.tex
+ texmf-dist/doc/fonts/fontinst/test/multislot.etx
+ texmf-dist/doc/fonts/fontinst/test/omsdraft.etx
+ texmf-dist/doc/fonts/fontinst/test/testsc.tex
+ texmf-dist/doc/fonts/fontinst/test/v1901test.mtx
+ texmf-dist/doc/fonts/fontinst/test/v1901test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1902test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1905test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1906test.etx
+ texmf-dist/doc/fonts/fontinst/test/v1906test.mtx
+ texmf-dist/doc/fonts/fontinst/test/v1906test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1913test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1914test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1914testmap.tex
+ texmf-dist/doc/fonts/fontinst/test/v1914testshow.tex
+ texmf-dist/doc/fonts/fontinst/test/v1915test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1915testmap.tex
+ texmf-dist/doc/fonts/fontinst/test/v1916test.mtx
+ texmf-dist/doc/fonts/fontinst/test/v1916test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1916test2.tex
+ texmf-dist/doc/fonts/fontinst/test/v1923test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1927test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1928test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1928test2.tex
+ texmf-dist/doc/fonts/fontinst/test/v1930test.tex
+ texmf-dist/doc/fonts/fontinst/test/v1931test0.tex
+ texmf-dist/doc/fonts/fontinst/test/v1931test1.tex
+ texmf-dist/doc/fonts/fontinst/test/v1931test2.tex
+ texmf-dist/doc/man/man1/fontinst.1
+ texmf-dist/doc/man/man1/fontinst.man1.pdf
+srccontainersize 410340
+srccontainerchecksum f0e4fd7818432ccf95a91f6e5d307aefe8d6d0bc3bcef464fa5b94cde24304c693466695e3a57fcc7d3bd388fc16a2ebb23fb80ecd3e5887ce845151983ed493
+srcfiles size=469
+ texmf-dist/source/fontinst/base/CHANGES
+ texmf-dist/source/fontinst/base/fibasics.dtx
+ texmf-dist/source/fontinst/base/ficommon.dtx
+ texmf-dist/source/fontinst/base/ficonv.dtx
+ texmf-dist/source/fontinst/base/filtfam.dtx
+ texmf-dist/source/fontinst/base/fimain.dtx
+ texmf-dist/source/fontinst/base/fimapgen.dtx
+ texmf-dist/source/fontinst/base/fisource.dvi
+ texmf-dist/source/fontinst/base/fisource.ist
+ texmf-dist/source/fontinst/base/fisource.sty
+ texmf-dist/source/fontinst/base/fisource.tex
+ texmf-dist/source/fontinst/base/fitrig.dtx
+ texmf-dist/source/fontinst/base/fontinst.ins
+runfiles size=255
+ texmf-dist/scripts/texlive-extra/fontinst.sh
+ texmf-dist/tex/fontinst/base/bbox.sty
+ texmf-dist/tex/fontinst/base/cfntinst.sty
+ texmf-dist/tex/fontinst/base/finstmsc.sty
+ texmf-dist/tex/fontinst/base/fontinst.ini
+ texmf-dist/tex/fontinst/base/fontinst.sty
+ texmf-dist/tex/fontinst/base/multislot.sty
+ texmf-dist/tex/fontinst/base/xfntinst.sty
+ texmf-dist/tex/fontinst/latinetx/8r.etx
+ texmf-dist/tex/fontinst/latinetx/8y.etx
+ texmf-dist/tex/fontinst/latinetx/ot1.etx
+ texmf-dist/tex/fontinst/latinetx/ot1c.etx
+ texmf-dist/tex/fontinst/latinetx/ot1cj.etx
+ texmf-dist/tex/fontinst/latinetx/ot1ctt.etx
+ texmf-dist/tex/fontinst/latinetx/ot1i.etx
+ texmf-dist/tex/fontinst/latinetx/ot1ij.etx
+ texmf-dist/tex/fontinst/latinetx/ot1itt.etx
+ texmf-dist/tex/fontinst/latinetx/ot1j.etx
+ texmf-dist/tex/fontinst/latinetx/ot1tt.etx
+ texmf-dist/tex/fontinst/latinetx/t1.etx
+ texmf-dist/tex/fontinst/latinetx/t1c.etx
+ texmf-dist/tex/fontinst/latinetx/t1cj.etx
+ texmf-dist/tex/fontinst/latinetx/t1i.etx
+ texmf-dist/tex/fontinst/latinetx/t1ij.etx
+ texmf-dist/tex/fontinst/latinetx/t1j.etx
+ texmf-dist/tex/fontinst/latinetx/txtfdmns.etx
+ texmf-dist/tex/fontinst/latinmtx/8r.mtx
+ texmf-dist/tex/fontinst/latinmtx/8y.mtx
+ texmf-dist/tex/fontinst/latinmtx/latin.mtx
+ texmf-dist/tex/fontinst/latinmtx/latinsc.mtx
+ texmf-dist/tex/fontinst/latinmtx/llbuild.mtx
+ texmf-dist/tex/fontinst/latinmtx/lsbuild.mtx
+ texmf-dist/tex/fontinst/latinmtx/lsfake.mtx
+ texmf-dist/tex/fontinst/latinmtx/lsmisc.mtx
+ texmf-dist/tex/fontinst/latinmtx/ltcmds.mtx
+ texmf-dist/tex/fontinst/latinmtx/ltpunct.mtx
+ texmf-dist/tex/fontinst/latinmtx/lubuild.mtx
+ texmf-dist/tex/fontinst/latinmtx/newlatin.mtx
+ texmf-dist/tex/fontinst/latinmtx/resetsc.mtx
+ texmf-dist/tex/fontinst/latinmtx/unsetalf.mtx
+ texmf-dist/tex/fontinst/mathetx/euex.etx
+ texmf-dist/tex/fontinst/mathetx/eufrak.etx
+ texmf-dist/tex/fontinst/mathetx/eurm.etx
+ texmf-dist/tex/fontinst/mathetx/euscr.etx
+ texmf-dist/tex/fontinst/mathetx/msam.etx
+ texmf-dist/tex/fontinst/mathetx/msbm.etx
+ texmf-dist/tex/fontinst/mathetx/oml.etx
+ texmf-dist/tex/fontinst/mathetx/oms.etx
+ texmf-dist/tex/fontinst/mathetx/omx.etx
+ texmf-dist/tex/fontinst/mathetx/rsfs.etx
+ texmf-dist/tex/fontinst/mathmtx/mathex.mtx
+ texmf-dist/tex/fontinst/mathmtx/mathit.mtx
+ texmf-dist/tex/fontinst/mathmtx/mathsy.mtx
+ texmf-dist/tex/fontinst/misc/csc2x.tex
+ texmf-dist/tex/fontinst/misc/csckrn2x.tex
+ texmf-dist/tex/fontinst/misc/glyphbox.mtx
+ texmf-dist/tex/fontinst/misc/glyphoff.mtx
+ texmf-dist/tex/fontinst/misc/glyphon.mtx
+ texmf-dist/tex/fontinst/misc/kernoff.mtx
+ texmf-dist/tex/fontinst/misc/kernon.mtx
+ texmf-dist/tex/fontinst/misc/osf2x.tex
+ texmf-dist/tex/fontinst/smbletx/digit2.etx
+ texmf-dist/tex/fontinst/smbletx/ts1.etx
+ texmf-dist/tex/fontinst/smbletx/ts1i.etx
+ texmf-dist/tex/fontinst/smbletx/ts1ij.etx
+ texmf-dist/tex/fontinst/smbletx/ts1j.etx
+ texmf-dist/tex/fontinst/smblmtx/resetosf.mtx
+ texmf-dist/tex/fontinst/smblmtx/textcomp.mtx
+ texmf-dist/tex/fontinst/smblmtx/unsetnum.mtx
+ texmf-dist/tex/latex/fontinst/fontdoc.sty
+catalogue-ctan /fonts/utilities/fontinst
+catalogue-license lppl
+catalogue-topics font-cvt
+catalogue-version 1.933

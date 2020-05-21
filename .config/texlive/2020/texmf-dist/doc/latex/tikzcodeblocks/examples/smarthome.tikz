@@ -1,0 +1,101 @@
+\begin{tikzpicture}[codeblocks]
+\einruecken{\node[grundlage,pinlow] (start){beim Start};}
+	\node[platzhalter,unter={start}{1}{0}] (plz1){ändere \dropdown{modus} auf \intbox{1}};
+	\node[konsole,unter={plz1}{0}{0}] (ser1) {serial \\redirect to\\ \hspace{5em} TX \dropdown{C17}\\\hspace{5em} RX \dropdown{C16}\\ at baud rate \dropdown{9600}~};
+\end{tikzpicture}
+	
+\begin{tikzpicture}[codeblocks]
+\wenndann[eingabe]
+	{Knopf \dropdown{A} gedrückt} 
+	{
+	 \node[konsole] (ser1) {serial write line \stringbox{test\_line}};
+	 \node[steuerung, unter={ser1}{0}{0}]  (wait1){Warte $\mu$ \intbox{300000}};
+	}
+	{buttonA}
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[codeblocks]
+
+\schleife[konsole]{\usb{}}{serial on data recived \usb{} \dropdown{\#}}{
+	\node[platzhalter, unter={start}{1}{0}] (plz1) {ändere \dropdown{befehl} auf \tikz\node[konsole,boden,keinezacken,puzzleteil,]{\usb{} serial read until \dropdown{\#}};};
+	\wenndann[unter={plz1}{0}{0}]{\tikz\node[pins,boden,keinezacken,puzzleteil]{\dropdown{befehl}}; \dropdown{=} \stringbox{aus}}{
+			\node[pins] (pin1) {schreibe analogen Pin \dropdown{P2} auf \intbox{0}};
+			\node[pins,unter={pin1}{0}{0}] (pin2) {ändere \dropdown{modus} auf \intbox{0}};	
+	}{wenn1}
+	\wenndann[unter={wenn1}{0}{0}]{\tikz\node[pins,boden,keinezacken,puzzleteil]{\dropdown{befehl}}; \dropdown{=} \stringbox{ein}}{
+		\node[pins] (pin2) {ändere \dropdown{modus} auf \intbox{1}};	
+	}{wenn2}
+	\wenndann[unter={wenn2}{0}{0}]{\tikz\node[pins,boden,keinezacken,puzzleteil]{\dropdown{befehl}}; \dropdown{=} \stringbox{solar}}{
+		\node[pins] (pin3) {schreibe analogen Pin \dropdown{P2} auf \intbox{1023}};
+		\node[pins,unter={pin3}{0}{0}] (pin2) {ändere \dropdown{solar} auf \intbox{1}};	
+	}{wenn3}
+	\wenndann[unter={wenn3}{0}{0}]{\tikz\node[pins,boden,keinezacken,puzzleteil]{\dropdown{befehl}}; \dropdown{=} \stringbox{solar\_aus}}{
+		\node[pins] (pin4) {schreibe analogen Pin \dropdown{P2} auf \intbox{0}};	
+	}{wenn4}
+}%ende Schleifenrumpf
+{start}
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[codeblocks,scale=0.72]
+\schleife[grundlage,keinezacken]{dauerhaft}{}{
+	\wenndannsonst[robertashape]{\tikz\node[platzhalter,boden,keinezacken,puzzleteil]{\dropdown{modus}}; \dropdown{=} \intbox{1}} %wenn außen
+	{
+		\wenndann{\tikz\node[eingabe,boden,keinezacken,puzzleteil]{Lichtstärke}; \dropdown{$\leq$}\intbox{50}}
+			{\node[pins](pin1){schreibe analogen Ping \dropdown{P1} auf \intbox{1023}};
+				\node[grundlage,unter={pin1}{0}{0}](bild1){zeige LEDs\\\bild{\emptyled}};
+			}{wenn1}
+		
+		\wenndann[unter={wenn1}{0}{0}]{\tikz\node[eingabe,boden,keinezacken,puzzleteil]{Lichtstärke}; \dropdown{$>$}\intbox{50} \dropdown{und} \tikz\node[eingabe,boden,keinezacken,puzzleteil]{Lichtstärke}; \dropdown{$\leq$}\intbox{100}}{
+			\node[pins](pin2){schreibe analogen Ping \dropdown{P1} auf \intbox{800}};
+			\node[grundlage,unter={pin2}{0}{0}](bild2){zeige LEDs\\
+				\bild{\0 \0 \0 \0 \0 \\
+					\0 \0 \0 \0 \0 \\
+					\0 \0 \0 \0 \0 \\
+					\0 \X \0 \0 \0 \\
+					\X \X \0 \0 \0 \\
+			}};}{wenn2}
+		
+		\wenndann[unter={wenn2}{0}{0}]{\tikz\node[eingabe,boden,keinezacken,puzzleteil]{Lichtstärke}; \dropdown{$>$}\intbox{100} \dropdown{und} \tikz\node[eingabe,boden,keinezacken,puzzleteil]{Lichtstärke}; \dropdown{$\leq$}\intbox{150}}{\node[pins](pin3){schreibe analogen Ping \dropdown{P1} auf \intbox{600}};
+			\node[grundlage,unter={pin3}{0}{0}](bild3){zeige LEDs\\
+				\bild{
+					\0 \0 \0 \0 \0 \\
+					\0 \0 \0 \0 \0 \\
+					\0 \0 \X \0 \0 \\
+					\0 \X \X \0 \0 \\
+					\X \X \X \0 \0 \\
+			}};}{wenn3}
+		
+		\wenndann[unter={wenn3}{0}{0}]{\tikz\node[eingabe,boden,keinezacken,puzzleteil]{Lichtstärke}; \dropdown{$>$}\intbox{150} \dropdown{und} \tikz\node[eingabe,boden,keinezacken,puzzleteil]{Lichtstärke}; \dropdown{$\leq$}\intbox{200}}{\node[pins](pin4){schreibe analogen Ping \dropdown{P1} auf \intbox{200}};
+			\node[grundlage,unter={pin4}{0}{0}](bild4){zeige LEDs\\
+				\bild{
+					\0 \0 \0 \0 \0 \\
+					\0 \0 \0 \X \0 \\
+					\0 \0 \X \X \0 \\
+					\0 \X \X \X \0 \\
+					\X \X \X \X \0 \\
+			}};}{wenn4}
+		
+		\wenndann[unter={wenn3}{0}{0}]{\tikz\node[eingabe,boden,keinezacken,puzzleteil]{Lichtstärke}; \dropdown{$>$}\intbox{200} \dropdown{und} \tikz\node[eingabe,boden,keinezacken,puzzleteil]{Lichtstärke}; \dropdown{$\leq$}\intbox{255}}{\node[pins](pin5){schreibe analogen Ping \dropdown{P1} auf \intbox{0}};
+			\node[grundlage,unter={pin5}{0}{0}](bild5){zeige LEDs\\
+				\bild{
+					\0 \0 \0 \0 \X \\
+					\0 \0 \0 \X \X \\
+					\0 \0 \X \X \X \\
+					\0 \X \X \X \X \\
+					\X \X \X \X \X \\
+			}};}{wenn5}
+	}%dann außen
+	{\node[pins](pin6){schreibe analogen Ping \dropdown{P1} auf \intbox{0}};
+		\node[grundlage,unter={pin6}{0}{0}](bild5){zeige LEDs\\
+			\bild{
+				\X \0 \0 \0 \X \\
+				\0 \X \0 \X \0 \\
+				\0 \0 \X \0 \0 \\
+				\0 \X \0 \X \0 \\
+				\X \0 \0 \0 \X \\
+		}};}% sonst außen
+	{wenn}
+}{schleife1}
+\end{tikzpicture}

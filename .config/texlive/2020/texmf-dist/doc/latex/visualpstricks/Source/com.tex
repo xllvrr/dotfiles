@@ -1,0 +1,64 @@
+\SbSSCT{Commenter un élément}{comments to a graphic}
+\label{com}
+\psset{fillstyle=none}
+
+\begin{tabular}{|c|c|}	\hline 
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 4cm,subticks=0](0,0)(4,3){4cm}{3cm} 
+\psComment(1,2)(3,1){Texte}
+\end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 4cm,subticks=0](0,0)(4,3){4cm}{3cm} 
+\psComment{->}(1,2)(3,1){Texte}
+\end{psgraph}
+\\ \hline 
+\BSS{psComment}(1,2)(3,1)\AC{Texte} \BSI{psComment}{pstricks-add}& 
+\BSS{psComment}{\red \AC{->} }(1,2)(3,1)\AC{Texte}
+\\ 	\hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} 	\hline  
+\multicolumn{3}{|c|}{\BS{psComment}{\red[ref=r]} (1,2)(3,1)\AC{Texte}  } \\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 4cm,subticks=0](0,0)(4,3){4cm}{3cm} 
+\psComment[ref=r](1,2)(3,1){Texte}
+\end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 4cm,subticks=0](0,0)(4,3){4cm}{3cm}  
+	\psComment*[ref=l](1,2)(3,1){Texte}
+\end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 4cm,subticks=0](0,0)(4,3){4cm}{3cm} 
+\psComment[ref=B](1,2)(3,1){Texte}
+\end{psgraph}
+ \\ 	\hline  
+[ref=r]  &  [ref=l] & [ref=B] \\ 
+	\hline 
+\end{tabular} 
+
+
+
+
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} 	\hline  
+\multicolumn{3}{|c|}{\BS{psComment}[ref=r](1,2)(3,1)\AC{Texte}{\red [\BS{ncarc}]} } \\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 4cm,subticks=0](0,0)(4,3){4cm}{3cm} 
+\psComment[ref=r](1,2)(3,1){Texte}[\ncarc] 
+\end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 4cm,subticks=0](0,0)(4,3){4cm}{3cm}  
+\psComment*[ref=r](1,2)(3,1){Texte}[\ncdiagg]
+\end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 4cm,subticks=0](0,0)(4,3){4cm}{3cm} 
+\psComment[ref=r](1,2)(3,1){Texte}[\ncbar]
+\end{psgraph}
+\\ 	\hline  
+[\BS{ncarc}]  & [\BS{ncdiagg}]  & [\BS{ncbar}]  \\ 
+\hline 
+\end{tabular}
+
+\bigskip
+A voir : problème avec le deuxième paramètre final [\BS{ncput}]

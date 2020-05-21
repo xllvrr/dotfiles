@@ -1,0 +1,73 @@
+\begin{tikzpicture}[scale=2.54]
+% dpic version 2020.03.01 option -g for TikZ and PGF 1.01
+\ifx\dpiclw\undefined\newdimen\dpiclw\fi
+\global\def\dpicdraw{\draw[line width=\dpiclw]}
+\global\def\dpicstop{;}
+\dpiclw=0.8bp
+\dpiclw=0.8bp
+\dpicdraw (0,0)
+ --(0.125,0)\dpicstop
+\dpicdraw (0.625,0)
+ --(0.125,0.25)
+ --(0.125,-0.25)
+ --(0.625,0)
+ --(0.75,0)\dpicstop
+\draw (0.777674,0) node[right=-2bp]{{\tt amp}};
+\dpicdraw (0,-0.4)
+ --(0.225,-0.4)\dpicstop
+\dpicdraw (0.525,-0.4)
+ --(0.225,-0.25)
+ --(0.225,-0.55)
+ --(0.525,-0.4)
+ --(0.75,-0.4)\dpicstop
+\draw (0.777674,-0.4) node[right=-2bp]{{\tt amp(,0.3)}};
+\dpicdraw (2,0)
+ --(2.229167,0)\dpicstop
+\dpicdraw (2.345833,-0.175)
+ --(2.229167,-0.175)
+ --(2.229167,0.175)
+ --(2.345833,0.175)\dpicstop
+\dpicdraw (2.345833,0.175)
+ ..controls (2.442483,0.175) and (2.520833,0.09665)
+ ..(2.520833,0)
+ ..controls (2.520833,-0.09665) and (2.442483,-0.175)
+ ..(2.345833,-0.175)\dpicstop
+\dpicdraw (2.520833,0)
+ --(2.75,0)\dpicstop
+\draw (2.777674,0) node[right=-2bp]{{\tt delay}};
+\dpicdraw (2,-0.4)
+ --(2.291667,-0.4)\dpicstop
+\dpicdraw (2.358333,-0.5)
+ --(2.291667,-0.5)
+ --(2.291667,-0.3)
+ --(2.358333,-0.3)\dpicstop
+\dpicdraw (2.358333,-0.3)
+ ..controls (2.413562,-0.3) and (2.458333,-0.344772)
+ ..(2.458333,-0.4)
+ ..controls (2.458333,-0.455228) and (2.413562,-0.5)
+ ..(2.358333,-0.5)\dpicstop
+\dpicdraw (2.458333,-0.4)
+ --(2.75,-0.4)\dpicstop
+\draw (2.777674,-0.4) node[right=-2bp]{{\tt delay(,0.2)}};
+\dpicdraw (4.125,0.25)
+ --(4,0.25)
+ --(4,-0.25)
+ --(4.125,-0.25)\dpicstop
+\dpicdraw (4.625,0)
+ --(4.125,0.25)
+ --(4.125,-0.25)
+ --(4.625,0)
+ --(4.75,0)\dpicstop
+\draw (4.777674,0) node[right=-2bp]{{\tt integrator}};
+\dpicdraw (4.075,-0.35)
+ --(4,-0.35)
+ --(4,-0.65)
+ --(4.075,-0.65)\dpicstop
+\dpicdraw (4.375,-0.5)
+ --(4.075,-0.35)
+ --(4.075,-0.65)
+ --(4.375,-0.5)
+ --(4.75,-0.5)\dpicstop
+\draw (4.777674,-0.5) node[right=-2bp]{{\tt integrator(,0.3)}};
+\end{tikzpicture}
+\vspace*{-0.5\baselineskip}

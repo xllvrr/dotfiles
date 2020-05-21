@@ -1,0 +1,264 @@
+\chapter{Packages chargés (ou pas) par la classe}\label{cha-packages-charges}
+\index{package}
+
+\section{Packages chargés par la classe}\label{sec-packages-charges-par}
+\index{package!chargé par \yatcl}
+
+On a vu \vref{sec-options-passer-aux} que, pour plusieurs de ses
+fonctionnalités\index{fonctionnalité}, la \yatCl s'appuie sur des packages
+qu'elle charge automatiquement. Ceux-ci sont répertoriés, selon leur ordre de
+chargement, dans la liste suivante qui indique leur fonction et le cas échéant :
+\begin{itemize}
+\item la ou les options avec lesquelles ils sont chargés ;
+\item les options de la \yatCl{} ou leurs commandes propres permettant de les
+  personnaliser ;
+\item ceux qui, dans le cadre d'un usage standard de la \yatCl{}, peuvent être
+  utiles à l'utilisateur final : leur nom est alors un hyperlien vers la page
+  qui leur est dédiée sur le \glsxtrshort{ctan}.
+\end{itemize}
+
+\begin{description}
+\item[\package*+{pgfopts} :] gestion d'options sous la forme
+  \meta{clé}|=|\meta{valeur} ;
+\item[\package*+{etoolbox} :] outils de programmation ;
+\item[\package*+{xpatch} :] extension du package précédent ;
+\item[\package*+{morewrites} :] accès à autant de \enquote{flots} d'écriture
+  (dans des fichiers annexes) que nécessaire ;
+\item[\package*+{filehook} :] \enquote{hameçons} (\foreignquote{english}{hooks})
+  pour fichiers importés ;
+\item[\package*+{hopatch} :] emballage de \enquote{hameçons} pour packages et
+  classes ;
+\item[\package*+{xifthen} :] tests conditionnels ;
+\item[\package*+{xkeyval} :] robustification du \Package+{keyval} chargé par le
+  \Package{geometry} ;
+\item[\package{geometry} :] gestion de la géométrie de la page ;
+  \begin{description}
+  \item[option par défaut :] \docAuxKey{a4paper} ;
+  \item[personnalisation :] commande propre \docAuxCommand*{geometry} ;
+  \end{description}
+\item[\package{graphicx} :]\index{image} inclusion d'images, notamment des logos ;
+  \begin{description}
+  \item[personnalisation :] option \refKey{graphicx} de la \yatCl ;
+  \end{description}
+\item[\package*+{environ} :] stockage du contenu d'un environnement dans une
+  macro ;
+\item[\package+{adjustbox} :] ajustement de la position des matériels
+  \LaTeX{} ;
+  \begin{description}
+  \item[option par défaut :] \docAuxKey{export} ;
+  \item[personnalisation :] option \refKey{adjustbox} de la \yatCl ;
+  \end{description}
+\item[\package{array} :]\index{tableau} mise en forme automatique de colonnes de tableaux
+  (notamment) ;
+\item[\package*+{xstring} :] manipulation de chaînes de caractères ;
+\item[\package*+{textcase} :] amélioration des commandes de changement de
+  casse ;
+\item[\package+{iftex} :] détection du moteur (\hologo{pdfTeX}, \hologo{XeTeX}
+  ou \hologo{LuaTeX}) utilisé pour la compilation ;
+\item[\package{epigraph} :]\index{épigraphe} gestion des épigraphes ;
+\item[\package{tcolorbox} :]\index{boîte de couleur} boîtes élaborées en couleurs et encadrées ;
+  \begin{description}
+  \item[librairie chargée par défaut :] \docValue{skins} ;
+  \item[personnalisation :] commandes propres \docAuxCommand*{tcbuselibrary} et
+    \docAuxCommand*{tcbset} ;
+  \end{description}
+\item[\package+{marvosym} :] accès à des symboles spéciaux ;
+\item[\package+{colophon} :] insertion d'un colophon ;
+  \begin{description}
+  \item[options et commandes par défaut :]\
+    \begin{itemize}
+    \item \docAuxKey{noclrdblpg} ;
+    \item \docAuxKey{nofullpage} ;
+    \item \docAuxKey{aftertitle=1em} ;
+    \item |\colophonpreparhook{\normalsize}| ;
+    \item |\colophonpretitlehook{\Large}| ;
+    \end{itemize}
+  \end{description}
+\item[\package{setspace} :]\index{espace!interligne} gestion de l'espace
+  interligne ;
+  \begin{description}
+  \item[personnalisation :] option \refKey{setspace} de la \yatCl ;
+  \end{description}
+\item[\package*+{tocbibind} :] table des matières et index dans la table des
+  matières ;
+\item[\package*+{nonumonpart} :] suppression des numéros de pages sur les pages
+  de garde des parties ;
+\item[\package{fncychap} :] \index{chapitre!style de tête}%
+  têtes de chapitres améliorées ;
+  \begin{description}
+  \item[option par défaut :] \docAuxKey{PetersLenny} ;
+  \item[personnalisation :] option \refKey{fncychap} de la \yatCl ;
+  \end{description}
+\item[\package{titleps} :] %
+  % \changes{v0.99j}{2014-07-18}{Package \package{titleps} remplacé par le
+  % \Package{titlesec}}%
+  gestion des styles de pages ;
+  \begin{description}
+    % \item[option par défaut :] \docAuxKey{pagestyles} ;
+  \item[personnalisation :] option \refKey{titleps} de la \yatCl ;
+  \end{description}
+  % \begin{dbwarning}{Package \package{titlesec} : à utiliser avec
+  %   discernement}{}
+  %   Le \Package{titlesec} est à utiliser avec discernement car :
+  %   \begin{itemize}
+  %     \item sa personnalisation au moyen de l'option \refKey{titlesec}
+  %     désactive l'effet du \Package{fncychap}
+  %     (cf. \vref{sec-chapitres-numerotes}) et
+  %     de l'option \refKey{fncychap} ;
+  %     \item l'emploi de certaines de ses commandes peut éventuellement
+  %     conduire à des incompatibilités avec la \yatCl{} ;
+  %     \end{itemize}
+  %  \end{dbwarning}
+\item[\package{xcolor} :] \index{couleur}%
+  gestion des couleurs ;
+  \begin{description}
+  \item[personnalisation :] option \refKey{xcolor} de la \yatCl ;
+  \end{description}
+\item[\package*+{datatool} :] gestion de bases de données (membres du jury,
+  etc.) ;
+  \begin{description}
+  \item[personnalisation :] option \refKey{datatool} de la \yatCl ;
+  \end{description}
+\item[\package*+{ifdraft} :] test conditionnel du mode brouillon ;
+\item[\package+{draftwatermark} :] texte en
+  filigrane\index{filigrane}\footnote{Chargé seulement si l'une ou l'autre des
+    valeurs \docValue{draft} ou \docValue{inprogress*} est passée à la clé
+    \refKey{version}.} ;
+  \begin{description}
+  \item[personnalisation :] option \refKey{draftwatermark} de la \yatCl ;
+  \end{description}
+\item[\package{babel} :]\index{langue} gestion des langues ;
+  \begin{description}
+  \item[personnalisation :] option \refKey{babel} de la \yatCl ;
+  \end{description}
+\item[\package{etoc} :] tables des matières complètement personnalisables ;
+\item[\package*+{iflang} :] test de la langue en cours ;
+\item[\package*+{translator} :] traduction d'expressions ;
+\item[\package+{datetime} :] gestion des dates ;
+  \begin{description}
+  \item[personnalisation :] option \refKey{datetime} de la \yatCl ;
+  \end{description}
+\item[\package{hypcap} :] liens hypertextes pointant au début des
+  flottants%\ifscreenoutput ;
+  \begin{description}
+  \item[option par défaut :] \docValue*{all} ;
+  \end{description}
+\item[\package+{bookmark} :] gestion des signets%\ifscreenoutput ;
+  \begin{description}
+  \item[personnalisation :] commande propre \docAuxCommand*{bookmarksetup} ;
+  \end{description}
+\item[\package*+{glossaries-babel} :] traduction d'expressions propres aux
+  glossaires\footnote{Chargé seulement si le \Package{glossaries} l'est.}.
+\end{description}
+
+\begin{dbremark}{Disposer d'une distribution \TeX{} à jour est fortement
+    recommandé}{packages-anciens}
+  \index{distribution \TeX}%
+  Si on ne dispose pas de versions suffisamment récentes des packages
+  automatiquement chargés, des avertissements sont émis car le bon
+  fonctionnement de la \yatCl{} peut alors être sérieusement altéré, voire être
+  bloqué par une erreur de compilation \aside*{éventuellement absconse}. Il
+  est très fortement recommandé de mettre sa distribution \TeX{} à jour et, si
+  le problème persiste dans le cas de la distribution \miktex{},
+  d'installer plutôt la distribution \texlive dont les versions (à
+  jour) à partir de la \enquote{2016} fournissent des packages suffisamment
+  récents pour la \yatCl.
+\end{dbremark}
+
+\section{Packages non chargés par la classe}\label{sec-packages-non-charges}
+\index{package!non chargé par \yatcl}
+
+La liste suivante répertorie des packages non chargés par la \yatCl{} mais
+pouvant se révéler très utiles, notamment aux doctorants.  Elle est loin d'être
+exhaustive et ne mentionne notamment pas les packages nécessaires :
+\begin{itemize}
+\item \package{inputenc} et \package{fontenc}, si on utilise
+  \hologo{LaTeX}\index{LaTeX@\hologo{LaTeX}} ou
+  \hologo{pdfLaTeX}\index{pdfLaTeX@\hologo{pdfLaTeX}} ;
+\item \package{fontspec} et \package{xunicode}, si on utilise
+  \hologo{XeLaTeX}\index{XeLaTeX@\hologo{XeLaTeX}} ou
+  \hologo{LuaLaTeX}\index{LuaLaTeX@\hologo{LuaLaTeX}}.
+\end{itemize}
+Elle ne mentionne pas non plus les packages de
+fontes\index{fonte}\indexsee{police}{fonte} PostScript tels que
+\package*{lmodern}, \package*{kpfonts}, \package*{fourier}, \package*{libertine},
+etc. \aside*{presque indispensables si on utilise \hologo{LaTeX} ou
+  \hologo{pdfLaTeX}}. Des exemples de préambules complets figurent
+\vref{cha-specimen-canevas}.
+
+En outre, lorsqu'ils sont chargés manuellement par l'utilisateur, certains des
+packages suivants se voient fixés par la \yatCl{} des options ou réglages dont
+les plus notables sont précisés.
+
+\begin{description}
+\item[\package{booktabs} :]\index{tableau} tableaux plus professionnels ;
+\item[\package{siunitx} :]\index{nombre}\index{angle}\index{unité!de mesure}
+  gestion des nombres, angles et unités ;
+  \begin{description}
+  \item[options par défaut :]\
+    \begin{itemize}
+    \item \docAuxKey{detect-all} ;
+    \item \docAuxKey{locale}|=|\docValue{FR} ou
+      \docAuxKey{locale}|=|\docValue{UK} ;
+    \end{itemize}
+  \end{description}
+\item[\package{pgfplots} :]\index{graphique de haute qualité} graphiques plus professionnels,
+  notamment de données expérimentales ;
+\item[\package{listings} :]\index{listing informatique} insertion de listings
+  informatiques ;
+\item[\package{microtype} :] raffinements typographiques
+  automatiques (et subliminaux) ;
+  % \footnote{Ce package peut poser problème s'il est déjà présent alors qu'une
+  % fonte est utilisée pour la première fois. Il est donc à charger plutôt en
+  % fin de rédaction, lors de la finition de la mise en page.}
+\item[\package+{floatrow} :] gestion puissante (mais complexe) des
+  flottants ;
+\item[\package{caption} :]\index{légende} personnalisation des légendes ;
+\item[\package{todonotes} :]\index{rappel} insertion de
+  \foreignquote{english}{TODOs}\footnote{Rappels de points qu'il ne
+    faut pas oublier d'ajouter, de compléter, de réviser, etc.} ;
+\item[\package{varioref} :]\index{référence croisée!améliorée} références croisées améliorées ;
+\item[\package{imakeidx} ou \package*+{index} :]\index{index} gestion du ou des
+  index\footnote{Pour la gestion d'index, le \Package{makeidx} est plus courant
+    mais les packages \package*{imakeidx} et \package*+{index}, aux syntaxes très
+    voisines, l'améliorent et offrent des fonctionnalités supplémentaires,
+    notamment pour produire des index multiples.} ;
+\item[\package{csquotes} :]\index{citation d'extrait} pour les citations
+  d'extraits informelles et formelles (avec citation des sources) ;
+    \begin{description}
+    \item[réglage par défaut] (si le \Package*{biblatex} est chargé) :
+      |\SetCiteCommand{\autocite}| ;
+  \end{description}
+\item[\package{biblatex} :]\index{bibliographie} gestion puissante de la bibliographie ;
+\item[\package{hyperref} :]\index{lien hypertexte} \changes*{v0.99h}{2014-07-14}{Packages
+    \package{hyperref}, \package{varioref}, \package+{index} et
+    \package+{idxlayout}, plus automatiquement chargés par la
+    \yatCl{}\protect\footnote{Les utilisateurs qui ont l'usage de ces packages
+      doivent donc désormais les charger manuellement (au moyen de la commande
+      \protect\docAuxCommand{usepackage}).}.}%
+  %
+  liens hypertextes ;
+  \begin{description}
+  \item[options par défaut :]\
+    \begin{itemize}
+    \item \docAuxKey{final} ;
+    \item \docAuxKey{unicode} ;
+    \item \docAuxKey{breaklinks} ;
+    \item |hyperfootnotes=false| ;
+    \item |hyperindex=false|\footnote{Sans quoi certaines fonctionnalités sont
+        ignorées, par exemple \protect\lstinline+see+ pour les index.} ;
+    \item |plainpages=false| ;
+    \item |pdfpagemode=UseOutlines| ;
+    \item |pdfpagelayout=TwoPageRight| ;
+    \end{itemize}
+  \end{description}
+\item[\package{glossaries} :]\index{glossaire}\index{acronyme}\index{symbole!liste
+    de ---s} gestion puissante des glossaires, acronymes et liste de symboles ;
+\item[\package{cleveref} :]\index{référence croisée!intelligente} gestion
+  intelligente des références croisées.
+\end{description}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../yathesis-fr"
+%%% End:

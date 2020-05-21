@@ -1,0 +1,23 @@
+My AGUPLUS package is now obsolete, since the AGU provides its own LaTeX
+classes (which includes many of my features).
+
+However, what is not obsolete are the BibTeX style files, which I provided to
+AGU after much consultation to get them "right" (ie the way the AGU wants
+them). These are
+ agu.bst  with truncated author list
+ agufull.bst  with full author list
+ agu04.bst  same as agu.bst but with the format that applies 2004 and beyond
+ agufull04.bst  same as agufull.bst, for 2004 and beyond.
+
+Clearly now both agu.bst and agufull.04.bst are also obsolete.
+
+The current class files with examples, as well as the above bst files are
+best obtained directly from the AGU. The current link for this is
+
+http://www.agu.org/pubs/helpdesk/
+
+Since many people still use aguplus anyway, I have been asked to update the
+bst files on CTAN. So that is what I have done... :)
+
+Patrick Daly
+Dec 19, 2007

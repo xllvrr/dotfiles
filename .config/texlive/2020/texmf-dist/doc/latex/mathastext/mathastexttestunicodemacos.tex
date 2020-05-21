@@ -1,0 +1,118 @@
+\def\testfileincipit{Test file to accompany \texttt{mathastext}
+version \texttt{1.3w} of \texttt{2019/11/16}}
+%%----------------------------------------------------------------
+%% Package: mathastext
+%% Info:    Use the text font in math mode (JFB)
+%% Version: 1.3w 2019/11/16
+%% License: LPPL 1.3c (http://www.latex-project.org/lppl/lppl-1-3c.txt)
+%% Copyright (C) 2011-2019 Jean-Francois Burnol <jfbu at free dot fr>
+%% Examples of use of mathastext:
+%%        http://jf.burnol.free.fr/mathastext.html
+%%        http://jf.burnol.free.fr/showcase.html
+%%----------------------------------------------------------------
+%% This file `mathastexttestunicodemacos.tex' is for testing the use
+%% of the package `mathastext' with the unicode engines XeTeX or LuaLaTeX.
+%%
+%% Mac OS X specific fonts are used (initially tested on 10.8.2).
+%%
+%% See `mathastext.dtx' for the copyright and conditions of distribution or
+%% modification.
+%%
+\documentclass{article}
+\usepackage[hscale=0.85]{geometry}
+\usepackage{multicol}
+\usepackage[no-math]{fontspec}
+\usepackage{lmodern}
+\usepackage{metalogo}
+\usepackage{iftex}
+\ifXeTeX
+\expandafter\def\expandafter\testfileincipit\expandafter
+ {\testfileincipit\ (compiled with \XeLaTeX)}
+\else
+\ifLuaTeX
+\expandafter\def\expandafter\testfileincipit\expandafter
+ {\testfileincipit\ (compiled with \LuaLaTeX)}
+\fi\fi
+\usepackage[subdued,italic,asterisk]{mathastext}
+\setmainfont[Color=FF0000]{Hoefler Text}  \Mathastext[Hoefler]
+\setmainfont[Color=336633]{American Typewriter}\Mathastext[Typewriter]
+\setmainfont[Color=0000FF]{Herculanum}    \Mathastext[Herculanum]
+\setmainfont[Color=FF00FF]{Didot}         \Mathastext[Didot]
+\setmainfont[Color=999999]{Comic Sans MS} \Mathastext[Comic]
+\MTDeclareVersion{Times}{T1}{ptm}{m}{n}
+\begin{document}
+\MTversion{normal}
+\testfileincipit
+
+This test uses \verb|mathastext| with its \emph{italic}, \emph{asterisk}, and
+\emph{subdued} options. The base document fonts are the Latin Modern ones (in
+OpenType format). The other OpenType fonts were chosen from those available on
+a Mac OS machine. We also used the Times font in traditional \TeX\ font T1
+encoding, to demonstrate the removal since release \texttt{1.3u} of a former
+limitation that all math versions had to share the same font encoding, else
+some characters such as the dotless \texttt{i} ($\imath$), or the minus sign
+could well vanish from the output in the non-normal math versions.
+
+Furthermore we test (last line of each block, on the left) if the non-letter
+characters obey the math alphabet \verb|\mathbf|. In the normal and bold math
+versions, this feature is de-activated, as option \emph{subdued} was used; and
+if activated we should then use in these math versions the package
+\verb|\Mathbf| rather than \verb|\mathbf| which is there still the original
+one, which will use encoding \verb|OT1| in the normal and bold versions, as we
+loaded \verb|fontspec| with its option \emph{no-math}.
+
+Some among the fonts tested have no bold variant or no italic variant.
+
+Note (tested 2013/09/03): for some reason the \verb|Color| specifications in the
+\verb|\setmainfont| commands work only
+with \XeLaTeX{}, not with \LuaLaTeX{}; a few months back I had not noticed
+such a difference between the two engines.
+
+Update (tested 2016/01/15 with reasonably up-to-date TL2015): \verb|Color|
+spec in use of \verb|\setmainfont| command now functional again with
+\LuaLaTeX.
+
+Note (tested 2019/08/11, reasonably up-to-date TL2019): spacing with the Didot
+font differs widely between \XeLaTeX\ and \LuaLaTeX{} (perhaps related to
+italic corrections, see the package documentation), and also it seems
+\LuaLaTeX{} will not find (from our generic usage of the \verb|fontspec|
+interface, at least) bold variants of the Hoefler Text and American Typewriter
+fonts, contrarily to \XeLaTeX. Also, the \emph{italic} option remains
+seemingly without effect with \LuaLaTeX{} in the case of the Hoefler Text font
+(see the package source code comments on some problems with the two ``modes''
+for text fonts under \LuaLaTeX, which may be related with this specific issue
+here).
+
+\newcommand\TEST[1]{\MTversion{#1}\def\tmpa{#1}%
+  \def\tmpb{normal}\def\tmpc{bold}%
+  \ifx\tmpa\tmpb\else\ifx\tmpa\tmpc\else \MTnonlettersobeymathxx
+  \MTexplicitbracesobeymathxx\fi\fi
+\begin{multicols}{2}
+\hbox to\columnwidth{\hbox to\columnwidth{\hfil
+                $abcdefghijklmnopqrstuvwxyz$\hfil}\kern-2.5em{#1}}
+   \centerline{ $ABCDEFGHIJKLMNOPQRSTUVWXYZ$ }
+   \centerline{ $0123456789$ }
+   \centerline{ $!\,?\,*\,,\,.\,:\,;\,+\,-\,=\,(\,)\,[\,]\,/\,\#\,%
+   \$\,\%\,\&\,<\,>\,|\,\{\,\}\,\backslash$ }
+   \centerline{ $\mathbf{!\,?\,*\,,\,.\,:\,;\,+\,-\,=\,(\,)\,[\,]\,/\,\#\,%
+   \$\,\%\,\&\,<\,>\,|\,\{\,\}\,\backslash}$ }
+\columnbreak
+   \centerline{ abcdefghijklmnopqrstuvwxyz }
+   \centerline{ ABCDEFGHIJKLMNOPQRSTUVWXYZ }
+   \centerline{ 0123456789 }
+   \centerline{ !\,?\,*\,,\,.\,:\,;\,+\,-\,=\,(\,)\,[\,]\,/\,\#\,%
+   \$\,\%\,\&\,<\,>\,|\,\{\,\}\,\char92 }
+   \centerline{\bfseries !\,?\,*\,,\,.\,:\,;\,+\,-\,=\,(\,)\,[\,]\,/\,\#\,%
+   \$\,\%\,\&\,<\,>\,|\,\{\,\}\,\char92 }
+\end{multicols}}
+\begin{multicols}{2}
+   \centerline{\textbf{math mode}}
+\columnbreak
+   \centerline{ \textbf{text} }
+\end{multicols}
+\TEST{Didot}\TEST{Comic}\TEST{normal}\TEST{Herculanum}
+\TEST{Hoefler}\TEST{Typewriter}\TEST{bold}\TEST{Times}
+\end{document}
+\endinput
+%%
+%% End of file `mathastexttestunicodemacos.tex'.

@@ -1,0 +1,27 @@
+This is the README file for the librarian package.
+Author: Paul Isambert.
+E-mail: zappathustra AT free DOT fr
+Comments and suggestions are welcome.
+Date: April 2010.
+
+The package creates bibliographies without BibTeX,
+for all formats.
+Relevant information can be found in librarian-doc.pdf.
+
+The files in this distribution are:
+
+DOC:
+librarian-doc.pdf  ->  The documentation.
+librarian-doc.tex  ->  The source.
+librarian.bib      ->  A bib file for the examples in
+                       the documentation.
+
+TEX:
+librarian.tex      ->  The crux of the biscuit
+                       (directly \input in plain TeX).
+t-librarian.tex    ->  A third-party file for use with ConTeXt.
+librarian.sty      ->  A style file for use with LaTeX.
+authoryear.tex     ->  An example bibliographic style
+                       (described in the documentation).
+
+Licensing of this package is covered by LPPL.

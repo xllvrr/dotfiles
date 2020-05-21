@@ -1,0 +1,38 @@
+name epspdf
+category Package
+revision 53472
+shortdesc Converter for PostScript, EPS and PDF
+longdesc Epspdftk.tcl is a GUI ps/eps/pdf converter. Epspdf.tlu, its
+longdesc command-line backend, can be used by itself. Options include
+longdesc grayscaling, cropping margins and single-page selection. Some
+longdesc conversion options are made possible by converting in multiple
+longdesc steps.
+depend epspdf.ARCH
+containersize 31912
+containerchecksum 8464aef2f11712c124b2fb29eb448706007f8b4825ba09a7579b4b8a6cf31fc3ea4b98359ecb588e6886fbed9b59d1da155a3d69946bcb99f90f39043aeb4eea
+doccontainersize 241448
+doccontainerchecksum 6de1e86931bedc481f2cce725c58e83a9bcb8af10938ba8d5701f325ebc0e98824cc472b32e95c9f319dbac7c49ca849e368d431dd79c5d1d0fceca81da3cd35
+docfiles size=98
+ texmf-dist/doc/info/epspdf.info
+ texmf-dist/doc/support/epspdf/COPYING
+ texmf-dist/doc/support/epspdf/Changelog
+ texmf-dist/doc/support/epspdf/README details="Readme"
+ texmf-dist/doc/support/epspdf/epspdf.pdf details="User Manual"
+ texmf-dist/doc/support/epspdf/epspdf.texi
+ texmf-dist/doc/support/epspdf/images/cnv_linux.png
+ texmf-dist/doc/support/epspdf/images/config_lnx.png
+ texmf-dist/doc/support/epspdf/images/epspdf.png
+ texmf-dist/doc/support/epspdf/images/logo.pdf
+ texmf-dist/doc/support/epspdf/images/logo.svg
+ texmf-dist/doc/support/epspdf/images/main_wx.png
+ texmf-dist/doc/support/epspdf/pstexi.tex
+runfiles size=33
+ texmf-dist/scripts/epspdf/epspdf.help
+ texmf-dist/scripts/epspdf/epspdf.tlu
+ texmf-dist/scripts/epspdf/epspdf4tk.cmd
+ texmf-dist/scripts/epspdf/epspdftk.tcl
+catalogue-also epstopdf
+catalogue-ctan /support/epspdf
+catalogue-license gpl2
+catalogue-topics graphics-epspdf
+catalogue-version 0.6.5

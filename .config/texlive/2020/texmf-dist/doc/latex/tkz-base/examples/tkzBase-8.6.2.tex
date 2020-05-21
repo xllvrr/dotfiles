@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 65 (Section  8.6.2 : Changing the style)
+
+\begin{tikzpicture}
+   \tikzset{point style/.style={%
+     draw         = blue,
+     inner sep    = 0pt,
+     shape        = circle,
+     minimum size = 6pt,
+     fill         = red!20}}
+   \tkzDefPoint(1,3){A}
+   \tkzDefPoint(4,1){B}
+   \tkzDefPoint(0,0){O}
+   \tkzDrawPoint(A)
+   \tkzDrawPoint(B)
+   \tkzDrawPoint(O)
+\end{tikzpicture}
+
+\end{document}

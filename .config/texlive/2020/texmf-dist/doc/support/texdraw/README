@@ -1,0 +1,81 @@
+TeXdraw distribution
+
+$Id: README 2.8 2019/04/18 TeXdraw-v2r3 $
+
+The TeXdraw package consists of a set of macro definitions for the TeX
+typesetting program.  These macros allow the user to produce PostScript
+drawings from within TeX and LaTeX.
+
+The main benefits of TeXdraw accrue from the ability to produce drawings
+from <within> TeX, using TeX fonts for labelling the drawing.
+
+Basic drawing features include:
+(1) moves, lines and arrow vectors
+    - selectable gray level, line width, pattern, arrowhead size and type
+(2) circles, ellipses, arcs, and Bezier curves
+(3) general fill command to fill a region defined by lines and Bezier
+    curves (selectable gray level)
+(4) TeX text, including mathematics, can be positioned and superimposed
+    on the drawing
+
+TeXdraw has been designed to be extensible.  Drawing "segments" are
+relocatable, self-contained units.  Using a combination of the begingroup/
+endgroup mechanism in TeX and the gsave/grestore mechanism in PostScript,
+drawing segments allow for local changes to the scaling and line
+parameters.  Using TeX's macro definition capability, new drawing commands
+can be constructed from drawing segments.
+
+The extensibility features include,
+(1) relocatable drawing segments to keep changes local
+(2) local segment scaling
+(3) saving and restoring positions using symbolic positions
+
+The distribution as a compressed tar file is available from:
+  http://www-mmsp.ECE.McGill.CA/MMSP/Documents/Software
+
+=====
+Peter Kabal                            peter.kabal@McGill.CA
+Department of Electrical & Computer Engineering
+McGill University
+Montreal, Quebec
+
+=====
+The distribution consists of the TeXdraw macros themselves, files with
+auxiliary macros, and the TeXdraw manual (PosScript/PDF).
+
+Distribution Contents:
+----------------------
+
+Miscellaneous:
+  README              - this file
+  ChangeLog           - log of changes to TeXdraw
+
+TeXdraw macros (main directory):
+  texdraw.tex         - TeXdraw macros for TeX
+  texdraw.sty         - LaTeX2e interface to TeXdraw
+  txdtools.tex        - TeXdraw toolbox for extending TeXdraw
+  txdps.tex           - TeXdraw macros for accessing PostScript macros
+  blockdiagram.tex    - Block diagram macros for TeXdraw
+
+TeXdraw examples (directory examples/):
+  txdexamp.tex        - plain TeX code for the examples in the manual
+  txdexamp.latex      - LaTeX2e code for the examples in the manual
+
+TeXdraw documentation (directory manual/):
+  texdraw.ps          - PostScript version of the manual
+  texdraw.pdf         - PDF version of the manual
+  texdraw.texi        - Texinfo source file for the TeXdraw manual
+
+===============================================
+Initial Tests:
+
+(1) View the PostScript or pdf version of the manual ("texdraw.ps" or
+    "texdraw.pdf") to see the capabilities of TeXdraw.
+(2) Try TeX'ing the examples file.  Assuming plain TeX is invoked with the
+    command "tex" and LaTeX2e is invoked with the command "latex"
+    % tex txdexamp
+    ... or ...
+    % latex texdexamp.latex
+(3) Printing the examples using the appropriate printer driver program
+    (only dvips can be used with the plain TeX version of the examples),
+    % dvips txdexamp

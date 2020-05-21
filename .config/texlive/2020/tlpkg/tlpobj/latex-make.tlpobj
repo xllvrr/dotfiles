@@ -1,0 +1,51 @@
+name latex-make
+category Package
+revision 48925
+shortdesc Easy compiling of complex (and simple) LaTeX documents
+longdesc This package provides several tools that aim to simplify the
+longdesc compilation of LaTeX documents: LaTeX.mk: a Makefile snippet to
+longdesc help compiling LaTeX documents in DVI, PDF, PS, ... format.
+longdesc Dependencies are automatically tracked: one should be able to
+longdesc compile documents with a one-line Makefile containing 'include
+longdesc LaTeX.mk'. Complex documents (with multiple bibliographies,
+longdesc indexes, glossaries, ...) should be correctly managed.
+longdesc figlatex.sty: a LaTeX package to easily insert xfig figures
+longdesc (with \includegraphics{file.fig}). It can interact with
+longdesc LaTeX.mk so that the latter automatically invokes transfig if
+longdesc needed. And various helper tools for LaTeX.mk This package
+longdesc requires GNUmake (>= 3.81).
+containersize 9172
+containerchecksum cb48ad252c77ca6271a527718872f95f28d64664aa62aca9ed11d73b1fdf29dec1cefa6c2fc07f0c95e16495a0a2410b59087e88a889b1047ce24bff71495ee4
+doccontainersize 751040
+doccontainerchecksum bfe0143040544987d9e89827b79a847657f9b705ef3607ec2757ab7d5a8b4e005c64060ba5d3cf4066c4f21e622cafaf5e7c442aadd53f6583230e7f276c317a
+docfiles size=216
+ texmf-dist/doc/support/latex-make/LaTeX.mk
+ texmf-dist/doc/support/latex-make/LaTeX.mk.conf
+ texmf-dist/doc/support/latex-make/README details="Readme"
+ texmf-dist/doc/support/latex-make/figlatex.pdf details="figlatex Package documentation"
+ texmf-dist/doc/support/latex-make/latex-make.pdf details="Package documentation"
+ texmf-dist/doc/support/latex-make/texdepends.pdf details="texdepends Package documentation"
+srccontainersize 28480
+srccontainerchecksum c437e31d4cb28c8ad838545aa0afe053318986a8fd9efb8dea0500d544b94bcb2a6b89c96d079ddc640477bba845b84f7f1fd8cf86ad689c04628e274352738b
+srcfiles size=36
+ texmf-dist/source/support/latex-make/figlatex.dtx
+ texmf-dist/source/support/latex-make/latex-make.dtx
+ texmf-dist/source/support/latex-make/latex-make.ins
+ texmf-dist/source/support/latex-make/pdfswitch.dtx
+ texmf-dist/source/support/latex-make/texdepends.dtx
+runfiles size=16
+ texmf-dist/scripts/latex-make/figdepth.py
+ texmf-dist/scripts/latex-make/gensubfig.py
+ texmf-dist/scripts/latex-make/latexfilter.py
+ texmf-dist/scripts/latex-make/svg2dev.py
+ texmf-dist/scripts/latex-make/svgdepth.py
+ texmf-dist/tex/latex/latex-make/figlatex.cfg
+ texmf-dist/tex/latex/latex-make/figlatex.sty
+ texmf-dist/tex/latex/latex-make/pdfswitch.sty
+ texmf-dist/tex/latex/latex-make/texdepends.sty
+ texmf-dist/tex/latex/latex-make/texgraphicx.sty
+catalogue-contact-home http://gforge.inria.fr/projects/latex-utils/
+catalogue-ctan /support/latex-make
+catalogue-license gpl
+catalogue-topics compilation
+catalogue-version 2.3.0

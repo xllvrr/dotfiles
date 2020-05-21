@@ -2,6 +2,7 @@
 bspc rule -r "*"
 
 ###---Autostart---###
+dunst &
 xrdb ~/.Xresources &
 compton -b &
 feh --bg-scale --no-fehbf ~/.config/wall.jpg &

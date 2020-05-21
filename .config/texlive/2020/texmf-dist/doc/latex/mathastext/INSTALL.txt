@@ -1,0 +1,38 @@
+The simplest for most users is to use the manager script of the TeX
+installation to either install or upgrade mathastext to its current
+version.
+
+Else, download mathastext.dtx and follow these instructions:
+
+- Run tex or etex on mathastext.dtx to generate the package style
+  file mathastext.sty as well as additional files:
+
+  mathastext.tex, README.md, ChangeLog.md, and some test files.
+
+- Move the style file mathastext.sty to a location where TeX can
+  find it. In a TDS compliant hierarchy this will be
+
+      <TDS>:tex/latex/mathastext/mathastext.sty
+
+For the documentation:
+
+- Follow the above steps, then run latex thrice on mathastext.tex
+  then dvipdfmx on mathastext.dvi. The file mathastext.tex can be
+  customized to change the font size or set other options therein.
+  The produced file mathastext.pdf will by default include the
+  commented source code.
+
+It is also possible to run pdflatex (thrice) directly on mathastext.dtx.
+In that case mathastext.pdf is produced without the commented source code.
+
+One can NOT use lualatex or xelatex to compile the documentation.
+
+The test files
+
+    mathastexttestmathversions.tex
+    mathastexttestunicodemacos.tex
+    mathastexttestunicodelinux.tex
+    mathastexttestalphabets.tex
+
+illustrate some features of the package and are an addendum to the
+main documentation mathastext.pdf.

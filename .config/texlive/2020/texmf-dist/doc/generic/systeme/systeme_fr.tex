@@ -1,0 +1,428 @@
+% !TeX TS-program = xelatex
+\documentclass[10pt,french]{article}
+\usepackage[a4paper,margin=3cm,head=12pt,headsep=7mm,footskip=7mm]{geometry}
+\usepackage[bottom]{footmisc}
+
+\usepackage{amsmath,fancybox,enumitem,systeme,xcolor,amssymb,array,longtable,fancyhdr,libertinus-otf}
+\setsansfont[Scale=0.8]{Luxi Mono}
+\fancypagestyle{plain}{%
+	\fancyhead[L]{\small L'extension \bfseries systeme}
+	\fancyhead[C]{}
+	\fancyhead[R]{\scriptsize\slshape\leftmark}
+	\fancyfoot[l]{\tiny Compilé par Christian \textsc{Tellechea}, le \today.}
+	\fancyfoot[c]{}
+	\fancyfoot[r]{\thepage}}
+\renewcommand\headrulewidth{0.4pt}
+
+\makeatletter
+
+\newcommand\make@car@active[2]{%
+	\catcode`#1\active
+	\begingroup
+		\lccode`\~`#1\relax
+		\lowercase{\endgroup\def~{#2}}%
+}
+
+\newcommand\exemple{%
+	\begingroup
+	\parindent\z@
+	\parskip\z@
+	\@makeother\;\@makeother\!\@makeother\?\@makeother\:% neutralise frenchb
+	\exemple@}
+
+\newcommand\exemple@[2][50]{%
+	\medbreak\noindent
+	\begingroup
+		\let\do\@makeother\dospecials
+		\make@car@active\ { {}}%
+		\make@car@active\^^M{\par\leavevmode}%
+		\make@car@active\,{\leavevmode\kern\z@\string,}%
+		\make@car@active\-{\leavevmode\kern\z@\string-}%
+		\exemple@@{#1}{#2}%
+}
+
+\newcommand\exemple@@[3]{%
+	\def\@tempa##1#3{\exemple@@@{#1}{#2}{##1}}%
+	\@tempa
+}
+
+\newcommand\exemple@@@[3]{%
+	\xdef\the@code{#3}%
+	\endgroup
+	\vskip0.5ex
+	\boxput*(0,1)
+		{\fboxsep\z@
+		\hbox{\colorbox{white}{\leavevmode\kern0.25em{\small\bfseries#2}\kern0.25em}}%
+		}%
+		{\fboxsep5pt
+		\fbox{%
+			$\vcenter{\hsize\dimexpr0.#1\linewidth-\fboxsep-\fboxrule\relax
+				\kern5pt\parskip0pt \ttfamily\small\the@code}%
+			\vcenter{\kern5pt\hsize\dimexpr\linewidth-0.#1\linewidth-\fboxsep-\fboxrule\relax
+				\small\newlinechar`\^^M\everyeof{\noexpand}\scantokens{#3}}$%
+			}%
+		}%
+	\medbreak
+	\endgroup
+}
+
+\newcommand\falseverb[1]{{\ttfamily\detokenize{#1}}}
+
+\long\def\centerverb#1{%
+	\def\centerverb@i##1#1{##1\hfill\null\par\egroup}
+	\bgroup
+		\ttfamily\@noligs
+		\parskip2pt\par\hfill
+		\let\do\@makeother\dospecials
+		\@vobeyspaces
+		\centerverb@i}
+
+\def\longfrdate@i#1/#2/#3\@nil{\number#3\relax\ifnum#3=1 \ier\fi\space\ifcase #2 \or janvier\or février\or mars\or avril\or mai\or juin\or juillet\or aout\or septembre\or octobre\or novembre\or décembre\fi\space#1}
+\def\longfrdate{\expandafter\longfrdate@i\SYSdate\@nil}
+\makeatother
+
+\usepackage{babel}
+\frenchbsetup{StandardLists=true}
+
+\usepackage[plainpages=false,pdfpagelabels,bookmarks=true,bookmarksopen=true,colorlinks=true,hyperfootnotes=false,filecolor=black,linkcolor=blue,urlcolor=magenta,pdfauthor={Christian TELLECHEA},pdftitle={systeme},pdfsubject={Saisie intuitive de systèmes d'équations},pdfkeywords={systeme},pdfcreator={LaTeX}]{hyperref}
+
+\setitemize{leftmargin=3em,topsep=0pt,parsep=0pt,itemsep=0pt,label=--}
+
+\begin{document}
+\begin{titlepage}
+	\null\par\vspace{1.5cm}
+	\begin{center}
+		\begin{minipage}{0.75\linewidth}
+			\begin{center}
+				\Huge L'extension pour \TeX{} et \LaTeX{}\normalsize\par
+				\fontsize{50pt}{50pt}\selectfont\bfseries\SYSname\par
+				\par\vspace{5pt}\normalsize
+				v\SYSver\par\vspace{5pt}
+				\longfrdate\par\vspace{35pt}
+				\normalsize Manuel de l'utilisateur
+			\end{center}
+		\end{minipage}
+	\end{center}
+	\vspace{1cm}
+	\begin{center}
+		Christian {\sc Tellechea}\par\small
+		\href{mailto:unbonpetit@netc.fr}{\texttt{\textbf{unbonpetit@netc.fr}}}
+	\end{center}
+	\vspace{2cm}
+	\begin{center}
+		\begin{minipage}{0.8\linewidth}
+			\noindent\hrulefill\par
+			\hfill\textbf{\textit{Résumé}}\hfill{}\medskip\par\small
+				Cette petite extension met en forme des systèmes d'équations ou d'inéquations où les termes et les signes sont alignés verticalement, tout en permettant une saisie quasi naturelle.\par
+			\hrulefill
+		\end{minipage}
+	\end{center}
+	\vspace{2cm}
+	\tableofcontents
+\end{titlepage}
+\pagestyle{plain}
+\parskip5pt minus 1pt
+\parindent0pt
+
+\subsection*{Avant propos}
+Tout a recommencé, comme chaque année lorsque j'enseigne les systèmes d'équations, par un (petit) énervement concernant la difficulté de la saisie pour avoir une mise en forme acceptable. C'est à chaque fois un casse tête et une perte de temps conséquente de se battre avec les tableaux \LaTeX{} pour obtenir \emph{in fine} des systèmes avec un alignement correct, d'où le petit énervement, surtout lorsque, insouciant, on commence à taper ses sujets vers 23h pour le lendemain.
+
+Fort de ce constat, je me suis dit qu'il allait falloir écrire des macros pour être débarrassé de la difficulté de la saisie. Et tant qu'à faire, autant écrire des macros en plain $\varepsilon$\TeX, que tout le monde puisse en profiter\footnote{Enfin, tout le monde, c'est vite dit ! Cette extension n'est pas compatible avec Con\TeX t car, pour une raison que je ne m'explique pas, \href{http://www.ctan.org/tex-archive/macros/latex/contrib/xstring/}{\texttt{\textbf{xstring}}} n'est pas utilisable avec Con\TeX t. Si quelqu'un a une explication (et éventuellement un remède), je lui serais très reconnaissant de me contacter par \href{mailto:unbonpetit@netc.fr}{\texttt{\textbf{email}}} !}. Ces macros sont réunies dans cette petite extension maintenant à peu près fonctionnelle.
+
+\section{Fonctionnalités de l'extension}
+\subsection{La commande \texttt{\textbackslash systeme}}
+Pour l'utiliser l'extension \og systeme\fg{} , il faut écrire :
+\begin{itemize}
+	\item {\color{blue}\verb-input systeme.tex-} lorsqu'on utilise \TeX{} ou pdf\TeX;
+	\item {\color{blue}\verb-\usepackage{systeme}-} dans le préambule lorsqu'on utilise \LaTeX.
+\end{itemize}
+L'extension \href{http://www.ctan.org/tex-archive/macros/latex/contrib/xstring/}{\texttt{\textbf{xstring}}} est requise et est chargée si cela n'a pas été le cas.
+
+La commande principale est \verb-\systeme- dont l'argument obligatoire contient les équations séparées par une virgule :
+
+\exemple{La commande \ttfamily\string\systeme}/Résoudre \systeme{2a-3b+4c=2,
+a+8b+5c=8,
+-a+2b+c=-5}/
+La virgule, qui est le séparateur par défaut, peut être changée en tout autre caractère. Il suffit de placer ce nouveau caractère dans l'argument de la commande \verb-\syseqsep-.
+
+La commande \verb-\systeme- fonctionnera en mode math ou non et donnera un résultat correct si toutes les inconnues se trouvent dans le membre de gauche, le membre de droite étant celui des constantes. Les équations doivent être \emph{développées}, c'est-à-dire que chaque terme est séparé de son voisin par un "+" ou un "-". De plus, les inconnues doivent être des lettres minuscules non accentuées, c'est-à-dire tout caractère de \og\verb-a-\fg{} à \og\verb-z-\fg. Les espaces sont ignorés dans l'argument de la macro \verb|\systeme|.
+
+L'alignement construit sera un tableau précédé d'une accolade et aura les spécificités suivantes :
+\begin{itemize}
+	\item les signes d'égalité ou d'inégalité séparant les deux membres sont alignés;
+	\item les signes "+" ou "-" séparant chaque terme du membre gauche sont alignés;
+	\item chaque terme du membre de gauche se trouve dans une colonne au fer à droite;
+	\item le membre de droite se trouve dans une colonne au fer à gauche;
+	\item les espacements mathématiques entre colonnes seront corrects.
+\end{itemize}
+
+Les inconnues peuvent avoir un indice, sous réserve que celui-ci soit un nombre entier \emph{positif ou nul}\footnote{L'indice $-1$ correspond en interne à une inconnue non indicée. Par conséquent, la présence simultanée dans une même équation d'une inconnue non indicée et de cette inconnue avec l'indice $-1$ provoquera une erreur.} :
+\exemple{Inconnues indicées}/\systeme{4x_1-x_2=3,
+-x_1+5x_2=-1}/
+
+Si une inconnue est manquante dans une équation, la colonne du tableau reste vide :
+\exemple{Inconnues manquantes}/\systeme{a-2b=3,
+b-3c=4,
+-a+4c=-1}/
+
+Le membre de gauche peut contenir un terme constant. Dans ce cas, quel que soit l'endroit où il a été écrit dans ce membre, il sera affiché en dernière position, c'est-à-dire juste avant le signe d'égalité. Si plusieurs termes constants sont dans le membre de gauche, seul le dernier est pris en compte :
+
+\exemple{Terme constant dans le membre de gauche}/\systeme{2x+3y=0,
+x-z+9=0,
+2+3x+5-y-7+z=0}/
+
+On peut également avoir une, plusieurs, ou toutes les équations sans second membre :
+\exemple{Équation sans second membre}/\systeme{2a+3b-c=4,
+b-2c,
+-a+2b+3c}/
+
+Dans l'argument de la commande \verb-\systeme-, lorsque deux virgules se suivent, une équation vide, c'est-à-dire une ligne vide est insérée. Malgré cette facilité, pour augmenter l'espacement vertical entre les équations, il vaut mieux utiliser la commande \verb-\syslineskipcoeff-, voir page~\pageref{espacement.vertical}.
+\exemple{Ligne vide}/\systeme{a-2b=3,,2a+5b=7}/
+
+La commande \verb-\systeme- permet d'utiliser les commandes \og\verb-\+-\fg{} et \og\verb+\-+\fg{} pour échapper \og\verb|+|\fg{} et \og\verb|-|\fg{}, au cas où les coefficients doivent contenir ces signes, pour éviter qu'ils ne soient compris comme la fin d'un terme :
+\exemple{Coefficient contenant une addition ou soustraction}/\systeme{(2\+\sqrt2)x-(1\-\sqrt2)y=1,
+x+(1\+\sqrt2)y=-1}/
+
+Lorsqu'elle est suivie d'une \og\verb-*-\fg{}, la commande \verb-\systeme- est dégradée et n'aligne que les signes d'égalité :
+\exemple{La commande \ttfamily\string\systeme*}/\systeme{3x-4y+z=5,
+5x-3z=1,
+y+z=0}
+
+\systeme*{3x-4y+z=5,
+5x-3z=1,
+y+z=0}/
+
+\subsection{Choix des délimiteurs}
+Par défaut, les délimiteurs extensibles qui se trouvent à gauche et à droite du système sont ``\verb-\{-'' et ``\verb-.-'' et sont placés après les primitives \verb-\left- et \verb-\right-.
+
+On peut modifier ces deux délimiteurs via la commande \verb-\sysdelim<delim gauche><delim droit>- :
+\exemple{Choix des délimiteurs extensibles}/\systeme{2a+3b=5,3a-b=8}
+
+\sysdelim[]\systeme{2a+3b=5,3a-b=8}
+
+\sysdelim.|\systeme{2a+3b=5,3a-b=8}
+
+\sysdelim{(}{\lfloor}\systeme{2a+3b=5,3a-b=8}/
+
+\subsection{Tri des inconnues}
+Quel que soit l'ordre dans lequel sont entrées les inconnues lors de la saisie, elles seront triées par ordre alphabétique à l'affichage, en tenant compte de leur éventuel indice. Un signe "+" ne sera pas affiché lorsqu'il précède le premier terme d'une équation :
+\exemple{Tri des inconnues}/\systeme{2y+x-3z=4,
+z-y+2x=-1,
+-2x+3z-4y=0}
+
+\systeme{y_2+5y_1-x_1=0,
+y_1-x_1+3y_2=4,
+2x_1-y_2-y_1=-1}/
+
+Lorsque les inconnues sont indicées, elles sont classés alphabétiquement puis dans l'ordre croissant de leur indice.
+
+Le tri alphabétique est une facilité mais il peut s'avérer gênant surtout dans les systèmes $4\times4$ où, bien souvent, la 4\ieme{} inconnue est \og$t$\fg{} :
+\exemple{Tri alphabétique indésirable}/\systeme{x+2y-3z+t=0,
+2x-y-z+3t=4,
+2y+3z+4t=-1,
+3x-2z-2t=3}/
+On aimerait bien que l'inconnue $t$ soit en 4\ieme{} position dans toutes les équations. Pour cela, il faut forcer un tri différent du tri alphabétique avec l'argument optionnel de la commande \verb-\systeme-. Cet argument optionnel doit contenir la liste des inconnues, éventuellement indicées, sans aucun espace entre elles, et dans l'ordre où l'on souhaite les voir affichées dans chaque équation.
+
+Ici, on affiche deux fois le même système avec deux ordres différents :
+\exemple{Tri forcé}/\systeme[xyzt]{x+2y-3z+t=0,
+2x-y-z+3t=4,
+2y+3z+4t=-1,
+3x-2z-2t=3}
+
+\systeme[ztyx]{x+2y-3z+t=0,
+2x-y-z+3t=4,
+2y+3z+4t=-1,
+3x-2z-2t=3}/
+
+Cet argument optionnel implique d'autres fonctionnalités, qui, avec le tri forcé vu juste au dessus, se cumulent toutes. Ainsi, lorsque cet argument optionnel existe et n'est pas vide :
+\begin{enumerate}
+	\item les inconnues qui sont contenues dans l'argument optionnel peuvent être autre chose que des lettres minuscules (par exemple \verb-A-, \verb-B-, \verb-\alpha-, etc.) éventuellement indicées :
+	\exemple{Autres inconnues}/\systeme[A\alpha\beta]{%
+	A-\alpha+3\beta=4,
+	2A+\alpha-\beta=0,
+	-A+3\alpha-2\beta=5}/
+	\item seules les inconnues figurant dans l'argument optionnel sont reconnues dans les équations. Dans l'exemple ci dessous, la lettre $m$ n'est pas comprise comme étant une inconnue :
+	\exemple{Inconnues forcées}/\systeme[xy]{mx-y=3,
+	x-m^2y=-1}/
+\end{enumerate}
+
+\subsection{Inéquations}
+Dans chaque ligne, le signe susceptible de séparer les deux membres d'une équation est l'un de ceux-ci : \verb-=-, \verb-<-, \verb->-, \verb-<=-, \verb->=-, \verb-\leq-, \verb-\geq-, \verb-\leqslant- et \verb-\geqslant-. Les deux derniers ne sont utilisables que si l'extension \href{http://ctan.org/pkg/amssymb}{\texttt{\textbf{amssymb}}} a été chargée.
+
+Les signes \verb-<=- et \verb->=- sont remplacés à l'affichage par \verb-\leq-, \verb-\geq-, qui donnent $\leq$ ou $\geq$.
+\exemple{Inéquations}/\systeme{x+y-2z>4,
+2x-y+z\geq-1,
+3x-2y+z<=3}/
+
+Pour choisir une autre substitution à \og\verb->=-\fg{} ou \og\verb-<=-\fg{} ou pour en créer une pour tout autre signe d'égalité, on doit utiliser la commande :
+\centerverb/\sysequivsign{signe}{substitution}/
+
+Voici le même système où l'on définit la substitution de \og\verb-<=-\fg{} avec \og\verb-\leqslant-\fg{} comme on l'observe à la troisième équation :
+\exemple{Redéfinir une substitution}/\sysequivsign{<=}{\leqslant}
+\systeme{x+y-2z>4,
+2x-y+z\geq-1,
+3x-2y+z<=3}/
+
+\subsection{Nouveaux signes d'égalité}
+Avec la commande \verb-\sysaddeqsign-, on peut créer un nouveau signe susceptible de séparer les deux membres des équations. Il faut écrire :
+\centerverb/\sysaddeqsign{<nouveau signe>}/
+
+Mettons ici que l'on créé le nouveau signe\footnote{La création d'un nouveau signe est possible même si son code de catégorie est actif.} d'égalité \og\verb-~-\fg{} en écrivant :
+\centerverb/\sysaddeqsign{~}/
+
+Puis, mettons que l'on veuille ensuite remplacer ce nouveau signe par \og\verb-\approx-\fg{} dans l'affichage final. On devra écrire :
+\centerverb/\sysequivsign{~}{\approx}/
+
+En voici l'illustration dans cet exemple :
+\exemple{Nouveau signe}/\sysaddeqsign{~}
+\sysequivsign{~}{\approx}
+\systeme{2a+b-c~6,a-4b~4}/
+
+Par la suite, on peut supprimer ce signe ou n'importe quel autre déjà existant il faut utiliser la commande \verb-\sysremoveeqsign- et écrire :
+\centerverb/\sysremoveeqsign{~}/
+
+\subsection{Coefficients décimaux}
+À première vue, la virgule étant utilisée pour séparer les équations, il n'est pas possible d'écrire des coefficients décimaux. On peut spécifier un autre caractère pour séparer les différentes équations avec le second argument optionnel de la commande \verb-\système-. Ici, on prend \og\verb-:-\fg{}\footnote{Ici encore, il est possible de choisir un caractère de code de catégorie actif, comme c'est le cas de \og\string:\fg{} lorsque l'option \og\texttt{frenchb}\fg{} est spécifiée au package \texttt{babel}.} ce qui permet d'écrire des coefficients décimaux. Le comportement de la virgule est redéfini à  l'intérieur de la commande \verb-\systeme- de telle sorte qu'elle ne soit pas suivie d'une espace, comme c'est le cas en mode mathématique.
+\exemple{Coefficients décimaux}/\systeme[][:]{1,5x-0,45y=0,7:x-0,8y=1,4}/
+Pour qui veut utiliser la virgule régulièrement dans les coefficients, on peut changer définitivement le séparateur par défaut pour n'importe quel autre caractère que l'on placera dans l'argument de la commande \verb-\syseqsep- et écrire par exemple \og\verb/\syseqsep{:}/\fg{} pour choisir \og\verb-:-\fg.
+
+\subsection{Alignement des termes}
+Par défaut, les termes dans le membre de gauche sont alignes à droite, tandis que le terme du membre de droite est aligné à gauche. On peut changer ces consignes d'alignement avec la macro \verb|\sysalign{x,y}| où \verb|x| représente la consigne d'alignement des termes du membre de gauche et \verb|y| celle du terme du membre de droite. Ces consignes doivent être «\verb|c|» pour «centré», «\verb|r|» pour alignement à droite (right) ou «\verb|l|» pour gauche (left).
+\exemple{Alignement des termes}|\systeme{3x-y=-12,x+4y=3}
+    \quad(par défaut, droite/gauche)\par
+\sysalign{l,l}\systeme{3x-y=-12,x+4y=3}
+    \quad(alignement gauche/gauche)\par
+\sysalign{r,r}\systeme{3x-y=-12,x+4y=3}
+    \quad(alignement droite/droite)\par
+\sysalign{l,r}\systeme{3x-y=-12,x+4y=3}
+    \quad(alignement gauche/droite)\par
+\sysalign{c,c}\systeme{3x-y=-12,x+4y=3}
+    \quad(alignement centré/centré)|
+
+\subsection{Espacement des lignes}\label{espacement.vertical}
+On peut faire varier l'espacement entre les lignes avec la commande \verb-\syslineskipcoeff- dont l'argument est un nombre qui viendra multiplier la valeur de \verb-\baselinskip-. Par défaut, l'argument vaut \verb-1.25-.
+\exemple{Espacement variable}/\systeme{x+2y-z=0,2x-y+z=1,x-3y+2z=1}
+\syslineskipcoeff{1.75}\quad
+\systeme{x+2y-z=0,2x-y+z=1,x-3y+2z=1}/
+
+\subsection{Espaces autour des signes}
+Il est possible d'ajouter une espace avant et après tous les signes \verb|+| et \verb|-| séparant les termes du membre de gauche à l'aide de la macro \verb|\syssignspace{dim}| où \verb|dim| est la dimension du \emph{ressort} que l'on souhaite insérer. La macro \verb|\syseqspace{dim}| exécute la même action, mais pour le signe \verb|=|.
+\exemple{Espaces autour des signes}/\systeme{3x-y=-12,x+4y=3} puis
+\syssignspace{3pt}\syseqspace{10pt}
+\systeme{3x-y=-12,x+4y=3}/
+
+\subsection{Colonne supplémentaire}
+Lorsqu'une équation comporte le signe \og\verb-@-\fg{}, tout ce qui se trouve à droite de ce caractère sera mis dans une colonne supplémentaire au fer à gauche qui se trouvera à droite du système, en dernière position.
+\exemple{Colonne supplémentaire}/\systeme{x+y=125@L_1,
+x-y=12@L_2}/
+
+Le signe \og\verb-@-\fg{} peut être changé en un autre avec la commande \verb-\sysextracolsign- et on peut écrire par exemple \og\verb/\sysextracolsign{|}/\fg.
+
+Cette colonne supplémentaire n'est \emph{pas} composée en mode mathématique, mais deux codes sont insérées au début et à la fin de cette colonne. Ils sont définis par :\centerverb/\syscodeextracol{<code début>}{<code fin>}/
+Par défaut, on a \verb-\syscodeextracol{\kern1.5em$}{$}- ce qui signifie qu'un espace horizontal d'1.5em est inséré et le \og\verb-$-\fg{} ouvre le mode mathématique au début de la colonne. Enfin, pour le second argument, \og\verb-$-\fg{} termine le mode math à la fin de la colonne.
+
+On va redéfinir ces deux codes pour ne pas se mettre en mode math et mettre un espace de 2.5em :
+\exemple{Personnalisation de la colonne supplémentaire}/\syscodeextracol{\kern2.5em }{}
+\sysextracolsign{|}
+\systeme{x+y=125|somme des deux nombres,
+x-y=12|différence des deux nombres}/
+
+\subsection{Numérotation automatique}
+La colonne supplémentaire peut être utilisée pour y mettre une numérotation automatique. La première façon de procéder est d'indiquer le schéma que doit prendre cette numérotation automatique à la première ligne, sachant que le caractère \og\verb-*-\fg{} déclenche la mise en place de la numérotation automatique et sera remplacé par le numéro de la ligne dans le système. Les autres lignes, même si elles n'ont pas de colonne supplémentaire, porteront un numéro :
+\exemple{Numérotation automatique}/\systeme{x+y-z=3@L_{*},
+2x+y+z=4,
+x-y+2z=0}/
+
+Si on souhaite spécifier explicitement des colonnes supplémentaires aux lignes qui n'en ont pas, la numérotation automatique vient \emph{avant} le contenu explicite des colonnes supplémentaires :
+\exemple{Numérotation automatique}/\systeme{x+y-z=3@L_{*}\quad,
+2x+y+z=4,
+x-y+2z=0}
+
+\systeme{x+y-z=3@L'_{*},
+3x+2y=7@=L_1+L_2,
+3x+y=6@=2L_1+L_3}/
+
+Il est ennuyeux que l'on ne puisse mettre \og\verb-L'_{*}=L_1-\fg{} à la première ligne car la totalité de ce schéma et notamment la partie indésirable \og\verb-L_1-\fg{} serait reproduite aux lignes suivantes. On peut donc spécifier le schéma de numérotation d'une deuxième façon, \emph{avant} d'écrire le système. On utilise la commande \verb-\sysautonum- dont l'argument contient ce schéma.
+\exemple{Numérotation automatique}/\sysautonum{L_{*}}
+\systeme{x+y-z=3,
+2x+y+z=4,
+x-y+2z=0}
+
+\sysautonum{L'_{*}\longleftarrow}
+\systeme{x+y-z=3@L_1,
+3x+2y=7@L_1+L_2,
+3x+y=6@2L_1+L_3}/
+
+Le schéma spécifié avec la commande \verb-\sysautonum- n'est valable \emph{que pour le prochain système} et sera effacé ensuite, sauf si on a écrit une étoile juste après la commande \verb-\sysautonum-, auquel cas le schéma de numérotation se poursuit pour tous les systèmes à venir :
+\exemple{Numérotation automatique persistante}/\sysautonum*{L_{*}}
+\systeme{a+b=4,2a-b=5}
+\quad
+\systeme{x-3y=0,2x+y=1}/
+
+On peut effacer (et donc annuler) le schéma de numérotation automatique en entrant un argument vide : \verb-\sysautonum{}-.
+
+Il existe un compteur global\footnote{Il s'agit d'un compteur \TeX{} portant le doux nom de {\ttfamily\string\SYSeqnum}, accessible via les commandes \TeX{} habituelles, c'est-à-dire qu'on peut le faire précéder de \texttt{\string\number}, \texttt{\string\romannumeral} pour l'afficher.} d'équations accessible de la même façon que le compteur local mais avec \og\verb-**-\fg{}. Voici un exemple de numérotation persistante :
+\exemple{Numérotation globale}/On met en évidence que \number\SYSeqnum{}
+équations ont été écrites jusqu'ici~:
+
+\sysautonum*{\hbox{eq (**)}}
+\systeme{x-y+z=3,
+2x+y+z=1,
+x-z=8}
+
+\systeme{u+w=9,
+v+2w=0,
+u-v=1}/
+
+Il est enfin possible d'utiliser la colonne supplémentaire pour retenir le numéro d'une équation et le rappeler plus tard :
+\exemple{Numérotation globale}/\syscodeextracol{\kern1em}{}
+\systeme{x-y+z=3@\gdef\foo{**}(\textbf{**}),
+         2x+y+z=1@\gdef\bar{**}(\textbf{**}),
+         x-z=8@\gdef\baz{**}(\textbf{**})}
+
+L'équation \no\foo{} est la première du système,
+\bar{} et \baz{} sont les deux suivantes./
+
+On peut à tout moment réinitialiser le compteur global d'équations à l'aide de \og\verb-\sysreseteqnum-\fg.
+
+\subsection{Substitution post traitement}
+Juste avant l'affichage du système, il est encore possible de substituer dans le code du système tout caractère par un autre\footnote{Plus exactement, toute \emph{suite de tokens} par une autre.}. Pour cela, la commande \verb-\syssubstitute- agit pour tous les systèmes à venir et son argument est fait de caractères allant par paires; le premier étant le caractère à substituer et le second étant ce par quoi il le sera. Les substitutions définies par \verb-\syssubstitute- viennent \emph{s'ajouter} à celles déjà définies.
+
+Dans cet exemple, on entre des coefficients décimaux où le point est le séparateur décimal. On va demander à ce que tous les \og\verb-.-\fg{} soient remplacés par des \og\verb-,-\fg{}. On remplacera aussi l'inconnue $a_1$ par $x_n$, et $a_2$ par $x_{n+1}$, ces 3 substitutions étant faites avec \verb-\syssubstitute{.,{a_1}{x_n}{a_2}{x_{n+1}}}- :
+\exemple{Substitution post traitement}/\syssubstitute{.,{a_1}{x_n}{a_2}{x_{n+1}}}
+\systeme{1.5a_1-0.5a_2=2,1.6a_1-2a_2=0.4}/
+
+La commande \verb-\sysnosubstitute- annule toutes les substitutions précédemment définies.
+
+\section{Liste des commandes}
+Voici la liste de toutes les commandes définies par cette extension :
+\begin{longtable}{>\footnotesize l>\footnotesize p{9cm}}\\\hline
+\hfill\normalsize Commandes\hfill\null &\hfill\normalsize Description\hfill\null\\\hline
+\verb-\systeme{<code système>}-&compose un système d'équations ou d'inéquations\\
+\verb-\sysdelim<delim gauche><delim droit>-&modifie les délimiteurs extensibles placées à gauche et à droite du système\\
+\verb-\syseqsep{<caractère>}-&définit le séparateur par défaut des équations\\
+\verb-\sysalign{x,y}-&définit l'alignement des termes dans les 2 membres\\
+\verb-\syssignspace{dim}-&définit l'espace ajoutée autour des signes dans le membre de gauche\\
+\verb-\syseqspace{dim}-&définit l'espace ajoutée autour du signe \verb-=-\\
+\verb-\syslineskipcoeff{<coeff>}-&définit le coefficient multiplicateur de \verb-\baselinskip- pour modifier l'espacement vertical des équations\\
+\verb-\+- et \verb|\-|&remplace "+" et "-" lorsqu'on veut éviter d'indiquer un nouveau terme\\
+\verb-\sysequivsign{<signe>}{<substitution>}-&définit ce par quoi un  \verb-<signe>- d'égalité doit être remplacé à l'affichage\\
+\verb-\sysaddeqsign{<signe>}-&définit un nouveau signe d'égalité\\
+\verb-\sysremoveeqsign{<signe>}-&supprime un signe d'égalité\\
+\verb-\sysextracolsign{<signe>}-&définit le caractère délimitant la colonne supplémentaire\\
+\verb-\syscodeextracol{<code>}{<code>}-&définit les \verb-<code>- qui seront inséré au début et à la fin de la colonne supplémentaire\\
+\verb-*-&déclenche la numérotation automatique dans la colonne supplémentaire et est remplacé par le numéro de la ligne du système\\
+\verb-**-&dans la colonne supplémentaire, est remplacé par le numéro global de l'équation\\
+\verb-\sysautonum{<code>}-&définit le schéma de la numérotation automatique\\
+\verb-\syssubstitute{<paires de caractères>}-&ajoute des substitutions à faire dans le code du système avant que celui-ci ne soit affiché\\
+\verb-\sysnosubstitute-&supprime toutes les substitutions jusqu'à présent définies\\\hline
+\end{longtable}
+
+\begin{center}
+\parskip0pt
+$\star$\par
+$\star\quad\star$
+\end{center}
+J'espère que cette extension vous sera utile et surtout que le code ne comporte pas trop de bugs\ldots\ Un \href{mailto:unbonpetit@netc.fr}{\texttt{\textbf{email}}} pour me signaler tout dysfonctionnement, toute proposition d'amélioration ou même tout commentaire sur cette extension sera le bienvenu.\par\medskip\nobreak
+Christian \textsc{Tellechea}
+\end{document}

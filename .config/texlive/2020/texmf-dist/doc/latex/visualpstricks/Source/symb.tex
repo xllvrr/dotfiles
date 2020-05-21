@@ -1,0 +1,279 @@
+
+\psset{fillstyle=none,linewidth=1pt} 
+
+\psset{unit=.75cm}
+\begin{tabular}{|c|c|c|c|}\hline 
+\multicolumn{4}{|c|}{\BS{}psline[{\red linestyle=}\RDDD{symbol}{linestyle}](-2,0)(2,0)} \\
+\hline   
+
+\begin{pspicture}(-2.5,-.5)(2.5,2.5)
+ \psline[linestyle=dotted,linecolor=red](-2,0)(1,0)(2,2)
+ \psline[linestyle=symbol](-2,0)(1,0)(2,2)
+\end{pspicture} 
+ &
+\begin{pspicture}(-2.5,-.5)(2.5,2.5)
+ \psline[linestyle=dotted,linecolor=red](-2,0)(1,0)(2,2)
+ \psline[linestyle=symbol,symbolStep=.5](-2,0)(1,0)(2,2)
+\end{pspicture}
+ &
+\begin{pspicture}(-2.5,-.5)(2.5,2.5)
+ \psline[linestyle=dotted,linecolor=red](-2,0)(1,0)(2,2)
+ \psline[linestyle=symbol,symbolWidth=.5cm](-2,0)(1,0)(2,2)
+\end{pspicture}
+ &
+\begin{pspicture}(-2.5,-.5)(2.5,2.5)
+ \psline[linestyle=dotted,linecolor=red](-2,0)(1,0)(2,2)
+ \psline[linestyle=symbol,rotateSymbol=true](-2,0)(1,0)(2,2)
+\end{pspicture} 
+ \\
+  \hline 
+\dft & \RDD{symbolStep}=.5 & \RDD{symbolWidth}=.5cm &  \RDD{rotateSymbol}=true \\
+& {\blue \dft : 20pt} & {\blue \dft : 10pt } & {\blue \dft : false}\\
+\hline 
+	\end{tabular}
+\bigskip
+	
+\begin{tabular}{|c|c|c|c|}\hline 	
+
+\multicolumn{4}{|c|}{ \BS{pscurve[linestyle=symbol,\RDD{symbolFont}{\red =PSTricksDotFont}](-2,1)(0,-1)(2,1.5)} }\\
+\hline  
+\begin{pspicture}(-2.5,-2)(2.5,2)
+\pscurve[linestyle=dotted,linecolor=red](-2,1)(0,-1)(2,1.5)
+\pscurve[linestyle=symbol,symbolFont=PSTricksDotFont](-2,1)(0,-1)(2,1.5)
+\end{pspicture}
+ &
+\begin{pspicture}(-2.5,-2)(2.5,2)
+\pscurve[linestyle=dotted,linecolor=red](-2,1)(0,-1)(2,1.5)
+\pscurve[linestyle=symbol,symbolFont=PSTricksDotFont,symbolWidth=1](-2,1)(0,-1)(2,1.5)
+\end{pspicture}
+ &
+\begin{pspicture}(-2.5,-2)(2.5,2)
+\pscurve[linestyle=dotted,linecolor=red](-2,1)(0,-1)(2,1.5)
+\pscurve[linestyle=symbol,symbolFont=PSTricksDotFont,rotateSymbol=true](-2,1)(0,-1)(2,1.5)
+\end{pspicture}
+&
+\begin{pspicture}(-2.5,-2)(2.5,2)
+\pscurve[linestyle=dotted,linecolor=red](-2,1)(0,-1)(2,1.5)
+\pscurve[linestyle=symbol,symbolFont=PSTricksDotFont,rotateSymbol=true,startAngle=45](-2,1)(0,-1)(2,1.5)
+\end{pspicture} 
+ \\ \hline 
+{\blue \dft} & \red{symbolWidth} =1cm & \red{rotateSymbol} =true &  rotateSymbol=true \\
+  & {\blue \dft : 10pt} & {\blue \dft : false }&  \RDD{startAngle=45} 
+\\ 
+  \hline  
+	\end{tabular}
+  \bigskip
+  	
+  \begin{tabular}{|c|c|c|c|}\hline 
+\multicolumn{2}{|c|}{ symbolFont=Dingbats ( \dft) } &                                                                      
+\multicolumn{2}{|c|}{ symbolFont=PSTricksDotFont } \\
+\hline   
+
+\begin{pspicture}(-2.5,-.5)(2.5,2.5)
+ \psline[linestyle=dotted,linecolor=red](-2,0)(1,0)(2,2)
+ \psline[linestyle=symbol,symbol=u,symbolFont=Dingbats](-2,0)(1,0)(2,2)
+\end{pspicture} 
+ &
+\begin{pspicture}(-2.5,-.5)(2.5,2.5)
+ \psline[linestyle=dotted,linecolor=red](-2,0)(1,0)(2,2)
+ \psline[linestyle=symbol,symbol=120,symbolFont=Dingbats](-2,0)(1,0)(2,2)
+\end{pspicture}
+ &
+\begin{pspicture}(-2.5,-.5)(2.5,2.5)
+ \psline[linestyle=dotted,linecolor=red](-2,0)(1,0)(2,2)
+ \psline[linestyle=symbol,symbol=u,symbolFont=PSTricksDotFont](-2,0)(1,0)(2,2)
+\end{pspicture}
+ &
+\begin{pspicture}(-2.5,-.5)(2.5,2.5)
+ \psline[linestyle=dotted,linecolor=red](-2,0)(1,0)(2,2)
+ \psline[linestyle=symbol,symbol=120,symbolFont=PSTricksDotFont](-2,0)(1,0)(2,2)
+\end{pspicture} 
+ \\
+  \hline 
+\RDD{symbol}=u & symbol=120 & symbol=u & symbol=120
+\\  \hline 
+\end{tabular} 
+
+
+
+ 
+\newpage
+\SbSbSSCT{Symboles disponibles avec le clavier}{Symbols available with the keyboard}
+\psset[pstricks]{symbolFont=Dingbats}
+\begin{center}
+	\begin{tabular}{| c @{:} c |c @{:} c |c @{:} c |c @{:} c |c @{:} c |c @{:} c |c @{:} c | }  \hline
+\multicolumn{14}{|c|}{symbolFont=Dingbats ( \dft)} \\  \hline
+	A &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=A](-.5,.2)(.5,.2)\endpspicture &
+	B &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=B](-.5,.2)(.5,.2)\endpspicture &
+	C &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=C](-.5,.2)(.5,.2)\endpspicture &
+	D &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=D](-.5,.2)(.5,.2)\endpspicture &
+	E &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=E](-.5,.2)(.5,.2)\endpspicture &
+	F &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=F](-.5,.2)(.5,.2)\endpspicture &
+	G &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=G](-.5,.2)(.5,.2)\endpspicture \\
+	
+	H &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=H](-.5,.2)(.5,.2)\endpspicture &
+	I &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=I](-.5,.2)(.5,.2)\endpspicture &
+	J &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=J](-.5,.2)(.5,.2)\endpspicture &
+	K &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=K](-.5,.2)(.5,.2)\endpspicture &
+	L &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=L](-.5,.2)(.5,.2)\endpspicture &
+	M &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=M](-.5,.2)(.5,.2)\endpspicture &
+	N &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=N](-.5,.2)(.5,.2)\endpspicture \\
+	
+	O &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=O](-.5,.2)(.5,.2)\endpspicture &
+	P &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=P](-.5,.2)(.5,.2)\endpspicture &
+	Q &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=Q](-.5,.2)(.5,.2)\endpspicture &
+	R &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=R](-.5,.2)(.5,.2)\endpspicture &
+	S &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=S](-.5,.2)(.5,.2)\endpspicture &
+	T &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=T](-.5,.2)(.5,.2)\endpspicture &
+	U &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=U](-.5,.2)(.5,.2)\endpspicture \\
+	
+	V &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=V](-.5,.2)(.5,.2)\endpspicture &
+	W &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=W](-.5,.2)(.5,.2)\endpspicture &
+	X &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=X](-.5,.2)(.5,.2)\endpspicture &
+	Y &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=Y](-.5,.2)(.5,.2)\endpspicture &
+	Z &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=Z](-.5,.2)(.5,.2)\endpspicture &
+	1 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=1](-.5,.2)(.5,.2)\endpspicture &
+	2 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=2](-.5,.2)(.5,.2)\endpspicture \\	
+	
+	
+	3 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=3](-.5,.2)(.5,.2)\endpspicture &
+	4 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=4](-.5,.2)(.5,.2)\endpspicture &
+	5 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=5](-.5,.2)(.5,.2)\endpspicture &
+	6 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=6](-.5,.2)(.5,.2)\endpspicture &
+	7 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=7](-.5,.2)(.5,.2)\endpspicture &
+	8 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=8](-.5,.2)(.5,.2)\endpspicture &
+	9 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=9](-.5,.2)(.5,.2)\endpspicture \\
+	
+	
+	a &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=a](-.5,.2)(.5,.2)\endpspicture &
+	b &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=b](-.5,.2)(.5,.2)\endpspicture &
+	c &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=c](-.5,.2)(.5,.2)\endpspicture &
+	d &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=d](-.5,.2)(.5,.2)\endpspicture &
+	e &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=e](-.5,.2)(.5,.2)\endpspicture &
+	f &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=f](-.5,.2)(.5,.2)\endpspicture &
+	g &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=g](-.5,.2)(.5,.2)\endpspicture \\
+		
+	h &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=h](-.5,.2)(.5,.2)\endpspicture &
+	i &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=i](-.5,.2)(.5,.2)\endpspicture &
+	j &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=j](-.5,.2)(.5,.2)\endpspicture &
+	k &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=k](-.5,.2)(.5,.2)\endpspicture &
+	l &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=l](-.5,.2)(.5,.2)\endpspicture &
+	m &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=m](-.5,.2)(.5,.2)\endpspicture &
+	n &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=n](-.5,.2)(.5,.2)\endpspicture \\
+		
+	o &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=o](-.5,.2)(.5,.2)\endpspicture &
+	p &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=p](-.5,.2)(.5,.2)\endpspicture &
+	q &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=q](-.5,.2)(.5,.2)\endpspicture &
+	r &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=r](-.5,.2)(.5,.2)\endpspicture &
+	s &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=s](-.5,.2)(.5,.2)\endpspicture &
+	t &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=t](-.5,.2)(.5,.2)\endpspicture &
+	u &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=u](-.5,.2)(.5,.2)\endpspicture \\
+		
+	v &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=v](-.5,.2)(.5,.2)\endpspicture &
+	w &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=w](-.5,.2)(.5,.2)\endpspicture &
+	x &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=x](-.5,.2)(.5,.2)\endpspicture &
+	y &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=y](-.5,.2)(.5,.2)\endpspicture &
+	z &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=z](-.5,.2)(.5,.2)\endpspicture &
+	+ &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=+](-.5,.2)(.5,.2)\endpspicture &
+	- &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=-](-.5,.2)(.5,.2)\endpspicture \\	
+		
+	* &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=*](-.5,.2)(.5,.2)\endpspicture &
+	' &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol='](-.5,.2)(.5,.2)\endpspicture &	
+	> &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=>](-.5,.2)(.5,.2)\endpspicture &
+	< &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=<](-.5,.2)(.5,.2)\endpspicture &
+	0 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=0](-.5,.2)(.5,.2)\endpspicture &
+	/ &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=/](-.5,.2)(.5,.2)\endpspicture &
+	. &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=.](-.5,.2)(.5,.2)\endpspicture \\ \hline
+	\end{tabular}
+\end{center}
+
+
+
+
+\psset[pstricks]{symbolFont=PSTricksDotFont}
+\begin{center}
+	\begin{tabular}{| c @{:} c |c @{:} c |c @{:} c |c @{:} c |c @{:} c |c @{:} c |c @{:} c | }  \hline
+\multicolumn{14}{|c|}{symbolFont=PSTricksDotFont} \\  \hline
+	A &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=A](-.5,.2)(.5,.2)\endpspicture &
+	B &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=B](-.5,.2)(.5,.2)\endpspicture &
+	C &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=C](-.5,.2)(.5,.2)\endpspicture &
+	D &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=D](-.5,.2)(.5,.2)\endpspicture &
+	E &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=E](-.5,.2)(.5,.2)\endpspicture &
+	F &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=F](-.5,.2)(.5,.2)\endpspicture &
+	G &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=G](-.5,.2)(.5,.2)\endpspicture \\
+	
+	H &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=H](-.5,.2)(.5,.2)\endpspicture &
+	I &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=I](-.5,.2)(.5,.2)\endpspicture &
+	J &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=J](-.5,.2)(.5,.2)\endpspicture &
+	K &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=K](-.5,.2)(.5,.2)\endpspicture &
+	L &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=L](-.5,.2)(.5,.2)\endpspicture &
+	M &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=M](-.5,.2)(.5,.2)\endpspicture &
+	N &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=N](-.5,.2)(.5,.2)\endpspicture \\
+	
+	O &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=O](-.5,.2)(.5,.2)\endpspicture &
+	P &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=P](-.5,.2)(.5,.2)\endpspicture &
+	Q &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=Q](-.5,.2)(.5,.2)\endpspicture &
+	R &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=R](-.5,.2)(.5,.2)\endpspicture &
+	S &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=S](-.5,.2)(.5,.2)\endpspicture &
+	T &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=T](-.5,.2)(.5,.2)\endpspicture &
+	U &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=U](-.5,.2)(.5,.2)\endpspicture \\
+	
+	V &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=V](-.5,.2)(.5,.2)\endpspicture &
+	W &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=W](-.5,.2)(.5,.2)\endpspicture &
+	X &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=X](-.5,.2)(.5,.2)\endpspicture &
+	Y &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=Y](-.5,.2)(.5,.2)\endpspicture &
+	Z &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=Z](-.5,.2)(.5,.2)\endpspicture &
+	1 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=1](-.5,.2)(.5,.2)\endpspicture &
+	2 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=2](-.5,.2)(.5,.2)\endpspicture \\	
+	
+	
+	3 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=3](-.5,.2)(.5,.2)\endpspicture &
+	4 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=4](-.5,.2)(.5,.2)\endpspicture &
+	5 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=5](-.5,.2)(.5,.2)\endpspicture &
+	6 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=6](-.5,.2)(.5,.2)\endpspicture &
+	7 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=7](-.5,.2)(.5,.2)\endpspicture &
+	8 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=8](-.5,.2)(.5,.2)\endpspicture &
+	9 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=9](-.5,.2)(.5,.2)\endpspicture \\
+	
+	
+	a &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=a](-.5,.2)(.5,.2)\endpspicture &
+	b &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=b](-.5,.2)(.5,.2)\endpspicture &
+	c &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=c](-.5,.2)(.5,.2)\endpspicture &
+	d &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=d](-.5,.2)(.5,.2)\endpspicture &
+	e &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=e](-.5,.2)(.5,.2)\endpspicture &
+	f &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=f](-.5,.2)(.5,.2)\endpspicture &
+	g &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=g](-.5,.2)(.5,.2)\endpspicture \\
+		
+	h &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=h](-.5,.2)(.5,.2)\endpspicture &
+	i &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=i](-.5,.2)(.5,.2)\endpspicture &
+	j &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=j](-.5,.2)(.5,.2)\endpspicture &
+	k &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=k](-.5,.2)(.5,.2)\endpspicture &
+	l &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=l](-.5,.2)(.5,.2)\endpspicture &
+	m &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=m](-.5,.2)(.5,.2)\endpspicture &
+	n &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=n](-.5,.2)(.5,.2)\endpspicture \\
+		
+	o &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=o](-.5,.2)(.5,.2)\endpspicture &
+	p &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=p](-.5,.2)(.5,.2)\endpspicture &
+	q &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=q](-.5,.2)(.5,.2)\endpspicture &
+	r &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=r](-.5,.2)(.5,.2)\endpspicture &
+	s &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=s](-.5,.2)(.5,.2)\endpspicture &
+	t &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=t](-.5,.2)(.5,.2)\endpspicture &
+	u &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=u](-.5,.2)(.5,.2)\endpspicture \\
+		
+	v &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=v](-.5,.2)(.5,.2)\endpspicture &
+	w &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=w](-.5,.2)(.5,.2)\endpspicture &
+	x &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=x](-.5,.2)(.5,.2)\endpspicture &
+	y &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=y](-.5,.2)(.5,.2)\endpspicture &
+	z &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=z](-.5,.2)(.5,.2)\endpspicture &
+	+ &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=+](-.5,.2)(.5,.2)\endpspicture &
+	- &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=-](-.5,.2)(.5,.2)\endpspicture \\	
+		
+	* &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=*](-.5,.2)(.5,.2)\endpspicture &
+	' &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol='](-.5,.2)(.5,.2)\endpspicture &	
+	> &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=>](-.5,.2)(.5,.2)\endpspicture &
+	< &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=<](-.5,.2)(.5,.2)\endpspicture &
+	0 &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=0](-.5,.2)(.5,.2)\endpspicture &
+	/ &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=/](-.5,.2)(.5,.2)\endpspicture &
+	. &  \pspicture[shift=*](-1,-.5)(1,.5) \psline[linestyle=symbol,symbol=.](-.5,.2)(.5,.2)\endpspicture \\ \hline
+	\end{tabular}
+\end{center}

@@ -1,0 +1,98 @@
+% Kompatibilität mit dem Schule-Paket sicherstellen
+\PassOptionsToPackage{colaction}{multicol}
+
+\documentclass[a4paper,add-index]{cnltx-doc}
+
+\usepackage[
+    typ=ohne,
+    fach=ohne,
+    weitereFaecher={
+        Informatik,
+        Physik
+    },
+    farbig,
+    module={
+        Kuerzel,
+        Papiertypen,
+        Symbole,
+        Texte,
+    }
+]{schule}
+
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{blindtext}
+\usepackage{weva}
+\usepackage{schule-dokumentation}
+
+\usepackage{todonotes}
+
+\usepackage{pdfpages}
+\usepackage{prettyref}
+\newrefformat{sec}{Abschnitt\,\ref{#1}, S.\,\pageref{#1}}
+\newrefformat{paket}{Paket~\ref{#1}, S.\,\pageref{#1}}
+\newrefformat{modul}{Modul~\ref{#1}, S.\,\pageref{#1}}
+\newrefformat{klasse}{Klasse~\ref{#1}, S.\,\pageref{#1}}
+\newrefformat{fig}{Abb.\,\ref{#1}}
+\newrefformat{tab}{Tab.\,\ref{#1}}
+\newrefformat{ex}{Bsp.\,\ref{#1}, S.\,\pageref{#1}}
+\newrefformat{example}{Bsp.\,\ref{#1}, S.\,\pageref{#1}}
+
+\newcommand{\materialsammlung}{
+    \website{http://ddi.uni-wuppertal.de/material/materialsammlung/index.html}
+}
+
+\newcommand{\includepdfpage}[2][page=1,scale=0.3]{
+    \fbox{
+        \includegraphics[#1]{Beispiele/#2}
+    }
+}
+
+\setcnltx{
+    name     = schule ,
+    title    = schule ,
+    version  = 0.8.1 ,
+    date     = 2018-08-22 ,
+    subtitle = {\LaTeX-Klassen und Pakete für den Einsatz im Bereich der Schule},
+    info     = Paketdokumentation ,
+    authors  =  {Johannes Pieper, Johannes Kuhaupt, Ludger Humbert, Andr\'e Hilbig, Adrian Salamon, Daniel Spittank} ,
+    email    = schulepaket@zfsl.ham.nw.schule.de ,
+    url     = http://ddi.uni-wuppertal.de/material/schulepaket.html ,
+    abstract = {%
+        Diese Zusammenstellung wird entwickelt, um Pakete und damit Befehle bereit zu stellen, die für den Textsatz von Dokumenten zur Unterrichtsvorbereitung für den (Informatik)Unterricht nützlich sind. Zur Zeit liegt der Schwerpunkt auf dem Informatikunterricht, eine Ergänzung für den Physikunterricht wird nach und nach eingearbeitet. Weitere Ergänzungen für andere Fächer werden gerne entgegen genommen.
+
+        Diese Sammlung umfasst Pakete und Klassen zum Setzen von speziellen Dokumenten für Klausuren, Lernzielkontrollen, Unterrichtsbesuche, Arbeits-, Informations- und Lösungsblättern, sowie speziellen Elementen, wie Struktogramme, Syntax-, Sequenz-, Objekt- und Klassendiagramme.
+
+        Ein besonderer Dank geht an Martin Weise für seine Hilfe bei der Übersetzung der Readme-Dateien und Zusammenfassung auf \ctan\footnote{\CTAN}\space ins Englische.
+    } ,
+    index-setup = { othercode=\footnotesize,level=\section},
+    add-listings-options= {
+        morekeywords={
+                skaliereSequenzdiagramm, skaliereTikz, weva, uline, newthread, newthreadtwo, newinst, node, chainin, EuEn, draw, to, Titel, Autor, Datum, Klasse, Lerngruppe, EK, minisec, subsection, glqq, grqq, so, person, uuline, erwartung, newboolean, setboolean, hinweis, achtung, teilaufgabe, enquote, includegraphics, dotuline, Lprn, dashuline, uwave, xout, diastring, Lkr, Lkre, Lpr, GK, EuE, EKe, EKen, GKe, GKen, LK, LKe, LKen, SuS, SuSn, LuL, LuLn, KuK, Autor, Titel, Datum, Fach, Lerngruppe, feldLin, feldKar, feldMil, resetZeilenNr, anchormark, assign, while, ifthenelse, ifend, change, whileend, usym, usymH, usymW, blindtext, punktUebersicht, notenverteilung, flushleft, flushright, pmglyph, chb, textpmhg, aufgabeMC, luecke, textluecke, usetikzlibrary, pgfmathtruncatemacro, pgflinewidth, multirow,
+        }
+    },
+}
+
+% \includeonly{module}
+
+\begin{document}
+
+\include{allgemeines}
+
+\include{module}
+
+\include{faecher}
+
+\include{dokumenttypen}
+
+\include{zusatzpakete}
+
+\include{faq}
+
+\include{beispiele}
+
+\include{dev}
+
+\include{anhang}
+
+\end{document}

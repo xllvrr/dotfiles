@@ -1,0 +1,34 @@
+name estcpmm
+category Package
+revision 17335
+shortdesc Style for Munitions Management Project Reports
+longdesc Provides a class which supports typesetting Cost and
+longdesc Performance Reports and Final Reports for Munitions Management
+longdesc Reports, US Environmental Security Technology Certification
+longdesc Program. The class was commissioned and paid for by US Army
+longdesc Corps of Engineers, Engineer Research and Development Center,
+longdesc 3909 Halls Ferry Road, Vicksburg, MS 39180-6199.
+containersize 3128
+containerchecksum 20213ddd795e862dc924ddd71df08752f6adda4be7a06237507cec84abf6a6ccd664fa9676cb9b275ca9de8647011da0bc731fef9344945404f885b56b75aea1
+doccontainersize 284904
+doccontainerchecksum c240305f2ad7a841c1d9309d1934001fc42d68819505b5c862ca8c97c5ecd7b6d2fd8a79a4273be79126d1503d968fa4649ad06e0c001f3b731e300341802dfd
+docfiles size=227
+ texmf-dist/doc/latex/estcpmm/README
+ texmf-dist/doc/latex/estcpmm/estcp.pdf
+ texmf-dist/doc/latex/estcpmm/estcpmm.bib
+ texmf-dist/doc/latex/estcpmm/estcpmm.pdf details="Package documentation"
+ texmf-dist/doc/latex/estcpmm/red_corps_castle2.pdf
+ texmf-dist/doc/latex/estcpmm/sample.pdf
+ texmf-dist/doc/latex/estcpmm/sample.tex
+srccontainersize 8856
+srccontainerchecksum f867a24f4bde53c0de195874f1717fe49a3869755834ba1dd0a9004e3085f06076eefaca2e83c59cdf5cdf65fa740d0df898e0ee75f88a5cb516a3cfa404c164
+srcfiles size=9
+ texmf-dist/source/latex/estcpmm/Makefile
+ texmf-dist/source/latex/estcpmm/estcpmm.dtx
+ texmf-dist/source/latex/estcpmm/estcpmm.ins
+runfiles size=2
+ texmf-dist/tex/latex/estcpmm/estcpmm.cls
+catalogue-ctan /macros/latex/contrib/estcpmm
+catalogue-license lppl
+catalogue-topics report-like class
+catalogue-version 0.4

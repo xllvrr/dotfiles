@@ -1,0 +1,29 @@
+apnum -- Arbitrary precision numbers implemented by TeX macros
+--------------------------------------------------------------
+Petr Olsak                                           Dec. 2015
+
+The operations (addition, subtraction, multiplication, division, power to an
+integer, square root, exponential, logarithm, sin, cos, tan, asin, acos,
+atan) are implemented by TeX macros in this package. Operands can be numbers
+with arbitrary number of digits (or scientific notation is allowed). The
+expression scanner is provided too. The exhaustive documentation (including
+detail TeXnical documentation) is included. The macro includes many
+optimizations and uses only TeX primitives (from classical TeX) and
+\newcount macro.
+
+Files:  README     ... this file
+        apnum.tex  ... TeX macro
+        apnum.pdf  ... documentation (generated from apnum.d)
+        apnum.d    ... documentation (source for apnum.pdf)
+
+License: Public domain.
+
+Versions:  
+1.0 <Nov 2014> - released
+1.1 <Jan 2015> - corrections
+1.2 <May 2015> - .5+.5=.1 bug fixed
+1.3 <Dec 2015> - many improvements, \SQRT, \LN, \EXP implemented
+1.4 <Dec 2015> - \SIN, \COS, \TAN, \ASIN, \ACOS, \ATAN, \PI, \PIhalf added
+1.5 <Jan 2016> - \eprint for printing evaluated expressions added.
+1.6 <Feb 2016> - \evalmdef introduced, \EXP improved.
+1.7 <Apr 2018> - \eprint - round braces around an expression with unary minus

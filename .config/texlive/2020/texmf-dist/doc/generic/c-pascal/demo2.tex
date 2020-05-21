@@ -1,0 +1,90 @@
+\input cap
+\let\IdentifierColor=\Black
+\let\KeywordColor=\MidnightBlue
+\let\SpecialColor=\Black
+\let\SymbolColor=\Black
+\let\CommentColor=\Gray
+\let\TextColor=\ForestGreen
+\let\DirectiveColor=\Tan
+\SpaceSkip=1.3ex
+
+% Just for fun, you can use a cyrillic font for identifiers
+% Of course, any font can be changed just like in the non-color
+% version of cap.
+%\font\cirm=wncyi10\let\IdentifierFont=\cirm
+
+
+
+A short program in C. It was inserted directly into the \TeX\ source file.
+
+\medskip
+\BeginC
+#include <stdio.h>
+
+void main()
+{
+  a=~a;
+  printf("Hello, world!\n");
+  // printf("Hello, world!\n");
+}
+\EndC
+
+\hrule
+\bigskip
+
+And now a program inserted from a separate file.
+
+\medskip
+\InputC{prog/sun.c}
+
+\vfill\eject
+
+
+And now programs written in Pascal. This one was typed directly into this
+file.
+
+\medskip
+\BeginPascal
+program Hello_world;
+begin
+  writeln('Hello, world!');
+  { writeln('Hello, world!'); }
+end.
+\EndPascal
+
+\hrule
+\bigskip
+
+This one was imported from another file.
+
+\medskip
+\InputPascal{prog/guess.pas}
+
+\vfill\eject
+
+And now, my latest addition: programs written in Python. The first one
+is typed directly into the file.
+
+\medskip
+\BeginPython
+def fib(n):
+    """Calculates Fibonacci series.
+
+       It returns the first member of Fibonacci series larger than n"""
+    a,b=1,1
+    while b <= n:
+        a,b = b,a+b # see how we use multiple assignment?
+    return b
+
+fib(10)
+\EndPython
+
+\hrule
+\bigskip
+
+This one was imported from another file.
+
+\medskip
+\InputPython{prog/fib.py}
+
+\bye

@@ -1,0 +1,12 @@
+\section{Richtlinien}
+    Um die Quelltexte des Pakets über einen längeren Zeitraum halbwegs konsistent und dokumentiert zu halten und somit die leichtere  Einarbeitung neuer Betreuer zu ermöglichen, wurden folgende Richtlinien vereinbart:
+    \begin{itemize}
+        \item Bei sämtliche Klassen- und Paketquellen sollten lange Zeilen vermieden werden.
+        \item Bei der Dokumentation (dokumentation.tex) soll kein automatischer Umbruch im Dokument stattfinden, um Änderungen im Text einfacher nachhalten zu können.
+        \item Auf Einrückungen sollte geachtet werden. Zeilenumbrüche  sind ggf. entsprechend auszukommentieren.
+        \item Einrückungen erfolgen mit Leerzeichen in einer Weite von 4.
+        \item Alle internen Makros und Variablen sollen im Namensraum  \code{schule\cnltxat} stehen, \zB\space\code{schule\cnltxat  ergebnishorizontAnzeigen}.
+        \item Sprechende Bezeichner sollten verwendet werden.
+        \item Für neue Funktionen sollte ein neues Modul oder ein neuer Dokumenttyp angelegt werden, sofern es sich um keine klare Ergänzung handelt.
+        \item Neue Funktionen und Änderungen sind in der Dokumentation mit den Mitteln von \pkg{cnltx-doc} zu kennzeichnen, \zB\space mit \cs{changedversion}\marg{version} für Änderungen oder \cs{sinceversion}\marg{version} für neue Funktionen. Außerdem sind sie im Changelog zu vermerken.
+    \end{itemize}

@@ -1,0 +1,475 @@
+From: mark@sdd.hp.com (Mark Overton)
+Newsgroups: comp.fonts
+Subject: Bitstream AKA list, x-ref'ed + reformatted
+Date: 10 Apr 1995 19:33:53 GMT
+
+Hi,
+
+I've taken Jon Pastor's Bitstream AKA list, and added a cross-reference to
+find a Bitstream name based on a common name.  And I reformatted it to be
+more human-readable.  I had to throw out a bunch of ancillary information
+to get everything to fit in 80 character-wide lines.
+
+This file consists of four sections:
+
+   - Bitstream => Common name list
+   - Common => Bitstream name list
+   - Jon's original comma-separated list
+   - Jon's original tab-separated list
+
+Jon Pastor wrote in his original AKA list:
+
+Well, here's the latest version, incorporating all of the information supplied
+by a cast of half-dozens, including Mike Macrone, Rory Jaffe, John C Haugeland,
+and P.Doherty. Mike contributed most of the designers and dates; I added a few
+on this go-round. P.Doherty added a few fonts from other CDs that Bitstream
+has licensed; since these are part of the full Bitstream library, which I hope
+someday soon to be able to cross-ref, I'm leaving them in. This includes
+Italian Garamond, which is not on the 500 CD.
+
+- Mark
+
+------------------------------------------------------------------------------
+Mark Overton,  Hewlett-Packard (San Diego Division),  mark@sdd.hp.com
+------------------------------------------------------------------------------
+
+
+Bitstream Name           Common Name
+
+Aldine 401               Bembo
+Aldine 721               Plantin
+Blackletter 686          London Text
+Brush 445                Palette
+Brush 738                Bison
+Calligraphic 421         Codex
+Calligraphic 810         Diotima
+Century 725              Madison
+Century 731              Textype
+Century 751              Primer
+Decorated 035            Profil
+Dutch 766                Imprint
+Dutch 801                Times Roman
+Dutch 809                Concorde
+Dutch 811                Olympian
+Dutch 823                Aster
+Egyptian 505             VGC Egyptian 505
+English 157              Englische Screibschrift
+Exotic 350               Peignot
+Flareserif 821           Albertus
+Formal 436               Oscar
+Formal Script 421        Mermaid
+Formal Script 421        Ondine
+Freeform 710             Eckmann
+Freeform 721             Auriol
+Freehand 471             Cascade
+Freehand 521             Mandate
+Freehand 575             Jefferson
+Freehand 591             Bingham Script
+Garamond American        Garamond No. 3
+Garamond Classic         Sabon
+Garamond Elegant         Granjon
+Garamond Italian         Simoncini Garamond
+Garamond Original        Stempel Garamond
+Geometric 212            Spartan
+Geometric 231            Cable
+Geometric 415            Metro
+Geometric 706            Neuzeit Grotesk
+Geometric 885            Bloc
+Geometric Slabserif 703  Memphis
+Geometric Slabserif 712  Rockwell
+Geometric Slabserif 712  Slate
+Gothic 720               Grotesque 126,215,216
+Gothic 725               Akzidenz Grotesk
+Gothic 821               Block
+Humanist 521             Gill Sans
+Humanist 521             Hammersmith
+Humanist 531             Syntax
+Humanist 777             Frutiger
+Humanist 970             Adsans
+Humanist Slabserif 712   Egyptienne
+Incised 901              Antique Olive
+Incised 901              Provence
+Industrial 736           Torino
+Informal 011             Neuland
+Kis                      Janson
+Kuenstler 480            Activa
+Kuenstler 480            Trump Medieval
+Lapidary 333             Perpetua
+Latin 725                Meridien
+Modern 735               Bodoni Campanile
+Modern 880               Linotype Modern
+Monospace 821            Helvetica Monospaced
+News 701                 Ionic No. 5
+News 702                 Excelsior
+News 705                 Corona
+News 706                 Aurora
+Raleigh                  Cartier
+Revival 565              Berling
+Ribbon 131               Coronet
+Square 721               Eurostile
+Square Slabserif 711     City
+Staccato 222             Mistral
+Staccato 555             Choc
+Swiss 721                Helvetica
+Swiss 911                Helvetica Compressed
+Swiss 921                Helvetica Inserat
+Swiss 924                Hanseatic
+Transitional 511         Caledonia
+Transitional 521         Electra
+Transitional 551         Fairfield
+Typo Upright             Linoscript
+Venetian 301             Centaur
+Wedding Text             Linotext
+Zapf Calligraphic        Palatino
+Zapf Elliptical 711      Melior
+Zapf Humanist 601        Optima
+Zurich                   Univers
+
+
+=============================================================================
+
+
+Common Name              Bitstream Name
+
+Activa                   Kuenstler 480
+Adsans                   Humanist 970
+Akzidenz Grotesk         Gothic 725
+Albertus                 Flareserif 821
+Antique Olive            Incised 901
+Aster                    Dutch 823
+Auriol                   Freeform 721
+Aurora                   News 706
+Bembo                    Aldine 401
+Berling                  Revival 565
+Bingham Script           Freehand 591
+Bison                    Brush 738
+Bloc                     Geometric 885
+Block                    Gothic 821
+Bodoni Campanile         Modern 735
+Cable                    Geometric 231
+Caledonia                Transitional 511
+Cartier                  Raleigh
+Cascade                  Freehand 471
+Centaur                  Venetian 301
+Choc                     Staccato 555
+City                     Square Slabserif 711
+Codex                    Calligraphic 421
+Concorde                 Dutch 809
+Corona                   News 705
+Coronet                  Ribbon 131
+Diotima                  Calligraphic 810
+Eckmann                  Freeform 710
+Egyptienne               Humanist Slabserif 712
+Electra                  Transitional 521
+Englische Screibschrift  English 157
+Eurostile                Square 721
+Excelsior                News 702
+Fairfield                Transitional 551
+Frutiger                 Humanist 777
+Garamond No. 3           Garamond American
+Gill Sans                Humanist 521
+Granjon                  Garamond Elegant
+Grotesque 126,215,216    Gothic 720
+Hammersmith              Humanist 521
+Hanseatic                Swiss 924
+Helvetica                Swiss 721
+Helvetica Compressed     Swiss 911
+Helvetica Inserat        Swiss 921
+Helvetica Monospaced     Monospace 821
+Imprint                  Dutch 766
+Ionic No. 5              News 701
+Janson                   Kis
+Jefferson                Freehand 575
+Linoscript               Typo Upright
+Linotext                 Wedding Text
+Linotype Modern          Modern 880
+London Text              Blackletter 686
+Madison                  Century 725
+Mandate                  Freehand 521
+Melior                   Zapf Elliptical 711
+Memphis                  Geometric Slabserif 703
+Meridien                 Latin 725
+Mermaid                  Formal Script 421
+Metro                    Geometric 415
+Mistral                  Staccato 222
+Neuland                  Informal 011
+Neuzeit Grotesk          Geometric 706
+Olympian                 Dutch 811
+Ondine                   Formal Script 421
+Optima                   Zapf Humanist 601
+Oscar                    Formal 436
+Palatino                 Zapf Calligraphic
+Palette                  Brush 445
+Peignot                  Exotic 350
+Perpetua                 Lapidary 333
+Plantin                  Aldine 721
+Primer                   Century 751
+Profil                   Decorated 035
+Provence                 Incised 901
+Rockwell                 Geometric Slabserif 712
+Sabon                    Garamond Classic
+Simoncini Garamond       Garamond Italian
+Slate                    Geometric Slabserif 712
+Spartan                  Geometric 212
+Stempel Garamond         Garamond Original
+Syntax                   Humanist 531
+Textype                  Century 731
+Times Roman              Dutch 801
+Torino                   Industrial 736
+Trump Medieval           Kuenstler 480
+Univers                  Zurich
+VGC Egyptian 505         Egyptian 505
+
+
+============================================================================
+
+
+From: pastor@vfl.paramax.com (Jon Pastor)
+Subject: Bitstream AKA list; the story continues...
+
+
+I have reverted the entries for the various Garamonds to the "Garamond,
+Variant" form, because I do this list mostly for my own convenience and that's
+the way I like it; if you prefer the other way, re-sort it. Nyah, nyah. ;-)
+
+Anyway, here it is in CSV and tab-sep form; I have been persuaded that
+UUENCODED Excel spreadsheets are a colossally dumb thing to distribute, and
+that formatted output looks nice but is pretty useless for loading into your
+own spreadsheet program.
+
+P.S. I've sent these to Norm Walsh, who will hopefully put them somewhere on
+his server (or in his web). It would be nice to think that they don't have to
+be posted every fifteen or twenty minutes, and that people with net/web access
+could be pointed toward the IFA...
+
+******************************** CSV ********************************
+
+Bitstream Name,Common Name,Designer(s),Date(s),Orig.Vend.,Remarks/Attributions,,,,,,,
+,(all),(M.Macrone/J.Pastor),(M.Macrone),(J.Pastor),,,,,,,,
+Aldine 401,Bembo,F. Griffo/A. Tagliente,1929,4,,,,,,,,
+Aldine 721,Plantin,,,4,,,,,,,,
+Blackletter 686,London Text ,,,2,"from P.Doherty, not on 500 CD",,,,,,,
+Brush 445,Palette,M. Wilke,1953,5,,,,,,,,
+Brush 738,Bison,,,?,,,,,,,,
+Calligraphic 421,Codex,G. Trump,1954,2,,,,,,,,
+Calligraphic 810,Diotima,G. Zapf von Hesse,1952-53,2,,,,,,,,
+Century 725,Madison ,,,?,"from P.Doherty, not on 500 CD",,,,,,,
+Century 731,Textype ,,,2,"from P.Doherty, not on 500 CD",,,,,,,
+Century 751,Primer ,,,2,"from P.Doherty, not on 500 CD",,,,,,,
+Decorated 035,Profil,E. & M. Lenz,1946,12,,,,,,,,
+Dutch 766,Imprint ,,,4,"from P.Doherty, not on 500 CD",,,,,,,
+Dutch 801,Times Roman,S. Morrison/V. Lardent,1931-35,"2,4",,,,,,,,
+Dutch 809,Concorde ,,,5,"from P.Doherty, not on 500 CD",,,,,,,
+Dutch 811,Olympian,M. Carter,after 1969,2,"from P.Doherty, not on 500 CD",,,,,,,
+Dutch 823,Aster,,,7,"from P.Doherty, not on 500 CD",,,,,,,
+Egyptian 505,VGC Egyptian 505,A. Grtler,1966,18,"from M. Macrone, not identified in BT catalog ",,,,,,,
+English 157,Englische Screibschrift,,,5,,,,,,,,
+Exotic 350,Peignot,A. M. Cassandre,1937,2,,,,,,,,
+Flareserif 821,Albertus,B. Wolpe,1938,4,,,,,,,,
+Formal 436,Oscar ,,,16,"from P.Doherty, not on 500 CD",,,,,,,
+Formal Script 421,Mermaid,A. Frutiger,1954,1,(Debergny et Peignot),,,,,,,
+Formal Script 421,Ondine,A. Frutiger,1954,2,(Debergny et Peignot),,,,,,,
+Freeform 710,Eckmann,O. Eckmann,1900,2,,,,,,,,
+Freeform 721,Auriol,G. Auriol,1901-04,2,,,,,,,,
+Freehand 471,Cascade,M. Carter,1966,2,,,,,,,,
+Freehand 521,Mandate,,,10,,,,,,,,
+Freehand 575,Jefferson,,,?,,,,,,,,
+Freehand 591,Bingham Script,,,?,,,,,,,,
+"Garamond, American",Garamond No. 3,,1925-30,2,,,,,,,,
+"Garamond, Classic",Sabon,J. Tschichold,1960-5,2,
+"Garamond, Elegant",Granjon,G. H.  Jones (dir.),ca.1925,2,
+"Garamond, Italian",Simoncini Garamond,,,7,
+"Garamond, Original",Stempel Garamond,,,2,
+Geometric 212,Spartan,,early 1930s,2,"[Futura copy] from P.Doherty, not on 500 CD"
+Geometric 231,Cable,R. Koch,1927,2,
+Geometric 415,Metro,W. A. Dwiggins,1930-32,2,
+Geometric 706,Neuzeit Grotesk,W. Pischner,1928,2,
+Geometric 885,Bloc ,,,18,"from P.Doherty, not on 500 CD"
+Geometric Slabserif 703,Memphis,R. Wolf/C. H. Griffith,1929-38,2,
+Geometric Slabserif 712,Rockwell,F. H. Pierpont,1934,4,
+Geometric Slabserif 712,Slate,,,1,
+Gothic 720,"Grotesque 126,215,216",,,4,"from P.Doherty, not on 500 CD"
+Gothic 725,Akzidenz Grotesk,,,5,
+Gothic 821,Block,,,5,
+Humanist 521,Gill Sans,E. Gill,1928-32,4,
+Humanist 521,Hammersmith,,,1,
+Humanist 531,Syntax ,,,2,"from P.Doherty, not on 500 CD"
+Humanist 777,Frutiger,A. Frutiger,,2,
+Humanist 970,Adsans,W. Tracy,1959,2,
+Humanist Slabserif 712,Egyptienne ,,,2,"from P.Doherty, not on 500 CD"
+Incised 901,Antique Olive,R. Excoffon,1962-68,15,
+Incised 901,Provence,,,1,
+Industrial 736,Torino,A. Butti,1908,16,
+Informal 011,Neuland,R. Koch,1923,2,
+Kis,Janson ,,1937,"2,4","from P.Doherty, not on 500 CD"
+Kuenstler 480,Activa,G. Trump,1958,1,
+Kuenstler 480,Trump Medieval,,,2,
+Lapidary 333,Perpetua,E. Gill,1928-35,4,
+Latin 725,Meridien ,,,2,"from P.Doherty, not on 500 CD"
+Modern 735,Bodoni Campanile,,1936,10,
+Modern 880,Linotype Modern ,,,2,"from P.Doherty, not on 500 CD"
+Monospace 821,Helvetica Monospaced,,,?,
+News 701,Ionic No. 5,C. H. GRiffith,1924,2,
+News 702,Excelsior ,,1931,2,"from P.Doherty, not on 500 CD"
+News 705,Corona ,,1941,2,"from P.Doherty, not on 500 CD"
+News 706,Aurora ,,,2,"from P.Doherty, not on 500 CD"
+Raleigh,Cartier,,,14,attributed to M.Macrone by R.Jaffe
+Revival 565,Berling,K. E. Forsberg,1951-58,?,
+Ribbon 131,Coronet,R. H. Middleton,1937,10,
+Square 721,Eurostile,A. Novarese,1962,2,
+Square Slabserif 711,City,G. Trump,1930,5,
+Staccato 222,Mistral,R. Excoffon,1953,15,
+Staccato 555,Choc,R. Excoffon,1954,15,
+Swiss 721,Helvetica,M. Miedinger,ca.1957,2,
+Swiss 911,Helvetica Compressed,H. J. Hunziker/M. Carter,1974,?,
+Swiss 921,Helvetica Inserat,,,?,
+Swiss 924,Hanseatic,,,2,
+Transitional 511,Caledonia ,W. A. Dwiggins,1941,2,"from P.Doherty, not on 500 CD"
+Transitional 521,Electra,W. A. Dwiggins,1935-44,2,
+Transitional 551,Fairfield,A. Kaczun,1991,2,
+Typo Upright,Linoscript,,,6,"from J.Haugeland, not identified in BT catalog"
+Venetian 301,Centaur,B. Rogers/F. Warde,1928-30,4,
+Wedding Text,Linotext,,,6,"from J.Haugeland, not identified in BT catalog"
+Zapf Calligraphic,Palatino,H. Zapf,1948,2,
+Zapf Elliptical 711,Melior,H. Zapf,1952,2,
+Zapf Humanist 601,Optima,H. Zapf,1958-68,2,
+Zurich,Univers,A. Frutiger,1957,2,
+
+Vendor,Key,,,,
+1,"Bitstream, Inc.",,,,
+2,Linotype AG and/or its subsidiaries,,,,
+3,International Typeface Corporation,,,,
+4,Monotype Corporation plc,,,,
+5,H. Berthold AG,
+6,Kingsley-ATF Type Corporation,
+7,Officine Simoncini s.p.a.,
+8,Fundicion Tipografica Neufville SA,
+9,FotoStar International,
+10,Ludlow Industries (UK) Ltd.,
+11,Johannes Wagner,
+12,Tetterode Nederland (Lettergieterij Amsterdam),
+13,Stephenson Blake & Co. Ltd.,
+14,Ingrama S.A.,
+15,Fonderie Olive,
+16,Societea Nebiolo,
+17,Esselte Pendaflex Corporation [Letraset?],
+18,Visual Graphics Corporation,
+
+
+
+******************************** TAB ********************************
+
+Bitstream Name	Common Name	Designer(s)	Date(s)	Orig.Vend.	Remarks/Attributions							
+	(all)	(M.Macrone/J.Pastor)	(M.Macrone)	(J.Pastor)								
+Aldine 401	Bembo	F. Griffo/A. Tagliente	1929	4								
+Aldine 721	Plantin			4								
+Blackletter 686	London Text 			2	"from P.Doherty, not on 500 CD"							
+Brush 445	Palette	M. Wilke	1953	5								
+Brush 738	Bison			?								
+Calligraphic 421	Codex	G. Trump	1954	2								
+Calligraphic 810	Diotima	G. Zapf von Hesse	1952-53	2								
+Century 725	Madison 			?	"from P.Doherty, not on 500 CD"							
+Century 731	Textype 			2	"from P.Doherty, not on 500 CD"							
+Century 751	Primer 			2	"from P.Doherty, not on 500 CD"							
+Decorated 035	Profil	E. & M. Lenz	1946	12								
+Dutch 766	Imprint 			4	"from P.Doherty, not on 500 CD"							
+Dutch 801	Times Roman	S. Morrison/V. Lardent	1931-35	"2,4"								
+Dutch 809	Concorde 			5	"from P.Doherty, not on 500 CD"							
+Dutch 811	Olympian	M. Carter	after 1969	2	"from P.Doherty, not on 500 CD"							
+Dutch 823	Aster			7	"from P.Doherty, not on 500 CD"							
+Egyptian 505	VGC Egyptian 505	A. Grtler	1966	18	"from M. Macrone, not identified in BT catalog "							
+English 157	Englische Screibschrift			5								
+Exotic 350	Peignot	A. M. Cassandre	1937	2								
+Flareserif 821	Albertus	B. Wolpe	1938	4								
+Formal 436	Oscar 			16	"from P.Doherty, not on 500 CD"							
+Formal Script 421	Mermaid	A. Frutiger	1954	1	(Debergny et Peignot)							
+Formal Script 421	Ondine	A. Frutiger	1954	2	(Debergny et Peignot)							
+Freeform 710	Eckmann	O. Eckmann	1900	2								
+Freeform 721	Auriol	G. Auriol	1901-04	2								
+Freehand 471	Cascade	M. Carter	1966	2								
+Freehand 521	Mandate			10								
+Freehand 575	Jefferson			?								
+Freehand 591	Bingham Script			?								
+"Garamond, American"	Garamond No. 3		1925-30	2								
+"Garamond, Classic"	Sabon	J. Tschichold	1960-5	2	
+"Garamond, Elegant"	Granjon	G. H.  Jones (dir.)	ca.1925	2	
+"Garamond, Italian"	Simoncini Garamond			7	
+"Garamond, Original"	Stempel Garamond			2	
+Geometric 212	Spartan		early 1930s	2	"[Futura copy] from P.Doherty, not on 500 CD"
+Geometric 231	Cable	R. Koch	1927	2	
+Geometric 415	Metro	W. A. Dwiggins	1930-32	2	
+Geometric 706	Neuzeit Grotesk	W. Pischner	1928	2	
+Geometric 885	Bloc 			18	"from P.Doherty, not on 500 CD"
+Geometric Slabserif 703	Memphis	R. Wolf/C. H. Griffith	1929-38	2	
+Geometric Slabserif 712	Rockwell	F. H. Pierpont	1934	4	
+Geometric Slabserif 712	Slate			1	
+Gothic 720	"Grotesque 126,215,216"			4	"from P.Doherty, not on 500 CD"
+Gothic 725	Akzidenz Grotesk			5	
+Gothic 821	Block			5	
+Humanist 521	Gill Sans	E. Gill	1928-32	4	
+Humanist 521	Hammersmith			1	
+Humanist 531	Syntax 			2	"from P.Doherty, not on 500 CD"
+Humanist 777	Frutiger	A. Frutiger		2	
+Humanist 970	Adsans	W. Tracy	1959	2	
+Humanist Slabserif 712	Egyptienne 			2	"from P.Doherty, not on 500 CD"
+Incised 901	Antique Olive	R. Excoffon	1962-68	15	
+Incised 901	Provence			1	
+Industrial 736	Torino	A. Butti	1908	16	
+Informal 011	Neuland	R. Koch	1923	2	
+Kis	Janson 		1937	"2,4"	"from P.Doherty, not on 500 CD"
+Kuenstler 480	Activa	G. Trump	1958	1	
+Kuenstler 480	Trump Medieval			2	
+Lapidary 333	Perpetua	E. Gill	1928-35	4	
+Latin 725	Meridien 			2	"from P.Doherty, not on 500 CD"
+Modern 735	Bodoni Campanile		1936	10	
+Modern 880	Linotype Modern 			2	"from P.Doherty, not on 500 CD"
+Monospace 821	Helvetica Monospaced			?	
+News 701	Ionic No. 5	C. H. GRiffith	1924	2	
+News 702	Excelsior 		1931	2	"from P.Doherty, not on 500 CD"
+News 705	Corona 		1941	2	"from P.Doherty, not on 500 CD"
+News 706	Aurora 			2	"from P.Doherty, not on 500 CD"
+Raleigh	Cartier			14	attributed to M.Macrone by R.Jaffe
+Revival 565	Berling	K. E. Forsberg	1951-58	?	
+Ribbon 131	Coronet	R. H. Middleton	1937	10	
+Square 721	Eurostile	A. Novarese	1962	2	
+Square Slabserif 711	City	G. Trump	1930	5	
+Staccato 222	Mistral	R. Excoffon	1953	15	
+Staccato 555	Choc	R. Excoffon	1954	15	
+Swiss 721	Helvetica	M. Miedinger	ca.1957	2	
+Swiss 911	Helvetica Compressed	H. J. Hunziker/M. Carter	1974	?	
+Swiss 921	Helvetica Inserat			?	
+Swiss 924	Hanseatic			2	
+Transitional 511	Caledonia 	W. A. Dwiggins	1941	2	"from P.Doherty, not on 500 CD"
+Transitional 521	Electra	W. A. Dwiggins	1935-44	2	
+Transitional 551	Fairfield	A. Kaczun	1991	2	
+Typo Upright	Linoscript			6	"from J.Haugeland, not identified in BT catalog"
+Venetian 301	Centaur	B. Rogers/F. Warde	1928-30	4	
+Wedding Text	Linotext			6	"from J.Haugeland, not identified in BT catalog"
+Zapf Calligraphic	Palatino	H. Zapf	1948	2	
+Zapf Elliptical 711	Melior	H. Zapf	1952	2	
+Zapf Humanist 601	Optima	H. Zapf	1958-68	2	
+Zurich	Univers	A. Frutiger	1957	2	
+
+Vendor	Key				
+1	"Bitstream, Inc."				
+2	Linotype AG and/or its subsidiaries				
+3	International Typeface Corporation				
+4	Monotype Corporation plc				
+5	H. Berthold AG	
+6	Kingsley-ATF Type Corporation	
+7	Officine Simoncini s.p.a.	
+8	Fundicion Tipografica Neufville SA	
+9	FotoStar International	
+10	Ludlow Industries (UK) Ltd.	
+11	Johannes Wagner	
+12	Tetterode Nederland (Lettergieterij Amsterdam)	
+13	Stephenson Blake & Co. Ltd.	
+14	Ingrama S.A.	
+15	Fonderie Olive	
+16	Societea Nebiolo	
+17	Esselte Pendaflex Corporation [Letraset?]	
+18	Visual Graphics Corporation
+	
+-----------------------------------------------------------------------
+Jon A. Pastor                                    pastor@vfl.paramax.com
+

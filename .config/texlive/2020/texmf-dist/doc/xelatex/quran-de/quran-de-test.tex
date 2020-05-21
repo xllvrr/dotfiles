@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{arabxetex} % for typesetting Arabic text in Rigth−To−Left direction
+
+% trans={fa,en,de,lt} option would be sent to quran package
+\usepackage[all, trans={fa,en,de,lt}, wordwise]{quran-de} 
+
+\newcommand{\compare}[1]{%
+    \def\setTr##1{\par\deSetTrans{##1}\fbox{\makebox[2cm]{\deGetTrans}}}
+    \noindent\hrulefill{\string #1}\hrulefill
+    \setTr{aburida} #1
+    \setTr{bubenheim} #1
+    \setTr{khoury} #1
+    \setTr{zaidan} #1
+\par
+}
+\newcommand{\para}[2]{\noindent%
+\begin{minipage}{.4\textwidth}
+\begin{arab}[utf]#1\end{arab}
+\end{minipage}\hfill
+\begin{minipage}{.55\textwidth}
+#2
+\end{minipage}
+}
+
+\begin{document}
+
+\quranayahde[1][1][4]+
+
+\begin{arab}[utf]
+\quranayah[2][5][2]+
+\end{arab}
+
+\para{\quranayah[Al-Ikhlas][1-4]}{\quranayahlt[Al-Ikhlas][1-4]}
+\bigskip
+\para{\quranayahfa[Al-Ikhlas][1-4]}{\quranayahen[Al-Ikhlas][1-4]}
+
+\quransurahde*
+
+\compare{\quransurahde*}
+\compare{\quranayahde[1][1]}
+\ToggleBasmalah
+\compare{\quranpagede*[2]}
+
+\end{document}

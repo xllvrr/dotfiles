@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>driver</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<meta name="originator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<!-- xhtml,th4,index --> 
+<meta name="src" content="mn.tex" /> 
+<meta name="date" content="2004-02-11 18:07:00" /> 
+<link rel="stylesheet" type="text/css" href="mn.css" /> 
+</head><body 
+>
+    <a 
+ href="mn-port.html#mn37.html" >exit driver</a>
+    <h3 class="SubSectionHead"><a 
+  name="QQ1-37-47"></a>Driving the Translation of Pictures and Other Tasks</h3>
+    <a 
+  name="index37-47001"></a> <a 
+  name="index37-47002"></a> <a 
+  name="index37-47003"></a>TeX4ht outputs a script file (&#8216;<span class="cmtt-10">.lg</span>&#8217;) describing how the dvi file (extension &#8216;<span class="cmtt-10">.idv</span>&#8217;) of pictures should
+be processed, the CSS instructions to be included for the file, and user-initiated requests from the
+operating system. In the default setting, the script file holds abstract commands similar to the following
+ones.
+<dl > <dt><span class="cmtt-10">--- needs --- source.idv[i] ==&gt; target.gif ---</span></dt><dd>
+<!--l. 5916--><p class="indent">    An abstract command of this form requests that the i&#8217;th page in the dvi file will be translated into a target file
+whose name is provided.
+</p>
+    </dd><dt><span class="cmtt-10">--- characters --- </span></dt><dd>
+<!--l. 5924--><p class="indent">    This abstract command is a identifies where the requests for pictorial characters start.
+</p>
+    </dd></dl>
+<!--l. 5929--><p class="indent">    A manual brute-force execution of the abstract commands can be a tedious job for large number of pictures.
+The <span class="cmtt-10">t4ht </span>is in essence an interpreter for these abstract commands.
+</p><!--l. 5934--><p class="indent">    Another possible approach for automating the process is to request lg scripts in the form of shell scripts or
+batch files.
+</p><!--l. 5941--><p class="indent">    <big><span class="cmbx-10">Alternatives to &#8216;</span><span class="cmtt-10">--- needs --- source.idv[i] ==&gt; target.gif ---</span><span class="cmbx-10">&#8217;</span></big>
+</p><!--l. 5944--><p class="indent">    The default setting is made with a request of the form &#8216;<span class="cmtt-10">--- needs --- %%1.idv[%%2] ==&gt; %%3.gif ---</span>&#8217;,
+where the parameters <span class="cmtt-10">%%1</span>, <span class="cmtt-10">%%2</span>, and <span class="cmtt-10">%%3 </span>respectively represent the name of the source file without
+its extension, a page number, and a name of the target file. Alternative patterns to these abstract
+commands can be requested in the following locations, with the order reflecting on the priority given to the
+requests.
+</p><!--l. 5953--><p class="indent">
+</p><ul type="disc" >
+<li>In the <a 
+ href="mn38.html" >command line</a> of <span class="cmtt-10">tex4ht</span>, where the pattern should be prefixed with &#8216;<span class="cmtt-10">-s</span>&#8217;.
+<!--l. 5957--><p class="noindent"></p></li>
+<li>In the environment file <span class="cmtt-10">tex4ht.env </span>within a block of consecutive lines, where the lines should be identified with the
+character <a 
+ href="mn33.html#sc-1"  name="sc">&#8216;<span class="cmtt-10">s</span>&#8217;</a>.
+<!--l. 5963--><p class="noindent"></p></li>
+<li>In <span class="cmtt-10">tex4ht </span>with the pattern provided through the variable <a 
+ href="mn36.html#x-LGPIC"  name="LGPIC">LGPIC</a> of <span class="cmtt-10">tex4ht.c</span>.
+    </li></ul>
+    The character &#8216;<span class="cmtt-10">%</span>&#8217; can be introduced into a pattern through the entry &#8216;<span class="cmtt-10">%%%</span>&#8217;. On the other hand, the
+parameters &#8216;<span class="cmtt-10">%%1</span>&#8217;, &#8216;<span class="cmtt-10">%%2</span>&#8217;, and <span class="cmtt-10">%%3 </span>can specify, between the first two percentage characters (i.e., &#8216;<span class="cmtt-10">%...%1</span>&#8217;,
+&#8216;<span class="cmtt-10">%...%2</span>&#8217;, and &#8216;<span class="cmtt-10">%...%3</span>&#8217;), any format for the outcome that is compatible with the print formats of
+C.
+<!--l. 5977--><p class="indent">    <big><span class="cmbx-10">Alternatives to &#8216;</span><span class="cmtt-10">--- characters ---</span><span class="cmbx-10">&#8217;</span></big>
+</p><!--l. 5979--><p class="indent">    Substitutions for this abstract command can be requested in the following locations.
+</p><!--l. 5986--><p class="indent">
+</p><ul type="disc" >
+<li>In the <a 
+ href="mn38.html"  name="mn38.html" >overview</a> of <span class="cmtt-10">tex4ht</span>, prefixed with &#8216;<span class="cmtt-10">-b</span>&#8217;.
+<!--l. 6157--><p class="noindent"></p></li>
+<li>In a line within the environment file &#8216;<span class="cmtt-10">tex4ht.file</span>&#8217;, where the line should be identified with the character
+&#8216;<a 
+ href="mn33.html#bsc-1"  name="bsc">b</a>&#8217;.
+<!--l. 6163--><p class="noindent"></p></li>
+<li>In <span class="cmtt-10">tex4ht </span>with the substitution provided during compilation time through the variable <a 
+ href="mn36.html#x-LGSEP"  name="LGSEP">LGSEP</a> of
+<span class="cmtt-10">tex4ht.c</span>.
+    </li></ul>
+
+     
+</body></html> 

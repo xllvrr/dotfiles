@@ -1,0 +1,51 @@
+epsf-dvipdfmx.tex is a plain TeX file to be \input after epsf.tex when
+using plain TeX with dvipdfmx.  As in:
+
+\input epsf
+\input epsf-dvipdfmx
+
+It is needed when an .eps file has anything except the origin (0,0) for
+the lower-left of its bounding box.  
+
+An alternative is to use the LaTeX graphicx package from your plain TeX
+document, as in:
+  \input miniltx
+  \input graphicx.sty 
+  \input dvipdfmx.def % needed tex+dvipdfmx only, omit for xetex
+Loading graphicx can also be done through Eplain (http://tug.org/eplain).
+Of course graphicx has many more features than epsf.tex.
+
+That's the whole usage.  The rest of this document is the explanation of
+why it is necessary.
+-----------------------------------------------------------------------------
+The ultimate source of the problem is that the dvipdfmx driver has a
+feature to autoconvert .eps files to .pdf in order to generate its PDF
+output.  By default, the conversion is done using Ghostscript.
+Ghostscript forces the lower-left in the output to 0,0 regardless of the
+input, and graphics programs (e.g., MetaPost) can create an .eps with a
+lower-left that can be anything, depending on what is actually drawn
+(e.g., a graph starting at (-10,-10)).
+
+Since this conversion happens at DVI processing time, it conflicts with
+what the TeX code sees.  The result is that the output is wrong; part of
+the graphic is lost.  Included in this distribution is a trivial TeX
+file, graphic, and the bad output by default (the circle is cut off and
+misplaced).  You can observe that uncommenting the \input epsf-dvipdfmx
+in the input file and rerunning tex+dvipdfmx produces good output (the
+whole circle).
+
+This cannot be fixed in epsf.tex, which looks at the graphic as it
+exists, with the arbitrary lower-left (and handles it properly), and has
+no way of knowing that a driver is going to transform it.  The two
+reasonable workarounds for users are given above.
+
+It also cannot be fixed in the dvipdfmx program because the graphic
+inclusion in TeX might also use the trim or viewport options, and
+sufficient information is not passed through to handle them properly.
+
+The two viable workarounds for the problem that we have found are given above.
+-----------------------------------------------------------------------------
+This README was originally written in 2014 by Karl Berry.
+The epsf-dvipdfmx.tex and test files were originally written in 2014
+by Akira Kakuto.
+All released to the public domain. 

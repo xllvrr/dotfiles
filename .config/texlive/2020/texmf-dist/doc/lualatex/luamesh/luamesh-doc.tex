@@ -1,0 +1,1219 @@
+% luamesh: compute and draw meshes with lua, luamplib and tikz
+%
+% Originally written by Maxime Chupin <mc@melusine.eu.org>,
+% 2010.
+%
+% Distributed under the terms of the GNU free documentation licence:
+%   http://www.gnu.org/licenses/fdl.html
+% without any invariant section or cover text.
+
+\documentclass{lltxdoc}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[tikz]{bclogo}
+\usepackage{wrapfig}
+\usepackage{animate}
+
+\title{\Verb+luamesh+: compute and draw meshes with \lualatex}
+\author{Maxime Chupin \email{mc@melusine.eu.org}}
+\date{\today}
+
+
+\definecolor{darkred}{rgb}{0.8,0.1,0.1}
+
+
+\newcommand*\commande{\noindent\hspace{-30pt}%
+  \SaveVerb[aftersave={%
+   \UseVerb{Vitem}
+  }%
+  ]{Vitem}}
+
+\newcommand*\textme[1]{\textcolor{black}{\rmfamily\textit{#1}}}
+\newcommand*\meta[1]{% % meta
+  \textme{\ensuremath{\langle}#1\ensuremath{\rangle}}}
+\newcommand*\optstar{% % optional star
+  \meta{\ensuremath{*}}\xspace}
+\DefineShortVerb{\|}
+\newcommand\R{\mathbf{R}}
+\setlength{\fboxsep}{2pt}
+\fvset{%
+  codes={\catcode`\«\active \catcode`\×\active },
+  defineactive={\makefancyog\makefancytimes},
+  formatcom=\color{darkred},
+  frame=single
+}
+% rendre «...» équivalent à \meta{...}
+{\catcode`\«\active
+  \newcommandx\makefancyog[0][addprefix=\global]{%
+    \def«##1»{\meta{##1}}}}
+% rendre × équivalent à \optstar
+{\catcode`\×\active
+  \newcommandx\makefancytimes[0][addprefix=\global]{%
+    \def×{\optstar{}}}}
+
+
+\tcbuselibrary{listings,breakable}
+
+\definecolor{vert}{rgb}{0.1,0.4,0.1}
+\definecolor{bleu}{rgb}{0.1,0.1,0.4}
+\lstset{
+  numberstyle=\footnotesize\color{vert},
+  keywordstyle=\ttfamily\bfseries\color{blue},
+  basicstyle=\ttfamily\footnotesize,
+  commentstyle=\itshape\color{vert},
+  stringstyle=\ttfamily,
+  showstringspaces=false,
+  language=[LaTeX]TeX,
+  breaklines=true,
+  breakindent=30pt,
+  defaultdialect=[LaTeX]TeX,
+  morekeywords={buildMeshBW,buildMeshBWinc,drawPointsMesh,buildVoronoiBW,buildVoronoiBWinc,
+    drawPointsMeshinc, meshAddPointBW,
+    meshAddPointBWinc,drawGmsh,drawGmshinc,gmshVoronoi,gmshVoronoiinc}% frame=tb
+}
+
+\lstdefinelanguage{lua}
+{morekeywords={for,end,function,do,if,else,elseif,then,
+    tex.print,tex.sprint,io.read,io.open,string.find,string.explode,require},
+  morecomment=[l]{--},
+  morecomment=[s]{--[[}{]]},
+  morestring=[b]''
+}
+
+\newtcblisting{Exemple}{%
+  arc=0pt,outer arc=0pt,
+  colback=red!2!white,
+  colframe=red!75!black,
+  breakable,
+  boxsep=0pt,left=5pt,right=5pt,top=5pt,bottom=5pt, bottomtitle =
+  3pt, toptitle=3pt,
+  boxrule=0pt,bottomrule=0.5pt,toprule=0.5pt, toprule at break =
+  0pt, bottomrule at break = 0pt,
+  listing options={breaklines},
+}
+
+\newtcblisting{commandshell}{colback=black,colupper=white,colframe=black,
+  arc=0pt,
+  listing only,boxsep=0pt,listing
+  options={style=tcblatex,language=sh},
+  every listing line={\textcolor{red}{\small\ttfamily\bfseries user \$> }}}
+
+\newtcblisting{latexcode}{
+  arc=0pt,outer arc=0pt,
+  colback=red!2!white,
+  colframe=red!75!black,
+  breakable,
+  boxsep=0pt,left=5pt,right=5pt,top=5pt,bottom=5pt, bottomtitle =
+  3pt, toptitle=3pt,
+  boxrule=0pt,bottomrule=0.5pt,toprule=0.5pt, toprule at break =
+  0pt, bottomrule at break = 0pt,
+  listing only,boxsep=0pt,listing
+  options={breaklines}
+}
+
+
+\newcommand\luamesh{\Verb+luamesh+\xspace}
+
+\newenvironment{optionsenum}[1][]
+{\begin{description}[font=\color{darkred}\ttfamily]}
+  {\end{description}}
+
+\newenvironment{warning}{%
+  \setlength{\logowidth}{24pt}
+  \tcbset{%
+    arc=0pt,outer arc=0pt,colback=gray!10!white,colframe=gray!60!white,
+    boxsep=0pt,left=5pt,right=5pt,top=5pt,bottom=5pt, bottomtitle = 3pt, toptitle=3pt,
+    boxrule=0pt,bottomrule=0.5pt,toprule=0.5pt}
+  \medskip
+  \begin{tcolorbox}%
+    \begin{wrapfigure}[2]{L}{17pt}%
+      % \raisebox{-5pt}{
+      \vspace*{-0.55cm}
+      \bcinfo
+      % }%
+    \end{wrapfigure}
+  }%
+  {\end{tcolorbox}\medskip}
+
+\lstset{moredelim=*[s][\color{red}\rmfamily\itshape]{<}{>}}
+\lstset{moredelim=*[s][\color{blue}\rmfamily\itshape]{<<}{>>}}
+\usepackage[colorlinks=true]{hyperref}
+\begin{document}
+%% === Page de garde ===================================================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \node[below right, shift={(-4pt,4pt)}] at (current page.north west) {%
+    \includegraphics{fond.pdf}%
+  };
+\end{tikzpicture}%
+
+\noindent
+\includegraphics{luamesh-title}\\
+{\large compute and draw meshes with \lualatex}\\[1cm]
+\parbox{0.6\textwidth}{
+  \meshAddPointBW[
+  mode=ext,step=badtriangles,
+  colorNew =green!20!red,
+  colorBack=red!10,
+  colorCircle = blue,
+  bbox = show,
+  colorBbox = black!30
+  ]
+  {meshgarde.txt}{7}
+}\hfill
+\parbox{0.4\textwidth}{\Large\raggedleft
+  \textbf{Contributor}\\
+  Maxime \textsc{Chupin}
+}
+\vfill
+\begin{center}
+  Version 0.5, 2017, February, 9th \\
+  \url{http://melusine.eu.org/syracuse/G/delaunay/}
+\end{center}
+%% == Page de garde ====================================================
+\newpage
+
+\maketitle
+
+\begin{abstract}
+  The package \Verb|luamesh| allows to compute and draw 2D Delaunay
+  triangulation. The algorithm is written with lua, and depending on the
+  choice of the ``engine'', the drawing is done by MetaPost (with
+  \Verb|luamplib|) or by \Verb|tikz|.
+
+  The Delaunay triangulation algorithm is the Bowyer and Watson
+  algorithm. Several macros are provided to draw the global mesh, the
+  set of points, or a particular step of the algorithm.
+\end{abstract}
+
+I would like to thank Jean-Michel Sarlat, who hosts the development
+with a git project on the \Verb+melusine+ machine:
+\begin{center}
+  \url{https://melusine.eu.org/syracuse/G/delaunay/}
+\end{center}
+I would also like to thank the first user, an intensive
+\emph{test} user, and a very kind English corrector: Nicole Spillane.
+
+\tableofcontents
+
+\section{Installation}
+
+
+Of course, you can just put the two files \Verb+luamesh.lua+ and
+\Verb+luamesh.sty+ in the working directory but this is not
+recommended.
+
+
+\subsection{With \TeX live and Linux or Mac OSX}
+
+To install \luamesh with \TeX live, you have to create the local
+\Verb+texmf+ directory in your \Verb+home+.
+
+\begin{commandshell}
+mkdir ~/texmf
+\end{commandshell}
+
+Then place the files in the correct directories. The
+\Verb+luamesh.sty+ file must be in directory:
+\begin{center}
+  \Verb+~/texmf/tex/latex/luamesh/+
+\end{center}
+and the \Verb+luamesh.lua+, the \Verb+luamesh-tex.lua+ and the
+\Verb-luamesh-polygon.lua+ files must be in directory:
+\begin{center}
+  \Verb+~/texmf/scripts/luamesh/+
+\end{center}
+
+Once you have done this, \luamesh can be included in your document
+with
+\begin{latexcode}
+\usepackage{luamesh}
+\end{latexcode}
+
+\subsection{With Mik\TeX{} and Windows}
+
+As these two systems are unknown to the contributor, we refer to the
+documentation for integrating local additions to Mik\TeX:
+\begin{center}
+  \url{http://docs.miktex.org/manual/localadditions.html}
+\end{center}
+
+
+\subsection{A \lualatex package}
+
+If you want to use this package, you must compile your document with
+\Verb+lualatex+:
+
+\begin{commandshell}
+  lualatex mylatexfile.tex
+\end{commandshell}
+
+
+\subsection{Dependencies}
+
+This package is built upon two main existing packages that one used to
+draw the
+triangulations :
+\begin{enumerate}
+\item \Verb+luamplib+ to use MetaPost via the \luatex library
+  \Verb+mplib+;
+\item \Verb+tikz+.
+\end{enumerate}
+We will see how to choose between these two \emph{drawing engines}.
+Moreover, the following packages are necessary:
+\begin{enumerate}
+\item \Verb+xkeyval+ to manage the optional arguments;
+\item \Verb+xcolor+ to use colors (required by \Verb+luamplib+);
+\item \Verb+ifthen+ to help programming with \TeX.
+\end{enumerate}
+
+
+\section{The Basic Macros}
+
+This package provides macros to draw two
+dimensional triangulations (or meshes).
+
+\subsection{Draw a Complete Mesh}\label{sec:buildMesh}
+
+\commande|\buildMeshBW[«options»]{«list of points» or «file name»}|\medskip
+
+This macro produces the Delaunay triangulation (using the Bowyer and
+Watson algorithm) of the given \meta{list of points}. The list of
+points must be given in the following way :
+\begin{center}
+  \verb+(x1,y1);(x2,y2);(x3,y3);...;(xn,yn)+
+\end{center}
+
+\begin{Exemple}
+  \buildMeshBW{(0.3,0.3);(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5)}
+\end{Exemple}
+
+\subsubsection{The Options}
+
+There are several options to customize the drawing.
+\begin{optionsenum}
+\item[mode = int (default) \textme{or} ext:] this option allows to
+  use either the previously described set of points in the argument, or
+  a file containing the points line by line (in 2 columns). Such a
+  file looks like :
+\begin{verbatim}
+x1  y1
+x2  y2
+x3  y3
+...
+xn yn
+\end{verbatim}
+\item[bbox = none (default) \textme{or} show:] this option allows to draw the
+  points  added to form the \emph{bounding box}\footnote{The bounding
+    box is defined by four points place at 15\% around the box
+    defined by $(x_{\min},y_{\min})$, $(x_{\min},y_{\max})$,
+    $(x_{\max},y_{\max})$, and $(x_{\min},y_{\max})$. It is used by
+    the algorithm and will be computed in any case.} and the
+  triangles attached. By default, these triangles are removed at the end of
+  the algorithm.
+\item[color = \meta{value} (default: black):] The color of the
+  drawing.
+\item[colorBbox = \meta{value} (default: black):] The color of the
+  drawing for the elements (points and triangles) belonging to the
+  bounding box.
+\item[print = none (default) \textme{or} points \textme{or}
+  dotpoints:] The \Verb+point+ value allows to label the vertices of the
+  triangulation. This also adds a \emph{dot} at each vertex. The
+  \Verb+dotpoints+ value only add a dot without the labeling.
+\item[meshpoint = \meta{value} (default: P):] The letter(s) used to
+  label the vertices of the triangulation. It is included in the math
+  mode delimiters \Verb+$...$+. The bounding box points are labeled
+  with numbers 1 to 4 and with a star exponent.
+\item[tikz (boolean, default:false):] By default, this boolean is set
+  to \Verb+false+, and MetaPost (with \Verb+luamplib+) is used to draw
+  the picture. With this option, \Verb+tikz+ becomes the \textit{drawing
+    engine}.
+\item[scale = \meta{value} (default: 1cm):] The scale option defines
+  the scale at which the picture is drawn (the same for both
+  axes). It must contain the unit of length (cm,
+  pt, etc.).
+\end{optionsenum}
+
+To illustrate the options, let us show you an example. We consider a
+file \Verb+mesh.txt+:
+\begin{verbatim}
+0.3    0.3
+1.5    1
+4      0
+4.5    2.5
+1.81   2.14
+2.5    0.5
+2.8    1.5
+\end{verbatim}
+\begin{Exemple}
+  \buildMeshBW[%
+  tikz,
+  mode = ext,
+  bbox = show,
+  color = red,
+  colorBbox = blue!30,
+  print = points,
+  meshpoint = x,
+  scale = 1.3cm,
+  ]{mesh.txt}
+\end{Exemple}
+
+\begin{warning}
+The drawing engine is not very relevant here, although it is useful to
+understand how the drawing is produced. However, the engine will be
+relevant to
+the so called \emph{inc} macros (section~\ref{sec:inc}) for adding
+code before and after the one generated by
+\luamesh.
+\end{warning}
+
+\subsection{Draw the Set of Points}
+
+\commande|\drawPointsMesh[«options»]{«list of points» or «file name»}|\medskip
+
+With the \Verb+\drawPointsMesh+, we plot the set of (user chosen) points from
+which the Bowyer and Watson algorithm computes the triangulation.
+
+The use of this macro is quite similar to
+\Verb+\buildMeshBW+. Here is an example of the basic uses.
+\begin{Exemple}
+  \drawPointsMesh{(0.3,0.3);(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5)}
+\end{Exemple}
+
+
+\subsubsection{The Options}
+
+There are several options (exactly the same as for the
+\Verb+\buildMeshBW+) to customize the drawing.
+\begin{optionsenum}
+\item[mode = int (default) \textme{or} ext:] this option allows to
+  use either the previously described set of points as the argument, or
+  a file containing the points line by line (in 2 columns). Such a
+  file looks like :
+\begin{verbatim}
+x1  y1
+x2  y2
+x3  y3
+...
+xn yn
+\end{verbatim}
+\item[bbox = none (default) \textme{or} show:] this option allows to draw the
+  points  added to form the \emph{bounding box}\footnote{The bounding
+    box is defined by four points place at 15\% around the box
+    defined by $(x_{\min},y_{\min})$, $(x_{\min},y_{\max})$,
+    $(x_{\max},y_{\max})$, and $(x_{\min},y_{\max})$. It is used by
+    the algorithm and will be computed in any case.} and the
+  triangles attached. By default, these triangles are removed at the end of
+  the algorithm. \emph{Here, because we plot only the vertices of the
+    mesh, there are no triangles, only dots.}
+\item[color = \meta{value} (default: black):] The color of the
+  drawing.
+\item[colorBbox = \meta{value} (default: black):] The color of the
+  drawing for the elements (points and triangles) belonging to the
+  bounding box.
+\item[print = none (default) \textme{or} points:] To label the vertices of the
+  triangulation. This also adds a \emph{dot} at each vertex. With no
+  label, the dot remains.
+\item[meshpoint = \meta{value} (default: P):] The letter(s) used to
+  label the vertices of the triangulation. This is included in the math
+  mode delimiters \Verb+$...$+. The bounding box points are labeled
+  with numbers 1 to 4 and with a star exponent.
+\item[tikz (boolean, default:false):] By default, this boolean is set
+  to \Verb+false+, and MetaPost (with \Verb+luamplib+) is used to draw
+  the picture. With this option, \Verb+tikz+ becomes the \textit{drawing
+    engine}.
+\item[scale = \meta{value} (default: 1cm):] The scale option defines
+  the scale at which the picture is drawn (the same for both
+  axes). It must contain the unit of length (cm,
+  pt, etc.).
+\end{optionsenum}
+With the same external mesh point file presented in
+section~\ref{sec:buildMesh}, we illustrate the different options.
+
+\begin{Exemple}
+  \drawPointsMesh[%
+  tikz,
+  mode = ext,
+  bbox = show,
+  color = blue,
+  colorBbox = red,
+  print = points,
+  meshpoint = y,
+  scale = 1.3cm,
+  ]{mesh.txt}
+\end{Exemple}
+
+
+\subsection{Draw a Step of the Bowyer and Watson Algorithm}
+
+\commande|\meshAddPointBW[«options»]{«list of points» or «file name»}{«point» or «number of line»}|\medskip
+
+This command allows to plot the steps within the addition of a
+point in a Delaunay triangulation by the Bowyer and Watson
+algorithm.
+
+This macro produces the Delaunay triangulation (using the Bowyer and
+Watson algorithm) of the given \meta{list of points} and shows a step
+of the algorithm when the \meta{point} is added. The list of
+points must be given in the following way:
+\begin{center}
+  \verb+(x1,y1);(x2,y2);(x3,y3);...;(xn,yn)+
+\end{center}
+and the point is of the form \verb+(x,y)+. The \meta{file name}
+and \meta{number of line}  will be explained in the option
+description.
+
+One can use the macro as follows:
+\begin{Exemple}
+  \meshAddPointBW[step=badtriangles]{(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5)}{(2.2,1.8)}
+  \meshAddPointBW[step=cavity]{(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5)}{(2.2,1.8)}
+  \meshAddPointBW[step=newtriangles]{(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5)}{(2.2,1.8)}
+\end{Exemple}
+The default value for \Verb+step+ is
+\Verb+badtriangles+. Consequently, the first
+line is equivalent to
+\begin{latexcode}
+\meshAddPointBW{(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5)}{(2.2,1.8)}
+\end{latexcode}
+
+\subsubsection{The Options}
+
+There are several options (some of them are the same as for
+\Verb+\buildMeshBW+) to customize the drawing.
+\begin{optionsenum}
+\item[mode = int (default) \textme{or} ext:] this option allows to
+  use either the previously described set of points as the argument, or
+  a file containing the points line by line (in 2 columns). Such a
+  file looks like :
+\begin{verbatim}
+x1  y1
+x2  y2
+x3  y3
+...
+xn yn
+\end{verbatim}
+For the second argument of the macro, if we are in
+\Verb+mode = ext+, the argument must be the \emph{line number} of the file
+corresponding to the point we want to add. The algorithm will stop at the
+previous line to build the initial triangulation and proceed to add
+the point corresponding to the line requested. The subsequent lines in
+the file are
+ignored.
+\item[bbox = none (default) \textme{or} show:] this option allows to draw the
+  added points that form the \emph{bounding box} and the triangles
+  attached. Although they are always computed, by default, these
+  triangles are removed at the end of
+  the algorithm.
+\item[color = \meta{value} (default: black):] The color of the
+  drawing.
+\item[colorBbox = \meta{value} (default: black):] The color of the
+  drawing for the elements (points and triangles) belonging to the
+  bounding box.
+\item[colorNew = \meta{value} (default: red):] The color of the
+  drawing of the ``new'' elements which are the point to add, the
+  polygon delimiting the cavity, and the new triangles.
+\item[colorBack = \meta{value} (default: black!20):] The color for the
+  filling of the region concerned by the addition of the new point.
+\item[colorCircle = \meta{value} (default: green):] The color for
+  the circumcircle of the triangles containing the point to add.
+\item[meshpoint = \meta{value} (default: P):] The letter(s) used to
+  label the vertices of the triangulation. It is included in the math
+  mode delimiters \Verb+$...$+. The bounding box points are labeled
+  with numbers 1 to 4 and with a star exponent.
+\item[step = badtriangles (default) \textme{or} cavity \textme{or}
+  newtriangles:] To choose the step we want to draw, corresponding to
+  the steps of the Bowyer and Watson algorithm.
+\item[newpoint = \meta{value} (default: P):] The letter(s) used to
+  label the new point of the triangulation. It is include in the math
+  mode delimiters \Verb+$...$+.
+\item[tikz (boolean, default:false):] By default, this boolean is set
+  to \Verb+false+, and MetaPost (with \Verb+luamplib+) is used to draw
+  the picture. With this option, \Verb+tikz+  is the \textit{drawing
+    engine}.
+\item[scale = \meta{value} (default: 1cm):] The scale option defines
+  the scale at which the picture is drawn (the same for both
+  axis). It must contain the unit of length (cm,
+  pt, etc.).
+\end{optionsenum}
+
+Here is an example of customizing the drawing. First, recall that
+the external file \Verb+mesh.txt+ is:
+\begin{verbatim}
+0.3    0.3
+1.5    1
+4      0
+4.5    2.5
+1.81   2.14
+2.5    0.5
+2.8    1.5
+\end{verbatim}
+We draw the addition of the 6th point. The 7th line will be ignored.
+\begin{Exemple}
+  \meshAddPointBW[
+  tikz,
+  mode = ext,
+  color = blue!70,
+  meshpoint = \alpha,
+  newpoint = y,
+  colorBack=red!10,
+  colorNew = green!50!red,
+  colorCircle = blue,
+  colorBbox = black!20,
+  bbox = show,
+  scale=1.4cm,
+  step=badtriangles]
+  {mesh.txt}{6}
+\end{Exemple}
+
+\subsection{Mesh a Polygon}
+
+\commande|\meshPolygon[«options»]{«list of points» or «file name»}|\medskip
+
+
+With \luamesh, it is possible to mesh an object giving the
+\emph{border}, \emph{i.e.}, one closed polygon. The polygon is given
+as a list of points as above:
+\begin{center}
+  \verb+(x1,y1);(x2,y2);(x3,y3);...;(xn,yn)+
+\end{center}
+Once again we can also give a file of points using the \Verb+mode+
+option.
+
+This command allows to plot the steps within the building of a complete
+mesh. The followed method is, given a parameter $h$:
+\begin{itemize}
+\item to build a squared grid of points with a unit distance equal to
+  $h$;
+\item to keep the grid points inside the polygon;
+\item if necessary to add points along the polygon to respect the
+  distance parameter;
+\item to mesh the complete set of points (using the Bowyer and Watson
+  algorithm).
+\end{itemize}
+
+One can use the macro as follows:
+\begin{Exemple}
+  \meshPolygon[step=polygon,scale=2cm]{(0,0);(1,0);(1,0.5);(0,0.5);(-0.20,0.35);(-0.25,0.25);(-0.20,0.15)}
+  \meshPolygon[step=grid,scale=2cm]{(0,0);(1,0);(1,0.5);(0,0.5);(-0.20,0.35);(-0.25,0.25);(-0.20,0.15)}
+  \meshPolygon[step=points,scale=2cm]{(0,0);(1,0);(1,0.5);(0,0.5);(-0.20,0.35);(-0.25,0.25);(-0.20,0.15)}
+  \meshPolygon[step=mesh,scale=2cm]{(0,0);(1,0);(1,0.5);(0,0.5);(-0.20,0.35);(-0.25,0.25);(-0.20,0.15)}
+\end{Exemple}
+
+Note that if the points of the grid are too closed to the points of
+the refined boundary, they are ejected.
+
+\subsubsection{The Options}
+
+There are several options (some of them are the same as for
+\Verb+\buildMeshBW+) to customize the drawing.
+\begin{optionsenum}
+\item[mode = int (default) \textme{or} ext:] this option allows to
+  use either the previously described set of points as the argument, or
+  a file containing the points line by line (in 2 columns). Such a
+  file looks like :
+\begin{verbatim}
+x1  y1
+x2  y2
+x3  y3
+...
+xn yn
+\end{verbatim}
+\item[h = \meta{value} (default: 0.2):] The mesh parameter, it is the
+  unit distance for the grid. If necessary, the boundary is refined to
+  get points which respect the distance constrain.
+\item[color = \meta{value} (default: black):] The color of the
+  drawing (the grid point and the mesh).
+\item[colorPolygon = \meta{value} (default: red):] The color of the
+  drawing for the boundary polygon.
+\item[print = none (default) \textme{or} points \textme{or}
+  dotpoints:] The \Verb+point+ value allows to label the vertices of the
+  triangulation. This also adds a \emph{dot} at each vertex. The
+  \Verb+dotpoints+ value only add a dot without the labeling.
+\item[meshpoint = \meta{value} (default: P):] The letter(s) used to
+  label the vertices of the triangulation. It is included in the math
+  mode delimiters \Verb+$...$+.
+\item[step = polygon  \textme{or} grid \textme{or}
+  points \textme{or} mesh (default):] To choose the step we want to draw,
+  see the description above.
+\item[tikz (boolean, default:false):] By default, this boolean is set
+  to \Verb+false+, and MetaPost (with \Verb+luamplib+) is used to draw
+  the picture. With this option, \Verb+tikz+  is the \textit{drawing
+    engine}.
+\item[scale = \meta{value} (default: 1cm):] The scale option defines
+  the scale at which the picture is drawn (the same for both
+  axis). It must contain the unit of length (cm,
+  pt, etc.).
+\item[gridpoints = rect (default)  \textme{or} perturb:] This option
+  allows to specify the mode of generation of the grid points. The
+  value \Verb+rect+ produces a simple rectangular grid, and the value
+  \Verb+pertub+ randomly perturbs the rectangular grid.
+\end{optionsenum}
+
+Here is an example of customizing the drawing.
+\begin{Exemple}
+  \meshPolygon[
+  tikz,
+  color = blue!70,
+  meshpoint = \alpha,
+  colorPolygon=red!120,
+  scale=4cm,
+  step=mesh,
+  print=points,
+  gridpoints=perturb]
+  {(0,0);(1,0);(1,0.5);(0,0.5);(-0.20,0.35);(-0.25,0.25);(-0.20,0.15)}
+\end{Exemple}
+
+
+\section{The \emph{inc} Macros}\label{sec:inc}
+
+The three macros presented in the above sections have complementary
+macros, with the suffix \Verb+inc+ that allow the user to add code
+(MetaPost or \Verb+tikz+, depending of the drawing engine) before and
+after the code generated by \luamesh.
+
+The three macros are:\medskip
+
+
+\commande|\buildMeshBWinc[«options»]{«list of points» or «file name»}{«code before»}{«code after»}|\medskip
+
+\commande|\drawPointsMeshinc[«options»]{«list of points» or «file name»}{«code before»}{«code after»}|\medskip
+
+\commande|\meshAddPointBWinc[«options»]{«list of points» or «file  name»}%|
+
+\commande|                           {«point» or «number of line»}{«code before»}{«code after»}|\medskip
+
+\subsection{With MetaPost}
+
+We consider the case where the drawing engine is MetaPost (through the
+\Verb+luamplib+ package).
+
+The feature is described for the \Verb+\buildMeshBWinc+ but the mechanism
+and possibilities are exactly the same for all three macros.
+
+When we use the MetaPost drawing engine, the macros previously
+described produce a code of the form
+\begin{latexcode}
+\begin{luamplib}
+  u:=<scale>;
+  beginfig(0);
+  <code for the drawing>
+  endfig;
+\end{luamplib}
+\end{latexcode}
+
+Then, the arguments \meta{code before} and \meta{code after} are
+inserted as follows:
+\begin{latexcode}
+\begin{luamplib}
+  u:=<scale>;
+  <<code before>>
+  <code for the drawing>
+  <<code after>>
+\end{luamplib}
+\end{latexcode}
+\begin{warning}
+With the \emph{inc} macros, the user has to add the \Verb+beginfig();+
+and \Verb+endfig;+ commands to produce a picture. Indeed, this allows
+to use the \Verb+\everymplib+ command from the \Verb+\luamplib+ package.
+\end{warning}
+
+\subsubsection{The \LaTeX{} Colors Inside the MetaPost Code}\label{sec:mpcolor}
+
+The configurable colors
+of the \LaTeX{} macro are accessible inside the MetaPost code. For
+\Verb+\buildMeshBWinc+ and \Verb+\drawPointsMeshinc+,
+\Verb+\luameshmpcolor+,
+and \Verb+\luameshmpcolorBbox+ have been defined.
+For the macro \Verb+\meshAddPointBWinc+ three additional
+colors are present: \Verb+\luameshmpcolorBack+,
+\Verb+\luameshmpcolorNew+, and
+\Verb+\luameshmpcolorCircle+. For the macro \Verb+\meshPolygon+, the
+color \Verb+\luameshmpcolorPoly+ is defined. Of course, MetaPost
+colors can be defined as well. Finally, the \Verb+luamplib+ mechanism
+\Verb+\mpcolor+ is also available.
+
+\subsubsection{The Mesh Points}
+
+At the beginning of the automatically generated code, a list of
+MetaPost \Verb+pair+s are defined corresponding to all the vertices in
+the mesh (when the option \Verb+bbox=show+, the last 4 points are the
+\emph{bounding box points}). The points are available with the
+\Verb+MeshPoints[]+ table of variables. The \Verb+pair+s ($\R^{2}$ points)
+\Verb+MeshPoints[i]+ are
+defined using the unit length \Verb+u+.
+
+With the \Verb+\meshPolygon+ macro, we have the points of the polygon
+(refined) that are available with the
+\Verb+polygon[]+ table of variables.
+
+\subsubsection{Examples}
+
+Here is three examples for the different macros.
+\begin{Exemple}
+\drawPointsMeshinc[
+color = blue!50,
+print = points,
+meshpoint = x,
+scale=0.8cm,
+]{(0.3,0.3);(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5)}%
+{% code before
+  beginfig(0);
+}%
+{% code after
+  label(btex Mesh $\mathbb{T}$ etex, (0,2u)) withcolor \luameshmpcolor;
+  endfig;
+}
+\buildMeshBWinc[%
+bbox = show,
+color = red,
+colorBbox = blue!30,
+print = points,
+meshpoint = x,
+scale=0.8cm
+]{(0.3,0.3);(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5)}%
+{% code before
+  beginfig(0);
+}
+{% code after
+  drawdblarrow MeshPoints[3] -- MeshPoints[9] withpen pencircle scaled 1pt
+  withcolor (0.3,0.7,0.2);
+  endfig;
+}
+\meshAddPointBWinc[
+meshpoint = \alpha,
+newpoint = y,
+colorBack=red!10,
+colorNew = green!50!red,
+colorCircle = blue,
+colorBbox = black!20,
+bbox = show,
+scale=0.8cm,
+step=badtriangles]
+{(0.3,0.3);(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5)}{(2.8,1.5)}%
+{%code before
+  picture drawing;
+  drawing := image(
+}{%code after
+  );
+  beginfig(0);
+  fill MeshPoints[7]--MeshPoints[8]--MeshPoints[9]--MeshPoints[10]--cycle
+  withcolor \mpcolor{blue!10};
+  draw drawing;
+  endfig;
+}
+\end{Exemple}
+\begin{warning}
+  The variables \Verb+MeshPoints[]+ are not defined for the argument
+  corresponding to the code placed \textbf{before} the code generated by
+  \luamesh. Hence, to use such variables, we have to define a
+  \Verb+picture+ as shown in the third example above.
+\end{warning}
+
+
+\subsection{With TikZ}
+
+If we have chosen \Verb+tikz+ as the drawing engine, the added code
+will be written in \Verb+tikz+. In that case, the two arguments
+\meta{code before} and \meta{code after} will be inserted as follows:
+\begin{latexcode}
+\noindent
+\begin{tikzpicture}[x=<scale>,y=<scale>]
+  <<code before>>
+  <generated code>
+  <<code after>>
+\end{tikzpicture}
+\end{latexcode}
+
+Because the engine is \Verb+tikz+ their is no issue with colors, the
+\LaTeX{} colors (e.g.: \Verb+xcolor+) can be used directly.
+
+\subsubsection{The Mesh Points}
+
+The mesh points  are defined here as \Verb+tikz+
+\Verb+\coordinate+ and named as follows
+\begin{latexcode}
+\coordinate (MeshPoints1) at (...,...);
+\coordinate (MeshPoints2) at (...,...);
+\coordinate (MeshPoints3) at (...,...);
+%etc.
+\end{latexcode}
+
+With the \Verb+\meshPolygon+ we have also the polygon points coordinates:
+\begin{latexcode}
+\coordinate (polygon1) at (...,...);
+%etc.
+\end{latexcode}
+
+Once again these coordinates are not yet defined to be used in the
+code given by \meta{code
+  before} argument.
+
+\subsubsection{Examples}
+
+\begin{Exemple}
+  \drawPointsMeshinc[
+  tikz,
+  color = blue!50,
+  print = points,
+  meshpoint = x,
+  scale=0.8cm,
+  ]{(0.3,0.3);(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5)}%
+  {% code before
+  }%
+  {% code after
+    \node[color = blue!50]  at (0,2) {Mesh $\mathbb{T}$} ;
+  }
+  \buildMeshBWinc[%
+  tikz,
+  bbox = show,
+  color = red,
+  colorBbox = blue!30,
+  print = points,
+  meshpoint = x,
+  scale=0.8cm
+  ]{(0.3,0.3);(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5)}%
+  {% code before
+  }
+  {% code after
+    \draw[<->,thick, color=green] (MeshPoints3) -- (MeshPoints9);
+  }
+\end{Exemple}
+
+\section{Voronoï Diagrams}
+
+Another interesting feature of b Delaunay triangulation is that its
+\emph{dual} is the so-called Voronoï diagram. More precisely, for a
+finite set of
+points $\{p_{1},\ldots, p_{n}\}$ in the Euclidean plane, the Voronoï
+cell $R_{k}$ corresponding to $p_{k}$ is the set of
+all points in the Euclidean plane $\R^{2}$ whose distance to $p_{k}$ is less
+than
+or equal to its distance to any other $p_{k'}$.\bigskip
+
+
+\commande|\buildVoronoiBW[«options»]{«list of points» or «file  name»}|\medskip
+
+This macro produce the Voronoï diagram  of the given \meta{list of
+  points}. Once again, the
+list of
+points must be given in the following way :
+\begin{center}
+  \verb+(x1,y1);(x2,y2);(x3,y3);...;(xn,yn)+
+\end{center}
+
+\begin{Exemple}
+  \buildVoronoiBW{(0.3,0.3);(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5);(0.1,2);(1.5,-0.3)}
+\end{Exemple}
+
+\subsection{The Options}\label{sec:voronoiOptions}
+
+
+There are several options to customize the drawing.
+\begin{optionsenum}
+\item[mode = int (default) \textme{or} ext:] this option allows to
+  use either the previously described set of points in the argument, or
+  a file containing the points line by line (in 2 columns). Such a
+  file looks like :
+\begin{verbatim}
+x1  y1
+x2  y2
+x3  y3
+...
+xn yn
+\end{verbatim}
+\item[bbox = none (default) \textme{or} show:] this option allows to draw the
+  added points to form a \emph{bounding box}\footnote{The bounding
+    box is defined by four points place at 15\% around the box
+    defined by $(x_{\min},y_{\min})$, $(x_{\min},y_{\max})$,
+    $(x_{\max},y_{\max})$, and $(x_{\min},y_{\max})$. It is used by
+    the algorithm and will be computed in any case.} and the corresponding
+  triangulation. By default, these points are removed at the end of
+  the algorithm.
+\item[color = \meta{value} (default: black):] The color of the
+  drawing.
+\item[colorBbox = \meta{value} (default: black):] The color of the
+  drawing for the elements (points and triangles) belonging to the
+  bounding box.
+\item[colorVoronoi = \meta{value} (default: black):] The color of the
+  drawing for the elements (points and polygons) belonging to the
+  Voronoï diagram.
+\item[print = none (default) \textme{or} points:] To label the
+  vertices in the
+  triangulation. Contrary to the previous macros, where
+  \Verb+print=none+,  a \emph{dot} is produced at each vertex of the
+  set of points and at the circumcircle centers which are the nodes of
+  the Voronoï diagram.
+\item[meshpoint = \meta{value} (default: P):] The letter(s) used to
+  label the vertices of the triangulation. This is included in the math
+  mode delimiters \Verb+$...$+. The bounding box points are labelled
+  with numbers 1 to 4 and with a star exponent.
+\item[circumpoint = \meta{value} (default: P):] The letter(s) used to
+  label the vertices of the Voronoï diagram. This is included in the math
+  mode delimiters \Verb+$...$+.
+\item[tikz (boolean, default:false):] By default, this boolean is set
+  to \Verb+false+, and MetaPost (with \Verb+luamplib+) is used to draw
+  the picture. With this option, \Verb+tikz+ becomes the \textit{drawing
+    engine}.
+\item[scale = \meta{value} (default: 1cm):] The scale option defines
+  the scale at which the picture is drawn (the same for both
+  axes). It must contain the unit of length (cm,
+  pt, etc.).
+\item[delaunay = none (default) \textme{or} show:] This option
+  allows to draw the Delaunay triangulation under the Voronoï diagram.
+\item[styleDelaunay = none (default) \textme{or} dashed:] This option
+  allows to draw the Delaunay triangulation in dashed lines.
+\item[styleVoronoi = none (default) \textme{or} dashed:] This option
+  allows to draw the Voronoï edges in dashed lines.
+\end{optionsenum}
+
+\begin{Exemple}
+  \buildVoronoiBW[tikz,delaunay=show,styleDelaunay=dashed]
+  {(0.3,0.3);(1.5,1);(4,0);(4.5,2.5);(1.81,2.14);(2.5,0.5);(2.8,1.5);(0.1,2);(1.5,-0.3)}
+\end{Exemple}
+
+\subsection{The \emph{inc} variant}
+
+Once again, a variant of the macros is available allowing the user to
+add code before and after the code produced by \luamesh. We refer to
+section~\ref{sec:inc} because it works the same way.
+
+Let us note that:
+\begin{itemize}
+\item with MetaPost, the circumcenters are defined using
+  \Verb+pair CircumPoints[];+ and so they are accessible.
+\item With \Verb+tikz+, there are new coordinates defined as follows
+  \begin{latexcode}
+    \coordinate (CircumPoints1) at (...,...);
+    \coordinate (CircumPoints2) at (...,...);
+    \coordinate (CircumPoints3) at (...,...);
+    % etc.
+  \end{latexcode}
+\end{itemize}
+
+Finally, when the MetaPost drawing engine is used another color is
+available (see~\ref{sec:mpcolor}): \Verb+\luameshmpcolorVoronoi+.
+
+\section{With Gmsh}
+
+Gmsh is an open source efficient software that produces meshes. The
+exporting format is the \emph{MSH ASCII file format} and can be easily
+read by a Lua program. \luamesh provides the user with dedicated
+macros to read and draw meshes coming from a Gmsh exportation.\bigskip
+
+\commande|\drawGmsh[«options»]{«file  name»}|\medskip
+
+This macro draws the triangulation produced by Gmsh and exported in the
+\Verb+msh+ format. The argument is the name of the file to be read
+(e.g.: \Verb+maillage.msh+).
+
+\begin{Exemple}
+\drawGmsh{maillage.msh}
+\end{Exemple}
+
+There are several options to customize the drawing.
+\begin{optionsenum}
+\item[color = \meta{value} (default: black):] The color of the
+  drawing.
+\item[print = none (default) \textme{or} points:] To label the vertices of the
+  triangulation. Contrary to some previous macros, when
+  \Verb+print=none+  a \emph{dot} is produced at each vertex of the
+  set of points and at the circumcircle centers (these are the nodes of
+  the Voronoï diagram).
+\item[meshpoint = \meta{value} (default: P):] The letter(s) used to
+  label the vertices of the triangulation. This is included in the math
+  mode delimiters \Verb+$...$+. The bounding box points are labeled
+  with numbers 1 to 4 and with a star exponent.
+\item[tikz (boolean, default:false):] By default, this boolean is set
+  to \Verb+false+, and MetaPost (with \Verb+luamplib+) is used to draw
+  the picture. With this option, \Verb+tikz+ becomes the \textit{drawing
+    engine}.
+\item[scale = \meta{value} (default: 1cm):] The scale option defines
+  the scale at which the picture is drawn (the same for both
+  axes). It must contain the unit of length (cm,
+  pt, etc.).
+\end{optionsenum}
+Here is an example:
+\begin{Exemple}
+  \drawGmsh[scale=2cm,print=points, color=blue!30]{maillage.msh}
+\end{Exemple}
+
+\subsection{Gmsh and Voronoï Diagrams}
+
+Because Gmsh generates Delaunay triangulations, we can plot the associated
+Voronoï diagram. This is done by the following macro:\bigskip
+
+\commande|\gmshVoronoi[«options»]{«file name»}|\medskip
+
+\begin{Exemple}
+  \gmshVoronoi{maillage.msh}
+\end{Exemple}
+
+
+\subsection{The Options}\label{sec:voronoiOptions}
+
+
+There are several options to customize the drawing.
+\begin{optionsenum}
+\item[color = \meta{value} (default: black):] The color of the
+  drawing.
+\item[colorVoronoi = \meta{value} (default: black):] The color of the
+  drawing for the elements (points and polygons) belonging to the
+  Voronoï diagram.
+\item[print = none (default) \textme{or} points:] To label the vertices of the
+  triangulation. Contrary to some previous macros, when
+  \Verb+print=none+,  a \emph{dot} is produced at each vertex of the
+  set of points and at the circumcircle centers (these are the nodes of
+  the Voronoï diagram).
+\item[meshpoint = \meta{value} (default: P):] The letter(s) used to
+  label the vertices of the triangulation. It is included in the math
+  mode delimiters \Verb+$...$+. The bounding box points are labeled
+  with numbers 1 to 4 and with a star exponent.
+\item[circumpoint = \meta{value} (default: P):] The letter(s) used to
+  label the vertices of the Voronoï diagram. This is included in the math
+  mode delimiters \Verb+$...$+.
+\item[tikz (boolean, default:false):] By default, this boolean is set
+  to \Verb+false+, and MetaPost (with \Verb+luamplib+) is used to draw
+  the picture. With this option, \Verb+tikz+ becomes the \textit{drawing
+    engine}.
+\item[scale = \meta{value} (default: 1cm):] The scale option defines
+  the scale at which the picture is drawn (the same for both
+  axes). It must contain the unit of length (cm,
+  pt, etc.).
+\item[delaunay = none (default) \textme{or} show] This option
+  allows to draw the Delaunay triangulation overlapped with the
+  Voronoï diagram.
+\item[styleDelaunay = none (default) \textme{or} dashed] This option
+  allows to draw the Delaunay triangulation in dashed lines.
+\item[styleVoronoi = none (default) \textme{or} dashed] This option
+  allows to draw the Voronoï edges in dashed lines.
+\end{optionsenum}
+
+\begin{Exemple}
+  \gmshVoronoi[tikz,scale=1.5cm, delaunay=show,styleVoronoi=dashed]{maillage.msh}
+\end{Exemple}
+
+
+\subsection{The \emph{inc} variants}
+
+Once again, there exist \emph{inc} variant macros:\bigskip
+
+\commande|\drawGmshinc[«options»]{«file name»}{«code before»}{«code after»}|\medskip
+
+\commande|\gmshVoronoiinc[«options»]{«file name»}{«code before»}{«code after»}|\medskip
+
+We refer to the previous sections for explanations.
+
+
+
+\section{Gallery}
+\subsection{With Animate}
+
+If you use \emph{Adobe Acrobat reader}, you can easily produce an
+animation of the Bowyer and Watson algorithm with the package
+\Verb+animate+.
+
+For example, the following code (in a file name \Verb+animation.tex+):
+\begin{latexcode}
+  \documentclass{article}
+  %% lualatex compilation
+  \usepackage[margin=2.5cm]{geometry}
+  \usepackage{luamesh}
+  \usepackage{fontspec}
+  \usepackage{multido}
+  \pagestyle{empty}
+  \def\drawPath{draw (-2,-2)*u--(8,-2)*u--(8,6)*u--(-2,6)*u--cycle  withcolor 0.99white;}
+  \def\clipPath{clip currentpicture to (-2,-2)*u--(8,-2)*u--(8,6)*u--(-2,6)*u--cycle;}
+  \begin{document}
+  \drawPointsMeshinc[mode=ext, bbox = show,colorBbox = blue!20,print=points]{mesh.txt}%
+  {%
+    beginfig(0);
+    \drawPath
+  }%
+  {%
+    \clipPath
+    endfig;
+  }
+  \newpage\buildMeshBWinc[mode=ext,bbox = show,colorBbox = blue!20,print=points]{meshInit.txt}%
+  {%
+    beginfig(0);
+    \drawPath
+  }%
+  {%
+    \clipPath
+    endfig;
+  }
+  \multido{\ii=5+1}{4}{%
+    \newpage\meshAddPointBWinc[mode=ext,step=badtriangles,colorNew
+    =green!20!red,colorBack=red!10,colorCircle = blue,bbox =
+    show,colorBbox = blue!20]{mesh.txt}{\ii}%
+    {%
+      beginfig(0);
+      \drawPath
+    }%
+    {%
+      \clipPath
+      endfig;
+    }   \newpage
+    \meshAddPointBWinc[mode=ext,step=cavity,colorNew
+    =green!20!red,colorBack=red!10,colorCircle = blue,bbox =
+    show,colorBbox = blue!20]{mesh.txt}{\ii}%
+    {%
+      beginfig(0);
+      \drawPath
+    }%
+    {%
+      \clipPath
+      endfig;
+    }  \newpage
+    \meshAddPointBWinc[mode=ext,step=newtriangles,colorNew
+    =green!20!red,colorBack=red!10,colorCircle = blue,bbox =
+    show,colorBbox = blue!20]{mesh.txt}{\ii}%
+    {%
+      beginfig(0);
+      \drawPath
+    }%
+    {%
+      \clipPath
+      endfig;
+    }
+  }
+  \newpage
+  \buildMeshBWinc[mode=ext,bbox = show,colorBbox = blue!20,print=points]{mesh.txt}%
+  {%
+    beginfig(0);
+    \drawPath
+  }%
+  {%
+    \clipPath
+    endfig;
+  }
+  \newpage
+  \buildMeshBWinc[mode=ext,print=points]{mesh.txt}%
+  {%
+    beginfig(0);
+    \drawPath
+  }%
+  {%
+    \clipPath
+    endfig;
+  }
+\end{document}
+\end{latexcode}
+produces a PDF with multiple pages. Using the \Verb+pdfcrop+ program,
+we crop the pages to the material, and then we can animate the PDF
+using the \Verb+animate+ package.
+
+%\begin{Exemple}
+%\animategraphics[controls]{1}{animation-crop}{}{}
+%\end{Exemple}
+
+\input{dum.bbl}
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% flyspell-mode: 1
+%%% ispell-local-dictionary: "american"
+%%% End:

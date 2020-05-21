@@ -1,0 +1,39 @@
+name beamerswitch
+category Package
+revision 53467
+shortdesc Convenient mode selection in Beamer documents
+longdesc This class is a wrapper around the beamer class to make it
+longdesc easier to use the same document to generate the different forms
+longdesc of the presentation: the slides themselves, an abbreviated
+longdesc slide set for transparencies or online reference, an n-up
+longdesc handout version (various layouts are provided), and a
+longdesc transcript or set of notes using the article class. The class
+longdesc provides a variety of handout layouts, and allows the mode to
+longdesc be chosen from the command line (without changing the document
+longdesc itself).
+containersize 4692
+containerchecksum e117e71b17cf08b9194edb502fa60b0e551e80db08e18fd56c7b3e1a23761b47ccaef2fee4aa547bd3c04ff8ab0fd7b3128d2fecf972fe389cff7bbcfeff413a
+doccontainersize 240196
+doccontainerchecksum f893371bfc9e636d0b5bdfcdcc6209fa264744887ab145eb23335d891082b091d809bc1ca59d75163d8f95179221235327198abdf87bee7116bb0b5271523697
+docfiles size=74
+ texmf-dist/doc/latex/beamerswitch/README.md details="Readme"
+ texmf-dist/doc/latex/beamerswitch/beamerswitch-example-article.pdf details="Example of use (article)"
+ texmf-dist/doc/latex/beamerswitch/beamerswitch-example-handout.pdf details="Example of use (handout)"
+ texmf-dist/doc/latex/beamerswitch/beamerswitch-example-trans.pdf details="Example of use (transparencies, without overlays)"
+ texmf-dist/doc/latex/beamerswitch/beamerswitch-example.pdf details="Example of use (slides, with overlays)"
+ texmf-dist/doc/latex/beamerswitch/beamerswitch-example.tex
+ texmf-dist/doc/latex/beamerswitch/beamerswitch.pdf details="Package documentation"
+srccontainersize 19820
+srccontainerchecksum 693f6a0bb6d690926f7bb4fca34126155a3999841664a8847902beb615d3b0f037fd01328577a7ed5a16532699374840889f3d015b8e3a6dbf5f874131726822
+srcfiles size=26
+ texmf-dist/source/latex/beamerswitch/Makefile
+ texmf-dist/source/latex/beamerswitch/beamerswitch.dtx
+ texmf-dist/source/latex/beamerswitch/beamerswitch.ins
+runfiles size=11
+ texmf-dist/tex/latex/beamerswitch/beamerswitch.cls
+catalogue-contact-bugs https://github.com/alex-ball/beamerswitch/issues
+catalogue-contact-repository https://github.com/alex-ball/beamerswitch
+catalogue-ctan /macros/latex/contrib/beamer-contrib/beamerswitch
+catalogue-license lppl1.3c
+catalogue-topics presentation class
+catalogue-version 1.6.1

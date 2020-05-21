@@ -1,0 +1,60 @@
+-----------------------------------------------------------------------
+The 'suftesi' class for LaTeX
+Author: Ivan Valbusa
+        ivan dot valbusa at univr dot it
+
+This work has the LPPL maintenance status "author-maintained".
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3
+of this license or (at your option) any later version.
+The latest version of this license is in
+  http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of LaTeX
+version 2005/12/01 or later.
+-----------------------------------------------------------------------
+
+DESCRIPTION:
+
+'suftesi' is a document class for typesetting theses, books and articles. 
+It provides many options to change the style of headings and titles and a
+new layout for the frontispiece using the package 'frontespizio' by Enrico Gregorio. 
+
+This work consists of the following files:
+
+  README (this file)
+  suftesi.dtx
+  suftesi.pdf
+  templates.zip
+
+and of the derived files:
+
+  suftesi.cls
+  suftesi.bib
+
+INSTALLATION:
+
+To install the distribution:
+
+o run "pdflatex suftesi.dtx"
+o move "suftesi.cls" to locations where LaTeX will find
+  it (the FAQ on CTAN in /help/uktug-FAQ gives more
+  information about this magic place)
+
+
+DOCUMENTATION:
+
+To reproduce the complete documentation, follow these steps:
+
+$ pdflatex suftesi.dtx
+$ biber suftesi
+$ makeindex -s gind.ist -o suftesi.ind suftesi.idx
+$ makeindex -s gglo.ist -o suftesi.gls suftesi.glo
+$ pdflatex suftesi.dtx
+$ pdflatex suftesi.dtx
+
+from a shell (or in the preferred method for you system),
+where `$' stands for the shell's prompt.
+
+
+2012/08/28
+Ivan Valbusa

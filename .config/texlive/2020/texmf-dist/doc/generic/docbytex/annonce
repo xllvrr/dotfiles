@@ -1,0 +1,24 @@
+annonce: DocBy.TeX -- dokumentování zdrojových kódù TeXem
+
+Vá¾ení
+
+pro potøeby dokumentování zdrojových kód# (C nebo jiný jazyk) jsem
+vytvoøil TeXové udìlátko (makro), které jsem nazval DocBy.TeX.
+Mùj syn Mirek toti¾ potøebuje odevzdat dokumentovaný program
+v rámci své roèníkové práce.
+
+DocBy.TeX jsem pøedstavil jako èerstvou novinku na konferenci 
+TeXperinence pøed týdnem a nyní pøichází okam¾ik, kdy jeho 
+první verzi zveøejòuji na internetu na
+
+      http://www.olsak.net/docbytex.html
+
+Dal¹í osud tohoto balíèku bude záviset na tom, zda se bude jevit 
+u¾iteèný i dal¹ím lidem. V takovém pøípadì bych mohl napsat kromì 
+existující èeské i anglickou dokumentaci a zapracovat pøípadné 
+námìty. Ov¹em nevím nevím. Na konferenci TeXperience se mi zdálo, 
+¾e balíèek byl publikem pøijat/nepøijat velmi vla¾nì.
+
+Zdravím
+
+Petr Ol¹ák

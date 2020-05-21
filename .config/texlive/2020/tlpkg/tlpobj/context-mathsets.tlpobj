@@ -1,0 +1,21 @@
+name context-mathsets
+category ConTeXt
+revision 47085
+shortdesc Set notation in ConTeXt
+longdesc Typeset good-looking set notation (e.g., {x|x \in Y}), as well
+longdesc as similar things such as Dirac bra-ket notation, conditional
+longdesc probabilities, etc. The package is at least inspired by braket.
+depend context
+containersize 4896
+containerchecksum e4c689c745d06c61d6f693a9832001aa8c79d51664c2a5d6d0c6148a95b30870063f50eecca31ac0924193c6dab8c12cd5ccaca16eeaf5f83a99cef1a8889ec3
+doccontainersize 399952
+doccontainerchecksum f2c33244814da8e8838483038f507fe6b3e146f37691e55a37bb5355985d2af4c5fc423318133c4f13837a3e66a4fe72d5c14f6721bb5ee0417a59691b86d3f1
+docfiles size=102
+ texmf-dist/doc/context/third/mathsets/VERSION
+ texmf-dist/doc/context/third/mathsets/mathsets-doc.pdf details="Package documentation"
+runfiles size=4
+ texmf-dist/tex/context/interface/third/t-mathsets.xml
+ texmf-dist/tex/context/third/mathsets/t-mathsets.tex
+catalogue-ctan /macros/context/contrib/context-mathsets
+catalogue-license other-free
+catalogue-topics maths

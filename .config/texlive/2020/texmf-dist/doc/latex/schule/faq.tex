@@ -1,0 +1,44 @@
+\part{Häufig gestellte Fragen}
+	\section{Formatierung}
+		\subsection{Kann ich ein anderes Papierformat als A4 verwenden?}
+			Ja! Denn dies wird von der Dokumentenklasse und nicht vom
+			Schule-Paket festgelegt, \zB\space ein A5-Blatt im Querformat:
+\begin{sourcecode}
+  \documentclass[a5paper,landscape]{scrartcl}
+\end{sourcecode}			
+		\subsection{Kann ich die Seitenränder festlegen?}
+			Ja! Dazu kann einfach das übliche Paket \pkg{geometry} im
+			Dokument genutzt werden, \zB:
+\begin{sourcecode}
+  \usepackage[
+    left=3cm,
+    right=2cm,
+    top=2cm,
+    bottom=2cm,
+    footskip=1cm
+  ]{geometry}
+\end{sourcecode}
+		\subsection{Ist es möglich, in den erstellten Materialien
+		 Schreibschriften zu verwenden?}
+			Ja! Das ist kein Problem, allerdings ist das in \LaTeX\space
+			bereits so einfach, dass das Schule-Paket hier keine
+			abweichenden Funktionen implementiert.
+			
+			Zu empfehlen ist hier das Paket \pkg{schulschriften}.
+			Dieses bringt Fonts für die folgenden Schreibschriften mit:
+			
+			\begin{description}
+				\item[wesu] Sütterlinschrift (1911)
+				\item[wedn] Deutsche Normalschrift (1941)
+				\item[wela] lateinische Ausgangsschrift (1953) 
+				\item[wesa] Schulausgangsschrift (1968, ehem. DDR)
+				\item[weva] Vereinfachte Ausgangsschrift (1972)
+			\end{description}
+			
+			Diese können einfach verwendet werden, indem das jeweilige
+			Paket, \zB\space\pkg{weva}, eingebunden wird. Danach kann
+			die zugehörige Schrift verwendet werden
+			
+\begin{example}
+  \weva Vereinfachte Ausgangsschrift
+\end{example}

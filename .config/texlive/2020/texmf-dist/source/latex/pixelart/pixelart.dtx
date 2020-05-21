@@ -1,0 +1,654 @@
+% \iffalse meta-comment
+% Copyright 2017-2018 Louis Paternault
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Louis Paternault
+%
+% This work consists of the files pixelart.dtx and pixelart.ins
+% and the derived file pixelart.sty.
+% \fi
+% 
+% \iffalse
+%<*driver>
+\ProvidesFile{pixelart.dtx}
+%</driver>
+%
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{pixelart}
+%<*package>
+    [2018/02/25 v0.2.0 A package to draw pixel-art pictures]
+%</package>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\usepackage{hyperref}
+\usepackage{pixelart}
+\usepackage{listings}
+\usepackage{numprint}
+\lstset{
+  language=[LaTeX]TeX,
+  numbers=left,
+  numberstyle=\tiny,
+  backgroundcolor=\color{yellow!20},
+  basicstyle=\small\color{black}\ttfamily,
+  keywordstyle=\color{blue!80}\sffamily,
+  commentstyle=\color{olive},
+  stringstyle=\color{red},
+}
+\usepackage{textcomp}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+% Smiley command published by percusse on https://tex.stackexchange.com/a/58913
+\newcommand{\smiley}{\tikz[baseline=-0.75ex, black]{
+  \draw circle (2mm);
+  \node[fill,circle,inner sep=0.5pt] (left eye) at (135:0.8mm) {};
+  \node[fill,circle,inner sep=0.5pt] (right eye) at (45:0.8mm) {};
+  \draw (-145:0.9mm) arc (-120:-60:1.5mm);
+}
+}
+\begin{document}
+\DocInput{pixelart.dtx}
+\end{document}
+%</driver>
+% \fi
+% 
+% \CheckSum{0}
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \GetFileInfo{pixelart.dtx}
+%
+% \DoNotIndex{\#,\$,\%,\&,\@,\\,\{,\},\^,\_,\~,\ ,\!,\(,\),\,}
+% \DoNotIndex{\@bwpa@newline}
+% \DoNotIndex{\begin}
+% \DoNotIndex{\coordinate}
+% \DoNotIndex{\end, \else}
+% \DoNotIndex{\fill, \fi}
+% \DoNotIndex{\ifpixelart@draft}
+% \DoNotIndex{\makeatletter, \makeatother}
+% \DoNotIndex{\newcommand, \newif}
+% \DoNotIndex{\ProcessPgfPackageOptions, \pgfkeys, \pgfkeyssetvalue, \pgfkeysvalueof, \pgfparserdef, \pgfparserparse, \pgfparserswitch}
+% \DoNotIndex{\raisebox, \RequirePackage}
+% \DoNotIndex{\space}
+% \DoNotIndex{\tikz}
+% \DoNotIndex{\usepgfmodule, \usetikzlibrary}
+%
+% \title{
+%  \begin{tikzpicture}
+%    \tikzbwpixelart[scale=.037]{(-1.05, .14)}{%
+%      1111110001100000000000000000001110000010000000000000001000
+%      0110011001100000000000000000000110000111000000000000011000
+%      0110011000000000000000000000000110001101100000000000011000
+%      0110011011100110000110011111000110011000110110111001111110
+%      0111110001100011001100110001100110011000110011101100011000
+%      0110000001100001111000111111100110011111110011001100011000
+%      0110000001100000110000110000000110011000110011000000011000
+%      0110000001100001111000110000000110011000110011000000011000
+%      0110000001100011001100110001100110011000110011000000011011
+%      1111000011110110000110011111001111011000110111100000001110
+%    }%
+%    \draw (0, 0) node[opacity=0]{\LARGE PixelArt};
+%  \end{tikzpicture}\thanks{
+%   This document corresponds to \textsf{pixelart}~\fileversion, dated \filedate.
+%   Home page, bug requests, etc. at \url{http://framagit.org/spalax/pixelart}
+%   }\\A package to draw pixel-art pictures.}
+% \author{Louis Paternault\\ \texttt{spalax+ctan(at)gresille(dot)org}}
+%
+% \maketitle
+%
+% \begin{abstract}
+% This package defines macros to draw pixel-art pictures using \LaTeX{}.
+% \end{abstract}
+%
+% \setcounter{tocdepth}{2}
+% \tableofcontents
+%
+% \section{Introduction}
+% This document introduces the \textsf{pixelart} package, used to draw pixel-art pictures.
+%
+% \subsection{License}
+% This work may be distributed and/or modified under the
+% conditions of the \LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+%
+% Further information can be found in the |.dtx| file used to build this
+% document.
+%
+% \subsection{Overview}
+% Installation instruction are given in section \ref{sec:install}.
+% Documentation about how to use this package (and examples) is given in section
+% \ref{sec:usage}. Section \ref{sec:bugs} lists some known bugs and
+% limitations, and implementation is given in section
+% \ref{sec:implementation}.
+%
+% \section{Download and Install}
+% \label{sec:install}
+%
+% \subsection{\textsc{Gnu}/Linux Distribution}
+%
+% If applicable, the easiest way to get |pixelart| working is by installing it by your distribution package. In Debian (and Ubuntu, and surely other distributions that inherit from Debian) it is packaged in |texlive-pictures| since version \texttt{2017.20180103-1}. So you can install it by running:
+%
+% \begin{quote}
+% |sudo apt install texlive-pictures|
+% \end{quote}
+%
+% \subsection{LaTeX distribution}
+%
+% This package is included both in \TeX{}Live and MiK\TeX{}. It can be installed using their respective package managers.
+%
+% \subsection{Manual installation}
+%
+% \begin{itemize}
+% \item Download the lastest archive :
+% \begin{description}
+% \item[Stable version] \url{http://mirrors.ctan.org/graphics/pixelart.zip}
+% \item[Development version] \url{https://framagit.org/spalax/pixelart/repository/archive.zip?ref=master}
+% \end{description}
+% \item Unzip the archive.
+% \item If you got the archive from CTAN (stable version), move file \texttt{tex/latex/pixelart/pixelart.sty} in a \LaTeX{} path.
+% \item If you got the development version, |cd| to the main archive directory, and run |latex pixelart.ins| to build |pixelart.sty|. Move this file into a \LaTeX{} path.
+% \end{itemize}
+%
+% \section{Usage}
+% \label{sec:usage}
+%
+% \subsection{Package options}
+% \changes{v0.2.0}{2018/01/25}{Add package option \texttt{draft}.}
+%
+% This package has a single package option: |draft|. If this option is set (\lstinline|\usepackage[draft]{pixelart}|), pixel-art pictures are ignored. This can make compilation \emph{way, way} faster\footnote{On a document I am writing, containing a lot of pixel-art pictures, option |draft| makes compilation time go from 6 minutes to 22 seconds.}.
+%
+% A downside is that since pixel-art pictures are ignored, this can mess up your document layout. A nicer option would be to have option |draft| guess the pixel-art size, and display a dummy picture with the same size. Patches are welcome! \smiley
+%
+% \subsection{Macros}
+%
+% This package defines two macros : |\bwpixelart|\footnote{\texttt{$\backslash{}$bwpixelart} stands for \emph{b}lack and \emph{w}hite \emph{pixel art}, although \emph{color and transparent pixel art} would be more accurate.}, used to insert a pixel-art picture, and |\tikzbwpixelart|, which has the same purpose, excepted that it is called from within a |tikzpicture| environment.
+%
+% \subsubsection{\textbackslash\texttt{bwpixelart}}
+% \DescribeMacro{\bwpixelart}
+% To insert a pixel-art picture in your text, use :
+% \begin{center}
+%    \lstinline|\bwpixelart|\oarg{color, raise, scale}\marg{pixels}
+% \end{center}
+% Its optional arguments are:
+% \begin{description}
+% \item[color=black] Foreground color (the background is transparent);
+% \item[scale=1] Scale. By default, a pixel is the size of a |tikzpicture| default unit, which is probably bigger than what you want.
+% \item[raise=0pt] Raise the picture. By default, the bottom of the picture is on the baseline. You might want to lower it a little by giving this option a negative argument.
+% \end{description}
+%
+% Its mandatory argument is the picture pixels, as |0|'s and |1|'s. Line breaks in this argument are interpreted as line breaks in the pixel art pictures. How spaces are interpreted is undefined (see section \ref{ssec:spaces} for more information).
+%
+% For instance, this heart
+% \bwpixelart[color=red, scale=.05, raise=-1ex]{%
+% 001101100
+% 011111110
+% 111111111
+% 111111111
+% 111111111
+% 011111110
+% 001111100
+% 000111000
+% 000010000
+% }
+% was drawn using the following code:
+%
+% \iffalse
+%<*example>
+% \fi
+% \begin{lstlisting}
+ \bwpixelart[color=red, scale=.05, raise=-1ex]{%
+ 001101100
+ 011111110
+ 111111111
+ 111111111
+ 111111111
+ 011111110
+ 001111100
+ 000111000
+ 000010000
+ }
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% \subsubsection{\textbackslash\texttt{tikzbwpixelart}}
+% \DescribeMacro{\tikzbwpixelart}
+% The second macro, |\tikzbwpixelart| is almost identical to the first one, excepted that it is meant to be called from inside a |tikzpicture| environment. Actually, \lstinline|\bwpixelart{0101}| is more or less equivalent to calling :
+% \iffalse
+%<*example>
+% \fi
+% \begin{lstlisting}
+\begin{tikzpicture}
+  \tikzbwpixelart{(0, 0)}{0101}
+\end{tikzpicture}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+
+% The signature of this macro is :
+% \begin{center}
+%   \lstinline|\tikzbwpixelart|\oarg{color, scale}\marg{coordinates}\marg{pixels}
+% \end{center}
+% Its optional arguments are |color| and |scale|, used to set the color and scale of the picture.
+%
+% Its first mandatory argument is the coordinate of the top left corner of the picture; the second one is the list of pixels (using the same syntax as the |\bwpixelart| macro).
+%
+% For instance, this heart
+%\begin{tikzpicture}[scale=.05, baseline=-1em]
+%  \fill[red] (5, -4) circle (6.5);
+%  \tikzbwpixelart{(0, 0)}{%
+%  0011001100
+%  0111111110
+%  1111111111
+%  1111111111
+%  1111111111
+%  0111111110
+%  0011111100
+%  0001111000
+%  0000110000
+%}
+%\end{tikzpicture}
+% was drawn using the following code:
+%
+% \iffalse
+%<*example>
+% \fi
+% \begin{lstlisting}
+\begin{tikzpicture}[scale=.05, baseline=-1em]
+  \fill[red] (5, -4) circle (6.5);
+  \tikzbwpixelart{(0, 0)}{%
+  0011001100
+  0111111110
+  1111111111
+  1111111111
+  1111111111
+  0111111110
+  0011111100
+  0001111000
+  0000110000
+}
+\end{tikzpicture}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+%\section{Bugs, Ideas, Undefined behaviours}
+%\label{sec:bugs}
+%
+% I have great ideas about what this package could do, but:
+% \begin{itemize}
+% \item I do not need them;
+% \item I am not sure there is a huge \emph{need} for some pixel-art package;
+% \item I have a full-time job, my wife has a far-more-than-full-time job, my daugther \emph{is} a full-time job, so I have very little time to hack…
+% \end{itemize}
+%
+% So, I am listing here some known bugs, undefined behaviours, limitations. You, random passer-by, will be greatly welcome if you were to fix or implement stuff listed in this section. \smiley
+%
+% \subsection{Missing \texttt{\textbackslash{}pixelart} macro}
+%
+% There is no |\pixelart| macro. This is on purpose: given that this package is more or less a working draft, I did not want to register a badly designed |\pixelart| macro. This means that some folk wanting to improve this package can extand the |\bwpixelart| macro and use the name |\pixelart| to fix my design mistakes.
+%
+% \subsection{It's insanely slooooow.}
+%
+% That's it. It takes alomst 30 seconds to compile a document containing only a $128\times128$ picture (about \numprint{16000} pixels). I have no idea how to fix it. Good luck.
+%
+% \subsection{Black and white}
+%
+% Right now, it is black and white only (or, to be more accurate, any single color on a transparent background).
+%
+% One \emph{could} produce colored pixel-art pictures, but… it's complicated. For instance, this heart (borrowed from the Django project\footnote{\url{https://www.djangoproject.com/}}):
+%
+% \definecolor{violet1}{RGB}{247, 176, 207}
+% \definecolor{violet2}{RGB}{238, 33, 120}
+% \definecolor{violet3}{RGB}{214, 45, 117}
+% \definecolor{violet4}{RGB}{217, 25, 92}
+% \definecolor{violet5}{RGB}{173, 29, 69}
+% \begin{center}
+%   \begin{tikzpicture}[scale=.1]
+%     \tikzbwpixelart[color=violet1]{(0, 0)}{%
+%     0000000
+%     0000010
+%     }
+%     \tikzbwpixelart[color=violet2]{(0, 0)}{%
+%     0000000
+%     0110100
+%     0000000
+%     0010100
+%     0000000
+%     0001000
+%     }
+%     \tikzbwpixelart[color=violet3]{(0, 0)}{%
+%     0000010
+%     0000000
+%     1000010
+%     0000000
+%     0001000
+%     }
+%     \tikzbwpixelart[color=violet4]{(0, 0)}{%
+%     0010100
+%     1001000
+%     0110100
+%     0001010
+%     0010100
+%     }
+%     \tikzbwpixelart[color=violet5]{(0, 0)}{%
+%     0100000
+%     0000001
+%     0001001
+%     0100000
+%     }
+%   \end{tikzpicture}
+% \end{center}
+%
+% could be produced using the following code. Basically (given that colors |violet1| to |violet5| have been correctly defined), we stack up several single-color pixel-art pictures.
+%
+% \iffalse
+%<*example>
+% \fi
+% \begin{lstlisting}
+\begin{tikzpicture}[scale=.1]
+  \tikzbwpixelart[color=violet1]{(0, 0)}{%
+  0000000
+  0000010
+  }
+  \tikzbwpixelart[color=violet2]{(0, 0)}{%
+  0000000
+  0110100
+  0000000
+  0010100
+  0000000
+  0001000
+  }
+  \tikzbwpixelart[color=violet3]{(0, 0)}{%
+  0000010
+  0000000
+  1000010
+  0000000
+  0001000
+  }
+  \tikzbwpixelart[color=violet4]{(0, 0)}{%
+  0010100
+  1001000
+  0110100
+  0001010
+  0010100
+  }
+  \tikzbwpixelart[color=violet5]{(0, 0)}{%
+  0100000
+  0000001
+  0001001
+  0100000
+  }
+\end{tikzpicture}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% One could imagine a simpler syntax: we assign several colors to characters, and we use |1|, |2|, |3|, etc. as the pixels to define the picture. This would give the following code.
+%
+% \iffalse
+%<*example>
+% \fi
+% \begin{lstlisting}
+\begin{tikzpicture}[scale=.1]
+  \tikzpixelart[colors={
+    1=violet1,
+    2=violet2,
+    3=violet3,
+    4=violet4,
+    5=violet5,
+  }]{(0, 0)}{%
+  0540430
+  4224215
+  3445435
+  0524240
+  0043400
+  0002000
+  }
+\end{tikzpicture}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% Once again, patches are welcome! \smiley{}
+%
+% \subsection{Spaces}
+%\label{ssec:spaces}
+%
+% Spaces are interpreted as line breaks. For instance, this heart
+% \bwpixelart[scale=.03, raise=-1pt]{%
+%   0011001100 0111111110 1111111111
+%   1111111111 1111111111 0111111110
+%   0011111100 0001111000 0000110000
+% }
+% could be written as :
+% \iffalse
+%<*example>
+% \fi
+% \begin{lstlisting}
+\bwpixelart[scale=.03, raise=-1pt]{%
+  0011001100 0111111110 1111111111
+  1111111111 1111111111 0111111110
+  0011111100 0001111000 0000110000
+}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% This will work (right now), but is an undefined behaviour, and might change in a later version without prior notice.
+%
+% \subsection{Uneven lines}
+%
+% Right now, lines do not \emph{have} to have the same number of characters. For instance, the following heart
+%  \bwpixelart[scale=.03, raise=-1pt]{%
+%  00110011
+%  011111111
+%  1111111111
+%  1111111111
+%  1111111111
+%  011111111
+%  00111111
+%  0001111
+%  000011
+%}
+% could be written as :
+%
+% \iffalse
+%<*example>
+% \fi
+% \begin{lstlisting}
+\bwpixelart[scale=.03, raise=-1pt]{%
+  00110011
+  011111111
+  1111111111
+  1111111111
+  1111111111
+  011111111
+  00111111
+  0001111
+  000011
+}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% This is an undefined behaviour and might raise an error in the future.
+%
+% \section{Implementation}
+% \label{sec:implementation}
+%
+% Load some packages.
+%    \begin{macrocode}
+\RequirePackage{pgf}
+\RequirePackage{pgfopts}
+\usepgfmodule{parser}
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\RequirePackage{pgfkeys}
+\RequirePackage{etoolbox}
+
+%    \end{macrocode}
+%
+% Let the nasty stuff begin.
+%
+%    \begin{macrocode}
+\makeatletter
+
+%    \end{macrocode}
+%
+% Parse package options.
+%
+%    \begin{macrocode}
+\newif\ifpixelart@draft
+\pgfkeys{
+  /PIXELART/.cd,
+  draft/.is if=pixelart@draft,
+  draft=false,
+}
+\ProcessPgfPackageOptions{/PIXELART}
+%    \end{macrocode}
+%
+% Define macro arguments
+%
+%    \begin{macrocode}
+\pgfkeys{
+  /PIXELART/BWPIXELART/.is family,
+  /PIXELART/BWPIXELART,
+  scale/.value required,
+  scale/.code={\pgfkeyssetvalue{/PIXELART/BWPIXELART/scale}{#1}},
+  scale=1,
+  raise/.code={\pgfkeyssetvalue{/PIXELART/BWPIXELART/raise}{#1}},
+  raise/.value required,
+  raise=0pt,
+  color/.value required,
+  color/.code={\pgfkeyssetvalue{/PIXELART/BWPIXELART/color}{#1}},
+  color=black,
+}
+
+\pgfkeys{
+  /PIXELART/TIKZBWPIXELART/.is family,
+  /PIXELART/TIKZBWPIXELART,
+  scale/.value required,
+  scale/.code={\pgfkeyssetvalue{/PIXELART/TIKZBWPIXELART/scale}{#1}},
+  scale=1,
+  color/.value required,
+  color/.code={\pgfkeyssetvalue{/PIXELART/TIKZBWPIXELART/color}{#1}},
+  color=black,
+}
+
+%    \end{macrocode}
+%
+% Define argument parser, parsing the sequence of 0 and 1 defining the pixel art.
+%
+%    \begin{macrocode}
+\pgfparserdef{@bwpixelart}{initial}{blank space \space}{
+  \@bwpa@newline
+}
+\pgfparserdef{@bwpixelart}{initial}{the character 0}{
+  \coordinate (@pixelart) at ($(@pixelart) + (1, 0)$);
+}
+\pgfparserdef{@bwpixelart}{initial}{the character 1}{
+  \fill (@pixelart) rectangle ++(1, 1);
+  \coordinate (@pixelart) at ($(@pixelart) + (1, 0)$);
+}
+\pgfparserdef{@bwpixelart}{initial}{the letter @}{
+  \pgfparserswitch{final}
+}
+
+\newcommand{\@bwpa@newline}{
+  \coordinate (@pixelart) at ($(@pixelart@startline) + (0, -1)$);
+  \coordinate (@pixelart@startline) at (@pixelart);
+}
+
+%    \end{macrocode}
+%
+% \begin{macro}{\bwpixelart}
+% \changes{v0.1.2}{2018/01/13}{First line-break of pixelart argument is now automatically ignored.}
+% Define |\bwpixelart|, used to draw black-and-white pixelart.
+%    \begin{macrocode}
+\newcommand{\bwpixelart}[2][]{{%
+  \pgfkeys{/PIXELART/BWPIXELART, #1}%
+  \raisebox{\pgfkeysvalueof{/PIXELART/BWPIXELART/raise}}{%
+    \tikz[
+      scale=\pgfkeysvalueof{/PIXELART/BWPIXELART/scale},
+    ]{
+      \tikzbwpixelart[%
+        color=\pgfkeysvalueof{/PIXELART/BWPIXELART/color},
+        ]{(0, 0)}{#2}
+    }%
+  }%
+}}
+
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\tikzbwpixelart}
+% Define |\tikzbwpixelart|, used to draw black-and-white pixelart from inside a |tikzpicture| environment.
+%    \begin{macrocode}
+\newcommand{\tikzbwpixelart}[3][]{
+  \pgfkeys{/PIXELART/TIKZBWPIXELART, #1}
+  \ifpixelart@draft
+    % Draft mode. Nothing to parse, nothing to show!
+  \else
+    \begin{scope}[shift={#2}]
+      \begin{scope}[#1]
+        \coordinate (@pixelart) at (0, 1);
+        \coordinate (@pixelart@startline) at (@pixelart);
+
+        \pgfparserparse{@bwpixelart}
+        #3 @
+      \end{scope}
+    \end{scope}
+  \fi
+}
+
+%    \end{macrocode}
+% That's all, folks!
+%    \begin{macrocode}
+\makeatother
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \changes{v0.1.0}{2017/12/05}{First published version.}
+%
+% \addcontentsline{toc}{section}{Change History}
+% \PrintChanges
+%
+% \StopEventually{%
+% \addcontentsline{toc}{section}{Index}
+% \PrintIndex
+% }
+% \Finale
+\endinput

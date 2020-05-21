@@ -1,0 +1,33 @@
+name pittetd
+category Package
+revision 15878
+shortdesc Electronic Theses and Dissertations at Pitt
+longdesc A document class for theses and dissertations. Provides patch
+longdesc files that enable pittetd to use files prepared for use with
+longdesc the pittdiss or pitthesis classes. The manual provides a
+longdesc detailed guide for users who wish to use the class to prepare
+longdesc their thesis or dissertation.
+containersize 8884
+containerchecksum 5bd78a90b4c7b9cfa8fbfad66e0de79d09762e06d3bb35a7aaa13ef8ba73aacaceafd8d5b5468de8fb59c6f4c76d364af145e101543c7ef2089dc9fe00e5e9db
+doccontainersize 317704
+doccontainerchecksum e72d325fbfd3159699621fd703fd539259d1b13ae69d00e771291e156e3ce6cc15a0d7e4d2e74a3ad3492c39c67adfdca5491b68dd6e8ac78ac1213400f091fe
+docfiles size=118
+ texmf-dist/doc/latex/pittetd/achicago.pit
+ texmf-dist/doc/latex/pittetd/pittdiss.pit
+ texmf-dist/doc/latex/pittetd/pittetd.pdf details="Package documentation"
+ texmf-dist/doc/latex/pittetd/pitthesis.pit
+srccontainersize 38588
+srccontainerchecksum fc1afca13fa1d4b6b0f77dcf693939be3d6423ebf15dc6354b955e1a02ea5655933470de740d0d626d718bd48b5f4dd1ed92263d8524d0ba38b2e4c328bbc135
+srcfiles size=38
+ texmf-dist/source/latex/pittetd/pittetd.dtx
+ texmf-dist/source/latex/pittetd/pittetd.ins
+runfiles size=12
+ texmf-dist/tex/latex/pittetd/pitetd10.clo
+ texmf-dist/tex/latex/pittetd/pitetd11.clo
+ texmf-dist/tex/latex/pittetd/pitetd12.clo
+ texmf-dist/tex/latex/pittetd/pittetd.cls
+catalogue-contact-home http://latexetdsupport.wikidot.com/
+catalogue-ctan /macros/latex/contrib/pittetd
+catalogue-license lppl
+catalogue-topics dissertation
+catalogue-version 1.618

@@ -1,0 +1,8 @@
+name fig4latex.x86_64-linux
+category Package
+revision 14752
+shortdesc x86_64-linux files of fig4latex
+containersize 340
+containerchecksum f970fd30db8865547396060069b5059d50ae53f4ac2c9b035c84bcbc33084559898042276de8390a502012d8b465b816f610d3f21d1d035e132d159b068f4240
+binfiles arch=x86_64-linux size=1
+ bin/x86_64-linux/fig4latex

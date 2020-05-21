@@ -1,0 +1,44 @@
+% arara: pdflatex
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[francais,american,canadian,canadien,dutch,british]{babel}
+
+\usepackage{tracklang}
+
+\begin{document}
+
+Languages:
+\ForEachTrackedLanguage{\ThisLanguage}{\ThisLanguage\space
+(ISO \TwoLetterIsoLanguageCode: ``\TrackedIsoCodeFromLanguage{\TwoLetterIsoLanguageCode}{\ThisLanguage}''). }
+
+Dialects: \ForEachTrackedDialect{\ThisDialect}{\ThisDialect\space 
+(\IfTrackedLanguageHasIsoCode{\TwoLetterIsoCountryCode}{\ThisDialect}%
+ {ISO \TwoLetterIsoCountryCode: 
+  ``\TrackedIsoCodeFromLanguage{\TwoLetterIsoCountryCode}{\ThisDialect}''}%
+ {no specific region};
+root: \TrackedLanguageFromDialect{\ThisDialect}). }
+
+``english'' \IfTrackedDialect{english}{has}{hasn't} been specified.
+
+``british'' \IfTrackedDialect{british}{has}{hasn't} been specified.
+
+``flemish'' \IfTrackedDialect{flemish}{has}{hasn't} been specified.
+
+``dutch'' \IfTrackedDialect{dutch}{has}{hasn't} been specified.
+
+``english'' or an English variant 
+\IfTrackedLanguage{english}{has}{hasn't} been specified.
+
+Language for ISO \TwoLetterIsoCountryCode\ ``GB'': 
+\TrackedLanguageFromIsoCode{\TwoLetterIsoCountryCode}{GB}.
+
+Language for ISO \TwoLetterIsoCountryCode\ ``CA'': 
+\TrackedLanguageFromIsoCode{\TwoLetterIsoCountryCode}{CA}.
+
+Country ISO \TwoLetterIsoCountryCode\ code for ``canadian'':
+\TrackedIsoCodeFromLanguage{\TwoLetterIsoCountryCode}{canadian}.
+
+\end{document}

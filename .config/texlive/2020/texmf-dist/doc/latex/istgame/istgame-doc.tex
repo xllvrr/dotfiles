@@ -1,0 +1,193 @@
+%!TEX program = arara
+% arara: xelatex: {synctex: yes}
+% arara: xelatex: {synctex: yes}
+% arara: makeindex: {style: istgame} 
+% arara: xelatex: {synctex: yes}
+% arara: xelatex: {synctex: yes}
+
+\def\tmpdate{2019/01/27} % final
+\def\tmpversion{2.0}
+
+\def\printtikztreetest{}
+\def\printtest{}
+\def\printdoc{}
+%\renewcommand\printtikztreetest{\input{istgame_test_tree}}
+%\renewcommand\printtest{\input{istgame_test}}
+\renewcommand\printdoc{\include{istgame-doc-v2.0}}
+
+\documentclass[a4paper,amsmath]{oblivoir}
+
+\usepackage{istgame}
+
+\usepackage{fapapersize}
+\usefapapersize{*,*,30mm,*,28mm,*}
+\setsecnumdepth{subsubsection}
+\settocdepth{subsubsection}
+\setlength\cftsubsubsectionindent{4.5em}
+
+\renewcommand\contentsname{Table of Contents}
+\renewcommand\figurename{Figure}
+\renewcommand\tablename{Table}
+\renewcommand\abstractname{Abstract}
+\renewcommand\indexname{Index}
+\renewcommand\pagerefname{\kern-4pt}
+
+\hypersetup{pdfborder={0 0 0}} % to suppress the hyperlink red box
+
+\usepackage{mathtools}
+%\usepackage{xparse}  %% oblivoir loads xparse
+%\usepackage{tikz}    %% istgame loads tikz
+\usepackage{makecell}
+\usepackage{capt-of}
+\usepackage{multido}
+\usepackage[normalem]{ulem} % [normalem] to correct the pdf bookmark broken characters
+\usepackage{idxlayout}
+%\usepackage{url}
+
+%\setistdefaultnodedrawcolor{red} % test
+%\setistdefaultnodefillcolor{black!16} % (try for macos mohave dark mode, TeXShop background color)
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,breakable}
+    \tcbset{breakable,listing above text,center upper,sidebyside gap=10pt,
+    lower separated=true,center lower,
+    listing options={
+    	style=tcblatex,
+      keywordstyle=\color{blue},
+      commentstyle=\color{black!20!green},
+      morekeywords={
+        istgamefontsize,setistgamefontsize,setistgamearrowendshorten,
+        istgame,istroot,istrooto,istb,endist,xtdistance,istbm,
+        istbt,istB,istBt,istbA,cntmAInfoset,cntmAInfosetO,
+        istrootcntm,istrootcntmA,istrootocntm,istrootocntmA,
+        setistgrowdirection,istgrowdirection,
+        setistmathTF,istownerlmathtrue,istownermathfalse,istactioinlabelmathtrue,
+        istactionlabelmathfalse,istpayoffmathtrue,istpayoffmathfalse,
+        cntmdistance,cntmlevdist,cntmsibdist,
+        cntmApreset,cntmistb,cntmAistb,cntmAexpostShowEndPoints,
+        xtInfoset,xtInfosetO,xtActionLabel,
+        xtSubgame,xtSubgameBox,xtSubgameOval,
+        xtgrow,setxtgrowkey,xtInfosetOwner,xtOwner,xtPayoff,xtNode,
+        xtALPush,xtALShift,
+        xtShowEndPoints,xtHideEndPoints,
+        xtShowTerminalNodes,xtHideTerminalNodes,
+        xtTimeLineH,xtTimeLineV,xtCommentTo,xtCommentFrom,xtShowArrows,xtHideArrows,
+        xtlevdist,xtsibdist,
+        xtShowArrows,xtHideArrows,xtShowMidArrows,xtHideMidArrows,
+        setxtshowarrows,setxtmidarrows,setxtshowmidarrows,
+        setxtinfosetlayer,setxtsubgamelayer,
+        setistNewNodeStyle,
+        setistDecisionNodeStyle,setistOvalNodeStyle,
+        setistSolidNodeStyle,setistHollowNodeStyle,
+        setistEllipseNodeStyle,setistNullNodeStyle,setistRectangleNodeStyle,
+        xtALpush,xtALshift,
+        xtdefaultsubrootshiftoval,
+        tikzstyle,draw,coordinate,foreach,setlength,
+        NewDocumentCommand,NewDocumentEnvironment,IfBooleanTF,tikzset,   
+        xtCInfoset,xtCInfosetO,xtCInfosetOTurnX,
+        cntmpreset,cntmApreset,cntmAlayerpreset
+        setxtinfosetstyle,setxtarrowtips,setxtinfosetstyle
+        }
+      }
+    }
+
+%\usepackage{tikz-qtree} %%% DO NOT USE
+% or, add the following in the option
+%     [ edge from parent path={(\tikzparentnode) -- (\tikzchildnode)} ]
+
+
+\linespread{1}
+
+\newcommand*\Tikz{Ti\textit{k}Z}
+\let\TikZ\Tikz
+
+\newenvironment{keywords}{%
+	\par\vskip2pt
+	\noindent\hangfrom{\textsc{Keywords: }}%
+}
+
+\NewDocumentEnvironment{mytcblisting}{O{}}
+{ \medskip
+  \begin{tcblisting}{#1} 
+}
+{ \end{tcblisting} 
+  \medskip
+}
+
+\NewExpandableDocumentCommand\xcol{mO{c|}m}
+  {\multicolumn{#1}{#2}{\ensuremath{#3}}}
+
+%% more lazy macros
+\newcommand\xbigskip[1]{\multido{}{#1}\bigskip}
+\newcommand\xmedskip[1]{\multido{}{#1}\bigskip}
+\newcommand\xsmallskip[1]{\multido{}{#1}\bigskip}
+\def\hpara{\hangpara{1.52em}{1}}
+\def\listdivider{\leavevmode\smallskip\hrule width 1.5em\smallskip}
+
+\newcommand\remark{\noindent \textbf{Remark: }}
+\newcommand\warning{\noindent \textbf{Warning: }}
+
+%% index
+%\renewcommand\cmd[1]{\cmdprint{#1}}
+\ExplSyntaxOn
+\renewcommand \cmd [1]
+{
+  \texorpdfstring 
+    { \cmdprint {#1} }
+    { \textbackslash \cs_to_str:N #1 }
+}
+\ExplSyntaxOff
+
+\newcommand\xw[1]{\cmd{#1}}
+\newcommand\xttw[1]{\texttt{#1}}
+\newcommand\pkg[1]{\textsf{#1}}
+\newcommand\env[1]{\textsf{#1}}
+\newcommand\isw[1]{#1\index{#1}}                        % simple word in text/index
+\newcommand\ixsw[1]{\cmd{#1}\index{#1}}                 % texttt in text, simple word in index
+\newcommand\ixw[1]{\textsf{#1}\index{#1@\textsf{#1}}}   % textsf in text/index
+\newcommand\ixttw[1]{\texttt{#1}\index{#1@\texttt{#1}}} % texttt in text/index
+\newcommand\ipkg[1]{\textsf{#1}\index{#1@\textsf{#1}}}
+\newcommand\ienv[1]{\textsf{#1}\index{#1@\textsf{#1}}}
+
+\makeatletter
+\newcommand{\icmd}[1]{\cmdprint{#1}%
+  \index{\expandafter\@gobble\string#1@\string\cmdprint{\string#1}}}
+\makeatother
+
+\makeindex
+
+\title{\texttt{istgame.sty} \\
+Draw Game Trees with \Tikz}
+\author{In-Sung Cho \\  \texttt{ischo <at> ktug.org}}
+\date{Economics, Kongju National University\\[3pt] \tmpdate\quad version \tmpversion}
+
+\def\tmpclearpage{\clearpage}
+
+%%=======================================================================
+\begin{document}
+
+\frontmatter
+\maketitle
+
+\renewcommand{\abstracttextfont}{\normalfont\small\noindent\ignorespaces}
+\begin{abstract}
+This is a \LaTeX{} package that provides macros based on \Tikz\ to draw a game tree. The main idea underlying the core macros here is the completion of a whole tree by using a sequence of simple `parent-child' tree structures, with no longer nested relations involved like the use of grandchildren or great-grandchildren.
+With the \ipkg{istgame} package, you can draw a game tree as easily as drawing a game tree with pen and paper. 
+
+\begin{keywords}
+game trees, nodes, branches, information sets, continuum of branches, subgames
+\end{keywords}
+\end{abstract}
+
+\tableofcontents*
+
+\mainmatter
+
+
+\printtikztreetest
+\printtest
+\printdoc
+
+\printindex
+
+\end{document}

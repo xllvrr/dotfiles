@@ -1,0 +1,14 @@
+\@doanendnote {1}
+macro:->This
+is
+an
+example
+of
+an
+endnote.
+\@endanendnote 
+\@doanendnote {2}
+macro:->And
+another
+one.
+\@endanendnote 

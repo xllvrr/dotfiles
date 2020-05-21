@@ -1,0 +1,35 @@
+name listofitems
+category Package
+revision 51923
+shortdesc Grab items in lists using user-specified sep char
+longdesc This simple package is designed to read a list of items whose
+longdesc parsing character may be selected by the user. Once the list is
+longdesc read, its items are stored in a structure that behaves as a
+longdesc dimensioned array. As such, it becomes very easy to access an
+longdesc item in the list by its number. For example, if the list is
+longdesc stored in the macro \foo, the item #3 is designated by \foo[3].
+longdesc A component may, in turn, be a list with a parsing delimiter
+longdesc different from the parent list, paving the way for nesting and
+longdesc employing a syntax reminiscent of an array of several
+longdesc dimensions of the type \foo[3,2] to access the item #2 of the
+longdesc list contained within the item #3 of the top-tier list.
+containersize 8420
+containerchecksum 9cdbbac3442d2b6cf45659a77dbbf7c1db2252af3c656d277f8c9c1f8cfd98879efb7e6a9957481cd6e892d8f3df1c8ef46c7992b45c6c461dfe936018600917
+doccontainersize 802140
+doccontainerchecksum e7c3df40b9657dab386eaf54f08018e3d390a1de96a47c5c4f63759c11aa38b243301287940131297ad107e4a63fddad5bd9ca5982b211febda7bf5a6a8d40de
+docfiles size=224
+ texmf-dist/doc/generic/listofitems/README details="Readme"
+ texmf-dist/doc/generic/listofitems/listofitems-en.pdf details="Package documentation (English)" language="en"
+ texmf-dist/doc/generic/listofitems/listofitems-en.tex
+ texmf-dist/doc/generic/listofitems/listofitems-fr.pdf details="Package documentation (French)" language="fr"
+ texmf-dist/doc/generic/listofitems/listofitems-fr.tex
+runfiles size=15
+ texmf-dist/tex/generic/listofitems/listofitems.sty
+ texmf-dist/tex/generic/listofitems/listofitems.tex
+ texmf-dist/tex/generic/listofitems/listofitemsold.tex
+catalogue-contact-bugs https://framagit.org/unbonpetit/listofitems/issues
+catalogue-contact-repository https://framagit.org/unbonpetit/listofitems/tree/master
+catalogue-ctan /macros/generic/listofitems
+catalogue-license lppl1.3c
+catalogue-topics text-manip list
+catalogue-version 1.63

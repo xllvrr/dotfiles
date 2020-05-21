@@ -1,0 +1,676 @@
+\documentclass[10pt,french,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage[euler-digits]{eulervm}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{ticollege}
+\usepackage[margin=2cm]{geometry}
+\usepackage{tabularx,titlesec,wrapfig}
+\usepackage{babel}
+\usepackage[pdfborder={0 0 0},bookmarksnumbered,pdfpagelabels]{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{listingsutf8,documentation}
+\tcbset{color key=blue,color value=ForestGreen,index colorize=true,doclang/keys=options,doclang/key=option,doclang/values=valeurs,doclang/value=valeur}
+\usepackage{makeidx}
+\makeindex
+
+\newcommand*\Speciale{Cette option n'a aucune incidence sur le style \docValue{arrows}.\xspace}
+\newcommand*\Couleur[1]{L'option \docAuxKey{color #1} est également disponible.\xspace}
+
+%%% FORMAT SECTIONS DE mathbook.cls de Stéphane PASQUET
+
+% couleurs section
+\definecolor{section@title@color}{cmyk}{1,0.2,0.3,0.1}
+\definecolor{subsection@title@color}{cmyk}{0,0.6,0.9,0}
+\definecolor{shadow@color}{cmyk}{.07,0,0,0.49}
+% fontes section
+\def\sectiontitle@font{\fontfamily{ugq}\selectfont}
+\def\subsectiontitle@font{\fontfamily{ugq}\selectfont}
+% Décalages numéro de sections / titres des sections
+\newlength\decalnumsec
+\newlength\decalnumsubsec
+\setlength{\decalnumsec}{-0.5em}
+\setlength{\decalnumsubsec}{-0.5em}
+\newlength\decalxtitlesubsec
+\setlength{\decalxtitlesubsec}{\parindent}
+% Espace entre le numéro de section et le titre
+\newlength\spacetitlesec
+\newlength\spacetitlesubsec
+\setlength{\spacetitlesec}{0.5em}
+\setlength{\spacetitlesubsec}{0.2em}
+
+%%%%%%%%%%%%% Titre de section
+
+\renewcommand{\thesection}{\Roman{section}}
+\titleformat{\section}[block]
+{%
+	\bfseries\Large
+	\color{section@title@color}
+	\sectiontitle@font
+}
+{
+\raisebox{\decalnumsec}
+{%
+\begin{tikzpicture}
+\node (numsec) {\sectiontitle@font\thesection};
+\fill[rounded corners=2pt,fill=shadow@color] ($(numsec.north west)+(2pt,-2pt)$) -- ($(numsec.north east)+(1mm,0mm)+(2pt,-2pt)$) -- ($(numsec.south east)+(2pt,-2pt)$) -- ($(numsec.south west)+(-1mm,0)+(2pt,-2pt)$) -- cycle;
+\fill[rounded corners=2pt,fill=section@title@color] (numsec.north west) -- ($(numsec.north east)+(1mm,0mm)$) -- (numsec.south east) -- ($(numsec.south west)+(-1mm,0)$) -- cycle;
+\node[white] at (numsec) {\sectiontitle@font\thesection};
+\end{tikzpicture}
+}
+}
+{\spacetitlesec}
+{}
+
+%%%%%%%%%%%%% Titre de subsection
+
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\titleformat{\subsection}[block]
+{%
+	\hspace*{\decalxtitlesubsec}
+	\bfseries\large
+	\color{subsection@title@color}
+	\subsectiontitle@font
+}
+{
+	\raisebox{\decalnumsubsec}
+	{%
+	\begin{tikzpicture}
+	\node (numsec) {\subsectiontitle@font\thesubsection};
+	\fill[rounded corners=2pt,fill=shadow@color] ($(numsec.north west)+(2pt,-2pt)$) -- ($(numsec.north east)+(1mm,0mm)+(2pt,-2pt)$) -- ($(numsec.south east)+(2pt,-2pt)$) -- ($(numsec.south west)+(-1mm,0)+(2pt,-2pt)$) -- cycle;
+	\fill[rounded corners=2pt,fill=subsection@title@color] (numsec.north west) -- ($(numsec.north east)+(1mm,0mm)$) -- (numsec.south east) -- ($(numsec.south west)+(-1mm,0)$) -- cycle;
+	\node[white] at (numsec) {\subsectiontitle@font\thesubsection};
+	\end{tikzpicture}
+	}
+}
+{%
+	\spacetitlesubsec
+}
+{%
+	%\itemclass{subsection@title@color}{\subsection@font}
+}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+    \begin{tcolorbox}[enhanced,lifted shadow={1mm}{-2mm}{3mm}{0.1mm}{black!50!white},width=0.65\linewidth]
+    \Huge\bfseries\centering ticollege.sty
+    \end{tcolorbox}\vspace{\stretch{1}}
+
+    \TiCCalc[title=documentation]\bigskip
+
+    \today, version 1.0\medskip
+
+    Philippe \bsc{De Sousa} (\href{mailto:philou.desousa@gmail.com}{philou.desousa@gmail.com})
+\end{center}\vspace{\stretch{1}}
+
+\begin{center}
+    \small\bfseries
+    Résumé
+\end{center}
+
+\begin{center}
+    \begin{minipage}{0.9\linewidth}
+    \small\parindent=15pt
+    \begin{wrapfigure}{l}{0.9cm}
+        \TiCCalc*
+    \end{wrapfigure}
+        En collège, les enseignants sont souvent amenés à travailler avec les élèves sur une calculatrice scientifique. La technologie d'aujourd'hui nous permet de vidéo-projeter la calculatrice et certains logiciels permettent de manipuler en même temps que les élèves pour leur montrer les différentes fonctionnalités de toutes les touches.\par\smallskip
+        Mais une fois chez eux, comment se souvenir de ce qui a été fait en classe ?\par\smallskip
+        J'ai créé ce package en m'appuyant sur un modèle de calculatrice répandu au collège afin de constituer des fiches méthodes que les élèves pourront utiliser à la maison et conserver d'année en année.\par
+        \textsf{ticollege.sty} s'appuie beaucoup sur mon précédent package \textsf{tipfr.sty} pour les calculatrices graphiques. Il y a donc de nombreuses similitudes dans l'utilisation des deux packages et, pour un souci d'utilisation commune, j'ai été amené à nommer différemment des commandes effectuant le même travail.
+    \end{minipage}
+\end{center}\clearpage
+
+\tableofcontents
+\vspace*{2cm}
+
+\section{Les touches}
+
+\subsection{Dessiner une touche}
+
+\begin{docCommand}{TiC}{\oarg{options}}
+    Voici la commande qui fournit tous les dessins de touche. L'appel à la commande \cs{TiC} sans aucune option réalise la touche $\sin$ par défaut.
+\end{docCommand}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC
+\end{dispExample*}
+\medbreak
+
+Pour obtenir d'autres types de touches, on utilise alors différentes options auxquelles on spécifie une valeur :\medbreak
+
+\begin{docKey}{style}{=\meta{text}}{valeur par défaut : \docValue{general}}
+Crée un dessin de touche selon le style précisé. Les différentes valeurs sont :
+\end{docKey}
+\begin{description}
+    \item[\docValue{general}] dessine une touche aux bords arrondis pour les touches de fonctions ;
+    \item[\docValue{number}] dessine une touche de forme différentes pour indiquer les chiffres ;
+    \item[\docValue{arrows}] dessine la touche qui représente les quatres flèches de la calculatrice.
+\end{description}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[style=general]
+\TiC[style=number]
+\TiC[style=arrows]
+\end{dispExample*}
+\medbreak
+
+Le style \docValue{number} admet des variantes avec un bord arrondi.
+
+\begin{docKey}{rounded}{=\meta{text}}{valeur par défaut : \docValue{none}}
+Arrondis une touche sur le côté gauche ou droit. Cette option n'a d'incidence que sur le style \docValue{number}.
+\end{docKey}
+\begin{description}
+    \item[\docValue{none}] la touche est rectangulaire ;
+    \item[\docValue{left}] touche arrondie à gauche ;
+    \item[\docValue{right}] touche arrondie à droite.
+\end{description}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[style=number, rounded=left, principal=1]
+\TiC[style=number, rounded=none, principal=2]
+\TiC[style=number, rounded=right, principal=3]
+\end{dispExample*}
+\medbreak
+
+Hormis pour les touches flèches, on constate que la valeur principale par défaut est $\sin$. L'exemple précédent nous montre qu'il est possible de modifier ce texte. De plus, sa position et sa taille sont également modifiable.\medbreak
+
+\begin{docKey}{principal}{=\meta{text}}{valeur par défaut : \docValue{sin}}
+Précise le \meta{text} à mettre à l'intérieur d'une touche. \Speciale
+\end{docKey}
+
+La commande \cs{Aff} a été créée pour dessiner le symbole suivant : \raisebox{-0.5em}{\Aff}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[principal=stats]
+\TiC[style=number, principal=2]
+\TiC[principal=\Aff]
+\end{dispExample*}
+\medbreak
+
+\begin{docKey}{position}{=\meta{nombre}}{valeur par défaut : \docValue{0.9}}
+Permet d'ajuster la position du texte principal à l'intérieur de la touche. \Speciale
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[principal=op]
+\TiC[principal=op, position = 0.5]
+\TiC[principal=op, position = 1.1]
+\end{dispExample*}
+\medbreak
+
+\begin{docKey}{fontsize}{=\meta{dim}}{valeur par défaut : \docValue{6pt}}
+    L'option \docAuxKey{fontsize} permet de modifier ponctuellement la taille de la fonte utilisée dans la touche. \Speciale
+\end{docKey}
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[principal={$\triangleright$ simp}]
+\TiC[principal={$\triangleright$ simp}, fontsize=5pt, position=1]
+\qquad
+\TiC[style=number, principal=2]
+\TiC[style=number, principal=2,fontsize=9pt]
+\end{dispExample*}
+\medbreak
+
+\begin{docKey}{raise}{=\meta{dim}}{valeur par défaut : \docValue{0ex}}
+Permet d'ajuster la hauteur de la touche par rapport à la ligne de base. Les valeurs négatives sont autorisées.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[style=arrows]
+\TiC[style=general]
+\TiC[style=arrows, raise=-0.25cm]
+\end{dispExample*}
+\medbreak
+
+Les touches ne sont pas uniquement composées de leur texte principal. Parfois, elles possèdent une fonction exécutée appelée à l'aide de la touche
+\TiC[principal=2nde, colour text=black, colour key=TIJaune, raise=-1ex].
+
+\begin{docKey}{second}{=\meta{text}}{\sffamily fonction inactive par défaut}
+    \'Ecrit en couleur un texte secondaire centré au dessus de la touche. \Speciale
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[principal=suppr, second=insérer, position=1]
+\end{dispExample*}
+\medbreak
+
+Les commandes \cs{TiRacine}, \cs{ContrastDown}, \cs{ContrastUp} et \cs{Div} ont été créées pour dessiner différents symboles existant sur la calculatrice :
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[principal={\large :}, second=\Div]
+\TiC[principal=$x^n$, second={\TiRacine[n]}]
+\TiC[principal=$x^2$, second={\TiRacine}]
+\TiC[principal=$-$, second=\ContrastDown]
+\TiC[principal=$+$, second=\ContrastUp]
+\end{dispExample*}
+\medbreak
+
+Pour finir sur le dessin d'une touche, on peut spécifier la couleur du texte principal et celle du texte secondaire ainsi que la couleur de la touche. Les couleurs \docValue{TIJaune}, \docValue{TIRouge} et \docValue{TIOrange} ont été créées à cette occasion.\medbreak
+
+\begin{docKey}{colour text}{=\meta{colour}}{valeur par défaut : \docValue{white}}
+    Modifie la couleur du texte principal de la touche. \Couleur{text} \Speciale
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[principal=\textit{cos}, position=1, second=\textit{arccos}]
+\TiC[principal=\textit{cos}, position=1, second=\textit{arccos}, colour text=black]
+\end{dispExample*}
+\medbreak
+
+\begin{docKey}{colour second}{=\meta{colour}}{valeur par défaut : \docValue{TIOrange}}
+    Modifie la couleur du texte secondaire de la touche. \Couleur{second} \Speciale
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[principal=\textit{cos}, position=1, second=\textit{arccos}]
+\TiC[principal=\textit{cos}, position=1, second=\textit{arccos}, colour second=black]
+\end{dispExample*}
+\medbreak
+
+\begin{docKey}{colour key}{=\meta{colour}}{valeur par défaut : \docValue{TIRouge}}
+    Modifie la couleur de la touche. \Couleur{key}
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[style=arrows, colour key=TIOrange]
+\TiC[principal=2nde, colour key=TIJaune, colour text=black]
+\TiC[style=number, principal=2, fontsize=9pt, colour key=white, colour text=black]
+\end{dispExample*}
+\medbreak
+
+\subsection{Entourer une touche}
+
+\begin{docKey}{circle}{=\docValue*{true|false}}{valeur par défaut : \docValue{false}}
+    Permet d'entourer la touche à l'aide d'un cercle dont on peut alors préciser le rayon, l'épaisseur et la couleur.
+\end{docKey}
+
+\begin{docKey}{radius}{=\meta{dim}}{valeur par défaut : \docValue{20pt}}
+    On spécifie ici le rayon du cercle qui ne sera pris en compte que si \docAuxKey{circle}=\docValue{true}.
+\end{docKey}
+
+\begin{docKey}{colour circle}{=\meta{colour}}{valeur par défaut : \docValue{red}}
+    On spécifie ici la couleur du cercle qui ne sera prise en compte que si \docAuxKey{circle}=\docValue{true}. \Couleur{circle}
+\end{docKey}
+
+\begin{docKey}{thickness}{=\meta{dim}}{valeur par défaut : \docValue{1pt}}
+    On spécifie ici l'épaisseur du cercle qui ne sera prise en compte que si \docAuxKey{circle}=\docValue{true}.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[principal=$x^2$, second={\TiRacine}, circle=true, thickness=0.5pt]
+\TiC[style=arrows, colour key=TIOrange, circle=true, radius=25pt, colour circle=blue]
+\end{dispExample*}
+\medbreak
+
+Chaque petite flèche du style \docValue{arrows} peut-être entouré individuellement. La couleur et l'épaisseur du cercle sont modifiables mais cette fois, le rayon du cercle est fixé.
+
+\begin{docKey}{circleup}{=\docValue*{true|false}}{valeur par défaut : \docValue{false}}
+Entoure la petite flèche du haut.
+\end{docKey}
+
+\begin{docKey}{circledown}{=\docValue*{true|false}}{valeur par défaut : \docValue{false}}
+Entoure la petite flèche du bas.
+\end{docKey}
+
+\begin{docKey}{circleleft}{=\docValue*{true|false}}{valeur par défaut : \docValue{false}}
+Entoure la petite flèche de gauche.
+\end{docKey}
+
+\begin{docKey}{circleright}{=\docValue*{true|false}}{valeur par défaut : \docValue{false}}
+Entoure la petite flèche de droite.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiC[style=arrows, colour key=TIOrange, circleup=true]
+\TiC[style=arrows, colour key=TIOrange, circledown=true, colour circle=blue]
+\TiC[style=arrows, colour key=TIOrange, circleleft=true, circleright=true, colour circle=purple]
+\end{dispExample*}
+\medbreak
+
+\subsection{Nommer une touche}\label{subsec:NomTouche}
+
+\begin{docKey}{name}{=\meta{text}}{valeur par défaut : \docValue{NOM}}
+    La touche sera référencée à l'aide d'un n{\oe}ud nommé \meta{text}.
+\end{docKey}
+
+\begin{dispExample}
+Pour éteindre la calculatrice, on utilise la séquence suivante :
+\begin{center}
+    \TiC[principal=2nde, colour text=black, colour key=TIJaune]
+    \TiC[principal=on, second=off, name=ON]
+\end{center}
+\begin{tikzpicture}[overlay, remember picture, >=latex']
+    \draw[red, line width=1pt] ($(ON)+(0,0.4)$) circle (7pt);
+    \draw[blue, line width=0.5pt, <-, rounded corners=10pt]
+        ($(ON)+(0.4,0.4)$) -- ++(1,0)
+        node[right] {\textsf{off} permet d'éteindre la calculatrice};
+\end{tikzpicture}
+\end{dispExample}
+
+Les touches sont définies au sein d'un environnement \texttt{tikzpicture}. Afin de pouvoir s'y référer à l'intérieur d'un autre environnement de ce type, il faudra penser à utiliser les options \texttt{overlay} et \texttt{remember picture}. De plus, au minimum deux compilations seront nécessaires.
+
+
+
+\section{Créer des menus}
+
+En plus des différentes touches de la calculatrice, on pourra parler aux élèves des menus affichés par la calculatrice
+
+\begin{docCommand}{TiCMenu}{\oarg{options}\marg{nom}}
+    Cette commande écrit \meta{nom} en majuscule dans une fonte à chasse fixe de type {\ttfamily machine à écrire} pour nommer un menu de calculatrice. Ce nom est enfermé dans une boîte à fond blanc exactement à sa taille.
+\end{docCommand}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCMenu{Math} \TiCMenu{num} \TiCMenu{rnd} \TiCMenu{pol}
+\end{dispExample*}
+\medbreak
+
+La taille peut être modifiée à l'aide de l'option suivante
+
+\begin{docKey}{size}{=\meta{dim}}{valeur par défaut : \docValue{15pt}}
+    Si l'unité de mesure n'est pas spécifié dans \meta{dim}, alors le \texttt{pt} sera utilisé par défaut.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCMenu[size=1cm]{Math}
+\TiCMenu{num}
+\TiCMenu[size=8]{rnd}
+\TiCMenu[size=8pt]{pol}
+\end{dispExample*}
+\medbreak
+
+\begin{docKey}{select}{\docValue*{=true|false}}{valeur par défaut : \docValue{false}}
+    Permet d'écrire le nom du menu en blanc sur fond noir pour signifier qu'il est sélectionné.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCMenu{Math} \TiCMenu{num}
+\TiCMenu[select=true]{rnd}
+\TiCMenu{pol}
+\end{dispExample*}
+\medbreak
+
+\begin{docKey}{colour box}{=\meta{colour}}{valeur par défaut : \docValue{white}}
+    Détermine la couleur la boîte contenant le texte du menu lorsque celui-ci \textit{n'est pas} sélectionné. \Couleur{box}
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCMenu{Math} \TiCMenu{num}
+\TiCMenu[select=true]{rnd}
+\TiCMenu[colour box=red]{pol}
+\end{dispExample*}
+\medbreak
+
+\begin{docKey}{text}{=\meta{text}}{valeur par défaut : \docValue{\symbol{92}unskip}}
+    Cette dernière option permet de spécifier si un texte doit être écrit à côté du nom du menu. Pratique pour les menus sous forme de listes verticales. Le \meta{text} est sensible à l'option \docAuxKey{size}.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCMenu[size=10pt, text={PGCD(}]{1 :}\par
+\TiCMenu[size=10pt, select=true, text=PPCM(]{2 :}\par
+\TiCMenu[size=10pt, text={abs(}]{3 :}
+\end{dispExample*}
+
+Voilà par exemple les quatres menus disponibles avec la touche \TiC[principal={maths},second={système}, raise=-1ex] :
+\begin{center}\renewcommand\tabcolsep{-7pt}
+    \begin{tabular}{*{4}{llll|}}
+        \TiCMenu[size=10,select=true]{Maths} & \TiCMenu[size=10]{num} & \TiCMenu[size=10]{rnd} & \TiCMenu[size=10]{pol} &
+                \TiCMenu[size=10]{Maths} & \TiCMenu[size=10,select=true]{num} & \TiCMenu[size=10]{rnd} & \TiCMenu[size=10]{pol} &
+                \TiCMenu[size=10]{Maths} & \TiCMenu[size=10]{num} & \TiCMenu[size=10,select=true]{rnd} & \TiCMenu[size=10]{pol} &
+                \TiCMenu[size=10]{Maths} & \TiCMenu[size=10]{num} & \TiCMenu[size=10]{rnd} & \TiCMenu[size=10,select=true]{pol} \\[-8pt]
+%
+        \multicolumn{4}{l|}{\TiCMenu[select=true, size=9, text=PGCD(]{1 :}} &
+        \multicolumn{4}{l|}{\TiCMenu[select=true, size=9, text=arrondi(]{1 :}} &
+        \multicolumn{4}{l|}{\TiCMenu[select=true, size=9, text=rand]{1 :}} &
+        \multicolumn{4}{l|}{\TiCMenu[select=true, size=9, text={R$\blacktriangleright$P$r$}]{1 :}} \\[-8pt]
+%
+        \multicolumn{4}{l|}{\TiCMenu[size=9, text=PPCM(]{2 :}} &
+        \multicolumn{4}{l|}{\TiCMenu[size=9, text=reste(]{2 :}} &
+        \multicolumn{4}{l|}{\TiCMenu[size=9, text=randn(]{2 :}} &
+        \multicolumn{4}{l|}{\TiCMenu[size=9, text={R$\blacktriangleright$P$\theta$}]{2 :}} \\[-8pt]
+%
+        \multicolumn{4}{l|}{\TiCMenu[size=9, text=abs(]{3 :}} &
+        \multicolumn{4}{l|}{\TiCMenu[size=9, text=partEnt(]{3 :}} &
+        \multicolumn{4}{l|}{} &
+        \multicolumn{4}{l|}{\TiCMenu[size=9, text={P$\blacktriangleright$R$x$}]{3 :}}
+%
+    \end{tabular}
+\end{center}
+
+
+\section{Afficher un écran}
+\subsection{Généralités}
+
+\begin{docCommand}{TiCScreen}{\oarg{options}\marg{expression/résultat}}
+    Cette commande permet d'afficher un écran de calculatrice.
+\end{docCommand}
+
+\begin{dispExample*}{center lower}
+\TiCScreen{}
+\end{dispExample*}
+
+On peut modifier l'aspect général à l'aide des options suivantes :
+
+\begin{docKey}{colour screen}{=\meta{colour}}{valeur par défaut : \docValue{ForestGreen}\docValue*{!15}}
+    Détermine la couleur de fond de l'écran. \Couleur{screen}
+\end{docKey}
+
+\begin{docKey}{screenname}{=\meta{text}}{valeur par défaut : \docValue{ecran}}
+    Donne un nom à l'écran afin de pouvoir s'y référencer plus tard avec des environnements \texttt{tikzpicture}. Les mêmes précautions que pour les touches doivent être prises (voir sous-section \ref{subsec:NomTouche} page \pageref{subsec:NomTouche}).
+\end{docKey}
+
+\begin{docKey}{width}{=\meta{number}}{valeur par défaut : \docValue{4}}
+Permet de fixer la longueur de l'écran. L'unité de mesure est le \texttt{cm}.
+\end{docKey}
+
+\begin{docKey}{height}{=\meta{number}}{valeur par défaut : \docValue{1}}
+Permet de fixer la largeur de l'écran. L'unité de mesure est le \texttt{cm}.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCScreen[width=3, screenname=first]{}
+\TiCScreen[width=3, colour screen=blue!50, screenname=second]{}
+\tikz[remember picture, overlay]{\draw (first.center) circle (5pt);}
+\tikz[remember picture, overlay]{\draw (second.north west) -- (second.south east);}
+\end{dispExample*}
+
+\subsection{\'Ecran de calculs}
+
+Revenons sur l'argument obligatoire de la commande \cs{TiCScreen}. Cet argument est une liste de couples \meta{expression/résultat} séparés par une virgule.\par
+On peut ne rien écrire à la place de \meta{expression} ou \meta{résultat} mais, dans ce cas, il ne faut pas mettre d'espace non plus. Les deux peuvent être laissés vides mais alors rien ne se passe (pas de création de ligne vide).\par
+On pensera à utiliser des accolades si l'expression ou le résultat utilise les symboles \texttt{,} ou \texttt{/}.\medbreak
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCScreen[colour screen=blue!10, height=2, width=6]%
+{%
+3+2/5,
+/,
+1+2+3+4+5+6+7+8+9+10+11+12+13+14+15+16%
+$\blacktriangleright$/5050}
+\end{dispExample*}
+\medbreak
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCScreen[colour screen=blue!10, height=2, width=6]%
+{%
+$\frac 35$/{0,6},
+{0,6 $\blacktriangleright$\unskip f\unskip$\triangleleft \triangleright$ \unskip d}/{$\downarrow\frac{6}{10}$}
+}
+\end{dispExample*}
+\medbreak
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCScreen[colour screen=blue!10]%
+{%
+{$\frac{6}{10}$ $\blacktriangleright$\unskip simp}/
+{\raisebox{0.5ex}{\scriptsize Fac=2} $\frac{3}{5}$}
+}
+\end{dispExample*}
+\medbreak
+
+\begin{dispExample*}{center lower}
+\TiCScreen[width=6,height=3]{
+{\renewcommand\tabcolsep{-7pt}
+    \begin{tabular}{llll}
+        \TiCMenu[size=10,select=true]{Maths} & \TiCMenu[colour box={ForestGreen!15}, size=10]{num} & \TiCMenu[colour box={ForestGreen!15}, size=10]{rnd} & \TiCMenu[colour box={ForestGreen!15}, size=10]{pol} \\[-8pt]
+        \multicolumn{4}{l}{\TiCMenu[select=true, size=9, text=PGCD(]{1 :}} \\[-8pt]
+        \multicolumn{4}{l}{\TiCMenu[colour box={ForestGreen!15}, size=9, text=PPCM(]{2 :}} \\[-8pt]
+        \multicolumn{4}{l}{\TiCMenu[colour box={ForestGreen!15}, size=9, text=abs(]{3 :}}
+    \end{tabular}
+}/{}
+}
+\end{dispExample*}
+
+\section{La calculatrice}
+\subsection{Version grand format}
+
+\begin{docCommand}{TiCCalc}{\oarg{options}}
+    Cette commande permet d'afficher la calculatrice en entier. Chaque touche a été nommée individuellement pour pouvoir s'y référer. Le tableau suivant donne le nom de chaque touche.
+\end{docCommand}
+
+\noindent%
+\begin{tabularx}{\linewidth}{>{\bfseries}c *{8}{>{\centering\arraybackslash} X}}
+    \hline
+            Touche & \TiC[principal=2nde, colour key=TIJaune, colour text=black, name=scd] &
+            \TiC[principal=mode, second=quitter, name=mode] &
+            \TiC[principal=suppr, second=insérer, name=supp, position=1.1] &
+            \TiC[principal={$\boldsymbol{\frac{n}{d}}$}, second={$\boldsymbol{f \triangleleft\triangleright d}$}, fontsize=7pt, name=nd] &
+            \TiC[principal=stats, second=stats calc, name=stats] &
+            \TiC[principal={$\boldsymbol{f(x)}$}, second=expr, name=fx] &
+            \TiC[principal={$\triangleright$ simp}, second={$\triangleright$ décomp}, name=simp, fontsize=5pt]&
+            \TiC[principal={$\times 10^n$}, second={$\frac1x$}, name=pdix]\\
+\hline
+    Nom & scd & mode & supp & nd & stats & fx & simp & pdix\\
+\hline\hline
+    Touche & \TiC[principal=op, second=déf op, name=op, position=1.1] &
+    \TiC[principal=maths, second=système, name=math] &
+    \TiC[principal=annul, name=annul] &
+    \TiC[principal={\large$\pi$}, second=angle, name=pi] &
+    \TiC[principal={\itshape sin}, second={\itshape arcsin}, name=sin] &
+    \TiC[principal={\itshape cos}, second={\itshape arccos}, name=cos] &
+    \TiC[principal={\itshape tan}, second={\itshape arctan}, name=tan] &
+    \TiC[principal=$\div$, second=\Div, colour key=TIOrange, name=div] \\
+\hline
+    Nom & op & math & annul & pi & sin & cos & tan & div \\
+\hline\hline
+    Touche & \TiC[principal={$x^n$}, second={\TiRacine[n]}, name=pow] &
+    \TiC[principal=\%, second={$\triangleright$ \%}, name=pcent] &
+    \TiC[principal={(}, second={$\triangleright a\, \cdot 10^n$}, name=PO] &
+    \TiC[principal={)}, second={$\triangleright$ norm}, name=PF] &
+    \TiC[principal=$\times$, colour key=TIOrange, name=times] &
+    \TiC[principal={$x^2$}, second={\TiRacine}, name=sqr] &
+    \TiC[style=number, principal=7, rounded=left, colour key=white, colour text=black, name=T7] &
+    \TiC[style=number, principal=8, colour key=white, colour text=black, name=T8] \\
+\hline
+    Nom & pow & pcent & PO & PF & times & sqr & T7 & T8 \\
+\hline\hline
+    Touche & \TiC[style=number, principal=9, rounded=right, colour key=white, colour text=black, name=T9] &
+    \TiC[principal=$-$, second=\ContrastDown, colour key=TIOrange, name=sub] &
+    \TiC[principal={$x^{yzt}_{abc}$}, second={eff var}, name=var] &
+    \TiC[style=number, principal=4, rounded=left, colour key=white, colour text=black, name=T4] &
+    \TiC[style=number, principal=5, colour key=white, colour text=black, name=T5] &
+    \TiC[style=number, principal=6, rounded=right, colour key=white, colour text=black, name=T6] &
+    \TiC[principal=$+$, second=\ContrastUp, colour key=TIOrange, name=plus] &
+    \TiC[principal={sto $\triangleright$}, second={rap var}, name=sto] \\
+\hline
+    Nom & T9 & sub & var & T4 & T5 & T6 & plus & sto \\
+\hline\hline
+    Touche & \TiC[style=number, principal=1, rounded=left, colour key=white, colour text=black, name=T1] &
+    \TiC[style=number, principal=2, colour key=white, colour text=black, name=T2] &
+    \TiC[style=number, principal=3, rounded=right, colour key=white, colour text=black, name=T3] &
+    \TiC[principal=\Aff, colour key=TIOrange, name=aff] &
+    \TiC[principal={on}, second={off}, name=on] &
+    \TiC[style=number, principal=0, second=réinit, rounded=left, colour key=white, colour text=black, name=T0] &
+    \TiC[style=number, principal={,}, fontsize=9pt, position=1.2, second={;}, colour key=white, colour text=black, name=virgule] &
+    \TiC[style=number, principal=(--), second=rép, rounded=right, colour key=white, colour text=black, name=minus] \\
+\hline
+    Nom & T1 & T2 & T3 & aff & on & T0 & virgule & minus \\
+\hline\hline
+    Touche & \TiC[principal=entrer, colour key=TIOrange, fontsize=5pt, name=entrer] & \textbf{Nom} & entrer &
+    \textbf{Touche} & \multicolumn{2}{c}{\TiC[style=arrows, colour key=TIOrange, name=arrows, raise=-0.3cm]} & \textbf{Nom} & arrows
+\end{tabularx}\label{tableau}
+
+\begin{docKey}{title}{=\meta{text}}{valeur par défaut : \docValue{TI-Collège}}
+    Permet de spécifier un titre au-dessus de l'écran de la calculatrice.
+\end{docKey}
+
+\begin{docKey}{colour calc}{=\meta{colour}}{valeur par défaut : \docValue{TIOrange}\docValue*{!50}}
+    Détermine la couleur de la calculatrice. \Couleur{calc}
+\end{docKey}
+
+\begin{dispListing}
+\TiCCalc[title=Structure, colour calc=brown!20]
+\begin{tikzpicture}[overlay, remember picture]
+        \draw[blue, line width=1pt,rounded corners = 5pt]
+            ($(T0) + (-0.6,-0.3)$) -|
+            ($(T9) + (0.5,0.4)$) -| cycle;
+        \node[blue] at ($(virgule)+(0,-0.65)$) {\textbf Touches numériques};
+\end{tikzpicture}
+\end{dispListing}
+
+\begin{center}
+\TiCCalc[title=Structure, colour calc=brown!20]
+\begin{tikzpicture}[overlay, remember picture]
+        \draw[blue, line width=1pt,rounded corners = 5pt]
+            ($(T0) + (-0.6,-0.3)$) -|
+            ($(T9) + (0.5,0.4)$) -| cycle;
+        \node[blue] at ($(virgule)+(0,-0.65)$) {\textbf Touches numériques};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Version petit format}
+
+\begin{docCommand}{TiCCalc*}{\oarg{options}}
+    Cette commande permet d'afficher une calculatrice en petit format à utiliser dans des fiches méthodes par exemple.
+\end{docCommand}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCCalc*
+\end{dispExample*}
+
+L'aspect de la calculatrice est modifiable.
+
+\begin{docKey}{calcscale}{=\meta{number}}{valeur par défaut : \docValue{0.5}}
+Permet de modifier la taille de la calculatrice. Plus la calculatrice est petite, moins les dessins de touches seront précis.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCCalc*[calcscale=1]
+\TiCCalc*[calcscale=0.25]
+\end{dispExample*}
+
+\begin{docKey}{calcrotate}{=\meta{number}}{valeur par défaut : \docValue{-30}}
+Permet de changer l'angle d'affichage de la calculatrice.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCCalc*[calcrotate=0] \textbf{Méthode}
+\qquad
+\TiCCalc*[calcrotate=90] \textbf{Méthode}
+\par\bigskip
+\TiCCalc*[calcrotate=-30]
+\hspace{-1em}\textbf{Méthode}
+\qquad
+\rotatebox{90}{\textbf{Méthode}}
+\TiCCalc*[calcrotate=0]
+\end{dispExample*}
+
+\begin{docKey}{calcraise}{=\meta{dim}}{valeur par défaut : \docValue{-2ex}}
+Permet de modifier la hauteur de la calculatrice en fonction de la ligne de base.
+\end{docKey}
+
+\begin{dispExample*}{sidebyside, center lower}
+\TiCCalc*[calcrotate=0, calcraise=0ex] \textbf{Méthode}
+\qquad
+\rotatebox{90}{\textbf{Méthode}}
+\TiCCalc*[calcrotate=0, calcraise=1ex]
+\end{dispExample*}
+
+
+\clearpage
+
+\printindex
+\end{document} 

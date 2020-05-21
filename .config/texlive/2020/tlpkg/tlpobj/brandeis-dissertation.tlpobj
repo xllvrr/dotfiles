@@ -1,0 +1,25 @@
+name brandeis-dissertation
+category Package
+revision 54758
+shortdesc Class for Brandeis University dissertations
+longdesc The class will enable the user to typeset a dissertation which
+longdesc adheres to the formatting guidelines of Brandeis University
+longdesc Graduate School of Arts and Sciences (GSAS).
+containersize 1844
+containerchecksum 26dde7d29bdc60ae3b4c70b14b6b6c35b0319422cdcbda1ed1f4beec7a3056e145985e7a1b3aa4870b8fcc1e6d75da2e5d879b9a5c26ab85de59710d322647ff
+doccontainersize 171688
+doccontainerchecksum 49b84e3fc0264f2a74704dbfa90c8c6bea44f436afc88387ff5c7cbf01d5feb207b1ba77e661f6db974e28cc41e3d8054524eed35f948aac3af4dbd24cdffc14
+docfiles size=43
+ texmf-dist/doc/latex/brandeis-dissertation/README.txt details="Readme"
+ texmf-dist/doc/latex/brandeis-dissertation/brandeis-dissertation.pdf details="Package documentation"
+srccontainersize 4144
+srccontainerchecksum 18cf0e74d51021dda950b2fa0c95807550aa69b1de57f5989b88ed1236c433483291dcb7158beccad9fa72903708212ea50c606d187199ccce589010b02915e3
+srcfiles size=4
+ texmf-dist/source/latex/brandeis-dissertation/brandeis-dissertation.dtx
+ texmf-dist/source/latex/brandeis-dissertation/brandeis-dissertation.ins
+runfiles size=2
+ texmf-dist/tex/latex/brandeis-dissertation/brandeis-dissertation.cls
+catalogue-ctan /macros/latex/contrib/brandeis-dissertation
+catalogue-license lppl1.2
+catalogue-topics dissertation
+catalogue-version 3.11

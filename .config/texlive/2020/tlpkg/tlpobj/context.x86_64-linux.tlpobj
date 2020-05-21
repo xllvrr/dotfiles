@@ -1,0 +1,14 @@
+name context.x86_64-linux
+category Package
+revision 34112
+shortdesc x86_64-linux files of context
+containersize 464
+containerchecksum eeea45be144fd63c2f07615cddf2b52eb8c34160fc0f1fdc27c3697e4cff1f5a72ad6dc1c2a48363067e15fddb00ad7dc7daffde53e60a0d84bd6887d83f4c07
+binfiles arch=x86_64-linux size=7
+ bin/x86_64-linux/context
+ bin/x86_64-linux/contextjit
+ bin/x86_64-linux/luatools
+ bin/x86_64-linux/mtxrun
+ bin/x86_64-linux/mtxrunjit
+ bin/x86_64-linux/texexec
+ bin/x86_64-linux/texmfstart

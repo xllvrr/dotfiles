@@ -1,0 +1,20 @@
+name context-typearea
+category ConTeXt
+revision 47085
+shortdesc Something like Koma-Script typearea
+longdesc The module provides a command that calculates the page layout
+longdesc as the LaTeX package typearea does.
+depend context
+containersize 1796
+containerchecksum c4a2f2317b146b31102273e9b616d403d4ee836a61fae96bd9315670b0bdd5f9d94ecde00b53d2ea5f7073773bd8af5c322b07c3b05bf7ad5262a9f0e0b623a1
+doccontainersize 77364
+doccontainerchecksum 7171bc5c5e82b3897f75421e745e876c2aea84e9e9cb74badd6dedc75666b8f9ddb8b6d11c523ea64be6b57dca4f84555827afa32a0c90f6df1c31b68b1f6395
+docfiles size=22
+ texmf-dist/doc/context/third/typearea/VERSION
+ texmf-dist/doc/context/third/typearea/typearea-demo.pdf details="Package demo"
+ texmf-dist/doc/context/third/typearea/typearea-doc.pdf details="Package documentation"
+runfiles size=1
+ texmf-dist/tex/context/third/typearea/t-typearea.tex
+catalogue-ctan /macros/context/contrib/context-typearea
+catalogue-license gpl
+catalogue-topics geometry context

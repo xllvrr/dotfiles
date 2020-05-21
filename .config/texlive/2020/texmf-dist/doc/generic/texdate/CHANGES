@@ -1,0 +1,6 @@
+08 Dec 1202 (08 Dec 2018):  Modified slightly to permit
+using the package with plain TeX.  Also included
+dependencies in the documentation, and explained how to use
+the package with plain TeX.  v2.0.
+
+26 May 1202 (30 May 2018):  Initial release.

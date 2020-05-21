@@ -1,0 +1,64 @@
+\documentclass[twocolumn]{scrartcl}
+%% $Id: fullpage1s2c.tex 1072 2019-06-09 14:14:19Z herbert $
+
+\input{preamble.ltx}
+\setlength\columnseprule{0.4pt}
+
+\begin{document}
+\title{Example for fullpage floats}
+\author{Herbert Voß}
+\maketitle
+
+\tableofcontents
+
+\section{The fullpage optional arguments}
+\Blindtext
+
+\subsection{\texttt{fullpage}}
+\blindtext
+\blindtext
+\verb|\includegraphics[fullpage]{tiger}|
+
+\includegraphics[fullpage]{tiger}
+
+\Blindtext
+\subsection{\texttt{FullPage}}
+\blindtext
+
+\verb|\includegraphics[FullPage]{tiger}|
+\begin{figure*}[p]
+\includegraphics*[FullPage]{tiger}
+\end{figure*}
+
+\Blindtext
+
+\Blindtext
+
+\subsection{\texttt{FULLPAGE}}
+\blindtext
+
+\verb|\includegraphics[FULLPAGE]{tiger}|
+
+\begin{figure*}[p]
+    \vspace*{\the\dimexpr-1in-\voffset+\topskip-\headheight-0.5\baselineskip}%
+    \if@twoside
+      \leavevmode\checkoddpage
+      \ifoddpage
+        \hspace*{\the\dimexpr-\oddsidemargin-\parindent-1in}%
+      \else
+        \hspace*{\the\dimexpr-\evensidemargin-\parindent-1in}%
+      \fi
+    \else
+      \hspace*{\the\dimexpr-\oddsidemargin-\parindent-1in}%
+    \fi
+    \put(0,0){\usebox\hvObjectBox}%    
+    \AtBeginShipoutNext{\thispagestyle{empty}}%
+\includegraphics*[FULLPAGE]{tiger}
+\end{figure*}
+
+\Blindtext
+
+\blindtext
+
+
+\end{document}

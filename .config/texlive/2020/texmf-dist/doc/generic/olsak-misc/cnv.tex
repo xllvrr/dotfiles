@@ -1,0 +1,541 @@
+
+% cnv.tex -- macro for string conversion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% April 2005                                         Petr Olsak
+
+
+% \cnvin {<input text>} converts <input text> to <output text>.
+% This output is stored in \cnvout macro.
+
+% For more information see the end of this file.
+% The comments after %% (double percent sign) are intended for macro 
+% programmers. See "simple" documentation at the end of this file first.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% we cannot read this macro twice:
+
+\ifx\cnvin\undefined \else \endinput \fi  
+
+%% \predef <token> defines macro \E:<token>:<table>
+%% \findef <token> defines macro \T:<token>:<table>
+
+\def\predef #1{\expandafter \predefmethod \csname E:\string#1:\cnvtable\endcsname}
+\def\findef #1#2{\expandafter \findefmethod \csname T:\string#1:\cnvtable\endcsname {#2}}
+
+%% \cnvaccent <command> <char> {<output>} does following:
+%% 1. it defines \E:<command>:<table> #1 as {\runcnvaccent \A:<command>:#1:<table>}
+%%    (\runcnvaccent implements the test if accented letter is undeclared, see below)
+%% 2. it defines \A:<command>:<char>:<table> as {<output>}
+%% 3. if "<command> <char>" is one <token> after expansion, then 
+%%    it defines \T:<token>:<table> as {<output>}
+       
+\def\cnvaccent #1#2#3{\expandafter \cnvaccentmethod \csname E:\string#1:\cnvtable\endcsname ##1%
+       {\cnvexpand \expandafter \runcnvaccent \csname A:\string#1:\string##1:\cnvtable\endcsname}%
+   \expandafter \findefmethod \csname A:\string#1:\string#2:\cnvtable\endcsname {#3}%
+   \edef \tmp{#1{#2}}%
+   \expandafter \cnvtestaccent \tmp \cnvtestaccent
+   \ifx\nextchar\empty \expandafter \findefmethod \csname T:\tmp:\cnvtable\endcsname {#3}\fi
+}
+\def\cnvtestaccent {\futurelet \nextchar \docnvtestaccent}
+\def\docnvtestaccent #1#2\cnvtestaccent{\ifx\nextchar \bgroup
+   \else \def\nextchar{#2}\fi}
+
+%% main macro:
+
+\long\def\cnvin #1{\def\cnvout{}\cnvnext #1\cnvend}
+
+%% \cnvnext: we test the next token by \futurelet because it may be a space
+%% or a brace:
+
+\def\cnvnext {\futurelet \nextchar \docnvnext}
+\def\docnvnext {\let\next=\cnvtoken
+   \ifx \nextchar\cnvend        \let\next=\relax \fi
+   \ifx \nextchar\spacetoken    \let\next=\cnvspace \fi   
+   \ifx \nextchar\cnvbgroup     \let\next=\cnvopenbrace \fi
+   \ifx \nextchar\cnvegroup     \let\next=\cnvclosebrace \fi
+   \ifx \nextchar\runcnvaccent  \let\next=\relax \fi
+   \ifx \nextchar\cnvexec       \let\next=\relax \fi
+   \ifx \nextchar\cnvexpand     \let\next=\relax \fi
+   \ifx \nextchar\cnvexpandtext \let\next=\relax \fi
+   \next}
+
+%% \cnvend: end of conversion. We define it as \outer because
+%% the parameter of user macros cannot scan this token.
+
+\outer\def\cnvend{\let\nextchar=\relax}
+
+%% \cnvbgroup, \cnvegroup: We suppose that these sequences will have
+%% the constant meaning (user may change the \bgroup, \egroup meaning).
+
+\let\cnvbgroup={  \let\BGROUP={  \let\EGROUP=}  \let\cnvegroup=}
+
+%% \spacetoken is the control sequence equal to space token (catcode 10):
+
+{\def\\{\global\let\spacetoken= }\\ }
+
+%% \cnvtoken: next <token> is scannable in #1 parameter
+%% It expands to \E:<token>:<table> (if defined) else
+%% it stores contents of \T:<token>:<table> to \cnvout (if defined) else
+%% it stores <token> to \cnvout using \cnvdefault macro.
+
+\def\cnvtoken #1{\def\tmpc{#1}\docnvtoken}
+\def\docnvtoken{%   
+   \expandafter \ifx \csname E:\expandafter\string\tmpc:\cnvtable\endcsname \relax 
+      \expandafter \ifx \csname T:\expandafter\string\tmpc:\cnvtable\endcsname \relax 
+         \ifx\tmpc\space \cnvstoree{\expandafter \cnvout \tmpc}%
+         \else \cnvstoreee {\expandafter \expandafter \expandafter \cnvout
+                            \expandafter \cnvdefault \tmpc}%
+         \fi
+      \else
+         \cnvstoreee {\expandafter \expandafter \expandafter 
+             \cnvout \csname T:\expandafter\string\tmpc:\cnvtable\endcsname}%
+      \fi
+      \expandafter \cnvnext
+   \else
+      \expandafter \expandafter \expandafter \cnvnext 
+      \csname E:\expandafter\string\tmpc:\cnvtable\expandafter \endcsname
+   \fi}
+
+%% \cnvspace, \cnvopenbrace, \cnvclosebrace: the next token is unreadable
+%% by #1 macro parameter. We define \tmpc, remove the next token
+%% and run \docnvtoken macro.
+
+\def\cnvspace      {\def\tmpc{ }\afterassignment       \docnvtoken \let\next= }
+\def\cnvopenbrace  {\def\tmpc{\BGROUP}\afterassignment \docnvtoken \let\next= }
+\def\cnvclosebrace {\def\tmpc{\EGROUP}\afterassignment \docnvtoken \let\next= }
+
+%% \runcnvaccent: next token #1 is \A:<command>:<char>:<table>.
+%% It stores the contents of \A:<command>:<char>:<table> to \cnvout
+%% (if defined) else it stores \cnvadefault to \cnvout.
+
+\def\runcnvaccent #1{\ifx #1\relax 
+      \cnvstoree {\expandafter \cnvout \cnvadefault}%
+   \else 
+      \cnvstoree {\expandafter \cnvout #1}%
+   \fi \cnvnext}
+
+%% \cnvexec: we switch off the conversion until \cnvnext
+%% The contents of this macro means: do nothing, but we need
+%% somewhat special contents in order to distinguish it by \ifx.
+
+\long\def\cnvexec {\empty\relax\relax}
+
+%% \cnvexpand, \cnvexpandtext: see the documentation at the end of this file
+
+\def\cnvexpand {\expandafter \cnvnext}
+\def\cnvexpandtext #1{\edef\tmp{#1}\expandafter \cnvnext \tmp}
+
+%% \cnvstoreee: macro appends the desired contens to \cnvout.
+%% We cannot expand the \cnvout by \edef because the expandable tokens can be
+%% included here. So we need to do some \expandafter gymnastics.
+
+\def\cnvstore   {\expandafter \def \expandafter \cnvout \expandafter}
+\def\cnvstoree  {\expandafter \cnvstore  \expandafter}
+\def\cnvstoreee {\expandafter \cnvstoree \expandafter}
+
+%% Implicit values:
+
+\def\cnvcopy{}
+\let\cnvdefault=\cnvcopy
+\def\cnvadefault{?}
+\def\cnvtable{}
+
+\let\predefmethod=\gdef
+\let\findefmethod=\gdef
+\let\cnvaccentmethod=\gdef
+
+\endinput
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+---> english documentation: see the end of this file
+
+Po provedení příkazu \cnvin {<seznam tokenů>}
+je v makru \cnvout ukryt konvertovaný seznam tokenů.
+
+Konverze se provádí bez obvyklé expanze <seznamu tokenů> a je jedno, jaké
+kategorie jednotlivé tokeny mají. Konverze probíhá ve dvou průchodech:
+
+1. Kontrolovaná částečná expanze jednotlivých tokenů. Po jejím
+   provedení se konverze vrací k výsledku expanze a konvertuje jej
+   znovu. Tokeny, které takto expandují, se v konverzní tabulce
+   deklarují pomocí \predef. Tokeny, které nejsou takto deklarovány,
+   při konverzi neexpandují (ačkoli při běžné expanzi třeba expandují).
+2. Finální konverze tokenu: token je konvertován podle deklarace
+   makrem \findef na výstupní posloupnost tokenů, ke kterým se už
+   konverze nevrací.
+
+Tokeny, které podléhají konverzi, mohou mít libovolnou kategorii. Není
+tedy nutné, aby se jednalo o kontrolní sekvence.
+
+Deklarace tokenů pomocí \predef a \findef jsou zcela nezávislé na
+"skutečném významu" tokenu. Jedná-li se o kontrolní sekvenci, bude
+se tato kontrolní sekvence při běžném zpracování \TeX{}em chovat
+běžným způsobem ačkoli má pro konverzi deklarován pomocí \predef nebo
+\findef odlišný význam.
+
+Deklarace pomocí \predef může mít běžné parametry a separátory (#1#2 atd.)
+
+Každý token může mít jen jeden význam deklarovaný pomocí \predef nebo
+\findef. Je-li token deklarován obojím způsobem, má při konverzi přednost
+\predef. Je-li token deklarován opakovaně stejným deklarátorem, platí 
+poslední deklarace.
+
+Pokud se má konvertovat token, který nemá žádnou deklaraci, pak je
+výsledek závislý na hodnotě makra s jedním parametrem \cnvdefault.  
+Implicitně je \cnvdefault definováno tak, že se nedeklarovaný token
+kopíruje beze změny do výstupu. Uživatel má tyto další možnosti:
+
+\def\cnvdefault #1{<out>} % každý nedeklarovaný token se konvertuje
+   			  % na společný <out>
+\def\cnvdefault #1{}      % nedeklarovaný token tiše zmizí
+
+Příklad hypotetické konverzní tabulky:
+
+\predef  \TeX  {TeX}
+\predef  \uv #1{\leva #1\prava}
+\predef  X{AB}
+\findef A {:XX:\TeX:}
+\cnvin{Tady je \uv{\TeX}}
+
+V \cnvout máme text: "Tady je \leva Te:XX:\TeX:B\prava". Obsah \cnvout
+můžeme zkontrolovat pomocí \message{\meaning\cnvout}. 
+
+Jak probíhala konverze:
+
+\uv{\TeX} => \leva \TeX \prava
+\TeX => TeX
+        TeX => TeAB
+               TeAB => Te:XX:\TeX:B  ... a toto už se nekonvertuje.
+
+Protože při \predef je možné deklarovat parametry makra, nesmí za
+deklarovaným tokenem být mezera (viz \predef X{AB} v ukázce).
+Na druhé straně při deklaraci pomocí \findef je možné mezi tokenem a
+tělem makra vložit nepovinnou mezeru.
+
+Při konverzi tokenu deklarovaného pomocí \predef provede \TeX{}
+expanzi tokenu jako by to bylo makro. Provede ale jen první úrovneň
+expanze  (tj. jako při \expandafter, nikoli jako při \edef).
+
+Tokeny kategorie 10, 1 a 2 (mezera a svorky) se zpracovávají mírně
+odlišným způsobem, než ostatní tokeny. To znamená, že jsem trochu
+kecal, když jsem dříve ujistil čtenáře, že konverze je na kategoriích
+zcela nezávislá. Pokud je konverze mezery nedeklarovaná, pak se mezera
+nemění bez závislosti na hodnotě makra \cnvdefault. Konverzi mezery
+můžeme deklarovat například takto:
+
+\findef { } {<výstup pro mezeru>}
+nebo
+\predef { }{<makro pro mezeru>}
+
+Otevírací svorka, která ma kategorii 1, se interně promění v sekvenci 
+\BGROUP a pokud není pro ní deklarována konverze, je zpracována pomocí
+\cnvdefault jako každý jiný nedeklarovaný token. Podobně zavírací
+svorka, která má kategorii 2, se promění v \EGROUP. Konverzi pro tyto
+tokeny můžeme deklarovat jednoduše například:
+
+\findef \BGROUP {<výstup pro otevírací svorku>}
+\findef \EGROUP {<výstup pro zavírací svorku>}
+nebo
+\predef \BGROUP {<makro pro otevírací svorku>}
+\predef \EGROUP {<makro pro zavírací svorku>}
+
+Bohužel, makro \cnvin není implicitně schopno rozlišit mezi skutečnou
+svorkou (kategorie 1 nebo 2) a zástupnou kontrolní sekvencí \bgroup,
+\egroup. Obé je interně převedeno na \BGROUP, \EGROUP a následně
+zpracováno. Chceme-li mezi svorkami a zástupnými kontrolními
+sekvencemi rozlišovat, musíme před konverzí změnit (aspoň přechodně)
+význam \bgroup, \egroup:
+
+{\let\bgroup=\relax \let\egroup=\relax \cnvin{...} ...}
+
+Pro možnost deklarace konverze akcentovaných znaků zapsaných 
+v \TeX{}ové notaci je k dispozici ještě další deklarační makro:
+
+\cnvaccent <sekvence> <znak>  {<výstup>}.
+
+Toto makro zařídí, aby se akcentované řídicí sekvence ve tvaru
+<sekvence> <znak> i ve tvaru <sekvence> {<znak>} konvertovaly na
+odpovídající <výstup>. Navíc se makro \cnvaccent při ukládání
+informací do konverzní tabulky pokusí expandovat "<sekvence> <znak>" a
+je-li výsledkem jediný <token>, provede ještě \findef <token> {<výstup>}. 
+Tím je zaručeno, že na stejný <výstup> se konvertuje i akcentovaný 
+znak, pokud je zapsán na vstupu "přímo" bez použití \TeX{}ové notace.
+
+Jakmile \cnvaccent deklaruje <sekvenci> jako sekvenci pro akcent, pak
+je sledován i výskyt neexistujícího akcentu vytvořeného touto
+<sekvencí>. Takový výskyt se konvertuje na obsah makra bez parametru 
+\cnvadefault. Nechť například:
+
+\cnvaccent \v c {<výstup pro č>}
+
+a nechť chybí deklarace \v u. V takovém případě se \v c konvertuje na
+odpovídající výstyp zatímco \v u se konvertuje na obsah makra
+\cnvadefault. Implicitně je \def\cnvadefault{?}.
+
+Příkazy \predef, \findef a \cnvaccent interně definují výsledek
+konverze pomocí \gdef. Pokud chceme použít jinou metodu, můžeme před
+jejich použitím psát například \let\findefmethod=\xdef.
+Tím dosáhneme, že makra ve \findef se před zapamatováním expandují.
+Nebo třeba \let\predefmethod=\def způsobí, že deklarace \predef
+budou lokální vrámci skupiny.
+
+Existují tři příkazy, které mají při konverzi speciální význam:
+\cnvexec, \cnvexpandtext a \cnvexpand.
+
+Příkaz \cnvexec způsobí provedení následujících příkazů expand procesorem i 
+hlavním procesorem \TeX{}u. Zbytek vstupu pro konverzi je připraven ve
+vstupní frontě. Konverze pokračuje až v okamžiku, kdy je
+zpracován příkaz \cnvnext. Následující token za tímto příkazem podléhá
+konverzi.
+
+Příkaz \cnvexpand <token> způsobí, že <token> bude expandován běžným
+způsobem do první úrovně expanze a výsledek této expanze bude dále
+konvertován. Příkaz je implementován jako \cnvexec\expandafter\cnvnext.
+
+Příkaz \cnvexpandtext {<text>} způsobí, že se <text> zcela expanduje běžným
+způsobem (jako při \edef) a pak se na takto expandovaný <text> provede
+konverze.
+
+Při načítání konverzní tabulky musí být obsah makra \cnvtable stejný
+jako při jejím použití v době konverze příkazem \cnvin. Změnou makra
+\cnvtable můžeme deklarovat více nezávislých tabulek a pak mezi nimi 
+v době konverze přepínat. Implicitní hodnota makra \cnvtable je prázdné
+makro. 
+
+
+PŘÍKLADY
+--------
+
+V souboru cnv-pu.tex je deklarována konverzní tabulka, pomocí níž je
+možné konvertovat texty do PDF záložek v UNICODE. Výhodou tohoto
+řešení je, že nedochází k expanzi textu a že je možno nastavit pro
+konverzi jakýkoli znak, ačkoli tyto znaky nejsou aktivní.
+
+V rámci konverzí zdrojového textu TeXu můžeme narazit na problém
+obvyklé TeXové ligatury -- a ---, kterou bychom chtěli konvertovat na
+odpovídající výstup. Toto můžeme provést následujícím makrem:
+
+\predef -{\cnvexec \futurelet \nextchar \testtwodash}
+\def\testtwodash {\ifx-\nextchar \expandafter \twodash
+   \else \expandafter \cnvnext \expandafter \onedash \fi}
+\def\twodash #1{\futurelet \nextchar \testthreedash}
+\def\testthreedash {\ifx-\nextchar \expandafter \threedash
+   \else \expandafter \cnvnext \expandafter \twodash \fi}
+\def\threedash #1{\cnvnext \threedash}
+\findef\onedash   {<simple minus>}
+\findef\twodash   {<en-dash>}
+\findef\threedash {<em-dash>}
+
+Sofistikovanější příklad na konverzi celých úseků slov na jiný výstup
+(tj. nejen jednotlivých znaků) je uveden v souboru cnv-word.tex.
+Za použití maker z tohoto příkladu pak problém ligatur -- a ---
+lze deklarovat jednoduše:
+
+\stringdef  {---} {<em-dash>}
+\stringdef  {--}  {<en-dash>}
+\stringdef  {-}   {<simple minus>}
+
+=======================================================================
+English documentation:
+
+
+After applying \cnvin{<list of tokens>} the converted list of tokens is
+saved in \cnvout macro.
+
+The conversion is done without the standard expansion of <list of tokens> 
+and is independet of catcodes of converted tokens.
+The conversion process is done in two steps:
+
+1. Controlled partial expansion of tokens. The conversion process is
+   returned back to the result of this expansion and converts it once
+   more.  Only tokens declared by \predef in the conversion table are
+   expanded this way, other tokens not defined this way are not
+   expanded (even if these tokens are expandable in the normal \TeX{}
+   meaning).
+2. Final conversion of token: token is converted to the output string
+   of tokens following to the declaration by \findef macro. The
+   conversion process does not return to this output anymore.
+
+The tokens subject to conversion can have an arbitrary catcode. Not only control
+sequences can be converted.
+
+The declarations of tokens by \predef and \findef are quite
+independent of the normal meaning of these tokens. It means that in case of
+control sequences these sequences will behave during the usual processing
+by \TeX{} in a usual way although for the purpose of conversion their meaning
+can be changed using \predef or \findef.
+
+You can use normal parameters and separators (#1#2 etc.) when \predef
+is used. 
+
+Each token can have only one meaning declared by \predef or \postdef.
+It the token is declared by boths declarators, then \predef is
+preferred. If the token is declared by the same declarator twice (or
+more times), then the last declaration is valid.
+
+If a token is to be converted which is not declared (by \predef nor
+\findef), then the conversion process does the default conversion
+which is determined by \cnvdefault macro (with one parameter: it is
+the coverted token).  By default the token is simply copied to the
+oputput but you can redefine the \cnvdefault macro in the following
+way:
+
+\def\cnvdefault #1{<out>} % each undeclared token is converted to the
+                          % common <out> 
+\def\cnvdefault #1{}      % undeclared token is silently ignored
+
+Now, the simple hypothetic example follows:
+
+\predef  \TeX  {TeX}
+\predef  \uv #1{\leva #1\prava}
+\predef  X{AB}
+\findef A {:XX:\TeX:}
+\cnvin{This is \uv{\TeX}}
+
+The text "This is \leva Te:XX:\TeX:B\prava" is stored in \cnvout after
+\cnvin command is processed.  The contents of \cnvout can be checked
+with \message{\meaning\cnvout}.
+
+The explanation of the conversion in this example:
+
+\uv{\TeX} => \leva \TeX \prava
+\TeX => TeX
+        TeX => TeAB
+               TeAB => Te:XX:\TeX:B  ... and this is kept untouched.
+
+As parameters can be used with \predef declaration you must not
+write redundant space after the declared token (see \predef X{AB}).
+On the other hand, the optional space is allowed between the token
+and the body of the macro in \findef declaration. 
+
+During conversion process \TeX{} treats the token declared with
+\predef as a real macro. Only first level of expansion is done before
+conversion process returns back to expanded material (similar to
+\expandafter primitive, not \edef).
+
+The tokens of catcode 10, 1 and 2 (space and braces) are processed in
+a slightly different way. It means that a small lie was told when the
+catcode independency of the conversion process mentioned above had
+been declared. If space conversion is not declared, then it is copied
+without conversion and without dependency on \cnvdefault macro. You
+can declare the conversion of the space e.g. as follows:
+
+\findef { } {<output for space>}
+or
+\predef { }{<macro for space>}
+
+Opening brace with catcode 1 is changed to a control sequence \BGROUP
+internally. If this control sequence is not declared, then it is
+processed by \cnvdefault as any other undeclared token. Similarly,
+closing brace with catcode 2 is changed by \EGROUP during conversion
+process. We can declare the conversion rules for these tokens by:
+
+\findef \BGROUP {<output for open brace>}
+\findef \EGROUP {<output for close brace>}
+or
+\predef \BGROUP {<macro for open brace>}
+\predef \EGROUP {<makcro for close brace>}
+
+Unfortunately, macro \cnvin cannot implicitely distinguish between a
+real brace of catcode 1 or 2 and an alternate control sequence \bgroup
+or \egroup.  Both are converted internally to \BGROUP, \EGROUP and
+processed in the same way. If you need to distinguish between them,
+then you need to set (locally) another meaning to \bgroup, \egroup
+before \cnvin is invoked:
+
+{\let\bgroup=\relax \let\egroup=\relax \cnvin{...} ...}
+
+You can declare the conversion of accented letters written by standard
+\TeX{} sequences. To do this, you can use the declaration macro:
+
+\cnvaccent <sequence> <char>  {<output>}.
+
+This macro arranges that the accented control sequences in the form
+<sequence> <char> or <sequence> {<char>} will be converted to
+<output>.  Moreover, when storing an information to a conversion table
+the \cnvaccent macro tries to expand the "<sequence> <char>" by normal
+\TeX{} rules. If the output of this expansion is one <token>, then
+\cnvaccent does internally more work: \findef <token> {<output>}.
+This guarantees that even an accented character will be converted
+to the same <output> if it is written in the input "directly" without 
+\TeX{} notation.
+
+When \cnvaccent declares <sequence> as a sequnce for an accent, then the
+occurence of a non-existing accent created with this <sequence> is watched.
+Such an occurence is converted to the contents of the macro \cnvadefault
+without parameters.
+For example:
+
+\cnvaccent \v c {<output for ccaron>}
+
+and suppose that \v u is not declared. In such a case the \v c is
+converted to the corresponding output, but \v u is converted to the contents of
+\cnvadefault macro. By default there is \def\cnvadefault{?}.
+
+The commands  \predef, \findef and \cnvaccent define internally the result
+of the conversion using \gdef primitive If we want to use another method,
+we can put e.g. \let\findefmethod=\xdef before the use of macros.
+This causes that all bodies of \predef will be expanded before saving them
+to the conversion table. Similarly \let\predefmethod=\def results in \predef
+will work only locally.
+
+There are three commands with special meaning in conversion process:
+\cnvexec, \cnvexpandtext and \cnvexpand.
+
+The \cnvexec command causes the following command is processed both by
+\TeX{} expand processor and main processor.
+The rest of an unconverted input is ready in the input stream.
+The conversion process continues at the moment the \cnvnext command is processed.
+The following token behind this command is submitted to conversion.
+
+The \cnvexpand <token> command expands <token> at first level of
+expansion and the expanded result is converted again. The \cnvexpand
+is implemented by \cnvexec\expandafter\cnvnext.
+
+The \cnvexpandtext {<text>} expands <text> totally in a usual way
+(like by \edef) and the result of this expansion is converted again.
+
+The contents of \cnvtable macro has to be the same both during the declaration
+of the conversion table (by \predef, etc.) and during the conversion process
+itself (by \cnvin). You can change the contents of \cnvtable macro if
+you need to declare more independent conversion tables. Then you can
+switch among these tables before using \cnvin command.
+By default there is \def\cnvtable{}.
+
+
+EXAMPLES
+--------
+
+There is an example in cnv-pu.tex file. The conversion table which
+declares the conversion from TeX text to UNICODE text used in PDF
+outlines is declared here. The advantage of this solution is that we
+need not to expand the converted text and we can declare the
+conversion for each character, not only for active characters. 
+
+There is a common problem with the conversion of TeX ligatures -- and
+--- to the desired output. This task can be solved by the following
+macro:
+
+\predef -{\cnvexec \futurelet \nextchar \testtwodash}
+\def\testtwodash {\ifx-\nextchar \expandafter \twodash
+   \else \expandafter \cnvnext \expandafter \onedash \fi}
+\def\twodash #1{\futurelet \nextchar \testthreedash}
+\def\testthreedash {\ifx-\nextchar \expandafter \threedash
+   \else \expandafter \cnvnext \expandafter \twodash \fi}
+\def\threedash #1{\cnvnext \threedash}
+\findef\onedash   {<simple minus>}
+\findef\twodash   {<en-dash>}
+\findef\threedash {<em-dash>}
+
+A more sophisticated example of word to word conversion (not only
+single letters) is presented in cnv-word.tex file. If you use macros
+from this example, then you can solve the problem of -- and ---
+ligatures simply:
+
+\stringdef  {---} {<em-dash>}
+\stringdef  {--}  {<en-dash>}
+\stringdef  {-}   {<simple minus>}
+
+=======================================================

@@ -1,0 +1,26 @@
+name uowthesistitlepage
+category Package
+revision 54512
+shortdesc Title page for dissertations at the University of Wollongong
+longdesc The package redefines \maketitle to generate a title page for a
+longdesc University of Wollongong thesis, in accordance with the UoW
+longdesc branding guidelines. The package should be used with the book
+longdesc class to typeset a thesis. The package also defines a
+longdesc \declaration command that typesets the declaration that this
+longdesc thesis is your own work, etc., which is required in the front
+longdesc of each PhD Thesis.
+containersize 5064
+containerchecksum 3eca5009deb6ccf7daf6d31ffb5e6d3c08ff26395e03b80617411c4dc4049bb2ebd68628f285b95b547bc512fd1cc83246afd5513dc54cb1900edb813f77ede4
+doccontainersize 903456
+doccontainerchecksum e5e2ec32edb38ea3960922c5f38c9dd9705914f49421b89cc1cb8e6f1d8213512c804c084f1883d1682d5c65b9c54511ec47cf700ca731c4bc352b0bc4e85ffb
+docfiles size=556
+ texmf-dist/doc/latex/uowthesistitlepage/README.md details="Readme"
+ texmf-dist/doc/latex/uowthesistitlepage/uowthesistitlepage_doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/uowthesistitlepage/uowthesistitlepage_doc.tex
+runfiles size=5
+ texmf-dist/tex/latex/uowthesistitlepage/uowthesistitlepage.sty
+catalogue-also uowthesis
+catalogue-ctan /macros/latex/contrib/uowthesistitlepage
+catalogue-license lppl1.3c cc-by-sa-4
+catalogue-topics dissertation
+catalogue-version 3.0.1

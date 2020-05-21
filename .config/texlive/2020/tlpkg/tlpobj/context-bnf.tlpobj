@@ -1,0 +1,26 @@
+name context-bnf
+category ConTeXt
+revision 47085
+shortdesc A BNF module for ConTeXt
+longdesc The module provides a simple way to write good-looking
+longdesc BNF-style grammars in ConTeXt. Grammars are written using the
+longdesc BNF syntax right in your ConTeXt documents, so there is a clear
+longdesc separation between content and layout. This allows the user to
+longdesc decide exactly how the grammar is to be displayed, while also
+longdesc allowing the gist of the grammar to be understood from simply
+longdesc looking at the source ConTeXt document.
+depend context
+containersize 3056
+containerchecksum 53e5d3d7c977aab648bb024942263a8aed5da6314506825ace02556db890ea23400c6de714ddf6380235c942dfc02e127736579b6be1c5b0b0ecc65d25fb0d6b
+doccontainersize 269848
+doccontainerchecksum d7ab60c2f8571ce2e2e96b82c1f97b140c5750324efb73275062a8d301d530279a3f9c19f6a6feebd6d7c72727d94f469d9aad05ad67cde5dbd3de9f695dad31
+docfiles size=72
+ texmf-dist/doc/context/third/bnf/NEWS
+ texmf-dist/doc/context/third/bnf/README details="Readme"
+ texmf-dist/doc/context/third/bnf/VERSION
+ texmf-dist/doc/context/third/bnf/t-bnf.pdf details="Package documentation"
+runfiles size=2
+ texmf-dist/tex/context/third/bnf/t-bnf.tex
+catalogue-ctan /macros/context/contrib/context-bnf
+catalogue-license gpl
+catalogue-topics formal-spec

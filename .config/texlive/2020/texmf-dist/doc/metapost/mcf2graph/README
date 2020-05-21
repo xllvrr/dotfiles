@@ -1,0 +1,66 @@
+********************************************************************************
+ mcf2graph  : Convert Molecular Coding Format to graphics with METAFONT/METAPOST
+ Author     : Akira Yamaji
+ version    : 4.48 2020-01-26
+ E-mail     : mcf2graph@gmail.com
+ Located at : http://www.ctan.org/pkg/mcf2graph
+********************************************************************************
+
+1. Introduction
+  Molecular Coding Format(MCF) is new linear notation represent chemical
+ structure diagrams. This 'Coding' is named from coding(programing) technique
+ adressing,grouping,macro,etc. There are no Meta language commands in MCF.
+ mcf2graph.mf(METAFONT/METAPOST macro) convert MCF file to graphics file
+ (pk font/PNG/SVG/EPS) or MDL MOL file.
+
+2. The distribution of software
+ ( 1) README                 This file
+ ( 2) CHANGELOG              Changelog file of mcf2graph
+ ( 3) mcf2graph.mf           Macro of Metafont / Metapost
+ ( 4) mcf_manual.tex         MCF syntax manual(LaTeX file)
+ ( 5) mcf_man_soc.mf         Molecular difinition file for mcf_manual.tex
+ ( 6) mcf_man_soc-064.mps    No.64 eps(with color) file of (4)
+ ( 7) mcf_manual.pdf         PDF of (4) (used pdftex(LaTeX))
+ ( 8) mcf_example.tex        LaTeX example,
+                               Make file 'mcf_exa_soc-info.aux' before typeset
+                               >mpost -s ahlength=1 mcf_exa_soc.mf
+ ( 9) mcf_exa_soc.mf         Molecular difinition file for mcf_example.tex
+ (10) mcf_example.pdf        PDF of (8) (used pdftex(LaTeX))
+ (11) mcf_mplib_exa.tex      luamplib(LuaLaTeX) example
+ (12) mcf_example.pdf        PDF of (11) typeset with LuaTeX(LuaLaTeX)
+
+3. How to use mcf2graph with Metapost
+ Minimum requirement to run mcf2graph : mpost.exe,mpost.dll,mpost.mp,plain.mp
+ ( 1) >mpost -s bboxmargin=0  FILENAME  => output no graphic file
+ ( 2) >mpost -s bboxmargin=1  FILENAME  => output first font only (for test)
+ ( 3) >mpost -s ahangle=0     FILENAME  => output eps file (.mps default)
+ ( 4) >mpost -s ahangle=1     FILENAME  => output png file 
+ ( 5) >mpost -s ahangle=2     FILENAME  => output svg file 
+ ( 6) >mpost -s ahangle=3     FILENAME  => output eps file (.eps)
+ ( 7) >mpost -s ahlength=1    FILENAME  => output aux file (tag1:var1;tag2:var2;)
+ ( 7) >mpost -s ahlength=2    FILENAME  => output aux file (tag1;tag2; var1;var2;)
+ ( 8) >mpost -s ahlength=3    FILENAME  => output report file
+ ( 9) >mpost -s ahlength=5    FILENAME  => output mol file(V2000)
+ (10) >mpost -s ahlength=6    FILENAME  => output mol file(V3000)
+ (11) >mpost -s labeloffset=1 FILENAME  => use plain.mp 'label','drawarrow'
+ (12) >mpost -s labeloffset=2 FILENAME  => atomfont="uhvr8r"
+
+4. License
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+

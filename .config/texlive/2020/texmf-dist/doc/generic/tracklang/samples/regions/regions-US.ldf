@@ -1,0 +1,9 @@
+\TrackLangProvidesResource{US}[2016/10/06 v1.2]
+
+\providecommand*{\USunits}{%
+  \renewcommand*{\weightunit}{lb}%
+  \renewcommand*{\lengthunit}{in}%
+  \renewcommand*{\currencyunit}{USD}%
+}
+
+\TrackLangAddToCaptions\USunits

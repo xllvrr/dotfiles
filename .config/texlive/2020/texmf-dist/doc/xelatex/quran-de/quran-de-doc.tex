@@ -1,0 +1,181 @@
+\documentclass[a4paper]{ltxdoc}
+
+\usepackage{holtxdoc}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{tikz}
+\hypersetup{%
+  plainpages=false,%
+  bookmarksnumbered,%
+  pdftitle={The quran-de Package},%
+  pdfkeywords={quran-de, surah, ayah, juz, hizb, ruku, manzil},%
+  pdfauthor={Seiied-Mohammad-Javad Razavian},%
+  baseurl={http://mirrors.ctan.org/macros/xetex/latex/quran-de/doc/quran-de-doc.pdf},%
+}
+\usepackage[all]{quran-de}
+% because of definition of \XeTeX and \XeLaTeX symbols in bidi, 
+% I should undef these macro that are also defined in holtxdoc package. 
+\makeatletter
+\bidi@undef\XeTeX
+\bidi@undef\XeLaTeX
+\makeatother
+\usepackage{arabxetex}
+\makeatletter
+\bidi@BeforeBeginEnvironment{declcs}{\vspace*{-4mm}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\boxcs#1{\leftline{\fbox{\mcs{#1}}}}
+\def\mcs#1{\lr{\texttt{\textbackslash{}#1}}}
+\def\tt#1{\lr{\texttt{#1}}}
+\lstdefinestyle{BashInputStyle}{
+  language=bash,
+  basicstyle=\footnotesize\sffamily,
+  frame=tb,
+  columns=fullflexible,
+  backgroundcolor=\color{gray!10},
+}
+
+% Define box and box title style
+\tikzstyle{mybox} = [draw=black, fill=gray!20, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+\tikzstyle{fancytitle} =[fill=gray, text=white]
+
+\def\mx#1#2{\mybox{#1}{#2}{.45\textwidth}}
+\def\mxf#1#2{\mybox{#1}{#2}{\textwidth}}
+
+\def\mybox#1#2#3{
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}[t]{#3}
+        #2
+    \end{minipage}
+};
+\node[fancytitle, anchor=west, right=10pt] at (box.north west) {\small \cs{#1}};
+\node (hole) [anchor=north east, left=5pt ] at (box.north east) { \tikz\fill[very thick,white] (0,0) circle (12pt); };
+\node[ ] at (hole.center) {\includegraphics[width=.05\textwidth]{quran.png}};
+\end{tikzpicture}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\includegraphics[scale=.3]{quran.png}\\
+The \xpackage{quran-de} Package\footnote{To one having devoted his life to the holy Quran}\\
+}
+\author{Seiied Mohammad Javad Razavian\\\xemail{javadr@gmail.com}}
+
+\date{\qurandedate,  Version \qurandeversion\footnote{First release: December 1st, 2018}}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+%\newpage
+
+\section{Introduction}
+The \xpackage{quran} package provides several macros for
+typesetting the whole or any parts of the holy Quran based on its popular divisions. That package also develops 
+commands for some translations of the holy Quran including German, Engilsh, and Persian. 
+Some people asked me to include the other translations into the \xpackage{quran} package, 
+but because of some technical issues I decided to create new packages for other translations. 
+One of these variations is \xpackage{quran-de} including all German translations of the holy Quran 
+provided by \url{tanzil.net}, i.e. \emph{``Abu Rida Muhammad ibn Ahmad ibn Rassoul''},
+\emph{``A. S. F. Bubenheim and N. Elyas''}, \emph{``Adel Theodor Khoury''}, 
+and \emph{``Amir Zaidan.''}
+
+
+\section{Loading The Package}
+The package will be loaded in the ordinary way
+\cs{usepackage[option]\{quran-de\}}.
+After loading the package, it writes some information about itself to the
+terminal and to the log file, too. The information is something like:
+
+\begin{quote}
+\begin{lstlisting}[style=BashInputStyle, language=tex, escapechar={|}]
+Package: quran-de |\qurandedate| v|\qurandeversion| 
+German translations extension to the quran package.
+\end{lstlisting}
+\end{quote}
+
+
+\section{Options of The Package}\label{sec:qurantypesetting}
+There are four options by the names of \xoption{aburida}, \xoption{bubenheim}, \xoption{khoury}, 
+and \xoption{zaidan}.
+\marginpar{\xoption{aburida}\smallskip}\marginpar{\xoption{bubenheim}\smallskip} 
+\marginpar{\xoption{khoury}}\marginpar{\xoption{zaidan}\smallskip}\marginpar{\xoption{all}\smallskip}
+If you pass any combinations of these options, you will be enabled to typeset these translations in a way 
+that the \xpackage{quran} package does. 
+There is also \xoption{all} option which loads all German translations provided by the \xpackage{quran-de} package.
+The package loads \xoption{aburida} option by default.
+
+This package is completely built on top of the \xpackage{quran} package, therefore you can pass every options
+defined in that package to the \xpackage{quran-de} package. 
+
+\section{Differences between \xpackage{quran} and \xpackage{quran-de}}
+At first glance, \xpackage{quran-de}  offers all functionalities of \xpackage{quran}. Therefore, 
+both packages are the same in this manner except one difference. The \xpackage{quran-de} extends the \xpackage{quran} 
+by adding three other German translations, namely `bubenheim', `khoury', and `zaidan'. All German translations 
+provided by the package are shown in table~\ref{tab:detrans}.
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{|c|l|c|}
+    \toprule
+    order & \multicolumn{1}{c|}{translator} & option's name \\\midrule
+    1 & Abu Rida Muhammad ibn Ahmad ibn Rassoul & aburida \\
+    2 & A. S. F. Bubenheim and N. Elyas & bubenheim \\
+    3 & Adel Theodor Khoury & khoury \\
+    4 & Amir Zaidan & zaidan \\
+    \bottomrule
+\end{tabular}
+    \caption{German translations used in the package and their option's names}
+    \label{tab:detrans}
+\end{table}
+
+\subsection{How to Change the Current German Translation}
+    The \xpackage{quran-de} package uses aburida's translation by default. 
+    The following macro could be used to change the default German translation. 
+    \begin{declcs}{deSetTrans}\marg{index}
+    \end{declcs}    
+    The \meta{index} could be an integer or a name; both ``order'' and ``option's name'' 
+    shown in Table~\ref{tab:detrans} are appliable. Both \cs{deSetTrans\{4\}} and \cs{deSetTrans\{zaidan\}}, for example,
+    have the same effect. 
+    
+\subsection{How to Get the Name of Current German Translation}
+    \begin{declcs}{deGetTrans}
+    \end{declcs}    
+    The above macro returns the name of current German translation, i.e.  one of ``aburida'', ``bubenheim'', ``khoury'', or ``zaidan''.
+
+
+\subsection{How to Typeset the German Translation}
+    It's completely similiar to the \xpackage{quran} package when \xoption{transde} option is enabled. 
+    All the following macros are usable.
+    
+\begin{multicols}{2}    
+    \begin{itemize}
+        \item \cs{quransurahde}
+        \item \cs{quranayahde}
+        \item \cs{quranpagede}
+        \item \cs{quranjuzde}
+        \item \cs{quranhizbde}
+        \item \cs{quranquarterde}
+        \item \cs{quranrukude}
+        \item \cs{quranmanzilde}
+        \item \cs{qurantextde}
+    \end{itemize}
+\end{multicols}    
+
+    \centerline{\mxf{quransurah*}
+    {\begin{arab}\small\quransurah*\end{arab}}}
+    \centerline{\mxf{deSetTrans\{aburida\}\textbackslash{}quransurahde*}
+    {\setLTR\deSetTrans{aburida}\quransurahde*}}  
+    \centerline{\mxf{deSetTrans\{bubenheim\}\textbackslash{}quransurahde*}
+    {\setLTR\deSetTrans{bubenheim}\quransurahde*}}  
+    \centerline{\mxf{deSetTrans\{khoury\}\textbackslash{}quransurahde*}
+    {\setLTR\deSetTrans{khoury}\quransurahde*}}  
+    \centerline{\mxf{deSetTrans\{zaidan\}\textbackslash{}quransurahde*}
+    {\setLTR\deSetTrans{zaidan}\quransurahde*}}  
+
+\end{document}
+

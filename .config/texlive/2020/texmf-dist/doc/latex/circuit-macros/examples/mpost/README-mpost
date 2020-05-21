@@ -1,0 +1,15 @@
+
+THIS DIRECTORY contains a Makefile and test files for the MetaPost
+output of dpic.
+
+1.  On a Unix-like system, typing "make" processes the examples file
+  and the diagrams it includes to produce examplesmpost.ps.  Each diagram is
+  passed through m4, dpic, and MetaPost, and then is imported into
+  examplesmpost.tex by the \includegraphics macro.  On MikTeX, check the MKDIM
+  definition in the Makefile before typing "make".
+  The current version truncates the input near the end to avoid
+  a "Tex capacity exceeded error".
+
+2.  To work on a single file, copy the source into test.m4 in this directory
+  and type make tst.  The files test.pic, test.mp, test.1, tst.dvi, and tst.ps
+  will be created.

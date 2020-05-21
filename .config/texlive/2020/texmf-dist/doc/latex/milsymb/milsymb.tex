@@ -1,0 +1,1616 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MilSymb Manual File									    	              %%
+%%--------------------                                                        %%
+%% Version: 1.02                                                              %%
+%% Last Updated: 2020-03-15                                                   %%
+%% Github: https://github.com/ralphieraccoon/MilSymb                          %%
+%% Copyright: Damian Crosby 2018                                              %%
+%% Licence: Creative Commons Attribution-ShareAlike 4.0 International License %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% WARNING! Typesetting tables can cause memory overflow. Set --extra-mem-top=10000000 in Typesetting or texmf.cnf		        %
+% Table typesetting also takes a very long time. Consider commenting out \input commands when editing the rest of the document.	%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper, titlepage]{article}
+\usepackage{milsymb, arev, ltablex, makecell, multirow, tikzpagenodes, vhistory, titlesec, float, forest, tocloft, alltt, array, tikz-dimline, threeparttable, textcomp, pifont, colortbl, caption, enumitem, graphicx, pdflscape, adjustbox, graphicx}
+\keepXColumns
+\usepackage[a4paper, margin=1.75cm]{geometry}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+\usetikzlibrary{calc, arrows.meta, matrix}
+\newcolumntype{n}{>{\raggedright\arraybackslash}m{5cm}}
+\newcolumntype{s}{>{\centering\arraybackslash}m{1.75cm}}
+\newcommand\MilSymb{\textbf{\texttt{MilSymb}}}
+\newcommand\DocLink{\href{https://www.awl.edu.pl/images/en/APP_6_C.pdf}{APP6-(C)}}
+\renewcommand\theadfont{\bfseries}
+\newenvironment{writett}{\ttfamily}{\par}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4} 
+\setlength{\cftsubsecnumwidth}{3em}
+\setlength{\cftsubsubsecnumwidth}{4em}
+\setlength{\cftparanumwidth}{5em}
+\DeclareGraphicsExtensions{.png}
+\title{MilSymb}
+\author{Damian Crosby}
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\begin{tikzpicture}[remember picture]
+
+\coordinate (NE) at ($(current page text area.north east)-(1.5, 1.5)$);
+\coordinate (NW) at ($(current page text area.north west)-(-1.5, 1.5)$);
+\coordinate (SE) at ($(current page text area.south east)-(1.5, -1.5)$);
+\coordinate (SW) at ($(current page text area.south west)-(-1.5, -1.5)$);
+
+\MilLand[faction=hostile, echelon=team, main=infantry, scale=2](NE)
+\MilAir[faction=friendly, main=military fixed wing, upper=jammer, lower=light, scale=2](NW)
+\MilSeaSurface[faction=neutral, main=hazardous material transport ship, lower=fast, scale=2](SE)
+\MilActivity[faction=unknown, main=searching, upper=house to house, scale=2](SW)
+
+\MilLand[faction=unknown, echelon=battalion, main=armoured, upper=missile, lower=long range, scale=2]($(NE)!0.33!(NW)$)
+\MilEquipment[faction=neutral, main=heavy machine gun, mobility=pack animal, scale=2]($(NE)!0.66!(NW)$)
+
+\MilSpace[faction=hostile, main=military earth observation satellite, upper=low earth orbit, lower=radar, scale=2]($(SE)!0.33!(SW)$)
+\MilInstallation[faction=friendly, main=electric power, upper=nuclear energy, scale=2]($(SE)!0.66!(SW)$)
+
+\MilSeaSubsurface[faction=friendly, main=snorkelling submarine, upper=auxiliary, lower=nuclear type 5, scale=2]($(NE)!0.2!(SE)$)
+\MilLand[faction=neutral, echelon=platoon, main=supply, supply={2}{4}, scale=2]($(NE)!0.4!(SE)$)
+\MilActivity[faction=hostile, main=attempted criminal activity, upper=rape, scale=2]($(NE)!0.6!(SE)$)
+\MilEquipment[faction=unknown, main=tank recovery vehicle, mobility=wheeled semi trailer, scale=2]($(NE)!0.8!(SE)$)
+
+\MilMissile[faction=hostile, left=sub surface, right=launched, scale=2]($(NW)!0.2!(SW)$)
+\MilInstallation[faction=unknown, main=civilian telecommunications, upper=television, scale=2]($(NW)!0.4!(SW)$)
+\MilSpace[faction=friendly, main=civilian space station, upper=geosynchronous orbit, scale=2]($(NW)!0.6!(SW)$)
+\MilLand[faction=neutral, echelon=corps, main=armoured, upper=missile, lower=long range, scale=2]($(NW)!0.8!(SW)$)
+
+\pgfresetboundingbox
+\path[use as bounding box] (0,0);
+
+\end{tikzpicture}
+
+{\let\newpage\relax\maketitle}
+\end{center}
+
+\clearpage
+
+\begin{versionhistory}
+\renewcommand \vhAuthorColWidth{6cm}
+\vhEntry{1.0}{2018-04-29}{Damian Crosby}{Creation.}
+\vhEntry{1.01}{2019-05-07}{Damian Crosby}{Added clarification on DVI output, added clarification that multiple class symbols are found in \texttt{multi}.}
+\vhEntry{1.02}{2020-03-15}{Damian Crosby}{Fixed scaling and placement errors in the \texttt{speed leader} key code, added note to define \texttt{scale} first in manual when using \texttt{speed leader}, fixed compilation issues in \texttt{landgroup} and \texttt{landheadqurters} to account for updated \texttt{xparse} package, fixed issue with \texttt{frame status} and \texttt{scale} keys not always being updated between commands, changed datestamps to be ISO 8601 compliant as per CTAN request.}
+\end{versionhistory}
+
+\clearpage
+
+\section*{Acknowledgments}
+
+The author would particularly like to thank the following members of the \TeX\  stack exchange community for their solutions to problems during this package\rq{}s development:
+
+\begin{itemize}
+\item \href{https://tex.stackexchange.com/users/39222}{cfr}
+\item \href{https://tex.stackexchange.com/users/9335}{Kpym}
+\item \href{https://tex.stackexchange.com/users/586}{Torbj\o rn T.}
+\item \href{https://tex.stackexchange.com/users/2388}{Ulrike Fischer}
+\end{itemize}
+
+\section*{Attributions}
+
+\begin{itemize}
+\item The \texttt{combatant} icon in the \textbf{\texttt{MilSeaSurface}} command has been adapated from a \href{https://commons.wikimedia.org/wiki/File:Small_battle_symbol.svg}{work} on Wikimedia Commons by \href{https://commons.wikimedia.org/wiki/User:Kathovo}{Kathovo} under the \href{https://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0} licence.
+\item The Structure of 1\textsuperscript{st} Marine Division (Figure \ref{org}) receration is based on an \href{https://commons.wikimedia.org/wiki/File:1st_US_Marine_Division.png}{image} created by \href{https://commons.wikimedia.org/wiki/User:Noclador}{Noclador} under the \href{https://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0} licence.
+\end{itemize}
+
+\section*{Licence}
+In order to comply with the attributions listed above, this package is licenced under \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA 4.0}.
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\section{Introduction}
+
+\subsection{Package Summary}
+
+This package allows for the drawing of symbols from the \textit{NATO Joint Military Symbology} library, as detailed in the document \DocLink. It is designed to replicate the \lq\lq{}building block\rq\rq{} nature of the symbols in its command syntax using \texttt{pgf} keys, allowing the user to generate the entire symbol, including additional text fields, in one compact command.
+
+\subsection{Package Dependencies}
+
+The \MilSymb\  package uses the following packages as dependencies:
+
+\begin{itemize}
+\item \texttt{tikz}
+\item \texttt{fontenc}
+\item \texttt{fix-cm}
+\item \texttt{arevmath}
+\item \texttt{marvosym}
+\item \texttt{acronym}
+\item \texttt{amssymb}
+\item \texttt{xifthen}
+\item \texttt{xparse}
+\end{itemize}
+
+\subsection{Using \MilSymb}
+
+To use \MilSymb\  in your document, just include \texttt{\textbackslash usepackage\{milsymb\}} in your preamble. \MilSymb\  has only been tested on \LaTeX, other \TeX\  flavours will probably not work. All \MilSymb\  symbols must be placed inside a TikZ environment, either as part of an inline \texttt{tikz} command or an \texttt{tikzpicture} enviroment. As with other packages that use TikZ or other postscript based drawing programs, DVI format is not directly supported, though some DVI viewers are able to display TikZ images by embedding postscript.
+
+\subsubsection{Package Options}
+
+Currently, there are no package options specified for \MilSymb.
+
+\subsubsection{Symbol Construction}
+
+\textit{NATO Joint Military Symbology} uses a \lq\lq{}building block\rq\rq{} philosophy when constructing military symbols, so each symbol can be broken into individual components. Only a brief overview will be given here, more information can be found in \DocLink. These components are shown in Figure \ref{Annotate}.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\MilLand[faction=friendly, main=armoured engineer, upper=survey, lower=bicycle equipped, frame status=normal, echelon=platoon, scale=2, movement={2}{2,-3}, unique designation=EX1, country indicator=GBR, altitude value=150, evaluation rating=A1, staff comments=EXAMPLE, higher formation=ENG 21]
+\draw [red, {Circle[length=5pt]}-] (-1,-0.75) -- ++(225:1) -- ++(180:2) node[anchor=east]{Frame};
+\draw [red, {Circle[length=5pt]}-] (0.1,0)  -- ++(180:2) node[anchor=east]{Icon};
+\draw [red, {Circle[length=5pt]}-] (0.05,0.62)  -- ++(135:1) -- ++(180:2.7) node[anchor=east]{Modifier};
+\draw [red, {Circle[length=5pt]}-] (0.05,-0.62)  -- ++(225:2) -- ++(180:2) node[anchor=east]{Modifier};
+\draw [red, {Circle[length=5pt]}-{Circle[length=5pt]}] (-2,-0.6)  -- ++(180:1) -- ++(135:0.9) coordinate(A) -- ++(45:0.9) -- ++(0:1);
+\draw [red, {Circle[length=5pt]}-{Circle[length=5pt]}] (3,0.65)  -- ++(0:1) -- ++(315:0.9) coordinate(B) -- ++(225:0.9) -- ++(180:1.5);
+\draw [shift={(-1,0.7)}, red, {Circle[length=5pt]}-] (3,0.65)  -- ++(0:1.3) -- ++(315:1);
+\draw [shift={(-1,-0.67)}, red, {Circle[length=5pt]}-] (3,-0.65)  -- ++(0:1.3) -- ++(45:1);
+\draw [red] (A) -- ++(180:1) node[anchor=east]{Amplifiers};
+\draw [red] (B) -- ++(0:1) node[anchor=west]{Amplifiers};
+\draw [red, {Circle[length=5pt]}-] (0,1.2)  -- ++(90:1) node[anchor=south]{Amplifier};
+\draw [red, {Circle[length=5pt]}-] (0,-1.9)  -- ++(270:1) node[anchor=north]{Amplifier};
+\end{tikzpicture}
+\caption{Annotation of symbol components.}
+\label{Annotate}
+\end{figure}
+
+\begin{itemize}
+\item The \textbf{Frame} consists of a filled shape encompassing the icon and modifiers, denoting the type (land, sea surface, air, etc.) and faction (friendly, hostile, neutral, unknown) of the symbol. In some situations this is optional.
+\item The \textbf{Icon} denotes the entity the symbol represents (infantry, tank, mine, etc.). It is always placed in the centre of the symbol.
+\item The \textbf{Modifiers} are symbols that go above and below the icon (or to the left and right in the case of missile symbols, and just below the frame in the case of equipment symbols). These \lq\lq{}modify\rq\rq{} the entity with additional features or information (equipped with rocket launchers, extra heavy, etc.)  These are usually optional.
+\item The \textbf{Amplifiers} are text and symbols that go outside the frame, and denote additional attributes of the symbol (country of origin, military echelon, speed and direction, etc.). These are always optional.
+\end{itemize}
+
+\section{Symbol Commands}
+
+\subsection{General Command Structure}
+
+The general structure of a \MilSymb\  command is as follows. Syntax in \textit{italics} is optional:\\
+
+\texttt{\textbackslash command[key, key=value]\textit{(location)(name)\{label\}}}
+
+\begin{itemize}
+\item \texttt{command} is the name of the command. All are prefixed with \texttt{Mil}-, and end with \texttt{Air}, \texttt{Missile}, \texttt{Land}, \texttt{Equipment}, \texttt{Installation}, \texttt{SeaSurface}, \texttt{SeaSubsurface}, \texttt{Mine}, \texttt{Space}, \texttt{Debris} and\\ \texttt{Activity}. These mostly correspond to the categories found in \DocLink, except for \texttt{Missile}, \texttt{Mine} and \texttt{Debris}, which have been broken off from \texttt{Air}, \texttt{SeaSubsurface} and \texttt{Space} for convenience. The \texttt{OwnShip} command is an exception to this rule, and does not have the \texttt{Mil}- prefix.
+
+\item \texttt{key} and \texttt{key=value} are the options used to build the symbol, such as faction, icons, modifiers, and amplifiers. Keys with no value define boolean switches, such as \texttt{unclear}. Keys with values can have one parameter, such as \texttt{faction}, or two parameters, such as \texttt{speed leader}. In the latter case, the syntax is \texttt{key=\{value1\}\{value2\}}.
+\item \texttt{location} is an optional coordinate or coordinate reference to place the symbol. This is generally needed when placing multiple symbols in one \texttt{tikzpicture}.
+\item \texttt{name} is an optional reference label that acts just like the \texttt{name} property of a node in TikZ. It exposes standard rectangle node anchors such as \texttt{north} and \texttt{south}, allowing connectors to be drawn between symbols. This is useful when drawing organisation charts and similar (see Example \ref{org}).
+\item \texttt{label} is an optional text label that is added to the right of the symbol.
+\end{itemize}
+
+\subsubsection{Shared Keys}
+
+These are all the keys that are shared by multiple \MilSymb\ commands. Not all keys are shared by all commands, please see Table \ref{shared} for details about which keys are used by which commands.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multirow{10}{*}{\thead{Command}} & \multicolumn{12}{c|}{\thead{Shared Key}} \\ \cline{2-13}
+& \rotatebox{90}{\thead{\texttt{faction}}} & \rotatebox{90}{\thead{\texttt{main}}} & \rotatebox{90}{\thead{\texttt{upper}}} & \rotatebox{90}{\thead{\texttt{lower}}} & \rotatebox{90}{\thead{\texttt{frame status}}} & \rotatebox{90}{\thead{\texttt{monochrome}}} & \rotatebox{90}{\thead{\texttt{scale}}} & \rotatebox{90}{\thead{\texttt{no frame}}} & \rotatebox{90}{\thead{\texttt{speed leader}}} & \rotatebox{90}{\thead{\texttt{offset, movement}}~} &  \rotatebox{90}{\thead{\texttt{feint or dummy}}} &   \rotatebox{90}{\thead{\texttt{headquarters}}}\\ \hline
+\texttt{MilAir} &  &  &  &  &  &  &  &  \cellcolor{black} &  & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} \\ \hline
+\texttt{MilMissile} &  & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} &  &  &  &  \cellcolor{black} &  & \cellcolor{black} & \cellcolor{black} & \cellcolor{black}\\ \hline
+\texttt{MilLand} &  &  &  &  &  &  &  & \cellcolor{black} &  \cellcolor{black} & & & 2 \\ \hline
+\texttt{MilEquipment} &  &  &  \cellcolor{black} & \cellcolor{black}  & 1 &  &  &  &  \cellcolor{black} &  & & \cellcolor{black} \\ \hline
+\texttt{MilInstallation} &  &  &  & \cellcolor{black} &  &  &  & \cellcolor{black} &  \cellcolor{black} &  & &  2\\ \hline
+\texttt{MilSeaSurface} &  &  &  &  &  &  &  &  \cellcolor{black} &  & \cellcolor{black} & \cellcolor{black}& \cellcolor{black}\\ \hline
+\texttt{MilSeaSubSurface} &  &  &  &  &  &  &  &  \cellcolor{black} &  & \cellcolor{black} & \cellcolor{black} & \cellcolor{black}\\ \hline
+\texttt{MilMine} &  &  \cellcolor{black} &  \cellcolor{black} & \cellcolor{black}  & 1 &  &  &  &  \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} \\ \hline
+\texttt{MilSpace} &  &  &  &  &  &  &  &  \cellcolor{black} &  & \cellcolor{black} & \cellcolor{black} & \cellcolor{black}\\ \hline
+\texttt{MilActivity} &  &  &  & \cellcolor{black} &  &  &  & \cellcolor{black} &  \cellcolor{black} &  & \cellcolor{black} & \cellcolor{black}\\ \hline
+\texttt{MilDebris} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & &  \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black}\\ \hline
+\texttt{OwnShip} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & &  \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black} & \cellcolor{black}\\ \hline
+\end{tabular}
+\begin{tablenotes}
+\item \textsuperscript{1}Not functional when the \texttt{no frame} option is used.
+\item \textsuperscript{2}Only functional when \texttt{faction=friendly}.
+\end{tablenotes}
+\caption{Table of which keys are used in which commands.}
+\label{shared}
+\end{table}
+
+\paragraph{\texttt{main}}
+
+This key defines the icon to use in the centre of the frame. See the individual command icon and modifier tables for the list of available values.
+
+\paragraph{\texttt{upper}} 
+
+This key defines the modifier to use above the icon defined by \texttt{main}. See the individual command icon and modifier tables for the list of available values.
+
+\paragraph{\texttt{lower}} 
+
+This key defines the modifier to use below the icon defined by \texttt{main}. See the individual command icon and modifier tables for the list of available values.
+
+\paragraph{\texttt{frame status}}
+
+This key modifies the border of the frame to allow for the expression of both the full set of \lq\lq{}standard identities\rq\rq{}, and the planned status as seen in \DocLink. The \texttt{unclear} value creates a black and white dotted line to display the alternate identities of each faction (assumed friend for friendly, suspect for hostile and pending for unknown, neutral should not use this value). The \texttt{anticipated} value create a longer dashed line to display the planned status. If the \texttt{frame status} key is not set, a standard solid border is used.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilLand[faction=friendly, main=signal radio teletype centre, frame status=normal, scale=2] & \MilLand[faction=friendly, main=signal radio teletype centre, frame status=uncertain, scale=2] & \MilLand[faction=friendly, main=signal radio teletype centre, frame status=anticipated, scale=2]\\
+\node{normal}; & \node{\texttt{frame status=unclear}}; & \node{\texttt{frame status=anticipated}}; \\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{frame status} key in use.}
+\end{figure}
+
+
+\paragraph{\texttt{faction}}
+
+This key selects the military faction of the symbol relative to the user, which determines the colour and shape of the frame, or the colour of the icon and modifiers if \texttt{no frame} is specified. The values available are \texttt{friendly}, \texttt{hostile}, \texttt{neutral} and \texttt{unknown}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multirow{2.5}{*}{\thead{Command}} & \multicolumn{4}{c|}{\thead{Faction Frame}} \\ \cline{2-5}
+& \thead{Friendly} & \thead{Hostile} & \thead{Neutral} & \thead{Unknown}\\
+\hline
+\texttt{MilAir} + \texttt{MilMissile} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilAir[faction=friendly]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilAir[faction=hostile]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilAir[faction=neutral]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilAir[faction=unknown]}}\\
+\hline
+\texttt{MilLand} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown]}}\\
+ \hline
+\texttt{MilEquipment}* + \texttt{MilSeaSurface} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilEquipment[faction=friendly]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilEquipment[faction=hostile]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilEquipment[faction=neutral]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown]}}\\
+ \hline
+\texttt{MilInstallation} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilInstallation[faction=friendly]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilInstallation[faction=hostile]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilInstallation[faction=neutral]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilInstallation[faction=unknown]}}\\
+ \hline
+\texttt{MilSeaSubsurface} + \texttt{MilMine}* & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilSeaSubsurface[faction=friendly]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilSeaSubsurface[faction=hostile]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilSeaSubsurface[faction=neutral]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilSeaSubsurface[faction=unknown]}}\\
+ \hline
+\texttt{MilSpace} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilSpace[faction=friendly]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilSpace[faction=hostile]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilSpace[faction=neutral]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilSpace[faction=unknown]}}\\
+ \hline
+\texttt{MilActivity} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilActivity[faction=friendly]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilActivity[faction=hostile]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilActivity[faction=neutral]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilActivity[faction=unknown]}}\\
+ \hline
+\end{tabular}
+\begin{tablenotes}
+\item \qquad \quad *Can be used without a frame using the \texttt{no frame} option.
+\end{tablenotes}
+\caption{Table of all the \MilSymb\ command frames.}
+\end{table}
+
+\paragraph{\texttt{monochrome}}
+
+This boolean switch key allows the symbol to be generated in a monochrome format. All faction colours are instead rendered as an off-white colour as specified in \DocLink.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilLand[faction=friendly, main=signal radio teletype centre, scale=2] & \MilLand[faction=friendly, main=signal radio teletype centre, monochrome, scale=2]\\
+\node{normal}; & \node{\texttt{monochrome}}; \\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{monochrome} key in use.}
+\end{figure}
+
+\paragraph{\texttt{scale}}
+
+This key allows you to scale the resulting symbol by a multiple. By default (\texttt{scale=1}) the boundary octagon is precisely 1cm in diameter.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilLand[faction=friendly, main=signal radio teletype centre, scale=0.5] & \MilLand[faction=friendly, main=signal radio teletype centre, scale=1] & \MilLand[faction=friendly,  main=signal radio teletype centre, scale=2]\\
+\node{\texttt{scale=0.5}}; & \node{\texttt{scale=1}}; & \node{\texttt{scale=2}}; \\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{scale} key in use.}
+\end{figure}
+
+\paragraph{\texttt{no frame}}
+
+This boolean switch key allows for specific commands (namely \textbf{\texttt{MilEquipment}} and \textbf{\texttt{MilMine}}) to be used without a faction frame. Instead, the icon and modifiers are recoloured with a fluorescent version of the faction colour, as per \DocLink.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilEquipment[faction=friendly, main=mine clearing vehicle, mobility=wheeled and tracked, scale=2] & \MilEquipment[faction=friendly,  main=mine clearing vehicle, mobility=wheeled and tracked, scale=2, no frame]\\
+\node{normal}; & \node{\texttt{no frame}}; \\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{no frame} key in use.}
+\end{figure}
+
+\paragraph{\texttt{speed leader} (Amplifier)}
+
+This key draws a line from the centre of the symbol at a specified heading for a specified length. This is used to denote the speed (length) and direction (heading) of the symbol. This key takes two arguments, the first is the length and the second is the heading, as shown below:\\
+
+\texttt{speed leader=\{\textit{heading}\}\{\textit{length}\}}
+
+\textit{When using this key along with the \texttt{scale} key, the \texttt{scale} key should be defined first. This is because the \texttt{speed leader} key immediately executes code that uses the \texttt{scale} key.}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilAir[faction=friendly, main=military rotary wing, speed leader={35}{3}, scale=2] & \MilAir[faction=friendly, main=military rotary wing, speed leader={118}{4}, scale=2] & \MilAir[faction=friendly, main=military rotary wing, speed leader={335}{2}, scale=2] \\
+\node{\texttt{speed leader=\{35\}\{3\}}}; & \node{\texttt{speed leader=\{118\}\{4\}}}; & \node{\texttt{speed leader=\{335\}\{2\}}}; \\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{speed leader} key in use.}
+\end{figure}
+
+\paragraph{\texttt{offset}, \texttt{movement} (Amplifier)}
+
+This key draws a \lq\lq{}leader line\rq\rq{} down from the centre of the symbol, then another to a specified position \textit{offset} from the centre of the symbol. The \texttt{offset} key should be used to denote precise location, and the \texttt{movement} key should be used to indicate direction of movement (in the case of the \texttt{movement} key, the line is tipped by an arrow). \textit{They should not be used simultaneously.} This key takes two arguments, each enclosed in curly braces, the first is the length of the \lq\lq{}leader line\rq\rq{} extending below the symbol, then the second is a pair of TikZ coordinates (with no brackets) indicating the specified position \textit{offset} from the centre of the symbol, as shown below:\\
+
+\texttt{offset=\{\textit{leader length}\}\{\textit{offset}\}}\\
+\indent\texttt{movement=\{\textit{leader length}\}\{\textit{offset}\}}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilLand[faction=friendly, main=signal radio teletype centre, scale=2, offset={3}{2,-4}] & \MilLand[faction=friendly, main=signal radio teletype centre, scale=2, movement={4}{2,-2}] &  \MilLand[faction=friendly, main=signal radio teletype centre, scale=2, offset={2}{-2,-2}] \\
+\node{\texttt{offset=\{3\}\{2,-4\}}}; & \node{\texttt{ movement=\{4\}\{2,-2\}}}; & \node{\texttt{offset=\{2\}\{-2,-2\}}}; \\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{offset} and \texttt{movement}  key in use.}
+\end{figure}
+
+\paragraph{\texttt{feint or dummy} (Amplifier)}
+
+This boolean switch key draws the \textit{feint or dummy} amplifier on the symbol. See \DocLink\ for further information about its use.
+
+ \begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilLand[faction=friendly, main=signal radio teletype centre, scale=2] & \MilLand[faction=friendly, main=signal radio teletype centre, scale=2, feint or dummy] \\
+\node{normal}; & \node{\texttt{feint or dummy}}; \\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{feint or dummy} key in use.}
+\end{figure}
+
+\paragraph{\texttt{headquarters} (Amplifier)}
+
+This key draws a line down from the south east corner of a \texttt{friendly} \textbf{\texttt{MilLand}} or \textbf{\texttt{MilInstallation}} frame, and then an optional text field below the frame. This is used to denote if the symbol is stationed at a headquarters or some other kind of military base. The key can be provided with no value, which will produce a blank headquaters amplifer, which is a line drawn downwards from the south-west of the symbol frame, or with a set of values that insert acronyms next to the line. Table \ref{headquarters} lists all the options available.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\thead{Value} & \thead{Acronym} \\ \hline
+\texttt{assault command post} & ASLT \\ \hline
+\texttt{command group} &  CMD \\ \hline
+\texttt{forward command post} &  FWD \\ \hline
+\texttt{main command post} &  MAIN \\ \hline
+\texttt{rear command post} &  REAR \\ \hline
+\texttt{tactical operations centre} &  TOC \\ \hline
+\texttt{tactical command post} &  TAC \\ \hline
+\end{tabular}
+\caption{Headquarters acronyms.}
+\label{headquarters}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilLand[faction=friendly, main=signal radio teletype centre, scale=2, headquarters] & \MilLand[faction=friendly, main=signal radio teletype centre, scale=2, headquarters=tactical operations centre] \\
+\node{\texttt{headquarters} (no value)}; & \node{\texttt{headquarters=tactical operations centre}};\\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{headquarters} key in use.}
+\end{figure}
+
+
+\subsubsection{Text Fields}
+
+Most \MilSymb\ commands (apart from \textbf{\texttt{MilDebris}} and \textbf{\texttt{OwnShip}}) have a set of text amplifiers that go around the edge of the symbol. These are set by individually named keys specified in the \textbf{Text Fields} subheading of each command entry. Some symbols have multiple text fields in the same location, be default no spaces are inserted between these fields, so spaces must be entered manually as appropriate.
+
+\subsubsection{Full Frame Icons}
+
+In some commands (\textbf{\texttt{MilLand}}, \textbf{\texttt{MilInstallation}} and \textbf{\texttt{MilActivity}}) some icons (as set by \texttt{main}) will take up the entire frame. These are referred to as \lq\lq{}full frame\rq\rq{} icons. Modifiers (as set by \texttt{upper} and \texttt{lower}) should not be used when a full frame icon has been selected.
+
+\subsubsection{Grouping}
+
+For \textbf{\texttt{MilLand}} and \textbf{\texttt{MilInstallation}} symbols with the \texttt{faction} key set to \texttt{friendly}, there is the option to group several commands together to indicate several entities in one location. \MilSymb\  provides two \LaTeX\ environments to achieve this, \textbf{\texttt{landgroup}} and \textbf{\texttt{landheadquarters}}.  \textbf{\texttt{landgroup}} is designed to be used with normal \textbf{\texttt{MilLand}} symbols, and \textbf{\texttt{landheadquarters}} is designed to be used with symbols that have a headquarters amplifier. Within the environments, each command should be the argument inside an \texttt{\textbackslash item\{...\}} command (note that it is not the same as the \texttt{\textbackslash item} that is used in bulleted and numbered lists in \LaTeX\ , it has an argument in curly braces rather than just a command). \textit{Do not use the \texttt{scale} key within a \MilSymb\ command when grouping them. Instead, use the \texttt{scale} key at the environment level.} See this example:\\
+
+\begin{writett}
+\begin{verbatim}
+\begin{landgroup}[scale=2]
+\item{\MilLand[faction=friendly,
+main=signal radio teletype centre,
+echelon=section]}
+\item{\MilLand[faction=friendly,
+main=diving,
+upper=video imagery,
+echelon=brigade,
+status=reduced]}
+\item{\MilLand[faction=friendly,
+main=sensor,
+upper=large extension node,
+lower=single channel]}
+\end{landgroup}
+\end{verbatim}
+\end{writett}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\begin{landgroup}[scale=2]
+\item{\MilLand[faction=friendly, main=signal radio teletype centre, echelon=section]}
+\item{\MilLand[faction=friendly, main=diving, upper=video imagery, echelon=brigade, status=reduced]}
+\item{\MilLand[faction=friendly, main=sensor, upper=large extension node, lower=single channel]}
+\end{landgroup}
+&
+\begin{landheadquarters}[scale=2]
+\item{\MilLand[faction=friendly, main=signal radio teletype centre, echelon=section, headquarters=command group]}
+\item{\MilLand[faction=friendly, main=diving, upper=video imagery, echelon=brigade, status=reduced, headquarters=command group]}
+\item{\MilLand[faction=friendly, main=sensor, upper=large extension node, lower=single channel, headquarters=command group]}
+\end{landheadquarters} \\
+\node {\textbf{\texttt{landgroup}}}; & \node{\textbf{\texttt{landheadquarters}}}; \\
+ };
+\end{tikzpicture}
+\caption{Example of \textbf{\texttt{landgroup}} and \textbf{\texttt{landheadquarters}} grouping.}
+\end{figure}
+
+\newpage\subsection{Air Command (\textbf{\texttt{MilAir}})}
+
+This command covers symbols for air assets and their activities. Refer to \textit{Chapter 2, Section 2 and 3} in \DocLink\ for further information.
+
+\subsubsection{Icons and Modifiers}
+
+\paragraph{\texttt{main}}\quad
+\input{manual_scripts/Air_Main_table.tex}
+
+\newpage\paragraph{\texttt{upper}}\quad
+\input{manual_scripts/Air_Upper_table.tex}
+
+\newpage\paragraph{\texttt{lower}}\quad
+\input{manual_scripts/Air_Lower_table.tex}
+
+\subsubsection{Amplifiers}
+
+\paragraph{Text Fields}
+
+\textbf{\texttt{MilAir}} has 5 text field amplifiers, as shown in Figure \ref{airtext}. Table \ref{airtexttable} gives the key and description of each field, along with the standard prefixes to use. This table is mostly identical to the one found in \DocLink.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\MilAir[faction=friendly, main=military rotary wing, scale=2, track number=\qquad A, call sign=\qquad B, position and movement=\qquad C, nation=\qquad D, additional information=\qquad E]
+\end{tikzpicture}
+\caption{Location of \textbf{\texttt{MilAir}} text field amplifiers.}
+\label{airtext}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|c|l|X|c|}
+\hline
+\thead{Location} & \thead{Key} & \thead{Description} & \thead{Prefix*}\\ \hline
+\textbf{A} & \texttt{track number} & System Track Number. & TN \\ \hline
+\textbf{B} & \texttt{call sign} & Airframe Number or Mission Call Sign. & \\ \hline
+\textbf{C} & \texttt{position and movement} & Course [degrees]/Speed [knots] or Bearing [degrees]/Distance [nautical miles] Height [feet/flight level]. & C/S, B/D \\ \hline
+\textbf{D} & \texttt{nation} & Nation\rq{}s Name: A 3-letter code indicating the object\rq{}s country of origin (STANAG 1059). & \\ \hline
+\textbf{E} & \texttt{additional information} & For friendly units: Sensor or Weapon load, endurance, etc. For other Units: Credibility of Information. & \\ \hline
+\end{tabularx}
+\begin{tablenotes}
+\item *when applicable.
+\end{tablenotes}
+\caption{Description of \textbf{\texttt{MilAir}} text field amplifiers.}
+\label{airtexttable}
+\end{table}
+
+\newpage\subsection{Missile Command (\textbf{\texttt{MilMissile}})}
+
+This command is a special application of \textbf{\texttt{MilAir}} for missiles. \textit{Instead of setting an icon using \texttt{main}, a predefined \lq\lq{}missile\rq\rq{} icon is used. Modifiers are then added to the left and right instead of above and below.} Refer to \textit{Chapter 2, Section 4} in \DocLink\ for further information.
+
+\subsubsection{Modifiers}
+
+\textit{Instead of using \texttt{upper} and \texttt{lower} keys to define the modifiers, \texttt{left} and \texttt{right} keys are used to reflect the position of the modifier.}
+
+\paragraph{\texttt{left}}\quad
+\input{manual_scripts/Missile_Left_table.tex}
+
+\newpage\paragraph{\texttt{right}}\quad
+\input{manual_scripts/Missile_Right_table.tex}
+
+\subsubsection{Amplifiers}
+
+\paragraph{Text Fields}
+
+Text fields for \textbf{\texttt{MilMissile}} are identical to \textbf{\texttt{MilAir}}.
+
+\newpage\subsection{Land Command (\textbf{\texttt{MilLand}})}
+
+This command covers symbols for land units, individuals, and organizations. Refer to \textit{Chapter 3, Section 2} in \DocLink\ for further information.
+
+\subsubsection{Icons and Modifiers}
+
+\paragraph{\texttt{main}}\quad
+\input{manual_scripts/Land_Main_table.tex}
+
+\newpage\paragraph{\texttt{upper}}\quad
+\input{manual_scripts/Land_Upper_table.tex}
+
+\newpage\paragraph{\texttt{lower}}\quad
+\input{manual_scripts/Land_Lower_table.tex}
+
+\subsubsection{Amplifiers}
+
+\paragraph{Echelon}
+
+This amplifier denotes the \lq\lq{}level of command\rq\rq{} of the symbol (in the case of infantry this usually denotes the size of the unit). Table \ref{echelon} lists all the options available.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\thead{Value} & \thead{Symbol} \\ \hline
+\texttt{team} &  $\varnothing$ \\ \hline
+\texttt{squad} &  \textbullet \\ \hline
+\texttt{section} &  \textbullet \  \textbullet \\ \hline
+\texttt{platoon} &  \textbullet \  \textbullet \  \textbullet \\ \hline
+\texttt{company} &  \textbar \\ \hline
+\texttt{battalion} &  \textbar \  \textbar \\ \hline
+\texttt{regiment} &  \textbar \  \textbar \  \textbar \\ \hline
+\texttt{brigade} &  X \\ \hline
+\texttt{division} &  XX \\ \hline
+\texttt{corps} &  XXX \\ \hline
+\texttt{army} &  XXXX\\ \hline
+\texttt{army group} &  XXXXX \\ \hline
+\texttt{theatre} &  XXXXXX \\ \hline
+\texttt{command} &  \raisebox{1pt}{+ \ +} \\ \hline
+\end{tabular}
+\caption{Echelon levels and corresponding symbols.}
+\label{echelon}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilLand[faction=friendly, main=signal radio teletype centre, scale=2, echelon=section] & \MilLand[faction=friendly, main=signal radio teletype centre, scale=2, echelon=regiment] &  \MilLand[faction=friendly, main=signal radio teletype centre, scale=2, echelon=army] \\
+\node{\texttt{echelon=section}}; & \node{\texttt{echelon=regiment}}; & \node{\texttt{echelon=army}}; \\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{echelon} key in use.}
+\end{figure}
+
+\paragraph{Task Force}
+
+This amplifier denotes a temporary unit for a specific task or objective. If the \texttt{echelon} key is set, it will automatically size to enclose the echelon amplifier.
+
+ \begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilLand[faction=friendly, main=signal radio teletype centre, echelon=platoon, scale=2] & \MilLand[faction=friendly, main=signal radio teletype centre, scale=2, echelon=platoon, task force] \\
+\node{normal}; & \node{\texttt{task force}}; \\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{task force} key in use.}
+\end{figure}
+
+
+\paragraph{Status}
+
+This amplifier denotes the condition of the of the symbol. There are 3 options, \texttt{reinforced} indicates part of another unit is augmenting the capability of this unit, \texttt{reduced} means part of the unit has been detached to augment another unit, and \texttt{reinforced and reduced} means both situations have occurred. If this key is specified, the text field adjacent to it will be shifted right in order to accommodate the amplifier.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilLand[faction=friendly, main=signal radio teletype centre, scale=2, status=reinforced] & \MilLand[faction=friendly, main=signal radio teletype centre, scale=2, status=reduced] &  \MilLand[faction=friendly, main=signal radio teletype centre, scale=2, status=reinforced and reduced] \\
+\node{\texttt{status=reinforced}}; & \node{\texttt{status=reduced}}; & \node{\texttt{status=reinforced and reduced}}; \\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{status} key in use.}
+\end{figure}
+
+\paragraph{Text Fields}
+
+\textbf{\texttt{MilLand}} has 14 text field amplifiers, as shown in Figure \ref{equiptext}. \textit{Some of these amplifiers are placed adjacent to each other, spaces are not automatically inserted between them.} Table \ref{landtexttable} gives the key and description of each field, along with the standard prefixes to use. This table is mostly identical to the one found in \DocLink.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\MilLand[faction=friendly, main=signal radio teletype centre, scale=2, staff comments=\qquad G, additional information=\qquad H, higher formation=\qquad M, evaluation rating=\qquad J, country indicator=\qquad AC, combat effectiveness=\textbackslash K, identification=\textbackslash P, unique designation=T\qquad~, type of equipment=\qquad V, date-time group=W\qquad~, altitude value=X, location=\textbackslash Y\qquad~, common identifier=\textbackslash AF\qquad~, speed=Z\qquad~]
+\end{tikzpicture}
+\caption{Location of \textbf{\texttt{MilLand}} text field amplifiers.}
+\label{landtext}
+\end{figure}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|l|X|}
+\hline
+\thead{Location} & \thead{Key} & \thead{Description} \\ \hline
+\textbf{AC} & \texttt{country indicator} & A three-letter code that indicates the country of origin of the unit (STANAG 1059). In stability activities, this field can be used for factions or groups.\\ \hline
+\textbf{G} & \texttt{staff comments} & Free text. Can be used by staff for information required by commander.\\ \hline
+\textbf{H} & \texttt{additional information} &  Free Text.\\ \hline
+\textbf{M} & \texttt{higher formation} & Number or title of higher echelon command of unit being displayed. \\ \hline
+\textbf{J} & \texttt{evaluation rating} & Degree of confidence that may be placed on the information represented by the symbol. It is shown as one letter and one number made up of Reliability of Source and Credibility of Information. (STANAG 2511). \newline
+Reliability of Source:
+\begin{enumerate}[label=\Alph*., align=left]
+\item Completely reliable.
+\item Usually reliable.
+\item Fairly reliable.
+\item Not usually reliable.
+\item Unreliable.
+\item Reliability cannot be judged.
+\end{enumerate}
+Credibility of Information:
+\begin{enumerate}[label=\arabic*., align=left]
+\item Confirmed by other sources.
+\item Probably true.
+\item Possibly true.
+\item Doubtful.
+\item Improbable.
+\item Truth cannot be judged.
+\end{enumerate}
+\\ \hline
+\textbf{K} & \texttt{combat effectiveness} & Effectiveness of unit or equipment displayed.
+\begin{enumerate}[label=\arabic*., align=left]
+\item Fully operational.
+\item Substantially operational.
+\item Marginally operational.
+\item Not operational.
+\end{enumerate} \\ \hline
+\textbf{P} & \texttt{identification} & Identification modes and codes.\\ \hline
+\textbf{W} & \texttt{date-time group} & An alphanumeric designator for displaying a date-time group (DDHHMMSSZMONYY) or \lq\lq{}O/O\rq\rq{} for on order. The date-time group is composed of a group of six numeric digits with a time zone suffix and the standardized three-letter abbreviation for the month followed by two digits. The first pair of digits represents the day; the second pair, the hour; the third pair, the minutes. The last two digits of the year are after the month. For automated systems, two digits may be added before the time zone suffix and after the minutes to designate seconds.\\ \hline
+\textbf{X} & \texttt{altitude value} & Altitude as displayed on the global positioning system (GPS). \\ \hline
+\textbf{Y} & \texttt{location} & Latitude and longitude; grid coordinates. \\ \hline
+\textbf{AF} & \texttt{common identifier} & Example: Paladin for the M109A6 howitzer or Leopard for the KPz-70 tank. (Use NATO code name for hostile common identifiers.) \\ \hline
+\textbf{Z} & \texttt{speed} & Displays speed in nautical miles per hour or kilometres per hour. \\ \hline
+\multicolumn{3}{c}{}\\
+\caption{Description of \textbf{\texttt{MilLand}} text field amplifiers.}
+\label{landtexttable}
+\end{tabularx}
+\end{center}
+
+\subsubsection{Supply Icons}
+
+An additional set of fullframe \textbf{\texttt{MilLand}} icons are used to denote classes of supply. \MilSymb\ uses an additional \texttt{supply} key to construct these icons, which takes up to two values each enclosed in curly braces.\textit{If only one value is used, then there must be a set of empty curly braces (\{\}) after the first value}. Each value is a supply class number, as listed in Table \ref{supply}. The US uses different symbols and designations for their supply classes, their supply class numbers are prefixed with \texttt{US } (including the space). When one value is set, the symbol from the table will be used, and when two values are set, the roman numeral for the supply class is used, with an ampersand (\&) inserted between the numerals. \textit{This key should be used in place of the \texttt{main} key.}
+
+\begin{center}
+\begin{longtable}{|l|c|c|c|c|c|c|}
+\hline
+\thead{Value} & \rotatebox{90}{\thead{Roman Numeral}~} & \thead{Glyph} & \multicolumn{4}{c|}{\thead{Examples}}\\ \hline
+\texttt{all}* & N/A & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={all}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={all}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={all}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={all}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={all}{}]}}\\ \hline
+\multicolumn{7}{|c|}{\thead{NATO Supply Classes}}\\ \hline
+\texttt{1} & I & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={1}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={1}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={1}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={1}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={1}{}]}}\\ \hline
+\texttt{2} & II & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={2}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={2}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={2}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={2}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={2}{}]}}\\ \hline
+\texttt{3} & III & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={3}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={3}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={3}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={3}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={3}{}]}}\\ \hline
+\texttt{4} & IV & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={4}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={4}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={4}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={4}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={4}{}]}}\\ \hline
+\texttt{5} & V & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={5}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={5}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={5}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={5}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={5}{}]}}\\ \hline
+\multicolumn{7}{|c|}{\thead{US Supply Classes}} \\ \hline
+\texttt{US 1} & I & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={US 1}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={US 1}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={US 1}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={US 1}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={US 1}{}]}}\\ \hline
+\texttt{US 2} & II & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={US 2}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={US 2}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={US 2}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={US 2}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={US 2}{}]}}\\ \hline
+\texttt{US 3} & III & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={US 3}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={US 3}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={US 3}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={US 3}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={US 3}{}]}}\\ \hline
+\texttt{US 4} & IV & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={US 4}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={US 4}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={US 4}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={US 4}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={US 4}{}]}}\\ \hline
+\texttt{US 5} & V & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={US 5}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={US 5}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={US 5}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={US 5}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={US 5}{}]}}\\ \hline
+\texttt{US 6} & VI & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={US 6}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={US 6}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={US 6}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={US 6}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={US 6}{}]}}\\ \hline
+\texttt{US 7} & VII & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={US 7}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={US 7}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={US 7}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={US 7}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={US 7}{}]}}\\ \hline
+\texttt{US 8} & VIII & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={US 8}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={US 8}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={US 8}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={US 8}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={US 8}{}]}}\\ \hline
+\texttt{US 9} & IX & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={US 9}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={US 9}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={US 9}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={US 9}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={US 9}{}]}}\\ \hline
+\texttt{US 10} & X & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=none, supply={US 10}{}]}}& \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=friendly, supply={US 10}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=hostile, supply={US 10}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=neutral, supply={US 10}{}]}}&\adjustbox{valign=m,margin=0.25cm}{\tikz{\MilLand[faction=unknown, supply={US 10}{}]}}\\\hline
+\multicolumn{7}{c}{}\\
+\caption{Table of Supply Icons.}
+\label{supply}
+\end{longtable}
+\begin{tablenotes}
+\item *can only be used as a single value.
+\end{tablenotes}
+\end{center}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilLand[faction=friendly, supply={1}{5}, scale=2] & \MilLand[faction=friendly, supply={US 8}{}, scale=2] &  \MilLand[faction=friendly, supply={3}{}, scale=2] \\
+\node{\texttt{supply=\{1\}\{5\}}}; & \node{\texttt{supply=\{US 8\}\{\}}}; & \node{\texttt{supply=\{3\}\{\}}}; \\
+};
+\end{tikzpicture}
+\caption{Example of Supply symbols.}
+\end{figure}
+
+
+\subsubsection{Altitude Modifier}
+
+\textbf{\texttt{MilLand}} defines a special lower modifier for altitude, which takes up to two values each enclosed in curly braces.\textit{If only one value is used, then there must be a set of empty curly braces (\{\}) after the first value}. Each value is an altitude designation, \texttt{high} (HA), \texttt{medium} (MA) and \texttt{low} (LA), which inserts the acronym. Having two values will insert a slash (/) between them and removes the \lq\lq{}A\rq\rq{} suffix from the first acronym. \textit{This key should be used in place of the \texttt{lower} key.}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\MilLand[faction=friendly, main=unmanned systems, scale=2, altitude={high}{}] & \MilLand[faction=friendly, main=unmanned systems, scale=2,  altitude={medium}{low}] &  \MilLand[faction=friendly, main=unmanned systems, scale=2,  altitude={low}{}] \\
+\node{\texttt{altitude=\{high\}\{\}}}; & \node{\texttt{altitude=\{medium\}\{low\}}}; & \node{\texttt{altitude=\{low\}\{\}}}; \\
+};
+\end{tikzpicture}
+\caption{Example of the \texttt{altitude} key in use.}
+\end{figure}
+
+\newpage\subsection{Equipment Command (\textbf{\texttt{MilEquipment}})}
+
+This command covers symbols for land equipment. \textit{The are no \texttt{upper} and \texttt{lower} keys, instead a \texttt{mobility} key sets a modifier to be displayed below the frame (or when the \texttt{no frame} key is set, adjacent to the bottom of the icon)}. This command also accepts the \texttt{no frame} key. See \textit{Chapter 3, Section 3} in \DocLink.
+
+\subsubsection{Icons and Modifiers}
+
+\paragraph{\texttt{Main}}\quad
+\input{manual_scripts/Equipment_Main_table.tex}
+
+\newpage\paragraph{\texttt{Mobility}}\quad
+\input{manual_scripts/Equipment_Mobility_table.tex}
+
+\subsubsection{Amplifiers}
+
+\paragraph{Text Fields}
+
+\textbf{\texttt{MilEquipment}} has 16 text field amplifiers, as shown in Figure \ref{equiptext}. \textit{Some of these amplifiers are placed adjacent to each other, spaces are not automatically inserted between them.} Table \ref{equiptexttable} gives the key and description of each field, along with the standard prefixes to use. This table is mostly identical to the one found in \DocLink.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\MilEquipment[faction=friendly, main=mine clearing vehicle, mobility=wheeled and tracked, scale=2, quantity=Q, staff comments=\qquad G, additional information=\qquad H, evaluation rating=\qquad J, combat effectiveness=\textbackslash K, signature equipment=\textbackslash SE, higher formation=\qquad M, identification=\textbackslash P, unique designation=T\qquad~, type of equipment=V, date-time group=W\qquad~, altitude value=X, location=\textbackslash Y\qquad~, country indicator=\qquad AC, platform type=\textbackslash AD, equipment teardown time=\textbackslash AE, common identifier=\textbackslash AF\qquad~, speed=Z\qquad~]
+\end{tikzpicture}
+\caption{Location of \textbf{\texttt{MilEquipment}} text field amplifiers.}
+\label{equiptext}
+\end{figure}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|l|X|}
+\hline
+\thead{Location} & \thead{Key} & \thead{Description} \\ \hline
+\textbf{Q} & \texttt{quantity} & Identifies the number of items present.\\ \hline
+\textbf{AC} & \texttt{country indicator} & A three-letter code that indicates the country of origin of the unit (STANAG 1059). In stability activities, this field can be used for factions or groups.\\ \hline
+\textbf{G} & \texttt{staff comments} & Free text. Can be used by staff for information required by commander.\\ \hline
+\textbf{H} & \texttt{additional information} &  Free Text.\\ \hline
+\textbf{M} & \texttt{higher formation} & Number or title of higher echelon command of unit being displayed. \\ \hline
+\textbf{J} & \texttt{evaluation rating} & Degree of confidence that may be placed on the information represented by the symbol. It is shown as one letter and one number made up of Reliability of Source and Credibility of Information. (STANAG 2511). \newline
+Reliability of Source:
+\begin{enumerate}[label=\Alph*., align=left]
+\item Completely reliable.
+\item Usually reliable.
+\item Fairly reliable.
+\item Not usually reliable.
+\item Unreliable.
+\item Reliability cannot be judged.
+\end{enumerate}
+Credibility of Information:
+\begin{enumerate}[label=\arabic*., align=left]
+\item Confirmed by other sources.
+\item Probably true.
+\item Possibly true.
+\item Doubtful.
+\item Improbable.
+\item Truth cannot be judged.
+\end{enumerate}
+\\ \hline
+\textbf{K} & \texttt{combat effectiveness} & Effectiveness of unit or equipment displayed.
+\begin{enumerate}[label=\arabic*., align=left]
+\item Fully operational.
+\item Substantially operational.
+\item Marginally operational.
+\item Not operational.
+\end{enumerate} \\ \hline
+\textbf{SE} & \texttt{signature equipment} & Identifies a detectable electronic signature \lq\lq{}!\rq\rq{} for hostile equipment. \\ \hline
+\textbf{P} & \texttt{identification} & Identification modes and codes.\\ \hline
+\textbf{T} & \texttt{unique designation} & An alphanumeric designator that uniquely identifies a particular model of equipment (number).\\ \hline
+\textbf{V} & \texttt{type of equipment} & Identifies unique designation (such as AH-64 for attack helicopter).\\ \hline
+\textbf{W} & \texttt{date-time group} & An alphanumeric designator for displaying a date-time group (DDHHMMSSZMONYY) or \lq\lq{}O/O\rq\rq{} for on order. The date-time group is composed of a group of six numeric digits with a time zone suffix and the standardized three-letter abbreviation for the month followed by two digits. The first pair of digits represents the day; the second pair, the hour; the third pair, the minutes. The last two digits of the year are after the month. For automated systems, two digits may be added before the time zone suffix and after the minutes to designate seconds.\\ \hline
+\textbf{X} & \texttt{altitude value} & Altitude as displayed on the global positioning system (GPS). \\ \hline
+\textbf{Y} & \texttt{location} & Latitude and longitude; grid coordinates. \\ \hline
+\textbf{AF} & \texttt{common identifier} & Example: Paladin for the M109A6 howitzer or Leopard for the KPz-70 tank. (Use NATO code name for hostile common identifiers.) \\ \hline
+\textbf{Z} & \texttt{speed} & Displays speed in nautical miles per hour or kilometres per hour. \\ \hline
+\textbf{AD} & \texttt{platform type} & Electronic intelligence notation (ELNOT) or communications intelligence notation (CENOT).\\ \hline
+\textbf{AE} & \texttt{equipment teardown time} & Equipment teardown time in minutes.\\ \hline
+\multicolumn{3}{c}{}\\
+\caption{Description of \textbf{\texttt{MilLand}} text field amplifiers.}
+\label{equiptexttable}
+\end{tabularx}
+\end{center}
+
+\newpage\subsection{Installation Command (\textbf{\texttt{MilInstallation}})}
+
+This command covers symbols for land installations, sites that incorporate permanent, semi-permanent, and temporary structures. \textit{The \texttt{lower} key is not used as there are no lower modifiers.} See \textit{Chapter 3, Section 4} in \DocLink.
+
+\subsubsection{Icons and Modifiers}
+
+\paragraph{\texttt{Main}}\quad
+\input{manual_scripts/Installation_Main_table.tex}
+
+\newpage\paragraph{\texttt{Upper}}\quad
+\input{manual_scripts/Installation_Upper_table.tex}
+
+\subsubsection{Amplifiers}
+
+\paragraph{Text Fields}
+
+\textbf{\texttt{MilInstallation}} has 12 text field amplifiers, as shown in Figure \ref{installtext}. \textit{Some of these amplifiers are placed adjacent to each other, spaces are not automatically inserted between them.} Table \ref{installtexttable} gives the key and description of each field, along with the standard prefixes to use. This table is mostly identical to the one found in \DocLink.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\MilInstallation[faction=friendly, main=civilian telecommunications, upper=radio, staff comments=\qquad G, additional information= \qquad H, higher formation= \qquad M, evaluation rating=\qquad J, capacity of installation=\textbackslash K, unique designation=T \qquad~, country indicator=\qquad AC, installation composition=AI \qquad~, date-time group=W \qquad~, altitude value=X, location=\textbackslash Y \qquad~, speed=Z \qquad~, installation composition=AI \qquad~, scale=2]
+\end{tikzpicture}
+\caption{Location of \textbf{\texttt{MilInstallation}} text field amplifiers.}
+\label{installtext}
+\end{figure}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|l|X|}
+\hline
+\thead{Location} & \thead{Key} & \thead{Description} \\ \hline
+\textbf{AC} & \texttt{country indicator} & A three-letter code that indicates the country of origin of the unit (STANAG 1059). In stability activities, this field can be used for factions or groups.\\ \hline
+\textbf{G} & \texttt{staff comments} & Free text. Can be used by staff for information required by commander.\\ \hline
+\textbf{H} & \texttt{additional information} &  Free Text.\\ \hline
+\textbf{M} & \texttt{higher formation} & Number or title of higher echelon command of unit being displayed. \\ \hline
+\textbf{J} & \texttt{evaluation rating} & Degree of confidence that may be placed on the information represented by the symbol. It is shown as one letter and one number made up of Reliability of Source and Credibility of Information. (STANAG 2511). \newline
+Reliability of Source:
+\begin{enumerate}[label=\Alph*., align=left]
+\item Completely reliable.
+\item Usually reliable.
+\item Fairly reliable.
+\item Not usually reliable.
+\item Unreliable.
+\item Reliability cannot be judged.
+\end{enumerate}
+Credibility of Information:
+\begin{enumerate}[label=\arabic*., align=left]
+\item Confirmed by other sources.
+\item Probably true.
+\item Possibly true.
+\item Doubtful.
+\item Improbable.
+\item Truth cannot be judged.
+\end{enumerate}
+\\ \hline
+\textbf{K} & \texttt{capacity of installation} & Capacity of installation displayed. \\ \hline
+\textbf{T} & \texttt{unique designation} & An alphanumeric designator that uniquely identifies a particular installation (name).\\ \hline
+\textbf{W} & \texttt{date-time group} & An alphanumeric designator for displaying a date-time group (DDHHMMSSZMONYY) or \lq\lq{}O/O\rq\rq{} for on order. The date-time group is composed of a group of six numeric digits with a time zone suffix and the standardized three-letter abbreviation for the month followed by two digits. The first pair of digits represents the day; the second pair, the hour; the third pair, the minutes. The last two digits of the year are after the month. For automated systems, two digits may be added before the time zone suffix and after the minutes to designate seconds.\\ \hline
+\textbf{X} & \texttt{altitude value} & Height in feet of equipment or structure on the ground. \\ \hline
+\textbf{Y} & \texttt{location} & Latitude and longitude; grid coordinates. \\ \hline
+\textbf{Z} & \texttt{speed} & Displays speed in nautical miles per hour or kilometres per hour. \\ \hline
+\textbf{AI} & \texttt{installation composition} & Indicates the component type of the installation:
+\begin{itemize}
+\item Development.
+\item Research.
+\item Production.
+\item Service.
+\item Storage.
+\item Utility.
+\end{itemize}\\ \hline
+\multicolumn{3}{c}{}\\
+\caption{Description of \textbf{\texttt{MilInstallation}} text field amplifiers.}
+\label{installtexttable}
+\end{tabularx}
+\end{center}
+
+\newpage\subsection{Sea Surface Command (\textbf{\texttt{MilSeaSurface}})}
+
+This command covers symbols for units, equipment, and objects of maritime surface operations. See \textit{Chapter 4, Section 1} in \DocLink.
+
+\subsubsection{Icons and Modifiers}
+
+\paragraph{\texttt{Main}}\quad
+\input{manual_scripts/SeaSurface_Main_table.tex}
+
+\newpage\paragraph{\texttt{Upper}}\quad
+\input{manual_scripts/SeaSurface_Upper_table.tex}
+
+\newpage\paragraph{\texttt{Lower}}\quad
+\input{manual_scripts/SeaSurface_Lower_table.tex}
+
+\subsubsection{Amplifiers}
+
+\paragraph{Text Fields}
+
+\textbf{\texttt{MilSeaSurface}} has 6 text field amplifiers, as shown in Figure \ref{seasurfacetext}. \textit{Some of these amplifiers are placed adjacent to each other, spaces are not automatically inserted between them.} Table \ref{seasurfacetexttable} gives the key and description of each field, along with the standard prefixes to use. This table is mostly identical to the one found in \DocLink.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\MilSeaSurface[faction=friendly, main=law enforcement vessel, scale=2, track number=\qquad A, name=\qquad B, position and movement=\qquad C, identification=\qquad D, additional information=\qquad E, date-time group=\textbackslash F]
+\end{tikzpicture}
+\caption{Location of \textbf{\texttt{MilSeaSurface}} text field amplifiers.}
+\label{seasurfacetext}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|c|l|X|c|}
+\hline
+\thead{Location} & \thead{Key} & \thead{Description} & \thead{Prefix*}\\ \hline
+\textbf{A} & \texttt{track number} & System Track Number. & TN \\ \hline
+\textbf{B} & \texttt{name} & Ships Name, Hull Number or Task Organization Designator (military only), Mission / International call sign. & \\ \hline
+\textbf{C} & \texttt{position and movement} & Course [degrees]/Speed [knots] or Bearing [degrees]/Distance [nautical miles]. & C/S, B/D \\ \hline
+\textbf{D} & \texttt{identification} & Country of origin (STANAG 1059 - 3-letter code) or Organization (e.g. UN, NATO, EU), Any other information (e.g. IFF / AIS). & \\ \hline
+\textbf{E} & \texttt{additional information} & For friendly units: Sensor or Weapon load, endurance, etc. For other Units: Credibility of Information. & \\ \hline
+\textbf{F} & \texttt{date-time group} & An alphanumeric designator for displaying a date-time group (DDHHMMSSZMONYY) or \lq\lq{}O/O\rq\rq{} for on order. The date-time group is composed of a group of six numeric digits with a time zone suffix and the standardized three-letter abbreviation for the month followed by two digits. The first pair of digits represents the day; the second pair, the hour; the third pair, the minutes. The last two digits of the year are after the month. For automated systems, two digits may be added before the time zone suffix and after the minutes to designate seconds. & \\ \hline
+\end{tabularx}
+\begin{tablenotes}
+\item *when applicable.
+\end{tablenotes}
+\caption{Description of \textbf{\texttt{MilSeaSurface}} text field amplifiers.}
+\label{seasurfacetexttable}
+\end{table}
+
+\subsection{Own Ship Command (\textbf{\texttt{OwnShip}})}
+
+This command places a marker indicating the position of the vessel the user is on, if they are at sea. No keys are available other than \texttt{scale}. See \textit{Chapter 4, Section 1, Table 4-7} in \DocLink.
+
+\begin{figure}[H]
+\centering
+\tikz{\OwnShip[scale=2]}
+\caption{\textbf{\texttt{OwnShip}} command symbol.}
+\end{figure}
+
+\newpage\subsection{Sea Subsurface Command (\textbf{\texttt{MilSeaSubsurface}})}
+
+This command covers symbols for units, equipment, and objects of maritime sub surface operations. See \textit{Chapter 4, Section 2} in \DocLink.
+
+\subsubsection{Icons and Modifiers}
+
+\paragraph{\texttt{Main}}\quad
+\input{manual_scripts/SeaSubsurface_Main_table.tex}
+
+\newpage\paragraph{\texttt{Upper}}\quad
+\input{manual_scripts/SeaSubsurface_Upper_table.tex}
+
+\newpage\paragraph{\texttt{Lower}}\quad
+\input{manual_scripts/SeaSubsurface_Lower_table.tex}
+
+\subsubsection{Amplifiers}
+
+\paragraph{Text Fields}
+
+\textbf{\texttt{MilSeaSuburface}} has 6 text field amplifiers, as shown in Figure \ref{seasubsurfacetext}. \textit{Some of these amplifiers are placed adjacent to each other, spaces are not automatically inserted between them.} Table \ref{seasubsurfacetexttable} gives the key and description of each field, along with the standard prefixes to use. This table is mostly identical to the one found in \DocLink.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\MilSeaSubsurface[faction=friendly, main=torpedo, scale=2, track number=\qquad A, name=\qquad B, position and movement=\qquad C, identification=\qquad D, additional information=\qquad E, date-time group=\textbackslash F]
+\end{tikzpicture}
+\caption{Location of \textbf{\texttt{MilSeaSubsurface}} text field amplifiers.}
+\label{seasubsurfacetext}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|c|l|X|c|}
+\hline
+\thead{Location} & \thead{Key} & \thead{Description} & \thead{Prefix*}\\ \hline
+\textbf{A} & \texttt{track number} & System Track Number. & TN \\ \hline
+\textbf{B} & \texttt{name} & Ships Name, Hull Number or Task Organization Designator (military only), Mission / International call sign. & \\ \hline
+\textbf{C} & \texttt{position and movement} & Course [degrees]/Speed [knots] or Bearing [degrees]/Distance [nautical miles] Height [feet/metres]. & C/S, B/D \\ \hline
+\textbf{D} & \texttt{identification} & Country of origin (STANAG 1059 - 3-letter code) or Organization (e.g. UN, NATO, EU), Any other information (e.g. IFF / AIS). & \\ \hline
+\textbf{E} & \texttt{additional information} & For friendly units: Sensor or Weapon load, endurance, etc. For other Units: Credibility of Information. For submarine contacts: Classification:
+\begin{itemize}
+\item NONSUB
+\item POSSUB LOW 1 or 2
+\item POSSUB HIGH 3 or 4
+\item PROBSUB
+\item CERTSUB
+\end{itemize}
+  & \\ \hline
+\textbf{F} & \texttt{date-time group} & An alphanumeric designator for displaying a date-time group (DDHHMMSSZMONYY) or \lq\lq{}O/O\rq\rq{} for on order. The date-time group is composed of a group of six numeric digits with a time zone suffix and the standardized three-letter abbreviation for the month followed by two digits. The first pair of digits represents the day; the second pair, the hour; the third pair, the minutes. The last two digits of the year are after the month. For automated systems, two digits may be added before the time zone suffix and after the minutes to designate seconds. & \\ \hline
+\end{tabularx}
+\begin{tablenotes}
+\item *when applicable.
+\end{tablenotes}
+\caption{Description of \textbf{\texttt{MilSeaSubsurface}} text field amplifiers.}
+\label{seasubsurfacetexttable}
+\end{table}
+
+\subsection{Sea Mine Command (\textbf{\texttt{MilMine}})}
+
+This command is used to construct sea mine symbols. Instead of using the \texttt{main} key, this command uses the key \texttt{mine} to define the mine type, and the boolean switch \texttt{neutralised} to display the neutralised variant, as shown in Table \ref{mine}. No modifiers are used. This command also accepts the \texttt{no frame} key. See \textit{Chapter 4, Section 2, Table 4-17} in \DocLink.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+\multirow{3}{*}{\thead{Value}} & \multicolumn{2}{c|}{\thead{Glyph}} &  \multicolumn{4}{c|}{\multirow{3}{*}{\thead{Examples}}}\\ \cline{2-3}
+& \thead{Normal} & \thead{\texttt{neutralised}} & \multicolumn{4}{c|}{}\\
+\hline
+\texttt{free} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=free]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=free, neutralised]}} &  \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=friendly, mine=free]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=hostile, mine=free]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=neutral, mine=free]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=unknown, mine=free]}}\\ \hline
+\texttt{bottomed} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=bottomed]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=bottomed, neutralised]}} &  \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=friendly, mine=bottomed]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=hostile, mine=bottomed]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=neutral, mine=bottomed]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=unknown, mine=bottomed]}}\\ \hline
+\texttt{moored} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=moored]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=moored, neutralised]}} &  \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=friendly, mine=moored]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=hostile, mine=moored]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=neutral, mine=moored]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=unknown, mine=moored]}}\\ \hline
+\texttt{floating} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=floating]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=floating, neutralised]}} &  \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=friendly, mine=floating]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=hostile, mine=floating]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=neutral, mine=floating]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=unknown, mine=floating]}}\\ \hline
+\texttt{in other position} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=in other position]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=in other position, neutralised]}} &  \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=friendly, mine=in other position]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=hostile, mine=in other position]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=neutral, mine=in other position]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=unknown, mine=in other position]}}\\ \hline
+\texttt{rising} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=rising]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=none, mine=rising, neutralised]}} &  \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=friendly, mine=rising]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=hostile, mine=rising]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=neutral, mine=rising]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilMine[faction=unknown, mine=rising]}}\\ \hline
+\end{tabular}
+\caption{Table of \textbf{\texttt{MilMine}} icons.}
+\label{mine}
+\end{table}
+
+\subsubsection{Amplifiers}
+
+\paragraph{Text Fields}
+
+Text fields for \textbf{\texttt{MilMine}} are identical to \textbf{\texttt{MilSeaSubsurface}}.
+
+\newpage\subsection{Space Command (\textbf{\texttt{MilSpace}})}
+
+This command covers symbols for space assets, related activities and other relevant objects (debris) within earth orbit. See \textit{Chapter 5, Section 1 and 2} in \DocLink.
+
+\subsubsection{Icons and Modifiers}
+
+\paragraph{\texttt{Main}}\quad
+\input{manual_scripts/Space_Main_table.tex}
+
+\newpage\paragraph{\texttt{Upper}}\quad
+\input{manual_scripts/Space_Upper_table.tex}
+
+\newpage\paragraph{\texttt{Lower}}\quad
+\input{manual_scripts/Space_Lower_table.tex}
+
+\subsubsection{Amplifiers}
+
+\paragraph{Text Fields}
+
+\textbf{\texttt{MilSpace}} has 5 text field amplifiers, as shown in Figure \ref{spacetext}. \textit{Some of these amplifiers are placed adjacent to each other, spaces are not automatically inserted between them.} Table \ref{spacetexttable} gives the key and description of each field, along with the standard prefixes to use. This table is mostly identical to the one found in \DocLink.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\MilSpace[faction=friendly, main=military space station, scale=2, track number=\qquad A, name=\qquad B, position and movement=\qquad C, nation=\qquad D, additional information=\qquad E]
+\end{tikzpicture}
+\caption{Location of \textbf{\texttt{MilSpace}} text field amplifiers.}
+\label{spacetext}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|c|l|X|c|}
+\hline
+\thead{Location} & \thead{Key} & \thead{Description} & \thead{Prefix*}\\ \hline
+\textbf{A} & \texttt{track number} & Space System Track Number. & SSTN \\ \hline
+\textbf{B} & \texttt{name} & Space System Name or Mission call sign. & \\ \hline
+\textbf{C} & \texttt{position and movement} & Georef Position [degrees]/Inclination] or Trajectory, Height [feet/orbit]. &\\ \hline
+\textbf{D} & \texttt{nation} & Nation\rq{}s Name: A 3-letter code indicating the object\rq{}s country of origin (STANAG 1059). & \\ \hline
+\textbf{E} & \texttt{additional information} & For friendly units: Sensor or Weapon load, specific orbit, footprint etc. For other Units: Credibility of Information. & \\ \hline
+\end{tabularx}
+\begin{tablenotes}
+\item *when applicable.
+\end{tablenotes}
+\caption{Description of \textbf{\texttt{MilSpace}} text field amplifiers.}
+\label{spacetexttable}
+\end{table}
+
+\subsection{Space Debris Command (\textbf{\texttt{MilDebris}})}
+
+This command is used to construct symbols that represent space debris. No shared keys are used other than \texttt{scale}. This command uses the key \texttt{size} to define the debris size, and the boolean switch \texttt{man made} to display the variant for artificial debris, as shown in Table \ref{debris}. See \textit{Chapter 5, Section 3, Table 5-7} in \DocLink.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+\multirow{3}{*}{\thead{Value}} & \multicolumn{2}{c|}{\thead{Glyph}} \\ \cline{2-3}
+& \thead{Normal} & \thead{\texttt{man made}}\\ \hline
+\texttt{small} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilDebris[size=small]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilDebris[size=small, man made]}}\\ \hline
+\texttt{medium} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilDebris[size=medium]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilDebris[size=medium, man made]}}\\ \hline
+\texttt{large} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilDebris[size=large]}} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\MilDebris[size=large, man made]}}\\ \hline
+\end{tabular}
+\caption{Table of \textbf{\texttt{MilDebris}} symbols.}
+\label{debris}
+\end{table}
+
+
+\newpage\subsection{Activity Command (\textbf{\texttt{MilActivity}})}
+
+This command covers symbols that provide the capability to depict stability activities and civil support activities across the continuum of operations. \textit{The \texttt{lower} key is not used as there are no lower modifiers.} See \textit{Chapter 6} in \DocLink.
+
+\subsubsection{Icons and Modifiers}
+
+\paragraph{\texttt{Main}}\quad
+\input{manual_scripts/Activity_Main_table.tex}
+
+\newpage\paragraph{\texttt{Upper}}\quad
+\input{manual_scripts/Activity_Upper_table.tex}
+
+\subsubsection{Amplifiers}
+
+\paragraph{Text Fields}
+
+\textbf{\texttt{MilActivity}} has 6 text field amplifiers, as shown in Figure \ref{activitytext}. \textit{Some of these amplifiers are placed adjacent to each other, spaces are not automatically inserted between them.} Table \ref{activitytexttable} gives the key and description of each field, along with the standard prefixes to use. This table is mostly identical to the one found in \DocLink.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\MilActivity[faction=friendly, main=explosion, staff comments=\qquad G, additional information=\qquad H, evaluation rating=\qquad J, date-time group=W \qquad~, location=Y \qquad~, country indicator=\qquad AC, scale=2]
+\end{tikzpicture}
+\caption{Location of \textbf{\texttt{MilActivity}} text field amplifiers.}
+\label{activitytext}
+\end{figure}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|l|X|}
+\hline
+\thead{Location} & \thead{Key} & \thead{Description} \\ \hline
+\textbf{AC} & \texttt{country indicator} & A three-letter code that indicates the country of origin of the unit (STANAG 1059). In stability activities, this field can be used for factions or groups.\\ \hline
+\textbf{G} & \texttt{staff comments} & Free text. Can be used by staff for information required by commander.\\ \hline
+\textbf{H} & \texttt{additional information} &  Free Text.\\ \hline
+\textbf{J} & \texttt{evaluation rating} & Degree of confidence that may be placed on the information represented by the symbol. It is shown as one letter and one number made up of Reliability of Source and Credibility of Information. (STANAG 2511). \newline
+Reliability of Source:
+\begin{enumerate}[label=\Alph*., align=left]
+\item Completely reliable.
+\item Usually reliable.
+\item Fairly reliable.
+\item Not usually reliable.
+\item Unreliable.
+\item Reliability cannot be judged.
+\end{enumerate}
+Credibility of Information:
+\begin{enumerate}[label=\arabic*., align=left]
+\item Confirmed by other sources
+\item Probably true
+\item Possibly true
+\item Doubtful
+\item Improbable
+\item Truth cannot be judged.
+\end{enumerate}
+\\ \hline
+\textbf{W} & \texttt{date-time group} & An alphanumeric designator for displaying a date-time group (DDHHMMSSZMONYY) or \lq\lq{}O/O\rq\rq{} for on order. The date-time group is composed of a group of six numeric digits with a time zone suffix and the standardized three-letter abbreviation for the month followed by two digits. The first pair of digits represents the day; the second pair, the hour; the third pair, the minutes. The last two digits of the year are after the month. For automated systems, two digits may be added before the time zone suffix and after the minutes to designate seconds.\\ \hline
+\textbf{Y} & \texttt{location} &  Latitude and longitude; grid coordinates.\\ \hline
+\multicolumn{3}{c}{}\\
+\caption{Description of \textbf{\texttt{MilActivity}} text field amplifiers.}
+\label{activitytexttable}
+\end{tabularx}
+\end{center}
+
+\section{Custom Icons and Modifiers}
+
+\subsection{\MilSymb\  TikZ Picture Directory Structure}
+
+\begin{figure}[H]
+\begin{forest}
+  for tree={
+    font=\ttfamily\footnotesize,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    inner sep=0pt,
+    anchor=west,
+    calign=first,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- node[] {} (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+  }
+[MilSymb
+  [text
+    [normal]
+    [squashed]
+    [small]
+    [smallsquashed]
+  ]
+  [air
+    [main\ldots]
+    [upper\ldots]
+    [lower\ldots]
+  ]
+   [land
+    [main\ldots]
+    [upper\ldots]
+    [lower\ldots]
+  ]
+  [equipment
+    [main\ldots]
+    [mobility\ldots]
+  ]
+  [installation
+    [main\ldots]
+    [upper\ldots]
+  ]
+  [seasurface
+    [main\ldots]
+    [upper\ldots]
+    [lower\ldots]
+  ]
+  [seasubsurface
+    [main\ldots]
+    [upper\ldots]
+    [lower\ldots]
+    [mine\ldots]
+  ]
+  [space
+    [main\ldots]
+    [upper\ldots]
+    [lower\ldots]
+  ]
+  [activity
+    [main\ldots]
+    [upper\ldots]
+  ]
+    [multi
+    [main\ldots]
+    [upper\ldots]
+    [lower\ldots]
+    [upperlower\ldots]
+  ]
+  [supply\ldots]
+  [custom\ldots]
+]
+\end{forest}
+\caption{\MilSymb TikZ Picture Directory Structure.}
+\label{directory}
+\end{figure}
+
+To add a custom icon or modifier, create a TikZ \texttt{.pic} in the \texttt{custom} directory using \texttt{tikzset}:
+
+\begin{writett}
+\begin{verbatim}
+\makeatletter %required if using MilSymb@selectedfaction
+\tikzset{
+MilSymb custom/user icon/.pic={
+  custom TikZ drawing commands go here...
+} %comma after bracket is needed if defining multiple .pic.
+}
+\makeatother %required if using MilSymb@selectedfaction
+\begin{tikzpicture}
+  \MilLand[faction=hostile, main=user icon]
+\end{tikzpicture}
+\end{verbatim}
+\end{writett}
+
+You can also create your own sub directories, such as \texttt{custom/land/main/user icon}. This is recommended if you want to organise your custom shapes by symbol type and position.To use your icon or modifier in a command, simply use the path as the value for a icon or modifier key \texttt{\textbackslash MilLand[faction=friendly, main=path/to/user icon]}. The \texttt{main}, \texttt{upper} and \texttt{lower} keys all accept custom values, as well as the \texttt{left}, \texttt{right} and \texttt{mobility} keys where applicable.
+
+\subsection{Drawing Bounds}
+
+As specified in \DocLink, most icons and modifiers should fit within a template comprising of a regular octagon exactly \textbf{1} unit in width and \textbf{1} unit in height (with the exception of \textit{fullframe} icons and a few others). In commands that specify upper and lower modifiers, the \textbf{main} icon should not exceed a height of \textbf{0.2} units above and below its origin (the two horizontal dotted line in Figure \ref{octagon}). Similarly, the modifiers should also not extend into the area \textbf{0.2} units above and below the origin of the \textbf{main} icon. The key value \texttt{faction=none} on any \MilSymb command (apart from \texttt{OwnShip} or \texttt{MilDebris}, which do not have faction keys) will output this template instead of a frame.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\MilLand[faction=none, scale=4](0,0)(frame)
+\dimline[line style={arrows={Triangle}-{Triangle}}, extension start length=0.75, extension end length=0.75, extension end style={thin, black}, extension start style={thin, black}]{($(frame.north) + (3, 0)$)}{($(frame.south) + (3, 0)$)}{1}
+\dimline[line style={arrows={Triangle}-{Triangle}}, extension start length=0.5, extension end length=0.5, extension end style={thin, black}, extension start style={thin, black}]{($(frame.north) + (2.5, -1.2)$)}{($(frame.south) + (2.5, 1.2)$)}{0.4}
+\dimline[line style={arrows={Triangle}-{Triangle}}, extension start length=0.55, extension end length=0.55, extension end style={thin, black}, extension start style={thin, black}]{($(frame.north) + (2.5, 0)$)}{($(frame.center) + (2.5, 0.8)$)}{0.3}
+\dimline[line style={arrows={Triangle}-{Triangle}}, extension start length=0.55, extension end length=0.55, extension end style={thin, black}, extension start style={thin, black}]{($(frame.center) + (2.5, -0.8)$)}{($(frame.south) + (2.5, 0)$)}{0.3}
+%\node {Main Anchor};
+\draw[red] plot[only marks, mark=*] coordinates{(0,0) (0, 1.36) (0,-1.36)};
+\node[anchor=east, inner sep=5pt, color=red] at (0,0) {Main Origin (0,0)};
+\node[anchor=east, inner sep=5pt, color=red] at (0,1.36) {Upper Origin (0,0.34)};
+\node[anchor=east, inner sep=5pt, color=red] at (0,-1.36) {Lower Origin (0,-0.34)};
+\end{tikzpicture}
+\caption{Dimensions of the octagon and origins of the icon and modifiers.}
+\label{octagon}
+\end{figure}
+
+For the \texttt{\textbf{MilMissile}} command, the template is rotated 90\textdegree anticlockwise, and the \texttt{left} and \texttt{right} keys correspond to the \texttt{upper} and \texttt{lower} keys respectively. The \texttt{mobility} origin is located \textbf{0.1} units below the \texttt{south} anchor of the frame.
+
+\subsection{Border Anchors}
+
+\MilSymb\  defines an anchored bounding box named \textbf{\texttt{M}} around all frames. This has anchor points identical to the \texttt{rectangle} node in TikZ. These can be used as coordinates for drawing icons and modifiers relative to the edge of the frame.
+
+\subsection{Faction Variants}
+
+Most \textit{fullframe} icons have slight variations depending on the faction frame that is being used. To facilitate this, you can create a set of four TikZ \texttt{.pic} in faction sub directories, like so:\\
+
+\noindent\texttt{custom/user icon/friendly/.pic}\\
+\texttt{custom/user icon/hostile/.pic}\\
+\texttt{custom/user icon/neutral/.pic}\\
+\texttt{custom/user icon/unknown/.pic}\\
+
+\subsection{Clipping}
+
+For \textbf{\texttt{MilLand}} symbols, clipping commands are available to trim any icon or modfier to the inside of the frame. Use \texttt{\textbackslash clip \textbackslash clip<faction>} within the drawing commands to clip anything specified after the command to the frame.
+
+Then, insert \texttt{/\textbackslash MilSymb@selectedfaction} directly after the \texttt{path/to/user icon} (so it forms \texttt{path/to/user icon/\textbackslash MilSymb@selectedfaction}). \texttt{\textbackslash MilSymb@selectedfaction} will be replaced by the name of the faction, and complete the path to the icon.
+
+\subsection{Using Existing Icons and Modifiers}
+
+To insert an existing icon or modifier into your custom icon use a nested \texttt{.pic} as so: \texttt{\textbackslash pic\{MilSymb category/position/name\}}, where \texttt{command} generally refers to the \MilSymb\  command it is used in as displayed in Figure \ref{directory}, and \texttt{position} refers to . The exceptions are \texttt{supply}, which contains supply icons detailed in \ref{supply}, \texttt{text} which provides common text templates as detailed in \ref{text}, and \texttt{multi} which is detailed in \ref{multi}. \texttt{mine} is also contained in a sub-directory of \texttt{seasubsurface}, instead of its own directory. \texttt{\textbf{MilDebris}} does not use any icons or modifiers, all drawing syntax is contained within the command.
+
+\subsubsection{Text Templates}
+\label{text}
+
+\MilSymb\  uses 4 standard text templates for commonly used text in icons and modifiers. Use regular TikZ text syntax for any variations. You can use them by nesting a \texttt{.pic} as before, but adding \texttt{=\{text to display\}} as a suffix, as in \texttt{\textbackslash pic\{MilSymb text/type=\{text to display\}\}}. Note that conventionally up to 3 characters are designed to be used with normal text, and up to 4 with \lq\lq{}squashed\rq\rq{} versions, in order to appear similar to \DocLink guidelines. Any more characters should use a smaller font.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix[column sep=5mm, row sep=5mm]{
+\begin{scope}[scale=2, transform shape]
+\MilLand[faction=none]
+\pic{MilSymb text/normal={Text}};
+\end{scope}
+&
+\begin{scope}[scale=2, transform shape]
+\MilLand[faction=none]
+\pic{MilSymb text/squashed={Text}};
+\end{scope}
+&
+\begin{scope}[scale=2, transform shape]
+\MilLand[faction=none]
+\pic at (0, 0.34) {MilSymb text/small={Text}};
+\end{scope}
+&
+\begin{scope}[scale=2, transform shape]
+\MilLand[faction=none]
+\pic at (0, 0.34) {MilSymb text/smallsquashed={Text}};
+\end{scope}
+\\
+\node{\texttt{text/normal}}; & \node{\texttt{text/squashed}}; & \node{\texttt{text/small}}; & \node{\texttt{text/smallsquashed}}; \\
+};
+\end{tikzpicture}
+\caption{\MilSymb\  text templates.}
+\end{figure}
+
+\subsubsection{Multiple Class}
+\label{multi}
+
+Some \MilSymb\  icons and modifiers are used in more than one command. In order to avoid code duplication, these are put in their own directory named \texttt{multi} with a single name, even though different aliases may be used in each command. The \texttt{upperlower} sub-directory is used to store modifier glyphs that are used in both the \texttt{upper} and \texttt{lower} positions.
+
+\begin{tabularx}{\linewidth}{|c|c|}
+\hline
+\thead{Name} & \thead{Glyph}\\ \hline
+\texttt{multi/main/amphibious} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/amphibious}}}\\ \hline
+\texttt{multi/main/antenna} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/antenna}}}\\ \hline
+\texttt{multi/main/ammunition} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/ammunition}}}\\ \hline
+\texttt{multi/main/armoured} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/armoured}}}\\ \hline
+\texttt{multi/main/aviation fixed wing} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/aviation fixed wing}}}\\ \hline
+\texttt{multi/main/aviation rotary wing} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/aviation rotary wing}}}\\ \hline
+\texttt{multi/main/bridge} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/bridge}}}\\ \hline
+\texttt{multi/main/chemical biological radiological nuclear} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/chemical biological radiological nuclear}}}\\ \hline
+\texttt{multi/main/drill} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/drill}}}\\ \hline
+\texttt{multi/main/decoy} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/decoy}}}\\ \hline
+\texttt{multi/main/diver} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/diver}}}\\ \hline
+\texttt{multi/main/engineer} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/engineer}}}\\ \hline
+\texttt{multi/main/field artillery} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/field artillery}}}\\ \hline
+\texttt{multi/main/individual} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/individual}}}\\ \hline
+\texttt{multi/main/killing victim} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/killing victim}}}\\ \hline
+\texttt{multi/main/maintenance} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/maintenance}}}\\ \hline
+\texttt{multi/main/major end} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\path[local bounding box=M] (-0.5, -0.5) rectangle (0.5, 0.5); \pic{MilSymb multi/main/major end}}}\\ \hline
+\texttt{multi/main/medic} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/medic}}}\\ \hline
+\texttt{multi/main/medical} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\path[local bounding box=M] (-0.5, -0.5) rectangle (0.5, 0.5); \pic{MilSymb multi/main/medical}}}\\ \hline
+\texttt{multi/main/medical treatment facility} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\path[local bounding box=M] (-0.5, -0.5) rectangle (0.5, 0.5); \pic{MilSymb multi/main/medical treatment facility}}}\\ \hline
+\texttt{multi/main/missile} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/missile}}}\\ \hline
+\texttt{multi/main/naval} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/naval}}}\\ \hline
+\texttt{multi/main/person} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/person}}}\\ \hline
+\texttt{multi/main/petroleum oil and lubricants} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/petroleum oil and lubricants}}}\\ \hline
+\texttt{multi/main/psychological operations} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/psychological operations}}}\\ \hline
+\texttt{multi/main/psychological operations filled} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/psychological operations filled}}}\\ \hline
+\texttt{multi/main/radar} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/radar}}}\\ \hline
+\texttt{multi/main/repair parts} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/repair parts}}}\\ \hline
+\texttt{multi/main/sailing boat} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/sailing boat}}}\\ \hline
+\texttt{multi/main/sensor} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/sensor}}}\\ \hline
+\texttt{multi/main/signal} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/signal/neutral}}}\\ \hline
+\texttt{multi/main/transportation} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/transportation}}}\\ \hline
+\texttt{multi/main/victim of an attempted crime} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/victim of an attempted crime}}}\\ \hline
+\texttt{multi/main/water} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/water}}}\\ \hline
+\texttt{multi/main/water purification} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/main/water purification}}}\\ \hline
+\texttt{multi/upper/naval} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/upper/naval}}}\\ \hline
+\texttt{multi/upper/medic} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/upper/medic}}}\\ \hline
+\texttt{multi/upper/runway} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/upper/runway}}}\\ \hline
+\texttt{multi/lower/pack animal} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/lower/pack animal}}}\\ \hline
+\texttt{multi/upperlower/maintenance} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/upperlower/maintenance}}}\\ \hline
+\texttt{multi/upperlower/railroad} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb multi/upperlower/railroad}}}\\ \hline
+\multicolumn{2}{c}{}\\
+\caption{Table of Multiple Class Icons and Modifiers}
+\end{tabularx}
+
+
+\subsubsection{Hidden Glyphs}
+
+There are some \texttt{.pic} that are not used as an icon or modifier directly, but are used to construct other icons or modifiers because they are used multiple times.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\thead{Name} & \thead{Glyph}\\ \hline
+\texttt{equipment/main/weapon} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb equipment/main/weapon}}}\\ \hline
+\texttt{equipment/main/air defence} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb equipment/main/air defence}}}\\ \hline
+\texttt{equipment/main/anti tank} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb equipment/main/anti tank}}}\\ \hline
+\texttt{equipment/main/high trajectory indirect fire weapons system} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb equipment/main/high trajectory indirect fire weapons system}}}\\   \hline
+\texttt{equipment/main/side bands} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb equipment/main/side bands}}}\\ \hline
+\texttt{equipment/main/single band} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb equipment/main/single band}}}\\ \hline
+\texttt{equipment/main/double band} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb equipment/main/double band}}}\\ \hline
+\texttt{equipment/main/triple band} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb equipment/main/triple band}}}\\ \hline
+\texttt{seasubsurface/main/half sea mine} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb seasubsurface/main/half sea mine}}}\\ \hline
+\texttt{seasubsurface/main/sea surface} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb seasubsurface/main/sea surface}}}\\ \hline
+\texttt{supply/medicalbar} & \adjustbox{valign=m,margin=0.25cm}{\tikz{\pic{MilSymb supply/medicalbar/neutral}}}\\ \hline
+\end{tabular}
+\caption{Table of Hidden Glyphs}
+\end{table}
+
+\begin{landscape}
+
+\section{Examples}
+
+\subsection{Front Cover}
+
+\begin{writett}
+\fontsize{6}{0}\selectfont
+\begin{verbatim}
+\thispagestyle{empty}
+\begin{center}
+\begin{tikzpicture}[remember picture]
+
+\coordinate (NE) at ($(current page text area.north east)-(1.5, 1.5)$);
+\coordinate (NW) at ($(current page text area.north west)-(-1.5, 1.5)$);
+\coordinate (SE) at ($(current page text area.south east)-(1.5, -1.5)$);
+\coordinate (SW) at ($(current page text area.south west)-(-1.5, -1.5)$);
+
+\MilLand[faction=hostile, echelon=team, main=infantry, scale=2](NE)
+\MilAir[faction=friendly, main=military fixed wing, upper=jammer, lower=light, scale=2](NW)
+\MilSeaSurface[faction=neutral, main=hazardous material transport ship, lower=fast, scale=2](SE)
+\MilActivity[faction=unknown, main=searching, upper=house to house, scale=2](SW)
+
+\MilLand[faction=unknown, echelon=battalion, main=armoured, upper=missile, lower=long range, scale=2]($(NE)!0.33!(NW)$)
+\MilEquipment[faction=neutral, main=heavy machine gun, mobility=pack animal, scale=2]($(NE)!0.66!(NW)$)
+
+\MilSpace[faction=hostile, main=military earth observation satellite, upper=low earth orbit, lower=radar, scale=2]($(SE)!0.33!(SW)$)
+\MilInstallation[faction=friendly, main=electric power, upper=nuclear energy, scale=2]($(SE)!0.66!(SW)$)
+
+\MilSeaSubsurface[faction=friendly, main=snorkelling submarine, upper=auxiliary, lower=nuclear type 5, scale=2]($(NE)!0.2!(SE)$)
+\MilLand[faction=neutral, echelon=platoon, main=supply, supply={2}{4}, scale=2]($(NE)!0.4!(SE)$)
+\MilActivity[faction=hostile, main=attempted criminal activity, upper=rape, scale=2]($(NE)!0.6!(SE)$)
+\MilEquipment[faction=unknown, main=tank recovery vehicle, mobility=wheeled semi trailer, scale=2]($(NE)!0.8!(SE)$)
+
+\MilMissile[faction=hostile, left=sub surface, right=launched, scale=2]($(NW)!0.2!(SW)$)
+\MilInstallation[faction=unknown, main=civilian telecommunications, upper=television, scale=2]($(NW)!0.4!(SW)$)
+\MilSpace[faction=friendly, main=civilian space station, upper=geosynchronous orbit, scale=2]($(NW)!0.6!(SW)$)
+\MilLand[faction=neutral, echelon=corps, main=armoured, upper=missile, lower=long range, scale=2]($(NW)!0.8!(SW)$)
+
+\pgfresetboundingbox
+\path[use as bounding box] (0,0);
+
+\end{tikzpicture}
+
+{\let\newpage\relax\maketitle}
+\end{center}
+\end{verbatim}
+\end{writett}
+
+\end{landscape}
+
+\subsection{1\textsuperscript{st} Marine Division (USA)}
+
+\begin{figure}[H]
+\centering
+\input{manual_examples/mef.tex}
+\caption{Recreation of Structure of 1\textsuperscript{st} US Marine Division. Sourced from \href{https://commons.wikimedia.org/wiki/File:1st_US_Marine_Division.png}{Wikipedia}}.
+\label{org}
+\end{figure}
+
+\begin{landscape}
+
+\begin{writett}
+\fontsize{6}{0}\selectfont
+\begin{verbatim}
+\definecolor{salmon}{HTML}{F69289} %custom tank symbol colour
+
+%custom icons
+\makeatletter
+\tikzset{
+MilSymb custom/marine/.pic={
+  \pic{MilSymb land/main/infantry/\MilSymb@selectedfaction};
+  \clip \clipfriendly;
+  \pic[yshift=-10.75]{MilSymb land/main/amphibious/\MilSymb@selectedfaction};
+},
+MilSymb custom/tank/.pic={
+  \filldraw[fill=salmon]circle(0.5 and 0.15);
+},
+MilSymb custom/reconnaissance tank/.pic={
+  \pic{MilSymb custom/tank};
+  \pic{MilSymb land/main/reconnaissance/\MilSymb@selectedfaction};
+},
+MilSymb custom/amphibious tank/.pic={
+  \pic{MilSymb custom/tank};
+  \clip \clipfriendly;
+  \pic[yshift=-10.75]{MilSymb land/main/amphibious/\MilSymb@selectedfaction};
+}
+}
+\makeatother
+
+\fontsize{6}{0}\selectfont
+
+\begin{tikzpicture}
+
+% grid of symbols
+\node(H) at (7,0){\includegraphics[width=1.5cm]{manual_examples/772px-1st_Marine_Division_insignia}};
+\node[right of=H, node distance=1.85cm, align=left](HT){1\textsuperscript{st} Marine Division\\ CAMP PENDLETON};
+\node[above of=H, star,star points=5, star point ratio=0.5, rotate=180, xshift=-3, fill=yellow, draw] {};
+\node[above of=H, star,star points=5, star point ratio=0.5, rotate=180, xshift=3, fill=yellow, draw] {};
+\MilLand[scale=0.75, faction=friendly, echelon=regiment, main=marine](3.5, -2)(C11){1\textsuperscript{st} Marine Rgt. \\ CAMP PENDLETON}
+\MilLand[scale=0.75, faction=friendly, echelon=regiment, main=marine](7, -2)(C21){5\textsuperscript{th} Marine Rgt. \\ CAMP PENDLETON}
+\MilLand[scale=0.75, faction=friendly,  echelon=regiment, main=marine](10.5, -2)(C31){7\textsuperscript{th} Marine Rgt. \\ CAMP PENDLETON}
+\MilLand[scale=0.75, faction=friendly, echelon=regiment, main=field artillery](14, -2)(C41){11\textsuperscript{th} Marine Rgt. \\ CAMP PENDLETON}
+\MilLand[scale=0.75, faction=friendly, echelon=battalion, main=headquarters](0, -3)(C02){Headquarters \\ Battalion}
+\MilLand[scale=0.75, faction=friendly, echelon=company, main=headquarters](3.75, -3)(C12){~\\ HQ Coy.}
+\MilLand[scale=0.75, faction=friendly, echelon=company, main=headquarters](7.25, -3)(C22){~\\ HQ Coy.}
+\MilLand[scale=0.75, faction=friendly, echelon=company, main=headquarters](10.75, -3)(C32){~\\ HQ Coy.}
+\MilLand[scale=0.75, faction=friendly, echelon=company, main=headquarters](14.25, -3)(C42){~\\ HQ Battery}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=tank](0, -4)(C03){1\textsuperscript{st} Tank \\ Battalion}
+\MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](3.75, -4)(C13){1\textsuperscript{st} Btn. \\ 1\textsuperscript{st} Marines}
+\MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](7.25, -4)(C23){1\textsuperscript{st} Btn. \\ 5\textsuperscript{th} Marines}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](10.75, -4)(C33){1\textsuperscript{st} Btn. \\ 7\textsuperscript{th} Marines}
+\MilLand[scale=0.75, faction=friendly, echelon=battalion, main=field artillery](14.25, -4)(C43){1\textsuperscript{st} Btn. \\ 11\textsuperscript{th} Marines}
+\MilLand[scale=0.75, faction=friendly, echelon=battalion, main=reconnaissance tank, lower=wheeled](0, -5)(C04){1\textsuperscript{st} Light Armoured \\ Reconnaissance Btn.}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](3.75, -5)(C14){2\textsuperscript{nd} Btn. \\ 1\textsuperscript{st} Marines}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](7.25, -5)(C24){2\textsuperscript{nd} Btn. \\ 5\textsuperscript{th} Marines}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](10.75, -5)(C34){2\textsuperscript{nd} Btn. \\ 7\textsuperscript{th} Marines}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=field artillery](14.25, -5)(C44){2\textsuperscript{nd} Btn. \\ 11\textsuperscript{th} Marines}
+\MilLand[scale=0.75, faction=friendly, echelon=battalion, main=reconnaissance tank, lower=wheeled](0, -6)(C05){3\textsuperscript{rd} Light Armoured \\ Reconnaissance Btn.}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](3.75, -6)(C15){3\textsuperscript{rd} Btn. \\ 1\textsuperscript{st} Marines}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](7.25, -6)(C25){3\textsuperscript{rd} Btn. \\ 5\textsuperscript{th} Marines}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](10.75, -6)(C35){3\textsuperscript{rd} Btn. \\ 7\textsuperscript{th} Marines}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=field artillery](14.25, -6)(C45){3\textsuperscript{rd} Btn. \\ 11\textsuperscript{th} Marines}
+\MilLand[scale=0.75, faction=friendly, echelon=battalion, main=reconnaissance](0, -7)(C06){1\textsuperscript{st} Reconnaissance \\  Battalion}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](3.75, -7)(C16){1\textsuperscript{st} Btn. \\ 4\textsuperscript{th} Marines}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](7.25, -7)(C26){2\textsuperscript{nd} Btn. \\ 4\textsuperscript{th} Marines}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=marine](10.75, -7)(C36){3\textsuperscript{rd} Btn. \\ 4\textsuperscript{th} Marines}
+ \MilLand[scale=0.75, faction=friendly, echelon=battalion, main=field artillery, upper=multiple rocket launcher, lower=wheeled](14.25, -7)(C46){5\textsuperscript{rd} Btn. 11\textsuperscript{th} Marines}
+\MilLand[scale=0.75, faction=friendly, echelon=battalion, main=engineer](0, -8)(C07){1\textsuperscript{st} Combat \\ Engineer Battalion}
+\MilLand[scale=0.75, faction=friendly, echelon=battalion, main=engineer](0, -9)(C08){3\textsuperscript{rd} Combat \\ Engineer Battalion}
+\MilLand[scale=0.75, faction=friendly, echelon=battalion, main=amphibious tank](0, -10)(C09){3\textsuperscript{rd} Assault \\ Amphibian Battalion}
+
+%connecting lines
+\draw [shorten >=0.25cm] (H.south) |- ($(H.south)!0.5!(C11.north)$) -| (C11.north);
+\draw [shorten >=0.25cm] (H.south) |- ($(H.south)!0.5!(C11.north)$) -| (C21.north);
+\draw [shorten >=0.25cm] (H.south) |- ($(H.south)!0.5!(C11.north)$) -| (C31.north);
+\draw [shorten >=0.25cm] (H.south) |- ($(H.south)!0.5!(C11.north)$) -| (C41.north);
+\draw (H.south) |- ($(H.south)!0.5!(C11.north)$) -|  ($(C02.west)+(-0.25, 0)$) -| (C02.west);
+
+\draw (C11.south west) |- (C12.west);
+\draw (C11.south west) |- (C13.west);
+\draw (C11.south west) |- (C14.west);
+\draw (C11.south west) |- (C15.west);
+\draw (C11.south west) |- (C16.west);
+
+\draw (C21.south west) |- (C22.west);
+\draw (C21.south west) |- (C23.west);
+\draw (C21.south west) |- (C24.west);
+\draw (C21.south west) |- (C25.west);
+\draw (C21.south west) |- (C26.west);
+
+\draw (C31.south west) |- (C32.west);
+\draw (C31.south west) |- (C33.west);
+\draw (C31.south west) |- (C34.west);
+\draw (C31.south west) |- (C35.west);
+\draw (C31.south west) |- (C36.west);
+
+\draw (C41.south west) |- (C42.west);
+\draw (C41.south west) |- (C43.west);
+\draw (C41.south west) |- (C44.west);
+\draw (C41.south west) |- (C45.west);
+\draw (C41.south west) |- (C46.west);
+
+\draw (C02.west) -| ($(C02.west)+(-0.25, 0)$) |- (C03.west);
+\draw (C03.west) -| ($(C02.west)+(-0.25, 0)$) |- (C04.west);
+\draw (C04.west) -| ($(C02.west)+(-0.25, 0)$) |- (C05.west);
+\draw (C05.west) -| ($(C02.west)+(-0.25, 0)$) |- (C06.west);
+\draw (C06.west) -| ($(C02.west)+(-0.25, 0)$) |- (C07.west);
+\draw (C07.west) -| ($(C02.west)+(-0.25, 0)$) |- (C08.west);
+\draw (C08.west) -| ($(C02.west)+(-0.25, 0)$) |- (C09.west);
+
+\end{tikzpicture}
+\end{verbatim}
+\end{writett}
+
+\end{landscape}
+
+\section{Control Measures}
+
+Control Measures are planned to be included in the next major version of \MilSymb. Please see the \href{https://github.com/ralphieraccoon/MilSymb}{GitHub} repository for further information.
+
+\end{document}

@@ -1,0 +1,45 @@
+name quran
+category Package
+revision 54333
+shortdesc An easy way to typeset any part of The Holy Quran
+longdesc This package offers the user an easy way to typeset The Holy
+longdesc Quran. It has been inspired by the lipsum and ptext packages
+longdesc and provides several macros for typesetting the whole or any
+longdesc part of Quran based on its popular division, including surah,
+longdesc ayah, juz, hizb, quarter, and page. Besides the Arabic
+longdesc original, translations to English, German, and Persian are
+longdesc provided, as well as an English transliteration.
+containersize 1192000
+containerchecksum 3376168899e0f622f60f4886f181c75311b8041850ad0007ff69a2c82e33ba7f71e8b64862c82ad5814f8a659bb95915a4fcbf4d6f4da96ca1de4f19c8c2e6cf
+doccontainersize 495960
+doccontainerchecksum fece84c5d8a79477d0cbdd8c2d503ba40485c1cb8102be8372c21e0393734de34c47f1ba418d3ef9eb518bdb7c78179f42492c2c7a0e3aac73b65c2759e3bd8a
+docfiles size=138
+ texmf-dist/doc/xelatex/quran/README details="Readme"
+ texmf-dist/doc/xelatex/quran/quran-doc.pdf details="Package documentation"
+ texmf-dist/doc/xelatex/quran/quran-doc.tex
+ texmf-dist/doc/xelatex/quran/quran-test.pdf details="Example of use"
+ texmf-dist/doc/xelatex/quran/quran-test.tex
+ texmf-dist/doc/xelatex/quran/quran-test1.pdf
+ texmf-dist/doc/xelatex/quran/quran-test1.tex
+ texmf-dist/doc/xelatex/quran/quran-test2.pdf
+ texmf-dist/doc/xelatex/quran/quran-test2.tex
+ texmf-dist/doc/xelatex/quran/quran.png
+runfiles size=1989
+ texmf-dist/tex/xelatex/quran/quran-transde.def
+ texmf-dist/tex/xelatex/quran/quran-transen.def
+ texmf-dist/tex/xelatex/quran/quran-transfa.def
+ texmf-dist/tex/xelatex/quran/quran-translt.def
+ texmf-dist/tex/xelatex/quran/quran.sty
+ texmf-dist/tex/xelatex/quran/qurantext-de.translation.def
+ texmf-dist/tex/xelatex/quran/qurantext-en.translation.def
+ texmf-dist/tex/xelatex/quran/qurantext-en.transliteration.def
+ texmf-dist/tex/xelatex/quran/qurantext-fa.translation.def
+ texmf-dist/tex/xelatex/quran/qurantext-simple.def
+ texmf-dist/tex/xelatex/quran/qurantext-uthmani.def
+catalogue-also quran-de quran-ur lipsum ptext
+catalogue-contact-bugs https://github.com/javadr/quran/issues
+catalogue-contact-repository https://github.com/javadr/quran
+catalogue-ctan /macros/xetex/latex/quran
+catalogue-license lppl1.3c
+catalogue-topics arabic macro-supp xetex dummy-gen
+catalogue-version 1.63

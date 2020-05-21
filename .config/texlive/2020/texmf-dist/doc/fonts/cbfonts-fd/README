@@ -1,0 +1,59 @@
+cbfonts-fd bundle, version 1.2 of 2017/07/29
+Copyright 2013-2016 Claudio Beccari
+
+This work may be distributed and/or modified under the conditions of
+the LaTeX Project Public License, either version 1.3 of this license or
+(at your option) any later version. The latest version of this license
+is in http://www.latex-project.org/lppl.txt and version 1.3 or later is
+part of all distributions of LaTeX version 2003/12/01 or later.
+
+This work and every derived work are subject to the above
+licence.
+
+This work cbfonts-fd.fdd replaces part of the functionality of the previous
+work cbgreek.dtx and cbgreek-main.ins and their derived font description files; 
+Cbgreek.dtx was written by several authors under the supervision of Johannes 
+Braams. That package contains the necessary files for typesetting Greek texts by 
+using the cbfonts that are encoded with the LGR encoding. 
+
+The .ins file could extract from that single file both the .sty and .def files, 
+required by the babel package in order to typeset Greek texts, and the font
+description files required by the NFSS to access the Greek cbfonts.
+
+The actual maintainer of that file is Guenter Milde, who takes care of the files 
+required by the babel package; this package cbfonts-fd takes care of the font 
+description files required to typeset Greek text with the Greek cbfonts.
+
+The babel Greek typesetting files change the language script (from Latin to 
+Greek and vice versa) by changing just the encoding; therefore the family 
+names of the Greek fonts must match the family names of the Latin ones.
+
+The standard Latin fonts that can be matched with the Greek cbfonts are the EC 
+ones and the latin Modern ones; other Greek fonts do exist that match other Latin 
+ones, and they are distributed with their own font description files so as to 
+keep the script switching mechanism working properly.
+
+This cbfonts-fd.fdd file is a self extracting documented file; by running it 
+through pdflatex, the suitable font description files are extracted and the 
+documentation is typeset.
+
+The extracted or typeset files are:
+	cbfonts-fd.pdf
+    	lgrcmr.fd
+	lgrcmro.fd
+	lgrcmtt.fd
+	lgrcmss.fd
+	lgrlcmss.fd
+	lgrlcmtt.fd}
+	lgrlmr.fd
+	lgrlmro.fd
+	lgrlmss.fd
+	lgrlmtt.fd
+
+As usual, the pdf file should be moved to a suitable folder along the /doc 
+branch of TL together with the manifest.txt and README files. The .fd files 
+should be moved to a suitable directory where TeX and friends can find them. 
+This .fdd file should be moved to a suitable folder along the /source branch 
+of TL.
+
+Claudio Beccari 

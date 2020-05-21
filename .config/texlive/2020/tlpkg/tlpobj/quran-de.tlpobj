@@ -1,0 +1,30 @@
+name quran-de
+category Package
+revision 54191
+shortdesc German translations to the quran package
+longdesc The package is prepared for typesetting some German
+longdesc translations of the Holy Quran. It adds three more German
+longdesc translations to the quran package.
+containersize 620164
+containerchecksum d969c3fd171102e4c47bf4eca383a22498fb6e95a5f8be288a137e12e1c92adda9e92587c402ccf87fcb116597c6074e64eb70b8249b208e7d1bd684d6ffd6d3
+doccontainersize 129972
+doccontainerchecksum 4a371576e7754789ec67cde04f533ade561d770cbf410e31c8fdb737d127dd36e0f8f6a233512b147ffd5692acecc43e1977c76efe04b1a65de3c6297038a954
+docfiles size=37
+ texmf-dist/doc/xelatex/quran-de/README details="Readme"
+ texmf-dist/doc/xelatex/quran-de/quran-de-doc.pdf details="Package documentation"
+ texmf-dist/doc/xelatex/quran-de/quran-de-doc.tex
+ texmf-dist/doc/xelatex/quran-de/quran-de-test.pdf details="Example of use"
+ texmf-dist/doc/xelatex/quran-de/quran-de-test.tex
+ texmf-dist/doc/xelatex/quran-de/quran.png
+runfiles size=919
+ texmf-dist/tex/xelatex/quran-de/quran-de.sty
+ texmf-dist/tex/xelatex/quran-de/qurantext-deii.translation.def
+ texmf-dist/tex/xelatex/quran-de/qurantext-deiii.translation.def
+ texmf-dist/tex/xelatex/quran-de/qurantext-deiv.translation.def
+catalogue-also quran lipsum ptext
+catalogue-contact-bugs https://github.com/javadr/quran-de/issues
+catalogue-contact-repository https://github.com/javadr/quran-de
+catalogue-ctan /macros/xetex/latex/quran-de
+catalogue-license lppl1.3c
+catalogue-topics german macro-supp xetex dummy-gen
+catalogue-version 0.2

@@ -1,0 +1,95 @@
+       name: 00readme-sugconf.txt
+description: read me for sugconf.cls
+    purpose: introduction and explanation
+             of LaTeX document class sugconf
+             for SAS(R) User Group (SUG) conference authors
+       date: 8/10/2006 posted to CTAN
+     author: Ronald J. Fehd, SAS-L's macro maven
+                             TeX User Group (TUG) member
+             mailto:RJF2@cdc.gov
+       note: SAS-L is the name of listserv
+                   of the international online SAS user group community
+       note: CTAN: Comprehensive TeX Archive Network
+       note: License type:  Free, LaTeX project public license
+             http://www.latex-project.org/lppl/
+
+* SUG authors
+
+LaTeX is a set of macros for the TeX document processing application.
+
+Several years ago I began using LaTeX to write my SUG papers.
+In order to produce a paper which conforms
+to SAS User Group International conference paper guidelines
+it is necessary to modify the LaTeX document class article.
+
+After reviewing several other LaTeX class files: e.g.: acmconf.cls,
+I wrote my own SUGconf.cls and posted it to SAS-L.
+http://www.listserv.uga.edu/cgi-bin/wa?S1=sas-l
+
+The layout produced by the 'sugconf' class
+is based on the description contained in SUGI paper guidelines,
+published by SAS Institute: (2006)
+http://support.sas.com/usergroups/sugi/sugi31/package/WritersGuidelines.pdf
+
+At the 2006 PracTeX conference, a Little Birdie
+(SAS-L euphemism for a SAS Institute employee)
+suggested that it would be a Good Idea to post my class file
+and some examples to CTAN,
+by which act I would then accept responsibility for maintenance.
+
+
+* All SUG conferences now require submission of papers as a .pdf.
+TeX distributions provide pdfLaTeX.exe which produces a .pdf
+from the source text file. (.tex or .ltx or .txt).
+The .pdf can be read with Adobe Reader v5 or greater.
+Note: pdfLaTeX also produces a .dvi, which is easier to review
+while editing and polishing.
+See the command: \pdfoutput= in each .tex file.
+
+* filename extensions
+
+** .bat: windows batch file
+         executes pdfLaTeX, input      : <filename>.tex
+                      note: input may be <filename>.txt
+                            pdfoutput=0: <filename>.dvi
+                            pdfoutput=1: <filename>.pdf
+** .tex: input : text file containing LaTeX markup commands
+** .pdf: output: Adobe v5 or higher
+
+* Please review the following files
+in order to familiarize yourself with LaTeX markup commands.
+
+** article-example illustrates the LaTeX document class article
+article-example.bat
+article-example.tex
+article-example.pdf
+
+** this file provides the LaTeX document class sugconf based on article
+   you must download this file and place it in the same folder
+   with your SUG-conf-paper
+
+sugconf.cls
+
+** sugconf-example is a working example of the document class sugconf
+   download these files and rename them to <My-SUG-conf-paper>.*
+   note: remember to change the filename in the .bat file
+         from sugconf-example
+         to   <My-SUG-conf-paper>
+
+sugconf-example.bat
+sugconf-example.pdf
+sugconf-example.tex
+
+* processing your .tex file with a Windows .bat file
+- - - -  article-example.bat - - -
+pdfLaTeX article-example
+- - - -  article-example.bat end - - -
+
+note assumption: filename extension is .tex
+to process a text file other than .tex, specify the extension:
+pdfLaTeX article-example.txt
+
+* highly recommended
+I recommend a professional text editor.
+
+\end{document}%00readme-sugconf.txt}

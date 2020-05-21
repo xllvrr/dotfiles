@@ -1,0 +1,131 @@
+% seplist.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Petr Olsak 2014
+
+% This macro enables to declare more than one separator for parameter
+% scanning of your macro. Usage:
+
+% \long\def\yourmacro#1{usage of #1parameter}
+% \seplist{list of separators}\yourmacro parameter-text separator
+% example:
+% \seplist{{sepA}{SepB}{SEPC}}\yourmacro text separated by sepA
+% \seplist{{sepA}{SepB}{SEPC}}\yourmacro text separated by SepB
+% \seplist{{sepA}{SepB}{SEPC}}\yourmacro text separated by SEPC
+% All lines of this example are expanded to "usage of text separated by parameter".
+
+% The actually used separator is stored globally to the \sepused macro.
+% The macro programmer can use this.
+
+% The input stream is read to the first instance of any of the listed
+% separator, no more. The separator list includes separators in braces. 
+% If there are only one-token separators, braces can be omited. Example
+
+% \seplist{0123456789}\mymacro text to the first decimal digit 7
+
+% The parameter have to be balanced. Thus, the separator hidden in braces
+% is ignored. This behavior is similar like in normal separated parameters.
+
+% The \par or spaces or arbitrary control sequences can be a part of
+% separators. The # (of catcode 6) cannot be a part of the separator but
+% it can be included in the parameter text.
+
+% See implementation details at the end of this file
+
+\long\def\addto#1#2{\expandafter\def\expandafter#1\expandafter{#1#2}}
+\newtoks\seplistT
+
+\long\def\seplistD#1{%
+   \seplistS##2\seplistE{\def\tmpa{##1}\def\tmpb{##2}\seplistE}%
+   \def\tmpb{\tmpa #1}\expandafter\tmpb \tmp\seplistD\seplistE
+}
+\long\def\seplistE#1{%
+   \ifx\tmpa\empty
+      \seplistS\seplistD{\def\tmpb{##1}}\expandafter\tmpa\tmpb
+      \ifx\tmpb\empty \seplistQ{#1}%
+      \else \expandafter\addto\expandafter\seplistLx
+                           \expandafter {\expandafter\seplistD\expandafter{\tmpb}{#1}}%
+   \fi\fi
+}
+\def\seplistS{\long\expandafter\def\expandafter\tmpa\expandafter##\expandafter1\tmp}
+\long\def\seplistQ#1#2\seplistA{\fi\fi\gdef\sepused{#1}\seplistZ}
+
+\long\def\seplist#1#2{\begingroup
+  \toks0={#2}\let\bgroup=\relax \let\egroup=\relax
+  \def\seplistL{}\def\seplistLx{}\seplistI#1{}\gdef\sepused{}%
+  \ifx\seplistL\empty \expandafter\endgroup \the\toks0\else
+  \seplistT={}\expandafter\seplistA\fi
+}
+\def\seplistA{\futurelet\tmp\seplistB}
+\def\seplistB{\let\next=\seplistP
+   \expandafter\ifx\space\tmp \let\next=\seplistC \let\nexxt=\seplistM \fi
+   \ifx##\tmp  \let\next=\seplistC \let\nexxt=\seplistH \fi
+   \ifx{\tmp   \let\next=\seplistG \fi
+   \ifx}\tmp   \let\next=\seplistC \let\nexxt=\seplistF \fi
+   \next
+}
+\def\seplistC{\afterassignment\nexxt \let\next= }
+\long\def\seplistP#1{\seplistX#1\def\tmp{#1}\seplistN}
+\def\seplistM{\seplistX{ }\def\tmp{ }\seplistN}
+\def\seplistH{\seplistX{##}\def\seplistLx{}\seplistA}
+\def\seplistN{\edef\seplistLx{\expandafter}\seplistLx \seplistL \seplistA}
+\long\def\seplistG#1{\def\seplistLx{}\seplistX{{#1}}\seplistA}
+\def\seplistF{\seplistT\expandafter{\expandafter{\the\seplistT}}\seplistZ}
+\long\def\seplistX#1{\seplistT\expandafter{\the\seplistT#1}}
+\def\seplistZ{\let\tmp=\sepused 
+   \expandafter\seplistS\expandafter{\the\toks0{##1}}%
+   \expandafter\expandafter\expandafter\endgroup\expandafter\tmpa\the\seplistT
+}
+\long\def\seplistI#1{\ifx\seplistI#1\seplistI\else
+   \addto\seplistL{\seplistD{#1}{#1}}\expandafter\seplistI \fi
+}
+
+\endinput
+
+\def\m#1{\toks0={#1}\message{param: "\the\toks0", separator: "\sepused"}}
+\seplist{ab{c a}{cb}0123456789}\m uv#wcd{6cb7}uffc a
+
+% You can define \sepdef \macro #1[{sepA}{sepB}{sepC}]{usage of the parameter #1...}
+
+\def\sepdef #1#2[#3]{\def#1{\seplist{#3}{\csname:\string#1\endcsname}}%
+  \long\expandafter\def\csname:\string#1\endcsname ##1}
+
+\sepdef\test #1[uvw]#2{\message{1="#1", 2="#2"}}
+
+\test ahawx \test bhavy
+
+\end
+
+Comments to the implementation.
+
+We read the parameter token-per-token similarly as in openbrace.tex or
+eparam.tex and store these tokens in \seplistT token list. The internal
+macro \seplistL includes the list of separators in the form:
+
+\seplistD{sepA}{sepA}\seplistD{sepB}{sepB}...
+
+We store the already read token to \tmp and run \seplistL. More exactly: at
+the start, the temporary \seplistLx is emty. For each read token, we expand
+\seplistLx and \seplistL to the input stream and before executing it we
+reset \def\seplistLx{}. Now, the input stream is executed, i.e. the
+\seplistD macro is processed for each separator. The task of
+\seplistD{sepA}{sepA} is the following: to test if the \tmp is equal to the
+first token of its first parameter ("s" in this example). If it is true,
+then \seplistD (using \seplistE) adds the text \seplistD{epA}{sepA} (the
+first token from the first parameter is removed) to the temporary list
+\seplistLx which will be executed for the next token. If \tmp isn't equal to
+the first token of the first parameter then \seplistD does nothing.
+
+For example, the next read token \tmp is "e". Then \seplistD{epA}{sepA}
+saves the \seplistD{pA}{sepA} to \seplistLx, because the first letter
+\tmp="e". If the next token \tmp is "p", then \seplistD{A}{sepA} is stored
+to the \seplistLx. And finally, if the next \tmp is "A", then
+\seplistD{A}{sepA} does not store \seplistD{}{sepA}, but it decides that
+separator is found because the first parameter is empty. It defines \sepused
+to its second parameter "sepA" and it does the end of this game by \seplistQ
+plus \seplistZ. If the last token \tmp isn't "A" then the \seplistD{A}{sepA}
+does nothing and the chain is broken because the \seplistLx is set to empty
+in each step. The new chain can be built because \seplistD{sepA}{sepA} is
+still included in \seplistL which isn't changed during calculation.
+
+Macro-programing in TeX is beautiful but it is different than the classical
+technique used by "normal" programming.

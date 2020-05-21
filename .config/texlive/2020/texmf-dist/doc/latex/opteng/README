@@ -1,0 +1,26 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Abstract
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+With this template, and associated style and \LaTeX\ packages, it is possible to estimate the page length of manuscripts for submission to the SPIE journals \emph{Optical Engineering} and \emph{Optical Engineering Letters}. With a strict three-page limit, this is particularly important for the latter. This template gives simple instructions on how to prepare the manuscript.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Usage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For layout according to the Optical Engineering Journal:
+\documentclass[10pt,letterpaper,optengjnl]{article}
+
+
+For layout and page length estimate (note three-page maximum) of OE Letters:
+\documentclass[10pt,letterpaper,optenglett]{article}
+
+
+For document inaccordance with submission guidelines (12pt font, double-spacing, figures to back):
+\documentclass[12pt,letterpaper,optengsubmit]{article}
+
+
+And always:
+\usepackage{opteng}

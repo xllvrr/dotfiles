@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{binarytree}
+\usetikzlibrary{graphs}
+
+\begin{document}
+\btreeset{math labels,scale=0.7}
+\begin{tikzpicture}
+  \BinaryTree[local bounding box=INIT]{%
+    :1!l:w!r:x:red!l:\sigma,ll!l:\sigma,lr!r:\sigma,
+    r:w!r:y!r:\sigma,rr!l:\sigma,rl!l:\sigma}{3}
+  \BinaryTree[local bounding box=FINAL,xshift=10cm]{
+    :1!l:w!l:x':red!l:\sigma,lr!r:\sigma,ll!r:\sigma,
+    r:w!r:y!r:\sigma,rr!l:\sigma,rl!l:\sigma}{3}
+  \graph[use existing nodes]{ INIT -> FINAL};
+\end{tikzpicture}
+\end{document}

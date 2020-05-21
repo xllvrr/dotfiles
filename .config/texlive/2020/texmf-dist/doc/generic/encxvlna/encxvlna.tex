@@ -1,0 +1,65 @@
+%% $Id: encxvlna.tex 514 2014-05-17 00:07:36Z zw $
+\input utf8-t1 % encTeX required for handling UTF-8 transparently
+\documentclass[12pt,a4paper]{article}
+\usepackage[czech,english]{babel}
+\languageattribute{czech}{split} % czech.ldf v.3.2 required
+% See e.g. http://icebearsoft.euweb.cz/tex/csh_babel.php
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{verbatim}
+\usepackage[protrusion=false,expansion=true,stretch=8,shrink=24,step=4]{microtype}
+\oddsidemargin -5mm
+\evensidemargin\oddsidemargin
+\headheight 0mm
+\headsep 0mm
+\topmargin -5mm
+\textheight 25cm
+\footskip 1cm
+\textwidth 17cm
+\def\sup#1{\ensuremath{^\mathrm{#1}}}
+\DeclareRobustCommand\TL{\TeX\ Live}
+\newif\ifeng
+\DeclareRobustCommand*\cmd[1]{\texttt{\char`\\#1}}
+\mubytein 0 % Dirty hack, url.sty contains illegal characters!!!
+\usepackage[bookmarks,bookmarksopenlevel=2,bookmarksopen,
+    pdftitle={ENCXVLNA,\ Vlna\ implemented\ in\ encTeX},
+    pdfauthor={Petr\ Olsak\ and\ Zdenek\ Wagner},
+    pdfkeywords={vlna,\ encTeX}]{hyperref}
+% To be used after all packages and definitions...
+\usepackage{encxvlna} % You need the egg before having the hen :-(
+\begin{document}
+\title{\textsc{encxvlna}\\Vlna implemented in enc\TeX}
+\author{Petr Olšák \& Zdeněk Wagner\\\url{http://math.feld.cvut.cz/olsak} \&
+\url{http://icebearsoft.euweb.cz}}
+\date{17\sup{th} May 2014}
+\maketitle
+\def\contentsname{Contents\,/\,Obsah}
+\tableofcontents
+
+\engtrue\input{vlna-inc}
+
+\clearpage
+
+\begin{otherlanguage*}{czech}
+\engfalse\input{vlna-inc}
+\end{otherlanguage*}
+
+\section{texmf-local/web2c/fmtutil-local.cnf}\label{fmtutil}
+\begingroup\footnotesize
+\begin{verbatim}
+# cslatex in UTF-8
+#!cslatex
+#!pdfcslatex
+cslatex		pdftex	-	-etex -enc cslatex-utf8.ini
+pdfcslatex	pdftex	-	-etex -enc cslatex-utf8.ini
+
+# latex with enctex
+#!latex
+#!pdflatex
+latex pdftex language.dat -enc -translate-file=cp227.tcx *latex.ini
+pdflatex pdftex language.dat -enc -translate-file=cp227.tcx *pdflatex.ini
+\end{verbatim}
+\endgroup
+
+\end{document}
+

@@ -1,0 +1,22 @@
+\section{Geschichte}
+\label{fach:geschichte}
+Das Fachmodul \module{Geschichte} bindet das Paket \pkg{biblatex} mit den Einstellungen für die humanwissenschaftliche Zitierweise ein. Des weiteren werden Befehle für durchnummerierte Quellen, Materialien und Verfassertexte zur Verfügung gestellt.
+
+\subsection{Befehle}
+    \begin{commands}
+        \command{material}[\oarg{Ebene}\marg{Titel}]\Default{\textbackslash subsection}
+            Erzeugt eine Überschrift, mit der Material markiert werden kann. Dazu wird am rechten Rand ein M mit einer fortlaufenden Nummer gesetzt. Standardmäßig ist als Überschriftsebene \verbcode|\subsection| gesetzt, dass über den optionalen Parameter geändert werden kann.
+
+        \command{quelle}[\oarg{Ebene}\marg{Titel}]\Default{\textbackslash subsection}
+            Erzeugt eine Überschrift, mit der eine Quelle markiert werden kann. Dazu wird am rechten Rand ein Q mit einer fortlaufenden Nummer gesetzt. Standardmäßig ist als Überschriftsebene \verbcode|\subsection| gesetzt, dass über den optionalen Parameter geändert werden kann.
+
+        \command{vt}[\oarg{Ebene}\marg{Titel}]\Default{\textbackslash subsection}
+            Erzeugt eine Überschrift, mit der ein Verfassertext markiert werden kann. Dazu wird am rechten Rand ein VT mit einer fortlaufenden Nummer gesetzt. Standardmäßig ist als Überschriftsebene \verbcode|\subsection| gesetzt, dass über den optionalen Parameter geändert werden kann.
+    \end{commands}
+    
+    Die so erstellten Textabschnitte können mit \verb|\nameref{sec:$REFERENZ_ART$NUMMER}| referenziert werden, z.\,B. per \verb|\nameref{sec:vt1}|. Für weitere Hinweise siehe \prettyref{example:bsp-geschichte}.
+    
+    
+% \begin{example}[gobble=0]
+% %
+% \end{example}

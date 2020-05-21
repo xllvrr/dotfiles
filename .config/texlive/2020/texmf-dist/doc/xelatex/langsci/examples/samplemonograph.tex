@@ -1,0 +1,58 @@
+\documentclass{./langscibook}
+\author{Pat Jaeung}
+\title{Sample monograph}
+\subtitle{}
+
+\renewcommand{\lsSeries}{cfls}
+\renewcommand{\lsSeriesNumber}{123}
+\renewcommand{\lsISBNdigital}{000-0-000000-00-0}
+\renewcommand{\lsISBNhardcover}{000-0-000000-00-0}
+\renewcommand{\lsISBNsoftcover}{000-0-000000-00-0}
+\renewcommand{\lsID}{000}
+% \BookDOI{}%ask coordinator for DOI
+
+\dedication{For Mom and Dad}
+\typesetter{Jane Doe}
+\proofreader{John Doe}
+\BackBody{What everyone should know about monographs: it's here}
+
+\bibliography{langsci-test}
+\begin{document}
+\maketitle
+\frontmatter
+\currentpdfbookmark{Contents}{name} % adds a PDF bookmark
+\tableofcontents
+\mainmatter
+\chapter{Introduction}
+This is the introduction.
+\chapter{New research}
+This is the main argument \citep{Chomsky1957}.
+\chapter{Conclusion}
+This is the conclusion.
+
+\backmatter
+\sloppy
+\phantomsection%this allows hyperlink in ToC to work
+\printbibliography[heading=references]
+\cleardoublepage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Index}
+\addcontentsline{toc}{section}{Name index}
+\ohead{Name index}
+\printindex
+\cleardoublepage
+
+\phantomsection
+\addcontentsline{toc}{section}{Language index}
+\ohead{Language index}
+\printindex[lan]
+\cleardoublepage
+
+\phantomsection
+\addcontentsline{toc}{section}{Subject index}
+\ohead{Subject index}
+\printindex[sbj]
+\ohead{}
+
+\end{document}

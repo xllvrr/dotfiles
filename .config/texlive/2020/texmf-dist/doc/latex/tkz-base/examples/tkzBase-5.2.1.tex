@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 10 (Section  5.2.1 : Customized origin.)
+
+\begin{tikzpicture}
+  \tkzInit[xmin=20,
+           xmax=50,
+           xstep=10,
+           ymin=5000,
+           ymax=5150,
+           ystep=50]
+  \tkzAxeXY
+  \tkzDefPoint(30,5100){A}
+  \tkzDrawPoint(A)
+\end{tikzpicture}
+
+\end{document}

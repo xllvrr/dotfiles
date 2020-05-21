@@ -1,0 +1,285 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2020 by Deanna Daly <gradschool@brandeis.edu>
+% -------------------------------------------------------
+% 
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+%    http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of LaTeX 
+% version 2005/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{brandeis-thesis.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+%<package>\ProvidesClass{brandeis-thesis}
+%<*package>
+    [2020/04/09 v3.1 .dtx brandeis-thesis file]
+%</package>
+%<package>\LoadClass[12pt]{article}
+%<package>\RequirePackage[margin=1in]{geometry}
+%<package>\RequirePackage{setspace}
+%<package>\RequirePackage{titlesec}
+%<package>\RequirePackage[utf8]{inputenc}
+%<package>\RequirePackage[english]{babel}
+%<package>\RequirePackage{csquotes}
+%<package>\AtBeginEnvironment{quote}{\singlespacing}
+%
+%<package>\titleformat*{\section}{\normalsize\bfseries}
+%<package>\titleformat*{\subsection}{\normalsize\bfseries}
+%<package>\titleformat*{\subsubsection}{\normalsize\bfseries}
+%
+%<package>\renewcommand\graduationmonth[1]{\def\@graduationmonth{#1}}
+%<package>\renewcommand\graduationyear[1]{\def\@graduationyear{#1}}
+%<package>\newcommand\program[1]{\def\@program{#1}}
+%<package>\newcommand\advisor[1]{\def\@advisor{#1}}
+%<package>\newcommand\degreetype[1]{\def\@degreetype{#1}}
+%<package>\addto\captionsenglish{\renewcommand*\contentsname{Table of Contents}}
+%<package>\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+%
+%<*package>
+\newcommand{\maketitlepage}{
+    \pagenumbering{gobble}
+    %\newgeometry{top=1.75in}
+    \begin{center}
+        \@title\\
+        \vspace{1em}
+        A Master's Thesis\\
+        \vspace{1em}
+        Presented to\\
+        \vspace{1em}
+        The Faculty of the Graduate School of Arts and Sciences\\
+        Brandeis University\\
+        \vspace{1em}
+        \@program\\
+        \vspace{1em}
+        \@advisor, Advisor\\
+        \vspace{1em}
+        In Partial Fulfillment\\
+        of the Requirements for the Degree\\
+        Master of \@degreetype\\
+        \vspace{1em}
+        by\\
+        \vspace{1em}
+        \@author\\
+        \vspace{1em}
+        \@graduationmonth\,\@graduationyear
+    \end{center}
+    \restoregeometry
+    \newpage
+    \pagenumbering{roman}
+    \setcounter{page}{2}
+}
+%</package>
+%<*package>
+\newcommand{\makecopyright}{
+    \pagenumbering{gobble}
+    \newgeometry{top=6.2in}
+    \begin{center}
+        Copyright by\\
+        \@author{}\\
+        \vspace{1em}
+        \@graduationyear{}
+    \end{center}
+    \restoregeometry
+    \newpage
+    \pagenumbering{roman}
+    \setcounter{page}{3}
+}
+%</package>
+%<*package>
+\newenvironment{thesis-abstract}
+    {
+    %\newgeometry{top=1.4in}
+    \begin{center}
+        \MakeUppercase{Abstract}\\
+        \vspace{1em}
+        \@title\\
+        \vspace{1em}
+        A thesis presented to the Faculty of the\\
+        Graduate School of Arts and Sciences of Brandeis University\\
+        Waltham, Massachusetts\\
+        \vspace{1em}
+        By\,\@author\\
+        \vspace{2em}
+    \end{center}
+    \doublespacing
+    }
+    {
+    \restoregeometry
+    }
+%</package>
+%<*package>
+\newcommand{\startbody}{
+    \newpage
+    \pagenumbering{arabic}
+    \doublespacing
+}
+%</package>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs         
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{brandeis-thesis.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v3.0}{2020/01/21}{Initial version}
+% \changes{v3.1}{2020/04/09}{Formatting update}
+%
+% \GetFileInfo{brandeis-thesis.dtx}
+%
+% \DoNotIndex{\newcommand,\newenvironment}
+% 
+%
+% \title{The \textsf{brandeis-thesis} package\thanks{This document
+%   corresponds to \textsf{brandeis-thesis}~\fileversion, dated \filedate.}}
+% \author{Brandeis University GSAS \\ \texttt{gradschool@brandeis.edu}}
+%
+% \maketitle
+%
+% \section{Introduction}
+% 
+% This document explains how to use the \textsf{brandeis-thesis} class in \LaTeX{} to format your thesis according to the specifications of Brandeis University's Graduate School of Arts and Sciences. 
+% 
+% The \textsf{brandeis-thesis} class will do the following for you:
+% \begin{itemize}
+%     \item Create your title, copyright, and abstract pages.
+%     \item Ensure your thesis has the correct margins, spacing, and pagination.
+% \end{itemize}
+% 
+% \section{Usage}
+% \label{Sec:usage}
+% 
+% \subsection{Title Information}
+% \label{Sec:general}
+% 
+% The following commands are used to save information that is used to render your title page:
+% 
+% \begin{verbatim}
+% \title{}
+% \author{}
+% \graduationmonth{}
+% \graduationyear{}
+% \program{}
+% \advisor{}
+% \degreetype{}
+% \end{verbatim}
+% 
+% For example, including the following in your document:
+% 
+% \begin{verbatim}
+% \title{LaTeXing Your Thesis}
+% \author{Deanna Daly}
+% \graduationmonth{May}
+% \graduationyear{2020}
+% \program{Computer Science}
+% \advisor{Alan Turing}
+% \degreetype{Science}
+% \end{verbatim}
+% 
+% would set your thesis to one with a title of "LaTeXing Your Thesis", an author of "Deanna Daly", a graduation time of May 2020, with the advisor "Alan Turing" in the Computer Science program, for a Master of Science Degree.
+% 
+% \subsection{Creating Front Matter}
+% 
+% The title and copyright pages of your thesis can be created with just one line each:
+% 
+% \begin{verbatim}
+% \maketitlepage
+% \makecopyright
+% \end{verbatim}
+% 
+% The abstract is created with the \texttt{thesis-abstract} environment, as in the following example:
+% 
+% \begin{verbatim}
+% \begin{thesis-abstract}
+% I present a simple explanation of how to LaTeX your thesis.
+% \end{thesis-abstract}
+% \end{verbatim}
+% 
+% This will create your abstract page, with the abstract being ``I present a simple explanation of how to LaTeX your thesis.''
+% 
+% Table of Contents, List of Figures, etc. can be generated as usual using \LaTeX. You should precede these with \texttt{\textbackslash doublespacing} to make them double spaced.
+% 
+% To end the front matter section of your thesis and begin the body of your thesis, use the command \texttt{\textbackslash startbody}.
+% 
+% The rest of your thesis may be written as normal; margins, spacing, and pagination should be set automatically, with the exception of your bibliography. To make your bibliography single spaced, you should precede it with You should precede these with \texttt{\textbackslash singlespacing}.
+% 
+% \section{Example}
+% 
+% The below example provides the source code for a simple thesis with no figures or citations.
+% 
+% \begin{verbatim}
+% \documentclass[red]{brandeis-thesis}
+% \usepackage[utf8]{inputenc}
+% 
+% \title{LaTeXing Your Thesis}
+% \author{Deanna Daly}
+% \graduationmonth{May}
+% \graduationyear{2020}
+% \program{Computer Science}
+% \advisor{Alan Turing}
+% \degreetype{Science}
+% 
+% \begin{document}
+% 
+% \maketitlepage
+% \makecopyright
+% 
+% \begin{thesis-abstract}
+% I present a simple explanation of how to LaTeX your thesis.
+% \end{thesis-abstract}
+% 
+% \doublespacing
+% \tableofcontents
+% 
+% \startbody
+% 
+% \section{Introduction}
+% Using \LaTeX for your thesis is easy.
+% 
+% \section{Body}
+% You can copy paste this code, and add your own thesis.
+% 
+% \section{Conclusion}
+% The thesis class should help you with your formatting.
+% 
+% \end{document}
+% \end{verbatim}
+%
+% \Finale
+\endinput
+

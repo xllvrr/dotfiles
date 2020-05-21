@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>dosepsbin</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">Name</a></li>
+	<li><a href="#version">Version</a></li>
+	<li><a href="#synopsis">Synopsis</a></li>
+	<li><a href="#description">Description</a></li>
+	<ul>
+
+		<li><a href="#dos_eps_binary_file_format">DOS EPS Binary File Format</a></li>
+	</ul>
+
+	<li><a href="#options">Options</a></li>
+	<li><a href="#examples">Examples</a></li>
+	<li><a href="#author">Author</a></li>
+	<li><a href="#copyright_and_license">Copyright and license</a></li>
+	<li><a href="#see_also">See also</a></li>
+	<li><a href="#history">History</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">Name</a></h1>
+<p>dosepsbin -- Extract PS/WMF/TIFF sections from DOS EPS binary files</p>
+<p>
+</p>
+<hr />
+<h1><a name="version">Version</a></h1>
+<p>2012-03-22 v1.2</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">Synopsis</a></h1>
+<p>The progam <strong>dosepsbin</strong> analyses an EPS file that is not
+a plain ASCII PostScript file but given as DOS EPS binary file.</p>
+<pre>
+    dosepsbin [options] &lt;input file&gt;</pre>
+<p>First it analyzes the <em>input file</em>, validates its header
+and summarizes the available sections. Depending on the
+given options, the sections are then written to files.</p>
+<p>Options:</p>
+<pre>
+    --eps-file &lt;file&gt;      Write PS section to &lt;file&gt;.
+    --wmf-file &lt;file&gt;      Write WMF section to &lt;file&gt;.
+    --tiff-file &lt;file&gt;      Write TIFF section to &lt;file&gt;.
+    --inputfile &lt;file&gt;     The name of the input file.
+    --verbose              Verbose output.
+    --quiet                Only errors and warnings are printed.
+    --help                 Brief help message.
+    --man                  Full documentation.
+    --version              Print version identification.</pre>
+<p>The files for output must be different from the input file.</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">Description</a></h1>
+<p>
+</p>
+<h2><a name="dos_eps_binary_file_format">DOS EPS Binary File Format</a></h2>
+<p>A Encapsulated PostScript (EPS) file can also given in a special
+binary format to support the inclusion of a thumbnail. The file
+format starts with a binary header that contains the positions of
+the possible sections:</p>
+<ul>
+<li><strong><a name="item_postscript">Postscript (PS)</a></strong><br />
+</li>
+<li><strong><a name="item_format">Windows Metafile Format (WMF)</a></strong><br />
+</li>
+<li><strong>Tag Image File Format (TIFF)</strong><br />
+</li>
+</ul>
+<p>The PS section must be present and either the WMF file or the TIFF
+file should be given.</p>
+<p>
+</p>
+<hr />
+<h1><a name="options">Options</a></h1>
+<dl>
+<dt><strong><a name="item__2d_2deps_2dfile_3d_3cfile_3e"><strong>-</strong><strong>-eps-file</strong>=&lt;<em>file</em>&gt;</a></strong><br />
+</dt>
+<dd>
+The PS section is written to &lt;<em>file</em>&gt;. The output file must
+be different from the input file.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dwmf_2dfile_3d_3cfile_3e"><strong>-</strong><strong>-wmf-file</strong>=&lt;<em>file</em>&gt;</a></strong><br />
+</dt>
+<dd>
+The WMF section is written to &lt;<em>file</em>&gt; if present. The output
+file must be different from the input file.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dtiff_2dfile_3d_3cfile_3e"><strong>-</strong><strong>-tiff-file</strong>=&lt;<em>file</em>&gt;</a></strong><br />
+</dt>
+<dd>
+The TIFF section is written to &lt;<em>file</em>&gt; if present. The output
+file must be different from the input file.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dinputfile_3d_3cfile_3e"><strong>-</strong><strong>-inputfile</strong>=&lt;<em>file</em>&gt;</a></strong><br />
+</dt>
+<dd>
+The input file can also be given directly on the command line.
+If the file does not exist, then the file with extension `.eps'
+is tried.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dverbose"><strong>-</strong><strong>-verbose</strong></a></strong><br />
+</dt>
+<dd>
+Verbose messages.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dquiet"><strong>-</strong><strong>-quiet</strong></a></strong><br />
+</dt>
+<dd>
+No messages are printed except for errors and warnings.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dhelp"><strong>-</strong><strong>-help</strong></a></strong><br />
+</dt>
+<dd>
+Display help screen.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dman"><strong>-</strong><strong>-man</strong></a></strong><br />
+</dt>
+<dd>
+Prints manual page.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dversion"><strong>-</strong><strong>-version</strong></a></strong><br />
+</dt>
+<dd>
+Print version identification and exit.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="examples">Examples</a></h1>
+<p>The following command extracts the PS section from file <em>test.eps</em>
+and stores the result in file <em>test-ps.eps</em>:</p>
+<pre>
+    dosepsbin --eps-file test-ps.eps test.eps</pre>
+<p>
+</p>
+<hr />
+<h1><a name="author">Author</a></h1>
+<p>Heiko Oberdiek, email: heiko.oberdiek at googlemail.com</p>
+<p>
+</p>
+<hr />
+<h1><a name="copyright_and_license">Copyright and license</a></h1>
+<p>Copyright 2011-2012 by Heiko Oberdiek.</p>
+<p>This library is free software; you may redistribute it and/or
+modify it under the same terms as Perl itself
+(Perl Artistic License/GNU General Public License, version 2).</p>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">See also</a></h1>
+<p>The DOS EPS binary file format is described
+in section ``5.2 Windows Metafile or TIFF'':</p>
+<pre>
+    Adobe Developer Support,
+    Encapsulated PostScript File Format Specification,
+    Version 3.0,
+    1992-05-01,
+    <a href="http://partners.adobe.com/public/developer/en/ps/5002.EPSF_Spec.pdf">http://partners.adobe.com/public/developer/en/ps/5002.EPSF_Spec.pdf</a></pre>
+<p>
+</p>
+<hr />
+<h1><a name="history">History</a></h1>
+<ol>
+<li><strong><a name="item__2f11_2f10_v1_2e0"><strong>2011/11/10 v1.0</strong></a></strong><br />
+</li>
+<ul>
+<li><strong><a name="item_first_version_2e">First version.</a></strong><br />
+</li>
+</ul>
+<li><strong><a name="item__2f12_2f05_v1_2e1"><strong>2011/12/05 v1.1</strong></a></strong><br />
+</li>
+<ul>
+<li><strong><a name="item_text">Typo fixed in help text (thanks Peter Breitenlohner).</a></strong><br />
+</li>
+</ul>
+<li><strong><a name="item__2f03_2f22_v1_2e2"><strong>2012/03/22 v1.2</strong></a></strong><br />
+</li>
+<ul>
+<li><strong><a name="item_fix_in_validation_test_for_offset_of_ps_section_2e">Fix in validation test for offset of PS section.</a></strong><br />
+</li>
+</ul>
+</ol>
+
+</body>
+
+</html>

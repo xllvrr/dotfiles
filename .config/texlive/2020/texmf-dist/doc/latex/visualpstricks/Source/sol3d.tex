@@ -1,0 +1,1130 @@
+\emph{Cette partie sera complétée dans uns version ultérieure}
+
+\psset{fillstyle=none,fillcolor=yellow,linecolor=blue,incolor=green!50}
+
+
+\subsection{Axes}
+\psset{unit=.25cm}
+\begin{tabular}{|c|c|c|} \hline 
+ \begin{pspicture}(-7,-4)(7,10)
+ \psframe(-7,-4)(7,10)
+ \axesIIID(0,0,0)(2,2,2)
+ \end{pspicture}
+ &
+ \begin{pspicture}(-7,-4)(7,10)
+ \psframe(-7,-4)(7,10)
+\axesIIID(2,2,2)(2,2,2)
+\end{pspicture}
+&  
+ \begin{pspicture}(-7,-4)(7,10)
+ \psframe(-7,-4)(7,10)
+\axesIIID(1,1,1)(2,2,2)
+\end{pspicture}
+\\ \hline
+ \BSS{axesIIID}(0,0,0)(2,2,2)  \BSI{axesIIID}{pst-sol3d}
+ & 
+\BSS{axesIIID}(2,2,2)(2,2,2)
+&  
+\BSS{axesIIID}(1,1,1)(2,2,2)
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+\begin{tabular}{|c|c|c|} \hline 
+ \begin{pspicture}(-7,-4)(7,10)
+ \psframe(-7,-4)(7,10)
+ \axesIIID[labelsep=0cm](0,0,0)(2,2,2)
+ \end{pspicture}
+ &
+ \begin{pspicture}(-7,-4)(7,10)
+ \psframe(-7,-4)(7,10)
+\axesIIID[axisnames={a,b,c}](0,0,0)(2,2,2)
+\end{pspicture}
+&  
+ \begin{pspicture}(-7,-4)(7,10)
+ \psframe(-7,-4)(7,10)
+\axesIIID[showOrigin=false](1,1,1)(2,2,2)
+\end{pspicture}
+\\ \hline
+\RDD{labelsep}=0cm
+ & 
+\RDD{axisnames}=\AC{a,b,c} \RDI{axisnames}{pst-sol3d}
+&  
+\RDD{showOrigin}=false \RDI{showorigin}{pst-sol3d}
+\\ \hline 
+\dft : labelsep=5pt & \dft : axisnames=\AC{x,y,z} & \dft : showOrigin=true\\ \hline 
+\end{tabular} 
+   
+%\subsection{\'Element en 3D}  
+\SbSSCT{\'Element en 3D}{3D elements}
+
+\psset{unit=.5cm}
+
+
+%--------------------point, line, vector,
+%\subsubsection{point, line, vector}
+\SbSbSSCT{point, ligne, vecteur}{point, line, vector}
+
+\begin{tabular}{|c|c|c|} \hline  
+% \multicolumn{3}{|l|}{\BS{psSolid}[object=point,args=1 2 2]} \\
+\begin{pspicture}(-4,-4)(4,4)
+\psframe(-4,-4)(4,4)
+\axesIIID(0,0,0)(1,1,1)
+\psSolid[object=point,args=1 2 2,linecolor=red]			%point
+\psSolid[object=line,args=0 0 0 1 2 0,linestyle=dotted,linecolor=red]
+\psSolid[object=line,args=1 2 2 1 2 0,linestyle=dotted,linecolor=red]
+\end{pspicture}
+&  
+\begin{pspicture}(-4,-4)(4,4)
+\psframe(-4,-4)(4,4)
+\axesIIID(0,0,0)(1,1,1)
+
+\psSolid[object=line,args=0 -1 0 1 2 2] % line
+\psSolid[object=line,args=0 0 0 0 -2 0,linecolor=red]
+\psSolid[object=line,args=0 0 0 1 2 0,linestyle=dotted,linecolor=red]
+\psSolid[object=line,args= 1 2 0 1 2 2,linestyle=dotted,linecolor=red]
+\end{pspicture}
+&  
+\begin{pspicture}(-4,-4)(4,4)
+\psframe(-4,-4)(4,4)
+\axesIIID(0,0,0)(1,1,1)
+\psSolid[object=vecteur,args=1 2 2,linecolor=red] % vecteur
+\psSolid[object=line,args=0 0 0 1 2 0,linestyle=dotted,linecolor=red]
+\psSolid[object=line,args=1 2 2 1 2 0,linestyle=dotted,linecolor=red]
+\end{pspicture}\\ \hline
+[\RDD{object=point},args=1 2 2] \RDI{object=point}{pst-sol3d} & 
+[\RDD{object=line},args=0 -1 0 1 2 2] \RDI{object=line}{pst-sol3d}&
+[\RDD{object=vecteur},args=1 2 2] \RDI{object=vecteur}{pst-sol3d}
+\\ \hline
+\end{tabular} 
+\bigskip
+ %------------------------- plan, grille, cube
+ \psset{unit=.2cm}
+ 
+ 
+% \subsubsection{ plan}
+\SbSbSSCT{Plan}{Plane}
+ 
+\begin{tabular}{|c|c|} \hline 
+ \multicolumn{2}{|l|}{\BS{psSolid}[\RDD{object=plan},definition=equation,args=\Rnode*[fillcolor=yellow]{A}{\AC{[0 0 1 0]}},base=-2 2 -3 3] \RDI{object=plan}{pst-sol3d} } \\ 
+ \multicolumn{2}{|l|}{ } \\ 
+ \multicolumn{2}{|c|}{  \rnode{AA}{coeff de l'équation  ax+by+cz+d = 0} } \\  \hline
+\begin{pspicture}(-12,-10)(12,10)
+\psframe(-12,-10)(12,10)
+\psSolid[object=plan,definition=equation,args={[0 0 1 0]},base=-2 2 -3 3]
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-12,-10)(12,10)
+ \psframe(-12,-10)(12,10)
+\psSolid[object=plan,definition=equation,args={[0 1 0 0]},base=-2 2 -3 3]
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+\\ \hline
+args=\AC{[0 0 1 0]} & args=\AC{[0 1 0 0]}  \\ \hline
+\end{tabular} 
+\ncline[linecolor=blue]{A}{AA}
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+% \multicolumn{3}{|c|}{ \BS{psSolid}[object=cube,a=3,action=draw] } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+%\axesIIID(1,1,1)(1,1,1)
+\psSolid[object=plan,definition=equation,args={[1 0 0 0]},base=-2 2 -3 3]
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+%\axesIIID(1,1,1)(1,1,1)
+\psSolid[object=plan,definition=equation,args={[0 0 1 1]},base=-2 2 -3 3]
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+ & 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+%\axesIIID(1,1,1)(1,1,1)
+\psSolid[object=plan,definition=equation,args={[1 1 0 0]},base=-2 2 -3 3]
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+\\ \hline
+args={[1 0 0 0]} & args={[0 0 1 1]} & args={[1 1 0 0]} \\ \hline
+\end{tabular}
+
+
+%------------------------------------------
+
+%\subsubsection{grille}
+\SbSbSSCT{Grille}{Grid}
+
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{\BS{psSolid}[\RDD{object=grille},base=-2 2 -3 3] \RDI{object=grille}{pst-sol3d}} \\ \hline
+\begin{pspicture}(-12,-10)(12,10)
+ \psframe(-12,-10)(12,10)
+\psSolid[object=grille,base=-2 2 -3 3] % grille
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-12,-10)(12,10)
+ \psframe(-12,-10)(12,10)
+\psSolid[object=grille,base=-2 2 -3 3,RotX=-90] % grille
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-12,-10)(12,10)
+ \psframe(-12,-10)(12,10)
+\psSolid[object=grille,base=-2 2 -3 3,RotY=90] % grille
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+
+\\ \hline
+\dft & RotX=90 & RotY=90  \\ \hline
+\end{tabular} 
+\bigskip
+
+%------------------------------------------------------------------------------
+
+%
+%\begin{pspicture}(-10,-10)(10,10)
+% \psframe(-10,-10)(10,10)
+%%\axesIIID(1,1,1)(1,1,1)
+%\psSolid[object=cube,action=draw] %cube
+% \axesIIID[linecolor=red](0,0,0)(1,1,1)
+%\end{pspicture}
+%
+%\begin{pspicture}(-10,-5)(10,15)
+% \psframe(-10,-5)(10,15)
+%\psSolid[object=cylindre,action=draw](0,0,0)%
+% \axesIIID[linecolor=red](0,0,0)(1,1,1)
+%\end{pspicture}
+
+\subsubsection{cube}
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[object=cube,a=3,action=draw] } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+%\axesIIID(1,1,1)(1,1,1)
+\psSolid[object=cube,a=3,action=draw] %cube
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+%\axesIIID(1,1,1)(1,1,1)
+\psSolid[object=cube,a=3,action=draw*] %cube
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+ & 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+%\axesIIID(1,1,1)(1,1,1)
+\psSolid[object=cube,a=3,action=draw**] %cube
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+\bigskip
+
+
+%\subsubsection{cylindre}
+\SbSbSSCT{Cylindre}{Cylinder}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=cylindre},h=3,r=2,action=draw](0,0,0) \RDI{object=cylindre}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=cylindre,h=3,r=2,action=draw](0,0,0)%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=cylindre,h=3,r=2,action=draw*](0,0,0)%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=cylindre,h=3,r=2,action=draw**](0,0,0)%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+
+
+%\subsubsection{cylindrecreux}
+\SbSbSSCT{cylindre creux}{Tube}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=cylindrecreux},h=3,r=2,action=draw](0,0,0) \RDI{object=cylindrecreux}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=cylindrecreux,h=3,r=2,action=draw](0,0,0)%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=cylindrecreux,h=3,r=2,action=draw*](0,0,0)%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=cylindrecreux,h=3,r=2,action=draw**](0,0,0)%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+
+
+%\subsubsection{cone}
+\SbSbSSCT{Cône}{Cone}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=cone},h=3,r=2,action=draw] \RDI{object=cone}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=cone,h=3,r=2,action=draw]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=cone,h=3,r=2,action=draw*]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=cone,h=3,r=2,action=draw**]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+
+\subsubsection{conecreux}
+\SbSbSSCT{Cône creux}{Empty cone}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=conecreux},h=4,r=2,action=draw] \RDI{object=conecreux}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=conecreux,h=4,r=2,action=draw]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=conecreux,h=4,r=2,action=draw*]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=conecreux,h=4,r=2,action=draw**]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+\bigskip
+
+%\subsubsection{tronccone}
+\SbSbSSCT{Tronc de cône}{Truncated cone}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=tronccone},r0=2,r1=1,h=4,action=draw] \RDI{object=troncone}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=tronccone,r0=2,r1=1,h=4,action=draw]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=tronccone,r0=2,r1=1,h=4,action=draw*]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=tronccone,r0=2,r1=1,h=4,action=draw**]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+
+%\subsubsection{troncconecreux}
+\SbSbSSCT{Tronc de cône creux creux}{Empty truncated cone}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=troncconecreux},r0=2,r1=1,h=4,action=draw] \RDI{object=tronconecreux}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=troncconecreux,r0=2,r1=1,h=4,action=draw]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=troncconecreux,r0=2,r1=1,h=4,action=draw*]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,15)
+ \psframe(-10,-5)(10,15)
+\psSolid[object=troncconecreux,r0=2,r1=1,h=4,action=draw**]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+\bigskip
+
+\subsubsection{sphere}
+
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=sphere},r=1,action=draw] \RDI{object=sphere}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=sphere,r=3,action=draw]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=sphere,r=3,action=draw*]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=sphere,r=3,action=draw**]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+\bigskip
+
+%\subsubsection{calottesphere}
+\SbSbSSCT{Calotte sphérique}{Spherical cup}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=calottesphere},r=3,action=draw] \RDI{object=calottesphere}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=calottesphere,r=3,action=draw]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=calottesphere,r=3,action=draw*]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1) \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=calottesphere,r=3,action=draw**]%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+
+%\subsubsection{calottespherecreuse}
+\SbSbSSCT{calotte spherique creuse}{empty spherical cup}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=calottespherecreuse},r=3,action=draw] \RDI{object=calottespherecreuse}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=calottespherecreuse,r=3,action=draw]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=calottespherecreuse,r=3,action=draw*]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=calottespherecreuse,r=3,action=draw**]%
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+
+%\subsubsection{tore}
+\SbSbSSCT{Tore}{Torus}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[r1=2,r0=1, \RDD{object=tore},ngrid=18 36,action=draw] \RDI{object=tore}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[r1=2,r0=1,object=tore,ngrid=18 36,action=draw]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[r1=2,r0=1,object=tore,ngrid=18 36,action=draw*]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[r1=2,r0=1,object=tore,ngrid=18 36,action=draw**]%
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+\bigskip
+
+%\subsubsection{anneau}
+\SbSbSSCT{Anneau}{Ring}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=anneau},h=1,R=2,r=1,action=draw] \RDI{object=anneau}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=anneau,h=1,R=2,r=1,action=draw]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=anneau,h=1,R=2,r=1,action=draw*]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=anneau,h=1,R=2,r=1,action=draw**]%
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+\bigskip
+%------------------------------
+
+%\subsubsection{ conecreux,tronccone, troncconecreux}
+%\begin{tabular}{|c|c|c|} \hline 
+%\begin{pspicture}(-10,-5)(10,15)
+% \psframe(-10,-5)(10,15)
+%\axesIIID(1,1,1)(1,1,1)
+%\psSolid[object=conecreux,h=3,r=2,RotY=-60,mode=4] % conecreux
+%\end{pspicture}
+% & 
+%\begin{pspicture}(-10,-5)(10,15)
+% \psframe(-10,-5)(10,15)
+% \axesIIID(1,1,1)(1,1,1)
+%\psSolid[object=tronccone,r0=2,r1=1,h=3,mode=4] % tronccone
+%\end{pspicture}
+%&
+%\begin{pspicture}(-10,-5)(10,15)
+% \psframe(-10,-5)(10,15)
+% \axesIIID(1,1,1)(1,1,1)
+%\psSolid[object=tetrahedron,r=3,action=draw**]%
+%\end{pspicture}
+%\\ \hline 
+%\end{tabular} 
+
+\subsubsection{tetrahedron}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[object=tetrahedron,r=1,RotZ=30,action=draw] } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+%\axesIIID(1,1,1)(1,1,1)
+\psSolid[object=tetrahedron,r=3,action=draw,RotZ=30]%
+\end{pspicture}
+ & 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+% \axesIIID(1,1,1)(1,1,1)
+\psSolid[object=tetrahedron,r=3,action=draw*,RotZ=30]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+% \axesIIID(1,1,1)(1,1,1)
+\psSolid[object=tetrahedron,r=3,action=draw**,RotZ=30]%
+\end{pspicture}\\ \hline 
+action=draw & action=draw* & action=draw**\\ \hline
+
+\end{tabular} 
+
+
+%------------ sphere, calottesphere, calottespherecreuse
+
+
+
+
+
+
+
+
+
+\subsubsection{parallelepiped}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=parallelepiped},a=1,b=2,c=3,action=draw] \RDI{object=parallelepiped}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw*]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw**]%
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+\bigskip
+
+\subsubsection{octahedron}
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=octahedron},a=30,action=draw] \RDI{object=octahedron}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=octahedron,a=3,action=draw]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=octahedron,a=3,action=draw*]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=octahedron,a=3,action=draw**]%
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+\bigskip
+
+\subsubsection{dodecahedron}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=dodecahedron},a=2.5,RotZ=90,action=draw] \RDI{object=dodecahedron}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=dodecahedron,a=2.5,RotZ=90,action=draw]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=dodecahedron,a=2.5,RotZ=90,action=draw*]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=dodecahedron,a=2.5,RotZ=90,action=draw**]%
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+\bigskip
+
+\subsubsection{icosahedron}
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=icosahedron},a=3,action=draw] \RDI{object=icosahedron}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=icosahedron,a=3,action=draw]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=icosahedron,a=3,action=draw*]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+
+\psSolid[object=icosahedron,a=3,action=draw**]%
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+\bigskip
+
+
+%\subsubsection{prisme}
+\SbSbSSCT{Prisme}{prism}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=prisme},action=draw,h=4] \RDI{object=prisme}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-5)(10,10)
+ \psframe(-10,-5)(10,10)
+\psSolid[object=prisme,action=draw,h=2]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,10)
+ \psframe(-10,-5)(10,10)
+\psSolid[object=prisme,action=draw*,h=2]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,10)
+ \psframe(-10,-5)(10,10)
+\psSolid[object=prisme,action=draw**,h=2]%
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+
+%\subsubsection{prismecreux}
+\SbSbSSCT{Prisme creux}{Empty prism}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=prismecreux},action=draw,h=4] \RDI{object=prismecreux}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-5)(10,10)
+ \psframe(-10,-5)(10,10)
+\psSolid[object=prismecreux,action=draw,h=2]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,10)
+ \psframe(-10,-5)(10,10)
+\psSolid[object=prismecreux,action=draw*,h=2]%
+\end{pspicture}
+&
+\begin{pspicture}(-10,-5)(10,10)
+ \psframe(-10,-5)(10,10)
+\psSolid[object=prismecreux,action=draw**,h=2]%
+\end{pspicture}\\ \hline
+action=draw & action=draw* & action=draw**\\ \hline
+\end{tabular} 
+\bigskip
+
+\subsubsection{face,ruban}
+
+\begin{tabular}{|c|c|c|} \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=face,fillcolor=yellow,incolor=blue,base=0 0 3 0 1.5 3](0,1,0)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=ruban,h=3,base=0 0 2 2 4 0 6 2,num=0 1 2 3,show=0 1 2 3,ngrid=3])
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+ \axesIIID(1,1,1)(4,7,4)
+\psSolid[object=ruban,h=3,base=0 0 2 2 4 0 6 2])
+\end{pspicture}
+\\ \hline
+\end{tabular} 
+
+%============================================== A VOIR ========================================
+
+%\newpage
+%
+%\begin{pspicture}(-10,-10)(10,10)
+% \psframe(-10,-10)(10,10)
+%\psSurface[ngrid=.25 .25,incolor=white,axesboxed](-4,-4)(4,4){x dup mul y dup mul 3 mul sub x mul 32 div}
+%\end{pspicture}
+%
+%\newpage
+%
+%\begin{pspicture}(-10,-10)(10,10)
+%\psframe(-10,-10)(10,10)
+%\psSolid[object=new,action=draw,sommets=
+%-3 0 0
+%3 0 0
+%0 -3 0
+%0 3 0
+%0 0 -3
+%0 0 3 ,
+%faces={
+%[0 2 1 3]
+%[0 4 1 5]}]%
+%\end{pspicture}
+%
+%\begin{pspicture}(-10,-10)(10,10)
+%\psframe(-10,-10)(10,10)
+%\psSolid[object=new,action=draw,sommets=
+%-3 0 0
+%3 0 0
+%0 -3 0
+%0 3 0
+%0 0 -3
+%0 0 3 ,
+%faces={
+%[0 2 1 3]
+%[0 4 1 5]}
+%,show=all,num=all
+%]%
+%\end{pspicture}
+%\newpage
+%
+%\begin{pspicture}(-10,-10)(10,10)
+%\psframe(-10,-10)(10,10)
+%\psSolid[object=new,action=draw,sommets=
+%2 4 3
+%-2 4 3
+%-2 -4 3
+%2 -4 3
+%2 4 0
+%-2 4 0
+%-2 -4 0
+%2 -4 0
+%0 4 5
+%0 -4 5,
+%faces={
+%[0 1 2 3]
+%[7 6 5 4]
+%[0 3 7 4]
+%[3 9 2]
+%[1 8 0]
+%[8 9 3 0]
+%[9 8 1 2]
+%[6 7 3 2]
+%[2 1 5 6]}]%
+%\end{pspicture}
+%
+%\newpage
+%\begin{pspicture}(-10,-10)(10,10)
+%\psframe(-10,-10)(10,10)
+%\defFunction[algebraic]{helice}(t){3*cos(4*t)}{3*sin(4*t)}{t}
+%\psSolid[object=courbe,r=0,range=0 6,linecolor=blue,linewidth=0.1,resolution=360,function=helice,fillcolor=red]
+%\end{pspicture}
+%%
+%
+%
+%\newpage
+%\psset{unit=1cm}
+%
+%
+%
+%\begin{pspicture}(-2,-2)(3,3)
+%\psframe(-2cm,-2cm)(3cm,3cm)
+%\psset{viewpoint=100 30 20,Decran=100}
+%\psSolid[object=cube,a=2,action=draw*, fillcolor=magenta!20]
+%\axesIIID[showOrigin=false](1,1,1)(3,2,2.5)
+%\end{pspicture}
+%\newpage
+\subsection{Mode}
+
+\begin{tabular}{|c|c|c|c|} \hline 
+ \multicolumn{4}{|c|}{ \BS{psSolid}[object=cylindre,h=3,r=1.5,\RDD{mode}=1](0,0,0) \RDI{mode}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-7,-5)(7,15)
+% \psframe(-7,-5)(7,15)
+\psSolid[object=cylindre,h=3,r=1.5,mode=1](0,0,0)%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-7,-5)(7,15)
+% \psframe(-7,-5)(7,15)
+\psSolid[object=cylindre,h=3,r=1.5,mode=2](0,0,0)%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-7,-5)(7,15)
+% \psframe(-7,-5)(7,15)
+\psSolid[object=cylindre,h=3,r=1.5,mode=3](0,0,0)%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-7,-5)(7,15)
+% \psframe(-7,-5)(7,15)
+\psSolid[object=cylindre,h=3,r=1.5,mode=4](0,0,0)%
+ \axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}\\ \hline
+mode=1 & mode=2 & mode=3 & mode=4\\ \hline
+\end{tabular}
+%-------------------------------------------------
+
+\subsubsection{Options}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[object=cube,a=3,action=draw*,\RDD{trunc}=all,RotZ=30] \RDI{trunc}{pst-sol3d} } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+\psSolid[object=cube,a=3,action=draw*,trunc=all,RotZ=30] %cube
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+\psSolid[object=cube,a=3,action=draw*,trunc=0  2 4,RotZ=30] %cube
+\end{pspicture}
+ & 
+\begin{pspicture}(-10,-10)(10,10)
+\psSolid[object=cube,a=3,action=draw*,trunccoeff=.5,trunc=all,RotZ=30] %cube
+\end{pspicture}
+\\ \hline
+\RDD{trunc}=all & \RDD{trunc}=0  2 4  & \RDD{trunccoeff}=.5 \RDI{trunccoeff}{pst-sol3d}\\ \hline
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[object=cube,a=3,action=draw,\RDD{chanfrein},RotZ=30] \RDI{chanfrein}{pst-sol3d}} \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+\psSolid[object=cube,a=3,action=draw*,chanfrein,RotZ=30] %cube
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+\psSolid[object=cube,a=3,action=draw*,chanfrein,chanfreincoeff=.2,RotZ=30] %cube
+\end{pspicture}
+ & 
+\begin{pspicture}(-10,-10)(10,10)
+\psSolid[object=cube,a=3,action=draw*,chanfreincoeff=.5,chanfrein,RotZ=30] %cube
+\end{pspicture}
+\\ \hline
+\RDD{chanfrein} & chanfrein,\RDD{chanfreincoeff}=.2 \RDI{chanfreincoeff}{pst-sol3d} & chanfrein,\RDD{chanfreincoeff}=.5 \\ \hline
+\end{tabular} 
+\bigskip
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[object=cube,a=3,action=draw**,hollow,affinage=0,RotZ=30] } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+\psSolid[object=cube,a=3,action=draw**,hollow,affinage=0,RotZ=30] %cube
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+\psSolid[object=cube,a=3,action=draw**,hollow,affinage=3 4,RotZ=30,] %cube
+\end{pspicture}
+ & 
+\begin{pspicture}(-10,-10)(10,10)
+\psSolid[object=cube,a=3,action=draw**,hollow,affinage=all,RotZ=30,] %cube
+\end{pspicture}
+\\ \hline
+\RDD{hollow} \RDI{hollow}{pst-sol3d},\RDD{affinage}=3 \RDI{affinage}{pst-sol3d}& \RDD{hollow},,\RDD{affinage}=3 4  & \RDD{hollow},\RDD{affinage}=all \\ \hline
+\end{tabular} 
+\bigskip
+
+%========================================================================
+\subsection{Positionnement}
+\psset{unit=.25cm}
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=parallelepiped},a=1,b=2,c=3,action=draw](1 0 0) \RDI{object=parallelepiped}{pst-sol3d}} \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+ \psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,linestyle=dotted]% 
+\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw](1 0 0)%
+\axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+ \psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,linestyle=dotted]% 
+\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw](0 1 0)%
+\axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+ \psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,linestyle=dotted]% 
+\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw](0 0 1)%
+\axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}\\ \hline
+(1 0 0) & (0 1 0) & (0 0 1)\\ \hline
+\end{tabular} 
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=parallelepiped},a=1,b=2,c=3,action=draw] } \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+ \psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,linestyle=dotted]% 
+\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,RotX=30]%
+\axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,linestyle=dotted]% 
+\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,RotY=30]%
+\axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}
+&
+\begin{pspicture}(-10,-10)(10,10)
+ \psframe(-10,-10)(10,10)
+ \psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,linestyle=dotted]% 
+\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,RotZ=30]%
+\axesIIID[linecolor=red](0,0,0)(1,1,1)
+\end{pspicture}\\ \hline
+RotX=30 & RotY=30 & RotZ=30\\ \hline
+\end{tabular}
+
+%\subsection{title}
+%
+%\psset{unit=.25cm}
+%
+%\begin{tabular}{|c|c|c|} \hline 
+% \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=parallelepiped},a=1,b=2,c=3,action=draw](1 0 0) } \\  \hline 
+%\begin{pspicture}(-10,-10)(10,10)
+% \psframe(-10,-10)(10,10)
+%
+%\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,show=all]%
+%\axesIIID[linecolor=red](0,0,0)(1,1,1)
+%\end{pspicture}
+%&
+%\begin{pspicture}(-10,-10)(10,10)
+% \psframe(-10,-10)(10,10)
+%
+%\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,num=all]%
+%\axesIIID[linecolor=red](0,0,0)(1,1,1)
+%\end{pspicture}
+%&
+%\begin{pspicture}(-10,-10)(10,10)
+% \psframe(-10,-10)(10,10)
+%\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,show=all,num=all]%
+%\axesIIID[linecolor=red](0,0,0)(1,1,1)
+%\end{pspicture}\\ \hline
+%show=all & num=all & show=all,num=all \\ \hline
+%\end{tabular} 
+%\bigskip
+%
+%\begin{tabular}{|c|c|c|} \hline 
+% \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{object=parallelepiped},a=1,b=2,c=3,action=draw](1 0 0) } \\  \hline 
+%\begin{pspicture}(-10,-10)(10,10)
+% \psframe(-10,-10)(10,10)
+%
+%\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,show=0 1 2 3]%
+%\axesIIID[linecolor=red](0,0,0)(1,1,1)
+%\end{pspicture}
+%&
+%\begin{pspicture}(-10,-10)(10,10)
+% \psframe(-10,-10)(10,10)
+%
+%\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,num=0 1 2 3]%
+%\axesIIID[linecolor=red](0,0,0)(1,1,1)
+%\end{pspicture}
+%&
+%\begin{pspicture}(-10,-10)(10,10)
+% \psframe(-10,-10)(10,10)
+%\psSolid[object=parallelepiped,a=1,b=2,c=3,action=draw,show=0 1 2 3,num=0 1 2 3]%
+%\axesIIID[linecolor=red](0,0,0)(1,1,1)
+%\end{pspicture}\\ \hline
+%show=0 1 2 3 & num=0 1 2 3 & show=0 1 2 3,num=0 1 2 3 \\ \hline
+%\end{tabular} 
+
+%\bigskip
+%\psset{unit=.5cm}
+%\begin{pspicture}(-3,-2.5)(7,2.5)
+%%\psset{viewpoint=50 20 20 rtp2xyz,Decran=40}
+%\psSolid[action=draw,object=cube,RotZ=30,show=0 1 2 3,num=0 1 2 3]%
+%\end{pspicture}
+%
+%\begin{pspicture}(-3,-2.5)(7,2.5)
+%%\psset{viewpoint=50 20 20 rtp2xyz,Decran=40}
+%\psSolid[action=draw,object=parallelepiped,RotZ=30,show=0 1 2 3,num=0 1 2 3]%
+%\end{pspicture}
+
+
+%\subsection{Coloriage numérotation}
+\SbSSCT{Coloriage numérotation}coloring and numbering{}
+
+\psset{unit=.15cm}
+
+
+
+
+
+
+\begin{tabular}{|c|c|c|}\hline
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{fcol}=0 (green) 1 (red) 4 (cyan) 13 (blue) 40 (black), object=cube,mode=3] \RDI{fcol}{pst-sol3d}} 
+ \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)  
+ \psSolid[fcol=0 (green) 1 (red)  4 (cyan) 13 (blue) 40 (black), object=cube,mode=3]%
+ \end{pspicture}
+  &  
+ \begin{pspicture}(-10,-10)(10,10)
+  \psSolid[numfaces=all, object=cube,mode=3]%
+  \end{pspicture}  
+  & 
+  \begin{pspicture}(-10,-10)(10,10)
+   \psSolid[numfaces=0 1 2 3, object=cube,mode=3]%
+   \end{pspicture} 
+   \\ \hline  
+\RDD{fcol}=0 (green) 1 (red)  ...  &  \RDD{numfaces}=all  \RDI{numfaces}{pst-sol3d}& \RDD{numfaces}=0 1 2 3
+    \\ \hline 
+\end{tabular} 
+\bigskip
+
+\begin{tabular}{|c|c|c|}\hline
+ \multicolumn{3}{|c|}{ \BS{psSolid}[\RDD{fcol}=0 (green) 1 (red) 2 (cyan) 3 (magenta), object=parallelepiped,mode=3] } 
+ \\  \hline 
+\begin{pspicture}(-10,-10)(10,10)
+ \psSolid[fcol=0 (green) 1 (red) 2 (cyan) 3 (magenta), object=parallelepiped,mode=3]%
+\end{pspicture} 
+&
+  \begin{pspicture}(-10,-5)(10,15)
+   \psSolid[fcol=0 (green) 1 (red) 2 (cyan) 3 (magenta), object=cylindre,h=4,ngrid=4,mode=3]%
+   \end{pspicture}
+   & 
+\begin{pspicture}(-10,-10)(10,10)
+\psSolid[fcol=0 (green) 1 (red) 2 (cyan) 3 (magenta) , object=tore,r1=2,r0=1,ngrid=4,mode=3]%
+   \end{pspicture} 
+   \\ \hline
+\RDD{fcol}= 0 (green)  1 (red) ... & \RDD{numfaces}=all & \RDD{numfaces}=0 1
+   \\ \hline
+
+\end{tabular}  
+ 
+ \newpage
+ 
+% \subsection{Dans une prochaine version}
+\SbSSCT{Dans une prochaine version}{In a future version}
+
+ 
+%\subsubsection{Surface d'après une équation}
+\SbSbSSCT{Surface d'après une équation}{Equation define surface}
+
+\begin{tabular}{|c|c|c|} \hline 
+%\psset{llx=-.5cm,lly=-.5cm,urx=.5cm,ury=0.5cm,fillstyle=none,linewidth=2pt}
+\psset{fillcolor=yellow,fillstyle=none,linecolor=blue,unit=.4cm}
+
+% \psset{unit=0.5}
+% \psset{lightsrc=30 30 25}
+ \psset{viewpoint=50 40 30 rtp2xyz,Decran=50}
+\begin{pspicture}(-7,-8)(7,8)
+ \psSurface[algebraic,ngrid=.25 .25,hue=0 1](-6,-6)(6,6){sin(x) *cos(y)}
+\end{pspicture}
+   \\ \hline
+ \BSS{psSurface}[algebraic,ngrid=.25 .25,hue=0 1](-6,-6)(6,6)\AC{sin(x) *cos(y)} \BSI{psSurface}{pst-sol3d}
+   \\ \hline
+\end{tabular}
+
+%\subsubsection{Fusion de 2 solides}
+\SbSbSSCT{Fusion de 2 solides}Fusion of two solids{}
+  \psset{unit=1cm}
+\begin{center} 
+%  \begin{pspicture}(-1,1)(10,8)
+%  \psframe(-1,-1)(10,10)
+ \begin{animateinline}[poster=first, palindrome,autoplay]{5}%
+ \multiframe{30}{iAngle=10+30}{\mydessin{\iAngle} }
+ \end{animateinline}
+%  \end{pspicture}
+ 
+% \begin{pspicture}(-.3\linewidth,-12)(.35\linewidth,30)
+%\psframe(-.3\linewidth,-12)(.35\linewidth,30)
+%\psset{unit=.15cm} 
+%\psset{solidmemory}
+%\psSolid[object=cylindrecreux,h=10,r=2,fillcolor=white,mode=4,name=A1,incolor=green!50](0,0,-3)
+%\psSolid[object=conecreux,h=15,r=2,RotY=-60,fillcolor=white,incolor=red!50,mode=5,name=B1](4,0,0)%
+%\psSolid[object=fusion,action=draw**,base=A1 B1,](0,0,0)
+%\composeSolid
+% \end{pspicture}
+
+ \psset{unit=1cm}
+\bigskip 
+ \begin{tabular}{|l|} \hline 
+\BSS{psset}\AC{solidmemory}\\
+\\
+\BS{psSolid}[object=cylindrecreux,h=10,r=2,fillcolor=white,mode=4,name=A1,incolor=green!50](0,0,-3)\\
+\BS{psSolid}[object=conecreux,h=15,r=2,RotY=-60,fillcolor=white,incolor=red!50,mode=5,name=B1](4,0,0)\\
+\BS{psSolid}[object=fusion,action=draw**,base=A1 B1,](0,0,0)\\
+\BSS{composeSolid} \BSI{composeSolid}{pst-sol3d}
+    \\ \hline
+ \end{tabular}
+\end{center} 
+ 
+
+ \begin{center}
+
+ \end{center} 
+
+
+

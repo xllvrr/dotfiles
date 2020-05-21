@@ -1,0 +1,14 @@
+% v1916test.tex
+
+\input fontinst.sty
+
+% \half and \otherhalf
+\fontinstcc
+\for(i){-5}{5}{1}
+   \eval_expr_to\b_count{\half{\int{i}}}
+   \eval_expr{\otherhalf{\int{i}}}
+   \immediate\write16{\strint{i}:~\the\b_count \space+~ \the\result}
+\endfor(i)
+\normalcc
+
+\bye

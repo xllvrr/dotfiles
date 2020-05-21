@@ -1,0 +1,34 @@
+name gnuplottex
+category Package
+revision 54758
+shortdesc Embed Gnuplot commands in LaTeX documents
+longdesc This package allows you to include Gnuplot graphs in your LaTeX
+longdesc documents. The gnuplot code is extracted from the document and
+longdesc written to .gnuplot files. Then, if shell escape is used, the
+longdesc graph files are automatically processed to graphics or LaTeX
+longdesc code files which will then be included in the document. If
+longdesc shell escape isn't used, the user will have to manually convert
+longdesc the files by running gnuplot on the extracted .gnuplot files.
+containersize 3288
+containerchecksum 5bc237b3bfa3b31eb4d6d2fb63280ab89fa929b531ec83dec362947f49ad0316b9107abe3a876f79e4c5b283134c859e4908b300a592aa69fc7ea20b80af7fa9
+doccontainersize 418476
+doccontainerchecksum c0e56811b5b4340c770d61ab605961bcdd5ab1abf72b9fcdb0c13c5e56a7481944aedbab70bf5d2daa90751528f0b9d7efd04a1453c08a4a6e40a46a41a1296d
+docfiles size=111
+ texmf-dist/doc/latex/gnuplottex/README details="Readme"
+ texmf-dist/doc/latex/gnuplottex/SomeValuesForGnuplot.txt
+ texmf-dist/doc/latex/gnuplottex/example-pdf.tex
+ texmf-dist/doc/latex/gnuplottex/example.gnuplot
+ texmf-dist/doc/latex/gnuplottex/gnuplottex.pdf details="Package documentation"
+ texmf-dist/doc/latex/gnuplottex/gpl.txt
+srccontainersize 9336
+srccontainerchecksum 9db5deaac39afbef502db7cca3c28d0669803af3d927d6650ff39abe365c39be8dff8d7ae7537ab139fe747b7acd7e9fbc3a66dd30ac8495f30dff143dcbdb5e
+srcfiles size=10
+ texmf-dist/source/latex/gnuplottex/gnuplottex.dtx
+ texmf-dist/source/latex/gnuplottex/gnuplottex.ins
+runfiles size=3
+ texmf-dist/tex/latex/gnuplottex/gnuplottex.sty
+catalogue-also context-gnuplot
+catalogue-ctan /macros/latex/contrib/gnuplottex
+catalogue-license gpl2
+catalogue-topics graphics-inline
+catalogue-version 0.9.5

@@ -1,0 +1,99 @@
+%\subsection{Trait à main levé  \cite{pst-add}}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline  
+\multicolumn{3}{|c|}{\BSS{pslineByHand}(0,0)(4,0)  \BSI{pslineByHand}{pstricks-add}} \\\hline  
+%\rule[-1cm]{0pt}{2cm} 
+\begin{pspicture}(-.15,-.5)(4.15 ,0.5)
+\pslineByHand(0,0)(4,0) 
+ \end{pspicture}
+& 
+\begin{pspicture}(-.15,-.5)(4.15 ,0.5)
+\pslineByHand[varsteptol=5](0,0)(4,0)
+ \end{pspicture}
+  &
+  \begin{pspicture}(-.15,-.5)(4.15 ,0.5)
+  \pslineByHand[ VarStepEpsilon=.4](0,0)(4,0)
+   \end{pspicture}
+\\ \hline
+{\blue \dft }	& 
+\RDD{varsteptol}=5 \RDI{varsteptol}{pstricks-add}& \RDD{VarStepEpsilon}=.4 \RDI{VarStepEpsilon}{pstricks-add} 
+\\ \hline
+		& {\blue \dft : 2 } 			& {\blue \dft : .8  }				\\ \hline
+\end{tabular}
+\end{center}
+
+\newpage
+\SbSSCT{Symboles sur ligne}{Symbol on the line  }
+\begin{center}
+\begin{tabular}{|p{6cm}|p{6cm}|}
+\hline  
+%\multicolumn{2}{|c|}{paramètres \textbf{ArrowInside=->}} \\ \hline
+
+\rule[-.5cm]{0pt}{1cm}	\psline[ArrowInside=->](0.5,0)(5,0)  		&
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInside=-<](0.5,0)(5,0) 	\\ \hline
+\BS{}psline[{\RDD{ArrowInside}=->}](0.5,0)(5,0) \RDI{ArrowInside}{pstricks-add} & 
+\BS{}psline[{\red ArrowInside=-<}](0.5,0)(5,0)\\ \hline
+
+\rule[-.5cm]{0pt}{1cm}	\psline[ ArrowInside=->>](0.5,0)(5,0)  		&
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInside=-<<](0.5,0)(5,0) 	\\ \hline
+\BS{}psline[{\red ArrowInside=->>}](0.5,0)(5,0) & \BS{}psline[{\red ArrowInside=-<<}](0.5,0)(5,0)\\ \hline
+
+\rule[-.5cm]{0pt}{1cm}	\psline[ ArrowInside=-|](0.5,0)(5,0)  		&
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInside=-|*](0.5,0)(5,0) 	\\ \hline
+\BS{}psline[{\red ArrowInside=-|}](0.5,0)(5,0) & \BS{}psline[{\red ArrowInside=-|*}](0.5,0)(5,0)\\ \hline
+\rule[-.5cm]{0pt}{1cm}	\psline[ ArrowInside=-[ ](0.5,0)(5,0)  		&
+\rule[-.5cm]{0pt}{1cm}	\psline[ ArrowInside=-( ](0.5,0)(5,0)  \psline[ArrowInside=-) ](0.5,0)(5,0)		
+\\ \hline
+\BS{}psline[{\red ArrowInside=-[}](0.5,0)(5,0) & \BS{}psline[{\red ArrowInside=-( }](0.5,0)(5,0)\\ \hline
+
+
+\rule[-.5cm]{0pt}{1cm}	\psline[ ArrowInside=-o](0.5,0)(5,0)  		&
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInside=-*](0.5,0)(5,0) 	\\ \hline
+\BS{}psline[{\red ArrowInside=-o}](0.5,0)(5,0) & \BS{}psline[{\red ArrowInside=-*}](0.5,0)(5,0)\\ \hline
+
+\rule[-.5cm]{0pt}{1cm}	\psline[ ArrowInside=->|](0.5,0)(5,0)  		&
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInside=-<|](0.5,0)(5,0) 	\\ \hline
+\BS{}psline[{\red ArrowInside=->|}](0.5,0)(5,0) & \BS{}psline[{\red ArrowInside=-<|}](0.5,0)(5,0)\\ \hline
+
+\rule[-.5cm]{0pt}{1cm}	\psline[ ArrowInside=-h](0.5,0)(5,0)  		&
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInside=-H](0.5,0)(5,0) 	\\ \hline
+\BS{}psline[{\red ArrowInside=-h}](0.5,0)(5,0) & \BS{}psline[{\red ArrowInside=-H}](0.5,0)(5,0)\\ \hline
+
+\rule[-.5cm]{0pt}{1cm}	\psline[ ArrowInside=-v](0.5,0)(5,0)  		&
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInside=-V](0.5,0)(5,0) 	\\ \hline
+\BS{}psline[{\red ArrowInside=-v}](0.5,0)(5,0) & \BS{}psline[{\red ArrowInside=-V}](0.5,0)(5,0)\\ \hline
+
+\rule[-.5cm]{0pt}{1cm}	\psline[ ArrowInside=-f](0.5,0)(5,0)  		&
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInside=-F](0.5,0)(5,0) 	\\ \hline
+\BS{}psline[{\red ArrowInside=-f}](0.5,0)(5,0) & \BS{}psline[{\red ArrowInside=-F}](0.5,0)(5,0)\\ \hline
+
+\rule[-.5cm]{0pt}{1cm}	\psline[ ArrowInside=-t](0.5,0)(5,0)  		&
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInside=-T](0.5,0)(5,0) 	\\ \hline
+\BS{}psline[{\red ArrowInside=-t}](0.5,0)(5,0) & \BS{}psline[{\red ArrowInside=-T}](0.5,0)(5,0)\\ \hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|p{6cm}|p{6cm}|}
+\hline  
+\multicolumn{2}{|c|}{\TFRGB{paramètres supplémentaires}{more option} \footnotemark[1] } \\ \hline
+
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInsidePos=.3,ArrowInside=->](0.5,0)(5,0) 	& 
+\rule[-.5cm]{0pt}{1cm}	\psline[ArrowInsidePos=20,ArrowInside=->](0.5,0)(5,0)  	\\ \hline
+\RDD{ArrowInsidePos}=.3 (soit à 30\%) \RDI{ArrowInsidePos}{pstricks-add} & 
+{\red ArrowInsidePos}=20 (soit à 20 pt)\\  \hline
+ 
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInsideNo=5,ArrowInside=->](0.5,0)(5,0) 	& 
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInsideNo=3,ArrowInside=-t](0.5,0)(5,0) 	\\ \hline
+\RDD{ArrowInsideNo}=5,ArrowInside=-> \RDI{ArrowInsideNo}{pstricks-add} & 
+{\red ArrowInsideNo}=3,ArrowInside=-t 	\\ \hline
+
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInsideNo=5,ArrowInside=->,ArrowInsideOffset=0.1](0.5,0)(5,0) 	& 
+\rule[-.5cm]{0pt}{1cm} 	\psline[ArrowInsideNo=3,ArrowInside=-t,ArrowInsideOffset=-.2](0.5,0)(5,0) 	\\ \hline
+\RDD{ArrowInsideOffset}=0.1 \RDI{ArrowInsideOffset}{pstricks-add}  & {\red ArrowInsideOffset}=-0.2 	\\ \hline
+\end{tabular}
+\end{center}
+
+\footnotetext[1]{\TFRGB{pour d'autres paramètres voir}{for other parameters see } page \pageref{parametres}}

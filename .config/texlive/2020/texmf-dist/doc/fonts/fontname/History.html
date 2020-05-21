@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+<title>Filenames for TeX fonts</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Filenames for TeX fonts">
+<meta name="generator" content="makeinfo 4.6">
+<!--
+This document is in the public domain and may be used freely.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+Node:&nbsp;<a name="History">History</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="References.html#References">References</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Introduction.html#Introduction">Introduction</a>
+<hr><br>
+</div>
+
+<h3 class="section">History</h3>
+
+<p>The original inspiration for Fontname was Frank Mittelbach and Rainer
+Schoepf's article in <cite>TUGboat</cite> 11(2) (June 1990), which led to my
+article in <cite>TUGboat</cite> 11(4) (November 1990), pages 512-519. 
+Mittelbach wrote another article criticizing the scheme below in
+<cite>TUGboat</cite> 13(1) (April 1992), pages 51-53; most of his points are
+well-taken, but I saw no alternative then, and see no alternative now. 
+Others of his points are addressed in the appropriate sections below.
+
+   <p>In August 1995, Fontname version 2 was released, concomitantly with a new
+release of the PostScript fonts for use with LaTeX and Dvips. After
+several years of experience, several modifications of the original
+distribution seemed desirable: more precise specification of encodings
+(see <a href="Variants.html#Variants">Variants</a>); machine-readable mapping files (the <code>*.map</code>
+files in the distribution) and standardizing directory names as well as
+font filenames (included in <code>supplier.map</code> and
+<code>typeface.map</code>).
+
+   <p>In Fontname version 1, some encoding variant characters (<code>0</code>,
+<code>2</code>, etc.) have been reassigned to a <code>7</code> or <code>8</code> sequence
+(see <a href="Variants.html#Variants">Variants</a>).  Although this is an incompatible change, the
+advantages of (1) consistency in naming encoding variants, and (2)
+having some free variants makes it worthwhile.  Also, not so
+coincidentally, new metrics for PostScript fonts in the Cork encoding
+were issued--same encoding, different metrics. So a new name served a
+practical purpose as well.
+
+   <p>Many people have contributed to this work.  In particular, I gratefully
+acknowledge Nelson Beebe, Barbara Beeton, Rocky Bernstein, Thierry Bouche,
+Damian Cugley, Berthold K.P. Horn, Alan Jeffrey, Russell Lang, Pierre
+MacKay, Sebastian Rahtz, Jean Rivlin, and Tom Rokicki.
+
+   </body></html>
+

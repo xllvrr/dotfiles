@@ -1,0 +1,301 @@
+%% $Id: vlna-inc.tex 518 2014-05-17 15:42:05Z zw $
+% Included file, encoding UTF-8, see vlna-enctex.sty
+
+\ifeng
+
+\section{English manual}
+This is a manual for ``vlna'' implemented in enc\TeX\ of February 2003. Enc\TeX\ itself and the
+macros for plain \TeX\ were developed by Petr Olšák. \LaTeX\ version was derived from it by Zdeněk
+Wagner.
+
+\else
+
+\section{\texorpdfstring{Český manuál}{Cesky manual}}
+Toto je manuál balíčku "`vlna"' implementovaného pomocí enc\TeX{}u z února~2003. Enc\TeX\ a makra
+pro plain \TeX\ vytvořil Petr Olšák. Verzi pro \LaTeX\ z nich odvodil Zdeněk Wagner.
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifeng
+
+\subsection{Purpose}
+The purpose of the package is to insert nonbreakable spaces (\verb:~:, in Czech \textit{vlna} or
+\textit{vlnka}) after nonsyllabic prepositions and single letter conjuctions directly while \TeX
+ing the document. The macros recognise math and verbatim by \TeX\ means. Inserting nonbreakable
+spaces by a preprocessor may never be fully reliable because user defined macros and environments
+cannot be recognised.
+
+\else
+
+\subsection{\texorpdfstring{Účel}{Ucel}}
+Tento balíček slouží ke vkládání nezlomitelných mezer (vlnek) za neslabičné předložky a
+jednopísmenné spojky přímo při \TeX ování dokumentu. Makra rozeznávají matematiku a verbatim \TeX
+ovými prostředky. Vkládání nezlomitelných mezer preprocesorem nikdy nemůže být naprosto
+spolehlivé, protože uživatelsky definovaná makra a prostředí nelze rozpoznat.
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifeng
+
+\subsection{Requirements}
+This package requires enc\TeX\ of February 2003. It is often available in the distribution but is
+not activated as default. In order to activate it you have to regenerate your formats using the
+\texttt{-enc} switch. In some distributions, such as \TL, you have to modify \texttt{fmtutil.cnf}.
+It is achieved by writing your own \texttt{texmf-local/web2c/fmtutil-local.cnf} which
+is shown in Section~\ref{fmtutil}. In other distributions the instructions of modifying the method of
+format generation may differ.
+
+In case you do not have enc\TeX\ at all you have to build it yourself from the sources found at
+\url{http://math.feld.cvut.cz/olsak/enctex.html}
+
+\else
+
+\subsection{\texorpdfstring{Požadavky}{Pozadavky}}
+Tento balíček vyžaduje enc\TeX\ z února 2003. Ten je obvykle v distribucích obsažen, avšak není
+aktivován. Pro jeho aktivaci musíte znovu vygenerovat formáty s použitím parametru \texttt{-enc}. V
+některých distribucích, např. v \TL, budete muset upravit soubor \texttt{fmtutil.cnf},
+čehoč docílíte vytvořením vlastního souboru \texttt{texmf-local/web2c/fmtutil-local.cnf}, který je
+ukázán v kapitole~\ref{fmtutil}. Instrukce pro změnu způsobu generování formátů v jiných
+distribucích mohou být odlišné.
+
+V případě, že enc\TeX\ nemáte, musíte si jej zkompilovat sami ze zdrojů, které najdete na
+\url{http://math.feld.cvut.cz/olsak/enctex.html}
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifeng
+
+\subsection{Package contents}
+The package contains:
+\begin{description}
+\item[encxvlna.pdf] --- this manual
+\item[encxvlna.tex, vlna-inc.tex] --- manual sources
+\item[encxvlna.tex] --- plain \TeX\ macros
+\item[encxvlna.sty] --- \LaTeX\ package file
+\item[License.txt] --- license
+\end{description}
+
+File \texttt{vlna.tex} is a part of enc\TeX\ but it was previously distributed with \TL\ in a wrong
+directory. Moreover, since enc\TeX\ is not enabled as default, the macros might be used without it.
+This will generate error messages that might not be understood by beginners. The modified file
+\texttt{encxvlna.tex} differs from
+the version included in enc\TeX\ just by a descriptive error message.
+
+\else
+
+\edef\pom{---\space\ignorespaces}
+
+\subsection{\texorpdfstring{Obsah balíčku}{Obsah balicku}}
+Balíček obsahuje:
+\begin{description}
+\item[encxvlna.pdf] \pom tento manuál
+\item[encxvlna.tex, vlna-inc.tex] \pom zdrojový kód manuálu
+\item[encxvlna.tex] \pom makra pro plain \TeX
+\item[encxvlna.sty] \pom balíček pro \LaTeX
+\item[License.txt] \pom licence
+\end{description}
+
+Soubor \texttt{vlna.tex} je součástí enc\TeX{}u, ale původně byl distribuován v \TL\ ve špatném
+adresáři. Protože navíc enc\TeX\ není v \TL\ standardně aktivován, mohou být makra použita bez něj.
+To způsobí chyby, jimž nemusí začátečníci rozumět. Modifikovaná verze \texttt{encxvlna.tex} se liší od verze obsažené v
+enc\TeX{}u pouze více popisnou chybovou zprávou.
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifeng
+
+\subsection{Usage in plain \TeX}
+Usage in plain \TeX\ is simple. Just put the following command before your text:
+
+\else
+
+\subsection{\texorpdfstring{Použití}{Pouziti} v plain \TeX u}
+Použití v plain \TeX{}u je velmi jednoduché. Vložte před svůj text příkaz:
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\smallskip
+\begin{verbatim}
+\input encxvlna
+\end{verbatim}
+
+\smallskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifeng
+
+Remember that some macro definitions may confuse this package. The best location for the above
+mentioned command is \textit{after} all definitions but before the text.
+
+\else
+
+Nezapomeňte, že některé definice maker mohou tento balíček zmást. Nejlepší místo pro výše uvedený
+příkaz je tedy \textit{za} všemi definicemi, ale před vlastním textem.
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifeng
+
+\subsection{Usage in \LaTeX}
+Usage in \LaTeX\ is similarly simple. Put the following command to your preamble:
+
+\else
+
+\subsection{\texorpdfstring{Použití}{Pouziti} v \LaTeX u}
+Použití v \LaTeX{}u je stejně jednoduché. Vložte do preambule příkaz:
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\smallskip
+\begin{verbatim}
+\usepackage{encxvlna}
+\end{verbatim}
+
+\smallskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifeng
+
+Remember that some packages and macro definitions may contain code which may confuse this package.
+The manual for \textsc{hyperref} says that it should be placed as the last package but it would
+report weird error messages if it is loaded after \textsc{encxvlna}. The best place for the above
+mentioned command is thus just above \verb;\begin{document};.
+
+The \textsc{encxvlna} package itself postpones some commands using \verb;\AtBeginDocument;. If you load
+it by this hook, it will be too late and you will see other weird error messages.
+
+\else
+
+Nezapomeňte, že některé balíčky a definice maker mohou obsahovat kód, který tento balíček zmate.
+Návod k balíčku \textsc{hyperref} říká, že má být načten jako poslední, ale právě to způsobí výpis
+podivných chybových zpráv, pokud bude balíček \textsc{encxvlna} načten dříve. Nejlepší místo pro výše
+zmíněný příkaz je tedy přímo nad \verb;\begin{document};.
+
+Samotný balíček \textsc{encxvlna} využívá \verb;\AtBeginDocument; k odložení některých příkazů. Pokud
+se pokusíte využít téhož mechanismu k načtení tohoto balíčku, bude to příliš pozdě a dočkáte se
+dalších podivných chybových zpráv.
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifeng
+
+\subsection{Modifications in the \LaTeX\ version}
+As already written the \LaTeX\ package was derived from the original plain \TeX\ file. In addition
+to creation of the package signature the following modifications were made:
+
+\begin{enumerate}
+\item Definition of \verb;\uv; was removed because it appears in the Czech and Slovak language
+definition files.
+\item Register \verb;\mubytein; is set to 2 at the beginning of the document.
+\item Czech and Slovak language definition files for \textsc{babel} introduce in version~3.1
+new syntax for writing quotes, namely \verb;"`v lese"';. This is added to the list of recognised
+patterns.
+\item Definition of \verb;\protect; is tested so that the macros do nothing in moving arguments.
+\item Definition of \verb;\rm; is compared to \verb;\@empty; so that outlines are correctly created
+by \textsc{hyperref}.
+\item Tests were added in order to enable work with the \textsc{microtype} package.
+\end{enumerate}
+
+The macros now need 15 \verb;\expandafter;'s!
+
+\else
+
+\subsection{Modifikace ve verzi pro \LaTeX}
+Jak již bylo napsáno, verze pro \LaTeX\ byla odvozena z původních maker pro plain \TeX. Kromě
+vytvoření signatury \LaTeX ového balíčku byly provedeny tyto změny:
+
+\begin{enumerate}
+\item Byla odstraněna definice \verb;\uv;, protože se vyskytuje v jazykových definičních souborech
+pro češtinu a slovenštinu.
+\item Registr \verb;\mubytein; je naplněn hodnotou 2 až na začátku dokumentu.
+\item České a slovenské jazykové definiční soubory pro \textsc{babel} zavádějí od verze~3.1 novou
+syntaxi pro zápis uvozovek: \verb;"`v lese"';. Toto je přidáno do seznamu rozpoznávaných vzorů.
+\item Testuje se definice \verb;\protect; tak, aby makra nedělala nic v pohyblivých (moving)
+argumentech.
+\item Definice \verb;\rm; se porovnává s \verb;\@empty;, aby balíček \textsc{hyperref} správně
+vytvořil záložky.
+\item Byl přidán test, který umožní spolupráci s balíčkem \textsc{microtype}.
+\end{enumerate}
+
+Makra nyní potřebují 15 příkazů \verb;\expandafter;!
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifeng
+
+\subsection{Important note for \LaTeX\ users}
+There is a problem with the \textsc{url} package and hence with \textsc{hyperref} which loads
+\textsc{url}. As a matter of fact it is not a problem of \textsc{encxvlna} but a problem of enc\TeX\
+and \textsc{Unicode}. Lines 39 and 50 of \texttt{url.sty} contain unprintable characters which are
+not legal as UTF-8 character sequences. Everything works fine until you try to typeset a URL while
+converting the input from UTF-8 by enc\TeX. It is sufficient to set \verb;\mubytein; to zero just
+before loading \textsc{url} or \textsc{hyperref}. If you load these packages including
+\textsc{encxvlna} in correct order just
+before \verb;\begin{document};, you need not bother with setting back a nonzero value to
+\verb;\mubytein;. Look into the source code of this manual, into file
+\else
+
+\subsection{\texorpdfstring{Důležitá poznámka pro uživatele}{Dulezita poznamka pro uzivatele}
+\LaTeX u}
+Při použití balíčku \textsc{url}, a tudíž \textsc{hyperref}, jenž \textsc{url} načítá, nastává
+problém. Ve skutečnosti to není problém balíčku \textsc{encxvlna}, ale problém enc\TeX{}u a
+\textsc{Unicode}. Řádky 30 a 50 v souboru \texttt{url.sty} obsahují netisknutelné znaky, jež jsou
+nepovolenými znakovými sekvencemi v UTF-8. Vše funguje správně až do chvíle, kdy chcete vytisknout
+URL a současně konvertovat vstup z UTF-8 enc\TeX em. Postačí, když vynulujete \verb;\mubytein;
+před načtením \textsc{url} či \textsc{hyperref}. Načítáte-li tyto balíčky včetně balíčku
+\textsc{encxvlna} ve správném pořadí bezprostředně před příkazem \verb;\begin{document};, nemusíte se starat o
+návrat nenulové hodnoty do registru \verb;\mubytein;. Podívejte se do zdrojového kódu tohoto
+manuálu, do souboru
+\fi
+\texttt{encxvlna.tex}
+\ifeng
+in directory
+\else
+v adresáři
+\fi
+\texttt{doc/generic/encxvlna}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifeng
+Similar problems are encountered when using the \textsc{movie15} package. You have to include the
+\cmd{includemovie} command within a group setting 
+\else
+Podobné problémy nastávají při použití balíčku \textsc{movie15}. Musíte příkaz \cmd{includemovie} uzavřít do
+skupiny,v níž nastavíte
+\fi
+\verb;\mubytein=0;.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifeng
+\subsection{License}
+The package can be used and distributed according to the LaTeX Project Public License version~1.3 or later the
+text of which can be found at the \texttt{License.txt} file in the \texttt{doc} directory or at
+\else
+
+\subsection{Licence}
+Balíček může být používán a šířen podle LaTeX Project Public License verze~1.3 nebo novější, jejíž text najdete
+v souboru \texttt{License.txt} v adresáři \texttt{doc}, nebo na
+\fi
+\url{http://www.latex-project.org/lppl.txt}

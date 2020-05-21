@@ -1,0 +1,30 @@
+name venndiagram
+category Package
+revision 47952
+shortdesc Creating Venn diagrams with TikZ
+longdesc The package assists generation of simple two- and three-set
+longdesc Venn diagrams for lectures or assignment sheets. The package
+longdesc requires the TikZ package.
+containersize 4200
+containerchecksum cf57b84165067234f5be58b2300eebb77339c33b883895e47cffdbc7c4acb6d013db7ace1eb47ef491e21526cea8b3ab993fac836498bfa16a5cea700caedd5b
+doccontainersize 338640
+doccontainerchecksum 966f7eea0d4c40004b9710c53fdd6838b757a2c8ed47b4098ca2d47834ba52575ac7c062497f1a6d26dadfcf0d7f95f2213d34bc638262520aade0e78beac827
+docfiles size=88
+ texmf-dist/doc/latex/venndiagram/CHANGES
+ texmf-dist/doc/latex/venndiagram/README details="Readme"
+ texmf-dist/doc/latex/venndiagram/samples/venn-sample.pdf details="Example of use"
+ texmf-dist/doc/latex/venndiagram/samples/venn-sample.tex
+ texmf-dist/doc/latex/venndiagram/venndiagram.pdf details="Package documentation"
+srccontainersize 9832
+srccontainerchecksum 16bfa22856952e9c0595532432eb774a2ef44f52950002db670e5f3e22af02981305ed5eda1265b6d1a97f43d9a6292311bad5268a562aff6ab00f4a14a058f7
+srcfiles size=22
+ texmf-dist/source/latex/venndiagram/venndiagram.dtx
+ texmf-dist/source/latex/venndiagram/venndiagram.ins
+runfiles size=11
+ texmf-dist/tex/latex/venndiagram/venndiagram.sty
+catalogue-also venn
+catalogue-contact-home http://www.dickimaw-books.com/
+catalogue-ctan /macros/latex/contrib/venndiagram
+catalogue-license lppl
+catalogue-topics diagram-maths pgf-tikz
+catalogue-version 1.2

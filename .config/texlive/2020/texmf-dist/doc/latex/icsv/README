@@ -1,0 +1,16 @@
+______________
+The ICSV class
+v0.2
+
+This is an ad-hoc class for typesetting articles for the ICSV conference,
+based on the previously hacked together active-conf by the same author.
+
+Hopefully it's useful to someone. Contact me for refinements or if things
+don't work.
+
+______________
+Will Robertson
+wspr 81 [at] gmail [dot] com
+
+Copyright 2006
+Distributed under the LaTeX Project Public License

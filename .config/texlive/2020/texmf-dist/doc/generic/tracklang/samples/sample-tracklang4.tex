@@ -1,0 +1,27 @@
+% arara: xelatex
+\documentclass[a4paper]{article}
+
+\usepackage{fontspec}
+
+\usepackage{polyglossia}
+
+\setotherlanguages{french,dutch}
+\setmainlanguage[variant=british]{english}
+
+\usepackage{tracklang}
+
+\begin{document}
+
+Languages:
+\ForEachTrackedLanguage{\ThisLanguage}{\ThisLanguage\space
+(ISO \TwoLetterIsoLanguageCode: ``\TrackedIsoCodeFromLanguage{\TwoLetterIsoLanguageCode}{\ThisLanguage}''). }
+
+Dialects: \ForEachTrackedDialect{\ThisDialect}{\ThisDialect\space 
+(\IfTrackedLanguageHasIsoCode{\TwoLetterIsoCountryCode}{\ThisDialect}%
+ {ISO \TwoLetterIsoCountryCode: 
+  ``\TrackedIsoCodeFromLanguage{\TwoLetterIsoCountryCode}{\ThisDialect}''}%
+ {no specific region};
+root: \TrackedLanguageFromDialect{\ThisDialect}). }
+
+Variants aren't detected with polyglossia.
+\end{document}

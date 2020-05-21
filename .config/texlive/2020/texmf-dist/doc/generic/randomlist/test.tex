@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2.5cm, noheadfoot]{geometry}
+\usepackage{amsmath}
+\usepackage[seed=1]{randomlist}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\NewList{Pupils}
+\NewList{Triples}
+
+\begin{document}
+\ReadFileList{Pupils}{pupils.dat}
+\ExtractFirstItem{Pupils}{NULL} % extract title line
+\ReadFileList{Triples}{pythagoras.dat}
+\ForEachFirstItem{Pupils}{Pupil}
+{%
+  \ReadFieldItem{\Pupil}{0}{Name}
+  \ReadFieldItem{\Pupil}{1}{FName}
+  \ReadFieldItem{\Pupil}{2}{Note}
+  \ExtractRandomItem{Triples}{Triple}
+  \ReadFieldItem{\Triple}{0}{Triplea}
+  \ReadFieldItem{\Triple}{1}{Tripleb}
+  \ReadFieldItem{\Triple}{2}{Triplec}
+  \begin{center}
+    \fbox{\huge\bfseries Test for \Name{} \FName}
+  \end{center}
+  \textbf{Exercise} \par
+  \if A\Note
+    The diagonal of a rectangle is \Triplec~in and a side of this
+    rectangle is \Triplea~in. What is the length of the other side of
+    the rectangle?
+  \else
+    Find the length of the diagonal of a rectangle that is \Triplea~in
+    by \Tripleb~in.
+  \fi
+  \newpage
+  \begin{center}
+    \fbox{\huge\bfseries Answer to the test for \Name{} \FName}
+  \end{center}
+  \textbf{Exercise} \par
+  \if A\Note
+    Use Pythagorean theorem. We have:
+    \[\text{diag}^2=\text{side1}^2+\text{side2}^2.\]
+    Here:
+    \[\Triplec^2=\Triplea^2+\text{side2}^2\]
+    and then
+    \[\text{side2}=\sqrt{\Triplec^2-\Triplea^2} = \Tripleb.\]
+  \else
+    Use Pythagorean theorem. We have:
+    \[\text{diag}^2=\text{side1}^2+\text{side2}^2.\]
+    Here:
+    \[\text{diag}^2=\Triplea^2+\Tripleb^2\]
+    and then
+    \[\text{diag}=\sqrt{\Triplea^2+\Tripleb^2} = \Triplec.\]
+  \fi
+  \newpage
+}
+\end{document}

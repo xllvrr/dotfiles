@@ -1,0 +1,13 @@
+\begin{tikzpicture}[codeblocks]
+\wenndannsonst[draw]
+	{\dropdown{A}~\dropdown{<}\,\intbox{5}}	%wenn
+	{	\node[aktion](akt1){i=i++};
+		\node[farbe,unter={akt1}{0}{0}](akt2){j=j++};} %dann
+	{	\node[aktion,](akt1){erstelle Bild:\\ 
+				\bild[0.4]{\fullled}
+		};
+		\node[farbe,unter={akt1}{0}{0}](akt2){j=j--};
+	}	% sonst-ende
+		{eins}; % eigener Name
+\node[aktion,unter={eins}{0}{0}]{weiter mit anderen sachen};
+\end{tikzpicture}

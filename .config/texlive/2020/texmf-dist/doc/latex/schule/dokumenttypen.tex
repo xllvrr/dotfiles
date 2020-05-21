@@ -1,0 +1,31 @@
+\part{Dokumenttypen}
+	\label{sec:typen}
+	Dokumenttypen dienen dazu, Vorgaben für spezielle Arten von
+	Dokumenten zu machen und entsprechende Makros bereitzustellen.
+	Üblicherweise wird eine bestimmte Dokumentklasse für die
+	Verwendung empfohlen, grundsätzlich sind die Dokumenttypen aber
+	unabhängig von der verwendeten Klasse.
+
+	Die Typen werden über die Paketoption \option{typ} geladen.
+	Ist der Typ unbekannt, wird ein Arbeitsblatt gesetzt und der
+	die Bezeichnung des Dokuments wird auf den angegebenen Typ
+	eingestellt.
+
+	Wird kein Typ angegeben, ist der Kompatibilitätsmodus zum
+	alten Schule-Paket aktiv. Es wird folglich kein Dokumenttyp
+	geladen.
+	Ebensowenig wird ein Dokumenttyp geladen, wenn der Typ auf
+	\keyis{typ}{ohne} gesetzt wird, da sich das Paket dann im
+	eingebetteten Modus befindet, also kein eigenständiges
+	Dokument gesetzt werden soll.
+
+	\input{typAb}
+%	\input{typBrief}
+	\input{typKl}
+%	\input{typKursbuch}
+    \input{typLeitprogramm}
+%	\input{typLogbuch}
+	\input{typLzk}
+	\input{typUeb}
+    \input{typUb}
+    \input{typFolie}

@@ -1,0 +1,69 @@
+= tikzsvg(1)
+:doctype: manpage
+:man manual: TikzToSvg Manual
+:man source: TikzToSvg 0.1.0
+:page-layout: base
+
+== NAME
+
+tikzsvg - Render TikZ diagrams to SVG.
+
+== SYNOPSIS
+
+*tikzsvg* [_OPTION_]... _INPUT_PATH_
+
+== DESCRIPTION
+
+The tikzsvg(1) command renders TikZ diagrams to SVG.
+
+== OPTIONS
+
+*-o, --output*=_OUTPUT_PATH_::
+  Write output to file _OUTPUT_PATH_.
+  Defaults to the base name of the input file suffixed with the _.svg_ 
+  extension. The file is resolved relative to the working directory.
+
+*-p, --package*=+_PACKAGE_::
+  Include _\usepackage{PACKAGE}_ when rendering the diagram.
+
+*-q, --quiet*::
+  Silence application log messages and script warnings.
+
+*-h, --help*::
+  Print a help message.
+
+*-v, --version*::
+  Prints version information.
+
+== ENVIRONMENT
+
+*TikzToSvg* requires _bash_, _xetex_ and _pdf2svg_ to be installed. Make sure 
+any additional LaTeX packages are installed before using them in a diagram.
+
+== EXIT STATUS
+
+*0*::
+  Success.
+
+*1*::
+  Failure (syntax or usage error; configuration error).
+
+*n*::
+  Failure (document processing failure).
+
+== AUTHORS
+
+*TikzToSvg* was written by Pablo Emílio Escobar Gavira <pablo-escobar@riseup.net>.
+
+*pdf2svg* was written by David Barton <davebarton@cityinthesky.co.uk> and 
+Matthew Flaschen <matthew.flaschen@gatech.edu>.
+
+== RESOURCES
+
+*Git source repository on GitHub:* https://github.com/GarkGarcia/tikzsvg
+
+== COPYING
+
+Copyright \(C) 2020 Pablo Emílio Escobar Gaviria.
+Free use of this software is granted under the terms of the GPL-3.0 License.
+

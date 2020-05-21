@@ -1,0 +1,454 @@
+%%
+%% This is file `lwarp-physics.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% lwarp.dtx  (with options: `physics')
+%% This is a generated file.
+%% Copyright 2016-2020 Brian Dunn
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+\LWR@ProvidesPackagePass{physics}% No date is provided by the package.
+\begin{warpMathJax}
+\LWR@infoprocessingmathjax{physics}
+
+\CustomizeMathJax{\newcommand{\quantity}{}}
+\CustomizeMathJax{\let\qty\quantity}
+\CustomizeMathJax{\newcommand{\pqty}[1]{\left(#1\right)}}
+\CustomizeMathJax{\newcommand{\bqty}[1]{\left\lbrack#1\right\rbrack}}
+\CustomizeMathJax{\newcommand{\vqty}[1]{\left\vert#1\right\rvert}}
+\CustomizeMathJax{\newcommand{\Bqty}[1]{\left\lbrace#1\right\rbrace}}
+
+\CustomizeMathJax{\newcommand{\LWRabsolutevaluenostar}[1]{\left\lvert#1\right\rvert}}
+\CustomizeMathJax{\newcommand{\LWRabsolutevaluestar}[1]{\lvert#1\rvert}}
+\CustomizeMathJax{%
+    \DeclareIfstar{\absolutevalue}{\LWRabsolutevaluestar}{\LWRabsolutevaluenostar}%
+}
+
+\CustomizeMathJax{\let\abs\absolutevalue}
+
+\CustomizeMathJax{%
+    \newcommand{\LWRnormnostar}[1]{\left\lvert\left\lvert#1\right\rvert\right\rvert}%
+}
+\CustomizeMathJax{\newcommand{\LWRnormstar}[1]{\lvert\lvert#1\rvert\rvert}}
+\CustomizeMathJax{%
+    \DeclareIfstar{\norm}{\LWRnormstar}{\LWRnormnostar}%
+}
+
+\CustomizeMathJax{\newcommand{\LWRevaluatednostar}[1]{\left . #1\right\vert}}
+\CustomizeMathJax{\newcommand{\LWRevaluatedstar}[1]{#1\vert}}
+\CustomizeMathJax{%
+    \DeclareIfstar{\evaluated}{\LWRevaluatedstar}{\LWRevaluatednostar}%
+}
+
+\CustomizeMathJax{\let\eval\evaluated}
+
+\CustomizeMathJax{\newcommand{\LWRordernostar}[1]{\mathcal{O}\left(#1\right)}}
+\CustomizeMathJax{\newcommand{\LWRorderstar}[1]{\mathcal{O}(#1)}}
+\CustomizeMathJax{%
+    \DeclareIfstar{\order}{\LWRorderstar}{\LWRordernostar}%
+}
+
+\CustomizeMathJax{\newcommand{\LWRcommutatornostar}[2]{\left\lbrack#1,#2\right\rbrack}}
+\CustomizeMathJax{\newcommand{\LWRcommutatorstar}[2]{\lbrack#1,#2\rbrack}}
+\CustomizeMathJax{%
+    \DeclareIfstar{\commutator}{\LWRcommutatorstar}{\LWRcommutatornostar}%
+}
+
+\CustomizeMathJax{\let\comm\commutator}
+
+\CustomizeMathJax{\newcommand{\LWRanticommutatornostar}[2]{%
+    \left\lbrace#1,#2\right\rbrace}%
+}
+\CustomizeMathJax{\newcommand{\LWRanticommutatorstar}[2]{%
+    \lbrace#1,#2\rbrace}%
+}
+\CustomizeMathJax{%
+    \DeclareIfstar{\anticommutator}{\LWRanticommutatorstar}{\LWRanticommutatornostar}%
+}
+
+\CustomizeMathJax{\let\acomm\anticommutator}
+
+\CustomizeMathJax{\let\poissonbracket\anticommutator}
+\CustomizeMathJax{\let\pb\anticommutator}
+
+\CustomizeMathJax{\newcommand{\LWRvectorboldnostar}[1]{\mathbf{#1}}}
+\CustomizeMathJax{\newcommand{\LWRvectorboldstar}[1]{\pmb{#1}}}
+\CustomizeMathJax{%
+    \DeclareIfstar{\vectorbold}{\LWRvectorboldstar}{\LWRvectorboldnostar}%
+}
+\CustomizeMathJax{\let\vb\vectorbold}
+
+\CustomizeMathJax{\newcommand{\LWRvectorarrownostar}[1]{\vec{\mathbf{#1}}}}
+\CustomizeMathJax{\newcommand{\LWRvectorarrowstar}[1]{\vec{\pmb{#1}}}}
+\CustomizeMathJax{%
+    \DeclareIfstar{\vectorarrow}{\LWRvectorarrowstar}{\LWRvectorarrownostar}%
+}
+\CustomizeMathJax{\let\va\vectorarrow}
+
+\CustomizeMathJax{\newcommand{\LWRvectorunitnostar}[1]{\mathbf{\hat{#1}}}}
+\CustomizeMathJax{\newcommand{\LWRvectorunitstar}[1]{\pmb{\hat{#1}}}}
+\CustomizeMathJax{%
+    \DeclareIfstar{\vectorunit}{\LWRvectorunitstar}{\LWRvectorunitnostar}%
+}
+\CustomizeMathJax{\let\va\vectorunit}
+
+\CustomizeMathJax{\newcommand{\dotproduct}{\boldsymbol\cdot}}
+\CustomizeMathJax{\let\vdot\dotproduct}
+
+\CustomizeMathJax{\newcommand{\crossproduct}{\boldsymbol\times}}
+\CustomizeMathJax{\let\cross\crossproduct}
+\CustomizeMathJax{\let\cp\crossproduct}
+
+\CustomizeMathJax{\newcommand{\gradient}{\mathbf{\nabla}}}
+\CustomizeMathJax{\let\grad\gradient}
+
+\CustomizeMathJax{\let\divisionsymbol\div}
+
+\CustomizeMathJax{\newcommand{\divergence}{\nabla\vdot}}
+\CustomizeMathJax{\let\div\divergence}
+
+\CustomizeMathJax{\newcommand{\curl}{\nabla\cross}}
+
+\CustomizeMathJax{\newcommand{\laplacian}{\nabla^2}}
+
+\ifx\trigopt 1
+    \CustomizeMathJax{\DeclareMathOperator{\sine}{sin}}
+    \CustomizeMathJax{\DeclareMathOperator{\cosine}{cos}}
+    \CustomizeMathJax{\DeclareMathOperator{\tangent}{tan}}
+    \CustomizeMathJax{\DeclareMathOperator{\cosecant}{csc}}
+    \CustomizeMathJax{\DeclareMathOperator{\secant}{sec}}
+    \CustomizeMathJax{\DeclareMathOperator{\cotangent}{cot}}
+    \CustomizeMathJax{\DeclareMathOperator{\arcsine}{arcsin}}
+    \CustomizeMathJax{\DeclareMathOperator{\arccosine}{arccos}}
+    \CustomizeMathJax{\DeclareMathOperator{\arctangent}{arctan}}
+    \CustomizeMathJax{\DeclareMathOperator{\hypsine}{sinh}}
+    \CustomizeMathJax{\DeclareMathOperator{\hypcosine}{cosh}}
+    \CustomizeMathJax{\DeclareMathOperator{\hyptangent}{tanh}}
+    \CustomizeMathJax{\DeclareMathOperator{\hypcotangent}{coth}}
+    \CustomizeMathJax{\DeclareMathOperator{\exponential}{exp}}
+    \CustomizeMathJax{\DeclareMathOperator{\logarithm}{log}}
+    \CustomizeMathJax{\DeclareMathOperator{\naturallogarithm}{\ln}}
+    \CustomizeMathJax{\DeclareMathOperator{\determinant}{det}}
+    \CustomizeMathJax{\DeclareMathOperator{\Probability}{Pr}}
+    \CustomizeMathJax{\newcommand{\sin}[1][{}]{\mathrm{sin}^#1}}
+    \CustomizeMathJax{\newcommand{\sinh}[1][{}]{\mathrm{sinh}^#1}}
+    \CustomizeMathJax{\newcommand{\arcsin}[1][{}]{\mathrm{arcsin}^#1}}
+    \CustomizeMathJax{\newcommand{\asin}[1][{}]{\mathrm{asin}^#1}}
+    \CustomizeMathJax{\newcommand{\cos}[1][{}]{\mathrm{cos}^#1}}
+    \CustomizeMathJax{\newcommand{\cosh}[1][{}]{\mathrm{cosh}^#1}}
+    \CustomizeMathJax{\newcommand{\arccos}[1][{}]{\mathrm{arccos}^#1}}
+    \CustomizeMathJax{\newcommand{\acos}[1][{}]{\mathrm{acos}^#1}}
+    \CustomizeMathJax{\newcommand{\tan}[1][{}]{\mathrm{tan}^#1}}
+    \CustomizeMathJax{\newcommand{\tanh}[1][{}]{\mathrm{tanh}^#1}}
+    \CustomizeMathJax{\newcommand{\arctan}[1][{}]{\mathrm{arctan}^#1}}
+    \CustomizeMathJax{\newcommand{\atan}[1][{}]{\mathrm{atan}^#1}}
+    \CustomizeMathJax{\newcommand{\csc}[1][{}]{\mathrm{csc}^#1}}
+    \CustomizeMathJax{\newcommand{\csch}[1][{}]{\mathrm{csch}^#1}}
+    \CustomizeMathJax{\newcommand{\arccsc}[1][{}]{\mathrm{arccsc}^#1}}
+    \CustomizeMathJax{\newcommand{\acsc}[1][{}]{\mathrm{acsc}^#1}}
+    \CustomizeMathJax{\newcommand{\sec}[1][{}]{\mathrm{sec}^#1}}
+    \CustomizeMathJax{\newcommand{\sech}[1][{}]{\mathrm{sech}^#1}}
+    \CustomizeMathJax{\newcommand{\arcsec}[1][{}]{\mathrm{arcsec}^#1}}
+    \CustomizeMathJax{\newcommand{\asec}[1][{}]{\mathrm{asec}^#1}}
+    \CustomizeMathJax{\newcommand{\cot}[1][{}]{\mathrm{cot}^#1}}
+    \CustomizeMathJax{\newcommand{\coth}[1][{}]{\mathrm{coth}^#1}}
+    \CustomizeMathJax{\newcommand{\arccot}[1][{}]{\mathrm{arccot}^#1}}
+    \CustomizeMathJax{\newcommand{\acot}[1][{}]{\mathrm{acot}^#1}}
+\else
+    \CustomizeMathJax{\DeclareMathOperator{\arccsc}{arccsc}}
+    \CustomizeMathJax{\DeclareMathOperator{\arcsec}{arcsec}}
+    \CustomizeMathJax{\DeclareMathOperator{\arccot}{arccot}}
+    \CustomizeMathJax{\DeclareMathOperator{\asin}{asin}}
+    \CustomizeMathJax{\DeclareMathOperator{\acos}{acos}}
+    \CustomizeMathJax{\DeclareMathOperator{\atan}{atan}}
+    \CustomizeMathJax{\DeclareMathOperator{\acsc}{acsc}}
+    \CustomizeMathJax{\DeclareMathOperator{\asec}{asec}}
+    \CustomizeMathJax{\DeclareMathOperator{\acot}{acot}}
+    \CustomizeMathJax{\DeclareMathOperator{\csch}{csch}}
+    \CustomizeMathJax{\DeclareMathOperator{\sech}{sech}}
+    \CustomizeMathJax{\newcommand{\tr}{\trace}}
+    \CustomizeMathJax{\newcommand{\Tr}{\Trace}}
+    \CustomizeMathJax{\newcommand{\Res}{\Residue}}
+\fi
+
+\CustomizeMathJax{\DeclareMathOperator{\trace}{tr}}
+\CustomizeMathJax{\let\tr\trace}
+\CustomizeMathJax{\DeclareMathOperator{\Trace}{Tr}}
+\CustomizeMathJax{\let\Tr\Trace}
+\CustomizeMathJax{\DeclareMathOperator{\rank}{rank}}
+\CustomizeMathJax{\DeclareMathOperator{\erf}{erf}}
+\CustomizeMathJax{\DeclareMathOperator{\Residue}{Res}}
+\CustomizeMathJax{\newcommand{\principalvalue}{\mathcal{P}}}
+\CustomizeMathJax{\let\pv\principalvalue}
+\CustomizeMathJax{\newcommand{\PV}{\text{P.V.}}}
+\CustomizeMathJax{\newcommand{\real}{\mathcal{R}}}
+\CustomizeMathJax{\newcommand{\imaginary}{\mathcal{I}}}
+
+\CustomizeMathJax{\newcommand{\Re}[1]{\mathrm{Re}\left\lbrace#1\right\rbrace}}
+\CustomizeMathJax{\newcommand{\Im}[1]{\mathrm{Im}\left\lbrace#1\right\rbrace}}
+
+\CustomizeMathJax{\newcommand{\LWRqqtextnostar}[1]{\quad\mathrm{#1}\quad}}
+\CustomizeMathJax{\newcommand{\LWRqqtextstar}[1]{\mathrm{#1}\quad}}
+\CustomizeMathJax{\DeclareIfstar{\qqtext}{\LWRqqtextstar}{\LWRqqtextnostar}}
+\CustomizeMathJax{\let\qq\qqtext}
+
+\CustomizeMathJax{\newcommand{\qqcomma}{\text{,}\quad}}
+\CustomizeMathJax{\let\qc\qqcomma}
+
+\newcommand*{\LWR@physics@qtext}[2]{%
+    \appto\LWR@customizedMathJax{\LWRbackslash(}
+    \appto\LWR@customizedMathJax{%
+        \LWRbackslash{}newcommand\{\LWRbackslash{}LWR\macrotocsname{#1}subnostar\}%
+    }%
+    \appto\LWR@customizedMathJax{\{}%
+    \appto\LWR@customizedMathJax{%
+        \LWRbackslash{}quad\LWRbackslash{}text\{#2\}\LWRbackslash{}quad%
+    }%
+    \appto\LWR@customizedMathJax{\}}%
+    \appto\LWR@customizedMathJax{\LWRbackslash)\par}%
+    \appto\LWR@customizedMathJax{\LWRbackslash(}
+    \appto\LWR@customizedMathJax{%
+        \LWRbackslash{}newcommand\{\LWRbackslash{}LWR\macrotocsname{#1}substar\}%
+    }%
+    \appto\LWR@customizedMathJax{\{}%
+    \appto\LWR@customizedMathJax{\LWRbackslash{}text\{#2\}\LWRbackslash{}quad}%
+    \appto\LWR@customizedMathJax{\}}%
+    \appto\LWR@customizedMathJax{\LWRbackslash)\par}%
+    \appto\LWR@customizedMathJax{\LWRbackslash(}
+    \appto\LWR@customizedMathJax{%
+        \LWRbackslash{}DeclareIfstar\{\LWRbackslash\macrotocsname{#1}\}%
+    }%
+    \appto\LWR@customizedMathJax{\{}%
+    \appto\LWR@customizedMathJax{\LWRbackslash{}LWR\macrotocsname{#1}substar\}}%
+    \appto\LWR@customizedMathJax{\LWRbackslash{}LWR\macrotocsname{#1}subnostar\}}%
+    \appto\LWR@customizedMathJax{\LWRbackslash)\par}%
+}
+
+\LWR@physics@qtext{\qcc}{c.c.}
+\LWR@physics@qtext{\qif}{if}
+\LWR@physics@qtext{\qthen}{then}
+\LWR@physics@qtext{\qelse}{else}
+\LWR@physics@qtext{\qotherwise}{otherwise}
+\LWR@physics@qtext{\qunless}{unless}
+\LWR@physics@qtext{\qgiven}{given}
+\LWR@physics@qtext{\qusing}{using}
+\LWR@physics@qtext{\qassume}{assume}
+\LWR@physics@qtext{\qsince}{since}
+\LWR@physics@qtext{\qlet}{let}
+\LWR@physics@qtext{\qfor}{for}
+\LWR@physics@qtext{\qall}{all}
+\LWR@physics@qtext{\qeven}{even}
+\LWR@physics@qtext{\qodd}{odd}
+\LWR@physics@qtext{\qinteger}{integer}
+\LWR@physics@qtext{\qand}{and}
+\LWR@physics@qtext{\qor}{or}
+\LWR@physics@qtext{\qas}{as}
+\LWR@physics@qtext{\qin}{in}
+
+\CustomizeMathJax{\newcommand{\differential}[1][]{\text{d}^{#1}}}
+\CustomizeMathJax{\let\dd\differential}
+
+\CustomizeMathJax{\newcommand{\LWRderivativenostar}[3][]{%
+    \frac{\text{d}^{#1}#2}{\text{d}#3^{#1}}}%
+}
+\CustomizeMathJax{\newcommand{\LWRderivativestar}[3][]{%
+    {\text{d}^{#1}#2}/{\text{d}#3^{#1}}}%
+}
+\CustomizeMathJax{%
+    \DeclareIfstar{\derivative}{\LWRderivativestar}{\LWRderivativenostar}%
+}
+
+\CustomizeMathJax{\let\dv\derivative}
+
+\CustomizeMathJax{\newcommand{\LWRpartialderivativenostar}[3][]{%
+    \frac{\partial^{#1}#2}{\partial#3^{#1}}}%
+}
+\CustomizeMathJax{\newcommand{\LWRpartialderivativestar}[3][]{%
+    {\partial^{#1}#2}/{\partial#3^{#1}}}%
+}
+\CustomizeMathJax{%
+    \DeclareIfstar{\partialderivative}%
+        {\LWRpartialderivativestar}{\LWRpartialderivativenostar}
+}
+
+\CustomizeMathJax{\let\pderivative\partialderivative}
+\CustomizeMathJax{\let\pdv\partialderivative}
+
+\CustomizeMathJax{\newcommand{\variation}{\delta}}
+\CustomizeMathJax{\let\var\variation}
+
+\CustomizeMathJax{\newcommand{\LWRfunctionalderivativenostar}[3][]{%
+    \frac{\delta^{#1}#2}{\delta#3^{#1}}}%
+}
+\CustomizeMathJax{\newcommand{\LWRfunctionalderivativestar}[3][]{%
+    {\delta^{#1}#2}/{\delta#3^{#1}}}%
+}
+\CustomizeMathJax{%
+    \DeclareIfstar{\functionalderivative}
+        {\LWRfunctionalderivativestar}{\LWRfunctionalderivativenostar}
+}
+\CustomizeMathJax{\let\fdv\functionalderivative}
+
+\CustomizeMathJax{\newcommand{\LWRbranostar}[1]{\left\langle{#1}\right\rvert}}
+\CustomizeMathJax{\newcommand{\LWRbrastar}[1]{\langle{#1}\rvert}}
+\CustomizeMathJax{\DeclareIfstar{\bra}{\LWRbrastar}{\LWRbranostar}}
+
+\CustomizeMathJax{\newcommand{\LWRketnostar}[1]{\left\lvert{#1}\right\rangle}}
+\CustomizeMathJax{\newcommand{\LWRketstar}[1]{\lvert{#1}\rangle}}
+\CustomizeMathJax{\DeclareIfstar{\ket}{\LWRketstar}{\LWRketnostar}}
+
+\CustomizeMathJax{\newcommand{\LWRinnerproductnostar}[2]{%
+    \left\langle{#1}\middle\vert{#2}\right\rangle}%
+}
+\CustomizeMathJax{\newcommand{\LWRinnerproductstar}[2]{%
+    \langle{#1}\vert{#2}\rangle}%
+}
+\CustomizeMathJax{%
+    \DeclareIfstar{\innerproduct}
+        {\LWRinnerproductstar}{\LWRinnerproductnostar}
+}
+
+\CustomizeMathJax{\let\braket\innerproduct}
+\CustomizeMathJax{\let\ip\innerproduct}
+
+\CustomizeMathJax{\newcommand{\LWRouterproductnostar}[2]{%
+    \left\lvert{#1}\middle\rangle\!\middle\langle#2\right\rvert}%
+}
+\CustomizeMathJax{\newcommand{\LWRouterproductstar}[2]{%
+    \lvert{#1}\rangle\!\langle#2\rvert}%
+}
+\CustomizeMathJax{%
+    \DeclareIfstar{\outerproduct}
+        {\LWRouterproductstar}{\LWRouterproductnostar}
+}
+
+\CustomizeMathJax{\let\dyad\outerproduct}
+\CustomizeMathJax{\let\op\outerproduct}
+
+\CustomizeMathJax{%
+    \newcommand{\LWRexpectationvaluenostar}[2]{%
+        \vphantom{#1}%
+        \left\langle{#2}\middle\vert\smash{#1}\middle\vert{#2}%
+        \right\rangle%
+    }%
+}
+\CustomizeMathJax{%
+    \newcommand{\LWRexpectationvaluestar}[2]{%
+        \vphantom{#1#2}%
+        \left\langle\smash{#2}%
+        \middle\vert\smash{#1}\middle\vert\smash{#2}%
+        \right\rangle%
+    }%
+}
+\CustomizeMathJax{%
+    \newcommand{\LWRexpectationvaluedoublestar}[2]{%
+        \left\langle{#2}\middle\vert{#1}\middle\vert{#2}\right\rangle%
+    }%
+}
+\CustomizeMathJax{% second star
+    \DeclareIfstar{\LWRsubexpectationvalue}
+        {\LWRexpectationvaluedoublestar}{\LWRexpectationvaluestar}
+}
+\CustomizeMathJax{% first star
+    \DeclareIfstar{\expectationvalue}
+        {\LWRsubexpectationvalue}{\LWRexpectationvaluenostar}
+}
+
+\CustomizeMathJax{\let\expval\expectationvalue}
+\CustomizeMathJax{\let\ev\expectationvalue}
+
+\CustomizeMathJax{%
+    \newcommand{\LWRmatrixelementnostar}[3]{%
+        \vphantom{#2}\left\langle{#1}\middle\vert\smash{#2}\middle\vert{#3}\right\rangle%
+    }%
+}
+\CustomizeMathJax{%
+    \newcommand{\LWRmatrixelementstar}[3]{%
+        \vphantom{#1#2#3}%
+        \left\langle\smash{#1}%
+        \middle\vert\smash{#2}\middle\vert\smash{#3}%
+        \right\rangle%
+    }%
+}
+\CustomizeMathJax{%
+    \newcommand{\LWRmatrixelementdoublestar}[3]{%
+        \left\langle{#1}\middle\vert{#2}\middle\vert{#3}\right\rangle%
+    }%
+}
+\CustomizeMathJax{% second star
+    \DeclareIfstar{\LWRsubmatrixelement}
+        {\LWRmatrixelementdoublestar}{\LWRmatrixelementstar}
+}
+
+\CustomizeMathJax{% first star
+    \DeclareIfstar{\matrixelement}
+        {\LWRsubmatrixelement}{\LWRmatrixelementnostar}
+}
+
+\CustomizeMathJax{\let\mel\matrixelement}
+
+\CustomizeMathJax{\newcommand{\matrixquantity}[1]{\begin{matrix}#1\end{matrix}}}
+\CustomizeMathJax{\let\mqty\matrixquantity}
+
+\CustomizeMathJax{\newcommand{\pmqty}[1]{\begin{pmatrix}#1\end{pmatrix}}}
+\CustomizeMathJax{\newcommand{\Pmqty}[1]{%
+    \left\lgroup\begin{matrix}#1\end{matrix}\right\rgroup}%
+}
+\CustomizeMathJax{\newcommand{\bmqty}[1]{\begin{bmatrix}#1\end{bmatrix}}}
+\CustomizeMathJax{\newcommand{\vmqty}[1]{\begin{vmatrix}#1\end{vmatrix}}}
+
+\CustomizeMathJax{\newcommand{\smallmatrixquantity}[1]{%
+    \begin{smallmatrix}#1\end{smallmatrix}}%
+}
+\CustomizeMathJax{\let\smqty\smallmatrixquantity}
+\CustomizeMathJax{\newcommand{\spmqty}[1]{%
+    \pqty{\begin{smallmatrix}#1\end{smallmatrix}}}%
+}
+\CustomizeMathJax{\newcommand{\sPmqty}[1]{%
+    \left\lgroup\begin{smallmatrix}#1\end{smallmatrix}\right\rgroup}%
+}
+\CustomizeMathJax{\newcommand{\sbmqty}[1]{%
+    \bqty{\begin{smallmatrix}#1\end{smallmatrix}}}%
+}
+\CustomizeMathJax{\newcommand{\svmqty}[1]{%
+    \vqty{\begin{smallmatrix}#1\end{smallmatrix}}}%
+}
+
+\CustomizeMathJax{\let\matrixdeterminant\vmqty}
+\CustomizeMathJax{\let\mdet\vmqty}
+\CustomizeMathJax{\let\smdet\svmqty}
+
+\CustomizeMathJax{\newcommand{\identitymatrix}[1]{(\text{imat}\{#1\})}}
+\CustomizeMathJax{\let\imat\identitymatrix}
+
+\CustomizeMathJax{\newcommand{\LWRxmatrix}[3]{(\text{xmat}\{\}\{#2\}\{#3\})}}
+\CustomizeMathJax{\DeclareIfstar{\xmatrix}{\LWRxmatrix}{\LWRxmatrix}}
+\CustomizeMathJax{\let\xmat\xmatrix}
+
+\CustomizeMathJax{\newcommand{\zeromatrix}[2]{(\text{zmat}\{#1\}\{#2\})}}
+\CustomizeMathJax{\let\zmat\zeromatrix}
+
+\CustomizeMathJax{\newcommand{\paulimatrix}[1]{(\text{pmat}\{#1\})}}
+\CustomizeMathJax{\let\pmat\paulimatrix}
+
+\CustomizeMathJax{\newcommand{\diagonalmatrix}[2][]{%
+    \left(\text{dmat}\right)}%
+}
+\CustomizeMathJax{\let\dmat\diagonalmatrix}
+
+\CustomizeMathJax{\newcommand{\antidiagonalmatrix}[2][]{%
+    \left(\text{admat}\right)}%
+}
+\CustomizeMathJax{\let\admat\antidiagonalmatrix}
+\end{warpMathJax}
+\endinput
+%%
+%% End of file `lwarp-physics.sty'.

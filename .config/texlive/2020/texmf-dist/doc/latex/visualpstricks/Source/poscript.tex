@@ -1,0 +1,20 @@
+%\section{formules en langage postcript}
+\SSCT{formules en langage postcript}
+{Formula in postcript}
+\label{postcript}
+
+\begin{tabular}{|c|c|c|} \hline  
+formule & en PostScript & valeur \\ 
+\hline  
+\rule[-0.2cm]{0pt}{.7cm} $2 + 3$ & 2 3 add & \makebox[2cm][c]{\psPrintValue {2 3 add}} \\ \hline
+\rule[-0.2cm]{0pt}{.7cm}  $2 + 2$ & 2 dup add & \makebox[2cm][c]{\psPrintValue {2 dup add}} \\ \hline
+\rule[-0.2cm]{0pt}{.7cm}  $2 - 3$ & 2 -3 add & \makebox[2cm][c]{\psPrintValue {2 -3 add}} \\ \hline 
+\rule[-0.2cm]{0pt}{.7cm}$2 * 3$ & 2 3 mul & \makebox[2cm][c]{\psPrintValue {2 3 mul}} \\ \hline 
+\rule[-0.2cm]{0pt}{.7cm}$10/2$ & 10 2 div & \makebox[2cm][c]{\psPrintValue {10 2 div}} \\ \hline   
+\rule[-0.2cm]{0pt}{.7cm}$3^2$ & 3 2 exp & \makebox[2cm][c]{\psPrintValue {3 2 exp}} \\ \hline  
+ \rule[-0.2cm]{0pt}{.7cm}$\sqrt{3}$ & 3 sqrt & \makebox[2cm][c]{\psPrintValue[decimals=2] {3 sqrt}} \\ \hline 
+\rule[-0.2cm]{0pt}{.7cm}$\sin({30})$ & 30 sin & \makebox[2cm][c]{\psPrintValue {30 sin}} \\ \hline 
+\rule[-0.2cm]{0pt}{.7cm}$\cos({30})$ & 30 cos & \makebox[2cm][c]{\psPrintValue[decimals=2] {30 cos}} \\ \hline 
+\rule[-0.2cm]{0pt}{.7cm}$sin^2({30})$ & 30 sin 2 exp & \makebox[2cm][c]{\psPrintValue {30 sin 2 exp}} \\ \hline
+\rule[-0.2cm]{0pt}{.7cm}$sin({5}^2)$ & 5 2 exp sin  & \makebox[2cm][c]{\psPrintValue[decimals=2] {5 2 exp sin}} \\ \hline 
+\end{tabular}

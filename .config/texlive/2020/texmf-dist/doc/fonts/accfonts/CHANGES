@@ -1,0 +1,342 @@
+Changes to vpl2vpl between first (unnumbered) release and release 0.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When I first wrote vpl2vpl I was under the impression that the vpl
+file output by afm2tfm could never contain accented character
+definitions. The first (unnumbered) release of vpl2vpl thus did not
+implement the -b option allowed for mkt1font (to block the use of
+predefined accented characters). I have since become aware that in
+the rather rare case of an afm file containing composite character
+information, afm2tfm uses that information to build definitions of
+accented characters; I have therefore introduced a -b option in
+version 0.1.
+
+There were two bugs in the coding dealing with the -s option in the
+first version of vpl2vpl. First, the shrink-factor specified by the
+user was incorrectly applied to the underdot accent as well as to
+dropped superscript accents. Second, the shrink-factor was not
+correctly scaled in terms of the value of DESIGNUNITS (this chiefly
+affected Computer Modern fonts). Both of these have been fixed in
+version 0.1.
+
+Another bug affected those characters (quotesingle, quotedbl,
+backslash, underscore, braceleft, bar and braceright) which
+dvips.enc places in the lower half of the character set, but which
+vpl2vpl removes to make room for the normal TeX inhabitants of their
+"slots"; in the first version of the program it was not possible to
+include these characters in the output font. This has also been
+fixed in version 0.1.
+
+The handling of LIGTABLE information controlling kerning etc. has
+been improved, to eliminate repeated instructions and "orphaned"
+instructions with no LABEL.
+
+In the first version of vpl2vpl I deliberately did not allow for
+double superscript accents on tall characters such as capital
+letters, on the grounds that this would be bad typographic practice.
+A specific request for one such character has led me to modify
+version 0.1 of the program to make the creation of such characters
+possible, but I would still argue against their use.
+
+Some minor improvements have been made to the code in various areas,
+including checking for inappropriate input, calculation of italic
+correction for characters with superscript accents, and placing of
+dropped superscript accents. (However, it is likely that such
+accents will still sometimes require manual intervention.)
+
+
+Changes to mkt1font between first (unnumbered) release and release 0.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the first release of mkt1font, kerning information for predefined
+accented characters was taken from the input font, even if the -b
+option had been specified to force the redefinition of such
+characters. This has been fixed in version 0.1: if the -b option is
+used, kerns for characters such as "eacute" are generalised from the
+kerns for "e" in just the same way as happens for "emacron" etc.
+
+Similarly, predefined accented characters eliminated by the -b
+option used to retain "ghost" entries among the unencoded characters
+in the afm file. This too has been fixed in version 0.1.
+
+As of version 0.1, any composite character definitions contained in
+the afm file of the input font are eliminated from the output font,
+since they will almost certainly be incomplete, and (if the user has
+specified -b) will probably be wrong as well.
+
+Version 0.1 can now properly process input fonts using MS-DOS file
+format (with newline represented by CR/LF). It can also process
+fonts in which the character "|" is used in the names of the
+frequently used "noaccess def" and "noaccess put" definitions
+(previously this fell foul of Perl's regular expression handler).
+
+As with vpl2vpl, I have modified version 0.1 of mkt1font to permit
+the creation of tall characters bearing double superscript accents,
+though I do not recommend the use of such characters.
+
+The "FontBBox" entries in the afm and pfb files now reflect any
+increase in the maximum height or depth of characters in the output
+font.
+
+Various other minor improvements have been made to the code,
+including the placing of dropped superscript accents. (As with
+vpl2vpl, however, it is likely that such accents will still
+sometimes require manual intervention.)
+
+
+Changes between release 0.1 and release 0.2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A. Changes common to both programs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+I have implemented the candrabindu ("moon-dot") accent sometimes
+used in Indian-language material. This is achieved by overprinting a
+breve with a dotaccent; a new command-line option (-c) has been
+introduced to allow for font-specific adjustments in the placing of
+the dotaccent.
+
+The user's command-line is now stored as a comment at the head of
+the output file(s).
+
+The constraint on the ordering of definitions in a definition file
+has been removed: it is no longer necessary to ensure that a
+character is defined before it is used.
+
+Digraphs are now implemented: if the character specified as the
+"accent" in a definition is not in fact a valid accent character,
+the definition is interpreted as a request for a digraph formed from
+the "character" followed by the "accent".
+
+A bug which placed superscript accents incorrectly over tall
+characters already bearing "under" accents has been fixed.
+
+The vertical positioning of "under" accents has been adjusted: they
+are now placed slightly lower than previously.
+
+
+B. Changes to vpl2vpl
+~~~~~~~~~~~~~~~~~~~~~
+
+Fixed a bug which resulted in some accents in small caps fonts being
+positioned at the wrong height.
+
+Fixed a bug which resulted in small amounts of LIGTABLE information
+being lost.
+
+
+C. Changes to mkt1font
+~~~~~~~~~~~~~~~~~~~~~~
+
+The internal organisation of the program has been cleaned up in a
+number of respects. In particular, various subroutines are now
+called with the appropriate formal parameters, rather than relying
+on the existence of equivalent global variables; the fetching and
+storing of character metric information is tidier and more
+efficient; and kerning information is dealt with in the course of
+the main program loop, rather than in a private (double) loop
+afterwards.
+
+The -s option allowing "under" accents to be shrunk by a specified
+factor, which was previously available only in vpl2vpl, has now been
+implemented in mkt1font also.
+
+The output afm file previously sometimes contained spurious entries
+for unencoded characters that duplicated items in the list of
+encoded characters. This has been fixed.
+
+Despite the fix introduced in version 0.1, some predefined kerning
+information continued to find its way into the afm file even when
+the -b option was specified to block the use of predefined accented
+characters. A new, improved fix is now in place to prevent this. An
+error in a regular expression which generated some undesirable kerns
+has also been corrected.
+
+The "FontBBox" entries in the afm and pfb files now reflect any
+increase in the maximum width of characters in the output font, as
+well as increases in their maximum height or depth.
+
+Fixed a bug causing the underbar accent to be too long.
+
+Fixed a bug causing "under" accents to be assigned the wrong depth:
+this could result in the bottom of the accent failing to print
+properly.
+
+
+Changes between release 0.2 and release 0.21
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes common to both programs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The vertical positioning of "under" accents has been adjusted again
+(the previous adjustment was a little too enthusiastic). They have
+been raised slightly.
+
+The height at which characters are reckoned to be so tall that
+superscript accents placed on them must be raised above the normal
+level has been increased slightly (from 1.1 x xheight to 1.15 x
+xheight).
+
+Changes between release 0.21 and release 0.211
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A. Changes to vpl2vpl
+~~~~~~~~~~~~~~~~~~~~~
+
+A single minor change has been made to vpl2vpl: this has been
+necessitated by a change in the format of the LIGTABLE information
+produced by version 8.1 of afm2tfm, which now adds identificatory
+comments to lines referring to characters by means of octal
+notation. Vpl2vpl strips out such comments.
+
+
+B. Changes to mkt1font
+~~~~~~~~~~~~~~~~~~~~~~
+
+Minor bugfixes have been put in place: extra spaces in the the
+"noaccess def" and "noaccess put" definitions are now permitted, and
+so is a character named ".null". An error message has been improved.
+
+Changes between release 0.211 and release 0.212
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A. Changes to vpl2vpl
+~~~~~~~~~~~~~~~~~~~~~
+
+Fixed a bug in the "double superscript accent on small caps
+character" routine.
+
+
+B. Changes to mkt1font
+~~~~~~~~~~~~~~~~~~~~~~
+
+Fixed a bug which produced incorrect output in cases where the
+character to be accented is defined as blank (e.g. space).
+
+Changes to between release 0.212 and release 0.22
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changes common to both programs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The programs now recognise "commaaccent" as a valid subscript
+accent. Note that they cannot replace this subscript with the
+superscript form used with the letter "g" (any more than they can
+substitute the apostrophe-like form of the caron that is used with
+"L", "d", "l" and "t"). Note also that as there is no position for
+this accent in either the standard TeX encoding or the dvips.enc
+variant, vpl2vpl will not actually be able to use it to build new
+characters without further modification.
+
+In the case where the definition file specifies, say, "z overdot"
+and the font contains a predefined version named "zdotaccent", it
+previously happened that the output font contained both characters.
+This has been fixed: now only the character requested in the
+definition file exists in the output.
+
+Changes between release 0.22 and release 0.221
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A. Changes to mkt1font
+~~~~~~~~~~~~~~~~~~~~~~
+
+Fixed a bug which caused the program to fail after incorrectly
+identifying CharStrings definitions.
+
+Changes tbetween release 0.221 and release 0.222
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A. Changes to mkt1font
+~~~~~~~~~~~~~~~~~~~~~~
+
+Changed FamilyName to remove only the final one of a number of
+hyphenated elements from the font name.
+
+Changes between release 0.222 and release 0.23
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A. Changes to mkt1font
+~~~~~~~~~~~~~~~~~~~~~~
+
+No changes have in fact been made to mkt1font, but its version number
+has been raised to 0.23 to conform with those of vpl2vpl and vpl2ovp.
+
+B. Changes to vpl2vpl
+~~~~~~~~~~~~~~~~~~~~~
+
+A change has been introduced to permit the program to use the output
+of the AFM conversion utility afm2pl, rather than the earlier afm2tfm.
+This has been done because it has come to light that afm2tfm gives
+incorrect values for the heights of some characters, which can cause
+poor accent placement. Support for the output of afm2tfm has not been
+withdrawn, but afm2pl is now definitely preferred.
+
+B. A new program: vpl2ovp
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The greatest change as of 0.23 is the addition of a third program to
+the suite. Vpl2ovp does essentially the same job as vpl2vpl, in that
+it creates virtual fonts that contain arbitrarily accented characters,
+but its output is a .ovp file suitable for use with Omega (the 16-bit
+Unicode-aware development from TeX). Using vpl2ovp it is possible to
+build substantial Unicode-compliant virtual fonts for use with Omega,
+and a .def file for the set of characters I have included in my
+earlier "IndUni" OpenType fonts is now included in the distribution.
+(IndUni virtual fonts for Omega created with vpl2ovp are available at
+http://bombay.indology.info/software/fonts/induni/index.html.) Glyphs
+representing characters requiring more than a single codepoint are
+stored in the Private Use Area, and a system of ligatures is provided
+to allow them to be accessed. This system also permits
+single-codepoint accented characters to be accessed through their
+"decomposed" component parts. Thus if the characters a-macron (single
+codepoint: U+0101) and a-macron-acute (two codepoints: U+0101 +
+U+0301) are defined, the former will be accessible both as U+0101
+(a-macron) and as U+0061 + U+0304 ("a" + macron); the latter will be
+accessible both as U+0101 + U+0301 (a-macron + acute) and U+0061 +
+U+0304 + U+0301 ("a" + macron + acute). This is a considerable
+advantage, given the different possible ways in which Unicode can be,
+and is, used.
+
+Changes between release 0.23 and release 0.24
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A. Changes to mkt1font
+~~~~~~~~~~~~~~~~~~~~~~
+
+The format expected of glyph names has been brought into line with
+Adobe's specification, i.e. they may contain upper- and lower-case
+letters, numerals, "_" and ".", but must begin with a letter or with
+"_". The format expected of PFB head and tail material has been made
+less restrictive, to match the realities of perceived usage. A bug in
+digraph creation has been fixed. A "dotlessj" character is created for
+use with superscript accents. Full Flex hinting is now supported.
+
+B. Changes to vpl2vpl
+~~~~~~~~~~~~~~~~~~~~~
+
+The help information has been improved.
+
+C. Changes to vpl2ovp
+~~~~~~~~~~~~~~~~~~~~~
+
+A bug has been fixed that generated "ghost" replicas of some existing
+accent characters in the Private Use Area. The handling of digraphs
+and underscored digraphs has been brought into better Unicode
+compliance. The help information has also been improved.
+
+Changes between release 0.24 and release 0.25
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A. Changes to mkt1font
+~~~~~~~~~~~~~~~~~~~~~~
+
+Various bugs have been fixed. Rounding of non-integer values to
+integers has been improved.
+
+B. Changes to vpl2vpl
+~~~~~~~~~~~~~~~~~~~~~
+
+No changes have in fact been made to vpl2vpl or vpl2ovp, but their
+version number has been raised to 0.25 to conform with that of
+mkt1font.

@@ -1,0 +1,36 @@
+name esk
+category Package
+revision 18115
+shortdesc Package to encapsulate Sketch files in LaTeX sources
+longdesc The ESK package allows to encapsulate Sketch files in LaTeX
+longdesc sources. This is very useful for keeping illustrations in sync
+longdesc with the text. It also frees the user from inventing
+longdesc descriptive names for new files that fit into the confines of
+longdesc file system conventions. Sketch is a 3D scene description
+longdesc language by Eugene K. Ressler and can generate TikZ and
+longdesc PSTricks code. ESK behaves in a similar fashion to EMP (which
+longdesc encapsulates MetaPost files), and was in fact developed from
+longdesc it.
+containersize 3928
+containerchecksum 584d9b9abf202d93826c690545206c3b7276d6b3a4b717ed3671f9cbd2a1c6c6503d3352471fe60232e75d63632e021fb0ed34ce49d5a1e72ae58b08fbdd7211
+doccontainersize 414448
+doccontainerchecksum acc40c8829e69c681d3bcfd5aa7223b3f5320c1ed5fa3f4a9a700f203b622f300b73912ef5df2c163d2cce1b40aecfdf1eb880dcba48e94783c14054981e0e11
+docfiles size=117
+ texmf-dist/doc/latex/esk/COPYING
+ texmf-dist/doc/latex/esk/README details="Readme"
+ texmf-dist/doc/latex/esk/esk.pdf details="Package documentation"
+ texmf-dist/doc/latex/esk/eskman.pdf details="Package manual"
+srccontainersize 15476
+srccontainerchecksum 8f7123816c718d86eb1b362369dc10a745a003e8e79c54b8edb90813382528466a7e0fe3eb6b579372754d03888065b6f5c48a0682c6288905e93cebfb1b4a4b
+srcfiles size=18
+ texmf-dist/source/latex/esk/Makefile
+ texmf-dist/source/latex/esk/esk.drv
+ texmf-dist/source/latex/esk/esk.dtx
+ texmf-dist/source/latex/esk/esk.ins
+ texmf-dist/source/latex/esk/eskman.drv
+runfiles size=3
+ texmf-dist/tex/latex/esk/esk.sty
+catalogue-ctan /macros/latex/contrib/esk
+catalogue-license gpl
+catalogue-topics graphics-inline
+catalogue-version 1.0

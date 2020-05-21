@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML LANG="de">
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso-8859-1">
+<META NAME="description" 
+CONTENT="bibliographies following the german DIN 1505 with BibTeX by dinat">
+<META NAME="keywords" CONTENT="dinat literatur DIN 1505 bibtex">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<TITLE>Literaturverzeichnisse nach DIN mit BibTeX</TITLE>
+
+</HEAD>
+
+<BODY BGCOLOR="white">
+
+<H1>Literaturverzeichnisse nach DIN mit BibTeX</H1>
+
+<HR>
+
+<H4>A short note for english speaking people</H4>
+
+<P>
+This page is about a bibliography style for BibTeX named 
+<CODE>dinat.bst</CODE>, which produce bibliographies following the german 
+norm DIN 1505. Because this norm is only usefull for text in german, all 
+extra documentation like these pages is in german, too. Nonetheless the 
+styles themselves have comments and output in english. If you like to get 
+this pages in english, too, please write me, I'll do my very best.
+</P>
+
+<ADDRESS><A HREF="mailto:helge.baumann@gmx.de">mailto</A>: Helge Baumann</ADDRESS>
+<HR>
+
+<H2>Wie und warum?</H2>
+
+<P>
+Im Zuge meiner Diplomarbeit stand ich vor dem Problem, ein 
+Literaturverzeichnis nach DIN 1505 verwenden zu wollen. Da ich meine Arbeit 
+mit LaTeX gesetzt habe und die Literatureintr&auml;ge im BibTeX-Format 
+vorlagen, war es naheliegend, nach einem passenden fertigen Stil zu suchen. 
+Gefunden habe ich <A 
+HREF="http://www.fh-hamburg.de/pers/Lorenzen/bibtex/"><CODE>natdin</CODE></A> 
+von <A HREF="http://www.fh-hamburg.de/pers/Lorenzen/">Lorenzen</A>, der 
+auch ein gutes Werk zu <A 
+HREF="http://www.fh-hamburg.de/pers/Lorenzen/tum/litverz.ps">Literaturverzeichnissen 
+nach DIN</A> verfasst hat. Leider ist der von ihm erstellte Stil nicht ganz 
+ausgereift, also machte ich mich daran, davon ausgehend einen neuen Stil zu 
+entwicklen.
+</P>
+
+<P>
+Am Ende einer gewissen Entwicklung mit diversen Umwegen ist dann der Stil 
+<A HREF="dinat.bst">dinat.bst</A> herausgekommen, der alle 
+M&ouml;glichkeiten des <CODE>natbib</CODE>-Pakets bietet (dieses allerdings 
+auch in mindestens Version 7.0 voraussetzt), und bei konsequenter Anwendung von 
+<CODE>\citep</CODE> auch weitestgehend DIN-konforme Literaturverzeichnisse und 
+Zitierungen bietet.
+</P>
+
+<HR>
+
+<H2>natbib</H2>
+
+<P>
+Wie oben erw&auml;hnt, ist das Paket <CODE>natbib</CODE> Voraussetzung f&uuml;r den 
+Einsatz von <CODE>dinat</CODE>. Zur Zeit wird mindestens Version 7.0 
+erwartet, das ist auch die bisher aktuellste auf den DANTE-Servern.</P>
+<P>
+Um mit <CODE>dinat</CODE> Literaturverzeichnisse zu erhalten, bei denen die 
+Marken (die Verweise, wie sie im Text auftauchen) den Eintr&auml;gen 
+fettgedruckt vorangestellt sind, ist die Datei <CODE>natbib.cfg</CODE> um 
+den folgenden Eintrag zu erweitern (siehe auch die Dokumentation zu 
+<CODE>natbib</CODE>):
+</P>
+
+<PRE>
+\newcommand{\bibstyle@dinat}%
+     {\bibpunct{(}{)}{;}{a}{}{,~}%
+      \gdef\NAT@biblabelnum##1{\textbf{##1}}}
+</PRE>
+
+<HR>
+
+<H2>Zus&auml;tze</H2>
+
+<P>
+Zus&auml;tzlich zu den Standard-Feldern der Eintr&auml;ge existieren noch 
+die folgenden Felder:
+</P>
+
+<DL>
+    <DT><CODE>issn</CODE></DT> <DD>Internationale Nummer f&uuml;r Zeitschriften 
+    o.&auml;.</DD>
+    <DT><CODE>isbn</CODE></DT> <DD>Internationale Nummer f&uuml;r 
+    B&uuml;cher</DD>
+    <DT><CODE>url</CODE></DT> <DD>Quelle eines elektronischen Dokuments. Wird 
+    als Impressum verwendet, wenn kein Verlag und Verlagsort genannt wird, 
+    sonst erscheint sie als zus&auml;tzliche Anmerkung</DD>
+    <DT><CODE>urldate</CODE></DT> <DD>Datum des Zugriffs auf eine url</DD>
+</DL>
+
+<HR>
+
+<H2>Verf&uuml;gbarkeit</H2>
+
+<P>
+Der Stil <A HREF="dinat.bst">dinat.bst</A> ist in seiner jeweils 
+aktuellsten Version auf den CTAN-Servern (z.B. <A 
+HREF="ftp.dante.de">ftp.dante.de</A>) im Verzeichnis <A 
+HREF="ftp://ftp.dante.de/biblio/bibtex/contrib/german/dinat/">biblio/bibtex/contrib/german/dinat/</A> 
+zu finden.
+</P>
+
+<P>
+Eine &Uuml;bersicht &uuml;ber die Entstehung des Stils ist in der <A 
+HREF="history.html">Versions&uuml;bersicht</A> zu finden.
+</P>
+
+<HR>
+
+<H2>Anstehende Arbeiten</H2>
+
+<P>
+Trotz der vielen &Auml;nderungen ist immer noch genug zu tun, bis 
+<CODE>dinat</CODE> wirklich zufriedenstellende Eintr&auml;ge erzeugt, die 
+alle Eventualit&auml;ten ber&uuml;cksichtigen, gut aussehen und DIN-konform 
+sind. Vor allem die letzten beiden Punkte sind manchmal nur schwer zu 
+vereinen :-)
+</P>
+
+<P>
+Was noch zu tun ist:
+</P>
+
+<UL>
+    <LI>Eine sch&ouml;ne Anleitung in HTML und LaTeX mit Beispielen etc.</LI>
+    <LI><CODE>proceedings</CODE> scheint noch nicht so ausgereift zu sein.</LI>
+    <LI>Eigenst&auml;ndige Formatierungen f&uuml;r <CODE>booklet</CODE>, 
+    <CODE>conference</CODE> und <CODE>unpublished</CODE>.</LI>
+    <LI>Der Code ist teilweise noch unsauber bzw. durcheinander, aber das 
+    h&ouml;rt wohl nie auf.</LI>
+    <LI>Fehlende Felder m&uuml;ssen aufgeteilt werden in Standard-Felder 
+    (required) und Feldern, die nur nach DIN notwendig sind. Echte Warnungen 
+    sollte es nur bei fehlenden Standard-Feldern geben!</LI>
+    <LI>Wenn alle Standard-Felder vorhandenen sind, sollte ohne Warnungen 
+    &uuml;bersetzt werden.</LI>
+</UL>
+
+<P>
+F&uuml;r Erg&auml;nzungen bin ich nicht unbedingt dankbar, das w&auml;re 
+&uuml;bertrieben, aber ich werde sie aufnehmen, wenn sie sinnvoll sind.
+</P>
+
+<P>
+Inzwischen bin ich auch soweit, dass ich eine Anleitung zum Erstellen bzw. 
+modifizieren von BibTeX-Stilen schreiben k&ouml;nnte. Falls daran sehr 
+gro&szlig;es Interesse besteht, bitte melden!
+</P>
+
+<HR>
+
+<H2>Kontakt</H2>
+
+<P>
+Fragen und Anregungen bitte direkt an mich unter <A 
+HREF="mailto:Helge.Baumann@gmx.de">Helge.Baumann@gmx.de</A> richten.
+</P>
+
+<P>
+Zur Zeit lese ich auch noch regelm&auml;&szlig;ig die Newsgruppe <A 
+HREF="news:DE.comp.text.tex">de.comp.text.tex</A>, so dass ich auch dort 
+erreichbar bin.
+</P>
+
+<P>
+Anfragen etc. kann ich am einfachsten nachvollziehen, wenn sie Folgendes 
+beinhalten (soweit m&ouml;glich und sinnvoll):
+</P>
+
+<OL>
+    <LI>verwendete Systeme, Versionsnummern etc. (ich selbst arbeite auf 
+    einem Macintosh mit OzTeX, siehe <A HREF="#sonst">unten</A>)</LI>
+    <LI>eine kurze Beschreibung des Problems</LI>
+    <LI>einen Verweis auf die DIN bzw. den <A 
+    HREF="http://www.fh-hamburg.de/pers/Lorenzen/tum/litverz.ps">Lorenzen</A></LI>
+    <LI>einen BibTeX-Eintrag</LI>
+    <LI>dem daraus mit <CODE>dinat</CODE> erzeugten Eintrag</LI>
+    <LI>den gew&uuml;nschten Eintrag</LI>
+    <LI>Hinweis auf die ge&auml;nderten bzw. zu &auml;ndernden Stellen</LI>
+</OL>
+
+<P>
+Ich versuche, Anfragen m&ouml;glichst gleich nach Eingang zu beantworten, 
+und sei es nur mit einem Hinweis in der Art &quot;Anfrage erhalten, ich 
+k&uuml;mmere mich demn&auml;chst drum&quot; (oder oft leider auch &quot;Mache ich 
+nicht, weil nicht DIN ...&quot;).
+</P>
+
+<HR>
+
+<H2>Sonstiges</H2>
+
+<P>
+<A name="sonst"></A> Entwickelt wurde der Stil auf einem <A 
+HREF="http://www.apple.de">Apple</A> Macintosh PowerPC 7100/66AV.<BR>
+Als Editor kam <A HREF="http://alpha.olm.net">Alpha</A> zum Einsatz.<BR>
+Als (Bib)TeX-System verwende ich <A 
+HREF="http://www.kagi.com/akt">OzTeX</A>.
+</P>
+
+<P>
+Als Literatur standen nur &quot;BibTeXing&quot; und &quot;Designing BibTeX 
+Stiles&quot; von Oren Patashnik zur Verf&uuml;gung, das hat sich aber als 
+ausreichend herausgestellt, schliesslich studierte ich Informatik!
+</P>
+
+<P>
+Diese Webseiten sollten dem HTML-Standard 4.0 entsprechen und wurden mit 
+dem Browser <A HREF="http://www.icab.de">iCab</A> getestet.
+</P>
+
+<HR>
+<ADDRESS><A HREF="mailto:helge.baumann@gmx.de">mailto</A>: Helge Baumann, 
+2000-11-15</ADDRESS>
+</BODY>
+
+</HTML>

@@ -1,0 +1,26 @@
+name unifith
+category Package
+revision 51968
+shortdesc Typeset theses for University of Florence (Italy)
+longdesc The package provides a class to typeset Ph.D., Master, and
+longdesc Bachelor theses that adhere to the publishing guidelines of the
+longdesc University of Florence (Italy).
+containersize 14396
+containerchecksum bf288fc67865b2440b7b62633a04779e0172ed139e6ca4f1f88b21ffc84147663c143867d204b54d49f0d0f4d1aa0f3ef689dbc36881198398512aeb735c717d
+doccontainersize 860256
+doccontainerchecksum f185887da8604b1e24d9dcd7581b071e65dbdce6e61ecb435e99c19fe969a5912974af8430eeb22e090a8d2e1100a3457ece22cedc84aa10d589957e0cfd61cb
+docfiles size=302
+ texmf-dist/doc/latex/unifith/README details="Readme"
+ texmf-dist/doc/latex/unifith/examples/Dottorato.pdf
+ texmf-dist/doc/latex/unifith/examples/Dottorato.tex
+ texmf-dist/doc/latex/unifith/examples/Laurea.pdf
+ texmf-dist/doc/latex/unifith/examples/Laurea.tex
+ texmf-dist/doc/latex/unifith/unifith-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/unifith/unifith-doc.tex
+runfiles size=16
+ texmf-dist/bibtex/bst/unifith/unifith.bst
+ texmf-dist/tex/latex/unifith/unifith.cls
+catalogue-ctan /macros/latex/contrib/unifith
+catalogue-license lppl1.3c
+catalogue-topics dissertation class
+catalogue-version 1.2

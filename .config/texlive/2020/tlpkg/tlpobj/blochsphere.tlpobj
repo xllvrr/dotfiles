@@ -1,0 +1,30 @@
+name blochsphere
+category Package
+revision 38388
+shortdesc Draw pseudo-3D diagrams of Bloch spheres
+longdesc This package is used to draw pseudo-3D Blochsphere diagrams. It
+longdesc supports various annotations, such as great and small circles,
+longdesc axes, rotation markings and state vectors. It can be used in a
+longdesc standalone fashion, or nested within a tikzpicture environment
+longdesc by setting the environment option nested to true.
+containersize 3816
+containerchecksum cf7a7865e3e994f2b951a24018b1b1b71ce2b61542751f495dc14ebc4964a1f4a2833d95bde9b8920d4a4fd60ccc03760e66b8ab64f6b14ff77b9206c98e19a2
+doccontainersize 99736
+doccontainerchecksum 3a9706ba73e8da7280495f9d32d32a38c9119bac9b8497e7e1bc69a704fde2552848d60ab0ec175544046fdc06b3e8887b4eaeb1c50a5796144cd56e4a44d9e3
+docfiles size=39
+ texmf-dist/doc/latex/blochsphere/LICENSE
+ texmf-dist/doc/latex/blochsphere/README.md details="Readme"
+ texmf-dist/doc/latex/blochsphere/blochsphere.pdf details="Package documentation"
+ texmf-dist/doc/latex/blochsphere/example.pdf details="Example diagram"
+ texmf-dist/doc/latex/blochsphere/example.tex
+srccontainersize 7340
+srccontainerchecksum d5c54403afb2cc4db7c5340fe6aaec54da4066f6e9898cbf1f1d2ee3d4ba9a001699e8e32cf38fd87b355c1adbbbcb649635f9abc07976c2139fa6e851a987ac
+srcfiles size=9
+ texmf-dist/source/latex/blochsphere/blochsphere.dtx
+ texmf-dist/source/latex/blochsphere/blochsphere.ins
+runfiles size=5
+ texmf-dist/tex/latex/blochsphere/blochsphere.sty
+catalogue-ctan /graphics/pgf/contrib/blochsphere
+catalogue-license lppl1.3
+catalogue-topics physics pgf-tikz
+catalogue-version 1.1

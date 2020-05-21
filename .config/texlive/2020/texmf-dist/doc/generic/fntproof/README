@@ -1,0 +1,44 @@
+Files: fntproof.tex, fntproof-doc.tex fntproof-doc.pdf
+
+Purpose:
+
+  The file fntproof.tex is essentiallly Knuth's testfont.tex, modified
+  to make all tests noninteractive (no prompting for data).
+
+License:
+
+  All files are public domain.
+
+Usage:
+
+  You can input fntproof in a file, and then use the commands in that
+  file, or you can type the commands on the command line. By default,
+  the first "word" after the fntproof.tex has been read in is taken to
+  be the TFM name of a font to test. Use \noinit to delay the reading of
+  the font name.
+
+Examples:
+
+  Command line:
+    tex fntproof cmti10 <commands>
+    tex fntproof \noinit Normal text. \init cmti10 <commands>
+
+  In a file:
+    \input fntproof cmr10 <commands>
+    \input fntproof \noinit Normal text. \init cmti10 <commands>
+
+  <commands> include \table, \text, \sample which produce, respectively,
+    - a table of characters in the font,
+    - some text using the font, and
+    - both of the above.
+
+  All commands available in testfont.tex are included (in noninteractive
+  versions).
+
+Documentation:
+  See fntproof-doc.pdf for complete documentation. It may be regenerated
+  by running pdflatex (twice) on fntproof-doc.tex.
+
+-- 
+Daniel Luecking
+luecking AT-SIGN uark DOT edu

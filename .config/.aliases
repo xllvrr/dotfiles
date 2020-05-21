@@ -14,7 +14,7 @@ alias lsa='ls -a --color=auto'
 alias pfetch='~/repos/pfetch/pfetch'
 alias xrefresh='xrdb ~/.Xresources'
 alias ffs='sudo !!'
-alias tlmgr='sudo tlmgr'
+alias tlmgr='~/.config/texlive/2020/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 alias grep='grep --color'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes

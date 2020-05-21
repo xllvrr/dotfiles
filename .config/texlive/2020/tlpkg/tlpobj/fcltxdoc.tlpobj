@@ -1,0 +1,25 @@
+name fcltxdoc
+category Package
+revision 24500
+shortdesc Macros for use in the author's documentation
+longdesc The package is not advertised for public use, but is necessary
+longdesc for the support of others of the author's packages (which are
+longdesc compiled under the ltxdoc class).
+containersize 10404
+containerchecksum c14db194a73247122e589024824a53125ff10e15f8bec2475530aa41e78d74993f73474ff9b3899bc499c0cd8dd3e1ea034ea821d233c2a512f8c4d4d06d095c
+doccontainersize 635448
+doccontainerchecksum 4aa6aed9c5b4ddaa63eb2aa7e529da03dcfc57723a6cb40cbbfc729636e459f4df1e292bdcd20093595cc3ea154787fda41abb4f6f46db2a7331626f181f47d0
+docfiles size=177
+ texmf-dist/doc/latex/fcltxdoc/fcltxdoc.pdf details="Package documentation"
+srccontainersize 21560
+srccontainerchecksum 6b16053cf7941063e4f08a249d1b4dcb61127eb0f22938353b17b959e7a9cb78d7953b81346f25a6e49f4a7c8bc602b3f820c3b9acd3b84215796b3ef1a63550
+srcfiles size=22
+ texmf-dist/source/latex/fcltxdoc/fcltxdoc.drv
+ texmf-dist/source/latex/fcltxdoc/fcltxdoc.dtx
+ texmf-dist/source/latex/fcltxdoc/fcltxdoc.ins
+runfiles size=9
+ texmf-dist/tex/latex/fcltxdoc/fcltxdoc.sty
+catalogue-ctan /macros/latex/contrib/fcltxdoc
+catalogue-license lppl1.3
+catalogue-topics doc-supp
+catalogue-version 1.0

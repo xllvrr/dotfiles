@@ -1,0 +1,16 @@
+name doc-pictex
+category Package
+revision 24927
+shortdesc A summary list of PicTeX documentation
+longdesc A summary of available resources providing (or merely
+longdesc discussing) documentation of PicTeX.
+containersize 468
+containerchecksum c866f0855f701917fa81966c16a7f1c869320ddaf38e2c1c2a71844fa7b224fe2216f267b7b700ef6e36a13f97fa6f33a1d05342d5a7a8dd47ccda761fc577f4
+doccontainersize 1508
+doccontainerchecksum 3440fd4d0e2117594d6b350dcfed891506ce7fc0500ecdd4f156431363a38e399061469f5def9082d59c39b14b65ebc19ccb3204fef71ade300825cf35659158
+docfiles size=1
+ texmf-dist/doc/generic/doc-pictex/Doc-PiCTeX.txt
+catalogue-contact-support http://www.webdesign-bu.de/uwe_lueck/contact.html
+catalogue-ctan /info/pictex/Doc-PiCTeX.txt
+catalogue-license other-free
+catalogue-topics doc-mgmt

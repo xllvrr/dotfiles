@@ -1,0 +1,37 @@
+name fitbox
+category Package
+revision 50088
+shortdesc Fit graphics on a page
+longdesc The package allows a box (usually an \includegraphics box) to
+longdesc fit on the page. It scales the box to the maximal allowed size
+longdesc within the user-set limits. If there is not enough space on the
+longdesc page, the box is moved to the next one.
+containersize 2228
+containerchecksum 5244567062493fcb5300048be6786f1ac48c72c363220b894a2695e78646f461584e189f227d04f55e9127a66ab966dc04cbd762fd08277774fe1c0fcc7d3c96
+doccontainersize 496576
+doccontainerchecksum 71d77dd1879a2b9b20f9c4934af8bd696de567b5c0187e7a5bccc9e225fec5793bff6bc670ce0bbe1065cb67de73f518942ae48aa0a27e46c2aa47dcad6856e8
+docfiles size=144
+ texmf-dist/doc/latex/fitbox/README details="Readme"
+ texmf-dist/doc/latex/fitbox/fitbox.bib
+ texmf-dist/doc/latex/fitbox/fitbox.pdf details="Package documentation"
+ texmf-dist/doc/latex/fitbox/napoleon.png
+ texmf-dist/doc/latex/fitbox/sample-subfigure.pdf
+ texmf-dist/doc/latex/fitbox/sample-subfigure.tex
+ texmf-dist/doc/latex/fitbox/sample.pdf
+ texmf-dist/doc/latex/fitbox/sample.tex
+ texmf-dist/doc/latex/fitbox/vitruvian.jpg
+srccontainersize 5812
+srccontainerchecksum 406ae04d838114e9cb7205c9e704b95e8ea8c4747827bb82fbc53891ca552042e5742f7e524361f2a797a77d8b7286dca3512ce7099ec8fa23101668d4bad5b2
+srcfiles size=7
+ texmf-dist/source/latex/fitbox/Makefile
+ texmf-dist/source/latex/fitbox/fitbox.dtx
+ texmf-dist/source/latex/fitbox/fitbox.ins
+runfiles size=2
+ texmf-dist/tex/latex/fitbox/fitbox.sty
+catalogue-contact-bugs https://github.com/borisveytsman/fitbox/issues
+catalogue-contact-home https://github.com/borisveytsman/fitbox
+catalogue-contact-repository https://github.com/borisveytsman/fitbox/
+catalogue-ctan /macros/latex/contrib/fitbox
+catalogue-license lppl1.3
+catalogue-topics boxing
+catalogue-version 1.02

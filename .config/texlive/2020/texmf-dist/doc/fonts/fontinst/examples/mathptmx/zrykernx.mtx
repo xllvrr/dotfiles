@@ -1,0 +1,35 @@
+\relax
+
+% We reset the skewchar kerning for OMS (assuming skewchar=`prime')
+% using the original kern pairs for OML (assuming skewchar=`tie').
+
+\metrics
+
+\setkern{A}{prime}{\kerning{A}{tie}}
+\setkern{B}{prime}{\kerning{B}{tie}}
+\setkern{C}{prime}{\kerning{C}{tie}}
+\setkern{D}{prime}{\kerning{D}{tie}}
+\setkern{E}{prime}{\kerning{E}{tie}}
+\setkern{F}{prime}{\kerning{F}{tie}}
+\setkern{G}{prime}{\kerning{G}{tie}}
+\setkern{H}{prime}{\kerning{H}{tie}}
+\setkern{I}{prime}{\kerning{I}{tie}}
+\setkern{J}{prime}{\kerning{J}{tie}}
+\setkern{K}{prime}{\kerning{K}{tie}}
+\setkern{L}{prime}{\kerning{L}{tie}}
+\setkern{M}{prime}{\kerning{M}{tie}}
+\setkern{N}{prime}{\kerning{N}{tie}}
+\setkern{O}{prime}{\kerning{O}{tie}}
+\setkern{P}{prime}{\kerning{P}{tie}}
+\setkern{Q}{prime}{\kerning{Q}{tie}}
+\setkern{R}{prime}{\kerning{R}{tie}}
+\setkern{S}{prime}{\kerning{S}{tie}}
+\setkern{T}{prime}{\kerning{T}{tie}}
+\setkern{U}{prime}{\kerning{U}{tie}}
+\setkern{V}{prime}{\kerning{V}{tie}}
+\setkern{W}{prime}{\kerning{W}{tie}}
+\setkern{X}{prime}{\kerning{X}{tie}}
+\setkern{Y}{prime}{\kerning{Y}{tie}}
+\setkern{Z}{prime}{\kerning{Z}{tie}}
+
+\endmetrics

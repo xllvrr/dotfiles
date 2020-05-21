@@ -1,0 +1,30 @@
+% psfrag examples.tex
+
+\documentclass[11pt]{article}
+\usepackage{times,boxdims}
+\usepackage{siunitx}
+\usepackage{rotating}
+\usepackage{graphicx}
+\usepackage[scanall]{psfrag}
+\newcommand\scriptstack[2][c]{\hbox{\scriptsize\shortstack[#1]{#2}}}%
+\def\?{$\,$}
+
+\input{setdim.tex}
+
+\input ../header
+
+\global\postscripttrue
+\begin{document}
+  \hfill
+  {\large\bf Examples:
+    \input{../../doc/Version.tex}
+    }
+  \hfill\break
+
+  In this directory the source file are processed with m4, dpic -f,
+  and {\tt\char92 usepackage[scanall]\{psfrag\}}.
+  In some cases, there are other or better m4 or pic constructs for
+  producing the same drawings, but the source-file names are shown for
+  reference.
+
+\input ../files.tex

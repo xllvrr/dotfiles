@@ -1,0 +1,14 @@
+       Typesetting Articles for Archives of Forensic Psychology
+
+This package provides a class for typesetting articles for the open
+access journal Archives of Forensic Psychology,
+http://www.archivesofforensicpsychology.com.
+
+Changes:
+
+  v1.3  Corrected more typos in the masthead
+
+  v1.2  Corrected typos in the masthead
+
+  v1.1  Suppressed hyphenation
+

@@ -1,0 +1,135 @@
+\documentclass[ngerman,size=12pt,mode=present,paper=a4paper,
+style=BerlinFU,mode=present]{pst-powerdot}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[scaled=0.88]{luximono}
+\AtBeginDocument{\sffamily}
+
+\usepackage{graphicx,pifont,marvosym,amsmath,textcomp,multicol,url,
+pst-all,pst-jtree,pst-slpe,pstricks-add,dtklogos,
+boxedminipage,tipa}
+
+\usepackage{hyperref}
+\hypersetup{pdfauthor={Herbert Voss},pdftitle={LaTeX WS 2008/09}}
+
+\title{Wissenschaftliches Schreiben mit \LaTeX\\
+WS 2008/09}
+\titlegraphic{silberlaube}
+
+\author{\tabular{@{}l}
+  Herbert Voß \\
+  Freie Universit\"at Berlin\\  
+  Zentraleinrichtung Datenverarbeitung\\  
+  E-Mail: \url{Herbert.Voss@FU-Berlin.de}\\  
+  \url{http://userpages.fu-berlin.de/~latex/WS0809}
+\endtabular}
+
+\date{27.10. 2008}
+
+\pdsetup{lf={\textcopyright~H.\,Voß},cf={\LaTeX\ WS 2008/09},trans=Dissolve}
+%\usepackage{enumitem}
+
+\newcommand\describelabel[1]{\texttimes #1}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=,bm=]{Gliederung}
+\tableofcontents[content=sections]
+\end{slide}
+
+\section{Einf\"uhrung}
+
+\begin{slide}{\LaTeX -- der Name \ldots}
+\onslide{1-}{%
+\begin{block}{Ungeschickte Definition}
+"`Ich danke meiner Sekret\"arin, die mich behutsam in Latex eingef\"uhrt hat."'{}
+
+\raggedleft\tiny "`Aus einem Wirtschaftsskript der Universit\"at W\"urzburg."'{}
+\end{block}
+}
+
+\psset{shadow=true,shadowcolor=red!30!black!30}
+\smallskip
+\onslide{2-}{%
+\begin{block}{Bessere Definition}
+\LaTeX{}, gesprochen "`Latech"'{}, Kurzform von "`Lesley Lamport's \TeX"'{}
+\end{block}
+}
+\end{slide}
+
+
+\begin{slide}{Der Name \TeX}
+\begin{block}{}
+\TeX{} ist abgeleitet aus $\tau\epsilon\chi$, phonetisch
+	korrekt \textipa{[teX]} (im  deutschen Sprachraum auch \textipa{[te\c{c}]})
+und von Donald Knuth ab 1977 in Stanford entwickelt worden. Befindet sich in einem quasi
+"`eingefrorenen"' Zustand.
+\end{block}
+\pause
+\begin{quote}
+\glqq Mathematics books and journals do not
+look as beautiful as they used to. It is not that their mathematical
+content is unsatisfactory, rather that the old and well-developed
+traditions of typesetting have become too expensive. Fortunately, it
+now appears that mathematics itself can be used to solve this problem.\grqq\\
+({\small\sc Donald E. Knuth: Mathematical Typography, 1978})
+\end{quote}
+\end{slide}
+
+
+\begin{slide}{Der Name \TeX}
+\begin{block}{Block}
+\TeX{} ist abgeleitet aus $\tau\epsilon\chi$, phonetisch
+	korrekt \textipa{[teX]} (im  deutschen Sprachraum auch \textipa{[te\c{c}]})
+und von Donald Knuth ab 1977 in Stanford entwickelt worden. Befindet sich in einem quasi
+"`eingefrorenen"' Zustand.
+\end{block}
+
+\begin{block}[\textwidth][example]{Example}
+\TeX{} ist abgeleitet aus $\tau\epsilon\chi$, phonetisch
+	korrekt \textipa{[teX]} (im  deutschen Sprachraum auch \textipa{[te\c{c}]})
+und von Donald Knuth ab 1977 in Stanford entwickelt worden. Befindet sich in einem quasi
+"`eingefrorenen"' Zustand.
+\end{block}
+\end{slide}
+
+
+
+\begin{slide}{Historische Entwicklung von \LaTeX}
+  \def\NtS{$\mathcal{N}$\kern-.1667em\lower.5ex\hbox{$\mathcal{T}$}\kern-.125em  $\mathcal{S}$} %$
+  \begin{itemize}[type=1]%\itemsep=0pt\parsep=0pt\parskip=0pt
+  	\item 1982: {\sc Leslie Lamport} beginnt die Entwicklung		\pause
+	\item 1985: \LaTeX\/ Version 2.09 wird fertiggestellt		\pause
+	\item 1994: Buch {\sl \LaTeX---A Document Preparation
+		System User's Guide and Reference Manual} erscheint		\pause
+	\item 1994: \LaTeXe\/ (\LaTeX3-Projektgruppe)		\pause
+		\begin{itemize}
+			\item NFSS(2) {\tiny (New Font Selection Scheme)}		\pause
+			\item Konzept der Dokumentklassen {\tiny (vererbbare Optionen)}		\pause
+			\item Unterst"utzung moderner Pakete (z.\,B. {\tt hyperref})		\pause
+			\item Kompatibilit"atsmodus f"ur \LaTeX\/ 2.09 Dokumente		\pause
+		\end{itemize}
+  \end{itemize}
+\end{slide}
+
+\begin{slide}{Historische Entwicklung von \LaTeX}
+  \def\NtS{$\mathcal{N}$\kern-.1667em\lower.5ex\hbox{$\mathcal{T}$}\kern-.125em  $\mathcal{S}$} %$
+  \begin{itemize}[type=1]%\itemsep=0pt\parsep=0pt\parskip=0pt
+   \item Zukunft: \NtS\/ {\tiny (New Typesetting System)}, $\Omega$, 
+             $\varepsilon${\tiny$\chi$}\kern-2pt\TeX\/ [DTK 4/03]\\
+		\XeTeX\ (Mac -- Unicode) oder $\mu$IMP (Wysiwyg -- \url{http://www.microimp.com}) 		\pause
+    \item \texttt{pdf}\TeX, aktuell die "`eigentliche"' Maschine (Compiler)		\pause
+    \item Lua\TeX\ ab Herbst 2008 als frei programmierbares Satzsystem. Integration beliebiger 
+    Schnittstellen.		\pause
+%\item \verb+\newcommand\XeTeX{X\kern-.1em\lower.5ex}
+%+ \hspace*{1cm}\verb+\mbox{\reflectbox{E}}\kern-.15em\TeX}+
+  \end{itemize}
+\end{slide}
+
+
+\end{document}
+
+

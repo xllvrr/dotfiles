@@ -1,0 +1,96 @@
+XCOMM $Id: Imakefile,v 1.5 1995/05/28 00:30:55 schrod Exp $
+/* ---------------------------------------------------------------------- */
+
+/*
+ * Imakefile for plain TeX macro package `js-misc'
+ *
+ * (history at end)
+ */
+
+
+/* needed modules */
+#include <install/TeX.imk>
+#include <makeprog.imk>
+#include <TeX.imk>
+
+XCOMM ------------------------------------------------------------
+XCOMM continue in Imakefile
+
+
+/*
+ * The plain TeX package `js-misc' consists of the following macro files:
+ *
+ *     cassette		-- Labels for audio cassettes
+ *     deutsch		-- German texts with plain TeX
+ *     idverb		-- Verbatim identifiers a la WEB
+ *     names.sty	-- Logos
+ *     schild		-- Make a label (for doors, books, etc.)
+ *     sperr		-- Letterspace text (but don't steel sheep...)
+ *     xfig		-- Incorporate xfig output in plain TeX documents
+ */
+
+#ifdef ITI_Site
+    DESTDIR = /archives/tex/Install
+#endif
+
+InstallTeXPlain(js-misc,cassette.tex deutsch.tex idverb.tex \
+			schild.tex sperr.tex xfig.tex)
+InstallTeXGeneric(misc,names.sty)
+InstallTeXDoc(plain,js-misc.dvi)
+
+
+MpDoc2TeXTarget(deutsch,tex)
+MpDoc2TeXTarget(idverb,tex)
+
+TeXTarget(ftex,js-misc)
+
+
+/*
+ * creating a source-distribution of this macro package
+ */
+
+TeXFileTarget(tex,deutsch,doc)
+TeXFileTarget(tex,idverb,doc)
+
+export:: deutsch.dvi idverb.dvi
+	$(MAKE) all
+	$(RM) *.log
+
+/* This will get a module, too. */
+export::
+	touch site.imk
+	$(MAKE) Makefile IMAKE_INCLUDES=-I.
+	$(RM) -r site.imk Makefile.bak
+	cp $(HOME)/Notes/Copying.gpl License
+	pwd=`pwd` ; pwd=`suffix $$pwd /` ; cd .. ; \			@@\
+	    gtar -czvf $$pwd.tar.gz \					@@\
+		--exclude=CVS --exclude=.cvsignore $$pwd ; \		@@\
+	    cp $$pwd/README $$pwd.README
+
+
+/* ============================================================
+ *
+ * $Log: Imakefile,v $
+ * Revision 1.5  1995/05/28  00:30:55  schrod
+ *     On export, exclude CVS files by gtar options, not be removing
+ * them. Do also export the README file.
+ *
+ * Revision 1.4  1995/04/16  23:21:04  schrod
+ *     Moved itinames.sty & TH viscards to plain-iti package.
+ *
+ * Revision 1.3  1995/03/16  02:22:12  schrod
+ *     Export also DVI versions of DOC files.
+ *
+ * Revision 1.2  1995/03/16  01:17:45  schrod
+ *     Use TeX module.
+ *     Add export target.
+ *
+ * Revision 1.1  1995/03/13  23:18:09  schrod
+ *     Started to manage this package with CVS. Made minor code cleanup.
+ *
+
+ * ------------------------------------------------------------
+ * Local Variables:
+ * mode: Indented-Text
+ * End:
+ */

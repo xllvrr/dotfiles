@@ -1,0 +1,2402 @@
+% A documentation for OFS package
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% July 2001                                       Petr Olsak
+% February 2004
+
+% See the ofsdoce.tex for English version of this documentation
+
+\chyph  % pou¾ijte csplain
+
+\headline={\llap{\tt May 2004}\hfil See the ofsdoc-e.tex for English version 
+           of this documentation.\global\headline={\hfil}}
+
+\magnification\magstephalf
+
+\hoffset=4pc
+\voffset=1pc
+\hsize=31.6pc
+\vsize=49pc
+\raggedbottom
+\parindent=15pt
+\emergencystretch=2em
+
+\font\smallbf=csb10 at7pt
+\font\smalltt=cstt8
+\font\smallit=csti8
+\font\smallrm=csr8
+\font\titulfont=\fontname\tenbf\space scaled\magstep4
+\font\bigbf=\fontname\tenbf\space scaled\magstep1
+
+\def\Red{}
+\def\Black{}
+\def\Blue{}
+\def\Green{}
+\def\beglink#1{}
+\def\endlink{}
+\def\aimlink#1{}
+
+\ifx\pdfoutput\undefined\else   %%%% pdfTeX is used %%%%%%%%%%
+\ifnum\pdfoutput>0    
+
+\ifx \pdfstartlink\undefined %%% PDFTeX version <= 13
+   \let\pdfstartlink=\pdfannotlink
+\fi
+
+\def\beglink#1{%          % Zaèátek textu odkazu, #1 je klíè odkazu
+   \Green \pdfstartlink height9pt depth3pt 
+     attr{/Border[0 0 0]} goto name{#1}\relax}
+\def\endlink{\pdfendlink\Black}  
+
+\def\aimlink#1{%          % Místo cíle odkazu, #1 je klíè odkazu
+   \expandafter\ifx \csname aim:#1\endcsname \relax
+      \expandafter\gdef \csname aim:#1\endcsname {}%
+      \vbox to0pt{\vss\hbox{\pdfdest name{#1} fith}\kern15pt}%
+   \fi
+}
+\def\pdfsetcmykcolor#1{\special{PDF:#1 k}}
+\def\Red{\leavevmode\pdfsetcmykcolor{0.1 0.9 0.9 0}}
+\def\Black{\leavevmode\pdfsetcmykcolor{0 0 0 1}}
+\def\Green{\leavevmode\pdfsetcmykcolor{0.9 0.1 0.9 .3}}
+\def\Blue{\leavevmode\pdfsetcmykcolor{0.9 0.9 0.1 0}}
+
+\pdfcompresslevel=9
+\pdfinfo{/Author (Petr Olsak)
+         /CreationDate (July 2001) 
+         /ModDate (March 2004)
+         /Creator (TeX)
+         /Producer (pdfTeX)
+         /Title (OFS: Olsak's Font System)
+         /Subject (Documentation)
+         /Keywords (TeX, fonts)
+}
+
+\fi\fi %%%%%%%%%%%%%%%%%%%%%%%%%%%% End of pdfTeX macros %%%%%
+
+
+\def\PLAIN #1:{{\smallbf \Red PLAIN\Black\if|#1|\else\space#1\fi}:}
+\def\LATEX #1:{{\smallbf \Red LATEX\Black \if|#1|\else\space#1\fi}:}
+\def\OBA   #1:{{\smallbf \Red PLAIN+LATEX\Black \if|#1|\else\space#1\fi}:}
+
+\newcount\secnum \newcount\subsecnum
+
+\def\sec #1\par{\ifnum\secnum>0 \goodbreak\fi\removelastskip
+   \vskip2\baselineskip
+   \subsecnum=0 \advance\secnum by1
+   \noindent{\bigbf\llap{\the\secnum.\quad}#1}\par\nobreak\medskip}
+\def\subsec #1\par{\removelastskip\bigskip
+   \advance\subsecnum by1   
+   \noindent{\bf \llap{\aimlink{\the\secnum.\the\subsecnum}%
+      \the\secnum.\the\subsecnum.\quad}#1}\par\nobreak\medskip}
+\def\title #1\par{\vglue2\baselineskip 
+   \centerline{\titulfont #1}\vskip2\baselineskip}
+
+\def\LaTeX{La\TeX}
+
+\catcode`<=13
+\def<#1>{\hbox{$\langle$\it#1\/$\rangle$}}
+\def\,{\thinspace}
+
+{\obeyspaces \gdef\activespace{\obeyspaces\let =\ }}
+\def\setverb{\def\do##1{\catcode`##1=12}\dospecials}
+\def\begtt{\medskip\bgroup \setverb \catcode`@=0 \activespace
+   \parindent=0pt \catcode`\"=12
+   \def\par##1{\endgraf\ifx##1\par\leavevmode\fi ##1}
+   \obeylines \startverb}
+{\catcode`\|=0 \catcode`\\=12
+|gdef|startverb#1\endtt{|tt#1|egroup|medskip|testpar}}
+\long\def\testpar#1{\ifx\par#1\else\noindent\fi#1}
+
+\catcode`"=13
+\def"{\hbox\bgroup\setverb\activespace\tt\readverb}
+\def\readverb #1"{#1\egroup}
+
+\def\begitems{\medskip\bgroup \catcode`*=13 }
+{\catcode`*=13 \gdef*{\item{$\bullet$}}}
+\def\enditems{\medskip\egroup}
+
+\newwrite\indout
+\immediate\openout\indout=\jobname.ind
+\def\inl[#1]{\strut
+   \write\indout{\noexpand\indexentry{#1}{\the\pageno}}%
+   \vadjust{\vbox to0pt{\vss
+   \hbox to\hsize{\llap{{\aimlink{#1}\smalltt\Blue\char`\\ #1%
+      \ifx\extratext\empty\else\space\extratext\fi\Black}%
+      \kern2pt\quad}\strut\hfil}%
+   \hrule height0pt}}\def\extratext{}}
+\def\inll[#1 #2]{\def\extratext{#2}\inl[#1]}
+\def\indexentry #1#2{\expandafter \ifx \csname ind:#1\endcsname \relax
+      \expandafter \def \csname ind:#1\endcsname {#2}%
+   \else 
+      \expandafter \edef \csname ind:#1\endcsname {%
+          \csname ind:#1\endcsname, #2}%
+   \fi
+}  
+\def\pg[#1]{\csname ind:#1\endcsname}
+
+\chardef\back=`\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title   OFS: Ol¹ákùv fontový systém
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+OFS je makro, které umo¾ní pøehlednì
+v~\TeX{}u vybírat rodiny fontù, jejich¾ názvy jsou v~souladu s~názvy 
+z~písmového katalogu. Toto makro je z~u¾ivatelského
+pohledu stejné v~plainu i \LaTeX{}u. Výklad pou¾ití OFS bude tedy
+spoleèný pro obì skupiny u¾ivatelù. Pokud nìkterý text platí jen
+pro csplain (a podobné formáty), bude uveden slovem \PLAIN: a pokud
+je text urèen pro u¾ivatele \LaTeX{}u2e, je uveden slovem \LATEX:.
+
+Pod skupinu \PLAIN: patøí nejen csplain, plain a odvozené formáty, ale
+té¾ dnes u¾ nepou¾ívaný \LaTeX2.09 bez NFSS. Pod skupinu \LATEX: bychom
+mohli zaøadit v¹echny formáty, které pracují s~NFSS~2, pøedev¹ím tedy 
+\LaTeX 2e.
+
+Po zavedení pøíslu¹ných maker v~záhlaví dokumentu (viz ní¾e) se na
+terminálu mimo jiné objeví:
+
+\begtt
+@PLAIN: OFS (Olsak's Font System) based on plain initialized. @char`<verze>
+@LATEX: OFS (Olsak's Font System) based on NFSS initialized. @char`<verze>
+\endtt
+Výhody OFS: 
+
+\begitems
+* Sjednocuje rozhraní pro u¾ivatele \LaTeX{}u i plainu.
+* Pomocí pøíkazu "\fontusage" dostaneme na terminál a do logu struènou
+  informaci o~pou¾ití maker z~OFS.
+* Umo¾òuje pracovat se skuteènými názvy písmových rodin tak, 
+  jak jsou uvedeny v~písmovém katalogu a tím 
+  nenutí u¾ivatele si kromì tìchto názvù pamatovat je¹tì 
+  interní zkratky pou¾ité v~NFSS nebo v~názvech metrik fontù.
+* Umo¾ní pracovat s~fontem rozlo¾eným do dvou metrik 
+  (základní a roz¹iøující) jakoby se jednalo o~jediný font.
+* Umo¾ní na zaèátku dokumentu vybrat oblíbené kódování základní 
+  metriky, jsou-li metriky pøipraveny v~rùzných kódováních
+  (typicky kódování IL2 a T1).
+* Definuje rozhraní pro vytváøení pomocných souborù, které
+  obsahují konverzní informace mezi \uv{dlouhými názvy} fontù
+  z~katalogu a \PLAIN: názvy metrik
+  nebo \LATEX: zkratkami pou¾ívanými v~NFSS.
+* \PLAIN: Umo¾òuje podobnou nezávislost výbìru jednotlivých 
+  parametù fontù, jako NFSS v~\LaTeX{}u. 
+* \PLAIN: Definuje deklaraèní pøíkazy pro podchycení kódování fontù.
+* \PLAIN: Je mo¾né pro rùzné velikosti registrovat rùzné metriky, co¾
+  vyu¾ijeme zejména u~rodiny Computer Modern.
+* \PLAIN: Obsahuje nástroje na pou¾ití PostScriptových fontù 
+  i v~matematické sazbì.
+* Interaktivní makro "ofstest.tex" umo¾ní tisknout vzorky odstavcù ve
+  zvolených písmových rodinách, tisknout tabulky fontù, katalogy fontù,
+  vzorky matematické sazby a seznamy znakù ve fontech vèetnì jejich
+  \TeX{}ových sekvencí. Staèí napsat na pøíkazový øádek
+  "tex ofstest [allfonts]" nebo "csplain ofstest [allfonts]"
+  a øídit se pokyny na terminálu.
+\enditems
+
+
+\sec Èlenìní písmových rodin
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Makro OFS vychází z~toho, ¾e vìt¹ina dnes dodávaných písmových rodin
+obsahuje ètyøi øezy: základní ("\rm"), tuèný ("\bf"), kurzívu ("\it"),
+a tuènou kurzívu ("\bi")\inll[rm \back bf \back it \back bi]. 
+Tìmto øezùm budeme øíkat \uv{standardní varianty}.
+Po zavedení rodiny pøíkazem "\setfonts" (viz ní¾e) lze pak 
+pøepínat pomocí "\rm", "\bf", "\it" a "\bi" mezi variantami v~dané
+rodinì. První tøi uvedené pøepínaèe jsou známé z~plainu 
+(v~\LaTeX{}u pøetrvávají z~dob za¹lé slávy LaTeXu2.09) 
+a ètvrtý pøepíná do varianty BoldItalic.
+
+Nìkteré rodiny mohou deklarovat pøepínaèe dal¹ích 
+\uv{nadstandardních variant} a u~nìkterých rodin naopak 
+mù¾e chybìt i nìkterá ze standardních variant.
+
+Varianty v~nìkterých rodinách se mírnì li¹í od zde uvedených
+názvù pro standardní varianty. Místo tuèného písma mù¾e být 
+tøeba pøítomno jen polotuèné a místo kurzívy tøeba sklonìné písmo. 
+Pøepínaèe "\rm", "\bf", "\it" a "\bi" zùstávají pokud mo¾no
+zachovány, tak¾e by nás nemìlo vyvést z~rovnováhy, ¾e v~nìkteré rodinì
+tøeba "\it" pøepíná do sklonìného písma a ne do kurzívy.
+
+Pokud chceme souèasnì pracovat s~dal¹ími pøepínaèi fontù jiné rodiny
+(napøíklad "\tt" pro strojopis), je mo¾né takové pøepínaèe deklarovat pomocí
+pøíkazu "\fontdef". 
+
+Èlenìní fontù do rodin je deklarováno v~souborech, které
+mají v~plainu podobný význam, jako {\tt fd} (Font Definition) soubory
+z~\LaTeX{}u. Doporuèená pøípona souboru je pro plain {\tt tex} a
+pro \LaTeX{} {\tt sty}. Tìmto souborùm budeme øíkat \uv{deklaraèní soubory}.
+Podle názvu deklaraèních souborù by mìlo být u¾ivateli zøejmé, které rodiny
+jsou v~nìm deklarovány. Pøíklady:
+
+\begtt
+@PLAIN:         @LATEX:
+sjannon.tex,  sjannon.sty  ... souhrnná rodina Jannon ze Støe¹ovic
+a35.tex,      a35.sty      ... základní skupina 35 fontù od Adobe
+\endtt
+
+Vidíme, ¾e deklaraèní soubory (na rozdíl od {\tt fd} souborù z~\LaTeX{}u) 
+obsahují obvykle definice více souvisejících rodin. Mezi tìmito
+soubory u¾ivatel vybírá ty, které bude potøebovat a uvede jejich jména
+pøi zavedení makra OFS v~záhlaví svého dokumentu. 
+Aby mìl u¾ivatel zjednodu¹enou práci, zakládáme obvykle té¾ souhrné
+soubory, které obsahují "\input" nebo "\RequirePackage" na jednotlivé
+deklaraèní soubory:
+
+\begtt
+skatalog.tex, skatalog.sty ... v¹echny fonty ze Støe¹ovic
+allfonts.tex, allfonts.sty ... v¹echny fonty na TeXové instalaci
+\endtt
+
+
+\sec U¾ivatelské pøíkazy
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsec Zavedení OFS
+%%%%%%%%%%%%%%%%%%%%
+
+Pro pøíklad pøedpokládejme, ¾e budeme chtít pracovat 
+s~fonty ze souhrnné rodiny Jannon a
+DynaGrotesk. Proto¾e se jedná o~rodiny ze Støe¹ovické písmolijny od pana
+©torma, najdeme odpovídající deklaraèní soubory v~adresáøi 
+"storm". Na Internetu je získáme spoleènì s~makrem OFS
+napøíklad na "www.cstug.cz/stormtype".
+Souhrnné rodiny Jannon a Dyna\-Grotesk jsou deklarovány v~tìchto souborech: 
+\PLAIN: "sjannon.tex", "sdynamo.tex";
+\LATEX: "sjannon.sty", "sdynamo.sty".
+Písmeno "s" na zaèátku názvù znamená, 
+¾e fonty pocházejí ze Støe¹ovické písmolijny. Jména tìchto souborù bez
+pøípony je nutné uvést v~hranaté závorce pøi zavedení makra OFS takto:
+
+\begtt
+@PLAIN: \input ofs [sjannon, sdynamo] % mezera pøed "[" je nutná!
+@LATEX: \usepackage [sjannon, sdynamo] {ofs}
+\endtt
+
+Dále mù¾eme pracovat s~rodinami, které jsou obsa¾eny v~souhrnných
+rodinách Jannon a DynaGrotesk. 
+Napí¹eme-li do dokumentu pøíkaz "\showfonts"\inl[showfonts],
+zobrazí se na \hbox{terminál} (a~zapí¹e do logu) seznam názvù jednotlivých
+rodin, které dále mù¾eme pou¾ívat. Po zavedení "sjannon" a 
+"sdynamo", jak bylo uvedeno vý¹e, zobrazí pøíkaz "\showfonts" tento seznam:
+
+\begtt
+OFS (l.1): The list of known font families:
+defaults:
+   [CMRoman/]            \rm, \bf, \it, \bi, \sl
+   [CMSans/]             \rm, \bf, \it,  -
+   [CMTypewriter/]       \rm,  - , \it,  - , \sl
+   [Times/]              \rm, \bf, \it, \bi
+   [Helvetica/]          \rm, \bf, \it, \bi, \nrm, \nbf, \nit, \nbi
+   [Courier/]            \rm, \bf, \it, \bi
+sjannon.tex:
+   [JannonAntikva/]      \rm, \bf, \it, \bi, \mr, \mi
+   [JannonText/]         \rm, \bf, \it, \bi, \mr, \mi
+   [JannonCaps/]         \rm, \bf, \it, \bi
+sdynamo.tex:
+   [DynaGroteskDXE/]     \rm, \bf, \it, \bi
+   [DynaGroteskRXE/]     \rm, \bf, \it, \bi
+   [DynaGroteskLXE/]     \rm, \bf, \it, \bi
+   ... <a dal¹ích 15 rodin DynaGrotesk> ...
+\endtt
+
+Prvních 6 rodin (oznaèené jako defaults) je definováno v~OFS. 
+Teprve dal¹í rodiny jsou deklarovány v~pou¾itých souborech.
+
+Vedle názvù rodin jsou uvedeny pøepínaèe variant, které pro danou
+rodinu mù¾eme pou¾ít. První ètyøi pøepínaèe jsou pro standardní
+varianty a pokud v~nìkteré rodinì taková varianta není pøístupná, 
+je zde na místì odpovídajícího pøepínaèe pomlèka. 
+Pátý a pøípadnì dal¹í pøepínaèe se vztahují k~pøípadným nadstandardním
+variantám. Zde napøíklad rodina Helvetica má navíc pøepínaèe 
+pro varianty \uv{Narrow} a rodiny Jannon mají pøepínaèe pro 
+varianty \uv{Medium}.
+
+Napí¹eme-li do dokumentu pøíkaz "\fontusage"\inl[fontusage], 
+zobrazí se na terminál a
+do logu struèná informace o~pou¾ití pøíkazù z~balíku OFS.
+
+Kromì vý¹e uvedeného zpùsobu zavedení:
+
+\begtt
+@PLAIN: \input ofs [<soubor>, <soubor>, ...]
+@LATEX: \usepackage [<soubor>, <soubor>, ...] {ofs}
+\endtt
+%
+existuje je¹tì mo¾nost pøímo zavést po¾adované soubory. Pak není nutné
+v~dokumentu explicitnì zavádìt soubor "ofs.tex" resp. "ofs.sty":
+
+\begtt
+@PLAIN: \input <soubor> \input <soubor> ...
+@LATEX: \usepackage {<soubor>} \usepackage {<soubor>} ...
+\endtt
+%
+Pøíklad:
+
+\begtt
+@PLAIN: \input sjannon \input sdynamo
+@LATEX: \usepackage {sjannon} \usepackage {sdynamo}
+\endtt
+%
+Nedoporuèuje se (zvlá¹tì v~\LaTeX{}u) oba tyto zpùsoby zavedení
+makra OFS míchat.
+
+
+\subsec Pøíkaz {\tt\back setfonts}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+V~dal¹ích pøíkladech pøedpokládáme,\inl[setfonts]
+¾e jsme zavedli pouze potøebné
+rodiny, napøíklad ze souborù {\tt sjannon} a {\tt sdynamo}.
+Nyní tøeba po pou¾ití pøíkazu
+
+\begtt
+\setfonts [JannonText/12pt]
+\endtt
+%
+lze pøepínat do jednotlivých variant této rodiny JannonText ve
+velikosti 12pt. Je mo¾né pou¾ít pøepínaèe 
+"\rm", "\bf", "\it", a "\bi" a speciálnì pro tuto
+rodinu je¹tì "\mr" a "\mi". 
+
+Pøíkaz "\setfonts [<JménoRodiny>/<velikost>]" 
+pøepíná do nové rodiny a ctí
+naposledy zapnutou variantu. 
+Pokud pøed tímto pøíkazem
+byla zapnutá tøeba varianta BoldItalic, pak po tomto pøíkazu zùstává
+zapnutá tato varianta i v~nové rodinì. 
+Pokud v nové rodinì naposledy zapnutá
+varianta neexistuje, pøepíná se do "\rm". Tato varianta musí být
+deklarována v~ka¾dé rodinì.
+
+Pøíkaz "\setfonts" vymezuje v¹echny zmìny pouze
+lokálnì. Po ukonèení skupiny se sazba vrací k~rodinì a variantì, která
+byla aktuální pøi zahájení skupiny.
+
+Parametry pøíkazu "\setfonts" mohou být prázdné:
+"\setfonts [<JménoRodiny>/]" pøepne do nové 
+rodiny a ctí naposledy nastavenou velikost a 
+"\setfonts [/<velikost>]" nastaví novou velikost 
+a ponechá aktuálnì vybranou rodinu. Po inicializaci OFS je (pro
+pøípad pou¾ití prázdného parametru) defaultnì nastavena rodina
+"CMRoman" a velikost 10\,pt. Pøíkaz "\setfonts [/]" 
+je syntakticky korektní, ale neudìlá kromì zápisu 
+do logu vùbec nic.
+
+Parametr <JménoRodiny>, je-li uveden, musí pøesnì odpovídat jménu
+rodiny podle seznamu známých rodin (viz nahoøe pøíkaz "\showfonts").
+Je tøeba dodr¾ovat malá a velká písmena a celé jméno psát bez mezer.
+Pokud se tento parametr neshoduje s~¾ádnou známou rodinou, vypí¹e \TeX{}
+varování a pøipojí seznam v¹ech známých rodin. Tak¾e napøíklad
+"\setfonts [?/]" lze pou¾ít se stejným efektem, 
+jako pøíkaz "\showfonts".
+
+\LATEX: <JménoRodiny> mù¾e být nejen jméno podle seznamu známých rodin
+(dlouhý název), ale je dovoleno pou¾ít i zkratku z~NFSS. Tak¾e
+napøíklad "\setfonts [Times/]" a "\setfonts [ptm/]" je v~\LaTeX{}u toté¾.
+
+\OBA:
+Parametr <velikost> má tyto mo¾nosti:
+
+\begitems
+* <èíslo>                 .... napø. "12", "17.4",
+* <èíslo><jednotka>       .... napø. "12pt", "17.4pt",  "10dd",
+* "at"<èíslo><jednotka>   .... napø. "at12pt", "at17.4pt", "at10dd",
+* "scaled"<celé èíslo>    .... napø. "scaled1200",  "scaled\magstep3",
+* "mag"<desetinné èíslo>  .... napø. "mag1.2",  "mag.7",  "mag2.0".
+\enditems
+
+První tøi mo¾nosti se významovì shodují. Klíèové slovo "at" je
+nepovinné a není-li uvedeno ani "at" ani jednotka, doplní se
+automaticky "at<èíslo>pt". Font se zavede pøesnì v~po¾adované
+velikosti. Samozøejmì pøi globálním "\magnification" celého dokumentu 
+se jedná o~relativní a nikoli absolutní rozmìry, pokud nepou¾ijeme
+jednotku uvozenou slovem "true" (napø. "17truept"). 
+Jestli¾e pí¹eme klíèové slovo "at", nesmíme vynechat jednotku.
+Nesprávnì: "at12", správnì: "at12pt" nebo jenom "12".
+
+Ètvrtá mo¾nost ("scaled") je shodná s~pou¾itím slova "scaled" pøi zavádìní
+fontu pomocí primitivu "\font". Napø. "scaled1200" je font, jeho¾ základní
+velikost je pronásobena koeficientem 1,2. Je-li základní velikost
+fontu 10\,pt (co¾ je obvyklé), pak je "scaled1200" shodné s~"at12pt".
+
+Poslední mo¾nost ("mag") pronásobí aktuální velikost fontù daným
+koeficientem. Na rozdíl od "scaled" se tedy vztahuje k~aktuální
+velikosti a nikoli k~základní velikosti fontu. Je-li nejprve pou¾ito
+tøeba "\setfonts[/12]" a v~zápìtí "\setfonts[/mag2.]", rodina fontù
+bude nyní sázena ve velikosti 24\,pt. Pøíklad:
+
+\begtt
+\def\small{\setfonts[/mag.7]}
+Text {\small je men¹í \small a men¹í \small a je¹tì men¹í} a tady je
+zase v normální velikosti.
+\endtt
+
+Upozornìní: Zmìna velikosti fontù pomocí "\setfonts" nijak nemìní
+vzdálenost úèaøí ("\baselineskip"). To si musí u¾ivatel nastavit sám.
+
+Pomocí "\setfonts" mù¾eme nastavit nejen celou rodinu (to ovlivní
+pøepínaèe variant "\rm", "\bf", "\it", "\bi" a pøípadnì dal¹í), ale také 
+jen zvolenou variantu v~dané rodinì. V~takovém pøípadì 
+"\setfonts" nemìní význam pøepínaèù variant ani aktuální 
+velikost ostatních fontù. Pøi specifikaci varianty je nutno 
+v~parametru "\setfonts" za název rodiny napsat znak mínus následovaný 
+zkratkou pro variantu. Pøíklady:
+
+\begtt
+\setfonts [JannonText-it/12] ..... nastaví kurzívu dané rodiny ve
+                                   velikosti 12pt
+\setfonts [JannonText-rm/] ....... nastaví základní øez dané rodiny
+                                   v aktuální velikosti.
+\setfonts [CMTypeWriter-sl/] ..... nastaví základní variantu \sl 
+                                   v aktuální velikosti.
+\endtt
+
+I~pøi specifikaci varianty je mo¾né v~parametru vynechat název rodiny,
+pak se pou¾ije aktuální rodina. Napøíklad
+
+\begtt
+\setfonts [JannonText/12]
+\setfonts [-bf/17]     ... varinata Bold JannonText, velikost 17pt.
+                           Pøepínaèe \rm, \bf, \it a \bi zùstanou 
+                           nezmìnìny, v tomto pøíkladì pøepínají
+                           JannonText ve velikosti 12pt.
+                           Následné pou¾ití tøeba \setfonts [Times/]
+                           nastaví rodinu Times ve velikosti 12pt.
+ALE:
+\setfonts [/17]\bf    ...  Varinata Bold aktuální rodiny, velikost 17pt.
+                           Pøepínaèe \rm, \bf, \it a \bi nyní
+                           pøepínají ve velikosti 17pt. Aktuální
+                           velikost fontù je nyní 17pt.
+\endtt
+
+\LATEX: Co zde bylo øeèeno o~ponechání významu pøepínaèù variant
+pøi specifikování varianty v~\LaTeX{}u není pravda, 
+proto¾e by to naru¹ilo logiku NFSS. 
+V~\LaTeX{}u tedy je "\setfonts [-bf/17]" zcela shodné 
+s~pøíkazy "\setfonts [/17]\bf".
+
+
+\subsec  Pøíkazy {\tt\back fontdef} a {\tt\back addcmd}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Pøíkaz "\fontdef"\inl[fontdef] umo¾òuje deklarovat nové fontové pøepínaèe.
+
+\begtt
+\fontdef \<pøepínaè> [<JménoRodiny>/<velikost>]
+\endtt
+%
+Tato deklarace se zhruba shoduje s{}
+
+\begtt
+\gdef \<pøepínaè> {\setfonts [<JménoRodiny>/<velikost>]}
+\endtt
+
+\PLAIN: Pokud je specifikována rodina vèetnì varianty a 
+parametr <velikost> není prázdný ani není zadán pomocí klíèového slova
+"mag", pak "\<pøepínaè>" není implementován jako makro obsahující
+"\setfonts", ale jedná se o nativní pøepínaè fontu implementovaný 
+pomocí "\global\font\<pøepínaè>" (tzv.~fixed font). 
+Tak mù¾e u¾ivatel deklarovat vlastní nativní pøepínaè 
+fontu bez znalosti názvu metriky.
+
+\LATEX: Deklarovaný pøepínaè je ve v¹ech pøípadech implementován jako
+makro obsahující "\setfonts". Pøístup k~nativním pøepínaèùm je pøed
+u¾ivatelem v~NFSS skryt.
+
+\OBA:
+Místo jména rodiny mù¾e být uveden vykøièník. 
+Pak se doplní jméno rodiny aktuální v~místì pøíkazu 
+"\fontdef". Na druhé stranì, pokud je jméno rodiny prázdné,
+pak se jméno rodiny doplní podle aktuální rodiny
+v~místì pou¾ití deklarovaného pøepínaèe. Analogická vlastnost platí
+pro parametr <velikost>. Pøíklady:
+
+\begtt
+\setfonts [JannonAntikva/]
+\fontdef \small  [/7]             % \small = \setfonts [/7pt]
+\fontdef \sffam  [DynaGroteskR/]  % \sffam = \setfonts [DynagroteskR/]
+\fontdef \velky  [Times/17]       % \velky = \setfonts [Times/17pt]
+\fontdef \ttfam  [Courier/]       % \ttfam = \setfonts [Courier/]
+\fontdef \mylogo [Times-rm/mag.8] % \mylogo = \setfonts [Times-rm/mag.8] 
+                                  % velikost fontu bude v¾dy rovna 
+                                  % 0.8 násobku aktuální velikosti.
+\fontdef \timbf  [Times-bf/12]    % \timbf = fixed-font pøepínaè, jako:
+                                  % \global\font\timbf=ptmb8z at12pt
+\fontdef \jansmall [!/7]          % \jansmall=\setfonts[JannonAntikva/7]
+\fontdef \janbi [!-bi/17]         % \janbi = fixed-font pøepínaè, jako:
+                                  % \global\font\janbi=sjnbi8z at17pt
+\fontdef \tt [Courier-rm/!]       % \tt = fixed-font pøepínaè, jako
+                                  % \global\font\tt=pcrr8u at10pt
+\endtt                               
+
+Pøíkaz "\fontdef" deklaruje pøepínaè globálnì, ov¹em tento pøepínaè je
+sám o~sobì lokální. Jinými slovy "\global\fontdef\jmeno" je toté¾ jako
+"\fontdef\jmeno", ale pøepínaè "\jmeno" nastaví font (nebo celou
+rodinu) jen lokálnì. 
+
+Od verze OFS Oct.~2002 je podporován pøíkaz
+"\addcmd"\inl[addcmd], který umo¾ní spoleènì s~pøíkazem "\fontdef"
+soustøedit problematiku fontù do jediného místa v souboru maker. 
+Pøíkaz má formát:
+
+\begtt
+\addcmd \<pøepínaè> {<pøíkazy>}
+\endtt
+%
+a chová se, jako "\def\<pøepínaè> {<pùvodní význam pøepínaèe> <pøíkazy>}".
+Pomocí "\addcmd" tedy mù¾eme \uv{roz¹íøit} obsah makra "\<pøepínaè>" 
+o~dal¹í pøíkazy. Sekvence "\<pøepínaè>" musí být (pøed pou¾itím
+"\addcmd") definována jako makro bez parametrù nebo musí být 
+ve významu neexpandované kontrolní sekvence deklarované napøíklad
+pomocí "\font", "\chardef" apod. Po pou¾ití "\addcmd" je sekvence
+"\<pøepínaè>" definována v¾dy jako makro bez parametru. Opakované
+pou¾ití "\addcmd" na stejný "\<pøepínaè>" je mo¾né.
+
+Pøíklad pou¾ití:
+
+\begtt
+\setfonts [JannonText/]
+\fontdef \footnotefont  [!/7]     
+\addcmd  \footnotefont  {\rm \baselineskip=9pt \relax}
+\fontdef \sectionfont  [!/12]
+\addcmd  \sectionfont  {\bf \let\it=\bi}
+\endtt
+
+
+\subsec Test pøítomnosti rodiny
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\PLAIN: Ve svých makrech mù¾eme testovat, zda je rodina fontù deklarovaná,
+tj.~zda je naètena její deklarace z~deklaraèního souboru. Pou¾ijeme 
+k~tomu konstrukci "\knownfam <JménoRodiny>? \iftrue", která expanduje
+na "\iftrue", pokud je rodina deklarovaná a na "\iffalse", pokud
+deklarovaná není. Parametr <JménoRodiny> musíme uvést bez specifikace varianty.
+
+\OBA: Z dùvodù zpìtné kompatibility se star¹í verzí OFS~dìlá stejnou práci jako
+"\knownchar" makro "\ifknownfam [<JménoRodiny>]"\inl[ifknownfam]. 
+V~OFS pro plain se ale
+od verze Feb.~2004 doporuèuje pou¾ívat "\knownfam", proto¾e to udr¾uje
+správnì spárované primitivy "\if*", "\else", "\fi". La\TeX{}ový u¾ivatel
+si mù¾e "\knownfam" snadno definovat.
+
+\subsec \LATEX:  Propojení OSF s~NFSS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Tato sekce je urèena pouze pro \LaTeX{}isty. Pøíkaz\inl[OFSfamily]
+
+\begtt
+\OFSfamily [<JménoRodiny>] 
+\endtt
+%
+konvertuje dlouhý název rodiny podle katalogu na interní název rodiny
+zanesený do NFSS. Napøíklad
+
+\begtt
+\OFSfamily [JannonText]
+\endtt
+%
+expanduje na "sjng". Makro pracuje jen na úrovni expandprocesoru,
+proto nedostaneme pøi pøeklepu v~názvu rodiny chybové hlá¹ení. 
+Pøi neexistující rodinì makro expanduje na text "unknown". 
+Pou¾ijeme-li napøíklad "\OFSfamily" ve svých stylových souborech 
+a zpozorujeme, ¾e se NFSS sna¾í substituovat rodinu "unknown", 
+mù¾eme si být jisti, ¾e máme pøeklep v~názvu rodiny nebo nemáme 
+správnì pou¾ité "\usepackage".  
+
+Pøíklad pou¾ití:
+
+\begtt
+\usepackage [sjannon, sdynamo] {ofs}
+\edef\rmdefault {\OFSfamily [JannonAntikva]}
+\edef\sfdefault {\OFSfamily [DynaGroteskR]}
+\edef\ttdefault {\OFSfamily [Courirer]}
+\endtt
+
+Význam maker "\rmdefault", "\sfdefault", "\ttdefault" je popsán 
+v~dokumentaci NFSS.
+
+Dále OFS definuje pøíkaz\inl[OFSfamilydefault]
+
+\begtt
+\OFSfamilydefault [<JménoRodiny>]
+\endtt
+%
+který nastaví základní rodinu celého dokumentu. Tato rodina se v~pøíslu¹ných 
+velikostech a variantách objeví nejen v~textu, ale i v~záhlaví 
+kapitol, sekcí a podobnì (jsou-li makra v~pou¾itém class souboru udìlána
+rozumnì). Pøíkaz internì provede
+
+\begtt
+\edef\familydefault {\OFSfamily [<JménoRodiny>]}
+\endtt
+%
+s~tím, ¾e navíc o¹etøí pøípad neexistující rodiny chybovým hlá¹ením 
+s~výpisem v¹ech aktuálnì dostupných rodin.
+
+                        
+\subsec Kódování fontù
+%%%%%%%%%%%%%%%%%%%%%%
+
+\LATEX: Pøepínání mezi kódováním fontù probíhá zcela v~re¾ii NFSS. OFS
+v~této vìci nepøidává nic nového. 
+
+\PLAIN (a¾ do konce sekce): 
+Implicitnì se pøedpokládá kódování CSfontù. Pokud ale potøebujeme
+pou¾ít fonty napøíklad v kódování T1, pak pou¾ijeme 
+"\def\fotenc{8t}"\inl[fotenc]
+a OFS bude pracovat s~fonty v~tomto kódování. 
+
+Mù¾eme dokonce uvnitø dokumentu pøepínat: 
+
+\begtt
+\def\fotenc{8z} \setfonts[/] ... fonty v kódování CSfontù
+\def\fotenc{8t} \setfonts[/] ... fonty v kódování podle Corku.
+\endtt
+
+Kromì toho OFS obsahuje nástroje, aby makra závislá na kódování
+fontù (napøíklad "\v", "\'", "\ae") expandovala správnì 
+na znak ve zvoleném kódování. 
+Implicitnì je v~OFS nastaveno "\loadingenc=0"\inl[loadingenc],
+co¾ znamená, ¾e zmìnou kódování fontù ani pøíkazem "\setfonts" se 
+nemìní makra typu "\v", "\ae". Tato makra si ponechají svùj 
+originální význam z~\hbox{plainu}. To uvítají ortodoxní plainisté, 
+kteøí nemají rádi, kdy¾ má pou¾itý balíèek zbyteènì velkou inteligenci.
+
+Je-li ale na zaèátku dokumentu uvedeno "\loadingenc=1", napøíklad:
+
+\begtt
+\input ofs [a35,sjannon]  \loadingenc=1
+\endtt
+%
+pak pøi ka¾dém pøíkazu "\setfonts" si \TeX{} zkontroluje, zda má
+naèteny v¹echny potøebné soubory se jménem "ofs-<kódování>.tex". 
+Tyto soubory obsahují pøedefinování maker závislých na nastaveném kódování fontù. 
+Pokud tyto soubory naèteny nejsou, \TeX{} je bìhem "\setfonts"
+naète. Podrobnìji viz sekce~\beglink{3.3}3.3\endlink{} a¾ 
+\beglink{3.5}3.5\endlink.
+
+Balíèek OFS obsahuje tøi soubory s~deklaracemi maker závislými na
+kódování: "ofs-8z.tex", "ofs-8t.tex" a "ofs-8c.tex". Pøi pou¾ití jiného kódování
+fontù si mù¾ete vytvoøit dal¹í soubor analogického názvu.
+Pøíkazy "\accentdef" a "\characterdef" pou¾ívané v~tìchto 
+souborech jsou podrobnì vysvìtleny v~\beglink{3.4}sekci~3.4\endlink.
+
+
+\subsec Fonty v~matematice
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\LATEX: OFS pro \LaTeX{} vùbec neøe¹í otázku fontù pro matematiku. 
+Je potøeba vyu¾ít nabídku mo¾ností NFSS.
+
+\PLAIN (a¾ do konce sekce): 
+Pøíkaz "\setfonts" a pøepínaèe deklarované pomocí "\fontdef" 
+pøepínají jen písmo v~textovém re¾imu. 
+Pokud nepou¾ijeme pøíkaz "\setmath", zùstává v¹e,
+co je ve vstupním souboru mezi dolary, vyti¹tìno v~Computer
+Modern ve velikostech 10\,pt/7\,pt/5\,pt (velikost: 
+základní/indexová/indexindexová). To nemusí být v¾dy ¾ádoucí.
+
+Pøíkaz "\setmath" má tento tvar:\inl[setmath]
+
+\begtt
+\setmath [<základní velikost>/<indexová velikost>/<indexindexová velikost>]
+\endtt
+%
+V~parametrech pøíkazu dáváme najevo, v~jakých velikostech chceme matematické
+fonty nastavit. Je mo¾né pou¾ít libovolný zápis velikosti, jako 
+u~pøíkazu "\setfonts". Je-li pou¾ita mo¾nost "mag<èíslo>", je
+velikost vypoèítána jako <èíslo> krát velikost aktuálního 
+textového fontu. Je-li parametr prázdný, doplní se takto:
+
+\begitems
+* základní velikost --- "mag1.0"
+* indexová velikost --- "mag0.7"
+* indexindexová velikost --- "mag0.5"
+\enditems
+
+Tak¾e "\setmath [//]" udìlá toté¾ jako 
+"\setmath [mag1./mag.7/mag.5]". OFS definuje makro
+"\setsimplemath"\inl[setsimplemath] jako "\setmath [//]".
+
+Pøíkaz "\setmath" nastaví matematické fonty podle
+aktuální situace. Jeho èinnost závisí na obsahu maker
+"\fomenc" a "\mathversion".
+
+Matematické kódování je urèeno hodnotou makra 
+"\fomenc".\inl[fomenc]
+Existují tyto mo¾nosti:
+
+\begitems
+* Implicitní hodnota je "\def\fomenc{PS}" (PostScript-Symbol). 
+  Pøíkaz "\setmath" pak
+  pøevezme kurzívu aktuální rodiny a pou¾ije ji jako matematickou
+  kurzívu. Dále pøevezme základní variantu aktuální rodiny a pou¾ije ji
+  pro èíslice a dal¹í symboly, které jsou psány i v~matematice jako
+  "\rm". Standardní pøepínaèe variant "\rm", "\it", "\bf" a "\bi"
+  zaènou pøepínat do odpovídajících fontù i v~matematické sazbì.
+  %
+  Pøi "\def\fomenc{PS}" se navíc chybìjící matematické znaky, 
+  které obvykle nejsou pøítomny v~PostScriptových fontech
+  (napøíklad písmena øecké abecedy), nahradí z~Post\-Script\-ového fontu 
+  Symbol. Tento font se toti¾ ke vìt¹inì
+  PostScriptovým písmùm hodí daleko lépe ne¾ Computer Modern. Ostatní
+  znaky (napøíklad zvìt¹ující závorky a velké operátory) zùstávájí 
+  v~Computer Modern.
+
+* Je-li "\def\fomenc{CM}" (Computer Modern), pak "\setmath" ponechá
+  matematickým vzoreèkùm Computer Modern fonty, jen se pøípadnì
+  pøizpùsobí po¾adované velikosti.
+
+* Po zavedení souboru "amsfn.tex" je mo¾né pou¾ít "\def\fomenc{AMS}".
+  Matematika se pak chová stejnì jako pøi "CM", ale navíc jsou k~dispozici   
+  ve¹keré symboly z~AMS\TeX{}u.
+
+* Po zavedení souboru "txfn.tex" mù¾eme pou¾ít dvì nová kódování: 
+  "\def\fomenc{TX}" nebo "\def\fomenc{PX}". 
+  V obou pøípadech se pro matematiku pou¾ijí
+  volnì dostupné TXfonty, které vycházejí z øezù rodin Times a
+  Helvetica. Pøi hodnotì "TX" se v~matematice pou¾ijí výhradnì
+  TXfonty, zatímco pøi hodnotì "PX" budou TXfonty kombinovány
+  s~kurzívou a základním øezem aktuální textové rodiny fontù (podobnì
+  jako pøi kódování "PS"). OFS podporuje v¹echny kontrolní sekvence na
+  matematické symboly podle manuálu k TXfontùm. Jsou zde ve¹ekré
+  symboly z AMS\TeX{}u a mnoho dal¹ích. Symbolù z TXfontù je nìkolik stovek.
+  {\hbadness=1015\par}
+
+* Po zavedení souboru "mtfn.tex" je mo¾né pou¾ít
+  "\def\fomenc{MT}". Matematika bude obsahovat kurzívu a základní øez
+  aktuální rodiny fontù kombinovanou se znaky~komerèní verze 
+  matematických fontù MathTimes.
+\enditems
+
+Podobnì jako v~NFSS jsou podporovány dvì verze vzoreèkù: normal a
+bold. Po¾adovaná verze se nastavuje v~makru "\mathversion"\inl[mathversion] 
+pomocí "\def\mathversion{normal}" nebo "\def\mathversion{bold}". 
+Makro "\setmath" pak pøizpùsobí zavedení matematických fontù po¾adované
+verzi. Implicitnì je nastaveno "\def\mathversion{normal}".
+Nastavení "\mathversion" je potøeba provést pøed vyvoláním pøíkazu 
+"\setmath". Pøíklady:
+
+\begtt
+\setmath [//] $vzoreèek$      % vzoreèek je ve verzi "normal"
+$\def\mathversion{bold}\setmath[//] vzoreèek$ % vzoreèek ve verzi "bold"
+\endtt
+
+
+\sec Jak je to udìláno, aneb pohled do hloubky
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\LATEX: V¹echna makra, která jsou jen pomocná, jsou ve stylu "ofs.sty"
+definována se jménem "\ofs@jménomakra", aby nedo¹lo ke zmatení s~jinými
+styly. Makra, která se pou¾ívají v~deklaraèních souborech, mají název
+"\OFSjménomakra". Dále styl definuje u¾ivatelské pøíkazy "\setfonts",
+"\fontdef", "\showfonts", "\fontusage", a pøedefinovává pøepínaèe
+"\rm", "\bf", "\it", "\bi".
+
+\PLAIN: V¹echna makra definovaná v~"ofs.tex" jsou uvedena v~rejstøíku na
+konci tohoto dokumentu. Pøi návrhu názvù maker jsem nevyu¾il konvenci
+se znakem "@", proto¾e tento znak v~názvech maker osobnì nenávidím.
+ 
+
+\subsec Výpisy do logu
+%%%%%%%%%%%%%%%%%%%%%%
+
+\LATEX: Pro trasování makra NFSS se pou¾ije balíèek "tracefnt".
+
+\PLAIN: Pokud nìkoho ru¹í pøi èastém pøepínání rodin fontù pøíkazem 
+"\setfonts" výpisy v~logu, mù¾e pou¾ít pøíkaz 
+"\nofontmessages"\inl[nofontmessages].
+Pokud naopak chceme tyto výpisy vidìt i na terminálu, pi¹me
+"\displayfontmessages"\inl[displayfontmessages]. Implicitnì je zapnut výpis
+pouze do logu pøíkazem "\logfontmessages"\inl[logfontmessages].
+Pokud chceme pøesnì vidìt, které metriky fontù se zavádìjí primitivním
+pøíkazem "\font", pou¾ijeme "\detailfontmessages"\inl[detailfontmessages].
+
+Varování o~nepøístupných znacích nebo kódováních se v¾dy vypisují na
+terminál i do logu. Chceme-li je mít jen v~logu, mù¾eme napsat
+"\let\displaymessage=\wlog"\inl[displaymessage], proto¾e tato sekvence
+je v~OFS pou¾ívána na zobrazení zpráv na terminál.
+
+
+\subsec Robustní a køehké pøíkazy
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\LATEX: \LaTeX{}2e má zavedené postupy na definování robustních
+pøíkazù. Význam tìchto pojmù je vysvìtlen v~dokumentaci k~\LaTeX{}u.
+Pøíkaz "\setfonts" a pøepínaèe deklarované pomocí "\fontdef" jsou
+samozøejmì definovány jako robustní, tak¾e se mohou vyskytovat
+v~textech pro obsahy, rejsøíky apod. bez toho, aby zpùsobily obtí¾e.
+
+\PLAIN (a¾ do konce sekce): 
+Makro plainu problematiku køehkých pøíkazù neøe¹í
+a u¾ivatelé plainu, pokud narazí na tento problém, pou¾ívají rùzná svá
+vlastní øe¹ení, která nejsou standardizována. Jedno takové øe¹ení je i
+v~OFS.
+
+Nejprve struènì naznaèíme, v~èem spoèívá problém s~køehkými pøíkazy.
+Obèas potøebujeme (pro generování obsahu, rejstøíku apod.) poslat
+nìjaký text do pomocného souboru (primitivem "\write"), aby byl tento
+soubor v~zápìtí (pøi dal¹ím zpracování \TeX{}em) znovu naèten.
+Problém je, ¾e primitiv "\write" zapí¹e do souboru text po expanzi
+maker, co¾ nemusí v¾dy vyhovovat. Pokud je napøíklad fontový pøepínaè
+implementován jako slo¾ité makro a je pou¾it v~textu zpracovaném
+primitivem "\write", v~souboru se objeví celé makro po expanzi.
+Pøi opìtovném naètení takového souboru dojde vìt¹inou k~havárii;
+øíkáme, ¾e byl pou¾it køehký (fragile) pøíkaz v~textu posílaném do
+souboru a v~souboru se nám tento pøíkaz \uv{rozsypal}.
+
+Pokud se dostane (potenciálnì) køehký pøíkaz z~maker OFS do souboru,
+pak se pøi novém naètení takového souboru automaticky pøi havárii
+zobrazí na terminálu a v~logu návod jak postupovat, aby se u¾ivatel
+tohoto problému zbavil. Text návodu po pøekladu do èe¹tiny vypadá
+takto:
+
+\begtt
+CHYBA !! køehký pøíkaz v toc/ind/aux nebo podobném souboru.
+Tento problém mù¾ete øe¹it následujícími kroky:
+1. Vyma¾te pomocný soubor s tímto køehkým pøíkazem.
+2. Vlo¾te následující kód do záhlaví svého dokumentu:
+      \let\orishipout=\shipout
+      \def\shipout#1#2{\setbox0=#1{#2}\bgroup
+           \let\expandaction=\noexpand \orishipout\box0 \egroup}
+3. Znovu TeXujte svùj dokument nejménì dvakrát za sebou.
+Dal¹í informace najdete v dokumentaci k OFS.
+\endtt
+
+Vysvìtlíme si, jak je to udìláno. Makro, které mù¾e v~parametru
+primitivu "\write" pùsobit potí¾e, je v~OFS definováno zhruba takto:
+
+\begtt
+\def\makro {%
+   \ifx\expandaction\noexpand
+      \noexpand\makro
+   \else
+      \csname fragilecommand!\endcsname
+      <vlastní kód makra>
+   \fi
+}
+\endtt
+
+Pokud se nenastaví "\expandaction"\inl[expandaction] 
+na hodnotu "\noexpand", pak se
+provede èást kódu za "\else". Proto¾e pøíkaz 
+"\csname fragilecommand!\endcsname"\inl[fragilecommand!]
+není definován, realizuje se v~hlavním procesoru jako "\relax"
+[TBN, strana 349]. Pøi expanzi primitivem "\write" se do souboru
+zapí¹e "\fragilecommand!". Pøi dal¹ím ètení soboru se spustí pøíkaz
+"\fragilecommand"\inl[fragilecommand], 
+který vypí¹e na terminál ji¾ zmínìnou nápovìdu.
+
+Jestli¾e u¾ivatel pou¾ije kód z~nápovìdy v~záhlaví svého dokumentu,
+pak v~dobì èinnosti primitivu "\shipout" (tj.~v~dobì, kdy expandují
+argumenty primitivù "\write") je nastaveno "\let\expandaction=\noexpand". 
+V~makru "\makro" se provede první èást pøed "\else", tak¾e do souboru 
+se zapí¹e jen "\makro". To je pøesnì to, co potøebujeme.
+
+V~OFS není kód, který pøedefinovává "\shipout", pøímo zahrnut. Místo
+toho pouze doporuèíme u¾ivateli, aby to udìlal sám. U¾ivatel plainu toti¾
+potøebuje mít vìci pod vlastní kontrolou a nemìl by asi dùvìru k~makru,
+které bez jeho vìdomí pøedefinuje tak zásadní vìc, jako je primitiv
+"\shipout". Také je mo¾né, ¾e u¾ivatel plainu pou¾ije na rùzné èásti
+textu ve svých makrech "\edef" a potøebuje vìdìt, ¾e je v~takovém
+pøípadì vhodné nejpve nastavit "\let\expandaction=\noexpand".
+
+Podobnì jako zde v~ukázce definice pøíkazu "\makro" jsou 
+v~OFS definovány
+pøíkazy "\setfonts" (\beglink{2.2}sekce~2.2\endlink), 
+"\setmath" (\beglink{2.7}sekce~2.7\endlink), 
+"\setextrafont", "\printcharacter", "\printaccent"
+(\beglink{3.4}sekce~3.4\endlink),
+"\accentabove", "\accentbelow" a "\ofshexbox" (\beglink{3.6}sekce~3.6\endlink). 
+Po pou¾ití kódu z~nápovìdy se tato makra stávají \uv{robustními}
+v~\LaTeX{}ovém smyslu tohoto slova.
+
+
+\subsec Deklaraèní soubory
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\LATEX: Deklaraèní soubory v~\LaTeX{}u jsou bì¾né stylové soubory,
+které shrnují nìkolik rodin fontù ve smyslu NFSS. Tyto rodiny jsou
+deklarovány bì¾ným zpùsobem ve~"fd" souborech. V~deklaraèních souborech 
+je mo¾no pou¾ít následující pøíkazy:
+
+\begitems
+* "\OFSprocessoptions"\inl[OFSprocessoptions] 
+  --- má vìt¹inou hodnotu "\undefined". Pokud ale
+  je stylový soubor naèítán ze souboru "ofs.sty" jako parametr, 
+  má "\OFSprocessoptions" hodnotu "\relax". Test na tuto
+  sekvenci pou¾íváme v~záhlaví stylového souboru, abychom vynachali
+  \LaTeX{}ovské "\RequirePackage{ofs}", pokud to není potøeba (a
+  pouze by to zlobilo).
+* "\OFSextraencoding {<roz¹iøující kódování>}"\inl[OFSextraencoding] 
+  --- Toto makro si poznamená do pamìti <roz¹iøující kódování> a
+  provede "\input {<roz¹iøující kódování>ini.def}".
+  Pøedpokládá se, ¾e tam jsou odpovídající definice pro
+  <roz¹iøující kódování>, viz napøíklad soubor "se1ini.def", který obsahuje
+  deklarace pro roz¹iøující kódování SE1 fontù ze Støe¹ovické písmolijny.
+  Pokud u¾ byl soubor "<roz¹iøující kódování>ini.def" naèten, makro jej
+  nenaèítá znovu. Pozor: <roz¹iøující kódování> je nutno psát 
+  velkými písmeny, aèkoli v~názvu souboru musí být naopak tato písmena malá.
+* "\OFSputfamlist {<text>}"\inl[OFSputfamlist] 
+  --- vlo¾í <text> do seznamu rodin, který
+  se vypisuje pøi "\showfonts" nebo pøi neznámé rodinì.
+* "\OFSdeclarefamily [<JménoRodiny>] {<NFSS-jméno>}"\inl[OFSdeclarefamily] 
+  --- poznamená si
+  do pamìti, ¾e <JménoRodiny> je ve skuteènosti <NFSS-jméno>.
+  Tato pamì» se vyu¾ije napøíklad v~pøíkazu "\OFSfamily".
+  Navíc zanese <JménoRodiny> do seznamu rodin vypisovaném pøi 
+  "\showfonts".
+* "\OFSnormalvariants"\inl[OFSnormalvariants]
+  --- do textu, který se vypisuje pøi "\showfonts" 
+  nebo pøi neznámé rodinì vlo¾í, seznam standardních pøepínaèù,
+  tj.~"\rm,"~"\bf,"~"\it,"~"\bi".
+\enditems
+
+\PLAIN (a¾ do konce sekce): 
+Deklaraèní soubory mají pøíponu "tex" a pøedpokládá se o~nich,
+¾e mají pojistku proti opakovanému naètení. Pokud není je¹tì naèten
+soubor "ofs.tex", je nutno jej pøed dal¹í èinností naèíst. Rovnì¾ je
+vhodné zde naèíst soubor definic znakù podle pou¾itých kódování 
+(viz~\beglink{3.4}sekce~3.4\endlink).
+
+V~deklaraèním souboru je nutno vytvoøit vazbu mezi názvy rodin a pou¾itými
+metrikami. K~tomu se pou¾ívají následující pøíkazy:
+
+\begitems
+* "\protectreading <soubor><mezera>"\inl[protectreading] --- poznamená
+  si do pamìti, ¾e je pøeèten <soubor>. Pokud je pøíkaz se stejným 
+  parametrem èten podruhé, provede "\endinput", tak¾e následující deklarace jsou
+  chránìny proti vícenásobnému ètení.
+* "\ofsputfamlist {<text>}"\inl[ofsputfamlist] 
+  --- vlo¾í <text> do seznamu rodin, který
+  se vypisuje pøi "\showfonts" nebo pøi neznámé rodinì.  
+* "\ofsdeclarefamily [<JménoRodiny>] {<pøíkazy>}"\inl[ofsdeclarefamily] 
+  --- deklarace nové
+  rodiny se jménem <JménoRodiny>. Toto jméno se zanese do seznamu
+  známých rodin vypisovaných pomocí "\showfonts". Pokud se tato rodina
+  pou¾ije pøi "\setfonts", pak se provedou <pøíkazy>. Mezi <pøíkazy> se
+  pou¾ije právì jeden pøíkaz "\loadtextfam", který zavede fonty dané
+  rodiny do pamìti \TeX{}u.
+* "\loadtextfam"\inl[loadtextfam] 
+  --- Zavede ètyøi fonty s~danými metrikami. Tento pøíkaz vy¾aduje
+  podrobnìj¹í vysvìtlení, které je vèetnì parametrù pøíkazu uvedeno ní¾e.
+* "\newvariant<èíslice> \<pøepínaè> (<Varianta>) <mezera> <metrika>;<extra-enc>;"\inl[newvariant]
+  \null\penalty0 --- Dekla\-ruje nový pøepínaè varianty.
+  Podrobnìj¹í vysvìtlení je uvedeno ní¾e.
+* "\modifyenc <kódování>:<identifikátor>;"\inl[modifyenc] --- pøidání
+  výjimek vzhledem k~základnímu kódování, viz~\beglink{3.5}sekce~3.5\endlink. 
+* "\fosize"\inl[fosize] 
+  --- makro, které uchovává informaci o~aktuální velikosti
+  fontù v~naposledy vybrané rodinì. Obsah "\fosize" mù¾e mít dvì
+  podoby: "at<dimen>" nebo "scaled<number>" podle toho, jaký tvar
+  parametru <velikost> byl pou¾it v~pøíkazu "\setfonts".
+* "\fotenc"\inl[fotenc] 
+  --- makro, které uchovává informaci o~aktuálním kódování.
+  Nejèastìj¹í mo¾nosti jsou "\def\fotenc{8z}" (kódování podle CS-fontù) nebo
+  "\def\fotenc{8t}" (kódování podle Corku). Je-li pøi naètení souboru
+  "ofs.tex" makro "\fotenc" u¾ známé, ponechá se beze zmìny, jinak se
+  definuje jako "8z".
+* "\extranec"\inl[extraenc] 
+  --- makro, které uchovává informaci o~roz¹iøujícím kódování.
+  Tuto informaci tam kopíruje z~parametru <extra-enc> makro "\laodatextfam".
+* "\defaultextraenc"\inl[defaultextraenc] 
+  --- makro, jeho¾ pøedefinováním mù¾eme zmìnit roz¹iøující kódování základních
+  rodin a rodin z~"a35.tex". Výchozí hodnota makra~"8c".
+* "\setfontshook"\inl[setfontshook]
+  --- makro, které se spustí v¾dy pøi èinnosti pøíkazu "\setfonts"
+  tìsnì pøed tím, ne¾ jsou vykonány <pøíkazy> z~"\ofsdeclarefamily".
+* "\registertfm <jméno> <od>-<do> <skuteèná metrika>"\inl[registertfm]
+  --- umo¾òuje pracovat pøi rùzných velikostech fontù s~rùznými
+  metrikami. Podrobnosti viz \beglink{3.8}sekce~3.8\endlink.
+* "\registerenc <JménoRodiny>: <kódování> <mezera>"\inl[registerenc]
+  --- umo¾òuje omezit pou¾ití rodiny fontù jen pro vymezená
+  kódování. Podrobnosti viz \beglink{3.9}sekce~3.9\endlink.
+\enditems
+
+Pøíkaz "\loadtextfam" pou¾ívaný v deklaraèních
+souborech mezi <pøíkazy> makra "\ofsdeclarefamily" má parametry:
+
+\begtt
+\loadtextfam (<Varianta-rm>) <mezera> <metrika-rm>;%
+             (<Varianta-bf>) <mezera> <metrika-bf>;%
+             (<Varianta-it>) <mezera> <metrika-it>;%
+             (<Varianta-bi>) <mezera> <metrika-bi>;<extra-enc>;%
+\endtt
+%
+Procenta na koncích øádkù v této ukázce oznaèují, ¾e za støedníky nemá
+být mezera. 
+Údaje "(<Varianta-XX>)" slou¾í jako komentáøe o variantách zapisované do
+logu a je mo¾no je kompletnì vèetnì závorek a <mezery> vynechat (tøeba jen
+nìkteré). Ve verzích OFS do Sep~2002 nebyl tento parametr vùbec
+podporován. Pøi vynechání tohoto parametru se pøedpokládají 
+následující implicitní hodnoty: "rm: ()", "bf: (Bold)",
+"it: (Italic)", "bi: (BoldItalic)". 
+
+Údaje <metrika-XX> odpovídají názvùm metrik, které se pro uvedené
+varianty fontù makrem "\loadtextfam" zavedou. Makro zhruba provede toto:
+
+\begtt
+\font\tenrm=<metrika-rm> \fosize
+\font\tenbf=<metrika-bf> \fosize
+\font\tenit=<metrika-it> \fosize
+\font\tenbi=<metrika-bi> \fosize
+\endtt
+%
+Pøedpokládá se, ¾e v¹echny <metriky-XX> jsou 
+v~deklaraèním souboru napsány tak, ¾e
+obsahují makro "\fotenc". %\inl[fotenc]
+Tím je zaruèena zmìna názvu metriky pøi
+pøechodu na jiné kódování (tj. pøi pøedefinování makra "\fotenc").
+
+Koneènì údaj <extra-enc> udává název extra kódování. Pokud je tento parametr
+neprázdný, pak "\loadtextfam" provede na pøechodnou dobu
+"\def\fotenc{<extra-enc>}" a znovu expanduje 
+parametry <metrika-rm>, <metrika-bf>, <metrika-it> a <metrika-bi>. 
+Výsledky tìchto expanzí si poznamená do pamìti. Jedná se o~roz¹iøující 
+metriky k~základním metrikám. Je-li parametr <extra-enc> prázdný,
+poznámka o roz¹iøujících metrikách se nekoná.
+Kdy¾ pak nìjaké makro pro pøístup ke speciálnímu znaku tuto
+metriku potøebuje, objeví se na terminálu varování, ¾e aktuálnì
+zvolená metrika nemá roz¹iøující variantu.
+
+Nìkteré metriky v~pøíkazu "\loadtextfam"  s výjimkou <metrika-rm> 
+mohou být vynechány. Je-li napøíklad prázdný parametr 
+<metrika-XX>, pak se zhruba provede
+\begtt
+\def\tenXX{\message{varování o neexistující variantì na terminálu}}
+\endtt
+%
+tak¾e pøi pøechodu na takovou variantu se objeví na terminálu
+a v~logu hlá¹ení o~ne\-existující variantì a font se nezmìní.
+
+Pøíkaz "\setfonts"\inl[setfonts] 
+nemìní význam maker "\rm", "\bf", "\it" a "\bi",
+ale mìní význam pøepínaèù fontù "\tenrm", "\tenbf", "\tenit" a "\tenbi". 
+Dìlá to navíc zprostøedkovanì tím, ¾e spustí <pøíkazy> deklarované pro
+po¾adovanou rodinu v~"\ofsdeclarefamily" a mezi tìmito <pøíkazy>
+se vyskytuje pøíkaz "\loadtextfam". 
+
+Makra "\rm", "\bf", "\it", resp. "\bi" pou¾ívají fontové pøepínaèe
+"\tenrm", "\tenbf", "\tenit",\inll[tenrm \back tenbf \back tenit]
+resp. "\tenbi". První tøi jsou známy z~plainu
+a ètvrtý\inl[tenbi] je zaveden novì. 
+Navíc makra "\rm", "\bf", "\it" a "\bi" ukládají
+do kontrolní sekvence "\currentvariant"\inl[currentvariant] 
+informaci o~naposledy aktivované variantì. Tato informace má podobu
+písmene ("M", "F", "T", resp. "I"), proto¾e jedinì konstrukce
+"\let\currentvariant=<písmeno>" je odolná vùèi expanzi. ©lo o~to, aby
+makra pøepínaèù variant byla robustní i bez pøedefinování "\shipout".
+
+V¹imneme si, ¾e "\loadtextfam" nastavuje pøepínaèe 
+"\tenrm", "\tenbf", "\tenit" a "\tenbi" 
+na fonty v~libovolné velikosti. Èiní tak podle aktuální 
+hodnoty makra "\fosize", které mìní makro "\setfonts" podle toho, jak
+je zadán parametr <velikost>.
+Slovo {\clqq"ten"\crqq} v~názvech fontových pøepínaèù tedy
+nemusí znamenat, ¾e se jedná o~font ve velikosti 10\,pt. Pova¾ujme
+tyto názvy za historické a z~hlediska OFS mo¾ná trochu
+kuriózní. Není pøitom nutné pro pøepínaèe textových fontù vymý¹let
+názvy nové.
+
+Nìkdo mù¾e namítnout, ¾e opakované pou¾ívání makra "\setfonts" v¾dy
+znovu a znovu spou¹tí ètveøici pøíkazù "\font", co¾ mù¾e zpùsobit
+vìt¹í nároky na pamì» a èas. Není to pravda, proto¾e \TeX{} si eviduje
+interní tabulku u¾ zavedených metrik a pøi opakovaném pou¾ití
+primitivu "\font" na stejnou metriku se u¾ neobtì¾uje metriku vùbec
+otevírat. Jen inicializuje pøíslu¹ný fontový pøepínaè asi stejnì rychle,
+jako by se to provedlo pomocí "\let".
+
+Pøíkaz "\loadtextfam" je¹tì pøed zavedením fontù naète
+pøi "\loadingenc>0"\inl[loadingenc]
+soubor "ofs-\fotenc.tex". Pøi neprázdném parametru <extra-enc>
+navíc naète soubor "ofs-<extra-enc>.tex".
+Tyto soubory jsou èteny jen jednou a v dobì ètení jsou
+ignorovány prázdné øádky, konce øádkù. Ètení probíhá uvnitø 
+skupiny, kde jsou pro jistotu lokálnì nastaveny
+kategorie znakù podle plain\TeX{}u (a~"\catcode`@=11")
+a je nastaveno "\globaldefs=1", tj.~v¹echna
+pøedefinování ze souboru "ofs-<kódování>.tex" se provedou globálnì.
+To nám nevadí, proto¾e novì naètené kódovací soubory nejsou v~konfliktu 
+s~pøedchozími (viz vlastnosti pøíkazù "\characterdef" a "\accentdef"
+v~\beglink{3.4}sekci~3.4\endlink). Naètení vìt¹ího mno¾ství tìchto 
+souborù ne¾ je v~dané chvíli potøeba, rovnì¾ neohrozí funkcionalitu 
+maker závislých na kódování. Dùvod globální definice je v~tom, ¾e 
+není vhodné, aby pøi opakovaném "{...\setfonts...}" musel být 
+kódovací soubor naèítán neustále znovu a znovu. 
+
+Pokud u¾ivateli vadí, ¾e je pøedefinování maker globální
+(chce napøíklad svùj èlánek zaøadit do sborníku, kde by
+pøedefinování mohlo vadit jiným èlánkùm), pak ponechá "\loadingenc=0" a
+musí naèíst soubory s~deklaracemi maker manuálnì pomocí 
+"\input" na zaèátku èlánku. V~takovém pøípadì se provede
+deklarace jen lokálnì.
+
+V~parametru <pøíkazy> makra "\ofsdeclarefamily" se mù¾e deklarovat
+nadstandardní varianta rodiny pomocí pøíkazu "\newvariant".\inl[newvariant]
+Tento pøíkaz provede:
+
+\begtt
+\font\ten<pøepínaè>=<metrika> \fosize
+\def \<pøepínaè> {\let\currentvariant=<èíslice> \ten<pøepínaè>}
+\endtt
+%
+Dále pøíkaz "\newvariant" zanese do pamìti informaci o~pøípadné
+roz¹iøující metrice podle <ext-enc>.
+
+Pokud OFS potøebuje dodr¾et pøi pøechodu na novou rodinu naposledy
+zvolenou nadstandardní variantu, èiní tak podle hodnoty 
+"\currentvariant". Pokud tedy nová rodina má deklarovánu 
+nadstandardní variantu pod stejnnou <èíslicí>, bude pou¾ita tato 
+varianta a OFS nebude pøepínat do defaultní varianty "\rm".
+Je proto vhodné deklarovat varianty rùzných rodin ale 
+\uv{stejného typu} pod stejnou <èíslicí>. 
+Z principu vìci vidíme, ¾e v~OFS existuje omezení v~poètu
+nadstandardních variant jedné rodiny na maximálnì 10.
+To by nemìlo vadit, proto¾e kdykoli mù¾eme rozdìlit rozsáhlou 
+rodinu na více rodin (napøíklad ©tormovy rodiny DynamoGrotesk).
+
+Makro "\setfonts" mù¾e mìnit význam maker "\loadtextfam" a
+"\newvariant". Udìlá to právì tehdy, kdy¾ je v parametru <Rodina>
+specifikovaná varianta. V takovém pøípadì staèí zavést jeden font a
+není potøeba zavádìt celou rodinu. Pøi specifikaci standardní varianty
+"\newvariant" nebude dìlat nic a "\loadtextfam" zavede jediný font.
+Pøi specifikaci nadstandardní varianty "\loadtextfam" nebude dìlat nic
+a "\newvariant" zavede font jen tehdy, pokud se jedná o font
+specifikované varianty. 
+
+Na závìr této sekce si podrobnìji vysvìtlíme èinnost 
+pøíkazu "\setfonts".\inl[setfonts] 
+Tento pøíkaz \uv{vypoèítá} a definuje podle parametru <velikost> hodnotu
+makra "\fosize". Dále pøi neprázdném pamaretru <JménoRodiny> a pøi
+neuvedení varianty tento pøíkaz provede
+"\def\currentfamily{<JménoRodiny>}"\inl[currentfamily], 
+zatímco pøi prázdném parametru
+hod\-notu z~"\currentfamily" pouze pou¾ije. 
+Je-li v~parametrech uvedena varianta
+rodiny, pozmìní "\setfonts" na pøechodnou dobu makra "\loadtextfam" a
+"\newvariant" tak, aby místo
+celé rodiny fontù byl zaveden jen jeden font. Dále spustí
+"\setfontshook" a pak <pøíkazy> z~odpovídajícího "\ofsdeclarefamily". 
+Potom vrátí hodnoty maker
+"\loadtextfam" a "\newvariant" do pùvodního stavu, pokud byly 
+tyto hodnoty mìnìny. Nakonec spustí makro 
+"\runmodifylist"\inl[runmodifylist], které nastaví za jistých okolností
+výjimky ze zvoleného kódování (podrobnìji viz~\beglink{3.5}sekci~3.5\endlink).
+Koneènì pøíkaz "\setfonts" spustí "\ignorespaces", aby pøípadná
+zapomenutá mezera za závorkou~\clqq"]"\crqq nebyla v~horizonálním módu
+vyti¹tìna.
+
+
+\subsec Kódování fontù a deklarace znakù
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\PLAIN: Pro pøepínání do roz¹iøující metriky slou¾í makro 
+"\setextrafont"\inl[setextrafont]. 
+Toto makro se podívá, zda k~aktuálnímu fontu existuje v~pamìti poznámka 
+o~roz¹iøující metrice (viz pøíkaz "\loadtextfam" a "\newvariant"
+\beglink{3.3}v~pøedchozí sekci\endlink). 
+Pokud taková poznámka existuje, pøíkaz "\setextrafont" provede zhruba toto:
+
+\begtt
+\font\extrafont=<roz¹iøující metrika ve velikosti základní metriky> \extrafont@inl[extrafont]
+\endtt
+
+\LATEX:  Pro pøepínání do roz¹iøujícího kódování, které je deklarováno
+pøíkazem "\OFSextraencoding", slou¾í (stejnì jako v plainu) 
+makro "\setextrafont". Toto makro se podívá, zda bylo 
+roz¹iøující kódování deklarováno, a pokud ano, provede zhruba toto:
+
+\begtt
+\fontencoding{<roz¹iøující kódování>}\selectfont
+\endtt
+
+\OBA: Chceme-li vytisknout z~roz¹iøující metriky (roz¹iøujícího
+kódování) nìjaký znak s~kódem <èíslo>, je mo¾né pou¾ít 
+makro "\extchar <èíslo>"\inl[extchar].
+
+\PLAIN (a¾ do konce sekce):
+Pro definice maker závislých na aktuálním kódování
+je mo¾né v~OFS pou¾ít dva deklaraèní pøíkazy: 
+"\characterdef" a "\accentdef". První z~nich\inl[characterdef] 
+má tyto parametry:
+
+\begtt
+\characterdef \<sekvence>  <kódování> <mezera> <èíslo>
+% pøíklad:
+\characterdef \promile  8z  141
+% nebo
+\characterdef \<sekvence>  <kódování> <mezera> {<pøíkazy>}
+% pøíklad:
+\characterdef \promile  8t  {\%\char24 }
+\characterdef \promile  *   {\vrule height1ex width1ex\relax} 
+                            % in another encodings
+\endtt
+
+V~prvním pøípadì se bude "\<sekvence>" pøi aktuálním kódování fontù 
+shodném s~<kódováním> expandovat na token kategorie 12 s~kódem 
+rovným <èíslu>. V~druhém pøípadì "\<sekvence>" expanduje pøi 
+shodnosti <kódování> na <pøíkazy>. V¹e probìhne na úrovni 
+expand procesoru. Pokud pou¾ijeme oba vý¹e zmínìné pøíklady 
+pro definici "\promile", pak platí:
+
+\begtt
+\def\fotenc{8z} \promile % expanduje na znak s kódem 141
+\def\fotenc{8t} \promile % expanduje na pøíkazy \%\char24
+\endtt
+
+Mimoto je mo¾né deklarovat pøístup k~roz¹íøenému kódování, pokud je
+toto kódování specifikováno jako parametr <extra-enc> v~pøíkazu
+"\loadtextfam". Pøíklad:
+
+\begtt
+\characterdef \euro  8z  134
+\characterdef \euro  6s  37
+
+\def\fotenc{8z} \euro % expanduje na znak s kódem 134
+\def\fotenc{8t} \euro % expanduje na: {\setextrafont znak s kódem 37}
+\endtt
+
+V~tomto pøíkladì se pøi "\def\fotenc{8t}" mù¾e stát, ¾e aktuální font
+nemá poznámku o~roz¹iøující metrice, nebo má poznámku o~roz¹iøující 
+metrice jiné ne¾ "6s". Pak "\euro" vypí¹e varování na terminál 
+o~nedostupnosti znaku "\euro".
+
+Vysvìtlíme nyní podrobnìji, jak makra deklarovaná pomocí 
+"\characterdef" fungují. Pøíkaz "\characterdef"
+definuje "\<sekvenci>" 
+jako "\printcharacter{<sekvence>}"\inl[printcharacter],
+tak¾e napøíklad "\promile" expanduje nejprve na "\printcharacter{promile}".
+a "\euro" na "\printcharacter{euro}".
+Pokud se "\characterdef" pou¾ije opakovanì na stejnou "\<sekvenci>",
+pak se v¾dy znovu definuje stejnì, tak¾e nedochází ke ztrátì pøedchozí
+informace. Kromì toho ale "\characterdef" definuje dal¹í makro 
+"\<sekvence>:-<kódování>" tak, ¾e toto makro expanduje na znak se 
+specifikovaným kódem nebo na <pøíkazy>. Dal¹í inteligence je schována 
+v~pøíkazu "\printcharacter". Ten ovìøí, zda je definováno makro 
+"\<sekvence>:-\fotenc". Pokud ano, expanduje na obsah tohoto makra.
+Jinak ovìøí, zda existuje poznámka o~roz¹iøující metrice vzta¾ená
+k~aktuálnímu fontu. Pokud ano, zjistí kódování této roz¹iøující
+metriky <extra-enc> a podívá se, zda je definováno makro 
+"\<sekvence>:-<extra-enc>". Pokud ano, expanduje na 
+
+\begtt
+{\setextrafont \<sekvence>:-<extra-enc>} 
+\endtt
+%
+Pokud se stále nepodaøilo realizovat po¾adovaný znak, 
+pokusí se vytisknout defaultní znak nezávislý na kódování 
+"\<sekvence>:-*". Pokud ani to není mo¾né,
+spustí se "\printcharacterwarn{<sekvence>}".\inl[printcharacterwarn]
+Implicitní hodnota tohoto makra vypí¹e varování 
+o~nedostupném znaku <sekvence> na terminál a do logu a do výstupu
+nevytiskne nic.
+
+Chceme-li se vyhnout výpisu varování, mù¾eme "\printcharacterwarn"
+pøedefinovat, tøeba takto:
+
+\begtt
+\def\printcharacterwarn #1{?(#1)?}
+\endtt
+
+Od verze OFS Mar. 2004 "\characterdef" odmítá pøedefinovat u¾
+definované kontrolní sekvence. Definuje pouze sekvence, které mají
+zatím význam "\undefined" nebo "\relax". V jiném pøípadì (a pokud není
+sekvence u¾ pomocí "\characterdef" definována) vypí¹e
+varování o ignorované definici do log souboru. Dùvod tohoto opatøení
+je ten, ¾e kódovací soubory deklarují obrovské mno¾ství nových
+kontrolních sekvencí pomocí "\characterdef", a pøitom programátor
+maker nemusí v¹echny znát. Mù¾e se tedy stát, ¾e pou¾ije pro své vlastní makro
+stejné jméno. V takovém pøípadì "\characterdef" respektuje makro
+definované programátorem a pøíslu¹ný znak ponechá nepøístupný.
+Pokud potøebujeme pomocí "\characterdef" skuteènì nìkteré
+kontrolní sekvence pøedefinovat (u~maker závislých na kódování z~plainu to je
+nutné), pak musíme pøed pou¾itím "\characterdef" napsat
+"\let\<sekvence>=\relax". 
+
+Ze~stejných dùvodù bylo do OFS pøidáno makro "\safelet"\inl[safelet],
+které se chová jako "\let", ale odmítá pøedefinovat u¾ definované
+kontrolní sekvence. Místo toho pouze vypí¹e varování, definované 
+v~makru "\safeletwarn"\inl[safeletwarn].
+
+Kromì deklarace znakù pomocí "\characterdef" je k~dispozici mo¾nost
+deklarace akcentových pøíkazù prostøednictvím 
+"\accentdef"\inl[accentdef], který má
+tyto parametry:
+
+\begtt
+\accentdef \<sekvence> <znak> <nepovinná mezera> <kódování> <mezera> <èíslo>
+% Pøíklad:
+\accentdef \v E  8z  204           % Ecaron
+% nebo
+\accentdef \<sekvence> <znak> <nep. mezera> <kódování> <mezera> {<pøíkazy>}
+% Pøíklad:
+\accentdef \v *  8z  {\accent20 }  % default caron in 8z
+\accentdef \v *  *   {\blackbox }  % default caron
+\endtt
+
+Pokud je aktuální kódování fontù toto¾né s~<kódováním>, pak "\<sekvence>"
+následovaná znakem <znak> expanduje na token kategorie 12 s~kódem
+<èíslo>, respektive expanduje na <pøíkazy>. To v¹e se dìje jen na
+úrovni expand procesoru. Pokud je pøi deklaraci
+pomocí "\accentdef" jako <znak> uvedena hvìzdièka, pak se deklarované
+<pøíkazy> nebo kód <èíslo> pou¾ije v¾dy, kdy¾ znak následující 
+"\<sekvenci>" není nikde prostøednictvím "\accentdef"
+deklarován. Jedná se tedy o~defaultní realizaci akcentu, pokud ve
+fontu neexistuje pøímo akcentovaný znak.
+
+Kromì toho mají akcenty deklarované pomocí "\accentdef" stejnou
+inteligenci týkající se mo¾nosti vyu¾ití roz¹iøující metriky, jako
+znaky deklarované v~"\characterdef".
+
+Vysvìtlíme si nyní podrobnìji, jak akcenty deklarované pomocí 
+"\accentdef" fungují. Pøíkaz "\accentdef"
+definuje "\<sekvenci>" jako makro s~jedním neseparovaným parametrem
+"#1", které v~první øadì expanduje 
+na "\printaccent{<sekvence>}{#1}"\inl[printaccent],
+tak¾e napøíklad "\v E" expanduje na "\printaccent{v}{E}". Dále
+"\accentdef" definuje makro "\<sekvence>:<znak>:-<kódování>" jako znak
+s~daným kódem <èíslo> nebo jako <pøíkazy>. Dal¹í práci udìlá
+pøíkaz "\printaccent". Tento pøíkaz zjistí, zda je definováno makro
+"\<sekvence>:<znak>:-\fotenc". Pokud ano, expanduje na toto makro.
+Pokud ne, tak si ovìøí, zda je k~aktuálnímu fontu poznamenána
+roz¹iøující metrika a zjistí její kódování <extra-enc>. Jestli¾e je
+definováno makro "\<sekvence>:<znak>:-<extra-enc>", pak se expanduje na 
+"{\setextrafont \<sekvence>:<znak>:-<extra-enc>}". Pokud zatím v¹e
+selhalo, zkusí "\printaccent" postupnì zjistit, zda jsou definována
+makra "\<sekvence>:*:-\fotenc" a "\<sekvence>:*:-<extra-enc>". Pokud je
+definováno první z~nich, expanduje a pøipojí na konec expanze <znak>.
+Pokud je definováno jen druhé z~nich, expanduje na
+
+\begtt
+{\setextrafont \<sekvence>:*:-<extra-enc> <normalfont> <znak>}
+\endtt
+%
+kde <normalfont> oznaèuje pøepínaè do aktuálního fontu. Jestli¾e 
+dosud v¹e selhalo, pokusí se je¹tì o~realizaci akcentu nezávislého na
+kódování, tj.~pokusí se tisknout "\<sekvence>:<znak>:-*" nebo koneènì
+"\<sekvence>:*:-*  <znak>". Teprve kdy¾ i toto selhalo,
+spustí se "\printaccentwarn{<sekvence>}{<znak>}".\inl[printaccentwarn]
+Implicitní hodnota tohoto makra vypí¹e se na terminál a do 
+logu varování o~nedostupnosti akcentovaného znaku a do výstupu
+nevytiskne nic.
+
+Je tøeba si uvìdomit, ¾e pøechod ke znaku v~roz¹iøující metrice uvnitø
+slova znamená ztrátu vyrovnávacího kernu kolem tohoto znaku a
+nemo¾nost pou¾ít na takové slovo vzory dìlení slov. Proto doporuèujeme
+pou¾ít základní metriku kódovanou tak, aby pøechod na roz¹iøující
+metriku byl jen výjimeèný. Pro èeský a slovenský jazyk jsou v~tomto smyslu
+vhodná kódování "8z" i "8t", proto¾e obì zahrnují kompletní èeskou a
+slovenskou abecedu. 
+
+Chceme-li odstranit u¾ deklarovaný znak\inl[characterdel]
+(viz té¾ tzv.~<výjimky> v~následující sekci), mù¾eme pou¾ít pøíkazy
+"\characterdel" a "\accentdel".\inl[accentdel]
+Tyto pøíkazy mají stejné parametry
+jako "\characterdef" resp. "\accentdef" a odstraní definici pøíkazu
+"\<sekvence>:-<kódování>" resp. "\<sekvence>:<znak>:-<kódování>".
+
+%Na závìr této sekce uvedeme pøíklad definice inteligentního
+%"\Uppercase":
+%
+%\begtt
+%\def\Uppercase #1{\bgroup
+%   \let\expandaction=\noexpand % \euro zùstane po expanzi bez zmìny
+%                               % \u{g} taky zùstane beze zmìny
+%   \def\ss{SS}\def\l{\L}\def\o{\O}\def\ae{\AE}\def\oe{\OE}%
+%   \edef\tmp{#1}\expandafter
+%   \egroup \expandafter\uppercase\expandafter{\tmp}%
+%}                    % \uppercase promìní \u{g} na \u{G}. O to ¹lo.
+%\endtt
+
+
+\subsec \PLAIN: Soubory maker závislých na kódování a výjimky z~kódování
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Pøíkazy "\characterdef" a "\accentdef" popsané v~pøedchozí sekci
+pøedefinovávají makra závislá na kódování ("\v", "\ae", atd.). V~této
+sekci popí¹eme koncepci, kam tato makra zapisovat, aby OFS pøi
+"\loadingenc=1" udr¾ovalo konzistentní definice tìchto maker
+v~závislosti na zvoleném kódování a na mno¾inì výjimek
+pou¾ité rodiny fontù.
+
+Deklarace maker pomocí "\characterdef" a "\accentdef"
+se zapisují do souborù s~názvem "ofs-<kódování>.tex" (tzv.~{\it
+kódovacích souborù\/}),
+proto¾e pøíkaz "\loadtextfam" (volaný z~makra "\setfonts") 
+tyto deklarace pøi nastaveném "\loadingenc=1"\inl[loadingenc] odtud ète.
+
+Ka¾dé kódování má svou základní sadu znakù a akcentovaných písmen.
+Tato sada je v~kódovacím souboru zanesena pomocí pøíkazù
+"\characterdef" a "\accentdef". Vzhledem k této základní sadì mohou
+jednotlivé rodiny fontù obsahovat nìjaké znaky navíc nebo naopak nìjaké
+znaky mohou chybìt. Tyto výjimky se deklarují
+pomocí pøíkazu "\modifydef"\inl[modifydef] takto:
+
+\begtt
+\modifydef <kódování>:<identifikátor>; {<výjimky>}
+\endtt
+%
+Pøitom <výjimky> obsahují pøíkazy "\characterdef", "\accentdef",
+"\characterdel" a "\accentdel". Pøíkazy "\*del" musejí obsahovat 
+v~argumentu hodnotu znaku podle základní sady daného kódování.
+Pokud má být nìjaký znak vzhledem k základní sadì pøedefinován, musejí
+pøíkazy "\*del" a "\*def" k tomuto znaku následovat tìsnì za sebou.
+
+V parametru pøíkazu "\ofsdeclarefamily" mù¾eme pomocí \uv{odkazu na
+<výjimky>} pøíkazem "\modifyenc"\inl[modifyenc]
+vyznaèit, ¾e daná rodina obsahuje vzhledem k~základní sadì kódování
+odpovídající <výjimky>. Pøíkaz má tvar:
+
+\begtt
+\modifyenc <kódování>:<identifikátor>;%
+\endtt
+%
+Takových pøíkazù mù¾e být pro ka¾dou rodinu fontù uvedeno více 
+(a samozøejmì tyto pøíkazy mohou obsahovat rùzná <kódování>).
+Odkazuje-li tento pøíkaz na <výjimky>, které je¹tì
+nebyly deklarovány, neprovede se nic. 
+
+Pøíklad deklarace výjimek kódování "8z:csfonts" najdete v~souboru
+"ofs-8z.tex" a odkazy na nì pak najdete u~rodin "CM*" 
+v~souboru "ofsdef.tex". 
+
+Pøíkazy "\modifyenc" jsou spu¹tìny pøi ka¾dém "\setfonts". Ve
+skuteènosti tyto pøíkazy pouze ukádají do tzv.~{\it seznamu odkazù}
+(do makra "\newmodifylist"\inl[newmodifylist])
+své parametry. Pøi startu "\setfonts" se zakládá prázdný seznam odkazù.
+"\modifyenc" ukládá do tohoto seznamu svùj parametr jen tehdy, pokud 
+<kódování> je rovno "\fotenc" nebo "\extraenc". Vlastní práci 
+(nastavení výjimek) provede a¾ pøíkaz "\runmodifylist", který je spu¹tìn
+na konci "\setfonts" a jeho¾ èinnost si nyní podrobnì popí¹eme.
+
+Makro "\runmodifylist"\inl[runmodifylist] porovná seznam 
+odkazù na výjimky pøedchozí rodiny ("\modifylist"\inl[modifylist]) 
+se seznamem odkazù novì nastavené rodiny ("\newmodifylist").  Pokud jsou oba seznamy
+stejné nebo "\modifylist" má význam "\relax", pak "\runmodifylist" 
+ukonèí èinnost.  Jinak se pustí do nastavení výjimek. Nejprve prohodí významy
+"\characterdef"$\leftrightarrow$"\characterdel" a
+"\accentdef"$\leftrightarrow$"\accentdel" a spustí "\modifylist"
+Jinými slovy vrátí stav maker vázaných na
+kódování do výchozího stavu.  Pøi této èinnosti je ignorováno mazání
+znaku, pokud tìsnì pøed tím byl znak deklarován (viz pravidlo 
+o~pøedefinování znaku na zaèátku této sekce).  Pak pøíkaz "\runmodifylist"
+vrátí "\characterdef" a "\accentdef" do pùvodního stavu a spustí
+"\newmodifylist". Ve¹kerá pøedefinování, která se pøi této èinnosti provádìjí, 
+jsou jen lokální. Mechanismus dvou seznamù odkazù zaruèuje, 
+¾e napøíklad pøi
+
+\begtt
+\setfonts [Rodina1/] ... \setfonts [Rodina2/] ...
+\endtt
+%
+budou správnì nastaveny výjimky aktuálního kódování i pro
+Rodinu2, aèkoli Rodina1 má jinou mno¾inu výjimek ne¾
+Rodina2. 
+
+Kontrolní sekvence "\modifylist" má po inicializaci OFS význam
+prázdného makra. Programátor maker mù¾e pou¾ít
+"\let\modifylist=\relax" a tím potlaèí ve¹keré nastavování výjimek.
+
+Poznamenejme je¹tì, ¾e deklaraèní pøíkazy "\modifydef" nejen¾e ukládají 
+<výjimky> do pamìti, ale projdou také
+jejich obsah a definují v¹echny zde deklarované sekvence jako odpovídající
+"\printcharacter" resp. "\printaccent". Tím máme zaruèeno, ¾e ka¾dá
+kontrolní sekvence ze v¹ech výjimek je definována (nedojde ke zprávì
+{\tt undefined control sequence}) a navíc OFS má
+dokonalý pøehled o tom, zda je v~aktuální rodinì tato kontrolní
+sekvence pou¾itelná nebo nikoli. Tvùrce maker si pak mù¾e podle
+potøeby pøedefinovat makra "\print*warn".
+
+Pøíkaz "\modifydef" prochází <výjimky> tak, ¾e na pøechodnou dobu
+pozmìní pøíkazy "\accentdef", "\accentdel", atd. a <výjimky> spustí.
+Pokud nechceme, aby se makra ve <výjimkách> spou¹tìla u¾ v~dobì
+èinnosti "\modifydef", uvedeme pøed tato makra sekvenci
+"\skipfirststep".\inl[skipfirststep]
+Ta se chová jako "\relax", ale pøi spou¹tìní
+<výjimek> pøíkazem "\modifydef" zpùsobí, ¾e v¹e za touto sekvencí a¾
+do konce <výjimek> bude pøeskoèeno.
+
+Identifikátory "<kódování>:lccodes" a "<kódování>:ienc" jsou rezervovány
+pro pou¾ití mimo OFS v~dal¹ích makrech. OFS napøíklad vùbec neøe¹í nastavení
+"\lccode", "\uccode" znakù podle pou¾itého kódování. Makro, které
+se o toto stará, mù¾e vhodnì definovat pøíkazy "\lccodes"\inl[lccodes]
+a "\lccodesloop"
+a spustí "\csname <kódování>:lccodes\endcsname". OFS uvedené pøíkazy
+vùbec nedefinuje.\inl[lccodesloop]  
+Deklarace "<kódování>:lccodes" jsou uvedeny 
+v~souborech "ofs-8t.tex" a "ofs-8z.tex" aèkoli nejsou v OFS vyu¾ity, 
+proto¾e to souvisí s~kódováním textových fontù. Pøíklad pou¾ití
+"<kódování>:lccodes" je v makru "lang.tex" a makro "inec.tex"
+pou¾ívá "<kódování>:ienc". V dokumentaci~k tìmto makrùm je
+øeèeno více.
+
+Deklarace nejèastìji pou¾ívaných výjimek se zapisují pøímo do
+kódovacích souborù. Deklarace ménì obvyklých výjimek (vztahujících se
+jen na urèité rodiny fontù) mù¾eme psát za "\endinput" deklaraèních
+souborù. Mezi <pøíkazy> makra "\ofsdeclarefamily" pak
+pou¾ijeme pøíkaz\inl[modifyread]
+
+\begtt
+\modifyread <jméno souboru>;%
+\endtt
+%
+Tento pøíkaz pøi kladném "\loadingenc" naète daný soubor
+od výskytu sekvence "\modifytext"\inl[modifytext].
+Tuto sekvenci je vhodné umístit za "\endinput", aby "\modifyread"
+pøeèetl tu èást souboru, která zatím nebyla ètena.
+Pøiøazení je v dobì ètení globální a ignorují se konce 
+øádkù a prázdné øádky. Opakovanì se soubor nenaèítá. 
+
+Díky tomuto pøíkazu mù¾eme soustøedit deklarace rodin fontù a
+deklarace výjimek z~kódování do spoleèného souboru. Výjimky
+\TeX{} pøeète a¾ v dobì, kdy to potøebuje. ©etøí se tím pamì» \TeX{}u.
+Pøíklad pou¾ití je v~souboru "slido.tex".
+
+OFS nabízí také testovací
+makro, zda kontrolní sekvence odpovídá znaku, který je ve fontu
+pøístupný èi nikoli:\inl[knownchar]
+
+\begtt
+\knownchar <znak nebo akcent+znak>? \iftrue znak je pøístupný
+           \else   znak je nepøístupný nebo nedefinovaný \fi
+% pøíklad:
+\def\tryeuro{\knownchar \euro? \iftrue \euro \else Euro\fi}
+\endtt
+
+
+\subsec Pomocná makra pro akcenty a znaky
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Pro pohodlné deklarování defaultních akcentù jsou v~OFS\inl[accentabove] 
+pøipravena dvì makra: "\accentabove" a "\accentbelow", 
+která se pou¾ívají takto:\inl[accentbelow]
+
+\begtt
+\accentabove {<znak akcentu>}{<vertikální mezera>}{<základní znak>}
+\accentbelow {<znak akcentu>}{<vertikální mezera>}{<základní znak>}
+\endtt
+
+Pøíkaz "\accentabove" resp. "\accentbelow" pøisadí 
+<znak akcentu> nad resp. pod <základní znak>, pøièem¾ mezi tìmito
+znaky bude <vertikální mezera>. Oba znaky budou na spoleèné vertikální
+ose a pøi sklonìném písmu na spoleèné sklonìné ose. ©íøka výsledného 
+slo¾eného znaku je odvozena od ¹íøky základního znaku. Makra jsou
+implementována jako "\vbox" resp. "\vtop" spoleènì s~"\halign" a 
+s~výpoètem usazení na pøípadnì sklonìné ose.
+
+Znaky pro akcent nahoøe jsou ve fontech vesmìs kresleny ve vý¹ce
+odpovídající základnímu znaku o~vý¹ce 1\,ex. Proto usazení 
+takového akcentu vy¾aduje kompenzaci:
+
+\begtt
+\accentabove {<znak akcentu>}{-1ex}{<základní znak>}
+\endtt
+
+V~tomto pøípadì se akcent umístí naprosto stejnì, jako pøi pou¾ití
+primitivu "\accent". Na rozdíl od tohoto primitivu ale makra
+"\accentabove" a "\accentbelow" umo¾nují vzájemné skládání, 
+èím¾ mù¾eme dosáhnout nìkolikanásobného akcentu. Vyzkou¹ejte:
+
+\begtt
+\it \accentabove {.}{.1ex}{\accentabove {,}{.1ex}{\v A}}
+\endtt
+
+\PLAIN:
+Bohu¾el, makra deklarovaná pomocí "\accentdef" nejsou uzpùsobena na
+více ne¾ dvojí akcent. Navíc dvojí akcent je mo¾ný jen 
+v~tom pøípadì, ¾e se vnitøní akcent
+se základním znakem realizuje jako jediný znak. Pokud potøebujeme 
+vícenásobný akcent, mù¾eme v¾dy pou¾ít pøímo v~textu makro 
+"\accentabove" nebo "\accentbelow".
+
+\PLAIN:
+Od verze OFS Feb. 2004 je k dispozici makro
+"\ofshexbox"\inl[ofshexbox], které pracuje podobnì jako
+plainové "\mathhexbox", ale navíc dovede nastavit font podle 
+aktuální varianty. Nejprve pomocí pøíkazu 
+"\ofshexboxdef"\inl[ofshexboxdef] nastavíme \uv{rodinu} ètyø metrik:
+
+\begtt
+\ofshexboxdef <rodina>{<metrika-rm>}{<metrika-bf>}{<metrika-it>}{<metrika-bi>}
+\ofshexboxdef 2 {cmsy}{cmbsy10}{cmsy}{cmbsy10} % napøíklad takto
+\endtt
+%
+Pak pøíkaz "\ofshexbox <rodina><hexa-kód>" vytiskne znak s~<hexa-kódem>
+z jednoho ze ètyø deklarovaných fontù a v aktuální velikosti "\fosize"
+Volba fontu závisí na aktuální variantì. Pokud je varianta jiná ne¾
+"\bf", "\it", "\bi", pou¾ije se <metrika-rm>. OFS implicitnì deklaruje
+jen <rodinu> = 2, proto¾e plain pou¾ívá jen "\mathhexbox2..".
+Cílem tohoto makra bylo definovat pro CMfonty/CSfonty znaky
+"\S", "\dag", "\ddag", "\P" zpùsobem, který je nezávislý na aktuálním
+nastavení matematických fontù, ale je závislý na aktuální velikosti a
+variantì. Viz soubor "ofs-8z.tex".
+
+Pomocí "\ofshexbox" mù¾eme snadno definovat napøíklad symbol 
+"\euro" pro v¹echna kódování fontù, ve kterých je tento 
+symbol nepøítupný:
+
+\begtt
+\ofshexboxdef {TS1}{tcrm1000}{tcbx1000}{tcti1000}{tcbi1000}
+\characterdef \euro * {\ofshexbox{TS1}BF}
+\endtt
+
+
+\subsec \PLAIN: Fonty v~matematice podruhé
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Nastal èas podrobnìji vysvìtlit èinnost pøíkazu "\setmath"\inl[setmath].
+Ten pøevezme parametry a vypoèítá z~nich
+základní\inl[textfosize],
+indexovou a index-indexovou velikost fontù. Výsledky ulo¾í do maker
+"\textfosize"\inl[scriptfosize], 
+"\scriptfosize" a "\scriptscriptfosize". V~nich jsou
+údaje o~velikosti ulo¾eny ve tvaru 
+"at<dimen>" nebo "scaled<èíslo>"\inl[scriptscriptfosize]
+podobnì jako v~makru "\fosize". Pak pøíkaz "\setmath" spustí makro
+"\mathfonts"\inl[mathfonts].  
+V~nìm se pøedpokládá zavedení a nastavení
+matematických fontù. 
+Pokud je "\setmath" spu¹tìno poprvé nebo pokud do¹lo ke zmìnì
+hodnoty "\fomenc", tak "\setmath" je¹tì spustí
+makro "\mathchars"\inl[mathchars]. 
+Tam se obvykle nastavují kódy matematických znakù pomocí 
+"\mathcode", "\mathchardef" a pøíbuzných primitivù.
+Makra "\mathfonts" a "\mathchars" mají sice v~OFS svou 
+implicitní hodnotu, ale zku¹ený u¾ivatel je mù¾e podle své 
+potøeby mìnit.
+
+Pro pohodlné zavádìní a nastavování matematických fontù je pøipraveno
+makro "\loadmathfam"\inl[loadmathfam], 
+které se pou¾ívá v~definici makra "\mathfonts".
+Makro "\loadmathfam" má tyto mo¾nosti parametrù:
+
+\begtt
+%%                                % font je deklarován:
+\loadmathfam <rodina>[/<metrika>]   % metrikou
+\loadmathfam <rodina>[-<varianta>/] % variantou aktuální rodiny
+\loadmathfam <rodina>[<pøepínaè>/]  % pøepínaèem textového fontu
+\loadmathfam <rodina>[X<pøepínaè>/] % roz¹iøující metrikou pøepínaèe
+\endtt
+%
+Pøíklady:
+
+\begtt
+\loadmathfam 0[tenrm/]% metrika podle pøepínaèe \tenrm
+\loadmathfam 5[-bi/]%   metrika z akuální textové rodiny, varianta bi
+\newmathfam \symbfam 
+\loadmathfam \symbfam [/psyr]%    metrika psyr
+\newmathfam \extitfam
+\loadmathfam \extitfam [Xtenit/]% roz¹iøující metrika k pøepínaèi tenit
+\endtt
+%
+V~pøíkladì jsou do rodiny 0 zavedeny fonty stejné, jako v~aktuálním
+textovém fontu "\tenrm". V~rodinì 5 jsou zavedeny fonty
+jako pøi~"\setfonts [-bi/]".
+Dále je deklarována nová rodina "\symbfam",
+do které jsou zavedeny fonty z~metriky "psyr". 
+
+Existuje nepatrný rozdíl napø.~mezi pou¾itím pøíkazu "\loadmathfam 5[tenbi/]"
+a "\loadmathfam 5[-bi/]". V~prvním pøípadì OFS zjistí metriku 
+k~pøepínaèi "\tenbi" a tuto metriku pou¾ije ve v¹ech velikostech
+stejnou pouze modifikovanou klíèovým slovem "at<dimen>".
+Ve druhém pøípadì se mù¾e pro rùzné velikosti pou¾ít rùzná metrika,
+pokud je tato vlastnost pro danou variantu fontu
+deklarována (viz~\beglink{3.8}sekce~3.8\endlink).
+
+Pro deklaraci nové
+rodiny se v pøíkladu pou¾ila alternativa k~"\newfam" s~názvem 
+"\newmathfam"\inl[newmathfam], 
+proto¾e makro "\newfam" z~plainu je definováno jako "\outer" 
+a nelze je tedy pou¾ít uvnitø definice. Navíc makro
+"\newmathfam" pracuje lokálnì a tudí¾ ¹etøí více místa pro u¾ivatelské
+rodiny ne¾ plainovské "\newfam".
+V~deklaracích základních matematických kódování se nové matematické
+rodiny definují pøímo pomocí "\chardef" a je tam pomocí pøíkazu
+"\lastfam=<èíslo>"\inl[lastfam]
+nastavena maximální pou¾itá hodonta. To zaruèí, ¾e u¾ivatel mù¾e
+pozdìji pou¾ít "\newmathfam" a zaène alokovat dal¹í
+rodiny s~èísly tìsnì vìt¹ími ne¾ "\lastfam".
+
+Popí¹eme nyní princip èinnosti makra "\loadmathfam". Toto makro
+zjistí metriku, která odpovídá zadanému parametru. 
+Pak provede tøikrát primitiv "\font" zhruba takto:
+
+\begtt
+\font \<název>-Mt = <metrika> \textfosize
+\font \<název>-Ms = <metrika> \scriptfosize
+\font \<název>-Mss = <metrika> \scriptscriptfosize
+\textfont <rodina> = \<název>-Mt
+\scriptfont <rodina> = \<název>-Ms
+\scriptscriptfont <rodina> = \<název>-Mss
+\endtt
+%
+Pøitom <název> je text parametru "\loadmathfam", který deklaruje
+metriku (pøepínaè, varianta nebo metrika).
+
+Fonty matematické rodiny~3 jsou v~plain\TeX{}u obvykle zavedeny bez
+zmen¹ování pro indexy a indexy indexù. Pokud po¾adujeme 
+pøi zavádìní matematické rodiny
+nezmen¹ovat fonty pro indexy, uvedeme tìsnì pøed "\loadmathfam" 
+prefix "\noindexsize"\inl[noindexsize]. 
+Makro "\loadmathfam" pak zavede font jen ve velikosti "\textfosize"
+a pou¾ije ho i pro indexovou a indexindexovou velikost.
+Pøíklad:
+
+\begtt
+\noindexsize\loadmathfam 3[tenex/]% Standard extra symbols from CM
+\endtt
+
+OFS definuje v~souboru "ofsdef.tex" pro zavádìní matematických fontù
+ètyøi rùzná makra. Ta se pou¾ijí podle toho, zda je "\fomenc" 
+nastaveno na "CM" nebo "PS" a "\mathversion" na "normal" nebo "bold". 
+Dále OFS definuje dvì makra s~deklaracemi matematických kódù,
+která se pou¾ijí podle aktuálnì nastavené hodnoty "\fomenc".
+
+\begitems
+* "\loadCMnormalmath"\inl[loadCMnormalmath] 
+  --- zavede CM fonty ve verzi \uv{normal}.
+* "\loadCMboldmath"\inl[loadCMboldmath]
+  --- zavede CM fonty ve verzi \uv{bold}.
+* "\loadPSnormalmath"\inl[loadPSnormalmath]
+  --- zavede PostScriptové fonty ve verzi \uv{normal}.
+* "\loadPSboldmath"\inl[loadPSboldmath]
+  --- zavede PostScriptové fonty ve verzi \uv{bold}.
+* "\setCMmathchars"\inl[setCMmathchars]
+  --- ponechá matematické kódy z~plainu.
+* "\setPSmathchars"\inl[setPSmathchars]
+  --- nastaví matematické kódy tak, aby se nahradily
+  nìkteré znaky z~fontu Symbol.
+\enditems
+
+Dále je v~OFS implicitnì nastaveno:
+
+\begtt
+\ifx \fomenc\undefined \def\fomenc{PS}\fi 
+\def\mathversion{normal}
+\def\defaultmathfonts{\csname load\fomenc\mathversion math\endcsname}@inl[defaultmathfonts]
+\def\defaultmathchars{\csname set\fomenc mathchars\endcsname}@inl[defaultmathchars]
+\def\mathfonts{\defaultmathfonts}
+\def\mathchars{\defaultmathchars}
+\endtt
+
+Je mo¾né pøidávat k~implicitnì nastaveným matematickým fontùm 
+dal¹í matematické rodiny (v~terminologii NFSS matematické abecedy) 
+pozmìnìním maker "\mathfonts" a pøípadnì "\mathchars". 
+Ní¾e je pøíklad pøidání fraktury z~Eulerových fontù od AMS:
+
+\begtt
+\input amsfn % tam je deklarována metrika eufm a eufb
+\addcmd\mathfonts{\def\tmpa{bold}%
+   \ifx\mathversion\tmpa \def\tmpa{b}\else\def\tmpa{b}\fi
+   \newmathfam\frakfam \loadmathfam\frakfam [/euf\tmpa]}
+\def\frak#1{{\fam\frakfam#1}}
+\endtt
+
+Dal¹í pøíklady deklarací matematických rodin 
+jsou uvedeny v~souborech "amsfn.tex",
+"txfn.tex" a "mtfn.tex". Soubory definují výchozí skupiny
+matematických fontù pro kódování "AMS", "TX", "PX", "MT".
+Na konci tìchto souborù jsou komentáøe vèetnì ukázek, jaké
+doplòující rodiny fontù je mo¾no pomocí "\addcmd" zavést.
+
+Proto¾e chci umo¾nit naètení v¹ech fontových deklarací OFS 
+v~ini\TeX{}u (viz projekt Ok\TeX{}), ale pøitom ¹etøit pokud 
+mo¾no pamìtí \TeX{}u, rozhodl jsem se nenaèítat rozsáhlé definice
+obsahující deklarace kódování matematických fontù pomocí
+"\mathchardef" atd. okam¾itì, ale a¾ v dobì, kdy to u¾ivatel 
+v dokumentu skuteènì potøebuje. 
+Proto jsem od verze OFS Apr. 2004 pøedefinoval napøíklad makro
+"\setPSmathchars" takto:
+
+\begtt
+\def\setPSmathchars{\mathencread ofs-ps;}
+\endtt
+%
+Pøíkaz "\mathencread <soubor>;"\inl[mathencread]
+naète kódovací pøíkazy ze souboru
+<soubor.tex>. Napø. v~souboru "ofs-ps.tex" jsou kódovací pøíkazy pro
+kódování "PS", v~"ofs-ams.tex" jsou kódovací pøíkazy pro kódování 
+"AMS"~atd.
+
+V~souborech "ofs-ps.tex", "ofs-tx.tex" atd.
+jsou kódovací pøíkazy \uv{baleny} do skupin a
+definovány pøíkazem "\mathencdef"\inl[mathencdef]. Tento pøíkaz
+pracuje implicitnì jako \uv{definuj, spus» a zapomeò}. Tento model
+¹etøí pamì», ale pøi èastých zmìnách matematického kódování budou
+kódovací soubory èteny opakovanì znovu. To vìt¹inou nevadí, proto¾e
+vìt¹inou bývá pro celý dokument nastaveno jediné matematické kódování.
+Pokud ale tento model nìkomu nevyhovuje, mù¾e si jako cvièení zkusit
+pøedefinovat "\mathencread" a "\mathencdef" tak, aby se soubory èetly
+jen jednou a pøi opakovaném spu¹tìní "\mathchars" se kódovací pøíkazy 
+èetly ze zapamatovaných maker.
+
+Pøíkaz "\mathencread <soubor>;" zalo¾í skupinu, ve které pro jistotu
+nastaví kategorie v¹ech znakù podle plain\TeX{}u 
+(s~výjimkou "\catcode`@=11") a pøeète "<soubor>.tex".
+Pøi ètení je "\globaldefs=1" a ignorují se konce øádkù a prázdné øádky.
+Rovnì¾ je ignorováno makro "\protectreading", tak¾e soubor mù¾e být
+èten opakovanì. Pøíkazy "\mathencdef" spustí a zapomenou
+nadefinovaná makra a¾ po uzavøení skupiny, 
+tak¾e tato makra spou¹tí pøíkazy "\mathchardef" atd. u¾ jen 
+s~lokálními pøiøazeními.
+
+Vysvìtlíme, jak je zaji¹tìno obnovování výchozích hodnot
+pøi pøepínání mezi matematickými kódováními.
+Pøíkaz "\setmath" spou¹tí tìsnì pøed "\mathchars" makro 
+"\mathcharsback"\inl[mathcharsback], aby uvedl matematické kódování
+do výchozího stavu podle plain\-\TeX{}u.
+Toto makro má implicitnì význam
+"\relax", proto¾e implicitnì je matematické kódování
+podle plain\TeX{}u nastaveno.
+Mìní-li ale pøíkaz "\set<fomenc>mathchars" hodnoty nastavené
+v~plain\TeX{}u, mìl by také definovat makro
+"\mathcharsback", do kterého ulo¾í postup, jak 
+vrátit nastavení do pùvodního stavu.
+V definici makra "\mathcharsback" mù¾eme mimo jiné pou¾ít
+pøíkaz "\mathencread ofs-cm;", proto¾e v~souboru "ofs-cm.tex"
+jsou ulo¾eny deklarace metamatického kódování podle plain\TeX{}u
+
+Pokud si budeme deklarovat vlastní matematická kódování (rùzná od
+pøipravených "PS", "CM", "AMS" atd.), pak je potøeba myslet na
+následující zásadu: ve v¹ech verzích matematických fontù
+(normal/bold/atd.) by mìla být èísla matematických rodin alokována
+stejnì a ukonèena stejným "\lastfam", proto¾e makro "\mathchars" se po
+pøepnutí do jiné verze nespou¹tí znovu.  Zvlá¹tì nesmíme mìnit
+èísla tìch rodin, na které se odvoláváme v~makru
+"\set<kódování>mathchars".
+
+Nyní popí¹eme dal¹í makra ulehèující deklaraci matematického kódování.
+Makro "\hex"\inl[hex] 
+konvertuje èíslo na jednociferné hexadecimální
+èíslo. Vyu¾ití tohoto makra najdeme v~souborech "ofs-ps.tex",
+"ofs-tx.tex" a dal¹ích.
+
+Pro definování sekvencí, které budou pracovat v textovém i
+matematickém módu souèasnì, slou¾í makro 
+"\safemathchardef"\inl[safemathchardef].
+Toto makro má stejný zpùsob pou¾ití, jako primitivní "\mathchardef":
+
+\begtt
+\safemathchardef \<sekvence> <èíslo>
+\endtt
+
+Pokud není "\<sekvence>" v~okam¾iku pou¾ití "\safemathchardef"
+definována, pøíkaz pracuje zcela stejnì jako "\mathchardef".
+Pokud ale je "\<sekvence>" u¾ definována, ulo¾í pøíkaz
+"\safemathchardef" její význam do "\T<sekvence>", dále provede 
+"\mathchardef \M<sekvence> = <èíslo>" a koneènì "\<sekvenci>"
+pøedefinuje následujícím zpùsobem:
+
+\begtt
+\def \<sekvence> {\ifmmode \expandafter \M<sekvence> 
+                 \else \expandafter \T<sekvence> \fi}
+\endtt
+%
+Od této chvíle "\<sekvence>" pracuje v textovém i matematickém módu.
+Pro pøípad opakovaného pou¾ití "\safemathchardef" na stejnou
+"\<sekvenci>" makro kontroluje, zda u¾ není definována "\M<sekvence>".
+Pokud ano, pak "\safemathchardef" neprovede nic.
+
+Je potøeba, aby byly soubory s~pøíkazy "\characterdef" 
+naèteny pøed prvním pou¾itím "\setmath". Pak lze v~rámci 
+"\setmath" (pøesnìji v~makru "\mathchars") pou¾ít 
+"\safemathchardef" na pøedefinování nìkterých sekvencí, 
+které byly døíve deklarovány pomocí "\characterdef". Tyto sekvence pak
+budou pracovat v textovém i matematickém módu.
+
+Naprosto stejnì, jako "\safemathchardef" pracuje pøíkaz
+"\safemathaccentdef"\inl[safemathaccentdef].
+Pouze místo primitivu "\mathchardef" pou¾ije
+makro "\mathaccentdef"\inl[mathaccentdef], 
+které pøeète za "\<sekvencí>" "<èíslo>" separované mezerou 
+a provede:
+
+\begtt
+\def \<sekvence> {\mathaccent<èíslo> }
+\endtt
+
+Pokud nechceme deklarovat novou matematickou rodinu pro nìkolik 
+málo znakù (poèet matematických rodin je toti¾ v~\TeX{}u 
+omezen na 16), mù¾eme pou¾ít makro 
+"\pickmathfont"\inl[pickmathfont], které má tyto
+parametry:
+
+\begtt
+\pickmathfont {<metrika>}{<text>}
+% pøíklad pou¾ití:
+\mathbin {\pickmathfont {psybo}{\char"C4}}
+\endtt
+%
+Makro "\pickmathfont" pou¾ije primitiv "\font" na specifikovanou
+<metriku> a v~tomto fontu zapí¹e <text>, který v~matematickém seznamu
+tvoøí atom typu Ord. Dùle¾ité je, ¾e je pou¾it font v~odpovídající
+velikosti (základní, indexová, indexindexová), tak¾e to vypadá, jako
+by byl pou¾ita nová matematická rodina fontù. Pøitom to není pravda,
+proto¾e "\pickmathfont" je implementován pomocí primitivu "\mathchoice".
+Pou¾ití pøíkazu "\pickmathfont" najdeme v~souboru "ofsdef.tex" 
+v~definici makra "\setPSmathchars".
+
+
+
+\subsec Registrování metrik pro rùzné velikosti
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\LATEX: Registrování rùzných metrik pro rùzné velikosti se dìlá
+ve~"fd" souborech a je to dokonale vyøe¹eno v~NFSS.
+
+\PLAIN (a¾ do konce sekce):
+Existují speciální rodiny fontù (napøíklad Computer Modern), kde se
+pro rùzné velikosti fontù pou¾ívají rùzné metriky. I~tato vlastnost je
+implementována v~OFS. Dosud jsme zatajili, ¾e v~parametrech pøíkazù
+"\loadtextfam", "\loadmathfam" a "\pickmathfont" je mo¾né místo názvù 
+metrik uvést smy¹lené <jméno>, které je registrováno pøíkazem 
+"\registertfm"\inl[registertfm].
+V~takovém pøípadì se skuteèná metrika pro zavedení primitivem "\font" 
+vypoèítá z~po¾adované velikosti fontu a z~údajù, které byly zadány
+pomocí skupiny pøíkazù "\registertfm". Upøesníme nyní parametry 
+pøíkazu "\registertfm":
+
+\begtt
+\registertfm <jméno> <mezera> <od>-<do> <mezera> <skuteèná metrika> <mezera>
+\endtt
+
+Parametry <od> a <do> musejí obsahovat jednotku a vymezují uzavøený
+interval, pro který platí: jestli¾e je po¾adovaná velikost fontu
+ve tvaru "at"<dimen> a souèasnì <dimen> le¾í
+v~intervalu "<od>-<do>", pak se místo <jména> pou¾ije 
+"<skuteèná metrika> at<dimen>".
+Pøíkaz "\registertfm" je potøeba pro vymezení rùzných 
+intervalù pou¾ít opakovanì na stejné <jméno>.
+Aèkoli jsou intervaly "<od>-<do>" uzavøené, pozdìji
+deklarovaný interval má pøednost pøed døíve deklarovaným, tak¾e nakonec
+je kladná reálná osa rozdìlena na polouzavøené intervaly. Pøíklad
+pou¾ití je v~souboru "ofsdef.tex".
+
+Jsou-li oba parametry <od> a <do> prázdné, je pøíkazem "\registertfm"
+deklarována metrika, která se pou¾ije pøi specifikaci velikosti pomocí
+"scaled<èíslo>" nebo v~pøípadì, kdy <dimen> nele¾í v~¾ádném
+specifikovaném intervalu. Hvìzdièka místo parametru <do> znaèí 
+\uv{nekoneènou velikost}.
+
+Pøíkaz "\registertfm <jméno> <mezera> - <mezera> - <mezera>"
+vyma¾e z~pamìti pøedchozí registrace pro dané <jméno> a navíc vyznaèí
+<jméno> jako nepøístupný font. OFS se pak chová stejnì, jakoby odpovídající
+varianta nebyla vùbec deklarována. Dává nám to
+mo¾nost vyznaèit neexistující varianty deklarované rodiny 
+jen pro nìkterá kódování (viz napøíklad "cmssbxti" 
+v~souboru "ofsdef.tex").
+
+Parametry <jméno> a <skuteèná metrika>  se expandují v~okam¾iku
+èinnosti pøíkazu "\registertfm". Není proto obvyklé v~nich pou¾ívat
+makro "\fotenc". Nicménì toto makro mù¾eme v~uvedených parametrech 
+pou¾ít, pokud zahrneme potøebnou skupinu pøíkazù "\registertfm" 
+do vlastního makra a toto makro spustíme opakovanì pro rùzné
+hodnoty "\fotenc".
+
+Makro "\registerECfont"\inl[registerECfont]  
+je zkratkou za opakované pou¾ití pøíkazu
+"\registertfm" na v¹echny velikosti EC fontù od "0500" 
+a¾ po "3583". Stejnì makro
+"\registerECTTfont"\inl[registerECTTfont] 
+je zkratkou pro velikosti EC fontù od "0800" do "3583" pou¾ívané pro
+strojopis. Definice a pou¾ití tìchto maker najdeme v souboru
+"ofsdef.tex". Makra mù¾eme pou¾ít i na jiné fonty, které mají stejnì
+odstupòované velikosti jako EC fonty (napø. LH fonty s~azbukou nebo
+fonty odvozené z~CM-super).
+
+
+\subsec Omezení pou¾ití rodiny fontù pro urèitá kódování
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\LATEX: Pou¾ití rodiny v~daném kódování je závislé na existenci 
+"fd" souboru, tj.~v¹e je v~re¾ii NFSS.
+
+\PLAIN (a¾ do konce sekce):
+OFS od verze Feb.~2004 zavádí pøíkaz "\registerenc",\inl[registerenc]
+kterým mù¾eme omezit pou¾ití deklarované rodiny fontù 
+jen pro vymezená kódování.
+Pokud pak u¾ivatel napí¹e "\setfonts" a vy¾aduje rodinu 
+v~neregistrovaném kódování, OFS vypí¹e varování na obrazovku 
+a vùbec do po¾adované rodiny nepøepne. Tím se vyhne pokusu zavést
+pravdìpodobnì neexistující metriky fontù. Pøíkaz "\registerenc"
+má dva parametry:
+
+\begtt
+\registerenc <JménoRodiny>: <kódování><mezera>
+\registerenc Times: 8t   % napøíklad
+\registerenc Times: 8z   % nyní má Times registrována dvì kódování
+\endtt
+
+Pokud nemá rodina registrováno ¾ádné kódování, pak OFS pøedpokládá, ¾e
+je pou¾itelná v~jakémkoli kódování (napøíklad fonty znaèek).
+
+V~deklaraèních souborech tedy mù¾eme pomocí "\registerenc" omezit
+pou¾ití rodiny jen na vymezená kódování. U¾ivatel ale mù¾e 
+pøíkazem "\registerenc" pøidat k~rodinì dal¹í povolené kódování. Nebo
+také mù¾e naznaèit, ¾e rodina má povoleno libovolné kódování
+pøíkazem "\registerenc <JménoRodiny>: * ".
+
+Abychom v~deklaraèních souborech nemuseli opisovat <JménoRodiny>, mù¾e
+být tento parametr prázdný. V~takovém pøípadì "\registerenc" pou¾ije
+rodinu z~posledního pøíkazu "\ofsdeclarefamily".
+
+Ve svých makrech se mù¾ete zeptat, zda je rodina pro aktuální hodnotu
+"\fotenc" registrovaná:\inl[registeredfam]
+
+\vbox \bgroup
+\begtt
+\registeredfam <JménoRodiny>? \iftrue 
+       Rodina má \fotenc registrováno nebo má povoleno jakékoli kódování 
+       nebo vùbec není deklarována.
+\else  Rodina má registována kódování, ale \fotenc mezi nimi není.
+\fi
+\endtt \egroup  
+
+Pokud spustíme "\setfonts[<JménoRodiny>/]" pro nedeklarovanou rodinu
+nebo pro rodinu s~nedovoleným kódováním, 
+pak OFS napí¹e varování na terminál a vrátí "\setfontsOK"\inl[setfontsOK]
+jako "\undefined". Po úspì¹ném nastavení fontu má sekvence
+"\setfontsOK" hodnotu "\relax".
+
+
+\sec Licence
+%%%%%%%%%%%%
+
+Balíèek OFS mù¾e pou¾ívat kdokoli bez licenèních poplatkù. Kdokoli jej
+rovnì¾ mù¾e distribuovat, pokud nezmìní obsah souboru "readme.ofs"
+"ofs.tex", "ofsdef.tex", "ofs.sty", "ofs-8z.tex",
+"ofs-8t.tex", "a35.tex", "a35.sty", "ofsdoc.tex", "ofsdoce-e.tex",
+"ofsmtdef.tex" a
+v¹echny tyto soubory budou v distribuci pøítomny.
+Právo na zmìnu tìchto souborù a
+tím zmìnu verzí zùstává výhradnì autorovi. Pokud potøebujete zmìnit
+obsah nìkterého z~uvedených souborù, nazvìte jej jinak. Balíèek je
+poskytován s~pøáním, aby byl u¾iteèný, ale BEZ JAKÉKOLI ZÁRUKY.
+
+\bigskip
+V~Praze dne 16. 8. 2001 \hfill autor: Petr Ol¹ák
+
+
+\sec Historie
+%%%%%%%%%%%%%
+
+\noindent
+16. 8. 2001 --- uvedena první verze
+
+\noindent
+24. 10. 2002 --- provedeny drobné úpravy respekutjící zmìny 
+ve verzi OFS Oct.~2002.
+V této verzi byl pøidán pøíkaz "\addcmd" a byly 
+umo¾nìny nepovinné parametry 
+"(<Varianta>)" v pøíkazu "\loadtextfam". 
+
+\noindent
+10. 2. 2004 --- V¹echny úpravy se týkají jen OFS pro plain:
+
+\def\bod{\hangindent=1.2em \hangafter=1 \noindent + }
+
+\bod Vylep¹ena manipulace s deklaracemi maker
+závislých na kódování, deklarace výjimek a registrování kódování pro
+zvolenou rodinu.
+Viz~\beglink{3.5}sekce~3.5\endlink{} a \beglink{3.9}sekce~3.9\endlink.
+
+\bod Pøidána mo¾nost pøedefinování rodiny (napø. dodateèným naètením
+souboru deklaraèního souboru, který modifikuje vlastnosti implicitních rodin).
+
+\bod Deklarace CMRoman, CMSans a CMTypewriter pro kódování 8t
+pou¾itím EC fontù.
+
+\bod Pøidána podpora roz¹iøujícího kódování 8c.
+
+\bod Upravena deklarace matematického kódování PS, aby "\int",
+"\sum" a "\prod" pracovaly v~display módu s~vìt¹ími znaky.
+
+\bod Definováno makro "\ofshexbox" a "\ofshexboxdef".
+
+\bod Novì zveøejnìno interaktivní makro "ofstest.tex".
+
+\bod Zaveden adresáø "examples/", kde prùbì¾nì budu dávat 
+pøíklady pou¾ití OFS. 
+
+\noindent
+12. 3. 2004 --- OFS pro plain:
+
+\bod Kódovací soubory jsou èteny pøímo z "\loadtextfam". 
+Tím je umo¾nìno dávat do kódovacích souborù mapování metrik pøíkazem
+"\registerenc" (vyu¾iju pro LANG).
+
+\bod "\characterdef" respektuje definované makro a nepøedefinuje jej.
+
+\bod Reimplementováno "\showfonts". Nyní ¹etøí výraznì pamì» i èas na
+rozsáhlých seznamech fontù. Pozor: pokud jste mìli makra vyu¾ívající
+interní makro "\listfamilies", pak toto pøestane
+fungovat. Napø. nefunguje od této verze zastaralé "ofscatal.tex".
+Místo nìj je mo¾no pou¾ít "ofstest.tex"
+
+\bod Modifikováno "ofstest.tex", aby pracovalo s novou implementací
+seznamu rodin "\ofslistfamilies".
+
+\noindent
+2. 4. 2004 --- pøidáno "\plaincatcodes" pøed ètením souborù "ofs-<kódování>.tex".
+
+\bod Zavedeno "\safelet" a "\protectreading".
+
+\bod Mezera za <znakem> v "\accentdef" je nepovinná.
+
+\bod Pøidána mo¾nost "\loadmathfam <rodina>[-<varianta>/]" a roz¹íøena
+a pøepracována deklarace pro matematická kódování "CM", "PS", "AMS",
+"TX", "PX", "MT". 
+
+
+\sec Rejstøík v¹ech maker definovaných v~OFS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Rejstøík obsahuje odkazy pouze na místa v~textu, kde je k~makru
+vysvìtlující komentáø. V~tom místì je té¾ uveden pro snadnìj¹í orientaci
+název makra v~levém okraji. V~rejstøíku nejsou odkazy na 
+v¹echny zmínky o~makru v~textu. Rejstøík je správnì vygenerován hned
+po prvním prùchodu zpracování tohoto dokumentu pøíkazem "csplain ofsdoc".
+
+Nìkterá makra definovaná v~"ofs.tex" jsou interní nebo pomocná
+a není o~nich zmínka v~textu. Pak odkaz na stranu zámìrnì chybí a je
+pøipojena jen krátká poznámka o~takovém makru. Rovnì¾ jsou pøipojeny
+poznámky o~tom, zda je makro pou¾ito ve verzi pro 
+{\smallbf PLAIN} nebo {\smallbf LATEX}.
+
+
+\bigskip
+\immediate\closeout\indout
+\input \jobname.ind
+
+\begingroup
+\let\tt=\smalltt \let\it=\smallit \let\rm=\smallrm \rm
+\baselineskip=10.3pt
+
+\def\inr #1 #2 #3;{\noindent{\tt
+  \expandafter \ifx \csname ind:#2\endcsname \relax 
+     \back#1%
+  \else 
+     \beglink{#2}\back#1\endlink
+  \fi}\quad 
+  #3 \quad\pg[#2]\par} 
+\def\\#1 #2;{\inr #1 #1 #2;}
+\def\pl{{\sevenrm (PLAIN)}}
+\def\la{{\sevenrm (LATEX)}}
+\def\oba{{\sevenrm (PLAIN+LATEX)}}
+
+\\accentabove \pl;
+\par\nobreak
+\\accentbelow \pl;
+\\accentdef \pl;
+\\accentdel \pl;
+\\accentdefori \unskip, {\tt\back accentdelori} \pl~interní, 
+   udr¾ují pùvodní význam maker;
+\\accentnodef \pl~interní, {\tt\back def\back <makro>\#1%
+  \char`\{\back printaccent\char`\{<makro>\char`\}\char`\{\#1\char`\}\char`\}};
+\\addcmd \oba;
+\inr bf rm \oba; 
+\inr bi rm \oba;
+\\bifam \pl~interní, matematická rodina pro BoldItalic;
+\\calculatemetricfile \pl~interní, definuje {\tt\back metricfile}
+                       podle velikosti;
+\\catcodesloop \pl~interní, nastaví kategorie znakù v cyklu podle daného èísla;
+\\characterdef \pl;
+\\characterdel \pl;
+\\characterdefori \unskip, {\tt\back characterdelori} \pl~interní,
+      udr¾ují pùvodní význam maker;
+\\characternodef \pl~interní, {\tt\back def\back <makro>%
+       \char`\{\back printcharacter\char`\{<makro>\char`\}\char`\}};
+\\currentfamily \pl;
+\\currentfomenc \pl~interní, jméno naposledy pou¾itého matemat. kódování;
+\\currentvariant \pl;
+\\declaredfamily \pl~interní, obsahuje jméno naposledy deklarované rodiny;
+\\defaultextraenc \pl;
+\\defaultmathchars \pl;
+\\defaultmathfonts \pl;
+\\defpttotmpa \pl~interní, udìlá {\tt\back def\back tmpa\char`\{pt\char`\}},
+    pokud chybí jednotka;
+\\detailfontmessages \pl;
+\\displayfontmessages \pl;
+\\displaymessage \pl;
+\\docharacterdef \pl~interní, pro potøeby makra {\tt\back characterdef};
+\\doextchar \pl~interní, pro potøeby makra {\tt\back extchar};
+\\dosafemathdef \pl~interní, pro potøeby maker {\tt\back safemath*def};
+\\donumbercharacterdef \pl~interní, pro potøeby makra {\tt\back characterdef};
+\\endOFSmacro \pl~interní, mo¾nost ètení {\tt[<file>, ...]} za 
+    {\tt\back input ofs};
+\\expandaction \pl;
+\\extchar \oba;
+\\extraenc \pl;
+\\extrafont \pl;
+\\fontdef \oba;
+\\fontloadmessage \pl~interní, výpis informace o~provedení {\tt\back font};
+\\fontmessage \pl~interní, støídá hodnoty nic, 
+                     {\tt\back wlog} a {\tt\back displaymessage};
+\\fontprefix \pl~interní, støídá hodnotu nic a {\tt\back global};
+\\fontusage \oba;
+\\fosize \pl;
+\\fomenc \pl;
+\\fotenc \pl;
+\\fragilecommand \pl;
+\\fragilecommand! \pl;
+\\hex \pl;
+\\ifknownfam \oba;
+\\isunitpresent \pl~interní, øe¹í pøípad absence jednotky;
+\inr it rm \oba;
+\\knownchar pl;
+\\knownfam pl;
+\\lastfam pl;
+\\lccodes \unskip, {\tt\back lccodesloop} \pl;
+\\loadCMboldmath \pl;
+\\loadCMnormalmath \pl;
+\\loadingenc \pl;
+\\loadmathfam \pl;
+\\loadPSboldmath \pl;
+\\loadPSnormalmath \pl;
+\\loadtextfam \pl;
+\\logfontmessages \pl;
+\\mathaccentdef \pl;
+\\mathchars \pl;
+\\mathcharsback \pl;
+\\mathencdef \pl;
+\\mathencread \pl;
+\\mathfonts \pl;
+\\mathversion \pl;
+\\metricfile \pl~interní, jméno metriky pøi pou¾ití {\tt\back font};
+\\metrictmpa \pl~interní, expanduje na metriku fontu {\tt\back tmpa};
+\\modifydef \pl;
+\\modifyenc \pl;
+\\modifylist \pl;
+\\modifyread \pl;
+\\newfamily \pl~pøechodné, zadané jméno rodiny;
+\\newmathfam \pl;
+\\newmodifylist \pl;
+\\newvariant \pl;
+\\nofontmessages \pl;
+\\noindexsize \pl;
+\\noPT \pl~interní, odstraní {\tt pt} z~{\tt\back the<dimen>} [TBN, str.~80];
+\\ofsaddenctolist \pl~interní, pøidá parametr do seznamu {\tt\back newmodifylist};
+\\OFSdeclarefamily \la;
+\\ofsdeclarefamily \pl;
+\\OFSextraencoding \la;
+\\OFSfamily \la;
+\\OFSfamilydefault \la;
+\\ofshexbox \pl;
+\\ofshexboxdef \pl;
+\\ofsinput \pl~interní, ète soubor pøi {\tt\back globaldefs=1}, ignoruje konce øádkù;
+\\ofslistfamilies \pl~interní, seznam rodin pro {\tt\back showfonts};
+\\ofslistfamily \pl~interní, uvozuje rodinu v {\tt\back listfamilies};
+\\ofslistvariants \pl~interní, text pro výpis variant do logu;
+\\ofslisttext \pl~interní, uvozuje text v {\tt\back listfamilies};
+\\ofsloadfont \pl~interní, zavede jeden font;
+\\ofsloadfontori \pl~interní, zavede jeden font;
+\\ofsmeaning \pl~interní, vykostí z~výstupu {\tt \back meaning} slovo
+        {\tt letter}/{\tt character};
+\\ofsmessageheader \pl~interní, hlavièka hlá¹ení do logu a na terminál;
+\\OFSnormalvariants \la;
+\\OFSprocessoptions \la;
+\\OFSputfamlist \la;
+\\ofsputfamlist \pl;
+\\ofsremovefromlist \pl~interní, odstraní rodinu ze seznamu;
+\\OFSversion \oba~interní, datum verze makra;
+\\orifosize \pl~pøechodné, podr¾í hodnotu {\tt\back fosize};
+\\origTeX \pl~interní, originální definice loga \TeX;
+\\oriloadfam \pl~pøechodné, podr¾í hodnotu {\tt loadtextfam};
+\\pickmathfont \pl;
+\\plaincatcodes \pl~interní, nastaví kategorie znakù podle plain\TeX{}u;
+\\printaccent \pl;
+\\printaccentwarn \pl;
+\\printcharacter \pl;
+\\printcharacterwarn \pl;
+\\processOFSoption \pl~interní, pro potøeby makra {\back endOFSmacro};
+\\protectreading \pl;
+\\readfamvariant \pl~interní, testuje, zda je zadána varianta rodiny;
+\\readfirsttoken \pl~interní, vrátí první token textu ukonèeného {\tt:\back end};
+\\readfosize \pl~interní, vlo¾í hodnotu {\tt\back fosize} 
+                   do {\tt\back dimen0};
+\\readmag \pl~interní, poèítá {\tt\back fosize}, je-li dáno 
+    {\tt mag}<desetinné èíslo>;
+\\readOFSoptions \pl~interní, pro potøeby makra {\tt\back endOFSmacro};
+\\readothertokens \pl~interní, vrátí druhý a dal¹í tokeny a¾ po {\tt:\back end};
+\\readsixdigits \pl~interní, vyu¾ito pro zaokrouhlování;
+\\registeredfam \pl;
+\\registerECfont \pl;
+\\registerECTTfont \pl;
+\\registerenc \pl;
+\\registertfm \pl;
+\\restorefontid \pl~interní, obnovení jména fontu, viz {\tt\back savefontid};
+\\rm \oba;
+\\runmodifylist \pl;
+\\safelet \pl;
+\\safeletwarn \pl;
+\\safemathaccentdef \pl;
+\\safemathchardef \pl;
+\\savefontid \pl~interní, pro udr¾ení jména fontu ve výpisech Overfull;
+\\savetokenname \pl~interní, nìco jako {\tt\back string} bez backslashe;
+\\scriptfosize \pl;
+\\scriptscriptfosize \pl;
+\\separeofsvariant \pl~interní, separace nepovinného parametru 
+          {\tt\back loadtextfam};
+\\setextrafont \oba;
+\\setCMmathchars \pl;
+\\setfonts \oba;
+\\setfontshook \pl;
+\\setfontsOK \pl;
+\\setfontfamily \pl~interní, {\tt\back setfonts}, 
+         pokud není dána varianta;
+\\setfosize \pl~interní, vypoèítá hodnotu {\tt\back fosize};
+\\setmath \pl;
+\\setPSmathchars \pl;
+\\setsimplemath \pl;
+\\setsinglefont \pl~interní, {\tt\back setfonts},
+         pokud je dána varianta;
+\\setsinglefontname \pl~interní, vykostí z názvu metriky pøípadné "at<dimen>";
+\\sgfamily \pl~interní, pro ulo¾ení informace o~rodinì;
+\\sgvariant \pl~interní, pro ulo¾ení informace o~variantì;
+\\showfonts \oba;
+\\singlefont \pl;
+\\singlefontname \pl~interní, odstraní {\tt at<dimen>} z~názvu metriky;
+\\skipfirststep \pl;
+\\slantcorrection \pl~interní, pro potøeby
+     {\tt\back accentabove} a {\tt\back accentbelow};
+\\storeofsvariant \pl~interní, separace nepovinného parametru 
+          u~{\tt\back loadtextfam};
+\\switchdeftodel \pl~interní, prohodí {\tt\back accent/characterdef}
+  s~{\tt\back *del};
+\\tenbi \pl;
+\inr tenbf tenrm \pl;
+\inr tenit tenrm \pl;
+\\tenrm \pl;
+\\testOFSoptions \pl~interní, pro potøeby makra {\tt\back endOFSmacro};
+\\testtfmsize \pl~interní, pro potøeby {\tt\back registertfm};
+\\testtfmsizeat \pl~interní, pøechodná hodnota {\tt\back testtfmsize};
+\\testtfmsizescaled \pl~interní, pøechodná hodnota {\tt\back testtfmsize};
+\\textfosize \pl;
+\\tryloadenc \pl~interní, naète kódovací soubory;
+\\tmpa \oba~pøechodné;
+\\tmpb \oba~pøechodné; 
+\\tmpc \pl~pøechodné;
+\\warnmissingfont \pl~interní, výpis o~chybìjící variantì;
+\\warnM \unskip, {\tt\back warnF}, {\tt\back warnT}, {\tt\back warnI}
+\pl~interní, výpis o~chybìjící standardní variantì;
+\\warnunregistered \pl~interní, výpis o~nedovoleném kódování zvolené rodiny;
+
+\endgroup
+
+\sec Reference
+
+\noindent \hangindent=2\parindent
+[TBN] Petr Ol¹ák {\it \TeX{}book naruby}, Konvoj 
+1.~vyd. 1997 (ISBN 80-7302-007-6), 
+2.~vyd. 2001 (ISBN 80-85615-64-9), Brno, 466 stran. 
+PDF verze knihy je volnì k~dispozici na 
+{\tt http://math.feld.cvut.cz/olsak/tbn.html}.
+
+
+
+\end
+
+
+

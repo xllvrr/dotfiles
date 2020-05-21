@@ -1,0 +1,461 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Example of  MCF typest with LuaLaTeX(luamplib)     by A.Yamaji    2020.01.26
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% mcf2graph.mf it must be version 4.48 or later
+\documentclass{article}
+%------------------------------------------------------------------------------
+\usepackage{luamplib}%
+\usepackage[T1]{fontenc}%
+\usepackage{textcomp}%
+\mplibcodeinherit{enable}%
+\mplibverbatim{enable}%
+\mplibnumbersystem{double}%
+\everymplib{%
+  if unknown Ph1: input mcf2graph.mf; fi
+  sw_calc:=1;
+  sw_fframe:=4;
+  max_blength:=4.5mm;
+  defaultfont:="uhvr8r";
+  defaultsize:=8bp;
+  defaultscale:=1;
+}%
+%------------------------------------------------------------------------------
+\pagestyle{empty}
+\topmargin=-20mm
+\oddsidemargin=0mm
+\textwidth=170mm
+\textheight=280mm
+\unitlength=1mm
+%------------------------------------------------------------------------------------
+\begin{document}
+\begin{center}
+ {\Huge\sf MCF example for luamplib(Lua\LaTeX)}\vspace{5mm}\\
+ Author : Akira Yamaji \quad Date : \today\\
+ Located at : http://www.ctan.org/pkg/mcf2graph\vspace{2mm}\\
+\end{center}
+\noindent%
+%------------------------------------------------------------------------------------
+{{\tt FM(C) :} molecular formula calculated by mcf2graph\\
+{{\tt MW(C) :} molecular weight calculated by mcf2graph\\
+{{\tt MW(D) :} molecular weight from literature data\vspace{5mm}\\
+%------------------------------------------------------------------------------------
+\begin{mplibcode}
+  fsize:=(80mm,40mm);
+  beginfont("NO:1","EN:Chlorophyll a","MW:893.49")
+    msize:=(.9,.9);
+    MCat(0,0.5)(<54,
+    |=1,?5,{2,5}=dl,4:N,3:\,54~dl,|,?5,{2,4}=dl,5:N,
+    -2:\,54~dl,|,?5,2=d,5:N,-2:\~dl,54,|,?5,5=d,5:N,-2:\~dl,$5:#,
+    -1:@,24,/*COO!^15,72,//O,$1:#,=|,||,
+     {2,9,15,20~zf}:/_,8:/!,14:\,!!,
+     4:\`1.45,Mg,17:#,-1:@,11~vb:#,-1:@,23~vb:#,
+     21:@,-6~wf,!2,//O,!,O,!2,!!,|,!13,{1,5,9,13}:/_
+    )
+    ext(
+      label.lrt("("&inf_EN&")",(0,h));
+      defaultscale:=0.8;
+      label.lrt("FM(C): "&cal_FM,(0,h-5mm));
+      label.lrt("MW(C): "&cal_MW,(0,h-9mm));
+      label.lrt("MW(D): "&inf_MW,(0,h-13mm));
+    )
+  endfont
+\end{mplibcode}
+\begin{minipage}[b]{85mm}
+\begin{verbatim}
+|=1,?5,{2,5}=dl,4:N,3:\,54~dl,
+|,?5,{2,4}=dl,5:N,
+-2:\,54~dl,|,?5,2=d,5:N,-2:\~dl,54,
+|,?5,5=d,5:N,-2:\~dl,$5:#,
+-1:@,24,/*COO!^15,72,//O,$1:#,=|,||,
+ {2,9,15,20~zf}:/_,8:/!,14:\,!!,
+ 4:\`1.45,Mg,17:#,-1:@,11~vb:#,
+ -1:@,23~vb:#,
+ 21:@,-6~wf,!2,//O,!,O,!2,!!,
+|,!13,{1,5,9,13}:/_
+
+\end{verbatim}
+\end{minipage}
+\vspace{7mm}\\
+%----------------------------------------------------------------------------
+\begin{mplibcode}
+fsize:=(80mm,20mm);
+beginfont("EN:beta-Carotene","MW:536.888")
+  msize:=(.65,1);
+  MCat(.9,.5)(
+     <30,?6,3=dl,{3,5^35,5^-35}:/_,
+     4:\,|,!18,{1,3,5,7,9,11,13,15,17}=dr,{3,7,12,16}:/_,
+     |,?6,6=dl,{6,2^35,2^-35}:/_
+  )
+  ext(
+    label.lrt("("&inf_EN&")",(0,h));
+    defaultscale:=0.8;
+    label.lrt("FM(C): "&cal_FM,(0,h-5mm));
+    label.lrt("MW(C): "&cal_MW,(0,h-9mm));
+    label.lrt("MW(D): "&inf_MW,(0,h-13mm));
+  )
+endfont
+\end{mplibcode}
+\begin{minipage}[b]{85mm}
+\begin{verbatim}
+<30,?6,3=dl,{3,5^35,5^-35}:/_,
+4:\,|,!18,
+{1,3,5,7,9,11,13,15,17}=dr,
+{3,7,12,16}:/_,
+|,?6,6=dl,{6,2^35,2^-35}:/_
+\end{verbatim}
+\end{minipage}
+\vspace{7mm}\\
+%----------------------------------------------------------------------------
+\begin{mplibcode}
+  fsize:=(80mm,30mm);
+  beginfont("NO:2","EN:Limonin","MW:470.51")
+  MCat(0.7,0.5)(<30,
+    ?6,{-3,-4}=?6,-5=?3,-2=wf,-1=wb,6=?5,-4=?6,-5=wf,
+      {13,15,17,20}:O,{3,12,21}://O,
+      {4~wf^60,8~zf^60,18^35,18^-35}:/_,{1^60,5^180,16^60}:/*H,
+      14:\*,|,?5,{1,4}=dl,3:O
+     )
+    ext(
+      label.lrt("("&inf_EN&")",(0,h));
+      defaultscale:=0.8;
+      label.lrt("FM(C): "&cal_FM,(0,h-5mm));
+      label.lrt("MW(C): "&cal_MW,(0,h-9mm));
+      label.lrt("MW(D): "&inf_MW,(0,h-13mm));
+    )
+  endfont
+\end{mplibcode}
+\begin{minipage}[b]{85mm}
+\begin{verbatim}
+<30,?6,{-3,-4}=?6,-5=?3,
+-2=wf,-1=wb,6=?5,-4=?6,-5=wf,
+{13,15,17,20}:O,{3,12,21}://O,
+{4~wf^60,8~zf^60,18^35,18^-35}:/_,
+{1^60,5^180,16^60}:/*H,
+14:\*,|,?5,{1,4}=dl,3:O
+
+\end{verbatim}
+\end{minipage}
+\vspace{7mm}\\%
+%----------------------------------------------------------------------------
+\begin{mplibcode}
+fsize:=(80mm,20mm);
+beginfont("NO:4","EN:Gibberellin A3","MW:346.37");
+  MCat(0.8,0.5)(
+   <18,?5,3=?7,5=?6[12],8:@,160`1.3,3:#,13=dl,6=wf,8=wb,
+   5:@,40~zf`1,O,60,//O^180,14~zb:#,
+   2:/COOH,7://_,13:*/OH,8:/*OH,14:*/_,{1,4}:*/H^60)
+    ext(
+      label.lrt("("&inf_EN&")",(0,h));
+      defaultscale:=0.8;
+      label.lrt("FM(C): "&cal_FM,(0,h-5mm));
+      label.lrt("MW(C): "&cal_MW,(0,h-9mm));
+      label.lrt("MW(D): "&inf_MW,(0,h-13mm));
+    )
+endfont;
+\end{mplibcode}
+\begin{minipage}[b]{85mm}
+\begin{verbatim}
+<18,?5,3=?7,5=?6[12],8:@,160`1.3,3:#,
+13=dl,6=wf,8=wb,
+5:@,40~zf`1,O,60,//O^180,14~zb:#,
+2:/COOH,7://_,13:*/OH,8:/*OH,
+14:*/_,{1,4}:*/H^60)
+\end{verbatim}
+\end{minipage}
+\vspace{7mm}\\
+%----------------------------------------------------------------------------
+\begin{mplibcode}
+fsize:=(80mm,25mm);
+beginfont("EN:Morphine","MW:285.343")
+  MCat(0.7,0.5)(
+   <30,Ph,2=?6,-4=?6,(1,12)=?5[2],-1:O,-1=zb,
+    7:@,60~wf`0.75,70~si_`1.3,45,N,/_,9~wb:#,
+    15=d,6:/OH,8^180:*/H,12:/*OH
+  )
+  ext(
+    label.lrt("("&inf_EN&")",(0,h));
+    defaultscale:=0.8;
+    label.lrt("FM(C): "&cal_FM,(0,h-5mm));
+    label.lrt("MW(C): "&cal_MW,(0,h-9mm));
+    label.lrt("MW(D): "&inf_MW,(0,h-13mm));
+  )
+endfont
+\end{mplibcode}
+\begin{minipage}[b]{85mm}
+\begin{verbatim}
+<30,Ph,2=?6,-4=?6,(1,12)=?5[2],
+-1:O,-1=zb,
+7:@,60~wf`0.75,70~si_`1.3,
+45,N,/_,9~wb:#,
+15=dl,
+6:/OH,8^180:*/H,12:/*OH
+\end{verbatim}
+\end{minipage}
+\vspace{7mm}\\
+%----------------------------------------------------------------------------
+\begin{mplibcode}
+fsize:=(80mm,35mm);
+beginfont("NO:5","EN:Erythromycin","MW:733.93");
+  MCat(0.8,0.5)(
+    <30,|=1,<-120,60,60,60,-60,60,60,-60,60,60,60,-60,60,60,=|,1:#,
+     14:O,13:/*Et,{1,9}://O,{2,10}:*/_,{4,6^-35,8,12^35}:/*_,
+     {6^35,11,12^-35}:*/OH,
+     $3:\*,O,30,|,?6`.7,2:O,{3,5^35}:/_,4:/OH,5^-35:/O!,
+     $5:\*^30`1.7,O,!,|,?6`.7,6:O,5:/_,2:/OH,3:/NMeMe
+     )
+    ext(
+      label.lrt("("&inf_EN&")",(0,h));
+      defaultscale:=0.8;
+      label.lrt("FM(C): "&cal_FM,(0,h-5mm));
+      label.lrt("MW(C): "&cal_MW,(0,h-9mm));
+      label.lrt("MW(D): "&inf_MW,(0,h-13mm));
+    )
+  endfont;
+\end{mplibcode}
+\begin{minipage}[b]{85mm}
+\begin{verbatim}
+<30,|=1,<-120,60,60,60,-60,60,
+60,-60,60,60,60,-60,60,60,=|,1:#,
+14:O,13:/*Et,{1,9}://O,{2,10}:*/_,
+{4,6^-35,8,12^35}:/*_,
+{6^35,11,12^-35}:*/OH,
+$3:\*,O,30,|,?6`.7,2:O,
+{3,5^35}:/_,4:/OH,5^-35:/O!,
+$5:\*^30`1.7,O,!,|,?6`.7,6:O,
+5:/_,2:/OH,3:/NMeMe
+\end{verbatim}
+\end{minipage}
+\vspace{7mm}\\
+%----------------------------------------------------------------------------
+\begin{mplibcode}
+fsize:=(80mm,35mm);
+beginfont("EN:Paclitaxel","MW:853.918")
+  MCat(0.8,0.5)(
+    ?6,5=d,3:@,|=1,36,45,45,45,45,=|,$5:#,-4=?6,-4=?4,||,-1=wb,-3=wf,-1:O,
+    {4^35,4^-35,6}:/_,{3^-60,15}:*/OH,8:/*H^-60,9:*/_^60,10://O,
+    $1:\,O,!,//O,!,*/OH,!,/Ph,60~wf,NH,-60,//O,60,Ph,
+    $7:\*,O,-45,//O,60,Ph,$11:*\,O,-60,//O,60,$12:\*^-15,O,60,//O,-60
+  )
+  ext(
+    label.lrt("("&inf_EN&")",(0,h));
+    defaultscale:=0.8;
+    label.lrt("FM(C): "&cal_FM,(0,h-5mm));
+    label.lrt("MW(C): "&cal_MW,(0,h-9mm));
+    label.lrt("MW(D): "&inf_MW,(0,h-13mm));
+  )
+endfont
+\end{mplibcode}
+\begin{minipage}[b]{85mm}
+\begin{verbatim}
+?6,5=d,3:@,|=1,36,45,45,45,45,=|,$5:#,
+-4=?6,-4=?4,||,-1=wb,-3=wf,-1:O,
+{4^35,4^-35,6}:/_,{3^-60,15}:*/OH,
+8:/*H^-60,9:*/_^60,10://O,
+$1:\,O,!,//O,!,*/OH,!,/Ph,
+60~wf,NH,-60,//O,60,Ph,
+$7:\*,O,-45,//O,60,Ph,$11:*\,O,-60,//O,60,
+$12:\*^-15,O,60,//O,-60)
+\end{verbatim}
+\end{minipage}
+\vspace{7mm}\\
+%----------------------------------------------------------------------------
+\noindent
+\begin{mplibcode}
+fsize:=(80mm,70mm);
+beginfont("NO:6","EN:Vancomycin","MW:1449.25");
+  MCat(0.9,0)(
+    <30,
+    |=1,!12,{1,3,12}=zf,7=wf,/H^-60,60,*/OH,60,
+    Ph,-4:/Cl,-3:\,O,!,Ph,-4:\,O,!,Ph,-1^15:/Cl,-3:\,/*OH,*/H^-60,$1:#,
+    $7:@,$26:#,$1:@,120,//O,60,NH,60,/*H,*/COOH^180,-60,
+    Ph,{-2,-4}:/OH,-1:\,Ph,-5:/OH,-2:@,$4:#,=|,
+    {3^40,6,9,12}://O,{2,5,8,11}:NH,
+    {1^180,4^180}:*/H,{7^-60,10^60,14^60}:/*H,
+    $10:*\^-60,60,//O,!,NH2,
+    $13:*\,NH,!,//O,!,/!iPr^-35>60,*/H^60,!~zf,NH,!,
+    $23:\,O,!,|,?6`.7,2:O,3^10:/!OH,{4,5}:/OH,
+    -1:\,O,!,|,?6`.7,6:O,{3^35,5}:/_,3^-35:/NH2,4:/OH
+    )
+    ext(
+      label.lrt("("&inf_EN&")",(0,h));
+      defaultscale:=0.8;
+      label.lrt("FM(C): "&cal_FM,(0,h-5mm));
+      label.lrt("MW(C): "&cal_MW,(0,h-9mm));
+      label.lrt("MW(D): "&inf_MW,(0,h-13mm));
+    )
+endfont;
+\end{mplibcode}
+\begin{minipage}[b]{85mm}
+\begin{verbatim}
+<30,|=1,!12,{1,3,12}=zf,7=wf,
+/H^-60,60,*/OH,60,Ph,-4:/Cl,
+-3:\,O,!,Ph,-4:\,O,!,Ph,-1^15:/Cl,
+-3:\,/*OH,*/H^-60,$1:#,
+$7:@,$26:#,$1:@,120,//O,60,NH,60,
+ /*H,*/COOH^180,-60,
+Ph,{-2,-4}:/OH,-1:\,Ph,-5:/OH,-2:@,$4:#,=|,
+{3^40,6,9,12}://O,{2,5,8,11}:NH,
+{1^180,4^180}:*/H,
+{7^-60,10^60,14^60}:/*H,
+$10:*\^-60,60,//O,!,NH2,$13:*\,NH,!,//O,!,
+ /!iPr^-35>60,*/H^60 ,!~zf,NH,!,
+$23:\,O,!,|,?6`.7,2:O,3^10:/!OH,{4,5}:/OH,
+-1:\,O,!,|,?6`.7,6:O,
+{3^35,5}:/_,3^-35:/NH2,4:/OH
+\end{verbatim}
+\end{minipage}
+\vspace{10mm}\\%
+%----------------------------------------------------------------------------
+\begin{mplibcode}
+  fsize:=(170mm,70mm);
+  beginfont("NO:7","EN:Maitotoxin","MW:3425.86")
+  MC(
+    <55.8,?6,-4=?7 ,{-4,-3,-3,-3}=?6,-3:\,!3,?6,{-4,-3,-3,-3}=?6,-3:\,?6,-3=?6,
+    -3:\,!3,60,<-30,?6,-3=?6,-3:@,30,<30,?6,{-3,-3}=?6,-3=?7,{-4,-3,-3}=?6,
+    -2:\,?6,-3=?6,-3=?7,{-3,-3}=?6,-3=?8,-3=dl,{-5,-3,-3,-3}=?6,
+    {5,7,15,16,23,24,32,40,41,48,49,58,59,72,73,82,83,90,91,99,
+      100,107,113,114,122,123,130,131,140,141,148,149}:O,
+    {1^60,2,26,28,29,51,54,61,63,68,75^60,78,109}:*/OH,
+    {11,20,35,45,52,55,65,69,86}:/*OH,{47,57,71}:/*H^60,
+    {3,8,13,17,21,33,38,42,56,70,84,92,101,106,111,128,138,142,146,150}:/*H^-60,
+    {4,14,22,34,39,43,81,89,98,102,116,121,125,129,133}:*/H^60,
+    {6,46,50,53,60,67,74}:*/H^-60,
+    {9,18,85,93,112,139,143,147}:*/_`1^60,
+    {80,88,97,115,120,124}:/*_`1^-60,108:*/_`1^-60,
+    $6:\,|,!11,60~dr,-60,60,OH,2:/*OH,{7,10}:*/OH,{1,3}:*/_,{8~zf,11~dm,12}:/_,
+              6:\,O,30,SOO,30,"O{Na}",
+    $36:@,-45~zf,O,30,SOO,30,"O{Na}",
+    $150:\,|,!7,{1,2}:/*OH,4:*/_,5:/*_,7=dl
+    )
+    ext(
+      label.lrt("("&inf_EN&")",(0,.8h));
+      defaultscale:=0.8;
+      label.lrt("FM(C): "&cal_FM,(0,.8h-5mm));
+      label.lrt("MW(C): "&cal_MW,(0,.8h-9mm));
+      label.lrt("MW(D): "&inf_MW,(0,.8h-13mm));
+    )
+  endfont
+\end{mplibcode}
+\begin{verbatim}
+   <55.8,?6,-4=?7,{-4,-3,-3,-3}=?6,
+   -3:\,!3,?6,{-4,-3,-3,-3}=?6,-3:\,?6,-3=?6,-3:\,!3,60,<-30,?6,-3=?6,
+   -3:@,30,<30,?6,{-3,-3}=?6,-3=?7,{-4,-3,-3}=?6,
+   -2:\,?6,-3=?6,-3=?7,{-3,-3}=?6,-3=?8,-3=dl,{-5,-3,-3,-3}=?6,
+   {5,7,15,16,23,24,32,40,41,48,49,58,59,72,73,82,83,90,91,99,
+    100,107,113,114,122,123,130,131,140,141,148,149}:O,
+   {1^60,2,26,28,29,51,54,61,63,68,75^60,78,109}:*/OH,
+   {11,20,35,45,52,55,65,69,86}:/*OH,{47,57,71}:/*H^60,
+   {3,8,13,17,21,33,38,42,56,70,84,92,101,106,111,128,138,142,146,150}:/*H^-60,
+   {4,14,22,34,39,43,81,89,98,102,116,121,125,129,133}:*/H^60,
+   {6,46,50,53,60,67,74}:*/H^-60,{9,18,85,93,112,139,143,147}:*/_`1^60,
+   {80,88,97,115,120,124}:/*_`1^-60,108:*/_`1^-60,
+   $6:\,|,!11,60~dr,-60,60,OH,2:/*OH,{7,10}:*/OH,{1,3}:*/_,{8~zf,11~dm,12}:/_,
+     6:\,O,30,SOO,30,"O{Na}",
+   $36:@,-45~zf,O,30,SOO,30,"O{Na}",$150:\,|,!7,{1,2}:/*OH,4:*/_,5:/*_,7=dl
+\end{verbatim}
+\vspace{8mm}%
+%----------------------------------------------------------------------------
+\newpage
+\begin{mplibcode}
+beginfont("EN:TCA cycle")
+fsize:=(160mm,75mm);
+max_blength:=5mm;
+%------------------------------------------------------------------------
+MCat(0.33,   1)(<30,O[-1],!0,//O,!,//O,!2,//O,!,O[-1])
+MCat(0.66,   1)(<30,O[-1],!0,//O,!4,//O,!,O[-1],-4`1:\,//O,!,O[-1],4:/OH^-165)
+MCat(1,      1)(<30,O[-1],!0,//O,!2,!~dr,!,//O,!,O[-1],-4`1:\,//O,!,O[-1])
+MCat(1,   0.55)(<30,O[-1],!0,//O,!4,//O,!,O[-1],-4:\`1,//O,!,O[-1])
+MCat(1,   0.05)(<30,O[-1],!0,//O,!3,//O,!,//O,!,O[-1],-4:\`1,//O,!,O[-1])
+MCat(0.66,0.05)(<30,O[-1],!0,//O,!3,//O,!,//O,!,O[-1])
+MCat(0.33,0.05)(<30,O[-1],!0,//O,!3,//O,!,"{S-CoA}")
+MCat(0,   0.05)(<30,O[-1],!0,//O,!3,//O,!,O[-1])
+MCat(0,   0.55)(<30,O[-1],!0,//O,!,!~dr,!,//O,!,O[-1])
+MCat(0,      1)(<30,O[-1],!0,//O,!3,//O,!,O[-1],3:/OH)
+%-------------------------------------------------------------------------
+ext(
+defaultfont:="uhvr8r";
+defaultscale:=0.75;
+ext_setup;
+def sel_dir(expr rot)=
+  save tx; nA:=rot; if nA>=360: nA:=nA-360; fi
+  if     (nA<30)or(nA>330):   def tx=top enddef; elseif (nA>=30)and(nA<=150):  def tx=lft enddef;
+  elseif (nA>150)and(nA<210): def tx=bot enddef; elseif (nA>=210)and(nA<=330): def tx=rt enddef; fi
+enddef;
+def r_arrow(expr a)(expr r)(expr p)(expr sa,la)(expr sb,lb)(expr sc,lc)(expr sd,ld)=
+  drawarrow ((0,0)..(a,0)) rotated r shifted p;
+  if sa<>"": draw ((0.5a,0){dir 180}..{dir 90}(0,.5a*la)) rotated r shifted p;
+             sel_dir(r); label.tx(sa,p+((0,0.5a*la) rotated r)); fi
+  if sb<>"": draw ((0.5a,0){dir 0}..{dir 90}(a,.5a*lb)) rotated r shifted p;
+             sel_dir(r); label.tx(sb,p+((a,0.5a*lb) rotated r)); fi
+  if sc<>"": draw ((0.5a,0){dir 180}..{dir -90}(0,-.5a*lc)) rotated r shifted p;
+             sel_dir(r+180); label.tx(sc,p+((0,-0.5a*lc) rotated r)); fi
+  if sd<>"": draw ((0.5a,0){dir 0}..{dir -90}(a,-.5a*ld)) rotated r shifted p;
+             sel_dir(r+180); label.tx(sd,p+((a,-0.5a*ld) rotated r)); fi
+enddef;
+%------------------------------------------------------------------------
+save dx; pair dx; dx:=(12mm,0);
+label.bot("Oxaloacetate",p1+dx);   label.bot("Citrate",p2+dx);
+label.bot("cis-Aconitate",p3+dx);  label.bot("Isocitrate",p4+dx);
+label.bot("Oxalosuccinate",p5+dx); label.bot("alfa-Ketoglutarate",p6+dx);
+label.bot("Succinyl-CoA",p7+dx);   label.bot("Succinate",p8+dx);
+label.bot("Fumarate",p9+dx);       label.bot("L-Malate",p10+dx);
+sw_label_emu:=1;
+ext_setup;
+r_arrow(10mm)(  0)(p1+(1.1w1,.3h1))("",0)("",0)("Acetyl-CoA",1.5)(" CoA-SH",1);
+r_arrow(10mm)(  0)(p2+(1.1w2,.4h2))("",0)("",0)("",0)("H_2_O",1);
+r_arrow( 8mm)(270)(p3+(.5w3,-.4h3))("",0)("",0)("H_2_O",1)("",0);
+r_arrow( 8mm)(270)(p4+(.5w4,-.4h4))("",0)("",0)("NAD^+",1)("NADH2^+",1);
+r_arrow(10mm)(180)(p5+(-.1w5,.4h5))("",0)("",0)("",0)("CO_2_",1);
+r_arrow(10mm)(180)(p6+(-.1w6,.5h6))("",0)("",0)("NAD^+^,CoA-SH",1.7)("NADH2^+^,CO_2",1);
+r_arrow(10mm)(180)(p7+(-.1w7,.5h7))("",0)("",0)("GDP,Pi",1.7)("GTP,CoA-SH",1);
+r_arrow( 8mm)( 90)(p8+(.4w8,1.2h8))("",0)("",0)("FAD",1)("FADH2",1);
+r_arrow( 8mm)( 90)(p9+(.4w9,1.2h9))("",0)("",0)("H_2_O",1)("",0);
+r_arrow(10mm)(  0)(p10+(1.1w10,.3h10))("",0)("",0)("NAD^+",1)("NADH2^+",1.5);
+defaultscale:=1.5;
+label("TCA-cycle",(0.5w,0.5h));
+)
+endfont
+\end{mplibcode}
+\begin{verbatim}
+beginfont("EN:TCA cycle")
+fsize:=(160mm,75mm);
+max_blength:=5mm;
+MCat(0.33,   1)(<30,O[-1],!0,//O,!,//O,!2,//O,!,O[-1])
+MCat(0.66,   1)(<30,O[-1],!0,//O,!4,//O,!,O[-1],-4`1:\,//O,!,O[-1],4:/OH^-165)
+MCat(1,      1)(<30,O[-1],!0,//O,!2,!~dr,!,//O,!,O[-1],-4`1:\,//O,!,O[-1])
+MCat(1,   0.55)(<30,O[-1],!0,//O,!4,//O,!,O[-1],-4:\`1,//O,!,O[-1])
+MCat(1,   0.05)(<30,O[-1],!0,//O,!3,//O,!,//O,!,O[-1],-4:\`1,//O,!,O[-1])
+MCat(0.66,0.05)(<30,O[-1],!0,//O,!3,//O,!,//O,!,O[-1])
+MCat(0.33,0.05)(<30,O[-1],!0,//O,!3,//O,!,"{S-CoA}")
+MCat(0,   0.05)(<30,O[-1],!0,//O,!3,//O,!,O[-1])
+MCat(0,   0.55)(<30,O[-1],!0,//O,!,!~dr,!,//O,!,O[-1])
+MCat(0,      1)(<30,O[-1],!0,//O,!3,//O,!,O[-1],3:/OH)
+ext(
+defaultfont:="uhvr8r";
+defaultscale:=0.75;
+ext_setup;
+save dx; pair dx; dx:=(12mm,0);
+label.bot("Oxaloacetate",p1+dx);   label.bot("Citrate",p2+dx);
+label.bot("cis-Aconitate",p3+dx);  label.bot("Isocitrate",p4+dx);
+label.bot("Oxalosuccinate",p5+dx); label.bot("alfa-Ketoglutarate",p6+dx);
+label.bot("Succinyl-CoA",p7+dx);   label.bot("Succinate",p8+dx);
+label.bot("Fumarate",p9+dx);       label.bot("L-Malate",p10+dx);
+sw_label_emu:=1;
+ext_setup;
+r_arrow(10mm)(  0)(p1+(1.1w1,.3h1))("",0)("",0)("Acetyl-CoA",1.5)(" CoA-SH",1);
+r_arrow(10mm)(  0)(p2+(1.1w2,.4h2))("",0)("",0)("",0)("H_2_O",1);
+r_arrow( 8mm)(270)(p3+(.5w3,-.4h3))("",0)("",0)("H_2_O",1)("",0);
+r_arrow( 8mm)(270)(p4+(.5w4,-.4h4))("",0)("",0)("NAD^+",1)("NADH2^+",1);
+r_arrow(10mm)(180)(p5+(-.1w5,.4h5))("",0)("",0)("",0)("CO_2_",1);
+r_arrow(10mm)(180)(p6+(-.1w6,.5h6))("",0)("",0)("NAD^+^,CoA-SH",1.7)("NADH2^+^,CO_2",1);
+r_arrow(10mm)(180)(p7+(-.1w7,.5h7))("",0)("",0)("GDP,Pi",1.7)("GTP,CoA-SH",1);
+r_arrow( 8mm)( 90)(p8+(.4w8,1.2h8))("",0)("",0)("FAD",1)("FADH2",1);
+r_arrow( 8mm)( 90)(p9+(.4w9,1.2h9))("",0)("",0)("H_2_O",1)("",0);
+r_arrow(10mm)(  0)(p10+(1.1w10,.3h10))("",0)("",0)("NAD^+",1)("NADH2^+",1.5);
+defaultscale:=1.5;
+label("TCA-cycle",(0.5w,0.5h));
+)
+endfont
+\end{verbatim}
+%----------------------------------------------------------------------------
+\end{document}

@@ -1,0 +1,61 @@
+name abntex2
+category Package
+revision 49248
+shortdesc Typeset technical and scientific Brazilian documents based on ABNT rules
+longdesc The bundle provides support for typesetting technical and
+longdesc scientific Brazilian documents (like academic thesis, articles,
+longdesc reports, research project and others) based on the ABNT rules
+longdesc (Associacao Brasileira de Normas Tecnicas). It replaces the old
+longdesc abntex.
+containersize 29920
+containerchecksum 951c039cf0c97a6bd3974bd01ed9323876f1ee74b8250037dce3e92e00d598ab1cb2cfd0bbf4ea6d37b5f8c3e1095e531aa245ad1a91ee49262e6f99c5c84e59
+doccontainersize 4585444
+doccontainerchecksum b6a5871cc33d94c1294a62aeb809f9d29ccf021cff510497c02edbaef2f155a55847dc521a0f698367692e556b2c588a95066bd3097482b0477a67d4a78b7489
+docfiles size=1717
+ texmf-dist/doc/latex/abntex2/README details="Readme"
+ texmf-dist/doc/latex/abntex2/abntex2-doc-abnt-10520.bib
+ texmf-dist/doc/latex/abntex2/abntex2-doc-abnt-6023.bib
+ texmf-dist/doc/latex/abntex2/abntex2-doc-options.bib
+ texmf-dist/doc/latex/abntex2/abntex2-doc-test.bib
+ texmf-dist/doc/latex/abntex2/abntex2-doc.bib
+ texmf-dist/doc/latex/abntex2/abntex2.pdf details="Package documentation (Brazilian Portuguese)" language="pt-br"
+ texmf-dist/doc/latex/abntex2/abntex2.tex
+ texmf-dist/doc/latex/abntex2/abntex2cite-alf.pdf details="Citation support package documentation (supplementation)" language="pt-br"
+ texmf-dist/doc/latex/abntex2/abntex2cite-alf.tex
+ texmf-dist/doc/latex/abntex2/abntex2cite.pdf details="Citation support package documentation (Brazilian Portuguese)" language="pt-br"
+ texmf-dist/doc/latex/abntex2/abntex2cite.tex
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-artigo.pdf details="Article template" language="pt-br"
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-artigo.tex
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-glossarios.pdf details="Glossary template" language="pt-br"
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-glossarios.tex
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-img-grafico.pdf
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-img-marca.pdf
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-include-comandos.tex
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-livro.pdf details="Book template" language="pt-br"
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-livro.tex
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-projeto-pesquisa.pdf details="Research project template" language="pt-br"
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-projeto-pesquisa.tex
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-references.bib
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-relatorio-tecnico.pdf details="Technical report template" language="pt-br"
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-relatorio-tecnico.tex
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-slides.pdf details="Presentation template" language="pt-br"
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-slides.tex
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-trabalho-academico.pdf details="Thesis template" language="pt-br"
+ texmf-dist/doc/latex/abntex2/examples/abntex2-modelo-trabalho-academico.tex
+runfiles size=54
+ texmf-dist/bibtex/bib/abntex2/abntex2-options.bib
+ texmf-dist/bibtex/bst/abntex2/abntex2-alf.bst
+ texmf-dist/bibtex/bst/abntex2/abntex2-num.bst
+ texmf-dist/tex/latex/abntex2/abntex2.cls
+ texmf-dist/tex/latex/abntex2/abntex2abrev.sty
+ texmf-dist/tex/latex/abntex2/abntex2cite.sty
+catalogue-contact-announce https://github.com/abntex/abntex2/wiki/ReleaseNotes
+catalogue-contact-bugs https://github.com/abntex/abntex2/issues
+catalogue-contact-development https://github.com/abntex/abntex2/graphs/contributors
+catalogue-contact-home http://www.abntex.net.br
+catalogue-contact-repository https://github.com/abntex/abntex2
+catalogue-contact-support https://github.com/abntex/abntex2/wiki
+catalogue-ctan /macros/latex/contrib/abntex2
+catalogue-license lppl1.3
+catalogue-topics dissertation class portuguese-br
+catalogue-version 1.9.7

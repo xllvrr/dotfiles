@@ -1,0 +1,25 @@
+name grafcet
+category Package
+revision 22509
+shortdesc Draw Grafcet/SFC with TikZ
+longdesc The package provides a library (GRAFCET) that can draw Grafcet
+longdesc Sequential Function Chart (SFC) diagrams, in accordance with EN
+longdesc 60848, using Pgf/TikZ. L'objectif de la librairie GRAFCET est
+longdesc de permettre le trace de grafcet selon la norme EN 60848 a
+longdesc partir de Pgf/TikZ.
+containersize 3780
+containerchecksum d322b1b45762c65232f6f66adcc12955d85d4bfddc08655cba8e11903f6403f2031a78d7e566f4d9b5eaf950aa8d2a53472038e204a1d18517c754c379c60bc6
+doccontainersize 294584
+doccontainerchecksum b02bfb612cd5fd85c1839307a016bfc4c3d472ddbd591d1318bd7c5fcca42cc1200da07f2105ec429768cb0f9270273425b01df1242e475946bd37658e692f41
+docfiles size=119
+ texmf-dist/doc/latex/grafcet/README
+ texmf-dist/doc/latex/grafcet/grafcet.pdf details="Package documentation" language="fr"
+ texmf-dist/doc/latex/grafcet/grafcet.tex
+runfiles size=5
+ texmf-dist/tex/latex/grafcet/grafcet.sty
+catalogue-also tikz-sfc
+catalogue-contact-home http://sciences-indus-cpge.papanicola.info/Grafcet-avec-pgf-Tikz
+catalogue-ctan /graphics/pgf/contrib/grafcet
+catalogue-license lppl1
+catalogue-topics diagram pgf-tikz
+catalogue-version 1.3.5

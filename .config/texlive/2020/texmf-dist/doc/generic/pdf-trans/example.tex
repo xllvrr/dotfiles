@@ -1,0 +1,228 @@
+%%% Self-documented example of pdf-trans.tex usage (pdfTeX)
+%%% P.Jackowski@gust.org.pl
+
+\input pdf-trans
+
+\pdfdecimaldigits=3
+\pdfcompresslevel=0               % to see what is happening
+
+% Some configuration
+% \enablefractangle               % float angles support (deafult)
+% \disablefractangle              % integer only (old behaviour)
+% \enablebpround                  % round \pdfliteral dimens to \pdfdecimanligits (default)
+% \disablebpround                 % disable rounding (old behaviour)
+% \let\tobp\roundfixedbp          % calculate \pdfliteral dimens with fixed precision (risky)
+\setbpround\pdfdecimaldigits      % fix rounding precision (speed-up things)
+
+\font\F=qx-lmr10    at 120pt
+\font\f=qx-lmr10    at 60pt
+\font\T=qx-lmtt10   at 15pt
+\font\tt=qx-lmtt10  at 10pt
+\font\ttt=qx-lmtt10 at 8pt
+
+\pdfpagewidth=165mm
+\pdfpageheight=120mm
+\pdfhorigin=10mm
+\pdfvorigin=10mm
+\hsize=\dimexpr\pdfpagewidth-2\pdfhorigin
+\vsize=\dimexpr\pdfpageheight-2\pdfvorigin
+
+\parindent=0pt
+\nopagenumbers
+
+\ifx\pdfminorversion\undefined
+ \pdfoptionpdfminorversion=5
+\else
+ \pdfminorversion=5
+\fi
+
+\def\saveobjnum#1{\expandafter\edef\csname objnum:#1\endcsname{\the\pdflastobj\space 0 R}}
+\def\objnum#1{\csname objnum:#1\endcsname}
+\immediate\pdfobj{<< /Type /OCG /Name (box content before) >>}\saveobjnum{1}
+\immediate\pdfobj{<< /Type /OCG /Name (box outline before) >>}\saveobjnum{2}
+\immediate\pdfobj{<< /Type /OCG /Name (box content after) >>}\saveobjnum{3}
+\immediate\pdfobj{<< /Type /OCG /Name (box outline after) >>}\saveobjnum{4}
+\immediate\pdfobj{<< /Type /OCG /Name (final bounding box) >>}\saveobjnum{5}
+
+\edef\pdfpagerc{/Properties << /OC1 \objnum{1} /OC2 \objnum{2} /OC3 \objnum{3} /OC4 \objnum{4} /OC5 \objnum{5}>>}
+\expandafter\pdfpageresources\expandafter{\pdfpagerc}
+\edef\pdfcatalogoc{%
+/OCProperties
+<<
+ /OCGs [\objnum{1} \objnum{2} \objnum{3} \objnum{4} \objnum{5}]
+ /D << /Order [\objnum{1} \objnum{2} \objnum{3} \objnum{4} \objnum{5}]
+       /OFF   [\objnum{2} \objnum{4}]
+    >>
+>>}
+\expandafter\pdfcatalog\expandafter{\pdfcatalogoc}% \pdfcatalog expands anyway
+
+\newbox\qbox
+
+\def\defaultgs{\pdfliteral direct{.5 w 1 j 1 J}}
+
+\def\boxbe{\boxshow{/OC /OC2 BDC 0.3 G}         {[2 2] 1 d}{EMC} \boxgs{/OC /OC1 BDC 2 Tr 0.7 g}{EMC}}
+\def\boxaf{\boxshow{/OC /OC4 BDC 1.0 0.6 0.0 RG}{[2 2] 1 d}{EMC} \boxgs{/OC /OC3 BDC 2 Tr 1.0 0.8 0.0 rg}{EMC}}
+\def\boxbb{\boxshow{/OC /OC5 BDC 0.7 0.0 0.0 RG}{[2 2] 1 d}{EMC}}
+
+\def\bookmark#1{%
+ \pdfoutline goto page\pageno {/Fit}{\getbookmark#1\relax}}
+
+\def\getbookmark#1#2\relax{\string\\\expandafter\gobbleone\string#1}
+\def\gobbleone#1{}
+
+\def\test/#1/#2/{%
+ \bookmark{#2}\defaultgs
+ \vbox to4cm{\vss
+  Yo\boxbe\copy\qbox\kern-\wd\qbox
+ \boxbb#1\boxaf\copy\qbox a}\vfill
+ {\tt\detokenize{#2 <box>}}\medskip{\ttt\detokenize{#1}}\eject}
+
+\def\rawtest/#1/#2/{%
+ \bookmark{#2}\defaultgs
+ \vbox to4cm{\vss
+  Yo#1\copy\qbox a}\vfill
+ {\tt\detokenize{#2 <box>}}\medskip{\ttt\detokenize{#1}}\eject}
+
+%%%
+
+\T\defaultgs
+
+box tra\boxflipy\boxgs{1.0 0.8 0.0 rg}{}\hbox{N}%
+sfo\boxrotatec{15}\boxgs{1.0 0.8 0.0 rg}{}\hbox{R}%
+mation\boxflipx\boxgs{1.0 0.8 0.0 rg}{}\hbox{S} in
+\boxgs{0.7 g}{}\hbox{pdf-trans.tex}
+
+\vskip0pt plus 4fil
+\setbox\qbox\hbox{\f g}
+\ttt
+\leavevmode\boxbe\copy\qbox            \quad before
+\vfil
+\leavevmode\boxaf\copy\qbox            \quad after
+\vfil
+\leavevmode\boxbb\boxphantom\copy\qbox \quad bounding box
+
+\line{\hfill\boxrevolveleft\boxsmash\hbox{P.Jackowski@gust.org.pl}}
+\pdfoutline goto page\pageno {/Fit}{pdf-trans.tex}
+
+\eject
+
+%%%
+
+\F\setbox\qbox\hbox{g}
+
+\test/\boxflipx   /\boxflipx/
+\test/\boxflipy   /\boxflipy/
+\test/\boxflipxy  /\boxflipxy/
+\test/\boxflipbase/\boxflipbase/
+\test/\bboxtrans\boxflipbase/\bboxtrans{<trans>}/
+\test/\cboxtrans\boxflipbase/\cboxtrans{<trans>}/
+
+\test/\boxtranslate{3mm}{2mm}/\boxtranslate{<dimexpr>}{<dimexpr>}/
+
+\test/\boxrevolveleft /\boxrevolveleft/
+\test/\boxrevolveright/\boxrevolveright/
+
+\test/\boxrotate{394.7}/\boxrotate{<angle>}/
+\test/\boxrotatexy{34.2}{\wd\transbox}{\ht\transbox}
+     /\boxrotatexy{<angle>}{<dimexpr>}{<dimexpr>}/
+\test/\boxrotatec{90}/\boxrotatec{<angle>}/
+
+\test/\boxrotatebbl{-34.1}/\boxrotatebbl{<angle>}/
+%\test/\boxrotatebbl{-34.2}/\boxrotatebbl{<angle>}/
+\test/\boxrotatebbr{-34.2}/\boxrotatebbr{<angle>}/
+
+\test/\boxslantx{15.2}      /\boxslantx{<angle>}/
+\test/\boxslanty{25.3}      /\boxslanty{<angle>}/
+%\test/\boxslantxy{15}{25} /\boxslantxy{<angle>}{<angle>}/
+
+\test/\boxslantbbl{15}{25}/\boxslantbbl{<angle>}{<angle>}/
+\test/\boxslantbbr{15}{25}/\boxslantbbr{<angle>}{<angle>}/
+
+\test/\boxscalex{75}      /\boxscalex{<numexpr>}/
+\test/\boxscaley{75}      /\boxscaley{<numexpr>}/
+\test/\cboxtransoff\boxscalexy{150}{75}/\boxscalexy{<numexpr>}{<numexpr>}/
+\test/\bboxtransoff\boxscale{75}       /\boxscale{<numexpr>}/
+
+\test/\boxscalexto{.5in+.1cm} /\boxscalexto{<dimexpr>}/
+\test/\boxscaleyto{.5in+.1cm} /\boxscaleyto{<dimexpr>}/
+\test/\boxscalexyto{.5in+.1cm}{1in/2}/\boxscalexyto{<dimxpr>}{<dimexpr>}/
+\test/\boxscalehtto{.5in+.1cm}/\boxscalehtto{<dimexpr>}/
+\test/\boxscaledpto{.5in+.1cm}/\boxscaledpto{<dimexpr>}/
+
+\test/\boxuniscalexto{.5in+.1cm} /\boxuniscalexto{<dimexpr>}/
+\test/\boxuniscaleyto{.5in+.1cm} /\boxuniscaleyto{<dimexpr>}/
+\test/\boxuniscalehtto{.5in+.1cm}/\boxuniscalehtto{<dimexpr>}/
+\test/\boxuniscaledpto{.5in+.1cm}/\boxuniscaledpto{<dimexpr>}/
+
+\test/\boxextscale{2mm}{5mm}{8mm}/\boxextscale{<dimexpr>}{<dimexpr>}{<dimexpr>}/
+\test/\boxextscaleto{3cm}{1cm}{2cm}/\boxextscaleto{<dimexpr>}{<dimexpr>}{<dimexpr>}/
+
+\test/\boxexts{3mm}{3mm}{5mm}{5mm}
+      /\boxexts{<dimexpr>}{<dimexpr>}{<dimexpr>}{<dimexpr>}/
+
+\test/\boxextents{2mm}{4mm}{6mm}{8mm}
+      /\boxextents{<dimexpr>}{<dimexpr>}{<dimexpr>}{<dimexpr>}/
+
+% obsolete
+%\test/\boxresizeto{}{3cm}{2cm}
+%      /\boxresizeto{<dimexpr>}{<dimexpr>}{<dimexpr>}/
+%\test/\boxresize{-3mm}{}{-2mm} /\boxresize{<dimexpr>}{<dimexpr>}{<dimexpr>}/
+
+\test/\boxxformspec resources{\the\pdfpageresources} \boxxform\boxresizeto{11mm}{8mm}{3mm}
+     /\boxxformspec resources{/Foo /Bar} \boxxform/
+
+\test/\boxclip\boxresizeto{}{8mm}{3mm} /\boxclip/
+
+\test/\boxmoveleft{.3\wd\transbox}/\boxmoveleft{<dimexpr>}/
+\test/\boxmoveright{.3\wd\transbox}/\boxmoveright{<dimexpr>}/
+\test/\boxlower{\dp\transbox}/\boxlower{<dimexpr>}/
+\test/\boxraise{\dp\transbox}/\boxraise{<dimexpr>}/
+\test/\boxbaselineat{50}/\boxbaselineat{<numexpr>}/
+
+% \rawtest/\boxphantom        /\boxphntom/
+\rawtest/\boxinfo\boxsh/\boxinfo/
+\rawtest/\boxshow{0 1 0 RG}{[1 1]0 d}{}
+        /\boxshow{<gsspec>}{<gsspec>}{<gsspec>}/
+% \rawtest/\boxsh/\boxsh/
+\rawtest/\boxmarkers{-12pt}{3pt}{1 0 0 RG 1 J}/\boxmarkers{<dimexpr>}{<dimexpr>}{<gsspec>}/
+
+\rawtest/\boxpath{3 w .7 0 0 rg 1 .8 0 RG}{B}\bboxtrans{\boxextscale{3mm}{3mm}{3mm}}\boxmoveright{3mm}
+        /\boxpath{<gsspec>}{<paintop>}/
+\rawtest/\boxroundpath{4mm}{3 w .7 0 0 rg 1 .8 0 RG}{B}\boxextent{3mm}
+        /\boxroundpath{<dimexpr>}{<gsspec>}{<paintop>}/
+\rawtest/\boxedgypath{4mm}{3 w .7 0 0 rg 1 .8 0 RG}{B}\boxextent{3mm}
+        /\boxedgypath{<dimexpr>}{<gsspec>}{<paintop>}/
+
+%%%
+
+\ttt
+Each transformation expands to <box> (\string\hbox\ in most cases).\par
+Each transformation must be followed by a <box>.\bigskip
+
+<box> states for any kind of \TeX\ box; \string\hbox,
+                                        \string\vbox,
+                                        \string\vtop,
+                                        \string\box,
+                                        \string\copy\par
+
+<trans> is a list of box transformations   \par
+<dimexpr> states for dimen in eTeX form    \par
+<numexpr> states for integer in eTeX form  \par
+<angle> is an integer or float-like string \par
+<gsspec> is a literal pdf content stream   \par
+<paintop> means pdf painting operator (S, f, B, W...)\par
+
+\bigskip
+
+Some extra macros:\par
+\def\type#1{{\detokenize{#1}}}
+\type{\tobp{<dimexpr>}} returns PDF dimen (big points with no unit) \par
+\type{\enablebpround} makes \type{\tobp} rounding to \type{\pdfdecimaldigits} (equivalent to \type{\roundbp}) \par
+\type{\setbpround{<0..4>}} makes \type{\tobp} rounding to <0..4> digits (equivalent to \type{\roundbpto{<0..4>}}) \par
+\type{\disablebpround} turns off rounding (equivalent to \type{\asbp}) \par
+
+
+\bigskip
+See the code for more.
+
+\end

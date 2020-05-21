@@ -1,0 +1,167 @@
+%%
+%% This is file `scsnowman-sample.tex', part of scsnowman package.
+%% Maintained on GitHub:
+%% https://github.com/aminophen/scsnowman
+%%
+%% Copyright (c) 2015-2018 Hironobu Yamashita
+%%   Email   :  h.y.acetaminophen[a t]gmail.com
+%%   GitHub  :  https://github.com/aminophen
+%%   Blog    :  http://acetaminophen.hatenablog.com/
+%%   Twitter :  @aminophen
+%%
+% platex + dvipdfmx
+\documentclass[dvipdfmx,twocolumn]{jsarticle}
+\usepackage{plext}
+\usepackage[margin=21truemm]{geometry}
+\usepackage[svgnames]{xcolor}
+\usepackage{scsnowman}
+\title{\textsf{scsnowman}パッケージの実用例}
+\author{Hironobu Yamashita}
+\begin{document}
+\maketitle
+
+% ふつうのゆきだるま
+これはゆきだるま\scsnowman です。
+
+% 雪ありゆきだるま
+今日の天気は\scsnowman[snow]です。
+
+% 帽子をかぶったゆきだるま
+ゆきだるま\scsnowman[hat]が帽子をかぶりました。
+
+% 帽子をかぶったゆきだるま（帽子の色は青）
+私は青い帽子をかぶった\scsnowman[hat=blue]が大好きです。
+
+% 帽子とマフラー付（マフラーの色は赤）
+マフラー\scsnowman[hat=true,muffler=red]を付けてあげましょう。
+
+% 腕あり
+腕も作って\scsnowman[hat=true,muffler=red,arms=true]あげましょう。
+
+% サイズ変更
+小\scsnowman、
+中\scsnowman[scale=3]、
+大\scsnowman[scale=5]。
+
+% ゆきだるま三兄弟
+\begin{table}[htb]
+  \begin{tabular}{ccc}
+    \texttt{U+2603} & \texttt{U+26C4} & \texttt{U+26C7} \\
+    \texttt{\small SNOWMAN} & \texttt{\small SNOWMAN WITHOUT SNOW} & \texttt{\small BLACK SNOWMAN} \\
+    \scsnowman[scale=5,body=false,snow=true] & \scsnowman[scale=5,body=false,snow=false] & \scsnowman[scale=5,body=true,snow=true]
+  \end{tabular}
+\end{table}
+
+\begin{table}[htb]
+  \begin{tabular}{ccc}
+    \texttt{U+2603} & \texttt{U+26C4} & \texttt{U+26C7} \\
+    \texttt{\small SNOWMAN} & \texttt{\small SNOWMAN WITHOUT SNOW} & \texttt{\small BLACK SNOWMAN} \\
+    \scsnowman[scale=5,body=false,snow=true,muffler=true] & \scsnowman[scale=5,body=false,snow=false,muffler=true] & \scsnowman[scale=5,body=true,snow=true,muffler=true]
+  \end{tabular}
+\end{table}
+
+\begin{table}[htb]
+  \begin{tabular}{ccc}
+    \texttt{U+2603} & \texttt{U+26C4} & \texttt{U+26C7} \\
+    \texttt{\small SNOWMAN} & \texttt{\small SNOWMAN WITHOUT SNOW} & \texttt{\small BLACK SNOWMAN} \\
+    \scsnowman[scale=5,body=false,snow=true,hat=true,arms=true] & \scsnowman[scale=5,body=false,snow=false,hat=true,arms=true] & \scsnowman[scale=5,body=true,snow=true,hat=true,arms=true]
+  \end{tabular}
+\end{table}
+
+\begin{table}[htb]
+  \begin{tabular}{ccc}
+    \texttt{U+????} & \texttt{U+????} & \texttt{U+????} \\
+    \texttt{\small RED SNOWMAN} & \texttt{\small BLUE SNOWMAN} & \texttt{\small GREEN SNOWMAN} \\
+    \scsnowman[scale=5,body=red,snow=red,hat=red] & \scsnowman[scale=5,body=blue,hat=blue,arms=blue,muffler=blue] & \scsnowman[scale=5,body=green,snow=green,arms=green]
+  \end{tabular}
+\end{table}
+
+% 周囲の色に追随
+テキストが黒色の場合\scsnowman[hat,muffler=red]、
+{\color{blue}テキストが青色の場合\scsnowman[hat,muffler=red]、
+{\color{green}テキストが緑色の場合\scsnowman[hat,muffler=red]}}、
+元通り\scsnowman[hat,muffler=red]。
+
+\newpage
+
+\scsnowmandefault{body,hat,snow,muffler}%
+私、黒\scsnowman 大輔は、1950年に黒\scsnowman 太郎の長男として
+誕生しました。その後、黒\scsnowman 家には…
+
+\scsnowmandefault{hat,snow,arms}%
+お隣には白\scsnowman さんが住んでいました。白\scsnowman さんは、
+宛名の文字を「\scsnowman」でなく「\scsnowman[arms=false,muffler]」
+と書いてしまうとお手紙を読まずに食べてしまうような変わった方でした。
+ただし、\scsnowman[hat=red]のように帽子に色が付いた宛名を見ると、
+白\scsnowman さんは喜んでいました。
+
+\medskip
+% buttons で「ボタン」（マフラーの有無で微妙に位置が変わる）
+\scsnowmandefault{scale=4,hat=Green,arms=Brown,snow=SkyBlue}%
+\scsnowman[buttons=RoyalBlue,muffler=Red]%
+\scsnowman[buttons=RoyalBlue]%
+% mouthshape で「口の形」
+\scsnowmandefault{scale=4,hat,muffler=Red}%
+\scsnowman[mouthshape=smile]% にっこり
+\scsnowman[mouthshape=frown]% しかめっ面
+\scsnowman[mouthshape=tight]% 真一文字
+% sweat で「汗」
+\scsnowmandefault{scale=4,hat}%
+\scsnowman[mouthshape=tight,arms,buttons,sweat]
+
+ゆきだるまで箇条書き：
+\makeitemsnowman
+\begin{itemize}
+  \item 動物
+  \begin{itemize}
+    \item 哺乳類
+    \item 鳥類
+    \item …
+  \end{itemize}
+  \item 植物
+  \begin{itemize}
+    \item 裸子植物
+    \item 被子植物
+    \begin{itemize}
+      \item 単子葉類
+      \item 双子葉類
+      \begin{itemize}
+        \item 合弁花類
+        \item 離弁花類
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\makeitemother
+
+\medskip
+\begin{minipage}{16zw}
+ベースラインの調節なし：\par
+Text,
+\scsnowman[scale=1]%
+\scsnowman[scale=4]%
+\scsnowman[scale=7],
+T.\par
+ベースラインの調節あり：\par
+Text,
+\scsnowman[adjustbaseline,scale=1]%
+\scsnowman[adjustbaseline,scale=4]%
+\scsnowman[adjustbaseline,scale=7],
+T.
+\end{minipage}\quad
+\begin{minipage}<t>{12zw}
+\scsnowmandefault{}
+縦書ーきで\scsnowman[hat,muffler=red]のテスト。
+私の大好きな\scsnowman[scale=2,muffler]\scsnowman[scale=2,hat]がたくさん。
+{\color{red}色が\scsnowman[body]ついても、勿論大丈夫。}
+\end{minipage}
+
+\scsnowmandefault{adjustbaseline,scale=5.5}%
+お正月：\scsnowman[eyes=false,mouth=false,mikan]%
+\scsnowman[eyes=false,mouth=false,mikan=DarkOrange,leaf=DarkOliveGreen]
+
+The World Day of Snowman:
+\scsnowman[muffler=Red,arms=Brown,buttons=Green,broom=DarkGoldenrod]
+\scsnowman[body,muffler=Red,arms=Brown,nose=Orange]
+
+\end{document}

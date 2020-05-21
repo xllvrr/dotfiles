@@ -1,0 +1,27 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{shortmathj}
+  [2020/03/18 v0.5.0 LaTeX package to shortify names of AMS journals automatically]
+
+\RequirePackage{ifthen}
+\RequirePackage{xstring}
+
+\newcommand{\shortifyAMSjournalname}[1]{%
+\def\shortifiedAMSjournalname{}%
+\edef\givenAMSjournalname{\detokenize{#1}}%
+\StrLeft{\givenAMSjournalname}{1}[\firstletter]%
+%%%{{SHORTMAP
+% The following rows present here only as examples
+% The content of the block is generated automatically
+\ifthenelse{\equal{\firstletter}{\detokenize{D}}}{%
+\ifthenelse{\equal{\givenAMSjournalname}{\detokenize{Discrete \& Computational Geometry}}}{\def\shortifiedAMSjournalname{Discr. Comp. Geom.}}{}%
+\ifthenelse{\equal{\givenAMSjournalname}{\detokenize{Discrete Applied Mathematics}}}{\def\shortifiedAMSjournalname{Discr. Appl. Math.}}{}%
+}{}%
+\ifthenelse{\equal{\firstletter}{\detokenize{B}}}{%
+\ifthenelse{\equal{\givenAMSjournalname}{\detokenize{Bulletin of the American Mathematical Society}}}{\def\shortifiedAMSjournalname{Bull. Amer. Math. Soc.}}{}%
+}{}%
+%%%}}SHORTMAP
+\ifthenelse{\equal{\shortifiedAMSjournalname}{}}{#1}{\shortifiedAMSjournalname{}}%
+}
+
+
+\endinput

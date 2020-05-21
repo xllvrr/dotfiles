@@ -1,0 +1,43 @@
+%\section{Syntaxe}
+
+\maboite{ \TFRGB{Atention : la création de la commande doit être placée avant}{Warning: the creation of the command must be placed before} \BS{begin}\AC{document} ! }
+
+\TFRGB{syntaxe :\BSS{newcommand}\AC{\BS{}nom}[nombre de variables]\AC{Description}}{syntax :\BSS{newcommand}\AC{\BS{}name}[
+number of variables]\AC{Description}}
+\bigskip
+
+
+\textbf{\TFRGB{Exemple : commande avec une variable}{Example : command with one variable} :}
+
+ \emph{\TFRGB{Création}{Creation}}
+
+
+
+\begin{tabular}{ll}
+\BS{newcommand} 									& \\ %\% début de la nouvelle commande \\ 
+\AC{\BS{}maboite}[1]{\red\{	}	 					& \% \TFRGB{commande nommée ma boite et 1 seul d'argument}{command   named \og maboite \fg with one variable } \\ 
+\BS{}begin\AC{center}									& \% \TFRGB{centrage sur la ligne}{centering the box  } \\ 
+\BS{}psframebox[fillcolor=yellow,fillstyle=solid]{\magenta\{}  & \% \TFRGB{une boite de texte de couleur jaune}{a yellow text box} \\ 
+\BS{}parbox\{  .5\BS{}linewidth \} 			& \% \TFRGB{parbox pour limiter la largeur de la boite}{use of \BS{parbox} to set the width of the box} \\ 
+\{\BS{}centering  									& \% \TFRGB{centrage du texte dans la boite}{centering the text in the box} \\ 
+\#1\} {\magenta\}}\BS{}end\AC{center}							& \%  \TFRGB{\#1 correspond à l'argument}{\#1 will be replaced by the variable} \\ 
+{\red\}	} 														&  \\ %\% fin de la nouvelle commande \\ 
+\end{tabular} 	
+
+\bigskip
+\emph{Utilisation} : \BS{maboite}\AC{contenu}
+
+\maboite{contenu}
+
+
+\bigskip
+\textbf{\TFRGB{Exemple : commande sans variable}{Example : command without variable} :}
+ 
+ \emph{\TFRGB{Création}{ creation}}
+ 
+\BS{}newcommand\AC{\BS{}DFR}{\BS{}psset\AC{unit=.25cm,fillstyle=solid,linewidth=0pt} \BS{}begin\AC{pspicture*}(3,1.5) \BS{}psframe[fillcolor=blue](1,1.5)
+\BS{}psframe[fillcolor=white](1,0)(2,1.5)\BS{}psframe[fillcolor=red](2,0)(3,1.5)
+\BS{}end\AC{pspicture*} 
+
+
+\emph{Utilisation}  :  \BS{DFR} \DFR

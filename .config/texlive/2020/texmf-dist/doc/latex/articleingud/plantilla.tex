@@ -1,0 +1,321 @@
+%%
+%% This is file `plantilla.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% articleingud.dtx  (with options: `tmpls')
+%% 
+%% -------------------------------------------------------------------
+%%                           LICENCIA
+%% -------------------------------------------------------------------
+%% 
+%% Este es un archivo generado.
+%% 
+%% Derechos de autor (C) 2012-2015 por Omar Salazar
+%% osalazarm@correo.udistrital.edu.co
+%% Laboratorio de Automatica e Inteligencia Computacional (LAMIC)
+%% Facultad de Ingenieria
+%% Universidad Distrital Francisco Jose de Caldas
+%% Bogota, Colombia.
+%% http://www.udistrital.edu.co/
+%% 
+%% Este archivo puede ser redistribuido y/o modificado
+%% bajo las condiciones de la Licencia Publica del Proyecto LaTeX,
+%% version 1.2 o cualquier version superior (a su opcion).
+%% La ultima version de esta licencia se encuentra en
+%% http://www.latex-project.org/lppl.txt
+%% y la version 1.2 o superior es parte de todas las distribuciones
+%% de LaTeX version 1999/12/01 o superior.
+%% 
+%% Este trabajo tiene el estado LPPL de `mantenido'.
+%% 
+%% El responsable del mantenimiento de este trabajo es Omar Salazar.
+%% 
+%% Este trabajo consiste de los archivos fuente:
+%%  - articleingud.dtx (archivo LaTeX documentado)
+%%  - articleingud.ins (instalador)
+%% 
+\documentclass[letterpaper,12pt,twoside]{articleingud}
+%%----------------------------------------------------------
+%%                OPCIONES
+%%----------------------------------------------------------
+%% Use las siguientes opciones en
+%% \documentclass[<opciones>]{articleingud}
+%%
+%%  -- Tamaño de letra:    10pt (valor por defecto),
+%%                         11pt,
+%%                         12pt
+%%  -- Tipo de papel:      letterpaper (valor por defecto),
+%%                         a4paper,
+%%                         a5paper,
+%%                         b5paper,
+%%                         legalpaper,
+%%                         executivepaper
+%%  -- Orientación:        portrait (valor por defecto)
+%%                         landscape
+%%  -- Impresión:          oneside (valor por defecto),
+%%                         twoside
+%%  -- Calidad:            final (valor por defecto),
+%%                         draft
+%%  -- Columnas:           onecolumn (valor por defecto),
+%%                         twocolumn
+%%  -- Revisión por pares: peerreview
+%%  -- Numeración de ecuaciones (numeración por defecto a la derecha):
+%%                         leqno (numeración a la izquierda)
+%%  -- Justificación de ecuaciones (por defecto se centran):
+%%                         fleqn (justificadas a la izquierda)
+%%  -- Estilo de bibliografía (por defecto el estilo es cerrado):
+%%                         openbib
+%%----------------------------------------------------------
+%%           PREÁMBULO
+%%----------------------------------------------------------
+%%
+%%      Aquí puede cargar paquetes con \usepackage
+%%      y hacer (re)definiciones con
+%%      \newcommand, \renewcommand, \newenvironment,
+%%      \renewenvironment, etc.
+%%
+%%----------------- PAQUETES -------------------------------
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[tight,footnotesize]{subfigure}
+\usepackage{cite}
+%%----------------- (RE)DEFINICIONES------------------------
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\refname}{Referencias}
+\renewcommand{\appendixname}{Ap\'endices}
+%%----------------------------------------------------------
+%%           DOCUMENTO
+%%----------------------------------------------------------
+\begin{document}
+%%----------------------------------------------------------
+%%       INFORMACIÓN DEL ARTÍCULO
+%%----------------------------------------------------------
+\title
+  [Título corto del artículo]% (Opcional)
+  {Título principal del artículo}% (Obligatorio)
+  {Título secundario del artículo}% (Obligatorio)
+  {Tipo de artículo}% (Obligatorio) Artículo de Investigación/Revisión/Estudio de caso/Corto/Opinión
+\author
+  [Primer autor\and% <-- Separar cada autor con \and
+   Segundo autor\and
+   Tercer autor\and
+   Último autor]% (Opcional)
+  {Primer autor% <-- No borrar este símbolo porcentaje
+   \thanks%[E-mail de correspondencia: Autor-1@email.org]
+          {1}% <-- Usar la misma etiqueta ('a-z' o '0-9') para autores con igual afiliación
+          {Afiliación primer autor}\and
+   Segundo autor% <-- No borrar este símbolo porcentaje
+   \thanks%[E-mail de correspondencia: Autor-2@email.org]
+          {1}% <-- Etiqueta de afiliación
+          {Afiliación segundo autor}\and
+   Tercer autor% <-- No borrar este símbolo porcentaje
+   \thanks%[E-mail de correspondencia: Autor-3@email.org]
+          {2}% <-- Etiqueta de afiliación
+          {Afiliación tercer autor}\and
+   Último autor% <-- No borrar este símbolo porcentaje
+   \thanks[E-mail de correspondencia: Autor-n@email.org]
+          {3}% <-- Etiqueta de afiliación
+          {Afiliación último autor}}% (Requerido)
+\date
+  {Recibido: dd-mm-aaaa.
+   Modificado: dd-mm-aaaa.
+   Aceptado: dd-mm-aaaa}% (Requerido)
+\INGUDsetciteinfo
+  {\textcopyright{} Los autores;
+   concesionario: Revista INGENIER\'IA. ISSN 0121-750X, E-ISSN 2344-8393.
+   Citar este artículo como: Autor, F., Autor, J., Autor, S.:
+   El título del artículo. INGENIER\'IA, Vol. XX, Num. XX, 2015 pp:pp.
+   doi:10.14483/udistrital.jour.reving.20XX.X.aXX}% (Obligatorio)
+\INGUDsetvolume
+  {1}%<-- Volumen (sólo número)
+\INGUDsetnumber
+  {1}%<-- Número (sólo número)
+\INGUDsetinitialpage
+  {1}%<-- Página inicial del artículo (sólo número)
+\maketitle
+\endmaketitle
+%%----------------------------------------------------------
+%%                RESUMEN
+%%----------------------------------------------------------
+\renewcommand{\abstractname}{Resumen}
+\begin{abstract} % se recomienda no exceder 300 palabras
+%%-------------------------------------------
+\begin{INGUDstructured}{Contexto}
+Un párrafo de entre 2-3 frases,
+que describa brevemente las preguntas o problema
+que motivaron el estudio, los antecedentes o trabajos
+previos relacionados, y el enfoque propuesto
+(voz activa, tiempo presente).
+\end{INGUDstructured}
+%%-------------------------------------------
+\begin{INGUDstructured}{Método}
+Un párrafo de entre 3-4 frases,
+que describa los principios, protocolos, técnicas,
+herramientas y/o materiales (datos, imágenes,
+bases de datos, documentos, normas, entrevistas, etc.)
+utilizados para efectuar o implementar de manera
+confiable y rigurosa el enfoque propuesto.
+\end{INGUDstructured}
+%%-------------------------------------------
+\begin{INGUDstructured}{Resultados}
+Un párrafo de entre 3-4 frases, que describa
+los hallazgos o productos  resultado del método
+como fue aplicado.
+\end{INGUDstructured}
+%%-------------------------------------------
+\begin{INGUDstructured}{Conclusiones}
+Un párrafo de entre 2-3 frases, que enfatice
+hasta que punto los resultados contribuyen a
+resolver el problema o pregunta planteada en
+el contexto inicial, y que nuevas alternativas
+de trabajo futuro se desprende a partir
+de este. Este es el mensaje central que los
+autores desean comunicar.
+\end{INGUDstructured}
+%%-------------------------------------------
+\begin{INGUDstructured}{Palabras clave}
+término1, término2, término3.
+\end{INGUDstructured}
+%%-------------------------------------------
+\begin{INGUDstructured}{Agradecimientos}
+A otros participantes o patrocinadores
+del estudio, en caso de ser necesario.
+\end{INGUDstructured}
+%%-------------------------------------------
+\begin{INGUDstructured}{Idioma}
+(Español o inglés).
+\end{INGUDstructured}
+\end{abstract}
+%%----------------------------------------------------------
+%%                ABSTRACT
+%%----------------------------------------------------------
+\renewcommand{\abstractname}{Abstract}
+\begin{abstract} % no more than 300 words is recommended
+%%-------------------------------------------
+\begin{INGUDstructured}{Context}
+A paragraph roughly around 2-3 sentences long,
+describing briefly the problem or question that motivated
+the study, a background of previous or related work,
+and the proposed approach.
+\end{INGUDstructured}
+%%-------------------------------------------
+\begin{INGUDstructured}{Method}
+A paragraph roughly around 3-4 sentences long,
+describing the principles, protocols, techniques,
+tools and/or materials (including data, images,
+databases or primary sources such as inter-views,
+documents or regulations) used to conduct or implement
+reliably and rigorously the pro-posed approach.
+\end{INGUDstructured}
+%%-------------------------------------------
+\begin{INGUDstructured}{Results}
+A paragraph roughly around 3-4 sentences long,
+describing the findings or the outcomes obtained as a
+result of the method that was conducted.
+\end{INGUDstructured}
+%%-------------------------------------------
+\begin{INGUDstructured}{Conclusions}
+A paragraph roughly around 2-3
+sentences long, emphasising to what extent
+the results contribute to solve the problem
+or question stated in the context section,
+and what avenues for future research remain open.
+This is the take-home message to the readers.
+\end{INGUDstructured}
+%%-------------------------------------------
+\begin{INGUDstructured}{Keywords}
+keyword1, keyword2, keyword3.
+\end{INGUDstructured}
+%%-------------------------------------------
+\begin{INGUDstructured}{Acknowledgements}
+To other participants, funding agencies or
+sponsors (optional).
+\end{INGUDstructured}
+\end{abstract}
+%%----------------------------------------------------------
+%%                INTRODUCCIÓN
+%%----------------------------------------------------------
+\section{Introducción}
+Introducción de su artículo.
+%%
+%%   Agregue secciones adicionales cuando lo necesite
+%%   con los comandos \section, \subsection, \subsubsection,
+%%   \paragraph y \subparagraph. Puede hacer uso de los comandos
+%%   estándar de \LaTeX
+%%
+\section{última sección}
+Última sección del artículo.
+%%----------------------------------------------------------
+%%                CONCLUSIONES
+%%----------------------------------------------------------
+\section{Conclusiones}
+Las conclusiones de su artículo.
+%%----------------------------------------------------------
+%%                APÉNDICES
+%%----------------------------------------------------------
+\appendix
+\section{Primer apéndice}
+Texto del primer apéndice.
+\section{Segundo apéndice}
+Texto del segundo apéndice.
+%%
+%%   Agregue apéndices adicionales cuando los necesite.
+%%
+\section{Último apéndice}
+Texto del último apéndice.
+%%----------------------------------------------------------
+%%                RECONOCIMIENTOS
+%%----------------------------------------------------------
+\section*{Reconocimientos}% <-- Usar \section*
+Los reconocimientos de su artículo.
+%%----------------------------------------------------------
+%%                REFERENCIAS
+%%----------------------------------------------------------
+\bibliography{ref}%<-- Archivo de bibliografía (*.bib).
+                  % Bibliografía preparada por BibTeX.
+                  % Puede especificar más archivos de
+                  % bibliografía serapándolos por coma.
+                  % Aquí se supone que ref.bib
+                  % se encuentra en el mismo directorio
+                  % del archivo fuente
+\bibliographystyle{plain}%<-- Archivo de estilo (*.bst).
+%%----------------------------------------------------------
+%%                BIOGRAFÍAS
+%%----------------------------------------------------------
+\begin{biography}%
+%%[{\includegraphics[width=1in]{fotoautor}}]%<-- Fotografía
+                                            % Descomente si necesita
+                                            % una fotografía y
+                                            % especifique el archivo
+                                            % correspondiente
+{Nombre Primer Autor}% (Requerido)
+Biografía del primer autor.
+\end{biography}
+\begin{biography}%
+%%[{\includegraphics[width=1in]{fotoautor}}]%<-- Fotografía
+                                            % Descomente si necesita
+                                            % una fotografía y
+                                            % especifique el archivo
+                                            % correspondiente
+{Nombre Segundo Autor}% (Requerido)
+Biografía del segundo autor.
+\end{biography}
+%%
+%%   Introducir más biografías si se necesitan
+%%
+\begin{biography}%
+%%[{\includegraphics[width=1in]{fotoautor}}]%<-- Fotografía
+                                            % Descomente si necesita
+                                            % una fotografía y
+                                            % especifique el archivo
+                                            % correspondiente
+{Nombre último autor}% (Requerido)
+Biografía del último autor.
+\end{biography}
+\end{document}

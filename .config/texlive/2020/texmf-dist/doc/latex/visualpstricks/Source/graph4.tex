@@ -1,0 +1,414 @@
+%\SbSSCTTC{Coordonnées d'un point}{Coordonnées d'un point \cite{pst-plot}}{Coordinates of a point}{Coordinates of a point \cite{pst-plot}}
+\SbSSCT{Coordonnées d'un point}{Coordinates of a point}
+ 
+
+\begin{tabular}{|c|} \hline
+ \begin{psgraph}[axesstyle=frame,xticksize=-1.5 1.5 , yticksize=0 13,subticks=0,Dx=1 , dy=.5,Dy=.5] (0,0)(0,-1.5)(13,1.5){12cm}{4cm} 
+\psplot[algebraic,plotpoints=200]{0}{12.56}{ sin(x)}
+\psCoordinates[linecolor=red,linestyle=dashed,dotstyle=square,dotscale=2](*4 { sin(x)})
+\end{psgraph}
+%\pspicture(0,-1.1)(8,1.1)
+%\psset{xunit=.5cm}
+%\psplot[algebraic,plotpoints=200]{0}{12.56}{ sin(x)}
+%\psline{->}(15,0)
+%\psline{->}(0,-1.1)(0,1.1)
+%\psCoordinates[linecolor=red,linestyle=dashed,dotstyle=square,dotscale=2](*4 { sin(x)})
+%\endpspicture
+\\ \hline
+\BSS{psCoordinates}[linecolor=red,linestyle=dashed,dotstyle=square,dotscale=2](*4 \AC{sin(x)})  \BSI{psCoordinates}{pst-plot} \\ \hline
+\end{tabular} 
+
+%---------------------------------------------
+\SbSSCTTC{Tangente}{Tangente \cite{pstricks-add}}{Tangent}{Tangent \cite{pstricks-add}}
+\SbSSCT{Tangente}{Tangent}
+
+\SbSbSSCT{Tangente à une courbe d'après un fichier de données}{Tangent to a data file curve }
+\BSS{psTangentLine}[Options] (x1,y1)(x2,y2)(x3,y3)\AC{x}\AC{dx}
+\psset{llx=-.7cm,lly=-.5cm,urx=.5cm,ury=0.5cm,fillstyle=none}
+\BSI{psTangentLine}{pst-plot} 
+\begin{center}
+\begin{tabular}{|c|} \hline
+ \begin{psgraph}[axesstyle=frame,xticksize=0 4cm,yticksize=0 12cm,subticks=0,Dx=100,dy=.01,Dy=.2](0,0)(750,.12){12cm}{4cm} 
+\fileplot[linecolor=blue,linewidth=1pt]{mesdata.dat}
+\psTangentLine[linecolor=red,arrows=<->,arrowscale=2] (198,0.0824)(200,0.0811)(202,0.07962){200}{30}
+\psTangentLine[linecolor=magenta,arrows=->,arrowscale=2](118,0.0465)(120,0.0445)(122,0.0428){120}{30}
+\end{psgraph} 
+\\\hline
+\BSS{psTangentLine}[linecolor=magenta,{\red arrows=->}](118,0.0465)(120,0.0445)(122,0.0428)\AC{120}\AC{30}  \BSI{psTangentLine}{pstricks-add} \\
+\BS{}psTangentLine[linecolor=red,{\red arrows=<->}] (198,0.0824)(200,0.0811)(202,0.07962)\AC{200}\AC{30}
+
+ \\\hline
+\end{tabular}
+\end{center}
+
+
+\newpage
+\SbSbSSCTTC{Tangente à une fonction}{Tangente à une fonction \cite{pstricks-add}}{Tangent to a function curve}{Tangent to a function curve \cite{pstricks-add}}
+\psset{xunit=1cm,yunit=.8cm}
+
+
+
+\TFRGB{syntaxe}{syntax} : \BSS{psplotTangent} * [Options] \AC{x}\AC{dx}\AC{function}
+\BSI{psplotTangent}{pst-plot} 
+
+
+\begin{center}
+\begin{tabular}{|c|} \hline
+\TFRGB{Commande sans astérisque}{Command without asterisk}  \\ \hline
+ \begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=13	 , subticks=0, dx=1,Dx=1, dy=.5,Dy=.5](0,0)(0,-1.5)(13,1.5){10cm}{3cm } 
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psplotTangent[linecolor=red,arrows=<->,arrowscale=2,algebraic=true,linewidth=2pt]{\psPiH}{2}{sin(x)}
+\psplotTangent[linecolor=magenta,arrows=<-,arrowscale=2,algebraic=true,linewidth=2pt]{\psPi}{2}{sin(x)}
+\psplotTangent[linecolor=green,arrows=->,arrowscale=2,algebraic=true,linewidth=2pt]{\psPiTwo}{3}{sin(x)}
+ \end{psgraph*} 
+\\\hline
+\BS{psplotTangent}[linecolor=red,arrows=<->]\AC{\BS{}psPiH}\AC{2}\AC{sin(x)}  \footnotemark[1]  \BSI{psplotTangent}{pstricks-add} \\
+\BS{}psplotTangent[linecolor=magenta,arrows=<-]\AC{\BS{}psPi}\AC{2}\AC{sin(x)}\\
+\BS{}psplotTangent[linecolor=green,arrows=->]\AC{\BS{}psPiTwo}\AC{3}\AC{sin(x)}
+\\\hline
+\TFRGB{Commande avec astérisque}{Command with asterisk}  \\ \hline
+ \begin{psgraph*}[,xticksize= -1.5 1.5 ,yticksize=13	 , subticks=0, dx=1,Dx=1, dy=.5,Dy=.5](0,0)(0,-1.5)(13,1.5){10cm}{3cm } 
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psplotTangent*[linecolor=red,arrows=<->,arrowscale=2,algebraic=true,linewidth=2pt]{\psPiH}{2}{sin(x)}
+\psplotTangent*[linecolor=magenta,arrows=<-,arrowscale=2,algebraic=true,linewidth=2pt]{\psPi}{2}{sin(x)}
+\psplotTangent*[linecolor=green,arrows=->,arrowscale=2,algebraic=true,linewidth=2pt]{\psPiTwo}{3}{sin(x)}
+ \end{psgraph*} %\\
+ \\\hline
+ \BS{}psplotTangent*[linecolor=red,arrows=<->]\AC{\BS{}psPiH}\AC{2}\AC{sin(x)}\\
+ \BS{}psplotTangent*[linecolor=magenta,arrows=<-]\AC{\BS{}psPi}\AC{2}\AC{sin(x)}\\
+ \BS{}psplotTangent*[linecolor=green,arrows=->]\AC{\BS{}psPiTwo}\AC{3}\AC{sin(x)}
+ \\\hline
+
+\end{tabular}
+\end{center}
+%\footnotetext[1]{arrowscale=2,algebraic=true,linewidth=2pt} 
+
+%=====================================================================================
+
+\SbSbSSCTTC{Tangente à une courbe polaire}{Tangente à une courbe polaire \cite{pstricks-add}}{Tangent to a polar curve}{Tangent to a polar curve \cite{pstricks-add}}
+\psset{unit=0.4cm}
+
+
+
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+\TFRGB{Commande sans astérisque}{Command without asterisk}   & \TFRGB{Commande avec astérisque}{Command with asterisk} 
+ \\\hline
+ \begin{psgraph*}[,xticksize= -6 6,yticksize=-6 6 , subticks=0, dx=1,Dx=1, dy=1,Dy=1 ](0,0)(-6,-6)(6,6){4cm}{4cm }
+ \psplot[plotstyle=curve,polarplot=true,linecolor=blue,algebraic=true]{0}{\psPiTwo}{6*sin(2*x)}
+ \psplotTangent[polarplot,linecolor=red,arrows=->,arrowscale=2,algebraic=true,linewidth=2pt]{2}{3}{6*sin(2*x)}
+ \end{psgraph*}
+ &
+ \begin{psgraph*}[,xticksize= -6 6,yticksize=-6 6 , subticks=0, dx=1,Dx=1, dy=1,Dy=1 ](0,0)(-6,-6)(6,6){4cm}{4cm }
+ \psplot[plotstyle=curve,polarplot=true,linecolor=blue,algebraic=true]{0}{\psPiTwo}{6*sin(2*x)}
+ \psplotTangent*[polarplot,linecolor=red,arrows=->,arrowscale=2,algebraic=true,linewidth=2pt]{2}{3}{6*sin(2*x)}
+ \end{psgraph*}
+ \\\hline
+\multicolumn{2}{|c|}{\BS{}psplotTangent[polarplot,linecolor=red,arrows=->]\AC{2}\AC{3}\AC{6*sin(2*x)} \footnotemark[1]}
+ \\\hline
+\end{tabular}
+\end{center}
+
+\footnotetext[1]{arrowscale=2,algebraic=true,linewidth=2pt}
+%===========================================================
+
+\SbSbSSCTTC{Normale à une courbe}{Normale à une courbe \cite{pstricks-add}}{Normal of the tangent line}{Normal of the tangent line \cite{pstricks-add}}
+
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+\begin{psgraph*}[,xticksize=  0 4,yticksize=0 4 , subticks=0, dx=1,Dx=1, dy=1,Dy=1 ](0,0)(0,0)(4,4){4cm}{4cm }
+\pscurve[showpoints=true](1,1)(2,3)(3,2)
+\psTangentLine[linecolor=blue,arrows=<->,arrowscale=2,algebraic=true](1,1)(2,3)(3,2){2}{1}
+\psTangentLine[linecolor=red,arrows=->,arrowscale=2,Tnormal](1,1)(2,3)(3,2){2}{1}
+\end{psgraph*}
+&
+ \begin{psgraph*}[,xticksize= -2 1.5 ,yticksize=13	 , subticks=0, dx=1,Dx=1, dy=.5,Dy=.5](0,0)(0,-2)(13,1.5){7cm}{4cm } 
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psplotTangent[linecolor=blue,arrows=<->,arrowscale=2,algebraic=true]{5}{3}{sin(x)}
+\psplotTangent[linecolor=red,algebraic=true,Tnormal,arrows=->,arrowscale=2]{5}{2}{sin(x)}
+ \end{psgraph*} 
+ \\ \hline
+\BS{psTangentLine}[\RDD{Tnormal}](1,1)(2,3)(3,2)\AC{2}\AC{1}  \RDI{Tnormal}{pstricks-add} 
+&
+\BS{}psplotTangent[{\red Tnormal}]{5}\AC{2}\AC{sin(x)}
+ \\\hline
+\end{tabular}
+\end{center}
+
+
+
+%================================================================
+\SbSbSSCTTC{Dérivée}{Dérivée \cite{pstricks-add}}{Derivatives of a function}{Derivatives of a function \cite{pstricks-add}}
+\psset{unit=1.5cm}
+
+
+ 
+\begin{center}
+\begin{tabular}{|c|} \hline
+ \begin{psgraph*}[,xticksize= -1.5 1.5,yticksize=0 13 , subticks=0, dx=1,Dx=1, dy=.5,Dy=.5 ](0,0)(0,-1.5)(13,1.5){12cm}{3cm }
+ \psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{sin(.75*x)}
+  \psplot[algebraic,plotpoints=200,linecolor=red,linewidth=2pt]{0}{12.56}{Derive(1,sin(.75*x))}
+   \psplot[algebraic,plotpoints=200,linecolor=green,linewidth=2pt]{0}{12.56}{Derive(2,sin(.75*x))}
+ \end{psgraph*}
+%\pspicture(0,-1.1)(8,1.1)
+%\psset{xunit=.75cm}
+%\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{sin(.75*x)}
+% \psplot[algebraic,plotpoints=200,linecolor=red,linewidth=2pt]{0}{12.56}{Derive(1,sin(.75*x))}
+%  \psplot[algebraic,plotpoints=200,linecolor=green,linewidth=2pt]{0}{12.56}{Derive(2,sin(.75*x))}
+%\psline{->}(15,0)
+%\endpspicture
+
+ \\\hline
+%\BS{}psplot[algebraic,plotpoints=200,linecolor=blue]\AC{0}\AC{12.56}\AC{sin(.75*x)} \\
+\BS{}psplot[algebraic,plotpoints=200,linecolor=red]\AC{0}\AC{12.56}\AC{{\red \RDD{Derive}(\textbf{1},sin(.75*x))}}  \RDI{Derive}{pstricks-add}  \\
+\BS{}psplot[algebraic,plotpoints=200,linecolor=green]\AC{0}\AC{12.56}\AC{{\red Derive(\textbf{2},sin(.75*x))}}
+ \\\hline
+\end{tabular}
+\end{center}
+%====================================================
+\newpage
+\SbSbSSCTTC{Intégrale de Riemann}{Intégrale de Riemann \cite{pstricks-add}}{Riemann integral}{Riemann integral \cite{pstricks-add}}
+ 
+
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+\psset{xunit=.5cm}
+\pspicture(0,-1.1)(13.5,1.1)
+\psStep[algebraic,linecolor=magenta,StepType=upper,fillcolor=yellow,fillstyle=solid](0,12.56){24}{ sin(x)}
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psline{->}(13,0)
+\endpspicture
+&
+\psset{xunit=.5cm}
+\pspicture(0,-1.1)(13.5,1.1)
+\psStep[algebraic,linecolor=magenta,StepType=u,fillcolor=yellow,fillstyle=solid](0,12.56){24}{ sin(x)}
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psline{->}(13,0)
+\endpspicture
+ \\\hline
+ \BSS{psStep}[\RDD{StepType}=upper](0,12.56)\AC{24}\AC{sin(x)} \BSI{psStep}{pst-plot}
+  \BSI{psStep}{pstricks-add}   \RDI{StepType}{pstricks-add} 
+ &
+ \BSS{psStep}[\RDD{StepType}=u](0,12.56)\AC{24}\AC{sin(x)}
+ \\\hline
+
+\psset{xunit=.5cm}
+\pspicture(0,-1.1)(13.5,1.1)
+\psStep[algebraic,linecolor=magenta,StepType=lower,fillcolor=yellow,fillstyle=solid](0,12.56){24}{ sin(x)}
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psline{->}(15,0)
+\endpspicture
+&
+\psset{xunit=.5cm}
+\pspicture(0,-1.1)(13.5,1.1)
+\psStep[algebraic,linecolor=magenta,StepType=l,fillcolor=yellow,fillstyle=solid](0,12.56){24}{ sin(x)}
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psline{->}(13,0)
+\endpspicture
+ \\\hline
+ \BS{psStep}[\RDD{StepType}=lower](0,12.56)\AC{24}\AC{sin(x)}&
+ \BS{}psStep[\RDD{StepType}=l](0,12.56)\AC{24}\AC{sin(x)}
+ \\\hline
+\psset{xunit=.5cm}
+\pspicture(0,-1.1)(13.5,1.1)
+\psStep[algebraic,linecolor=magenta,StepType=Riemann,fillcolor=yellow,fillstyle=solid](0,12.56){24}{ sin(x)}
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psline{->}(15,0)
+\endpspicture
+&
+\psset{xunit=.5cm}
+\pspicture(0,-1.1)(13.5,1.1)
+\psStep[algebraic,linecolor=magenta,StepType=R,fillcolor=yellow,fillstyle=solid](0,12.56){24}{ sin(x)}
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psline{->}(13,0)
+\endpspicture
+ \\\hline
+ \BS{}psStep[\RDD{StepType}=Riemann](0,12.56)\AC{24}\AC{sin(x)}&
+ \BS{}psStep[\RDD{StepType}=R](0,12.56)\AC{24}\AC{sin(x)}
+ \\\hline
+
+\psset{xunit=.5cm}
+\pspicture(0,-1.1)(13.5,1.1)
+%\psaxes[Dx=100,Dy=.02]{->}(13,1.5)
+
+
+\psStep[algebraic,linecolor=magenta,StepType=infimum,fillcolor=yellow,fillstyle=solid](0,12.56){24}{ sin(x)}
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psline{->}(15,0)
+\endpspicture
+&
+\psset{xunit=.5cm}
+\pspicture(0,-1.1)(13.5,1.1)
+\psStep[algebraic,linecolor=magenta,StepType=i,fillcolor=yellow,fillstyle=solid](0,12.56){24}{ sin(x)}
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psline{->}(13,0)
+\endpspicture
+ \\\hline
+ \BS{}psStep[\RDD{StepType}=infimum](0,12.56)\AC{24}\AC{sin(x)}&
+ \BS{}psStep[\RDD{StepType}=i](0,12.56)\AC{24}\AC{sin(x)}
+ \\\hline
+ 
+\psset{xunit=.5cm}
+\pspicture(0,-1.1)(13.5,1.1)
+%\psaxes[Dx=100,Dy=.02]{->})(13,1.5)
+
+\psStep[algebraic,linecolor=magenta,StepType=supremum,fillcolor=yellow,fillstyle=solid](0,12.56){24}{ sin(x)}
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psline{->}(15,0)
+\endpspicture
+&
+\psset{xunit=.5cm}
+\pspicture(0,-1.1)(13.5,1.1)
+\psStep[algebraic,linecolor=magenta,StepType=s,fillcolor=yellow,fillstyle=solid](0,12.56){24}{ sin(x)}
+\psplot[algebraic,plotpoints=200,linecolor=blue]{0}{12.56}{ sin(x)}
+\psline{->}(13,0)
+\endpspicture
+ \\\hline
+ \BS{}psStep[\RDD{StepType}=supremum](0,12.56)\AC{24}\AC{sin(x)}&
+ \BS{}psStep[\RDD{StepType}=s](0,12.56)\AC{24}\AC{sin(x)}
+ \\\hline
+
+\end{tabular}
+\end{center}
+
+\SbSbSSCTTC{Méthode de Newton}{Méthode de Newton \cite{pst-plot}}{Newton method}{Newton method \cite{pst-plot}}
+
+\TFRGB{syntaxe}{syntax} : \BS{psNewton} [Options] \AC{$x0$} \AC{f(x)} \AC{\TFRGB{nombre d'itération}{number of iteration}}
+
+\bigskip
+\psset{yunit=.5cm}
+\begin{tabular}{|c|c|}
+\hline 
+\multicolumn{2}{|c|}{\BS{}psplot[algebraic,linestyle=dotted]\AC{0}\AC{12.56}\AC{0.5*x $\hat{}$  2-2} }\\ 
+\multicolumn{2}{|c|}{\BSS{psNewton}[linecolor=red]\AC{4}\AC{0.5*x $\hat{}$ 2-2}\AC{20}  \BSI{psNewton}{pst-plot} }\\ \hline 	 
+\begin{pspicture}*[algebraic,shift=*](-1,-2)(5,7)
+%\psframe(-1,-2)(5,7)
+\psaxes{->}(4.5,6)
+\psplot[algebraic,plotpoints=200,linestyle=dotted]{0}{12.56}{0.5*x^2-2}
+\psframe[linestyle=dashed,linecolor=green](1.9,-.2)(2.2,.5)
+\pnode(2.2,0.2){A}
+\psNewton[linecolor=red,linewidth=0.5pt]{4}{0.5*x^2-2}{20}
+\end{pspicture}
+&  
+\psset{unit=15cm,yunit=6cm}
+\begin{pspicture}*[algebraic,shift=*](1.9,-.25)(2.2,.55)
+\psaxes[Dx=.1]{->}(4,4)
+\psplot[algebraic,plotpoints=200,linestyle=dotted]{1.5}{2.5}{0.5*x^2-2}
+\psframe[linestyle=dashed,linecolor=green](1.9,-.2)(2.2,.5)
+\pnode(1.9,0.2){B}
+
+\psNewton[linecolor=red,linewidth=0.5pt,arrowscale=3]{2.1}{0.5*x^2-2}{2}
+\end{pspicture}
+\\ 
+\hline 
+\end{tabular} 
+%------------------------------
+\ncline[linestyle=dashed,linecolor=green]{->}{A}{B}
+\bigskip
+
+
+\begin{tabular}{|c|c|}
+\hline 
+\multicolumn{2}{|c|}{\BSS{psNewton}[linecolor=red,\RDD{plotstyle=xvalues}]\AC{4}\AC{0.5*x $\hat{}$ 2-2}\AC{1}  \BSI{psNewton}{pst-plot} }\\ \hline 	 
+\begin{pspicture}*[algebraic,shift=*](-1,-2)(5,7)
+%\psframe(-1,-2)(5,7)
+\psaxes{->}(4.5,6)
+\psplot[algebraic,plotpoints=200,linestyle=dotted]{0}{12.56}{0.5*x^2-2}
+\psframe[linestyle=dashed,linecolor=green](1.9,-.2)(2.2,.5)
+\psNewton[linecolor=red,linewidth=0.5pt]{4}{0.5*x^2-2}{20}
+\psNewton[linecolor=red,linewidth=0.5pt,plotstyle=xvalues]{4}{0.5*x^2-2}{1}
+\end{pspicture}
+&  
+\psset{unit=15cm,yunit=6cm}
+\begin{pspicture}*[algebraic,shift=*](1.9,-.25)(2.2,.55)
+\psaxes[Dx=.1]{->}(4,4)
+\psplot[algebraic,plotpoints=200,linestyle=dotted]{1.5}{2.5}{0.5*x^2-2}
+\psframe[linestyle=dashed,linecolor=green](1.9,-.2)(2.2,.5)
+\psNewton[linecolor=red,linewidth=0.5pt]{2.1}{0.5*x^2-2}{2}
+\psNewton[linecolor=red,linewidth=0.5pt,plotstyle=xvalues]{2.1}{0.5*x^2-2}{1}
+\end{pspicture}
+\\ \hline 
+\end{tabular} 
+%---------------------------------------------------------
+
+\bigskip
+\begin{tabular}{|c|c|}
+\hline 
+\multicolumn{2}{|c|}{\BSS{psNewton}[linecolor=red,{\red showDerivation=false}]\AC{4}\AC{0.5*x $\hat{}$ 2-2}\AC{1} }\\ \hline  
+\begin{pspicture}*[algebraic,shift=*](-.5,-3)(5,7)
+\psaxes{->}(10,10)
+\psplot[algebraic,plotpoints=200,linestyle=dotted]{0}{12.56}{0.5*x^2-2}
+\psNewton[linecolor=red,linewidth=0.5pt,showDerivation=false]{4}{0.5*x^2-2}{20}
+\end{pspicture}
+&  
+\begin{pspicture}*[algebraic,shift=*](-.5,-3)(5,7)
+\psaxes{->}(10,10)
+\psplot[algebraic,plotpoints=200,linestyle=dotted]{0}{12.56}{0.5*x^2-2}
+\psNewton[linecolor=red,linewidth=0.5pt,showDerivation=true]{4}{0.5*x^2-2}{20}
+\end{pspicture}
+\\ 
+\hline \RDD{showDerivation} {\red =false } &   {\red  showDerivation=true} (par défaut) \\ 
+\hline 
+\end{tabular} 
+
+\newpage
+\subsection[Macro psFixpoint]{Macro psFixpoint \cite{pst-plot}}
+\TFRGB{syntaxe}{syntax} : \BS{psFixpoint} [Options] \AC{$x_0$}\AC{f(x)}\AC{\TFRGB{nombre d'itération}{number of iteration}}
+
+\bigskip
+\begin{tabular}{|c|}
+\hline  
+\psset{unit=.5cm}
+
+\begin{pspicture}*[algebraic](-2.5,-2)(10,10.5)
+%\pframe(-2.5,-2)(10,10.5)
+\psaxes{->}(10,10)
+\psplot[algebraic,plotpoints=200,linestyle=dotted,linewidth=2pt]{1}{10}{0.2*x^2-2}
+\psline[linecolor=red,linestyle=dashed](10,10)
+\psFixpoint[linecolor=red]{6}{0.2*x^2-2}{3}
+\end{pspicture}
+\psset{unit=1cm}
+\\  \hline 
+\BS{}psplot[algebraic,linestyle=dotted]\AC{1}\AC{10}\AC{0.5*x $\hat{}$ 2-2} \\
+\BS{}psline[linecolor=red,linestyle=dashed](10,10) \\
+\BSS{psFixpoint}[linecolor=red]\AC{6}\AC{0.5*x $\hat{}$ 2-2}\AC{3} \BSI{psFixpoint}{pst-plot}  \\ \hline 
+\end{tabular} 
+
+\psset{unit=1cm,yunit=1cm}
+
+
+\newpage
+\subsection[Macro psVectorfield]{Macro psVectorfield \cite{pst-plot}}
+
+\label{vec}
+\begin{tabular}{|c|} \hline  
+Solutions de $ \dfrac{dy}{dx}=x+y+1 $
+\\ \hline  
+\BSS{psVectorfield}[algebraic](-2,-2)(2,2)\AC{ x+y+1} \BSI{psVectorfield}{pst-plot} 
+\\ \hline  
+\psset{unit=1.5cm}
+\begin{pspicture}(-2.5,-2.2)(2.5,2.2)
+\psVectorfield[algebraic](-2,-2)(2,2){ x+y+1}
+\end{pspicture}
+\\ \hline 
+\end{tabular} 
+
+
+
+
+\bigskip
+
+\begin{tabular}{|c|} \hline 
+\BSS{psVectorfield}[algebraic,\RDD{Dx}=0.3,\RDD{Dy}=0.3](-2,-2)(2,2)\AC{ x+y+1}  \RDI{Dx}{pst-plot}   \RDI{Dy}{pst-plot} 
+\\ \hline  
+\psset{unit=1.5cm}
+\begin{pspicture}(-2.2,-2.5)(2.2,2.5)
+%\psaxes[ticksize=0 4pt,axesstyle=frame,tickstyle=inner,subticks=20,
+%Ox=-1,Oy=-1](-1,-1)(1,1)
+%\psset{arrows=->,algebraic}
+\psVectorfield[algebraic,Dx=.3,Dy=.3](-2,-2)(2,2){ x+y+1}
+\end{pspicture}
+\\ \hline  
+\dft : Dx= 0.1 , Dy= 0.1
+\\ \hline 
+\end{tabular} 

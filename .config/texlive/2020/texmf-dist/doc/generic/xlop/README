@@ -1,0 +1,55 @@
+OVERVIEW
+--------
+Package xlop proposes two main features.  First, xlop prints
+operations (displayed or running), that is, user write only
+operands.  Second, xlop is able to deal with unlimited numbers, in
+fact, limitations are due to TeX memory.  This features include
+basic arithmetic operations, input/ouput, numeric variables, tests,
+and some high level operation (without operations which imply infinite
+processing such exponential, trigonometric functions, etc.).
+
+DISTRIBUTION
+------------
+License
+-------
+All the source files have the license type lppl
+
+Contents
+--------
+Distribution consists of files:
+  * README (the file you are reading)
+  * LISEZ.MOI (same in french)
+  * history.txt relates project history
+  * xlop-doc-fr.tex and xlop-doc-fr.pdf source and pdf of french user's
+    manual of xlop
+  * xlop-doc.tex and xlop-doc.pdf source and pdf of english user's
+    manual of xlop
+  * xlop.tex xlop code
+  * xlop.sty allow the use of xlop as LaTeX package
+
+Installation
+------------
+xlop can be used under TeX or LaTeX.  Thus, TDS recommendations are
+that the best place to put the file xlop.tex is
+  [texmf]/tex/generic/xlop/
+and that the best place to put xlop xlop.sty is
+  [texmf]/tex/latex/xlop/
+
+For documentation files (README, history.txt, and fr-user.*), best
+place should be [texmf]/doc/generic/xlop/.
+
+You have just to run texhash command (or mktexlsr, or ...) to refresh
+your texmf base and all should work fine.
+
+BUGS AND TROUBLES
+-----------------------------
+If you detect some bug, whatever its seriousness (that could be just
+spurious spaces), try to illustre this error with an example as short
+as possible.  Particularly, don't use unecessary package.  Sent your
+code with a short explanation at:
+
+Jean-Come.Charpentier@wanadoo.fr
+
+If you wish for some feature in a future version, ask to the author.
+To help my antispam soft, could you please write 'xlop' in the message
+subject?

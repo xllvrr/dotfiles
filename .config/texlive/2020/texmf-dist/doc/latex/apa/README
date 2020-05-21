@@ -1,0 +1,59 @@
+
+apa.cls LaTeX2e document class; version 1.3.4 of December, 2008
+
+apa.cls is a LaTeX2e class file that makes your document conform to
+the American Psychological Association (APA) Publication Manual (Fifth 
+Edition, 2001) specifications for manuscripts or to the APA journal 
+look found in journals like the Journal of Experimental Psychology. 
+In addition, it provides a regular LaTeX-like output with a few 
+enhancements and APA-motivated changes.
+
+This is a document *class* which uses (and modifies) other packages to
+achieve strictly defined formatting results and also uses the apacite
+package (sty & bst) for citations and references.  If you only want 
+APA-like citation for other kinds of documents use apacite.sty with 
+an appropriate class.  In particular, apa.cls is *NOT* appropriate for 
+your thesis; don't even consider using it for that purpose.
+
+In order to use this document class you need some packages that may
+not be present in your LaTeX distribution.  Please read apacls.txt
+carefully to understand what you need to install and what is possible
+with apa.cls, then read examples.txt carefully to understand how to
+use apa.cls (macros and instructions).  Check out apaexample.tex, a 
+minimal example file that produces actual manuscript-like output.
+
+apa.cls is not in any way connected to, endorsed by, or probably known 
+at all at the American Psychological Association.  APA does not even 
+accept manuscript submissions in LaTeX source.  The author of apa.cls
+has made every effort to achieve typesetting results conforming to 
+the APA manual, because he uses it for his manuscripts.  However, he 
+is not responsible if the editor does not approve of a manuscript 
+typeset with apa.cls, if your computer blows up while processing your 
+manuscript with apa.cls, or for anything else that may go wrong with
+apa.cls, or with anything else for that matter.
+
+Athanassios Protopapas
+protopap@ilsp.gr
+December 2008
+
+======================
+
+List of files in distribution:
+
+README           This file
+LICENCE          apa.cls terms of distribution and use
+apa.cls          The APA-style document class
+CHANGELOG.txt    A text file documenting apa.cls updates
+apacls.txt       Instructions for using apa.cls (plain text)
+apacls.html      Description of apa.cls and usage instructions (HTML)
+apaenum.txt      Instructions for using APA list environments
+examples.txt     Guide with examples of correct apa.cls macro usage
+apaexample.tex   Sample APA-style manuscript using apa.cls
+examplebib.bib   Sample bibliography file accompanying apaexample.tex
+APAendfloat.cfg  Configuration file to make endfloat aware of longtable
+                 and sideways table floating environments
+*.apa            Language-specific definitions of special APA-style 
+                 strings (section headings)
+
+Distribution maintainers: Please include *.apa and APAendfloat.cfg 
+configuration files with the apa.cls distribution under tex/latex/apa

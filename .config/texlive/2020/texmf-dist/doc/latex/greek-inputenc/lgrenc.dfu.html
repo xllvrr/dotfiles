@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="generator" content="Docutils 0.15b.dev: http://docutils.sourceforge.net/" />
+<title>lgrenc.dfu</title>
+<meta name="dcterms.rights" content="© 2010 Günter Milde" />
+<link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+<style type="text/css">
+
+/* Minimal style sheet for the HTML output of Docutils.                    */
+/*                                                                         */
+/* :Author: Günter Milde, based on html4css1.css by David Goodger          */
+/* :Id: $Id$               */
+/* :Copyright: © 2015 Günter Milde.                                        */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*                                                                         */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+
+/* This CSS2.1_ stylesheet defines rules for Docutils elements without    */
+/* HTML equivalent. It is required to make the document semantic visible. */
+/*                                                                        */
+/* .. _CSS2.1: http://www.w3.org/TR/CSS2                                  */
+/* .. _validates: http://jigsaw.w3.org/css-validator/validator$link       */
+
+/* alignment of text and inline objects inside block objects*/
+.align-left   { text-align: left; }
+.align-right  { text-align: right; }
+.align-center { clear: both; text-align: center; }
+.align-top    { vertical-align: top; }
+.align-middle { vertical-align: middle; }
+.align-bottom { vertical-align: bottom; }
+
+/* titles */
+h1.title, p.subtitle {
+  text-align: center;
+}
+p.admonition-title,
+p.topic-title,
+p.sidebar-title,
+p.rubric,
+p.system-message-title {
+  font-weight: bold;
+}
+h1 + p.subtitle,
+h1 + p.section-subtitle {
+  font-size: 1.6em;
+}
+h2 + p.section-subtitle { font-size: 1.28em; }
+p.subtitle,
+p.section-subtitle,
+p.sidebar-subtitle {
+  font-weight: bold;
+  margin-top: -0.5em;
+}
+p.sidebar-title,
+p.rubric {
+  font-size: larger;
+}
+p.rubric { color: maroon; }
+a.toc-backref {
+  color: black;
+  text-decoration: none; }
+
+/* Warnings, Errors */
+div.caution p.admonition-title,
+div.attention p.admonition-title,
+div.danger p.admonition-title,
+div.error p.admonition-title,
+div.warning p.admonition-title,
+div.system-messages h1,
+div.error,
+span.problematic,
+p.system-message-title {
+  color: red;
+}
+
+/* inline literals */
+span.docutils.literal {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+/* do not wraph at hyphens and similar: */
+.literal > span.pre { white-space: nowrap; }
+
+/* Lists */
+
+/* compact and simple lists: no margin between items */
+.simple  li, .compact li,
+.simple  ul, .compact ul,
+.simple  ol, .compact ol,
+.simple > li p, .compact > li p,
+dl.simple > dd, dl.compact > dd {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Table of Contents */
+div.topic.contents { margin: 0; }
+div.topic.contents ul {
+  list-style-type: none;
+  padding-left: 1.5em;
+}
+
+/* Enumerated Lists */
+ol.arabic     { list-style: decimal }
+ol.loweralpha { list-style: lower-alpha }
+ol.upperalpha { list-style: upper-alpha }
+ol.lowerroman { list-style: lower-roman }
+ol.upperroman { list-style: upper-roman }
+
+dt span.classifier { font-style: italic }
+dt span.classifier:before {
+  font-style: normal;
+  margin: 0.5em;
+  content: ":";
+}
+
+/* Field Lists and drivatives */
+/* bold field name, content starts on the same line */
+dl.field-list > dt,
+dl.option-list > dt,
+dl.docinfo > dt,
+dl.footnote > dt,
+dl.citation > dt {
+  font-weight: bold;
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.5em;
+}
+/* Offset for field content (corresponds to the --field-name-limit option) */
+dl.field-list > dd,
+dl.option-list > dd,
+dl.docinfo > dd {
+  margin-left:  9em; /* ca. 14 chars in the test examples */
+}
+/* start field-body on a new line after long field names */
+dl.field-list > dd > *:first-child,
+dl.option-list > dd > *:first-child
+{
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
+/* field names followed by a colon */
+dl.field-list > dt:after,
+dl.docinfo > dt:after {
+  content: ":";
+}
+
+/* Bibliographic Fields (docinfo) */
+pre.address { font: inherit; }
+dd.authors > p { margin: 0; }
+
+/* Option Lists */
+dl.option-list { margin-left: 40px; }
+dl.option-list > dt { font-weight: normal; }
+span.option { white-space: nowrap; }
+
+/* Footnotes and Citations  */
+dl.footnote.superscript > dd {margin-left: 1em; }
+dl.footnote.brackets > dd {margin-left: 2em; }
+dl > dt.label { font-weight: normal; }
+a.footnote-reference.brackets:before,
+dt.label > span.brackets:before { content: "["; }
+a.footnote-reference.brackets:after,
+dt.label > span.brackets:after { content: "]"; }
+a.footnote-reference.superscript,
+dl.footnote.superscript > dt.label {
+  vertical-align: super;
+  font-size: smaller;
+}
+dt.label > span.fn-backref { margin-left: 0.2em; }
+dt.label > span.fn-backref > a { font-style: italic; }
+
+/* Line Blocks */
+div.line-block { display: block; }
+div.line-block div.line-block {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 40px;
+}
+
+/* Figures, Images, and Tables */
+.figure.align-left,
+img.align-left,
+object.align-left,
+table.align-left {
+  margin-right: auto;
+}
+.figure.align-center,
+img.align-center,
+object.align-center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.figure.align-right,
+img.align-right,
+object.align-right,
+table.align-right {
+  margin-left: auto;
+}
+/* reset inner alignment in figures and tables */
+/* div.align-left, div.align-center, div.align-right, */
+table.align-left, table.align-center, table.align-right
+{ text-align: inherit }
+
+/* Admonitions and System Messages */
+div.admonition,
+div.system-message,
+div.sidebar{
+  margin: 40px;
+  border: medium outset;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+/* Sidebar */
+div.sidebar {
+  width: 30%;
+  max-width: 26em;
+  float: right;
+  clear: right;
+}
+
+/* Text Blocks */
+blockquote,
+div.topic,
+pre.literal-block,
+pre.doctest-block,
+pre.math,
+pre.code {
+  margin-left: 1.5em;
+  margin-right: 1.5em
+}
+pre.code .ln { color: gray; } /* line numbers */
+
+/* Tables */
+table { border-collapse: collapse; }
+td, th {
+  border-style: solid;
+  border-color: silver;
+  padding: 0 1ex;
+  border-width: thin;
+}
+td > p:first-child, th > p:first-child { margin-top: 0; }
+td > p, th > p { margin-bottom: 0; }
+
+table > caption {
+  text-align: left;
+  margin-bottom: 0.25em
+}
+
+table.borderless td, table.borderless th {
+  border: 0;
+  padding: 0;
+  padding-right: 0.5em /* separate table cells */
+}
+
+</style>
+<style type="text/css">
+
+/* CSS31_ style sheet for the output of Docutils HTML writers.             */
+/* Rules for easy reading and pre-defined style variants.		   */
+/*                                                                         */
+/* :Author: Günter Milde, based on html4css1.css by David Goodger          */
+/* :Id: $Id$               */
+/* :Copyright: © 2015 Günter Milde.                                        */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*    	     	      	     	 					   */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+/* .. _CSS3: http://www.w3.org/TR/CSS3		        		   */
+
+
+/* Document Structure */
+/* ****************** */
+
+/* "page layout" */
+body {
+  margin: 0;
+  background-color: #dbdbdb;
+}
+div.document {
+  line-height:1.3;
+  counter-reset: table;
+  /* counter-reset: figure; */
+  /* avoid long lines --> better reading */
+  /* OTOH: lines should not be too short because of missing hyphenation, */
+  max-width: 50em;
+  padding: 1px 2%; /* 1px on top avoids grey bar above title (mozilla) */
+  margin: auto;
+  background-color: white;
+}
+
+/* Sections */
+
+/* Transitions */
+
+hr.docutils {
+  width: 80%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  clear: both;
+}
+
+/* Paragraphs               */
+/* ==========               */
+
+/* vertical space (parskip) */
+p, ol, ul, dl,
+div.line-block,
+table{
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+h1, h2, h3, h4, h5, h6,
+dl > dd {
+  margin-bottom: 0.5em;
+}
+
+/* Lists                    */
+/* ==========               */
+
+/* Definition Lists         */
+
+dl > dd > p:first-child { margin-top: 0; }
+/* :last-child is not part of CSS 2.1 (introduced in CSS 3) */
+dl > dd > p:last-child  { margin-bottom: 0; }
+
+/* lists nested in definition lists */
+/* :only-child is not part of CSS 2.1 (introduced in CSS 3) */
+dd > ul:only-child, dd > ol:only-child { padding-left: 1em; }
+
+/* Description Lists */
+/* styled like in most dictionaries, encyclopedias etc. */
+dl.description > dt {
+  font-weight: bold;
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.5em;
+}
+
+/* Field Lists */
+
+/* example for custom field-name width */
+dl.field-list.narrow > dd {
+  margin-left: 5em;
+}
+/* run-in: start field-body on same line after long field names */
+dl.field-list.run-in > dd p {
+  display: block;
+}
+
+/* Bibliographic Fields */
+
+/* generally, bibliographic fields use special definition list dl.docinfo */
+/* but dedication and abstract are placed into "topic" divs */
+div.abstract p.topic-title {
+  text-align: center;
+}
+div.dedication {
+  margin: 2em 5em;
+  text-align: center;
+  font-style: italic;
+}
+div.dedication p.topic-title {
+  font-style: normal;
+}
+
+/* Citations */
+dl.citation dt.label {
+  font-weight: bold;
+}
+span.fn-backref {
+  font-weight: normal;
+}
+
+/* Text Blocks           */
+/* ============          */
+
+/* Literal Blocks           */
+
+/* Block Quotes             */
+
+blockquote > table,
+div.topic > table {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+blockquote p.attribution,
+div.topic p.attribution {
+  text-align: right;
+  margin-left: 20%;
+}
+
+/* Tables                   */
+/* ======                   */
+
+/* th { vertical-align: bottom; } */
+
+table tr { text-align: left; }
+
+/* "booktabs" style (no vertical lines) */
+table.booktabs {
+  border: 0;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.booktabs * {
+  border: 0;
+}
+table.booktabs th {
+  border-bottom: thin solid;
+}
+
+/* numbered tables (counter defined in div.document) */
+table.numbered > caption:before {
+  counter-increment: table;
+  content: "Table " counter(table) ": ";
+  font-weight: bold;
+}
+
+/* Explicit Markup Blocks   */
+/* ======================   */
+
+/* Footnotes and Citations  */
+/* -----------------------  */
+
+/* line on the left */
+dl.footnote {
+  padding-left: 1ex;
+  border-left: solid;
+  border-left-width: thin;
+}
+
+/* Directives               */
+/* ----------               */
+
+/* Body Elements            */
+/* ~~~~~~~~~~~~~            */
+
+/* Images and Figures */
+
+/* let content flow to the side of aligned images and figures */
+.figure.align-left,
+img.align-left,
+object.align-left {
+  display: block;
+  clear: left;
+  float: left;
+  margin-right: 1em
+}
+.figure.align-right,
+img.align-right,
+object.align-right {
+  display: block;
+  clear: right;
+  float: right;
+  margin-left: 1em
+}
+/* Stop floating sidebars, images and figures at section level 1,2,3 */
+h1, h2, h3 { clear: both; }
+
+/* Sidebar */
+
+/* Move into the margin. In a layout with fixed margins, */
+/* it can be moved into the margin completely.		 */
+div.sidebar {
+  width: 30%;
+  max-width: 26em;
+  margin-left: 1em;
+  margin-right: -5.5%;
+  background-color: #ffffee ;
+}
+
+/* Code                     */
+
+pre.code { padding: 0.7ex }
+pre.code, code { background-color: #eeeeee }
+pre.code .ln { color: gray; } /* line numbers */
+/* basic highlighting: for a complete scheme, see */
+/* http://docutils.sourceforge.net/sandbox/stylesheets/ */
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+/* Math                     */
+/* styled separately (see math.css for math-output=HTML) */
+
+/* Epigraph                 */
+/* Highlights               */
+/* Pull-Quote               */
+/* Compound Paragraph       */
+/* Container                */
+
+/* can be styled in a custom stylesheet */
+
+/* Document Header and Footer */
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller;
+}
+
+/* Inline Markup            */
+/* =============            */
+
+/* Emphasis                 */
+/*   em                     */
+/* Strong Emphasis          */
+/*   strong		    */
+/* Interpreted Text         */
+/*   span.interpreted  	    */
+/* Title Reference 	    */
+/*   cite		    */
+/* Inline Literals          */
+/* possible values: normal, nowrap, pre, pre-wrap, pre-line */
+/*   span.docutils.literal { white-space: pre-wrap; } */
+
+/* Hyperlink References     */
+a { text-decoration: none; }
+
+/* External Targets         */
+/*   span.target.external   */
+/* Internal Targets  	    */
+/*   span.target.internal   */
+/* Footnote References      */
+/*   a.footnote-reference   */
+/* Citation References      */
+/*   a.citation-reference   */
+
+</style>
+</head>
+<body>
+<div class="document" id="lgrenc-dfu">
+<h1 class="title">lgrenc.dfu</h1>
+<p class="subtitle" id="greek-unicode-support-with-inputenc">Greek Unicode support with inputenc</p>
+<dl class="docinfo">
+<dt class="copyright">Copyright</dt>
+<dd class="copyright">© 2010 Günter Milde</dd>
+<dt class="licence">Licence</dt>
+<dd class="licence"><p>This work may be distributed and/or modified under the
+conditions of the <a class="reference external" href="http://www.latex-project.org/lppl.txt">LaTeX Project Public License</a>, either
+version 1.3 of this license or any later version.</p>
+</dd>
+<dt class="identification">Identification</dt>
+<dd class="identification"><pre class="literal-block">\ProvidesFile{lgrenc.dfu}[2019/07/11 1.7 UTF-8 support for Greek]</pre>
+</dd>
+</dl>
+<p>Based on a <a class="reference external" href="http://www.eutypon.gr/eutypon/pdf/e2008-20/e20-a03.pdf">babel patch</a> by Werner Lemberg, with input from the <a class="reference external" href="http://www.ctan.org/pkg/ucs">ucs</a>
+package (<span class="docutils literal">ucsencs.def</span>) by Dominique Unruh and <span class="docutils literal">CB.enc</span> by
+Apostolos Syropoulos.</p>
+<dl>
+<dt>Changelog:</dt>
+<dd><table class="borderless">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 15%" />
+<col style="width: 79%" />
+</colgroup>
+<tbody>
+<tr><td><p>0.1</p></td>
+<td><p>2010-06-16</p></td>
+<td><p>initial version</p></td>
+</tr>
+<tr><td><p>0.2</p></td>
+<td><p>2012-06-27</p></td>
+<td><p>support for accented Greek characters with <a class="reference external" href="http://mirrors.ctan.org/macros/latex/contrib/lgrx/textalpha.sty.html">textalpha</a></p></td>
+</tr>
+<tr><td><p>0.3</p></td>
+<td><p>2013-05-03</p></td>
+<td><p>new accent macro names with lgrxenc.def 0.7</p></td>
+</tr>
+<tr><td><p>1.3</p></td>
+<td><p>2013-05-24</p></td>
+<td><p>moved to greek-inputenc.</p></td>
+</tr>
+<tr><td><p>1.4</p></td>
+<td><p>2013-07-16</p></td>
+<td><p>bugfix for GREEK SMALL LETTER RHO WITH PSILI/DASIA,</p></td>
+</tr>
+<tr><td><!--  -->
+</td>
+<td></td>
+<td><p>drop “greek” from macro names for ancient characters,</p></td>
+</tr>
+<tr><td><!--  -->
+</td>
+<td></td>
+<td><p><span class="docutils literal">\ypogegrammeni</span> and <span class="docutils literal">\prosgegrammeni</span> instead of <span class="docutils literal">|</span></p></td>
+</tr>
+<tr><td><p>1.4.1</p></td>
+<td><p>2013-07-18</p></td>
+<td><p>bugfix: wrong breathings psilioxia -&gt; dasiaoxia</p></td>
+</tr>
+<tr><td><p>1.5</p></td>
+<td><p>2014-09-14</p></td>
+<td><p>Use named accent macros for Greek accents</p></td>
+</tr>
+<tr><td><p>1.6</p></td>
+<td><p>2015-08-05</p></td>
+<td><p>Fix output of accented characters with “textalpha” if the
+current font encoding is not LGR (wrap in ensuregreek),</p></td>
+</tr>
+<tr><td><!--  -->
+</td>
+<td></td>
+<td><p>Map GREEK … SYMBOL characters.</p></td>
+</tr>
+<tr><td><p>1.7</p></td>
+<td><p>2019-07-11</p></td>
+<td><p>Remove some duplicate definitions (punctuation, Euro).</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<div class="section" id="usage">
+<h1>Usage</h1>
+<p>Requires comprehensive LGR font encoding definitions from <a class="reference external" href="http://www.ctan.org/pkg/greek-fontenc">greek-fontenc</a>:</p>
+<pre class="code latex literal-block"><code><span class="keyword">\usepackage</span><span class="name attribute">[LGR,T1]</span><span class="name builtin">{</span>fontenc<span class="name builtin">}</span> <span class="comment">% define LGR and T1 encodings
+</span><span class="keyword">\usepackage</span><span class="name attribute">[utf8]</span><span class="name builtin">{</span>inputenc<span class="name builtin">}</span>  <span class="comment">% standard UTF-8 input encoding</span></code></pre>
+<p>By default, text containing Greek Unicode characters must be marked as
+requiring a font encoding that supports Greek script, e.g. by setting the
+language to <span class="docutils literal">greek</span> or <span class="docutils literal">polutonikogreek</span>. This is a generic feature of
+<a class="reference external" href="http://www.ctan.org/pkg/inputenc">inputenc</a>’s <cite>utf8</cite> option (an equivalent restriction holds for the Cyrillic
+script).</p>
+<p>With the <a class="reference external" href="http://mirrors.ctan.org/macros/latex/contrib/lgrx/textalpha.sty.html">textalpha</a> or <a class="reference external" href="http://mirrors.ctan.org/macros/latex/contrib/lgrx/alphabeta.sty.html">alphabeta</a> packages of the <a class="reference external" href="http://www.ctan.org/pkg/greek-fontenc">greek-fontenc</a> package,
+Greek Unicode literals can be used without special markup also in non-Greek
+documents:</p>
+<pre class="code latex literal-block"><code><span class="keyword">\usepackage</span><span class="name attribute">[utf8]</span><span class="name builtin">{</span>inputenc<span class="name builtin">}</span>   <span class="comment">% standard UTF-8 input encoding
+</span><span class="keyword">\usepackage</span><span class="name attribute">[T1]</span><span class="name builtin">{</span>fontenc<span class="name builtin">}</span>      <span class="comment">% use T1 font encoding as default
+</span><span class="keyword">\usepackage</span><span class="name builtin">{</span>textalpha<span class="name builtin">}</span>        <span class="comment">% define LGR font encoding as Greek default</span></code></pre>
+<p>With the <span class="docutils literal"><span class="pre">normalize-symbols</span></span> option to <a class="reference external" href="http://mirrors.ctan.org/macros/latex/contrib/lgrx/textalpha.sty.html">textalpha</a> or <a class="reference external" href="http://mirrors.ctan.org/macros/latex/contrib/lgrx/alphabeta.sty.html">alphabeta</a>,
+GREEK … SYMBOL characters are mapped to the corresponding letters
+(requires <a class="reference external" href="http://www.ctan.org/pkg/greek-fontenc">greek-fontenc</a> &gt;= 0.13):</p>
+<pre class="code latex literal-block"><code><span class="keyword">\usepackage</span><span class="name attribute">[utf8]</span><span class="name builtin">{</span>inputenc<span class="name builtin">}</span>
+<span class="keyword">\usepackage</span><span class="name attribute">[T1]</span><span class="name builtin">{</span>fontenc<span class="name builtin">}</span>
+<span class="keyword">\usepackage</span><span class="name attribute">[normalize-symbols]</span><span class="name builtin">{</span>textalpha<span class="name builtin">}</span></code></pre>
+</div>
+<div class="section" id="character-declarations">
+<h1>Character Declarations</h1>
+<p>Some characters exist in other font encodings too. Care has been taken
+to ensure the definitions match with other <span class="docutils literal">*.dfu</span> and <span class="docutils literal">*enc.def</span>
+files.</p>
+<p>Wrap definition in <span class="docutils literal">\ensuregreek</span> if a Unicode character is mapped to two
+characters (letter+sub-iota) or with non-Greek accents to make sure these
+characters work in any font encoding if the <a class="reference external" href="http://mirrors.ctan.org/macros/latex/contrib/lgrx/textalpha.sty.html">textalpha</a> package is used.</p>
+<div class="section" id="latin-1-supplement-t1">
+<h2>Latin-1 Supplement (T1)</h2>
+<pre class="literal-block">\DeclareUnicodeCharacter{00A8}{\textasciidieresis}   % ¨
+\DeclareUnicodeCharacter{00AB}{\guillemotleft}       % «
+\DeclareUnicodeCharacter{00AF}{\textasciimacron}     % ¯
+\DeclareUnicodeCharacter{00B4}{\textasciiacute}      % ´
+\DeclareUnicodeCharacter{00B7}{\textperiodcentered}  % · = ano teleia
+\DeclareUnicodeCharacter{00BB}{\guillemotright}      % »</pre>
+</div>
+<div class="section" id="ipa-extensions-t3">
+<h2>IPA Extensions (T3)</h2>
+<pre class="literal-block">\DeclareUnicodeCharacter{0259}{\textschwa}           % ə</pre>
+</div>
+<div class="section" id="spacing-modifier-letters">
+<h2>Spacing Modifier Letters</h2>
+<pre class="literal-block">\DeclareUnicodeCharacter{02D8}{\textasciibreve}      % ˘</pre>
+</div>
+<div class="section" id="greek-and-coptic">
+<h2>Greek and Coptic</h2>
+<pre class="literal-block">% NR    Unicode Name                                        %   babel name, PU name
+% 0370  GREEK CAPITAL LETTER HETA                           % Ͱ
+% 0371  GREEK SMALL LETTER HETA                             % ͱ
+% 0372  GREEK CAPITAL LETTER ARCHAIC SAMPI                  % Ͳ
+% 0373  GREEK SMALL LETTER ARCHAIC SAMPI                    % Ͳ
+% TODO: replace PU names by ucs names in next version:
+\DeclareUnicodeCharacter{0374}{\textnumeralsigngreek}       % ʹ \anwtonos
+\DeclareUnicodeCharacter{0375}{\textnumeralsignlowergreek}  % ͵ \katwtonos
+% \DeclareUnicodeCharacter{0374}{\textdexiakeraia}          % ʹ \anwtonos, \textnumeralsigngreek
+% \DeclareUnicodeCharacter{0375}{\textaristerikeraia}       % ͵ \katwtonos, \textnumeralsignlowergreek
+% 0376  GREEK CAPITAL LETTER PAMPHYLIAN DIGAMMA             % Ͷ
+% 0377  GREEK SMALL LETTER PAMPHYLIAN DIGAMMA               % ͷ
+
+\DeclareUnicodeCharacter{037A}{\textcompwordmark\ypogegrammeni} % ͺ \textsubiota{\empty}
+% 037B  GREEK SMALL REVERSED LUNATE SIGMA SYMBOL            %
+% 037C  GREEK SMALL DOTTED LUNATE SIGMA SYMBOL              %
+% 037D  GREEK SMALL REVERSED DOTTED LUNATE SIGMA SYMBOL     %
+\DeclareUnicodeCharacter{037E}{\texterotimatiko}            % ; \textquestion
+
+\DeclareUnicodeCharacter{0384}{\acctonos{ }}                % ΄
+\DeclareUnicodeCharacter{0385}{\accdialytikatonos{ }}       % ΅ \textdialytikatonos
+\DeclareUnicodeCharacter{0386}{\ensuregreek{\acctonos\textAlpha}}         % Ά
+\DeclareUnicodeCharacter{0387}{\textanoteleia}              % · \anoteleia
+\DeclareUnicodeCharacter{0388}{\ensuregreek{\acctonos\textEpsilon}}       % Έ
+\DeclareUnicodeCharacter{0389}{\ensuregreek{\acctonos\textEta}}           % Ή
+\DeclareUnicodeCharacter{038A}{\ensuregreek{\acctonos\textIota}}          % Ί
+\DeclareUnicodeCharacter{038C}{\ensuregreek{\acctonos\textOmicron}}       % Ό
+\DeclareUnicodeCharacter{038E}{\ensuregreek{\acctonos\textUpsilon}}       % Ύ
+\DeclareUnicodeCharacter{038F}{\ensuregreek{\acctonos\textOmega}}         % Ώ
+\DeclareUnicodeCharacter{0390}{\ensuregreek{\accdialytikatonos\textiota}} % ΐ
+
+\DeclareUnicodeCharacter{0391}{\textAlpha}                  % Α
+\DeclareUnicodeCharacter{0392}{\textBeta}                   % Β
+\DeclareUnicodeCharacter{0393}{\textGamma}                  % Γ
+\DeclareUnicodeCharacter{0394}{\textDelta}                  % Δ
+\DeclareUnicodeCharacter{0395}{\textEpsilon}                % Ε
+\DeclareUnicodeCharacter{0396}{\textZeta}                   % Ζ
+\DeclareUnicodeCharacter{0397}{\textEta}                    % Η
+\DeclareUnicodeCharacter{0398}{\textTheta}                  % Θ
+\DeclareUnicodeCharacter{0399}{\textIota}                   % Ι
+\DeclareUnicodeCharacter{039A}{\textKappa}                  % Κ
+\DeclareUnicodeCharacter{039B}{\textLambda}                 % Λ
+\DeclareUnicodeCharacter{039C}{\textMu}                     % Μ
+\DeclareUnicodeCharacter{039D}{\textNu}                     % Ν
+\DeclareUnicodeCharacter{039E}{\textXi}                     % Ξ
+\DeclareUnicodeCharacter{039F}{\textOmicron}                % Ο
+\DeclareUnicodeCharacter{03A0}{\textPi}                     % Π
+\DeclareUnicodeCharacter{03A1}{\textRho}                    % Ρ
+\DeclareUnicodeCharacter{03A3}{\textSigma}                  % Σ
+\DeclareUnicodeCharacter{03A4}{\textTau}                    % Τ
+\DeclareUnicodeCharacter{03A5}{\textUpsilon}                % Υ
+\DeclareUnicodeCharacter{03A6}{\textPhi}                    % Φ
+\DeclareUnicodeCharacter{03A7}{\textChi}                    % Χ
+\DeclareUnicodeCharacter{03A8}{\textPsi}                    % Ψ
+\DeclareUnicodeCharacter{03A9}{\textOmega}                  % Ω
+
+\DeclareUnicodeCharacter{03AA}{\ensuregreek{\accdialytika\textIota}}      % Ϊ
+\DeclareUnicodeCharacter{03AB}{\ensuregreek{\accdialytika\textUpsilon}}   % Ϋ
+\DeclareUnicodeCharacter{03AC}{\ensuregreek{\acctonos\textalpha}}         % ά
+\DeclareUnicodeCharacter{03AD}{\ensuregreek{\acctonos\textepsilon}}       % έ
+\DeclareUnicodeCharacter{03AE}{\ensuregreek{\acctonos\texteta}}           % ή
+\DeclareUnicodeCharacter{03AF}{\ensuregreek{\acctonos\textiota}}          % ί
+\DeclareUnicodeCharacter{03B0}{\ensuregreek{\accdialytikatonos\textupsilon}} % ΰ
+
+\DeclareUnicodeCharacter{03B1}{\textalpha}                  % α
+\DeclareUnicodeCharacter{03B2}{\textbeta}                   % β
+\DeclareUnicodeCharacter{03B3}{\textgamma}                  % γ
+\DeclareUnicodeCharacter{03B4}{\textdelta}                  % δ
+\DeclareUnicodeCharacter{03B5}{\textepsilon}                % ε
+\DeclareUnicodeCharacter{03B6}{\textzeta}                   % ζ
+\DeclareUnicodeCharacter{03B7}{\texteta}                    % η
+\DeclareUnicodeCharacter{03B8}{\texttheta}                  % θ
+\DeclareUnicodeCharacter{03B9}{\textiota}                   % ι
+\DeclareUnicodeCharacter{03BA}{\textkappa}                  % κ
+\DeclareUnicodeCharacter{03BB}{\textlambda}                 % λ
+\DeclareUnicodeCharacter{03BC}{\textmu}                     % μ \textmugreek
+\DeclareUnicodeCharacter{03BD}{\textnu}                     % ν
+\DeclareUnicodeCharacter{03BE}{\textxi}                     % ξ
+\DeclareUnicodeCharacter{03BF}{\textomicron}                % ο
+\DeclareUnicodeCharacter{03C0}{\textpi}                     % π
+\DeclareUnicodeCharacter{03C1}{\textrho}                    % ρ
+\DeclareUnicodeCharacter{03C2}{\textvarsigma}               % ς
+\DeclareUnicodeCharacter{03C3}{\textsigma}                  % σ
+\DeclareUnicodeCharacter{03C4}{\texttau}                    % τ
+\DeclareUnicodeCharacter{03C5}{\textupsilon}                % υ
+\DeclareUnicodeCharacter{03C6}{\textphi}                    % φ
+\DeclareUnicodeCharacter{03C7}{\textchi}                    % χ
+\DeclareUnicodeCharacter{03C8}{\textpsi}                    % ψ
+\DeclareUnicodeCharacter{03C9}{\textomega}                  % ω
+
+\DeclareUnicodeCharacter{03CA}{\ensuregreek{\accdialytika\textiota}}    % ϊ
+\DeclareUnicodeCharacter{03CB}{\ensuregreek{\accdialytika\textupsilon}} % ϋ
+\DeclareUnicodeCharacter{03CC}{\ensuregreek{\acctonos\textomicron}}     % ό
+\DeclareUnicodeCharacter{03CD}{\ensuregreek{\acctonos\textupsilon}}     % ύ
+\DeclareUnicodeCharacter{03CE}{\ensuregreek{\acctonos\textomega}}       % ώ
+
+\DeclareUnicodeCharacter{03D0}{\textbetasymbol}        %   GREEK BETA SYMBOL
+\DeclareUnicodeCharacter{03D1}{\textthetasymbol}       % ϑ $\vartheta$ GREEK THETA SYMBOL
+% \DeclareUnicodeCharacter{03D2}{\}                    % ϒ GREEK UPSILON WITH HOOK SYMBOL
+\DeclareUnicodeCharacter{03D5}{\textphisymbol}         % ϕ $\phi$ GREEK PHI SYMBOL
+\DeclareUnicodeCharacter{03D6}{\textpisymbol}          % ϖ $\varpi$ GREEK PI SYMBOL
+\DeclareUnicodeCharacter{03D8}{\textQoppa}             % Ϙ
+\DeclareUnicodeCharacter{03D9}{\textqoppa}             % ϙ
+\DeclareUnicodeCharacter{03DA}{\textStigma}            % Ϛ \Stigma
+\DeclareUnicodeCharacter{03DB}{\textstigma}            % ϛ \stigma
+\DeclareUnicodeCharacter{03DC}{\textDigamma}           % Ϝ \Digamma
+\DeclareUnicodeCharacter{03DD}{\textdigamma}           % ϝ \ddigamma
+%03DE GREEK LETTER KOPPA                               % Ϟ \textKoppagreek
+\DeclareUnicodeCharacter{03DF}{\textkoppa}             % ϟ \koppa, \textqoppa [sic!]
+\DeclareUnicodeCharacter{03E0}{\textSampi}             % Ϡ \Sampi
+\DeclareUnicodeCharacter{03E1}{\textsampi}             % ϡ \sampi
+
+\DeclareUnicodeCharacter{03F0}{\textkappasymbol}       % ϰ GREEK KAPPA SYMBOL
+% 03F2  GREEK LUNATE SIGMA SYMBOL
+\DeclareUnicodeCharacter{03F1}{\textrhosymbol}         % ϱ $\varrho$ GREEK RHO SYMBOL
+\DeclareUnicodeCharacter{03F4}{\textThetasymbol}       % ϴ GREEK CAPITAL THETA SYMBOL
+\DeclareUnicodeCharacter{03F5}{\textepsilonsymbol}     % ϵ $\epsilon$ GREEK LUNATE EPSILON SYMBOL</pre>
+</div>
+<div class="section" id="greek-extended">
+<h2>Greek Extended</h2>
+<pre class="literal-block">\DeclareUnicodeCharacter{1F00}{\ensuregreek{\accpsili\textalpha}}            % ἀ
+\DeclareUnicodeCharacter{1F01}{\ensuregreek{\accdasia\textalpha}}            % ἁ
+\DeclareUnicodeCharacter{1F02}{\ensuregreek{\accpsilivaria\textalpha}}       % ἂ
+\DeclareUnicodeCharacter{1F03}{\ensuregreek{\accdasiavaria\textalpha}}       % ἃ
+\DeclareUnicodeCharacter{1F04}{\ensuregreek{\accpsilioxia\textalpha}}        % ἄ
+\DeclareUnicodeCharacter{1F05}{\ensuregreek{\accdasiaoxia\textalpha}}        % ἅ
+\DeclareUnicodeCharacter{1F06}{\ensuregreek{\accpsiliperispomeni\textalpha}} % ἆ
+\DeclareUnicodeCharacter{1F07}{\ensuregreek{\accdasiaperispomeni\textalpha}} % ἇ
+\DeclareUnicodeCharacter{1F08}{\ensuregreek{\accpsili\textAlpha}}            % Ἀ
+\DeclareUnicodeCharacter{1F09}{\ensuregreek{\accdasia\textAlpha}}            % Ἁ
+\DeclareUnicodeCharacter{1F0A}{\ensuregreek{\accpsilivaria\textAlpha}}       % Ἂ
+\DeclareUnicodeCharacter{1F0B}{\ensuregreek{\accdasiavaria\textAlpha}}       % Ἃ
+\DeclareUnicodeCharacter{1F0C}{\ensuregreek{\accpsilioxia\textAlpha}}        % Ἄ
+\DeclareUnicodeCharacter{1F0D}{\ensuregreek{\accdasiaoxia\textAlpha}}        % Ἅ
+\DeclareUnicodeCharacter{1F0E}{\ensuregreek{\accpsiliperispomeni\textAlpha}} % Ἆ
+\DeclareUnicodeCharacter{1F0F}{\ensuregreek{\accdasiaperispomeni\textAlpha}} % Ἇ
+
+\DeclareUnicodeCharacter{1F10}{\ensuregreek{\accpsili\textepsilon}}          % ἐ
+\DeclareUnicodeCharacter{1F11}{\ensuregreek{\accdasia\textepsilon}}          % ἑ
+\DeclareUnicodeCharacter{1F12}{\ensuregreek{\accpsilivaria\textepsilon}}     % ἒ
+\DeclareUnicodeCharacter{1F13}{\ensuregreek{\accdasiavaria\textepsilon}}     % ἓ
+\DeclareUnicodeCharacter{1F14}{\ensuregreek{\accpsilioxia\textepsilon}}      % ἔ
+\DeclareUnicodeCharacter{1F15}{\ensuregreek{\accdasiaoxia\textepsilon}}      % ἕ
+\DeclareUnicodeCharacter{1F18}{\ensuregreek{\accpsili\textEpsilon}}          % Ἐ
+\DeclareUnicodeCharacter{1F19}{\ensuregreek{\accdasia\textEpsilon}}          % Ἑ
+\DeclareUnicodeCharacter{1F1A}{\ensuregreek{\accpsilivaria\textEpsilon}}     % Ἒ
+\DeclareUnicodeCharacter{1F1B}{\ensuregreek{\accdasiavaria\textEpsilon}}     % Ἓ
+\DeclareUnicodeCharacter{1F1C}{\ensuregreek{\accpsilioxia\textEpsilon}}      % Ἔ
+\DeclareUnicodeCharacter{1F1D}{\ensuregreek{\accdasiaoxia\textEpsilon}}      % Ἕ
+
+\DeclareUnicodeCharacter{1F20}{\ensuregreek{\accpsili\texteta}}              % ἠ
+\DeclareUnicodeCharacter{1F21}{\ensuregreek{\accdasia\texteta}}              % ἡ
+\DeclareUnicodeCharacter{1F22}{\ensuregreek{\accpsilivaria\texteta}}         % ἢ
+\DeclareUnicodeCharacter{1F23}{\ensuregreek{\accdasiavaria\texteta}}         % ἣ
+\DeclareUnicodeCharacter{1F24}{\ensuregreek{\accpsilioxia\texteta}}          % ἤ
+\DeclareUnicodeCharacter{1F25}{\ensuregreek{\accdasiaoxia\texteta}}          % ἥ
+\DeclareUnicodeCharacter{1F26}{\ensuregreek{\accpsiliperispomeni\texteta}}   % ἦ
+\DeclareUnicodeCharacter{1F27}{\ensuregreek{\accdasiaperispomeni\texteta}}   % ἧ
+\DeclareUnicodeCharacter{1F28}{\ensuregreek{\accpsili\textEta}}              % Ἠ
+\DeclareUnicodeCharacter{1F29}{\ensuregreek{\accdasia\textEta}}              % Ἡ
+\DeclareUnicodeCharacter{1F2A}{\ensuregreek{\accpsilivaria\textEta}}         % Ἢ
+\DeclareUnicodeCharacter{1F2B}{\ensuregreek{\accdasiavaria\textEta}}         % Ἣ
+\DeclareUnicodeCharacter{1F2C}{\ensuregreek{\accpsilioxia\textEta}}          % Ἤ
+\DeclareUnicodeCharacter{1F2D}{\ensuregreek{\accdasiaoxia\textEta}}          % Ἥ
+\DeclareUnicodeCharacter{1F2E}{\ensuregreek{\accpsiliperispomeni\textEta}}   % Ἦ
+\DeclareUnicodeCharacter{1F2F}{\ensuregreek{\accdasiaperispomeni\textEta}}   % Ἧ
+
+\DeclareUnicodeCharacter{1F30}{\ensuregreek{\accpsili\textiota}}             % ἰ
+\DeclareUnicodeCharacter{1F31}{\ensuregreek{\accdasia\textiota}}             % ἱ
+\DeclareUnicodeCharacter{1F32}{\ensuregreek{\accpsilivaria\textiota}}        % ἲ
+\DeclareUnicodeCharacter{1F33}{\ensuregreek{\accdasiavaria\textiota}}        % ἳ
+\DeclareUnicodeCharacter{1F34}{\ensuregreek{\accpsilioxia\textiota}}         % ἴ
+\DeclareUnicodeCharacter{1F35}{\ensuregreek{\accdasiaoxia\textiota}}         % ἵ
+\DeclareUnicodeCharacter{1F36}{\ensuregreek{\accpsiliperispomeni\textiota}}  % ἶ
+\DeclareUnicodeCharacter{1F37}{\ensuregreek{\accdasiaperispomeni\textiota}}  % ἷ
+\DeclareUnicodeCharacter{1F38}{\ensuregreek{\accpsili\textIota}}             % Ἰ
+\DeclareUnicodeCharacter{1F39}{\ensuregreek{\accdasia\textIota}}             % Ἱ
+\DeclareUnicodeCharacter{1F3A}{\ensuregreek{\accpsilivaria\textIota}}        % Ἲ
+\DeclareUnicodeCharacter{1F3B}{\ensuregreek{\accdasiavaria\textIota}}        % Ἳ
+\DeclareUnicodeCharacter{1F3C}{\ensuregreek{\accpsilioxia\textIota}}         % Ἴ
+\DeclareUnicodeCharacter{1F3D}{\ensuregreek{\accdasiaoxia\textIota}}         % Ἵ
+\DeclareUnicodeCharacter{1F3E}{\ensuregreek{\accpsiliperispomeni\textIota}}  % Ἶ
+\DeclareUnicodeCharacter{1F3F}{\ensuregreek{\accdasiaperispomeni\textIota}}  % Ἷ
+
+\DeclareUnicodeCharacter{1F40}{\ensuregreek{\accpsili\textomicron}}          % ὀ
+\DeclareUnicodeCharacter{1F41}{\ensuregreek{\accdasia\textomicron}}          % ὁ
+\DeclareUnicodeCharacter{1F42}{\ensuregreek{\accpsilivaria\textomicron}}     % ὂ
+\DeclareUnicodeCharacter{1F43}{\ensuregreek{\accdasiavaria\textomicron}}     % ὃ
+\DeclareUnicodeCharacter{1F44}{\ensuregreek{\accpsilioxia\textomicron}}      % ὄ
+\DeclareUnicodeCharacter{1F45}{\ensuregreek{\accdasiaoxia\textomicron}}      % ὅ
+\DeclareUnicodeCharacter{1F48}{\ensuregreek{\accpsili\textOmicron}}          % Ὀ
+\DeclareUnicodeCharacter{1F49}{\ensuregreek{\accdasia\textOmicron}}          % Ὁ
+\DeclareUnicodeCharacter{1F4A}{\ensuregreek{\accpsilivaria\textOmicron}}     % Ὂ
+\DeclareUnicodeCharacter{1F4B}{\ensuregreek{\accdasiavaria\textOmicron}}     % Ὃ
+\DeclareUnicodeCharacter{1F4C}{\ensuregreek{\accpsilioxia\textOmicron}}      % Ὄ
+\DeclareUnicodeCharacter{1F4D}{\ensuregreek{\accdasiaoxia\textOmicron}}      % Ὅ
+
+\DeclareUnicodeCharacter{1F50}{\ensuregreek{\accpsili\textupsilon}}          % ὐ
+\DeclareUnicodeCharacter{1F51}{\ensuregreek{\accdasia\textupsilon}}          % ὑ
+\DeclareUnicodeCharacter{1F52}{\ensuregreek{\accpsilivaria\textupsilon}}     % ὒ
+\DeclareUnicodeCharacter{1F53}{\ensuregreek{\accdasiavaria\textupsilon}}     % ὓ
+\DeclareUnicodeCharacter{1F54}{\ensuregreek{\accpsilioxia\textupsilon}}      % ὔ
+\DeclareUnicodeCharacter{1F55}{\ensuregreek{\accdasiaoxia\textupsilon}}      % ὕ
+\DeclareUnicodeCharacter{1F56}{\ensuregreek{\accpsiliperispomeni\textupsilon}} % ὖ
+\DeclareUnicodeCharacter{1F57}{\ensuregreek{\accdasiaperispomeni\textupsilon}} % ὗ
+\DeclareUnicodeCharacter{1F59}{\ensuregreek{\accdasia\textUpsilon}}          % Ὑ
+\DeclareUnicodeCharacter{1F5B}{\ensuregreek{\accdasiavaria\textUpsilon}}     % Ὓ
+\DeclareUnicodeCharacter{1F5D}{\ensuregreek{\accdasiaoxia\textUpsilon}}      % Ὕ
+\DeclareUnicodeCharacter{1F5F}{\ensuregreek{\accdasiaperispomeni\textUpsilon}} % Ὗ
+
+\DeclareUnicodeCharacter{1F60}{\ensuregreek{\accpsili\textomega}}            % ὠ
+\DeclareUnicodeCharacter{1F61}{\ensuregreek{\accdasia\textomega}}            % ὡ
+\DeclareUnicodeCharacter{1F62}{\ensuregreek{\accpsilivaria\textomega}}       % ὢ
+\DeclareUnicodeCharacter{1F63}{\ensuregreek{\accdasiavaria\textomega}}       % ὣ
+\DeclareUnicodeCharacter{1F64}{\ensuregreek{\accpsilioxia\textomega}}        % ὤ
+\DeclareUnicodeCharacter{1F65}{\ensuregreek{\accdasiaoxia\textomega}}        % ὥ
+\DeclareUnicodeCharacter{1F66}{\ensuregreek{\accpsiliperispomeni\textomega}} % ὦ
+\DeclareUnicodeCharacter{1F67}{\ensuregreek{\accdasiaperispomeni\textomega}} % ὧ
+\DeclareUnicodeCharacter{1F68}{\ensuregreek{\accpsili\textOmega}}            % Ὠ
+\DeclareUnicodeCharacter{1F69}{\ensuregreek{\accdasia\textOmega}}            % Ὡ
+\DeclareUnicodeCharacter{1F6A}{\ensuregreek{\accpsilivaria\textOmega}}       % Ὢ
+\DeclareUnicodeCharacter{1F6B}{\ensuregreek{\accdasiavaria\textOmega}}       % Ὣ
+\DeclareUnicodeCharacter{1F6C}{\ensuregreek{\accpsilioxia\textOmega}}        % Ὤ
+\DeclareUnicodeCharacter{1F6D}{\ensuregreek{\accdasiaoxia\textOmega}}        % Ὥ
+\DeclareUnicodeCharacter{1F6E}{\ensuregreek{\accpsiliperispomeni\textOmega}} % Ὦ
+\DeclareUnicodeCharacter{1F6F}{\ensuregreek{\accdasiaperispomeni\textOmega}} % Ὧ
+
+\DeclareUnicodeCharacter{1F70}{\ensuregreek{\accvaria\textalpha}}            % ὰ
+\DeclareUnicodeCharacter{1F71}{\ensuregreek{\acctonos\textalpha}}            % ά
+\DeclareUnicodeCharacter{1F72}{\ensuregreek{\accvaria\textepsilon}}          % ὲ
+\DeclareUnicodeCharacter{1F73}{\ensuregreek{\acctonos\textepsilon}}          % έ
+\DeclareUnicodeCharacter{1F74}{\ensuregreek{\accvaria\texteta}}              % ὴ
+\DeclareUnicodeCharacter{1F75}{\ensuregreek{\acctonos\texteta}}              % ή
+\DeclareUnicodeCharacter{1F76}{\ensuregreek{\accvaria\textiota}}             % ὶ
+\DeclareUnicodeCharacter{1F77}{\ensuregreek{\acctonos\textiota}}             % ί
+\DeclareUnicodeCharacter{1F78}{\ensuregreek{\accvaria\textomicron}}          % ὸ
+\DeclareUnicodeCharacter{1F79}{\ensuregreek{\acctonos\textomicron}}          % ό
+\DeclareUnicodeCharacter{1F7A}{\ensuregreek{\accvaria\textupsilon}}          % ὺ
+\DeclareUnicodeCharacter{1F7B}{\ensuregreek{\acctonos\textupsilon}}          % ύ
+\DeclareUnicodeCharacter{1F7C}{\ensuregreek{\accvaria\textomega}}            % ὼ
+\DeclareUnicodeCharacter{1F7D}{\ensuregreek{\acctonos\textomega}}            % ώ
+
+\DeclareUnicodeCharacter{1F80}{\ensuregreek{\accpsili\textalpha\ypogegrammeni}}       % ᾀ
+\DeclareUnicodeCharacter{1F81}{\ensuregreek{\accdasia\textalpha\ypogegrammeni}}       % ᾁ
+\DeclareUnicodeCharacter{1F82}{\ensuregreek{\accpsilivaria\textalpha\ypogegrammeni}}  % ᾂ
+\DeclareUnicodeCharacter{1F83}{\ensuregreek{\accdasiavaria\textalpha\ypogegrammeni}}  % ᾃ
+\DeclareUnicodeCharacter{1F84}{\ensuregreek{\accpsilioxia\textalpha\ypogegrammeni}}   % ᾄ
+\DeclareUnicodeCharacter{1F85}{\ensuregreek{\accdasiaoxia\textalpha\ypogegrammeni}}   % ᾅ
+\DeclareUnicodeCharacter{1F86}{\ensuregreek{\accpsiliperispomeni\textalpha\ypogegrammeni}} % ᾆ
+\DeclareUnicodeCharacter{1F87}{\ensuregreek{\accdasiaperispomeni\textalpha\ypogegrammeni}} % ᾇ
+\DeclareUnicodeCharacter{1F88}{\ensuregreek{\accpsili\textAlpha\prosgegrammeni}}      % ᾈ
+\DeclareUnicodeCharacter{1F89}{\ensuregreek{\accdasia\textAlpha\prosgegrammeni}}      % ᾉ
+\DeclareUnicodeCharacter{1F8A}{\ensuregreek{\accpsilivaria\textAlpha\prosgegrammeni}} % ᾊ
+\DeclareUnicodeCharacter{1F8B}{\ensuregreek{\accdasiavaria\textAlpha\prosgegrammeni}} % ᾋ
+\DeclareUnicodeCharacter{1F8C}{\ensuregreek{\accpsilioxia\textAlpha\prosgegrammeni}}  % ᾌ
+\DeclareUnicodeCharacter{1F8D}{\ensuregreek{\accdasiaoxia\textAlpha\prosgegrammeni}}  % ᾍ
+\DeclareUnicodeCharacter{1F8E}{\ensuregreek{\accpsiliperispomeni\textAlpha\prosgegrammeni}} % ᾎ
+\DeclareUnicodeCharacter{1F8F}{\ensuregreek{\accdasiaperispomeni\textAlpha\prosgegrammeni}} % ᾏ
+
+\DeclareUnicodeCharacter{1F90}{\ensuregreek{\accpsili\texteta\ypogegrammeni}}         % ᾐ
+\DeclareUnicodeCharacter{1F91}{\ensuregreek{\accdasia\texteta\ypogegrammeni}}         % ᾑ
+\DeclareUnicodeCharacter{1F92}{\ensuregreek{\accpsilivaria\texteta\ypogegrammeni}}    % ᾒ
+\DeclareUnicodeCharacter{1F93}{\ensuregreek{\accdasiavaria\texteta\ypogegrammeni}}    % ᾓ
+\DeclareUnicodeCharacter{1F94}{\ensuregreek{\accpsilioxia\texteta\ypogegrammeni}}     % ᾔ
+\DeclareUnicodeCharacter{1F95}{\ensuregreek{\accdasiaoxia\texteta\ypogegrammeni}}     % ᾕ
+\DeclareUnicodeCharacter{1F96}{\ensuregreek{\accpsiliperispomeni\texteta\ypogegrammeni}} % ᾖ
+\DeclareUnicodeCharacter{1F97}{\ensuregreek{\accdasiaperispomeni\texteta\ypogegrammeni}} % ᾗ
+\DeclareUnicodeCharacter{1F98}{\ensuregreek{\accpsili\textEta\prosgegrammeni}}        % ᾘ
+\DeclareUnicodeCharacter{1F99}{\ensuregreek{\accdasia\textEta\prosgegrammeni}}        % ᾙ
+\DeclareUnicodeCharacter{1F9A}{\ensuregreek{\accpsilivaria\textEta\prosgegrammeni}}   % ᾚ
+\DeclareUnicodeCharacter{1F9B}{\ensuregreek{\accdasiavaria\textEta\prosgegrammeni}}   % ᾛ
+\DeclareUnicodeCharacter{1F9C}{\ensuregreek{\accpsilioxia\textEta\prosgegrammeni}}    % ᾜ
+\DeclareUnicodeCharacter{1F9D}{\ensuregreek{\accdasiaoxia\textEta\prosgegrammeni}}    % ᾝ
+\DeclareUnicodeCharacter{1F9E}{\ensuregreek{\accpsiliperispomeni\textEta\prosgegrammeni}} % ᾞ
+\DeclareUnicodeCharacter{1F9F}{\ensuregreek{\accdasiaperispomeni\textEta\prosgegrammeni}} % ᾟ
+
+\DeclareUnicodeCharacter{1FA0}{\ensuregreek{\accpsili\textomega\ypogegrammeni}}       % ᾠ
+\DeclareUnicodeCharacter{1FA1}{\ensuregreek{\accdasia\textomega\ypogegrammeni}}       % ᾡ
+\DeclareUnicodeCharacter{1FA2}{\ensuregreek{\accpsilivaria\textomega\ypogegrammeni}}  % ᾢ
+\DeclareUnicodeCharacter{1FA3}{\ensuregreek{\accdasiavaria\textomega\ypogegrammeni}}  % ᾣ
+\DeclareUnicodeCharacter{1FA4}{\ensuregreek{\accpsilioxia\textomega\ypogegrammeni}}   % ᾤ
+\DeclareUnicodeCharacter{1FA5}{\ensuregreek{\accdasiaoxia\textomega\ypogegrammeni}}   % ᾥ
+\DeclareUnicodeCharacter{1FA6}{\ensuregreek{\accpsiliperispomeni\textomega\ypogegrammeni}} % ᾦ
+\DeclareUnicodeCharacter{1FA7}{\ensuregreek{\accdasiaperispomeni\textomega\ypogegrammeni}} % ᾧ
+\DeclareUnicodeCharacter{1FA8}{\ensuregreek{\accpsili\textOmega\prosgegrammeni}}      % ᾨ
+\DeclareUnicodeCharacter{1FA9}{\ensuregreek{\accdasia\textOmega\prosgegrammeni}}      % ᾩ
+\DeclareUnicodeCharacter{1FAA}{\ensuregreek{\accpsilivaria\textOmega\prosgegrammeni}} % ᾪ
+\DeclareUnicodeCharacter{1FAB}{\ensuregreek{\accdasiavaria\textOmega\prosgegrammeni}} % ᾫ
+\DeclareUnicodeCharacter{1FAC}{\ensuregreek{\accpsilioxia\textOmega\prosgegrammeni}}  % ᾬ
+\DeclareUnicodeCharacter{1FAD}{\ensuregreek{\accdasiaoxia\textOmega\prosgegrammeni}}  % ᾭ
+\DeclareUnicodeCharacter{1FAE}{\ensuregreek{\accpsiliperispomeni\textOmega\prosgegrammeni}} % ᾮ
+\DeclareUnicodeCharacter{1FAF}{\ensuregreek{\accdasiaperispomeni\textOmega\prosgegrammeni}} % ᾯ
+
+\DeclareUnicodeCharacter{1FB0}{\ensuregreek{\u\textalpha}}                            % ᾰ
+\DeclareUnicodeCharacter{1FB1}{\ensuregreek{\&#64;tabacckludge=\textalpha}}               % ᾱ
+\DeclareUnicodeCharacter{1FB2}{\ensuregreek{\accvaria\textalpha\ypogegrammeni}}       % ᾲ
+\DeclareUnicodeCharacter{1FB3}{\ensuregreek{\textalpha\ypogegrammeni}}                % ᾳ
+\DeclareUnicodeCharacter{1FB4}{\ensuregreek{\acctonos\textalpha\ypogegrammeni}}       % ᾴ
+\DeclareUnicodeCharacter{1FB6}{\ensuregreek{\accperispomeni\textalpha}}               % ᾶ
+\DeclareUnicodeCharacter{1FB7}{\ensuregreek{\accperispomeni\textalpha\ypogegrammeni}} % ᾷ
+\DeclareUnicodeCharacter{1FB8}{\ensuregreek{\u\textAlpha}}                            % Ᾰ
+\DeclareUnicodeCharacter{1FB9}{\ensuregreek{\&#64;tabacckludge=\textAlpha}}               % Ᾱ
+\DeclareUnicodeCharacter{1FBA}{\ensuregreek{\accvaria\textAlpha}}                     % Ὰ
+\DeclareUnicodeCharacter{1FBB}{\ensuregreek{\acctonos\textAlpha}}                     % Ά
+\DeclareUnicodeCharacter{1FBC}{\ensuregreek{\textAlpha\prosgegrammeni}}               % ᾼ
+\DeclareUnicodeCharacter{1FBD}{\accpsili{ }}                                          % ᾽
+\DeclareUnicodeCharacter{1FBE}{\textcompwordmark\prosgegrammeni}                      % ι
+\DeclareUnicodeCharacter{1FBF}{\accpsili{ }}                                          % ᾿
+
+\DeclareUnicodeCharacter{1FC0}{\accperispomeni{ }}                                    % ῀
+\DeclareUnicodeCharacter{1FC1}{\accdialytikaperispomeni{ }}                           % ῁
+\DeclareUnicodeCharacter{1FC2}{\ensuregreek{\accvaria\texteta\ypogegrammeni}}         % ῂ
+\DeclareUnicodeCharacter{1FC3}{\ensuregreek{\texteta\ypogegrammeni}}                  % ῃ
+\DeclareUnicodeCharacter{1FC4}{\ensuregreek{\acctonos\texteta\ypogegrammeni}}         % ῄ
+\DeclareUnicodeCharacter{1FC6}{\ensuregreek{\accperispomeni\texteta}}                 % ῆ
+\DeclareUnicodeCharacter{1FC7}{\ensuregreek{\accperispomeni\texteta\ypogegrammeni}}   % ῇ
+\DeclareUnicodeCharacter{1FC8}{\ensuregreek{\accvaria\textEpsilon}}                   % Ὲ
+\DeclareUnicodeCharacter{1FC9}{\ensuregreek{\acctonos\textEpsilon}}                   % Έ
+\DeclareUnicodeCharacter{1FCA}{\ensuregreek{\accvaria\textEta}}                       % Ὴ
+\DeclareUnicodeCharacter{1FCB}{\ensuregreek{\acctonos\textEta}}                       % Ή
+\DeclareUnicodeCharacter{1FCC}{\ensuregreek{\textEta\prosgegrammeni}}                 % ῌ
+\DeclareUnicodeCharacter{1FCD}{\accpsilivaria{ }}                                     % ῍
+\DeclareUnicodeCharacter{1FCE}{\accpsilioxia{ }}                                      % ῎
+\DeclareUnicodeCharacter{1FCF}{\accpsiliperispomeni{ }}                               % ῏
+
+\DeclareUnicodeCharacter{1FD0}{\ensuregreek{\u\textiota}}                             % ῐ
+\DeclareUnicodeCharacter{1FD1}{\ensuregreek{\&#64;tabacckludge=\textiota}}                % ῑ
+\DeclareUnicodeCharacter{1FD2}{\ensuregreek{\accdialytikavaria\textiota}}             % ῒ
+\DeclareUnicodeCharacter{1FD3}{\ensuregreek{\accdialytikatonos\textiota}}             % ΐ
+\DeclareUnicodeCharacter{1FD6}{\ensuregreek{\accperispomeni\textiota}}                % ῖ
+\DeclareUnicodeCharacter{1FD7}{\ensuregreek{\accdialytikaperispomeni\textiota}}       % ῗ
+\DeclareUnicodeCharacter{1FD8}{\ensuregreek{\u\textIota}}                             % Ῐ
+\DeclareUnicodeCharacter{1FD9}{\ensuregreek{\&#64;tabacckludge=\textIota}}                % Ῑ
+\DeclareUnicodeCharacter{1FDA}{\ensuregreek{\accvaria\textIota}}                      % Ὶ
+\DeclareUnicodeCharacter{1FDB}{\ensuregreek{\acctonos\textIota}}                      % Ί
+\DeclareUnicodeCharacter{1FDD}{\accdasiavaria{ }}                                     % ῝
+\DeclareUnicodeCharacter{1FDE}{\accdasiaoxia{ }}                                      % ῞
+\DeclareUnicodeCharacter{1FDF}{\accdasiaperispomeni{ }}                               % ῟
+
+\DeclareUnicodeCharacter{1FE0}{\ensuregreek{\u\textupsilon}}                          % ῠ
+\DeclareUnicodeCharacter{1FE1}{\ensuregreek{\&#64;tabacckludge=\textupsilon}}             % ῡ
+\DeclareUnicodeCharacter{1FE2}{\ensuregreek{\accdialytikavaria\textupsilon}}          % ῢ
+\DeclareUnicodeCharacter{1FE3}{\ensuregreek{\accdialytikatonos\textupsilon}}          % ΰ
+\DeclareUnicodeCharacter{1FE4}{\ensuregreek{\accpsili\textrho}}                       % ῤ
+\DeclareUnicodeCharacter{1FE5}{\ensuregreek{\accdasia\textrho}}                       % ῥ
+\DeclareUnicodeCharacter{1FE6}{\ensuregreek{\accperispomeni\textupsilon}}             % ῦ
+\DeclareUnicodeCharacter{1FE7}{\ensuregreek{\accdialytikaperispomeni\textupsilon}}    % ῧ
+\DeclareUnicodeCharacter{1FE8}{\ensuregreek{\u\textUpsilon}}                          % Ῠ
+\DeclareUnicodeCharacter{1FE9}{\ensuregreek{\&#64;tabacckludge=\textUpsilon}}             % Ῡ
+\DeclareUnicodeCharacter{1FEA}{\ensuregreek{\accvaria\textUpsilon}}                   % Ὺ
+\DeclareUnicodeCharacter{1FEB}{\ensuregreek{\acctonos\textUpsilon}}                   % Ύ
+\DeclareUnicodeCharacter{1FEC}{\ensuregreek{\accdasia\textRho}}                       % Ῥ
+\DeclareUnicodeCharacter{1FED}{\accdialytikavaria{ }}                                 % ῭
+\DeclareUnicodeCharacter{1FEE}{\accdialytikatonos{ }}                                 % ΅
+\DeclareUnicodeCharacter{1FEF}{\accvaria{ }}                                          % `
+
+\DeclareUnicodeCharacter{1FF2}{\ensuregreek{\accvaria\textomega\ypogegrammeni}}       % ῲ
+\DeclareUnicodeCharacter{1FF3}{\ensuregreek{\textomega\ypogegrammeni}}                % ῳ
+\DeclareUnicodeCharacter{1FF4}{\ensuregreek{\acctonos\textomega\ypogegrammeni}}       % ῴ
+\DeclareUnicodeCharacter{1FF6}{\ensuregreek{\accperispomeni\textomega}}               % ῶ
+\DeclareUnicodeCharacter{1FF7}{\ensuregreek{\accperispomeni\textomega\ypogegrammeni}} % ῷ
+\DeclareUnicodeCharacter{1FF8}{\ensuregreek{\accvaria\textOmicron}}                   % Ὸ
+\DeclareUnicodeCharacter{1FF9}{\ensuregreek{\acctonos\textOmicron}}                   % Ό
+\DeclareUnicodeCharacter{1FFA}{\ensuregreek{\accvaria\textOmega}}                     % Ὼ
+\DeclareUnicodeCharacter{1FFB}{\ensuregreek{\acctonos\textOmega}}                     % Ώ
+\DeclareUnicodeCharacter{1FFC}{\ensuregreek{\textOmega\prosgegrammeni}}               % ῼ
+\DeclareUnicodeCharacter{1FFD}{\acctonos{ }}                                          % ´
+\DeclareUnicodeCharacter{1FFE}{\accdasia{ }}                                          % ῾</pre>
+</div>
+<div class="section" id="general-punctuation">
+<h2>General Punctuation</h2>
+<pre class="literal-block">\DeclareUnicodeCharacter{2013}{\textendash}        % –
+\DeclareUnicodeCharacter{2014}{\textemdash}        % —
+\DeclareUnicodeCharacter{2018}{\textquoteleft}     % ‘
+\DeclareUnicodeCharacter{2019}{\textquoteright}    % ’
+\DeclareUnicodeCharacter{201A}{\quotesinglbase}    % ‚
+\DeclareUnicodeCharacter{2030}{\textperthousand}   % ‰
+\DeclareUnicodeCharacter{2039}{\guilsinglleft}     % ‹
+\DeclareUnicodeCharacter{203A}{\guilsinglright}    % ›</pre>
+</div>
+<div class="section" id="currency-symbols">
+<h2>Currency Symbols</h2>
+<pre class="literal-block">\DeclareUnicodeCharacter{20AC}{\texteuro}               % €</pre>
+</div>
+<div class="section" id="letterlike-symbols">
+<h2>Letterlike Symbols</h2>
+<pre class="literal-block">\DeclareUnicodeCharacter{2126}{\textohm}           % Ω OHM SIGN</pre>
+</div>
+<div class="section" id="ancient-greek-numbers">
+<h2>Ancient Greek Numbers</h2>
+<p>TODO: map also other number characters to corresponding Greek letters?
+See also the <a class="reference external" href="http://www.ctan.org/pkg/grnumalt">grnumalt</a> package:</p>
+<pre class="literal-block">\DeclareUnicodeCharacter{10144}{\textpentedeka}    % GREEK ACROPHONIC ATTIC FIFTY
+\DeclareUnicodeCharacter{10145}{\textpentehekaton} % GREEK ACROPHONIC ATTIC FIVE HUNDRED
+\DeclareUnicodeCharacter{10146}{\textpenteqilioi}  % GREEK ACROPHONIC ATTIC FIVE THOUSAND
+\DeclareUnicodeCharacter{10147}{\textpentemuria}   % GREEK ACROPHONIC ATTIC FIFTY THOUSAND</pre>
+</div>
+</div>
+</div>
+</body>
+</html>

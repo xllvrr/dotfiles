@@ -1,0 +1,39 @@
+name ucalgmthesis
+category Package
+revision 52527
+shortdesc LaTeX thesis class for University of Calgary Faculty of Graduate Studies
+longdesc ucalgmthesis.cls is a LaTeX class file that produces documents
+longdesc according to the thesis guidelines of the University of Calgary
+longdesc Faculty of Graduate Studies. It uses the memoir class, which
+longdesc provides very powerful and flexible mechanisms for book design
+longdesc and layout. All memoir commands for changing chapter and
+longdesc section headings, page layout, fancy foot- and endnotes,
+longdesc typesetting poems, etc., can be used. (Memoir is meant as a
+longdesc replacement for the standard LaTeX classes, so all standard
+longdesc LaTeX commands such as \chapter, \section, etc., still work.)
+longdesc Likewise, any of memoir's class options can be passed as
+longdesc options to ucalgmthesis, in particular 12pt to select 12 point
+longdesc type (11 point is the default).
+containersize 3312
+containerchecksum 79fe22cc61ca71e472b2ecd173230b518f97b66fd411430b57dc341394961999b0cb4dc7e122d6abc828e5ecc5e15f60e0b0ce785131cbf4942a49ddb8b5190d
+doccontainersize 123580
+doccontainerchecksum 458ad22537a6152ff782725328e98b68f1fe68ebcb2764ae1598bca8b659c8e67ffcb0c889890c7254dba84301ea3a066a5e92bac814027f62ce6910cb5f5b9b
+docfiles size=42
+ texmf-dist/doc/latex/ucalgmthesis/LICENSE
+ texmf-dist/doc/latex/ucalgmthesis/README.md details="Readme"
+ texmf-dist/doc/latex/ucalgmthesis/appendix.tex
+ texmf-dist/doc/latex/ucalgmthesis/backmatter.tex
+ texmf-dist/doc/latex/ucalgmthesis/chapter1.tex
+ texmf-dist/doc/latex/ucalgmthesis/chapter2.tex
+ texmf-dist/doc/latex/ucalgmthesis/frontmatter.tex
+ texmf-dist/doc/latex/ucalgmthesis/sample-thesis.bib
+ texmf-dist/doc/latex/ucalgmthesis/sample-thesis.pdf details="Example of use"
+ texmf-dist/doc/latex/ucalgmthesis/sample-thesis.tex
+ texmf-dist/doc/latex/ucalgmthesis/titlepage.tex
+runfiles size=2
+ texmf-dist/tex/latex/ucalgmthesis/ucalgmthesis.cls
+catalogue-contact-bugs https://github.com/rzach/ucalgmthesis/issues
+catalogue-contact-repository https://github.com/rzach/ucalgmthesis
+catalogue-ctan /macros/latex/contrib/ucalgmthesis
+catalogue-license mit
+catalogue-topics class dissertation

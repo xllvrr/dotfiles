@@ -1,0 +1,15 @@
+Turabian for LaTeX [v0.1.0 2015/02/16]
+Latest version is always available in the templates gallery at Overleaf.com or on the Comprehensive TeX Archive Network (http://ctan.org/tex-archive/macros/latex/contrib/turabian).
+
+This material is subject to the LATEX Project Public License.
+
+NOTICE: Consult the user guide for specific formatting guidance.
+
+This LaTeX Class is an ongoing project.  
+Please submit bugs and feature requests to: webmaster@campfirechess.com
+
+STRUCTURE
+|-- README.txt - This readme file.
+|-- turabian.cls - Turabian LaTeX Class
+|-- turabian.tex - Example research paper formatted using Liberty University standards.
+|-- userguide.txt - Turabian LaTeX Class user guide.

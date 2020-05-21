@@ -1,0 +1,61 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Définition des commandes  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Toutes les commandes sont obligatoirement sous la forme \rsQuelqueChose %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture seulement %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \rsNoDate Numéro et date de la facture
+
+\newcommand{\rsNoDate}[2]{
+\begin{center} 
+\textcolor{grisfonce}{{\Huge Facture \no #1}\\ {\large  du #2}}
+\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture seulement %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% les adresses expédition, facturation et livraison
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture seulement %%
+%% \rsEnteteTableauAdresses ouvre l'entête du tableau des adresses; 
+%% a n'utiliser qu'une seule fois dans le document principal.
+\newcommand{\rsEnteteTableauAdresses}{
+\noindent
+\begin{tabular}{p{0.3\textwidth}p{0.3\textwidth}p{0.3\textwidth}}
+\hline\\
+\textcolor{grisfonce} {\emph{Expédition}} & \textcolor{grisfonce}{\emph{Facturation}} & \textcolor{grisfonce}{\emph{Livraison}} \\
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture seulement %%
+%% \rsLigneTableauAdresses{}{}{} entrée d'une ligne d'adresse, 
+%% dans l'ordre expédition, facturation, livraison
+\newcommand{\rsLigneTableauAdresses}[3]{#1 & #2 & #3 \\}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture seulement %%
+%% \rsPiedTableauAdresses ferme le pied du tableau des adresses; 
+%% à n'utiliser qu'une seule fois dans le document principal.
+\newcommand{\rsPiedTableauAdresses}{
+\hline\\
+\end{tabular}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture seulement %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \compteBancaireEtDateLimiteDePaiement: le n° de compte en banque et la date de paiement
+
+\newcommand{\rsCompteBancaireEtDateLimiteDePaiement}[2]{
+\begin{flushright}
+A payer au compte bancaire \emph{#1} avant le #2.\\
+\end{flushright}
+}

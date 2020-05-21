@@ -1,0 +1,19 @@
+name context-degrade
+category ConTeXt
+revision 47085
+shortdesc Degrading JPEG images in ConTeXt
+depend context
+containersize 2340
+containerchecksum b2df5bbee492b7137180bfe7b0b826f4149b8231b78cb839ac9716f02b622e5b3a0eb5964e12625650a224ae463714bb7cafbecae6061a6e3120022d2f545d52
+doccontainersize 180360
+doccontainerchecksum 8f24fd70547ecfcbb163df2e3e4450525f0e56583b6984f61fb04559142bd838287e79c9b9d8cdef2c26a882688074b5010615e6d818a11f2f5812d88e31cd82
+docfiles size=49
+ texmf-dist/doc/context/third/degrade/VERSION
+ texmf-dist/doc/context/third/degrade/degrade-demo.pdf details="Example of use"
+ texmf-dist/doc/context/third/degrade/degrade-doc.pdf details="Package documentation"
+runfiles size=2
+ texmf-dist/tex/context/third/degrade/t-degrade.tex
+catalogue-also degrade
+catalogue-ctan /macros/context/contrib/context-degrade
+catalogue-license gpl
+catalogue-topics graphics-use

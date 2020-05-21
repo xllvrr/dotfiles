@@ -1,0 +1,30 @@
+name gtl
+category Package
+revision 49527
+shortdesc Manipulating generalized token lists
+longdesc The package provides tools for simple operations on lists of
+longdesc tokens which are not necessarily balanced. It is in particular
+longdesc used a lot in the unravel package, to go through tokens one at
+longdesc a time rather than having to work with entire braced groups at
+longdesc a time. The package requires up-to-date versions of the
+longdesc l3kernel, l3kpackages, and l3experimental bundles.
+containersize 4076
+containerchecksum cd1c08d092b11423d77a87a5fd7cf4f62290aebcfd6a99b12dca957e075d0b26cc3c482b45e5083916bee3bb6aff91940df375ca4b1dbcbd9fc37a31d8709aeb
+doccontainersize 550332
+doccontainerchecksum 2f41bb930e46a95d5c7acb07153e5d874724ac009b2741f6f2e62a9b56165b5e2cf06cf8c89cd9c1fc42a1a93babf6761d0a48b418ddc0a0f5d38e9c2f31f175
+docfiles size=136
+ texmf-dist/doc/generic/gtl/README.md details="Readme"
+ texmf-dist/doc/generic/gtl/gtl.pdf details="Package documentation"
+srccontainersize 12532
+srccontainerchecksum 5b5d004fbd3dafa14102774a3bf57867df1cf9463630a7912d49303aa9daa2c147733badeee3f628c0d7c2c9b8081131ac39f195f6dfe97d659a945702b7eae2
+srcfiles size=17
+ texmf-dist/source/generic/gtl/gtl.dtx
+ texmf-dist/source/generic/gtl/gtl.ins
+runfiles size=6
+ texmf-dist/tex/generic/gtl/gtl.sty
+catalogue-contact-bugs https://github.com/blefloch/latex-gtl/issues
+catalogue-contact-repository https://github.com/blefloch/latex-gtl
+catalogue-ctan /macros/generic/gtl
+catalogue-license lppl1.3c
+catalogue-topics macro-supp
+catalogue-version 0.5

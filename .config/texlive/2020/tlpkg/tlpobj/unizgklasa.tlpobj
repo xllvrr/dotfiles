@@ -1,0 +1,24 @@
+name unizgklasa
+category Package
+revision 51647
+shortdesc A LaTeX class for theses at the Faculty Of Graphic Arts in Zagreb
+longdesc This class is intended for generating graduate and final theses
+longdesc according to the instructions of the Faculty of Graphic Arts,
+longdesc University of Zagreb. It does not necessarily correspond to the
+longdesc requirements of each component of the University, but is
+longdesc designed as an idea for linking and uniformizing the look of
+longdesc all graduate papers. Anyone who likes it is welcome to use it.
+containersize 2028
+containerchecksum ac96ff7105cc0a6eefa7a797b325c6e3cd7a0e59d31a6ead1f715d37d326450fbb3d39d6bc5228df5861c5633ab8be027f7652426c10e0ab23a2c9ab68bcfd98
+doccontainersize 31784
+doccontainerchecksum 00e373b284ea78d596519d982efe8d4c8f59f8abbec67c314bf361b1744d35fe2846615b8cb7d38e1516503c6ed49f9ea38718c31a760f3d19ed4a7686e8bebf
+docfiles size=11
+ texmf-dist/doc/latex/unizgklasa/README.md details="Readme"
+ texmf-dist/doc/latex/unizgklasa/example.pdf details="Example of use (Croatian and English)" language="hr"
+ texmf-dist/doc/latex/unizgklasa/example.tex
+runfiles size=1
+ texmf-dist/tex/latex/unizgklasa/unizgklasa.cls
+catalogue-ctan /macros/latex/contrib/unizgklasa
+catalogue-license lppl1.3
+catalogue-topics class dissertation croatian
+catalogue-version 1.0

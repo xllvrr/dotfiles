@@ -1,0 +1,7 @@
+\begin{tikzpicture}[codeblocks]
+\wenndann
+	{\tikz\node[mathe,keinezacken]{\intbox{2} \dropdown{<} \intbox{5}};}
+	{\node[bild]{zeige Bild \\\bild[0.4]{\fullled}};}
+	{one}
+\node[aktion,draw,unter={one}{0}{0}] (two) {spreche \stringbox{Hallo}};
+\end{tikzpicture}

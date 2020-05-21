@@ -1,0 +1,320 @@
+% This is a demonstration file distributed with the
+% Lecturer package (see lecturer-doc.pdf).
+%
+% You can recompile the file with a basic TeX implementation,
+% using pdfTeX or LuaTeX with the plain format.
+% 
+% You can retrieve code between each slide to reuse it.
+%
+% Author: Paul Isambert.
+% Date: July 2010.
+
+\input lecturer
+
+
+\font\mainfont=cmss10
+
+\setparameter job:
+  author    = "F. Runobulax"
+  pdfauthor = "Paul Isambert"
+  title     = "The Poodle Lectures"
+  fullscreen = true
+
+\setparameter slide:
+  background = black
+  left       = 3cm
+  top        = 2cm
+  font       = \mainfont
+  everyslide = \everyslide
+
+\def\everyslide{%
+  \position{title}{\slidetitle}
+  \position{author}{\Author}
+  \step This is Step One.\par
+    \substep High-school diploma.\par
+    \substep Stuffed with a gym sock.\par
+  \step This is Step Two.\par
+    \substep College degree.\par
+    \substep Stuffed with absolutely nothing at all.\par
+  \step One more time for the world.
+  }
+
+\setparameter step:
+  vskip      = "2\baselineskip"
+  visible    = true
+  everyvstep = "\quitvmode\llap{\stepsymbol\kern1em}"
+
+\setstep\substep
+  vskip      = 0pt
+  everyvstep = "\quitvmode\llap{\substepsymbol\kern1em}"
+  left       = 1cm
+
+
+
+
+
+
+\newcolor{color1}{cmyk}{0 .27 0 .45}
+\newcolor{color2}{cmyk}{0 .27 .0 .25}
+\setarea{background1}
+  background = color1
+  frame      = "width=-11.5cm, corner=round"
+
+\setarea{background2}
+  vshift* hshift* = 1cm
+  background      = color1
+  frame           = "width=-10.5cm, color=color2, corner=round"
+
+\setarea{author title}
+ 
+\newcolor{symbol}{cmyk}{0 .06 .63 .02}
+\newsymbol\stepsymbol[.5em]{%
+  color symbol,
+  + 1.2 .5, + -1.2 .5, fill
+  }
+\newsymbol\substepsymbol[.5em]{%
+  color symbol,
+  move 0 .5, circle ur .4, circle rd .4,
+  circle dl .4, circle lu .4, fill
+  }
+  
+\slide[Duke of Prunes, areas*= author title]
+
+\endslide
+
+
+
+
+
+
+
+
+
+\newcolor{color1}{cmyk}{0 .51 .90 .22}
+\newcolor{color2}{cmyk}{0 .51 .90 .02}
+
+\setparameter slide:
+  background = white
+
+\setarea{background1}
+  hshift* vshift* = 1cm
+  background      = white
+  frame           = "width=.2cm, color=color1, corner=bevel"
+
+\setarea{background2}
+  hshift vshift hshift* vshift* = 1.2cm
+  background                    = white
+  frame                         = "width=-.15cm, color=color2, corner=miter"
+
+\setarea{author title}
+  background = white
+  height     = .5cm
+  font       = \it
+  vpos       = bottom
+  left       = .1cm  
+
+\setarea{author}
+  hshift* = 2cm
+  width   = 2.3cm
+  vshift* = 1.2cm
+  
+\setarea{title}
+  hshift  = 2cm
+  width   = 3.7cm
+  vshift  = .5cm
+
+\newcolor{symbol}{cmyk}{0 .31 1.0 .02}
+\newsymbol\stepsymbol[.5em]{%
+  color symbol,
+  + 1 0, + 0 1, + -1 0, fill
+  }
+\newsymbol\substepsymbol[.5em]{%
+  color symbol,
+  move 0 .5, circle ur .4, circle rd .4,
+  circle dl .4, circle lu .4, fill
+  }
+
+\slide[Son of Orange County]
+\endslide
+
+
+
+
+
+
+
+
+
+
+
+
+
+\setparameter slide:
+  background = black
+  foreground = white
+
+\setarea{background1 background2 title}
+  hshift hshift* = 0pt
+  height         = 1ex
+  background     = ""
+  foreground     = white
+  frame          = "color=grey .6, corner=miter, width=.1pt"
+
+\setarea{background1}
+  vshift = 1cm
+
+\setarea{background2}
+  vshift = 1cm+2ex
+
+\setarea{title}
+  vshift = 0cm
+  height = 1cm+4ex
+  bottom = 1ex
+  vpos   = bottom
+  font   = \bf
+  
+\newsymbol\stepsymbol[.3em]{%
+  pen 0.2,
+  move 0 .3, circle ur .4, circle rd .4,
+  circle dl .4, circle lu .4, fill,
+  move .8 .3, + 0 1.8,
+  }
+
+\newsymbol\substepsymbol[.3em]{%
+  pen 0.2,
+  move 0 .3, circle ur .4, circle rd .4,
+  circle dl .4, circle lu .4, fill,
+  move .8 .3, + 0 1.8, + 1.5 .5, stroke,
+  move 1.5 .5,
+  move + 0 .3, circle ur .4, circle rd .4,
+  circle dl .4, circle lu .4, fill,
+  move 1.5 .5,
+  move + .8 .3, + 0 1.8,
+  }
+
+\slide[The Black Page, areas*=author]
+\endslide
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newcolor{color1}{cmyk}{0 .1 .26 .07}
+\newcolor{color2}{cmyk}{0 .1 .46 .47}
+
+\setparameter slide:
+  background = color1
+  foreground = color2
+
+\setarea{background1}
+  vshift      = 10cm
+  height      = 1.5cm
+  hpos        = ff
+  vpos        = bottom
+  frame_width = 0pt 
+  left right  = -1cm
+
+\setarea{background2}
+  hshift hshift* = 2cm
+  vshift     = 2.5cm
+  vshift*    = 2cm
+  background = ""
+  frame      = "width=.05cm, color=color2"
+
+\setarea{title}
+  vshift     = .5cm
+  height     = .7cm
+  topskip    = .2cm
+  vpos       = center
+  hshift     = 2cm
+  width      = 4cm
+  hpos       = rr
+  foreground = color2
+  frame      = "width=1pt, color=color2"
+  font       = \tt
+
+\newsymbol\fresco[.5cm, top = .07cm, bottom = 0.7cm]{%
+  pen 0.07, color color2, 
+  move -.1 0, +.1 0, + 0 1, + .9 0, + 0 -.3, + -.6 0, + 0 -.7, +1.1 0
+  }
+\newsymbol\stepsymbol[.5em]{%
+  + 1 0, + -.5 1, fill
+  }
+\newsymbol\substepsymbol[.5em]{%
+  pen 0.1, move 0 .5,
+  circle ur .5, circle rd .5,
+  circle dl .5, circle lu .5, stroke,
+  move .3 .5,
+  circle ur .2, circle rd .2,
+  circle dl .2, circle lu .2
+  }
+
+\slide[Regyptian Strut, areas*=author]
+\position{background1}{\quitvmode\leaders\fresco\hfill\kern0pt}
+\endslide
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newshade{ocean}
+  model = rgb
+  from  = ".95 .9 1"
+  to    = ".35 .3 1"
+  
+\setparameter slide:
+  background = ocean
+  foreground = white
+
+\newsymbol\stepsymbol[.5em]{%
+  pen .1,
+  color red,
+  + 1 .7, + -1 .7, fill,
+  move .8 .7,
+  circle ur .6, + .3 0, circle rd .9,
+  circle dl .3, 
+  + -1 0, circle lu .6, fill,
+  color black,
+  move 1.8 .8, + .2 0,
+  }
+\newcolor{symbol}{cmyk}{0 .26 .43 0}
+\newsymbol\substepsymbol[.5em]{%
+  pen .1, color symbol,
+  .8 0, + -.1 .2, + .5 .3,
+  circle ul .8, circle ld .8,
+  + .5 -.3, close, stroke,
+  move .3 .2, + -.4 .7, stroke,
+  move .4 .2, + 0 .9, stroke,
+  move .5 .2, + .4 .7
+  }
+
+\setarea{title}
+  hshift*     = 1cm
+  hshift      = 7cm
+  font        = \it
+  hpos        = rf
+  foreground  = "cmyk 1 1 0 0"
+  frame_width = 0pt
+
+\slide[The Ocean is the Ultimate Solution, areas=title]
+\endslide
+
+\bye

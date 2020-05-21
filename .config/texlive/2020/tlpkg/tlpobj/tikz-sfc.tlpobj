@@ -1,0 +1,28 @@
+name tikz-sfc
+category Package
+revision 49424
+shortdesc Symbols collection for typesetting Sequential Function Chart (SFC) diagrams (PLC programs)
+longdesc This package contains a collection of symbols for typesetting
+longdesc Sequential Function Chart (SFC) diagrams in agreement with the
+longdesc international standard IEC-61131-3/2013. It includes steps
+longdesc (normal and initial), transitions, actions and actions
+longdesc qualifiers (with and without time duration). It extends the
+longdesc circuit library of TikZ and allows you to draw an SFC diagram
+longdesc in same way you would draw any other circuit.
+containersize 2824
+containerchecksum f31541b2333c5d8343143aad3a260e528523f78636cd772deae6e0eba81957ceeeb41491279dad621e4476bd9f5125ad994814cb2ab691e5039b54f9fffc7cc8
+doccontainersize 331232
+doccontainerchecksum caaa3c08f358b7f920322c553ff77e1f42414f16c67d2dd77bde8992e545366224cd7070e833268437332c080d6c65ab244678a3e9d5888fa97d21aafaa2d2b4
+docfiles size=154
+ texmf-dist/doc/latex/tikz-sfc/BeamerAnimation.pdf
+ texmf-dist/doc/latex/tikz-sfc/BeamerAnimation.tex
+ texmf-dist/doc/latex/tikz-sfc/README.txt details="Readme"
+ texmf-dist/doc/latex/tikz-sfc/tikz-sfc-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/tikz-sfc/tikz-sfc-doc.tex
+runfiles size=3
+ texmf-dist/tex/latex/tikz-sfc/tikzlibrarycircuits.plc.sfc.code.tex
+catalogue-also grafcet
+catalogue-ctan /graphics/pgf/contrib/tikz-sfc
+catalogue-license lppl1
+catalogue-topics pgf-tikz diagram diagram-circ diagram-flow engineering
+catalogue-version 1.0.1

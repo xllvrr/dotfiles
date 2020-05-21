@@ -1,0 +1,52 @@
+name dvipsconfig
+category Package
+revision 13293
+shortdesc Collection of dvips PostScript headers
+longdesc This is a collection of dvips PostScript header and dvips
+longdesc config files. They control certain features of the printer,
+longdesc including: A4, A3, usletter, simplex, duplex / long edge,
+longdesc duplex / short edge, screen frequencies of images, black/white
+longdesc invers, select transparency / paper for tektronix 550/560,
+longdesc manual feeder, envelope feeder, and tray 1, 2 and 3, and
+longdesc printing a PostScript grid underneath the page material--very
+longdesc useful for measuring and eliminating paper feed errors!
+containersize 11640
+containerchecksum ff7ad395329dd1cc5d21d5459916d0f10a8c03399d733048bce0a8aaa4e3a955f3ad3dbb228319d4bfb96e0694069002507bc294ed81fda5a48ad93f8cd82589
+runfiles size=39
+ texmf-dist/dvips/dvipsconfig/README
+ texmf-dist/dvips/dvipsconfig/addpsctrl
+ texmf-dist/dvips/dvipsconfig/config.a3
+ texmf-dist/dvips/dvipsconfig/config.a4
+ texmf-dist/dvips/dvipsconfig/config.a4grid
+ texmf-dist/dvips/dvipsconfig/config.duplong
+ texmf-dist/dvips/dvipsconfig/config.dupshort
+ texmf-dist/dvips/dvipsconfig/config.envelope
+ texmf-dist/dvips/dvipsconfig/config.inv
+ texmf-dist/dvips/dvipsconfig/config.manualfeed
+ texmf-dist/dvips/dvipsconfig/config.mmgrid
+ texmf-dist/dvips/dvipsconfig/config.psgrid
+ texmf-dist/dvips/dvipsconfig/config.screen100
+ texmf-dist/dvips/dvipsconfig/config.screen100_0
+ texmf-dist/dvips/dvipsconfig/config.screen110
+ texmf-dist/dvips/dvipsconfig/config.screen120
+ texmf-dist/dvips/dvipsconfig/config.screen130
+ texmf-dist/dvips/dvipsconfig/config.screen140
+ texmf-dist/dvips/dvipsconfig/config.screen150
+ texmf-dist/dvips/dvipsconfig/config.screen35
+ texmf-dist/dvips/dvipsconfig/config.screen50
+ texmf-dist/dvips/dvipsconfig/config.screen70
+ texmf-dist/dvips/dvipsconfig/config.screen80
+ texmf-dist/dvips/dvipsconfig/config.screen85
+ texmf-dist/dvips/dvipsconfig/config.screen90
+ texmf-dist/dvips/dvipsconfig/config.simplex
+ texmf-dist/dvips/dvipsconfig/config.tek550paper
+ texmf-dist/dvips/dvipsconfig/config.tek550transparency
+ texmf-dist/dvips/dvipsconfig/config.tray1
+ texmf-dist/dvips/dvipsconfig/config.tray2
+ texmf-dist/dvips/dvipsconfig/config.tray3
+ texmf-dist/dvips/dvipsconfig/config.usledger
+ texmf-dist/dvips/dvipsconfig/config.usletter
+catalogue-ctan /dviware/dvipsconfig
+catalogue-license gpl
+catalogue-topics dvi-print
+catalogue-version 1.6

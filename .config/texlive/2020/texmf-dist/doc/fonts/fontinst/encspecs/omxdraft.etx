@@ -1,0 +1,985 @@
+\documentclass[twocolumn]{article}
+\usepackage[specification]{fontdoc}[2001/06/01]
+
+% \usepackage[T1]{fontenc}
+\DeclareTextCommandDefault{\textvisiblespace}{%
+   \mbox{\kern.06em\vrule height.3ex}%
+   \vbox{\hrule width.3em}%
+   \hbox{\vrule height.3ex\kern.06em}}
+
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+
+\showbranches
+
+\begin{document}
+
+\title{\texttt{OMX} encoding draft specification}
+\author{Lars Hellstr\"om}
+\date{2001/10/20}
+\maketitle
+
+\begin{abstract}
+  The \TeX\ math extensions (\texttt{OMX}) encoding is a container for 
+  most of the ``growing'' characters in the standard math set-up, but 
+  that is pretty much the extent of it. Some of the characters occur 
+  in ``normal size'' in other encodings; in these cases it is usually 
+  a single math command that usually make use of characters in both 
+  encodings.
+\end{abstract}
+
+
+\encoding
+
+\begincomment
+\section{Mandatory characters}
+
+\subsection{Delimiters}
+\endcomment
+
+\nextslot{0}
+\setslot{parenleftbig}
+  \Unicode{0028}{LEFT PARENTHESIS}
+  \nextlarger{parenleftBig}
+\endsetslot
+
+\setslot{parenrightbig}
+  \Unicode{0029}{RIGHT PARENTHESIS}
+  \nextlarger{parenrightBig}
+\endsetslot
+
+\setslot{bracketleftbig}
+  \Unicode{005B}{LEFT SQUARE BRACKET}
+  \nextlarger{bracketleftBig}
+\endsetslot
+
+\setslot{bracketrightbig}
+  \Unicode{005D}{RIGHT SQUARE BRACKET}
+  \nextlarger{bracketrightBig}
+\endsetslot
+
+\setslot{floorleftbig}
+  \Unicode{230A}{LEFT FLOOR}
+  \nextlarger{floorleftBig}
+\endsetslot
+
+\setslot{floorrightbig}
+  \Unicode{230B}{RIGHT FLOOR}
+  \nextlarger{floorrightBig}
+\endsetslot
+
+\setslot{ceilingleftbig}
+  \Unicode{2308}{LEFT CEILING}
+  \nextlarger{ceilingleftBig}
+\endsetslot
+
+\setslot{ceilingrightbig}
+  \Unicode{2309}{RIGHT CEILING}
+  \nextlarger{ceilingrightBig}
+\endsetslot
+
+\setslot{braceleftbig}
+  \Unicode{007B}{LEFT CURLY BRACKET}
+  \nextlarger{braceleftBig}
+\endsetslot
+
+\setslot{bracerightbig}
+  \Unicode{007D}{RIGHT CURLY BRACKET}
+  \nextlarger{bracerightBig}
+\endsetslot
+
+\setslot{angleleftbig}
+  \Unicode{2329}{LEFT-POINTING ANGLE BRACKET}
+  \nextlarger{angleleftBig}
+\endsetslot
+
+\setslot{anglerightbig}
+  \Unicode{232A}{RIGHT-POINTING ANGLE BRACKET}
+  \nextlarger{anglerightBig}
+\endsetslot
+
+\setslot{barex}
+  \Unicode{007C}{VERTICAL LINE}
+  \comment{This is used by the \cs{vert} command. When not accessed 
+    as a delimiter, this character may be much shorter than one 
+    would expect.}
+  \varchar
+    \varrep{barex}
+  \endvarchar
+\endsetslot
+
+\setslot{bardblex}
+  \Unicode{2016}{DOUBLE VERTICAL LINE}
+  \comment{This is used by the \cs{Vert} command. When not accessed 
+    as a delimiter, this character may be much shorter than one 
+    would expect.}
+  \varchar
+    \varrep{bardblex}
+  \endvarchar
+\endsetslot
+
+\setslot{slashbig}
+  \Unicode{2215}{DIVISION SLASH}
+  \comment{Although this character is normally accessed via \TeX's 
+    growing delimiter mechanism, it is not used as such in formulae, 
+    but as a large division slash. Since the use is unambigously for 
+    division and the like, it would be inaccurate to identify this 
+    character with \textunicode{002F}{SOLIDUS}.}
+  \nextlarger{slashBig}
+\endsetslot
+
+\setslot{backslashbig}
+  \Unicode{005C}{REVERSE SOLIDUS}
+  \comment{This is \TeX's \cs{backslash} (use for ``double coset''), 
+    not \cs{setminus}, and hence it is not 
+    \textunicode{2216}{SET MINUS}.}
+  \nextlarger{backslashBig}
+\endsetslot
+
+\nextslot{62}
+\setslot{braceex}
+  \Unicode{007C}{VERTICAL LINE}
+  \comment{This is used by the \cs{bracevert} command.}
+  \label{braceex}
+  \varchar
+    \varrep{braceex}
+  \endvarchar
+  \comment{This slot contains the repeatable part of a extensible 
+    brace delimiter. In the standard set-up, the extensible recipes of 
+    slots~\ref{bracelefttp}, \ref{bracerighttp}, \ref{braceleftbt}, 
+    \ref{bracerightbt}, \ref{parenleftbt}, and \ref{parenrightbt} all 
+    make use of this slot.}
+\endsetslot
+
+\nextslot{"42}
+\setslot{parenleftex}
+  \Unicode{007C}{VERTICAL LINE}
+  \comment{As astonishing as it may seem, there is no command which 
+    accesses this slot. The glyph is similar to that in 
+    slot~\ref{braceex}, but shifted to the left.}
+  \varchar
+    \varrep{parenleftex}
+  \endvarchar
+\endsetslot
+
+\setslot{parenrightex}
+  \Unicode{007C}{VERTICAL LINE}
+  \comment{As astonishing as it may seem, there is no command which 
+    accesses this slot. The glyph is similar to that in 
+    slot~\ref{braceex}, but shifted to the right.}
+  \varchar
+    \varrep{parenrightex}
+  \endvarchar
+\endsetslot
+
+\nextslot{"7A}
+\setslot{bracehtipdownleft}
+  \comment{This is \cs{braceld}, a tip (pointing left, bending down) 
+    used to build over- and underbraces.}
+\endsetslot
+
+\setslot{bracehtipdownright}
+  \comment{This is \cs{bracerd}, a tip (pointing right, bending down) 
+    used to build over- and underbraces.}
+\endsetslot
+
+\setslot{bracehtipupleft}
+  \comment{This is \cs{bracelu}, a tip (pointing left, bending up) 
+    used to build over- and underbraces.}
+\endsetslot
+
+\setslot{bracehtipupright}
+  \comment{This is \cs{braceru}, a tip (pointing right, bending up) 
+    used to build over- and underbraces.}
+\endsetslot
+
+
+
+\begincomment
+\subsection{Text style operators}
+
+With the exception of the integrals, all the following characters 
+should be \textsc{n-ary \dots}, but some cases there are no such 
+variants defined in Unicode.
+\endcomment
+
+\nextslot{"46}
+\setslot{unionsqtext}
+  \Unicode{2294}{SQUARE CUP}
+  \nextlarger{unionsqdisplay}
+\endsetslot
+
+\skipslots{1}
+\setslot{contintegraltext}
+  \Unicode{222E}{CONTOUR INTEGRAL}
+  \nextlarger{contintegraldisplay}
+\endsetslot
+
+\skipslots{1}
+\setslot{circledottext}
+  \Unicode{2299}{CIRCLED DOT OPERATOR}
+  \nextlarger{circledotdisplay}
+\endsetslot
+
+\skipslots{1}
+\setslot{circleplustext}
+  \Unicode{2295}{CIRCLED PLUS}
+  \nextlarger{circleplusdisplay}
+\endsetslot
+
+\skipslots{1}
+\setslot{circlemultiplytext}
+  \Unicode{2297}{CIRCLED TIMES}
+  \nextlarger{circlemultiplydisplay}
+\endsetslot
+
+\skipslots{1}
+\setslot{summationtext}
+  \Unicode{2211}{N-ARY SUMMATION}
+  \nextlarger{summationdisplay}
+\endsetslot
+
+\setslot{producttext}
+  \Unicode{220F}{N-ARY PRODUCT}
+  \nextlarger{productdisplay}
+\endsetslot
+
+\setslot{integraltext}
+  \Unicode{222B}{INTEGRAL}
+  \nextlarger{integraldisplay}
+\endsetslot
+
+\setslot{uniontext}
+  \Unicode{22C3}{N-ARY UNION}
+  \nextlarger{uniondisplay}
+\endsetslot
+
+\setslot{intersectiontext}
+  \Unicode{22C2}{N-ARY INTERSECTION}
+  \nextlarger{intersectiondisplay}
+\endsetslot
+
+\setslot{unionmultitext}
+  \Unicode{228E}{MULTISET UNION}
+  \nextlarger{unionmultidisplay}
+\endsetslot
+
+\setslot{logicalandtext}
+  \Unicode{22C0}{N-ARY LOGICAL AND}
+  \nextlarger{logicalanddisplay}
+\endsetslot
+
+\setslot{logicalortext}
+  \Unicode{22C1}{N-ARY LOGICAL OR}
+  \nextlarger{logicalordisplay}
+\endsetslot
+
+\skipslots{8}
+\setslot{coproducttext}
+  \Unicode{2210}{N-ARY COPRODUCT}
+  \nextlarger{coproductdisplay}
+\endsetslot
+
+
+
+\begincomment
+\subsection{Accents, arrows, and the radical}
+\endcomment
+
+\nextslot{"62}
+\setslot{hatwide}
+  \Unicode{0302}{COMBINING CIRCUMFLEX ACCENT}
+  \nextlarger{hatwider}
+\endsetslot
+
+\skipslots{2}
+
+\setslot{tildewide}
+  \Unicode{0303}{COMBINING TILDE}
+  \nextlarger{tildewider}
+\endsetslot
+
+\nextslot{"70}
+\setslot{radicalbig}
+  \Unicode{221A}{SQUARE ROOT}
+  \nextlarger{radicalBig}
+\endsetslot
+
+\nextslot{"78}
+\setslot{arrowtp}
+  \Unicode{2191}{UPWARDS ARROW}
+  \varchar
+    \vartop{arrowtp}
+    \varrep{arrowvertex}
+ \endvarchar
+\endsetslot
+
+\setslot{arrowbt}
+  \Unicode{2193}{DOWNWARDS ARROW}
+  \varchar
+    \varrep{arrowvertex}
+    \varbot{arrowbt}
+  \endvarchar
+\endsetslot
+
+\nextslot{"7E}
+\setslot{arrowdbltp}
+  \Unicode{21D1}{UPWARDS DOUBLE ARROW}
+  \varchar
+    \vartop{arrowdbltp}
+    \varrep{arrowdblvertex}
+  \endvarchar
+\endsetslot
+
+\setslot{arrowdblbt}
+  \Unicode{21D3}{DOWNWARDS DOUBLE ARROW}
+  \varchar
+    \varrep{arrowdblvertex}
+    \varbot{arrowdblbt}
+  \endvarchar
+\endsetslot
+
+
+
+
+
+
+\begincomment
+\section{Semimandatory characters}
+\endcomment
+
+\nextslot{"3A}
+\setslot{braceleftbt}
+  \comment{This is the \cs{lgroup} delimiter, which looks like a 
+    \textunicode{007B}{LEFT CURLY BRACKET} with flat middle section. 
+    There does not seem to be such a character in Unicode, but a 
+    close approximation would be a narrowed 
+    \textunicode{3014}{LEFT TORTOISE SHELL BRACKET}.}
+  \label{braceleftbt}
+  \varchar
+    \vartop{bracelefttp}
+    \varrep{braceex}
+    \varbot{braceleftbt}
+  \endvarchar
+  \comment{The slot contains the curved bottom of a 
+    \textunicode{007B}{LEFT CURLY BRACKET}.}
+\endsetslot
+
+\setslot{bracerightbt}
+  \comment{This is the \cs{rgroup} delimiter, which looks like a 
+    \textunicode{007D}{RIGHT CURLY BRACKET} with flat middle section. 
+    There does not seem to be such a character in Unicode, but a 
+    close approximation would be a narrowed 
+    \textunicode{3015}{RIGHT TORTOISE SHELL BRACKET}.}
+  \label{bracerightbt}
+  \varchar
+    \vartop{bracerighttp}
+    \varrep{braceex}
+    \varbot{bracerightbt}
+  \endvarchar
+  \comment{The slot contains the curved bottom of a 
+    \textunicode{007D}{RIGHT CURLY BRACKET}.}
+\endsetslot
+
+\setslot{braceleftmid}
+  \Unicode{007C}{VERTICAL LINE}
+  \comment{This is used by the \cs{arrowvert} command.}
+  \varchar
+    \varrep{arrowvertex}
+  \endvarchar
+  \comment{The slot contains the middle part of a 
+    \textunicode{007B}{LEFT CURLY BRACKET}.}
+\endsetslot
+
+\setslot{bracerightmid}
+  \Unicode{2016}{DOUBLE VERTICAL LINE}
+  \comment{This is used by the \cs{Arrowvert} command.}
+  \varchar
+    \varrep{arrowdblvertex}
+  \endvarchar
+  \comment{The slot contains the middle part of a 
+    \textunicode{007D}{RIGHT CURLY BRACKET}.}
+\endsetslot
+
+\skipslots{1}
+
+\setslot{arrowvertex}
+  \Unicode{2195}{UP DOWN ARROW}
+  \varchar
+    \vartop{arrowtp}
+    \varrep{arrowvertex}
+    \varbot{arrowbt}
+  \endvarchar
+  \comment{This slot contains the repeatable middle part of a vertical 
+    arrow.}
+\endsetslot
+
+\setslot{parenleftbt}
+  \label{parenleftbt}
+  \comment{This is the \cs{lmoustache} delimiter, whose top half is 
+    like \cs{lgroup} and whose bottom half is like \cs{rgroup}.}
+  \varchar
+    \vartop{bracelefttp}
+    \varrep{braceex}
+    \varbot{bracerightbt}
+  \endvarchar
+  \comment{This slot contains the curved bottom of a 
+    \textunicode{0028}{LEFT PARENTHESIS}.}
+\endsetslot
+
+\setslot{parenrightbt}
+  \label{parenrightbt}
+  \comment{This is the \cs{rmoustache} delimiter, whose top half is 
+    like \cs{rgroup} and whose bottom half is like \cs{lgroup}.}
+  \varchar
+    \vartop{bracerighttp}
+    \varrep{braceex}
+    \varbot{braceleftbt}
+  \endvarchar
+  \comment{This slot contains the curved bottom of a 
+    \textunicode{0029}{RIGHT PARENTHESIS}.}
+\endsetslot
+
+\nextslot{"77}
+\setslot{arrowdblvertex}
+  \Unicode{21D5}{UP DOWN DOUBLE ARROW}
+  \varchar
+    \vartop{arrowdbltp}
+    \varbot{arrowdblbt}
+    \varrep{arrowdblvertex}
+  \endvarchar
+  \comment{This slot contains the repeatable middle part of a vertical 
+    double arrow.}
+\endsetslot
+
+
+
+
+
+\begincomment
+\section{Ordinary characters}
+\endcomment
+
+
+\begincomment
+\subsection{\texttt{Big} size delimiters}
+\endcomment
+
+\nextslot{16}
+\setslot{parenleftBig}
+  \Unicode{0028}{LEFT PARENTHESIS}
+  \nextlarger{parenleftbigg}
+\endsetslot
+
+\setslot{parenrightBig}
+  \Unicode{0029}{RIGHT PARENTHESIS}
+  \nextlarger{parenrightbigg}
+\endsetslot
+
+\nextslot{46}
+\setslot{slashBig}
+  \Unicode{2215}{DIVISION SLASH}
+  \nextlarger{slashbigg}
+\endsetslot
+
+\setslot{backslashBig}
+  \Unicode{005C}{REVERSE SOLIDUS}
+  \nextlarger{backslashbigg}
+\endsetslot
+
+\nextslot{"44}
+\setslot{angleleftBig}
+  \Unicode{2329}{LEFT-POINTING ANGLE BRACKET}
+  \nextlarger{angleleftbigg}
+\endsetslot
+
+\setslot{anglerightBig}
+  \Unicode{232A}{RIGHT-POINTING ANGLE BRACKET}
+  \nextlarger{anglerightbigg}
+\endsetslot
+
+\nextslot{"68}
+\setslot{bracketleftBig}
+  \Unicode{005B}{LEFT SQUARE BRACKET}
+  \nextlarger{bracketleftbigg}
+\endsetslot
+
+\setslot{bracketrightBig}
+  \Unicode{005D}{RIGHT SQUARE BRACKET}
+  \nextlarger{bracketrightbigg}
+\endsetslot
+
+\setslot{floorleftBig}
+  \Unicode{230A}{LEFT FLOOR}
+  \nextlarger{floorleftbigg}
+\endsetslot
+
+\setslot{floorrightBig}
+  \Unicode{230B}{RIGHT FLOOR}
+  \nextlarger{floorrightbigg}
+\endsetslot
+
+\setslot{ceilingleftBig}
+  \Unicode{2308}{LEFT CEILING}
+  \nextlarger{ceilingleftbigg}
+\endsetslot
+
+\setslot{ceilingrightBig}
+  \Unicode{2309}{RIGHT CEILING}
+  \nextlarger{ceilingrightbigg}
+\endsetslot
+
+\setslot{braceleftBig}
+  \Unicode{007B}{LEFT CURLY BRACKET}
+  \nextlarger{braceleftbigg}
+\endsetslot
+
+\setslot{bracerightBig}
+  \Unicode{007D}{RIGHT CURLY BRACKET}
+  \nextlarger{bracerightbigg}
+\endsetslot
+
+
+
+
+
+\begincomment
+\subsection{\texttt{bigg} size delimiters}
+\endcomment
+
+\nextslot{18}
+\setslot{parenleftbigg}
+  \Unicode{0028}{LEFT PARENTHESIS}
+  \nextlarger{parenleftBigg}
+\endsetslot
+
+\setslot{parenrightbigg}
+  \Unicode{0029}{RIGHT PARENTHESIS}
+  \nextlarger{parenrightBigg}
+\endsetslot
+
+\setslot{bracketleftbigg}
+  \Unicode{005B}{LEFT SQUARE BRACKET}
+  \nextlarger{bracketleftBigg}
+\endsetslot
+
+\setslot{bracketrightbigg}
+  \Unicode{005D}{RIGHT SQUARE BRACKET}
+  \nextlarger{bracketrightBigg}
+\endsetslot
+
+\setslot{floorleftbigg}
+  \Unicode{230A}{LEFT FLOOR}
+  \nextlarger{floorleftBigg}
+\endsetslot
+
+\setslot{floorrightbigg}
+  \Unicode{230B}{RIGHT FLOOR}
+  \nextlarger{floorrightBigg}
+\endsetslot
+
+\setslot{ceilingleftbigg}
+  \Unicode{2308}{LEFT CEILING}
+  \nextlarger{ceilingleftBigg}
+\endsetslot
+
+\setslot{ceilingrightbigg}
+  \Unicode{2309}{RIGHT CEILING}
+  \nextlarger{ceilingrightBigg}
+\endsetslot
+
+\setslot{braceleftbigg}
+  \Unicode{007B}{LEFT CURLY BRACKET}
+  \nextlarger{braceleftBigg}
+\endsetslot
+
+\setslot{bracerightbigg}
+  \Unicode{007D}{RIGHT CURLY BRACKET}
+  \nextlarger{bracerightBigg}
+\endsetslot
+
+\setslot{angleleftbigg}
+  \Unicode{2329}{LEFT-POINTING ANGLE BRACKET}
+  \nextlarger{angleleftBigg}
+\endsetslot
+
+\setslot{anglerightbigg}
+  \Unicode{232A}{RIGHT-POINTING ANGLE BRACKET}
+  \nextlarger{anglerightBigg}
+\endsetslot
+
+\setslot{slashbigg}
+  \Unicode{2215}{DIVISION SLASH}
+  \nextlarger{slashBigg}
+\endsetslot
+
+\setslot{backslashbigg}
+  \Unicode{005C}{REVERSE SOLIDUS}
+  \nextlarger{backslashBigg}
+\endsetslot
+
+
+
+\begincomment
+\subsection{\texttt{Bigg} size delimiters}
+\endcomment
+
+\nextslot{32}
+\setslot{parenleftBigg}
+  \Unicode{0028}{LEFT PARENTHESIS}
+  \nextlarger{parenlefttp}
+\endsetslot
+
+\setslot{parenrightBigg}
+  \Unicode{0029}{RIGHT PARENTHESIS}
+  \nextlarger{parenrighttp}
+\endsetslot
+
+\setslot{bracketleftBigg}
+  \Unicode{005B}{LEFT SQUARE BRACKET}
+  \nextlarger{bracketlefttp}
+\endsetslot
+
+\setslot{bracketrightBigg}
+  \Unicode{005D}{RIGHT SQUARE BRACKET}
+  \nextlarger{bracketrighttp}
+\endsetslot
+
+\setslot{floorleftBigg}
+  \Unicode{230A}{LEFT FLOOR}
+  \nextlarger{bracketleftbt}
+\endsetslot
+
+\setslot{floorrightBigg}
+  \Unicode{230B}{RIGHT FLOOR}
+  \nextlarger{bracketrightbt}
+\endsetslot
+
+\setslot{ceilingleftBigg}
+  \Unicode{2308}{LEFT CEILING}
+  \nextlarger{bracketleftex}
+\endsetslot
+
+\setslot{ceilingrightBigg}
+  \Unicode{2309}{RIGHT CEILING}
+  \nextlarger{bracketrightex}
+\endsetslot
+
+\setslot{braceleftBigg}
+  \Unicode{007B}{LEFT CURLY BRACKET}
+  \nextlarger{bracelefttp}
+\endsetslot
+
+\setslot{bracerightBigg}
+  \Unicode{007D}{RIGHT CURLY BRACKET}
+  \nextlarger{bracerighttp}
+\endsetslot
+
+\setslot{angleleftBigg}
+  \Unicode{2329}{LEFT-POINTING ANGLE BRACKET}
+\endsetslot
+
+\setslot{anglerightBigg}
+  \Unicode{232A}{RIGHT-POINTING ANGLE BRACKET}
+\endsetslot
+
+\setslot{slashBigg}
+  \Unicode{2215}{DIVISION SLASH}
+\endsetslot
+
+\setslot{backslashBigg}
+  \Unicode{005C}{REVERSE SOLIDUS}
+\endsetslot
+
+
+
+\begincomment
+\subsection{Extensible delimiters}
+\endcomment
+
+\nextslot{48}
+\setslot{parenlefttp}
+  \comment{This slot contains the curved top of a 
+    \textunicode{0028}{LEFT PARENTHESIS}.}
+  \varchar
+    \vartop{parenlefttp}
+    \varrep{parenleftex}
+    \varbot{parenleftbt}
+  \endvarchar
+\endsetslot
+
+\setslot{parenrighttp}
+  \comment{This slot contains the curved top of a 
+    \textunicode{0029}{RIGHT PARENTHESIS}.}
+  \varchar
+    \vartop{parenrighttp}
+    \varrep{parenrightex}
+    \varbot{parenrightbt}
+  \endvarchar
+\endsetslot
+
+\setslot{bracketlefttp}
+  \comment{This slot contains the corner top of a 
+    \textunicode{005B}{LEFT SQUARE BRACKET}.}
+  \varchar
+    \vartop{bracketlefttp}
+    \varrep{bracketleftex}
+    \varbot{bracketleftbt}
+  \endvarchar
+\endsetslot
+
+\setslot{bracketrighttp}
+  \comment{This slot contains the corner top of a 
+    \textunicode{005D}{RIGHT SQUARE BRACKET}.}
+  \varchar
+    \vartop{bracketrighttp}
+    \varrep{bracketrightex}
+    \varbot{bracketrightbt}
+  \endvarchar
+\endsetslot
+
+\setslot{bracketleftbt}
+  \comment{This slot contains the corner bottom of a 
+    \textunicode{005B}{LEFT SQUARE BRACKET}, but it serves as the 
+    final slot in the chain of larger sizes of 
+    \textunicode{230A}{LEFT FLOOR}.}
+  \varchar
+    \varrep{bracketleftex}
+    \varbot{bracketleftbt}
+ \endvarchar
+\endsetslot
+
+\setslot{bracketrightbt}
+  \comment{This slot contains the corner bottom of a 
+    \textunicode{005D}{RIGHT SQUARE BRACKET}, but it serves as the 
+    final slot in the chain of larger sizes of 
+    \textunicode{230B}{RIGHT FLOOR}.}
+  \varchar
+    \varrep{bracketrightex}
+    \varbot{bracketrightbt}
+  \endvarchar
+\endsetslot
+
+\setslot{bracketleftex}
+  \comment{This slot contains the repeatable middle part of a 
+    \textunicode{005B}{LEFT SQUARE BRACKET}, but it serves as the 
+    final slot in the chain of larger sizes of 
+    \textunicode{2308}{LEFT CEILING}.}
+  \varchar
+    \vartop{bracketlefttp}
+    \varrep{bracketleftex}
+  \endvarchar
+\endsetslot
+
+\setslot{bracketrightex}
+  \comment{This slot contains the repeatable middle part of a 
+    \textunicode{005D}{RIGHT SQUARE BRACKET}, but it serves as the 
+    final slot in the chain of larger sizes of 
+    \textunicode{2309}{RIGHT CEILING}.}
+  \varchar
+    \vartop{bracketrighttp}
+    \varrep{bracketrightex}
+  \endvarchar
+\endsetslot
+
+\setslot{bracelefttp}
+  \comment{This slot contains the curved top of a 
+    \textunicode{007B}{LEFT CURLY BRACKET}.}
+  \label{bracelefttp}
+  \varchar
+    \vartop{bracelefttp}
+    \varrep{braceex}
+    \varmid{braceleftmid}
+    \varbot{braceleftbt}
+  \endvarchar
+\endsetslot
+
+\setslot{bracerighttp}
+  \comment{This slot contains the curved top of a 
+    \textunicode{007D}{RIGHT CURLY BRACKET}.}
+  \label{bracerighttp}
+  \varchar
+    \vartop{bracerighttp}
+    \varrep{braceex}
+    \varmid{bracerightmid}
+    \varbot{bracerightbt}
+  \endvarchar
+\endsetslot
+
+
+
+
+  
+\begincomment
+\subsection{Display style operators}
+\endcomment
+
+\nextslot{"47}
+\setslot{unionsqdisplay}
+  \Unicode{2294}{SQUARE CUP}
+\endsetslot
+
+\skipslots{1}
+\setslot{contintegraldisplay}
+  \Unicode{222E}{CONTOUR INTEGRAL}
+\endsetslot
+
+\skipslots{1}
+\setslot{circledotdisplay}
+  \Unicode{2299}{CIRCLED DOT OPERATOR}
+\endsetslot
+
+\skipslots{1}
+\setslot{circleplusdisplay}
+  \Unicode{2295}{CIRCLED PLUS}
+\endsetslot
+
+\skipslots{1}
+\setslot{circlemultiplydisplay}
+  \Unicode{2297}{CIRCLED TIMES}
+\endsetslot
+
+\skipslots{8}
+\setslot{summationdisplay}
+  \Unicode{2211}{N-ARY SUMMATION}
+\endsetslot
+
+\setslot{productdisplay}
+  \Unicode{220F}{N-ARY PRODUCT}
+\endsetslot
+
+\setslot{integraldisplay}
+  \Unicode{222B}{INTEGRAL}
+\endsetslot
+
+\setslot{uniondisplay}
+  \Unicode{22C3}{N-ARY UNION}
+\endsetslot
+
+\setslot{intersectiondisplay}
+  \Unicode{22C2}{N-ARY INTERSECTION}
+\endsetslot
+
+\setslot{unionmultidisplay}
+  \Unicode{228E}{MULTISET UNION}
+\endsetslot
+
+\setslot{logicalanddisplay}
+  \Unicode{22C0}{N-ARY LOGICAL AND}
+\endsetslot
+
+\setslot{logicalordisplay}
+  \Unicode{22C1}{N-ARY LOGICAL OR}
+\endsetslot
+
+\skipslots{1}
+\setslot{coproductdisplay}
+  \Unicode{2210}{N-ARY COPRODUCT}
+\endsetslot
+
+
+
+\begincomment
+\subsection{Accents}
+\endcomment
+
+\nextslot{"63}
+\setslot{hatwider}
+  \Unicode{0302}{COMBINING CIRCUMFLEX ACCENT}
+  \nextlarger{hatwiderr}
+\endsetslot
+
+\setslot{hatwiderr}
+  \Unicode{0302}{COMBINING CIRCUMFLEX ACCENT}
+\endsetslot
+
+\skipslots{1}
+
+\setslot{tildewider}
+  \Unicode{0303}{COMBINING TILDE}
+  \nextlarger{tildewiderr}
+\endsetslot
+
+\setslot{tildewiderr}
+  \Unicode{0303}{COMBINING TILDE}
+\endsetslot
+
+
+\begincomment
+\subsection{Radicals}
+\endcomment
+
+\nextslot{"71}
+\setslot{radicalBig}
+  \Unicode{221A}{SQUARE ROOT}
+  \nextlarger{radicalbigg}
+\endsetslot
+
+\setslot{radicalbigg}
+  \Unicode{221A}{SQUARE ROOT}
+  \nextlarger{radicalBigg}
+\endsetslot
+
+\setslot{radicalBigg}
+  \Unicode{221A}{SQUARE ROOT}
+  \nextlarger{radicalbt}
+\endsetslot
+
+\setslot{radicalbt}
+  \Unicode{221A}{SQUARE ROOT}
+  \varchar
+    \varbot{radicalbt}
+    \vartop{radicaltp}
+    \varrep{radicalvertex}
+  \endvarchar
+\endsetslot
+
+\setslot{radicalvertex}
+  \comment{This is the repeatable, vertically middle part of an 
+    extensible \textunicode{221A}{SQUARE ROOT}.}
+\endsetslot
+
+\setslot{radicaltp}
+  \comment{This is the top corner part of an extensible 
+    \textunicode{221A}{SQUARE ROOT}.}
+\endsetslot
+
+
+
+
+
+\begincomment
+\section{Fontdimens and codingscheme}
+
+\texttt{OMX} fonts have the necessary fontdimens to serve as a math 
+group 3 font.
+\endcomment
+
+\setfontdimen{1}{italicslant}    % italic slant
+\setfontdimen{2}{interword}      % interword space
+\setfontdimen{3}{stretchword}    % interword stretch
+\setfontdimen{4}{shrinkword}     % interword shrink
+\setfontdimen{5}{xheight}        % x-height
+\setfontdimen{6}{quad}           % quad
+\setfontdimen{7}{extraspace}     % extra space after .
+
+\setfontdimen{8}{defaultrulethickness} % default rule thickness
+\setfontdimen{9}{bigopspacing1}        % bigopspacing 1
+\setfontdimen{10}{bigopspacing2}       % bigopspacing 2
+\setfontdimen{11}{bigopspacing3}       % bigopspacing 3
+\setfontdimen{12}{bigopspacing4}       % bigopspacing 4
+\setfontdimen{13}{bigopspacing5}       % bigopspacing 5
+
+\setstr{codingscheme}{TEX MATH EXTENSION}
+
+
+
+
+
+\endencoding
+
+
+\section{Discussion}
+
+
+
+\end{document}

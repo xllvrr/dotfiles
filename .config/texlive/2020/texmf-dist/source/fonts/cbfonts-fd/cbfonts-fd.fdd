@@ -1,0 +1,932 @@
+% \iffalse meta-comment
+%<*internal>
+\begingroup
+\input docstrip.tex
+
+{\ifx\generate\undefined
+\Msg{**********************************************}
+\Msg{*}
+\Msg{* This installation requires docstrip}
+\Msg{* version 2.3c or later.}
+\Msg{*}
+\Msg{* An older version of docstrip has been input}
+\Msg{*}
+\Msg{**********************************************}
+\errhelp{Move or rename old docstrip.tex.}
+\errmessage{Old docstrip in input path}
+\batchmode
+\csname @@end\endcsname
+\fi}
+
+\keepsilent
+
+\preamble
+This is a generated file.
+
+Copyright 2013-2017 Claudio Beccari,  and the authors listed elsewhere in this file.
+		    All rights reserved.
+
+This file was generated from file cbfonts-fd.fdd; it provides the font description files for the CB fonts; two sets of files are defined, one set with the same characteristics of the EC font description files, and a second set with the characteristics of the Latin Modern ones; the latter allow each font to be stepwise continuously scaled over arbitrary ranges, while the former set produces only for a fixed set of font sizes.
+----------------------------------------------------------------
+
+It may be distributed and/or modified under the conditions of the LaTeX
+Project Public License, either version 1.3 of this license or (at your
+option) any later version. The latest version of this license is in
+  http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of LaTeX
+version 2003/12/01 or later.
+
+This work has the LPPL maintenance status "maintained".
+
+The Current Maintainer of this work is Claudio Beccari
+e-mail claudio dot beccari at gmail dot com
+
+Permission is granted to customize the declarations in
+this file to serve your particular needs.
+
+However, according to the LPPL license, NO PERMISSION is granted to 
+distribute a modified version of this file under its original name.
+
+\endpreamble
+
+\usedir{tex/generic/babel/babel-greek}
+
+\askforoverwritefalse
+\generate{\file{lgrcmr.fd}{\from{cbfonts-fd.fdd}{LGRcmr}}
+          \file{lgrcmro.fd}{\from{cbfonts-fd.fdd}{LGRcmro}}
+          \file{lgrcmtt.fd}{\from{cbfonts-fd.fdd}{LGRcmtt}}
+          \file{lgrcmss.fd}{\from{cbfonts-fd.fdd}{LGRcmss}}
+          \file{lgrlcmtt.fd}{\from{cbfonts-fd.fdd}{LGRlcmtt}}
+          \file{lgrlcmss.fd}{\from{cbfonts-fd.fdd}{LGRlcmss}}
+          \file{lgrlmr.fd}{\from{cbfonts-fd.fdd}{LGRlmr}}
+          \file{lgrlmro.fd}{\from{cbfonts-fd.fdd}{LGRlmro}}
+          \file{lgrlmtt.fd}{\from{cbfonts-fd.fdd}{LGRlmtt}}
+          \file{lgrlmss.fd}{\from{cbfonts-fd.fdd}{LGRlmss}}
+          }
+\typeout{***********************************************************}
+\typeout{*}
+\typeout{* To finish the installation you have to move the following}
+\typeout{* files into a directory searched by TeX:}
+\typeout{*}
+\typeout{* \space\space All files *.fd}
+\typeout{*}
+\typeout{* Happy TeXing}
+\typeout{***********************************************************}
+
+\def\tmpa{plain}
+\ifx\tmpa\fmtname\endgroup\expandafter\bye\fi
+\endgroup
+%</internal>
+%
+% Copyright 2013-2016 Claudio Beccari and any individual authors
+% 	    	      listed elsewhere in this file.  All rights reserved.
+% 
+% This file forms a font support for the babel-greek package.
+% ---------------------------------------------
+% 
+% It may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2003/12/01 or later.
+% 
+% This work has the LPPL maintenance status "maintained".
+%
+% The Current Maintainer is Claudio Beccari: claudio dot beccari at gmail dot com
+%
+% The list of derived (unpacked) files belonging to the distribution
+% and covered by LPPL is defined by the unpacking preamble of this very file
+% |cbfonts-fd.fdd|
+% \fi
+%
+% \CheckSum{472}
+%
+% \iffalse        This is a META comment
+%
+%<*fdd>
+\ProvidesFile{cbfonts-fd.fdd}
+%</fdd>
+%
+%<LGRcmr,   >\ProvidesFile{lgrcmr.fd}
+%<LGRcmro,  >\ProvidesFile{lgrcmro.fd}
+%<LGRcmtt,  >\ProvidesFile{lgrcmtt.fd}
+%<LGRcmss,  >\ProvidesFile{lgrcmss.fd}
+%<LGRlcmss, >\ProvidesFile{lgrlcmss.fd}
+%<LGRlcmtt, >\ProvidesFile{lgrlcmtt.fd}
+%<LGRlmr,   >\ProvidesFile{lgrlmr.fd}
+%<LGRlmro,  >\ProvidesFile{lgrlmro.fd}
+%<LGRlmss,  >\ProvidesFile{lgrlmss.fd}
+%<LGRlmtt,  >\ProvidesFile{lgrlmtt.fd}
+         [2017/07/29 v1.2 %
+%<LGRcmr,   >  Greek European Computer Regular]
+%<LGRcmro,  >  Greek European Computer Outline]
+%<LGRcmtt,  >  Greek European Computer Typewriter]
+%<LGRcmss,  >  Greek European Computer Sans Serif]
+%<LGRlcmss, >  Greek European Computer Sans Serif for slides]
+%<LGRlcmtt, >  Greek European Computer Typewriter for slides]
+%<LGRlmr,   >  Scalable Greek Latin Modern Regular]
+%<LGRlmro,  >  Scalable Greek Latin Modern Outline]
+%<LGRlmtt,  >  Scalable Greek Latin Modern Typewriter]
+%<LGRlmss,  >  Scalable Greek Latin Modern Sans Serif]
+%<*fdd>
+]
+%</fdd>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\providecommand\dsc{\expandafter{\normalfont\scshape docstrip}}
+\providecommand\GOBBLE[1]{}
+\usepackage{newpxtext,array}
+\usepackage[greek,english]{babel}
+\newcommand\greekexample[2]{{\fontencoding{LGR}\fontfamily{#1}\fontshape{#2}
+\selectfont abgdezhjiklmnxoprsvtufqyws\newline ABGDEZHJIKLMNXOPRSTUFQYW}}
+\makeatletter
+\newcommand*\setLGRfntscale{\bgroup
+\settoheight{\dimen3333}{\normalsize a}%
+\settoheight{\dimen4444}{\normalsize\usefont{LGR}{lmr}{m}{n} a}
+\dimen@=\dimexpr\dimen3333*\p@/\dimen4444\relax
+\edef\x{\egroup\noexpand\gdef\noexpand\lmfntscale{\strip@pt\dimen@}}\x}
+\makeatother
+\title{The file \texttt{cbfonts-fd.fdd} for use with
+      \LaTeXe}
+\date{Version number \expandafter\GOBBLE\fileversion, dated \filedate}
+\author{Claudio Beccari\quad\texttt{claudio dot beccari at gmail dot com}}
+\begin{document}\setLGRfntscale
+\GetFileInfo{cbfonts-fd.fdd}
+\maketitle
+\DocInput{cbfonts-fd.fdd}
+\end{document}
+%</driver>
+%
+%\fi
+%
+% \section{Introduction}
+%
+%    This file |cbfonts-fd.fdd| provides font definitions files for typesetting
+%    Greek texts with the |LGR| encoded |cb| fonts.
+%
+%    The font definition files produced from this documented source file
+%    deal with both the |cb| fonts as LGR encoded (Greek) variants to match the
+%    European Computer Modern (T1 encoded EC fonts) and the Latin Modern fonts
+%    (T1 encoded LM fonts).
+%    This file derives from the |greek.fdd| one, originally prepared by myself
+%    and Apostolos Syropoulos, under the supervision of Johannes Braams.
+%
+%    Please, take notice that the actual fonts are the same ones with
+%    both incarnations of the font description files; the EC version,
+%    with fixed sizes, mimics the Latin EC font description files, that
+%    were set up in the early nineties and referred themselves to the
+%    bitmapped fonts that were (and still are) the only format available
+%    for such fonts. Their vector versions were produced either for
+%    benefit of commercial versions of the \TeX\ system, for example for
+%    the commercial V\TeX\ distribution, or were superseded by differently
+%    named font collections, such as the |CM-super| one. For compatibility
+%    reasons the font description files were not modified and still provide
+%    a finite set of font sizes.
+%
+%    The Latin Modern font collection was created with the vector format
+%    in mind; therefore their font description files contain
+%    definitions that allow continuous scaling of such fonts; in practice
+%    the optical sizes are reduced in number and each scaled version of
+%    every font is used for a range of font sizes, not for a single font
+%    size, as it happens with the EC fonts. This same approach was used
+%    here, since the |cb| fonts are normally distributed as both bitmapped
+%    and vector fonts, the latter ones being preferred when typesetting
+%    with \textsf{pdfLaTeX}.
+%
+%    I rewrote this file in order to detach it from the |babel-greek| bundle
+%    that is intended to deal with the Greek language irrespective of
+%    which fonts are used and possibly also from their encoding, so as
+%    to make it compatible with the UNICODE encoding. At the same time 
+%    this documentation file and the derived font description files are
+%    specific for the |cb| fonts, so that the new Greek language
+%    |babel-greek| package maintainer does not have to maintain also
+%    the font description files, while I take care of the |cb| fonts.
+%
+%    The |LGR| font encoding is declared and set up by the encoding
+%    definition file |lgrenc.def| from the |greek-fontenc| package 
+%    (http://www.ctan.org/pkg/greek-fontenc).
+%
+%    It is useful to recall that while typesetting Greek text intermixed
+%    with other languages in Latin script, the change of script takes place
+%    just by changing the encoding, at least when Type~1 fonts are used.
+%    When using |XeLaTeX| or |LuaLaTeX|, that employ OpenType fonts, this
+%    encoding shift is not necessary, because OpenType fonts include many
+%    hundreds glyphs, among which the Greek ones. I should remark that
+%    the Greek glyph collection of OpenType fonts is wider than the glyph
+%    collection of the |cb| Greek ones, but OT fonts generally lack
+%    certain |cb| glyphs often used in philology documents.
+%
+%    Moreover composers sometimes would like to use other fonts,
+%    different from the EC or LM ones; they can do so by calling suitable
+%    font packages; for example Antonis Tsolomitis made available the
+%    package |txfontsb| that contains the Greek glyphs arranged according
+%    to the |LGR| encoding, and that mach the design and style of the
+%    Latin Times eXtended fonts (package |txfonts|); they come with their
+%    suitable font description files that use the same family names as
+%    the Latin ones. Beware, though, that these Greek fonts match pretty
+%    well my fonts, but lack some important glyphs.
+%
+%    It is possible to use the |cb| fonts with other font families, as
+%    well as with the |TX| fonts, in spite of the availability of the
+%    fonts by Antonis Tsolomitis; may be they don't match as well the 
+%    design and style of the Latin font families, but at least the |cb|
+%    fonts are more complete.
+%    The |teubner| package (http://www.ctan.org/pkg/teubner) contains
+%    suitable macros for creating the necessary font description
+%    files. The interested user is invited to refer him/her self to the
+%    extended |teubner| package documentation in file |teubner-doc.pdf|.
+%
+%    \section{Font samples}
+%    Some font samples in medium series are shown in table~\ref{samples}.
+%	\begin{table}\centering\def\arraystretch{1.3}
+%   \caption{Some samples of Greek fonts}\label{samples}\medskip
+%	\makebox[\textwidth][c]{%
+%   \begin{tabular}{>{\bfseries\raggedright}p{12em}p{20em}}
+%   Family and shape	&  Sample glyphs 					\\[1ex]
+%	\hline\noalign{\vskip1ex}
+%	Regular upright  &  \greekexample{lmr}{n}				\\
+%	Regular slanted  &  \greekexample{lmr}{sl}				\\
+%	Regular italics  &  \greekexample{lmr}{it}				\\
+%	Regular lipsian  &  \greekexample{lmr}{li}				\\
+%	Regular caps and small caps  &  \greekexample{lmr}{sc}	\\
+%	Regular with serifed lower case &  \greekexample{lmr}{rs}\\
+%	Regular unslanted italics  &  \greekexample{lmr}{ui}	\\
+%	Outline upright  &  \greekexample{lmro}{n}				\\
+%	Sans serif upright  &  \greekexample{lmss}{n}			\\
+%	Sans serif italics  &  \greekexample{lmss}{it}			\\
+%	Sans serif variant italics  &  \greekexample{lmss}{iv}	\\
+%	Typewriter type  &  \greekexample{lmtt}{n}				\\
+%	Typewriter type italics  &  \greekexample{lmtt}{it}	\\
+%	Typewriter type caps and small caps  &  \greekexample{lmtt}{sc}\\
+%	Slides sans serif  &  \greekexample{lcmss}{n}			\\
+%	Slides typewriter  &  \greekexample{lcmtt}{n}
+%   \end{tabular}}
+%	\end{table}
+%
+%   As the above examples show, in spite the fact that not all shapes have
+%	been displayed, the Greek |cb| fonts contain more families and shapes that 
+%	the corresponding EC and LM fonts. The necessary macros to change families, 
+%	series, and shapes are either the usual ones already available for the EC 
+%	and LM fonts, or are explicitly defined in the Greek language description 
+%	file and in package |teubner|.
+%	
+%	The outline family was requested at the very beginning of my work on Greek 
+%	fonts by Apostolos Syropoulos who needed them for a slide show he typeset 
+%	in Greek with the very first fonts available in provvisional form. 
+%	
+%	The Lipsian shape was requested by the users of package |teubner| who, 
+%	being mostly philologists, were accustomed to this particular font shape 
+%	used the Teubner Typography in Lipsia. This font is available in three 
+%	series, medium, bold, and extended bold. The bold version is particularly 
+%	desired when using this font with blacker Latin fonts, so that it substitutes 
+%	easily the medium series in order to match the blacker Latin fonts in a 
+%	better way.
+%	
+%	The upright versions of the italic shape are more or less traditional 
+%	with standard \TeX\ system fonts, but explicit selection commands for 
+%	the LM fonts are available, to my best knowledge, only in package |cfr-lm|.
+%	
+%	The sans serf italic variant differs from the regular one only in the shape 
+%	of lower case epsilon; it was asked for by Greek users of the |cb| fonts.
+%	
+%	This documented file contains the necessary information within the very 
+%	description of the various families, series and shapes, so as to let the 
+%	user to define him/her self the macros needed to select every family, 
+%	series and shape s/he wants to use.
+%
+%	\section{Scalable fonts}
+%	This new  package release redefines to font definition files of the Latin 
+%	Modern compatible CB Greek fonts so as to accept a scaling factor; the new 
+%	|lgrlm??.fd| files are compatible with the previous ones: in facts they 
+%	can be used exactly as the previous ones, but they can load slightly scaled 
+%	fonts in order to match the x-height of other Latin script fonts the users 
+%	might prefer to the standard Latin Modern ones. The users have three choices.
+%	\begin{enumerate}
+%	\item They define the macro |\lmfntscale| macro to contain the scaling factor.
+%	\item They define in their preamble the following code:
+%\begin{verbatim}
+%\makeatletter
+%\newcommand*\setLGRfntscale{\bgroup
+%\settoheight{\dimen3333}{\normalsize a}%
+%\settoheight{\dimen4444}{\normalsize\usefont{LGR}{lmr}{m}{n} a}
+%\dimen@=\dimexpr\dimen3333*\p@/\dimen4444\relax
+%\edef\x{\egroup\noexpand\gdef\noexpand\lmfntscale{\strip@pt\dimen@}}\x}
+%\makeatother
+%\end{verbatim}
+%	and, after |\begin{document}|,they use command |\serLGRfntscale| without any 
+%	argument, so that this macro doas the necessary calculations in order to 
+%	define the special macro |\lmfntscale| with the substitution text contain 
+%	the computed scale factor.
+%
+%	Notice that the declarations |\makeatletter| and |\makeatother| should 
+%	be omitted if that macro definition is inserted into a user's class or 
+%	package file.
+%	\item If available the users may call the |scalablecbfonts| package that 
+%	automatically computes the scale factor, or lets the users compute it by 
+%	issuing the  |\setLGRfntscale| command as described above, but it also 
+%	accepts a \emph{key=value} option with the \emph{value} containing the scale 
+%	factor the want to use; the users might load the package as in this example:
+%\begin{verbatim}
+%   \usepackage[scalefactor=1.08]{scalablecbfonts}
+%\end{verbatim}
+%	I suggest to use this package by letting it automatically compute the 
+%	scale factor; it yields the most accurate value.
+%
+%	The documentation of the |scalablecbfonts| gives more detailed information 
+%	to use the scaled Greek Latin Modern CB fonts in conjunction with Latin 
+%	script fonts different from the Latin Modern ones.
+%	\end{enumerate}
+%
+%	It is worth noting that in order to use the scaled Latin Modern compatible 
+%	CB Greek fonts it is compulsory that their family names start with |lm|; 
+%	missing this point the scale factor defined by means of the listed three 
+%	methods misses its goal, because the it acts only on the Greek families 
+%	whose name starts with |lm| since the Greek families whose name starts 
+%	with |cm| provide only a finite set of fixed sizes; even in vector format 
+%	they must remain compatible with the default Latin script CM fonts used 
+%	by \LaTeX.
+%
+%	It is also important to recall the necessity of defining special |.fd| 
+%	files in case the users desire to employ Latin script fonts different 
+%	from the Modern Latin ones. Package|teubner| may be used to produce 
+%	them, but the |scalablecbfonts| package (in preparation at the date of 
+%	this documentation) might be capable of doing all this work in an 
+%	automatic way. This very file has been typeset using the new PX fonts 
+%	for the Latin script and the Greek fonts appearing in table~\ref{samples} 
+%	shows that the size of the Greek fonts has been matched to the larger 
+%	Palatino ones used in this document.
+%
+%
+% \StopEventually{}
+%
+% \section{The \texttt{docstrip} modules}
+%    The following modules are used to direct \texttt{docstrip} in
+%    generating external files and for delimiting the driver file:
+% \begin{center}
+% \begin{tabular}{ll}
+%   driver    & guard for this documentation driver file \\
+%   LGRcmr    & The Roman font shapes\\
+%   LGRcmro   & The Outline Roman font shapes\\
+%   LGRcmss   & The Sans Serif font shapes\\
+%   LGRcmtt   & The typewriter font shapes\\
+%   LGRlcmss  & The slide Sans Serif font shapes\\
+%   LGRlcmtt  & The slide typewriter fonts\\
+%   LGRlmr    & The Roman font shapes\\
+%   LGRlmro   & The Outline Roman font shapes\\
+%   LGRlmss   & The Sans Serif font shapes\\
+%   LGRlmtt   & The typewriter font shapes
+% \end{tabular}
+% \end{center}
+%    A typical \dsc\ command file would then have entries like:
+%\begin{verbatim}
+%\generateFile{lgrcmr.fd}{t}{\from{cbgreek.fdd}{LGRcmr}}
+%\end{verbatim}
+%
+%  \section{The font definition files}
+%
+%    The |cb| fonts that I prepared are complete, in any
+%    sense of the word, and moreover fit nicely with the Computer
+%    Modern font family and the Latin Modern ones.
+%
+%    We begin with the definitions for the Greek European Computer font
+%    families.
+%\iffalse
+%<*LGRcmr>
+%\fi
+%    \begin{macrocode}
+\providecommand{\EC@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<5><6><7><8><9><10><10.95><12><14.4>%
+   <17.28><20.74><24.88><29.86><35.83>genb*#5}{}}
+\DeclareFontFamily{LGR}{cmr}{}
+\EC@family{LGR}{cmr}{m}{n}    {grmn}
+\EC@family{LGR}{cmr}{m}{sl}   {grmo}
+\EC@family{LGR}{cmr}{m}{it}   {grmi}
+\EC@family{LGR}{cmr}{m}{sc}   {grmc}
+\EC@family{LGR}{cmr}{m}{ui}   {grmu}
+\EC@family{LGR}{cmr}{m}{li}   {grml}
+\EC@family{LGR}{cmr}{m}{rs}   {gmmn}
+\EC@family{LGR}{cmr}{m}{ro}   {gmmo}
+%
+\EC@family{LGR}{cmr}{bx}{sc}  {grxc}
+\EC@family{LGR}{cmr}{bx}{n}   {grxn}
+\EC@family{LGR}{cmr}{bx}{sl}  {grxo}
+\EC@family{LGR}{cmr}{bx}{it}  {grxi}
+\EC@family{LGR}{cmr}{bx}{ui}  {grxu}
+\EC@family{LGR}{cmr}{bx}{li}  {grxl}
+\EC@family{LGR}{cmr}{bx}{rs}  {gmxn}
+\EC@family{LGR}{cmr}{bx}{ro}  {gmxo}
+\EC@family{LGR}{cmr}{b}{li}   {grbl}
+\DeclareFontShape{LGR}{cmr}{b}{n}
+       {<->ssub*cmr/bx/n}{}
+\DeclareFontShape{LGR}{cmr}{b}{sc}
+       {<->ssub*cmr/bx/sc}{}
+%    \end{macrocode}
+%\iffalse
+%</LGRcmr>
+%\fi
+%
+%    The Greek outline family is complete with the same five
+%    shapes and the two series as the roman family. 
+%\iffalse
+%<*LGRcmro>
+%\fi
+%    \begin{macrocode}
+\providecommand{\EC@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<5><6><7><8><9><10><10.95><12><14.4>%
+   <17.28><20.74><24.88><29.86><35.83>genb*#5}{}}
+\DeclareFontFamily{LGR}{cmro}{}
+\EC@family{LGR}{cmro}{m}{n}    {gomn}
+\EC@family{LGR}{cmro}{m}{sl}   {gomo}
+\EC@family{LGR}{cmro}{m}{it}   {gomi}
+\EC@family{LGR}{cmro}{m}{sc}   {gomc}
+\EC@family{LGR}{cmro}{m}{ui}   {gomu}
+\EC@family{LGR}{cmro}{bx}{sc}  {goxc}
+\EC@family{LGR}{cmro}{bx}{n}   {goxn}
+\EC@family{LGR}{cmro}{bx}{sl}  {goxo}
+\EC@family{LGR}{cmro}{bx}{it}  {goxi}
+\EC@family{LGR}{cmro}{bx}{ui}  {goxu}
+\DeclareFontShape{LGR}{cmro}{b}{n}
+       {<->ssub*cmro/bx/n}{}
+\DeclareFontShape{LGR}{cmro}{b}{sc}
+       {<->ssub*cmro/bx/sc}{}
+%    \end{macrocode}
+%\iffalse
+%</LGRcmro>
+%\fi
+%
+%    Then we have the \texttt{typewriter} fonts.
+%
+%\iffalse
+%<*LGRcmtt>
+%\fi
+%    \begin{macrocode}
+\providecommand{\EC@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<5><6><7><8><9><10><10.95><12><14.4>%
+   <17.28><20.74><24.88><29.86><35.83>genb*#5}{}}
+\DeclareFontFamily{LGR}{cmtt}{\hyphenchar\font\m@ne}
+\EC@family{LGR}{cmtt}{m}{n}   {gttn}
+\EC@family{LGR}{cmtt}{m}{sl}  {gtto}
+\EC@family{LGR}{cmtt}{m}{sc}  {gttc}
+\EC@family{LGR}{cmtt}{m}{it}  {gtti}
+\EC@family{LGR}{cmtt}{m}{ui}  {gttu}
+\DeclareFontShape{LGR}{cmtt}{bx}{n}
+       {<->ssub*cmtt/m/n}{}
+\DeclareFontShape{LGR}{cmtt}{bx}{sl}
+       {<->ssub*cmtt/m/sl}{}
+\DeclareFontShape{LGR}{cmtt}{bx}{it}
+       {<->ssub*cmtt/m/it}{}
+\DeclareFontShape{LGR}{cmtt}{bx}{sc}
+       {<->ssub*cmtt/m/sc}{}
+\DeclareFontShape{LGR}{cmtt}{bx}{ui}
+       {<->ssub*cmtt/m/ui}{}
+%    \end{macrocode}
+%\iffalse
+%</LGRcmtt>
+%\fi
+%
+%    Now we come to the Sans Serif font families to be used
+%    in Greek texts.
+%\iffalse
+%<*LGRcmss>
+%\fi
+%    \begin{macrocode}
+\providecommand{\EC@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<5><6><7><8><9><10><10.95><12><14.4>%
+   <17.28><20.74><24.88><29.86><35.83>genb*#5}{}}
+\DeclareFontFamily{LGR}{cmss}{}
+\EC@family{LGR}{cmss}{m}{n}    {gsmn}
+\EC@family{LGR}{cmss}{m}{sl}   {gsmo}
+\EC@family{LGR}{cmss}{m}{sc}   {gsmc}
+\EC@family{LGR}{cmss}{m}{it}   {gsmi}
+\EC@family{LGR}{cmss}{m}{ui}   {gsmu}
+\EC@family{LGR}{cmss}{m}{iv}   {gsme}
+\EC@family{LGR}{cmss}{m}{uv}   {gsma}
+%
+\EC@family{LGR}{cmss}{bx}{n}   {gsxn}
+\EC@family{LGR}{cmss}{bx}{sl}  {gsxo}
+\EC@family{LGR}{cmss}{bx}{sc}  {gsxc}
+\EC@family{LGR}{cmss}{bx}{it}  {gsxi}
+\EC@family{LGR}{cmss}{bx}{ui}  {gsxu}
+\EC@family{LGR}{cmss}{bx}{iv}  {gsxe}
+\EC@family{LGR}{cmss}{bx}{uv}  {gsxa}
+%    \end{macrocode}
+%\iffalse
+%</LGRcmss>
+%\fi
+%
+%   We have finished with the ``regular'' fonts. We now provide the fonts
+%   definition files for the fonts used only in slides. First comes the
+%   typewriter font.
+%\iffalse
+%<*LGRlcmtt>
+%\fi
+%    \begin{macrocode}
+\DeclareFontFamily{LGR}{lcmtt}{\hyphenchar\font\m@ne}
+\DeclareFontShape{LGR}{lcmtt}{m}{n}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * gltn}{}
+\DeclareFontShape{LGR}{lcmtt}{m}{In}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * gljn}{}
+\DeclareFontShape{LGR}{lcmtt}{m}{it}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glto}{}
+\DeclareFontShape{LGR}{lcmtt}{m}{Iit}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * gljo}{}
+\DeclareFontShape{LGR}{lcmtt}{m}{sl}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ ssub * lcmtt/m/it}{}
+\DeclareFontShape{LGR}{lcmtt}{m}{Isl}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ ssub * lcmtt/m/Iit}{}
+\DeclareFontShape{LGR}{lcmtt}{m}{sc}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * gltc}{}
+\DeclareFontShape{LGR}{lcmtt}{m}{Isc}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * gljc}{}
+%    \end{macrocode}
+%\iffalse
+%</LGRlcmtt>
+%\fi
+%
+% And then the Sans Serif font.
+%\iffalse
+%<*LGRlcmss>
+%\fi
+%    \begin{macrocode}
+\DeclareFontFamily{LGR}{lcmss}{}
+\DeclareFontShape{LGR}{lcmss}{m}{n}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glmn}{}
+\DeclareFontShape{LGR}{lcmss}{m}{In}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glin}{}
+\DeclareFontShape{LGR}{lcmss}{m}{sl}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glmo}{}
+\DeclareFontShape{LGR}{lcmss}{m}{Isl}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glio}{}
+\DeclareFontShape{LGR}{lcmss}{m}{it}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glmi}{}
+\DeclareFontShape{LGR}{lcmss}{m}{Iit}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glii}{}
+\DeclareFontShape{LGR}{lcmss}{m}{ui}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glmu}{}
+\DeclareFontShape{LGR}{lcmss}{bx}{n}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glxn}{}
+\DeclareFontShape{LGR}{lcmss}{bx}{In}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glwn}{}
+\DeclareFontShape{LGR}{lcmss}{bx}{sl}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glxo}{}
+\DeclareFontShape{LGR}{lcmss}{bx}{Isl}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glwo}{}
+\DeclareFontShape{LGR}{lcmss}{bx}{it}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glxi}{}
+\DeclareFontShape{LGR}{lcmss}{bx}{Iit}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glwi}{}
+\DeclareFontShape{LGR}{lcmss}{m}{sc}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glmc}{}
+\DeclareFontShape{LGR}{lcmss}{m}{Isc}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glic}{}
+\DeclareFontShape{LGR}{lcmss}{bx}{sc}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glxc}{}
+\DeclareFontShape{LGR}{lcmss}{bx}{Isc}{%
+ <7><8><10><12><13.82><16.59><19.91><23.89><28.66><34.4><41.28>
+ genb * glwc}{}
+%    \end{macrocode}
+%\iffalse
+%</LGRlcmss>
+%\fi
+%
+%    And now come the font definition files compatible with the Latin
+%    Modern family names and sizes; notice that the Latin Modern fonts
+%    are available only as scalable PostScript fonts, therefore they
+%    cope with (stepwise) continuous scaling; also the |cb| fonts are
+%    distributed as scalable PostScript fonts, so it makes sense to
+%    use the same size and family specifications as the LM fonts.
+%
+%    We start with the Latin Modern Regular.
+%\iffalse
+%<*LGRlmr>
+%\fi
+%    \begin{macrocode}
+\expandafter\ifx\csname lmfntscale\endcsname\relax
+   \let\lm@fntscale\empty
+\else
+   \edef\lm@fntscale{s*[\csname lmfntscale\endcsname]}%
+\fi
+\DeclareFontFamily{LGR}{lmr}{}
+\DeclareFontShape{LGR}{lmr}{m}{n}%
+  {<-5.5>    \lm@fntscale grmn0500  <5.5-6.5> \lm@fntscale grmn0600
+   <6.5-7.5> \lm@fntscale grmn0700  <7.5-8.5> \lm@fntscale grmn0800
+   <8.5-9.5> \lm@fntscale grmn0900  <9.5-11>  \lm@fntscale grmn1000
+   <11-15>   \lm@fntscale grmn1200  <15->     \lm@fntscale grmn1728}{}
+\DeclareFontShape{LGR}{lmr}{m}{rs}%
+  {<-5.5>    \lm@fntscale gmmn0500  <5.5-6.5> \lm@fntscale gmmn0600
+   <6.5-7.5> \lm@fntscale gmmn0700  <7.5-8.5> \lm@fntscale gmmn0800
+   <8.5-9.5> \lm@fntscale gmmn0900  <9.5-11>  \lm@fntscale gmmn1000
+   <11-15>   \lm@fntscale gmmn1200    <15->   \lm@fntscale gmmn1728}{}
+\DeclareFontShape{LGR}{lmr}{m}{sl}%
+  {<-8.5>   \lm@fntscale grmo0800   <8.5-9.5> \lm@fntscale grmo0900
+   <9.5-11> \lm@fntscale grmo1000   <11-15>   \lm@fntscale grmo1200
+      <15-> \lm@fntscale grmo1728}{}
+\DeclareFontShape{LGR}{lmr}{m}{ro}%
+  {<-8.5>   \lm@fntscale gmmo0800   <8.5-9.5> \lm@fntscale gmmo0900
+   <9.5-11> \lm@fntscale gmmo1000   <11-15>   \lm@fntscale gmmo1200
+   <15->    \lm@fntscale gmmo1728}{}
+\DeclareFontShape{LGR}{lmr}{m}{it}%
+  {<-7.5>    \lm@fntscale grmi0700
+   <7.5-8.5> \lm@fntscale grmi0800  <8.5-9.5> \lm@fntscale grmi0900
+   <9.5-11>  \lm@fntscale grmi1000  <11-15>   \lm@fntscale grmi1200
+    <15->    \lm@fntscale grmi1728}{}
+\DeclareFontShape{LGR}{lmr}{m}{li}%
+  {<-7.5> \lm@fntscale grml0700
+   <7.5-8.5> \lm@fntscale grml0800    <8.5-9.5> \lm@fntscale grml0900
+   <9.5-11>  \lm@fntscale grml1000     <11-15>  \lm@fntscale grml1200
+   <15->     \lm@fntscale grml1728}{}
+\DeclareFontShape{LGR}{lmr}{m}{ui}%
+  {<-7.5>    \lm@fntscale grmu0700
+   <7.5-8.5> \lm@fntscale grmu0800    <8.5-9.5> \lm@fntscale grmu0900
+   <9.5-11>  \lm@fntscale grmu1000    <11-15>   \lm@fntscale grmu1200
+   <15->     \lm@fntscale grmu1728}{}
+\DeclareFontShape{LGR}{lmr}{m}{sc}%
+  {<-7.5>    \lm@fntscale grmc0700
+   <7.5-8.5> \lm@fntscale grmc0800    <8.5-9.5> \lm@fntscale grmc0900
+   <9.5-11>  \lm@fntscale grmc1000    <11-15>   \lm@fntscale grmc1200
+   <15->     \lm@fntscale grmc1728}{}
+% slanted CSC is changed to unslanted CSC
+\DeclareFontShape{LGR}{lmr}{m}{scsl}%
+     {<-> ssub*lmr/m/sc}{}
+%%%%%%%% bold and bold extended series
+\DeclareFontShape{LGR}{lmr}{bx}{n}
+  {<-5.5>    \lm@fntscale grxn0500  <5.5-6.5> \lm@fntscale grxn0600
+   <6.5-7.5> \lm@fntscale grxn0700  <7.5-8.5> \lm@fntscale grxn0800
+   <8.5-9.5> \lm@fntscale grxn0900  <9.5-11>  \lm@fntscale grxn1000
+   <11-15>   \lm@fntscale grxn1200  <15->     \lm@fntscale grxn1728}{}
+\DeclareFontShape{LGR}{lmr}{bx}{rs}
+  {<-5.5>    \lm@fntscale gmxn0500  <5.5-6.5> \lm@fntscale gmxn0600
+   <6.5-7.5> \lm@fntscale gmxn0700  <7.5-8.5> \lm@fntscale gmxn0800
+   <8.5-9.5> \lm@fntscale gmxn0900  <9.5-11>  \lm@fntscale gmxn1000
+   <11-15>   \lm@fntscale gmxn1200  <15->     \lm@fntscale gmxn1728}{}
+\DeclareFontShape{LGR}{lmr}{bx}{it}
+  {<-7.5>    \lm@fntscale grxi0700
+   <7.5-8.5> \lm@fntscale grxi0800    <8.5-9.5> \lm@fntscale grxi0900
+   <9.5-11>  \lm@fntscale grxi1000    <11-15>   \lm@fntscale grxi1200
+   <15->     \lm@fntscale grxi1728}{}
+\DeclareFontShape{LGR}{lmr}{b}{li}
+  {<-7.5>    \lm@fntscale grbl0700
+   <7.5-8.5> \lm@fntscale grbl0800    <8.5-9.5> \lm@fntscale grbl0900
+   <9.5-11>  \lm@fntscale grbl1000    <11-15>   \lm@fntscale grbl1200
+   <15->     \lm@fntscale grbl1728}{}
+\DeclareFontShape{LGR}{lmr}{bx}{li}
+  {<-7.5>    \lm@fntscale grxl0700
+   <7.5-8.5> \lm@fntscale grxl0800    <8.5-9.5> \lm@fntscale grxl0900
+   <9.5-11>  \lm@fntscale grxl1000    <11-15>   \lm@fntscale grxl1200
+   <15->     \lm@fntscale grxl1728}{}
+\DeclareFontShape{LGR}{lmr}{bx}{ui}
+  {<-7.5>    \lm@fntscale grxu0700
+   <7.5-8.5> \lm@fntscale grxu0800    <8.5-9.5>  \lm@fntscale grxu0900
+   <9.5-11>  \lm@fntscale grxu1000    <11-15>    \lm@fntscale grxu1200
+   <15->     \lm@fntscale grxu1728}{}
+\DeclareFontShape{LGR}{lmr}{bx}{sl}
+  {<-8.5>    \lm@fntscale grxo0800    <8.5-9.5> \lm@fntscale grxo0900
+   <9.5-11>  \lm@fntscale grxo1000   <11-15>    \lm@fntscale grxo1200
+   <15->     \lm@fntscale grxo1728}{}
+\DeclareFontShape{LGR}{lmr}{bx}{ro}
+  {<-8.5>    \lm@fntscale gmxo0800    <8.5-9.5> \lm@fntscale gmxo0900
+   <9.5-11>  \lm@fntscale gmxo1000    <11-15>   \lm@fntscale gmxo1200
+   <15->     \lm@fntscale gmxo1728}{}
+\DeclareFontShape{LGR}{lmr}{bx}{sc}%
+  {<-7.5>    \lm@fntscale grxc0700
+   <7.5-8.5> \lm@fntscale grxc0800    <8.5-9.5> \lm@fntscale grxc0900
+   <9.5-11>  \lm@fntscale grxc1000    <11-15>   \lm@fntscale grxc1200
+   <15->     \lm@fntscale grxc1728}{}
+%    \end{macrocode}
+%\iffalse
+%</LGRlmr>
+%\fi
+%
+%    Then the Latin Modern Regular Outline:
+%\iffalse
+%<*LGRlmro>
+%\fi
+%    \begin{macrocode}
+\expandafter\ifx\csname lmfntscale\endcsname\relax
+   \let\lm@fntscale\empty
+\else
+   \edef\lm@fntscale{s*[\csname lmfntscale\endcsname]}%
+\fi
+\DeclareFontFamily{LGR}{lmro}{}
+\DeclareFontShape{LGR}{lmro}{m}{n}%
+  {<-5.5>    \lm@fntscale gomn0500   <5.5-6.5> \lm@fntscale gomn0600
+   <6.5-7.5> \lm@fntscale gomn0700   <7.5-8.5> \lm@fntscale gomn0800
+   <8.5-9.5> \lm@fntscale gomn0900   <9.5-11>  \lm@fntscale gomn1000
+   <11-15>   \lm@fntscale gomn1200   <15->     \lm@fntscale gmr1728}{}
+\DeclareFontShape{LGR}{lmro}{m}{sl}%
+  {<-8.5>    \lm@fntscale gomo0800    <8.5-9.5> \lm@fntscale gomo0900
+   <9.5-11>  \lm@fntscale gomo1000    <11-15>   \lm@fntscale gomo1200
+   <15->     \lm@fntscale gomo1728}{}
+\DeclareFontShape{LGR}{lmro}{m}{it}%
+  {<-7.5>    \lm@fntscale gomi0700
+   <7.5-8.5> \lm@fntscale gomi0800    <8.5-9.5> \lm@fntscale gomi0900
+   <9.5-11>  \lm@fntscale gomi1000    <11-15>   \lm@fntscale gomi1200
+   <15->     \lm@fntscale gomi1728}{}
+\DeclareFontShape{LGR}{lmro}{m}{ui}%
+  {<-7.5>    \lm@fntscale gomu0700
+   <7.5-8.5> \lm@fntscale gomu0800    <8.5-9.5> \lm@fntscale gomu0900
+   <9.5-11>  \lm@fntscale gomu1000    <11-15>   \lm@fntscale gomu1200
+   <15->     \lm@fntscale gomu1728}{}
+\DeclareFontShape{LGR}{lmro}{m}{sc}%
+  {<-7.5>    \lm@fntscale gomc0700
+   <7.5-8.5> \lm@fntscale gomc0800    <8.5-9.5> \lm@fntscale gomc0900
+   <9.5-11>  \lm@fntscale gomc1000    <11-15>   \lm@fntscale gomc1200
+   <15->     \lm@fntscale gomc1728}{}
+% slanted CSC is changed to unslanted CSC
+\DeclareFontShape{LGR}{lmro}{m}{scsl}%
+     {<-> ssub*lmr/m/sc}{}
+%%%%%%%% bold extended series
+\DeclareFontShape{LGR}{lmro}{bx}{n}
+  {<-5.5>    \lm@fntscale goxn0500  <5.5-6.5> \lm@fntscale gox0600
+   <6.5-7.5> \lm@fntscale goxn0700  <7.5-8.5> \lm@fntscale goxn0800
+   <8.5-9.5> \lm@fntscale goxn0900  <9.5-11>  \lm@fntscale goxn1000
+   <11-15>   \lm@fntscale goxn1200  <15->     \lm@fntscale goxn1728}{}
+\DeclareFontShape{LGR}{lmro}{bx}{it}
+  {<-7.5>    \lm@fntscale goxi0700
+   <7.5-8.5> \lm@fntscale goxi0800    <8.5-9.5> \lm@fntscale goxi0900
+   <9.5-11>  \lm@fntscale goxi1000    <11-15>   \lm@fntscale goxi1200
+   <15->     \lm@fntscale goxi1728}{}
+\DeclareFontShape{LGR}{lmro}{bx}{ui}
+  {<-7.5>    \lm@fntscale goxu0700
+   <7.5-8.5> \lm@fntscale goxu0800    <8.5-9.5> \lm@fntscale goxu0900
+   <9.5-11>  \lm@fntscale goxu1000    <11-15>   \lm@fntscale goxu1200
+   <15->     \lm@fntscale goxu1728}{}
+\DeclareFontShape{LGR}{lmro}{bx}{sl}
+  {<-8.5>    \lm@fntscale goxo0800    <8.5-9.5> \lm@fntscale goxo0900
+   <9.5-11>  \lm@fntscale goxo1000    <11-15>   \lm@fntscale goxo1200
+   <15->     \lm@fntscale goxo1728}{}
+\DeclareFontShape{LGR}{lmro}{bx}{sc}%
+  {<-7.5>    \lm@fntscale goxc0700
+   <7.5-8.5> \lm@fntscale goxc0800    <8.5-9.5> \lm@fntscale goxc0900
+   <9.5-11>  \lm@fntscale goxc1000    <11-15>   \lm@fntscale goxc1200
+   <15->     \lm@fntscale goxc1728}{}
+%    \end{macrocode}
+%\iffalse
+%</LGRlmro>
+%\fi
+%
+%    Now the Latin Modern Sans Serif
+%
+%\iffalse
+%<*LGRlmss>
+%\fi
+%    \begin{macrocode}
+\expandafter\ifx\csname lmfntscale\endcsname\relax
+   \let\lm@fntscale\empty
+\else
+   \edef\lm@fntscale{s*[\csname lmfntscale\endcsname]}%
+\fi
+\DeclareFontFamily{LGR}{lmss}{}
+\DeclareFontShape{LGR}{lmss}{m}{n}
+  {<-8.5>    \lm@fntscale gsmn0800
+   <8.5-9.5> \lm@fntscale gsmn0900  <9.5-11>  \lm@fntscale gsmn1000
+   <11-15.5> \lm@fntscale gsmn1200  <15.5->   \lm@fntscale gsmn1728}{}
+\DeclareFontShape{LGR}{lmss}{m}{it}
+  {<-8.5>    \lm@fntscale gsmi0800
+   <8.5-9.5> \lm@fntscale gsmi0900   <9.5-11>  \lm@fntscale gsmi1000
+   <11-15.5> \lm@fntscale gsmi1200   <15.5->   \lm@fntscale gsmi1728}{}
+\DeclareFontShape{LGR}{lmss}{m}{iv}
+  {<-8.5>    \lm@fntscale gsme0800
+   <8.5-9.5> \lm@fntscale gsme0900  <9.5-11>  \lm@fntscale gsme1000
+   <11-15.5> \lm@fntscale gsme1200  <15.5->   \lm@fntscale gsme1728}{}
+\DeclareFontShape{LGR}{lmss}{m}{ui}
+  {<-8.5>    \lm@fntscale gsmu0800
+   <8.5-9.5> \lm@fntscale gsmu0900  <9.5-11>  \lm@fntscale gsmu1000
+   <11-15.5> \lm@fntscale gsmu1200  <15.5->   \lm@fntscale gsmu1728}{}
+\DeclareFontShape{LGR}{lmss}{m}{uv}
+  {<-8.5>    \lm@fntscale gsma0800
+   <8.5-9.5> \lm@fntscale gsma0900  <9.5-11>  \lm@fntscale gsma1000
+   <11-15.5> \lm@fntscale gsma1200  <15.5->   \lm@fntscale gsma1728}{}
+\DeclareFontShape{LGR}{lmss}{m}{sl}
+  {<-8.5>    \lm@fntscale gsmo0800
+   <8.5-9.5> \lm@fntscale gsmo0900  <9.5-11>  \lm@fntscale gsmo1000
+   <11-15.5> \lm@fntscale gsmo1200  <15.5->   \lm@fntscale gsmo1728}{}
+\DeclareFontShape{LGR}{lmss}{m}{sc}
+  {<-8.5>    \lm@fntscale gsmc0800
+   <8.5-9.5> \lm@fntscale gsmc0900  <9.5-11>  \lm@fntscale gsmc1000
+   <11-15.5> \lm@fntscale gsmc1200  <15.5->   \lm@fntscale gsmc1728}{}
+%%%%%%%% semibold condensed series substituted with medium series
+\DeclareFontShape{LGR}{lmss}{sbc}{n}
+{<-> ssub*lmss/m/n}{}
+\DeclareFontShape{LGR}{lmss}{sbc}{sl}
+{<-> ssub*/lmss/m/sl}{}
+\DeclareFontShape{LGR}{lmss}{sbc}{it}
+{<->ssub*lmss/m/sl}{}
+%%%%%%%%% bold extended series
+\DeclareFontShape{LGR}{lmss}{bx}{n}
+  {<-8.5>    \lm@fntscale gsxn0800
+   <8.5-9.5> \lm@fntscale gsxn0900  <9.5-11>  \lm@fntscale gsxn1000
+   <11-15.5> \lm@fntscale gsxn1200  <15.5->   \lm@fntscale gsxn1728}{}
+\DeclareFontShape{LGR}{lmss}{bx}{sl}
+  {<-8.5>    \lm@fntscale gsxo0800
+   <8.5-9.5> \lm@fntscale gsxo0900  <9.5-11>  \lm@fntscale gsxo1000
+   <11-15.5> \lm@fntscale gsxo1200  <15.5->   \lm@fntscale gsxo1728}{}
+\DeclareFontShape{LGR}{lmss}{bx}{it}
+  {<-8.5>    \lm@fntscale gsxi0800
+   <8.5-9.5> \lm@fntscale gsxi0900  <9.5-11>  \lm@fntscale gsxi1000
+   <11-15.5> \lm@fntscale gsxi1200  <15.5->   \lm@fntscale gsxi1728}{}
+\DeclareFontShape{LGR}{lmss}{bx}{iv}
+  {<-8.5>    \lm@fntscale gsxe0800
+   <8.5-9.5> \lm@fntscale gsxe0900  <9.5-11>  \lm@fntscale gsxe1000
+   <11-15.5> \lm@fntscale gsxe1200  <15.5->   \lm@fntscale gsxe1728}{}
+\DeclareFontShape{LGR}{lmss}{bx}{ui}
+  {<-8.5>    \lm@fntscale gsxu0800
+   <8.5-9.5> \lm@fntscale gsxu0900  <9.5-11>  \lm@fntscale gsxu1000
+   <11-15.5> \lm@fntscale gsxu1200  <15.5->   \lm@fntscale gsxu1728}{}
+\DeclareFontShape{LGR}{lmss}{bx}{uv}
+  {<-8.5>    \lm@fntscale gsxa0800
+   <8.5-9.5> \lm@fntscale gsxa0900  <9.5-11>  \lm@fntscale gsxa1000
+   <11-15.5> \lm@fntscale gsxa1200  <15.5->   \lm@fntscale gsxa1728}{}
+\DeclareFontShape{LGR}{lmss}{bx}{sc}
+  {<-8.5>    \lm@fntscale gsxc0800
+   <8.5-9.5> \lm@fntscale gsxc0900  <9.5-11>  \lm@fntscale gsxc1000
+   <11-15.5> \lm@fntscale gsxc1200  <15.5->   \lm@fntscale gsxc1728}{}
+%    \end{macrocode}
+%\iffalse
+%</LGRlmss>
+%\fi
+%
+%    And finally the Latin Modern typewriter font.
+%
+%\iffalse
+%<*LGRlmtt>
+%\fi
+%    \begin{macrocode}
+\expandafter\ifx\csname lmfntscale\endcsname\relax
+   \let\lm@fntscale\empty
+\else
+   \edef\lm@fntscale{s*[\csname lmfntscale\endcsname]}%
+\fi
+\DeclareFontFamily{LGR}{lmtt}{\hyphenchar\font\m@ne} 
+\DeclareFontShape{LGR}{lmtt}{m}{n}
+  {<-8.5>   \lm@fntscale gttn0800  <8.5-9.5> \lm@fntscale gttn0900
+   <9.5-11> \lm@fntscale gttn1000  <11-15>   \lm@fntscale gttn1200
+   <15->    \lm@fntscale gttn1728}{}
+\DeclareFontShape{LGR}{lmtt}{m}{sl}
+  {<-8.5>   \lm@fntscale gtto0800  <8.5-9.5> \lm@fntscale gtto0900
+   <9.5-11> \lm@fntscale gtto1000  <11-15>   \lm@fntscale gtto1200
+   <15->    \lm@fntscale gtto1728}{}
+\DeclareFontShape{LGR}{lmtt}{m}{it}{<-> ssub*lmtt/m/sl}{}
+\DeclareFontShape{LGR}{lmtt}{m}{sc}
+  {<-8.5>   \lm@fntscale gttc0800  <8.5-9.5> \lm@fntscale gttc0900
+   <9.5-11> \lm@fntscale gttc1000  <11-15>   \lm@fntscale gttc1200
+   <15->    \lm@fntscale gttc1728}{}
+% shape undefined, substituted with unslanted
+\DeclareFontShape{LGR}{lmtt}{m}{scsl}{<-> ssub*lmtt/m/sc}{}
+%    \end{macrocode}
+%\iffalse
+%</LGRlmtt>
+%\fi
+%
+%    The slide fonts have not been mapped to the Latin Modern
+%    families and sizes, because there are no slide fonts in the LM 
+%    collection. Moreover nowadays the traditional slide fonts are
+%    very seldom used, since slides are produced with other classes
+%    different from the |slides| class, and they use different fonts.
+%
+%	In any case the package |LXfonts| is set up to use suitable font
+%	 definition files so as to mix Latin and Greek  |CB| fonts 
+%	together with regular and AMS math fonts that match one another 
+%	so as to produce beautiful slides with the |beamer| class.
+%
+%    The next line goes into all files and in addition prevents \dsc{}
+%    from adding any further code from the main source file (such as a
+%    character table.
+%    \begin{macrocode}
+\endinput
+%    \end{macrocode}
+%
+% \Finale
+
+

@@ -1,0 +1,6 @@
+Macros for 'Progress of Theoretical Physics'.
+
+Includes a template, and a class option file for preprints. Requires the 
+cite, overcite, and wrapfig packages.
+
+License: LPPL

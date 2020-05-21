@@ -1,0 +1,26 @@
+name cascadilla
+category Package
+revision 25144
+shortdesc Typeset papers conforming to the stylesheet of the Cascadilla Proceedings Project
+longdesc The class provides an extension of the standard LaTeX article
+longdesc class that may be used to typeset papers conforming to the
+longdesc stylesheet of the Cascadilla Proceedings Project, which is used
+longdesc by a number of linguistics conference proceedings (e.g.,
+longdesc WCCFL).
+containersize 9668
+containerchecksum df66bd91562f3678e2ef42f16a4a0c4af95209fb28b1176b5b63968632b3235391180b06431a42afdc73a9e4f97f47c8c954ed1ef2ccb746cdbf1d65058ad919
+doccontainersize 88068
+doccontainerchecksum 2c15b786f550642c26cc8f5e0151dd5b31e964b46d59837b3f1ccbe118fba6ad8f06f86c6a5bdc6a791615929bf4c9b7c2287f930d1ca3c8bd6c2d0d7ddf64b2
+docfiles size=32
+ texmf-dist/doc/latex/cascadilla/LICENSE.txt
+ texmf-dist/doc/latex/cascadilla/README details="Readme"
+ texmf-dist/doc/latex/cascadilla/example.pdf details="Example document"
+ texmf-dist/doc/latex/cascadilla/example.tex
+ texmf-dist/doc/latex/cascadilla/exampleref.bib
+runfiles size=11
+ texmf-dist/bibtex/bst/cascadilla/cascadilla.bst
+ texmf-dist/tex/latex/cascadilla/cascadilla.cls
+catalogue-ctan /macros/latex/contrib/cascadilla
+catalogue-license lppl
+catalogue-topics journalpub
+catalogue-version 1.8.2

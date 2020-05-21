@@ -1,0 +1,61 @@
+\nofiles
+\documentclass{article}
+
+\newcommand*{\Test}[1]{%
+   #1\\
+   \rmfamily
+   ``The purpose of this pronunciation exercise is to remind you that
+     \TeX{} is primarily concerned with high-quality technical
+     manuscripts: Its emphasis is on art and technology, as in the
+     underlying Greek word.
+     If you merely want to produce a passably good document ---
+     something acceptable and bascially readable but not really
+     beautiful --- a simpler system will usually suffice.
+     With \TeX{} the goal is to produce the \textsl{finest} quality:
+     this requires more attention to detail, but you will not find it
+     much harder to go the extra distance, and you'll be able to take
+     special pride in the finished product.''\par
+   \ttfamily
+   ``The purpose of this pronunciation exercise is to remind you that
+     \TeX{} is primarily concerned with high-quality technical
+     manuscripts: Its emphasis is on art and technology, as in the
+     underlying Greek word.
+     If you merely want to produce a passably good document ---
+     something acceptable and bascially readable but not really
+     beautiful --- a simpler system will usually suffice.
+     With \TeX{} the goal is to produce the \textsl{finest} quality:
+     this requires more attention to detail, but you will not find it
+     much harder to go the extra distance, and you'll be able to take
+     special pride in the finished product.''\par
+   \medskip
+   }
+\usepackage{multicol}
+\setcounter{collectmore}{2}
+\setcounter{columnbadness}{5000}
+
+\pagestyle{empty}
+
+\usepackage{ragged2e}
+
+\begin{document}
+\begin{multicols}{3}
+\fussy
+{\centering\Test{centering}}
+{\Centering\Test{Centering}}
+\newpage
+{\raggedleft\Test{raggedleft}}
+{\RaggedLeft\Test{RaggedLeft}}
+\newpage
+{\raggedright\Test{raggedright}}
+{\RaggedRight\Test{RaggedRight}}
+\newpage
+\begin{center}\Test{center}\end{center}
+\begin{Center}\Test{Center}\end{Center}
+\newpage
+\begin{flushleft}\Test{flushleft}\end{flushleft}
+\begin{FlushLeft}\Test{FlushLeft}\end{FlushLeft}
+\newpage
+\begin{flushright}\Test{flushright}\end{flushright}
+\begin{FlushRight}\Test{Flushright}\end{FlushRight}
+\end{multicols}
+\end{document}

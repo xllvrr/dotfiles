@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title></title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<meta name="originator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<!-- xhtml,th4,index --> 
+<meta name="src" content="mn.tex" /> 
+<meta name="date" content="2004-02-11 18:07:00" /> 
+<link rel="stylesheet" type="text/css" href="mn.css" /> 
+</head><body 
+>
+<!--l. 3361--><p class="noindent"><a 
+ href="mn6.html#mn15-1"  name="mn15-1" >1</a>.   <a 
+  name="index15-30004"></a>  <a 
+  name="index15-30005"></a><span 
+class="cmtt-10">\Configure{HtmlPar} {</span><span 
+class="cmti-10">noindent-P</span><span 
+class="cmtt-10">} {</span><span 
+class="cmti-10">indent-P</span><span 
+class="cmtt-10">} {</span><span 
+class="cmti-10">from-noindent-P</span><span 
+class="cmtt-10">} {</span><span 
+class="cmti-10">from-indent-P</span><span 
+class="cmtt-10">} </span><br /><span 
+class="cmtt-10">\EndP</span>
+</p><!--l. 3363--><p class="indent">    The first two parameters of this command determine the kind of code to be inserted at the start of, respectively,
+nonindented and indented paragraphs.
+</p>
+    <table id="TBL-8"  
+><tr >
+<td class="output" 
+><div class="output">
+*       1
+*       2
+*       3
+*       4
+*       5 </div></td><td 
+><div class="source">
+      <div class="ShowCode">
+      <br />&nbsp;<span 
+class="cmtt-10">\Configure{HtmlPar}</span>
+      <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{}</span>&nbsp;<span 
+class="cmtt-10">{*</span>&nbsp;<span 
+class="cmtt-10">}</span>&nbsp;&nbsp;<span 
+class="cmtt-10">{}</span>&nbsp;<span 
+class="cmtt-10">{}</span>
+      <br />&nbsp;<span 
+class="cmtt-10">\par</span>&nbsp;<span 
+class="cmtt-10">1\par</span>&nbsp;<span 
+class="cmtt-10">2\par</span>
+      <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">3\par</span>&nbsp;<span 
+class="cmtt-10">4\par</span>&nbsp;<span 
+class="cmtt-10">5</span>
+</div>
+    </div></td></tr></table>
+    The last two parameters specify the code to be stored in <span 
+class="cmtt-10">\EndP</span>, when the first two parameters are introduced,
+respectively, into the output.
+    <table id="TBL-9"  
+><tr >
+<td class="output" 
+><div class="output">
+[       1
+ ][       2
+ ][       3
+ ][       4
+ ][       5
+ ]      </div></td><td 
+><div class="source">
+      <div class="ShowCode">
+      <br />&nbsp;<span 
+class="cmtt-10">\Configure{HtmlPar}</span>
+      <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{[</span>&nbsp;<span 
+class="cmtt-10">}</span>&nbsp;<span 
+class="cmtt-10">{\EndP</span>&nbsp;<span 
+class="cmtt-10">[</span>&nbsp;<span 
+class="cmtt-10">}</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">]}</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">]}</span>
+      <br />&nbsp;<span 
+class="cmtt-10">\par</span>&nbsp;<span 
+class="cmtt-10">1\par</span>&nbsp;<span 
+class="cmtt-10">2\par</span>&nbsp;<span 
+class="cmtt-10">3\par</span>&nbsp;<span 
+class="cmtt-10">4\par</span>&nbsp;<span 
+class="cmtt-10">5</span>
+      <br />&nbsp;<span 
+class="cmtt-10">\Configure{HtmlPar}</span>
+      <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{}{\EndP}</span>&nbsp;<span 
+class="cmtt-10">{}{}</span>
+      <br />&nbsp;<span 
+class="cmtt-10">\par\leavevmode</span>
+</div>
+    </div></td></tr></table>
+    The default setting assumes a configuration of the form &#8216;<span 
+class="cmtt-10">\Configure{HtmlPar}{\HCode{&lt;p class=&#34;noindent&#34;&gt;}}</span>
+<span 
+class="cmtt-10">{\HCode{&lt;p class=&#34;indent&#34;&gt;}} {}{}</span>&#8217; (and it is implemented through an &#8216;<span 
+class="cmtt-10">\everypar{\HtmlPar}</span>&#8217;
+command).<hr />
+<!--l. 3419--><p class="noindent"><a 
+ href="mn6.html#mn15-2"  name="mn15-2" >2</a>.   <a 
+  name="index15-30007"></a>  <span 
+class="cmtt-10">\IgnorePar</span>
+</p><!--l. 3421--><p class="indent">    This command asks that no code will be inserted at the beginning of the next paragraph.
+
+</p><hr />
+<!--l. 3426--><p class="noindent"><a 
+ href="mn6.html#mn15-3"  name="mn15-3" >3</a>.   <a 
+  name="index15-30009"></a>  <span 
+class="cmtt-10">\ShowPar</span>
+</p><!--l. 3428--><p class="indent">    This command asks that code will be inserted at the beginning of the next paragraph.
+</p><hr />
+<!--l. 3433--><p class="noindent"><a 
+ href="mn6.html#mn15-4"  name="mn15-4" >4</a>.   <a 
+  name="index15-30011"></a>  <span 
+class="cmtt-10">\IgnoreIndent</span>
+</p><!--l. 3435--><p class="indent">    This command asks to treat the next paragraph as nonindented.
+</p><hr />
+<!--l. 3440--><p class="noindent"><a 
+ href="mn6.html#mn15-5"  name="mn15-5" >5</a>.   <a 
+  name="index15-30013"></a>  <span 
+class="cmtt-10">\ShowIndent</span>
+</p><!--l. 3442--><p class="indent">    This command asks to treat the following paragraphs as indented.
+</p>
+
+     
+</body></html> 

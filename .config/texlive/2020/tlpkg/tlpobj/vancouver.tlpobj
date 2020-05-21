@@ -1,0 +1,25 @@
+name vancouver
+category Package
+revision 34470
+shortdesc Bibliographic style file for Biomedical Journals
+longdesc This BibTeX style file is generated with the docstrip utility
+longdesc and modified manually to meet the Uniform Requirements for
+longdesc Manuscripts Submitted to Biomedical Journals as published in N
+longdesc Engl J Med 1997;336:309-315 (also known as the Vancouver
+longdesc style). The complete set of requirements may be viewed on the
+longdesc ICMJE web site.
+containersize 8384
+containerchecksum 8fc852e2137af0b1e0664ecdaf115a6c4c631faf840b5564b9dca2f8c457f8fe33bd7edd92ff4590c05ab13c23a9b1771b7e688ee6f6d700a9feb01f9a921170
+doccontainersize 88720
+doccontainerchecksum 50ec342e62a14f417b8a0d4085ca46aa701a9e2ae5630daa2159ddd6532a0c3d5769a0cd351c932bc54395f159d560a259e3996f4f157e42d0dfa41aeca6dc80
+docfiles size=32
+ texmf-dist/doc/bibtex/vancouver/FAQ
+ texmf-dist/doc/bibtex/vancouver/README details="Readme"
+ texmf-dist/doc/bibtex/vancouver/vancouver.bib
+ texmf-dist/doc/bibtex/vancouver/vancouver.pdf details="Package documentation"
+ texmf-dist/doc/bibtex/vancouver/vancouver.tex
+runfiles size=10
+ texmf-dist/bibtex/bst/vancouver/vancouver.bst
+catalogue-ctan /biblio/bibtex/contrib/vancouver
+catalogue-license lppl1.3
+catalogue-topics biomedical journalpub bibtex-sty

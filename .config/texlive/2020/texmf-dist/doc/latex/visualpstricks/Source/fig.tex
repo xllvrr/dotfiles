@@ -1,0 +1,125 @@
+\SbSSCT{Dans le texte}{In the text}
+
+\psset{fillcolor=yellow,fillstyle=none,linecolor=blue}
+
+\bigskip
+\TFRGB{dessin directement  dans le texte}{picture in the text}  \psline[linecolor=red](0,0)(4,4) \psline[linecolor=blue](0,0)(4,2) \pscircle[linecolor=green]{2} \TFRGB{ici est inclus le code suivant}{here is the following code} : \BS{}psline[linecolor=red](0,0)(4,4) \BS{}psline[linecolor=blue](0,0)(4,2)  \BS{}pscircle[linecolor=green]\AC{2}
+ 
+% les lignes sont tracées ici .\psline[linecolor=red](0,0)(4,4) \psline[linecolor=blue](0,0)(4,2)
+
+\bigskip
+\TFRGB{Le dessin se superpose au texte , Il n'a pas de dimension !}{
+The drawing is superimposed on the text, it has no dimension!}
+
+%----------------------------------------------------------
+\SbSSCT{Dans un environnement pspicture}{In a pspicture environment}
+
+\begin{tabular}{|l|l|}
+\hline  
+\multicolumn{2}{|c|}{2 syntaxes}\\ \hline  
+\BSS{pspicture}(4,4)
+&
+\BSS{begin\AC{pspicture}}(4,4)
+\\
+\BS{}psframe(4,4)
+&
+\BS{}psframe(4,4)
+\\
+\BS{}pscircle[linecolor=red](2,2)\AC{1cm}
+&
+\BS{}pscircle[linecolor=red](2,2)\AC{1cm}
+\\
+\BSS{endpspicture}
+&  
+\BSS{end\AC{pspicture}}
+\\ 
+\hline 
+
+\TFRGB{texte avant}{text before} 
+\pspicture(4,4)
+\psframe(4,4)
+\pscircle[linecolor=red](2,2){1cm}
+\endpspicture
+\TFRGB{texte après}{text after} 
+
+&  
+\begin{pspicture}(4,4)
+\TFRGB{texte avant}{text before} 
+\psframe(4,4)
+\pscircle[linecolor=red](2,2){1cm}
+\end{pspicture}
+\TFRGB{texte après}{text after} 
+\\ \hline 
+\end{tabular} 
+
+
+	
+	
+	
+\SbSSCT{Coupure de l'image}{Clipping the picture}	
+
+\begin{tabular}{|c|p{2cm}|c|}
+\hline 
+\BS{}begin\AC{pspicture}(4,4) &  &\BS{}begin\AC{pspicture}{\red *}(4,4) \\
+\BS{}pscircle[linecolor=red](2,2)\AC{2.5} & & \BS{}pscircle[linecolor=red](2,2)\AC{2.5}
+\\ \hline 
+
+\begin{pspicture}(4,4) 
+\psframe(4,4)
+\pscircle[linecolor=red](2,2){2.5}
+\pscircle[linecolor=green](2,2){2}
+\pscircle[linecolor=blue](2,2){1}
+\end{pspicture}
+&  &
+\begin{pspicture}*(4,4) 	
+\psframe(4,4)
+\pscircle[linecolor=red](2,2){2.5}
+\pscircle[linecolor=green](2,2){2}
+\pscircle[linecolor=blue](2,2){1}
+\end{pspicture}
+\\  \hline 
+\end{tabular} 
+
+\SbSSCT{Rognage partiel}{Partial clipping}
+
+\begin{tabular}{|c|c|}
+\hline  
+\begin{pspicture}*[shift=*](-2,-2)(3,2) %\psgrid
+\psclip {\psdiamond(.5,.5)(2,1)}
+\pscircle[linecolor=red]{.5}
+\pscircle[linecolor=red]{1}
+\endpsclip
+\pscircle[linecolor=green]{1.5}
+\end{pspicture}
+& 
+\parbox{8cm}{
+\BS{}begin\AC{pspicture}*(-2,-2)(3,2) \\
+\BSS{psclip} {\red \AC{\BS{}psdiamond(.5,.5)(2,1)}} \\ 
+\BS{}pscircle[linecolor=red]\AC{.5} \\
+\BS{}pscircle[linecolor=red]\AC{1} \\
+\BSS{endpsclip} \\
+\BS{}pscircle[linecolor=green]\AC{1.5} \\
+\BS{}end\AC{pspicture}}
+\\ \hline 
+\end{tabular} 
+
+%---------------------------------------------------------------
+
+\SbSSCTTC{Positionnement  par rapport au texte}{Relative to the text line} %{Relative to the text line \cite{pst-news05}  \cite{pst-news08} }
+
+
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\multicolumn{4}{|c|}{ \TFRGB{avant}{before} \BS{}begin\AC{pspicture}[\RDD{shift}=*](1,1)  \BS{}psframe(1,1) \BS{end\AC{pspicture} \TFRGB{après}{after}  }}\\ \hline   
+\TFRGB{avant}{before}  \begin{pspicture}(1,1) \psframe(1,1) \end{pspicture} \TFRGB{après}{after} 
+&  
+\TFRGB{avant}{before}  \begin{pspicture}[shift=*](1,1) \psframe(1,1) \end{pspicture} \TFRGB{après}{after} 
+&  
+\TFRGB{avant}{before}   \begin{pspicture}[shift=.5cm](1,1) \psframe(1,1) \end{pspicture} \TFRGB{après}{after} 
+&  
+\TFRGB{avant}{before}  \begin{pspicture}[shift=-.75cm](1,1) \psframe(1,1) \end{pspicture} \TFRGB{après}{after} 
+\\ 
+\hline {\blue \dft{}} & shift=* & shift=.5cm & shift=-.75cm \\ 
+\hline 
+\end{tabular}
+

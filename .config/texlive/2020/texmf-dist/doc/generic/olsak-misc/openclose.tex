@@ -1,0 +1,89 @@
+% openclose.tex  
+%%%%%%%%%%%%%%%%%%%%%%
+% Petr Olsak 2014
+
+% see
+% http://tex.stackexchange.com/questions/196071/macro-to-close-all-open-environments-groups-and-argument-delimiters
+
+% This macro defines \Open ...\Close pair which reads the text between them
+% and repairs it to balanced text. The appropriated braces could be added at
+% the begin (open braces) or at the end (close braces) of the text.
+% After \Open ...\Close preprocessing is done the repaired text is 
+% normally processed.
+
+% Examples:
+
+% \Open abc\Close       ... does nothing ->  abc
+% \Open a}b}c\Close     ... adds braces  ->  {{a}b}c
+% \Open a{b{c\Close     ... adds braces  ->  a{b{c}}
+% \Open a}b}c{d{e\Close ... adds braces  ->  {{a}b}c{d{e}}
+
+% The \Open...\Close pairs would be nested. The processing of repairing
+% braces is done from inner pairs to outer, like normal parentheses.
+
+% The \autobracelist macro is empty by default and it can include the list
+% of control sequences which have special feature between \Open ...\Close:
+% It such control sequence is followed by open brace then it behaves normally
+% else the open brace is added after it.
+
+% Examples:
+
+% \def\autobrcelist{\x\y}
+% \Open \x \y \z aha \x \Close   ->  \x{\y{\z aha \x{}}}
+% \Open \x{\y} aha\Close         ->  \x{\y{} aha}
+
+\newcount\openLnum
+\newtoks\currtext
+\def\Open{\begingroup\let\bgroup=\relax \let\egroup=\relax 
+   \expandafter\checkbracesJ\autobracelist\end 
+   \let\ifIamInGroup=\iffalse \currtext={}\checkbracesA
+}
+\def\checkbracesA{\futurelet\tmp\checkbracesB}
+\def\checkbracesB{%
+   \let\next=\checkbracesN
+   \ifx\tmp\spacetoken \let\next=\checkbracesC \let\nexxt=\checkbracesA \addtocurrtext{ }\fi
+   \ifx\tmp\bgroupOri  \let\next=\checkbracesC \let\nexxt=\checkbracesD \fi
+   \ifx\tmp\egroupOri  \let\next=\checkbracesC \let\nexxt=\checkbracesE \fi
+   \ifx\tmp\autobraced \let\next=\checkbracesH \fi
+   \ifx\tmp\Close \let\next=\checkbracesC \let\nexxt=\checkbracesF \fi
+   \ifx\tmp\Open  \global\advance\openLnum by1 \let\next=\relax \fi
+   \next
+}
+\def\checkbracesC{\afterassignment\nexxt \let\next= }
+\long\def\checkbracesN#1{\addtocurrtext#1\checkbracesA}
+\def\checkbracesD{\begingroup \let\ifIamInGroup=\iftrue \currtext={}\checkbracesA}
+\def\checkbracesE{\ifIamInGroup \addtocurrtextclosebrace
+   \else \currtext\expandafter{\expandafter{\the\currtext}}%
+   \fi \checkbracesA
+}
+\def\checkbracesF{%
+   \ifIamInGroup \addtocurrtextclosebrace \expandafter\checkbracesF
+   \else \expandafter\checkbracesG \fi
+}
+\def\checkbracesG{%
+   \ifnum\openLnum>0 \global\advance\openLnum by-1 
+       \def\next{\expandafter\endgroup \expandafter 
+          \currtext \expandafter\expandafter\expandafter
+             {\expandafter\the\expandafter\currtext \the\currtext}\checkbracesA}%
+   \else \def\next{\expandafter\endgroup \the\currtext}%
+   \fi \next
+}
+\def\checkbracesH#1{\addtocurrtext#1\futurelet\tmp\checkbracesI}
+\def\checkbracesI{\ifx\tmp\bgroupOri \expandafter\checkbracesB
+                  \else \expandafter\checkbracesD \fi
+}
+\def\checkbracesJ#1{\ifx#1\end \else \let#1=\autobraced \expandafter\checkbracesJ \fi}
+
+\def\addtocurrtextclosebrace{\expandafter\endgroup
+   \expandafter\currtext\expandafter\expandafter\expandafter
+      {\expandafter\the\expandafter\currtext\expandafter{\the\currtext}}%
+}
+\long\def\addtocurrtext#1{\currtext\expandafter{\the\currtext#1}}
+\let\bgroupOri=\bgroup
+\let\egroupOri=\egroup
+\def\tmp/{\let\spacetoken= }\tmp/ %
+\def\Close{^\Close^}
+\def\autobraced{^\autobraced^}
+\def\autobracelist{}
+
+\endiput

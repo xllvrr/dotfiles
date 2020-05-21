@@ -1,0 +1,95 @@
+                    The Stellenbosch bundle v11a
+     for typesetting dissertations, theses and reports of the
+              University of Stellenbosch, South Africa.
+
+Author:   Danie Els
+Copyright (c) 2003-2015 Danie Els
+Licence:  LaTeX Project Public License
+
+DESCRIPTION
+===========
+
+The Stellenbosch bundle consists of the following:
+
+ usthesis.cls/usthesis.sty (usthesis.afr, usthesis.eng):
+
+     The usthesis class/style files are provided to typeset reports,
+     theses and dissertations that conform to the requirements of
+     the Engineering Faculty of the University of Stellenbosch.
+         The class file usthesis.cls is based on the standard LaTeX
+     book class, while usthesis.sty is a style file to be loaded on
+     top of the very powerful memoir class. Both options give
+     identical output, but the benefit of the using memoir is that
+     it has many additional command and environments for formatting
+     and processing of a document.
+         Usthesis is primarily concerned with the formatting of the
+     front matter such as the title page, abstract, etc. It also
+     works together with the babel package to provide language
+     language options to typeset documents in Afrikaans or in
+     English.
+
+ usbib.sty (usmeg-a.bst, usmeg-n.bst, ussagus.bst)
+
+     USbib is a LaTeX and BibTeX package for the formatting of
+     bibliographic references of theses and dissertations of the
+     Department of Mechanical Engineering at the University of
+     Stellenbosch. This package is tailored towards citations and
+     bibliographical formatting for the natural sciences and
+     engineering.
+
+ ustitle.sty
+
+     The ustitle package redefine the standard title page of the
+     LaTeX classes to add a logo at the top and an address line
+     below the author. It is intended for use when writing general
+     notes and articles.
+
+ usnomencl.sty
+
+     A very simple utility to set a nomenclature or list of symbols
+     for US theses and reports.
+
+ ussummary.sty
+
+     Summary page required for the final year projects of the
+     Department of Mechanical Engineering.
+
+ masters-sample.zip, report-sample.zip
+
+    Templates for dissertations, theses and final year projects.
+
+ uslogos
+
+    Collection of graphics file for crest and logos.
+
+
+
+BASIC INSTALLATION
+====================
+
+ For a basic installation on a TDS compliant system, move the
+ following files to the following directories:
+
+     <texmf>/tex/latex/stellenbosch/
+        usthesis.sty
+        usthesis.cls
+        usthesis.afr
+        usthesis.eng
+        usbib.sty
+        usbib.afr
+        usbib.eng
+        ustitle.sty
+        usnomencl.sty
+        ussummary.sty
+
+     <texmf>/tex/latex/stellenbosch/logos
+        (all the logo graphics)
+
+     <texmf>/bibtex/bst/stellenbosch
+         usmeg-a.bst
+         usmeg-n.bst
+         ussagus.bst
+
+ A full installation with source code and documentation can be
+ obtained by unzipping stellenbosch.tds.zip in your <(local) texmf>
+ directory.

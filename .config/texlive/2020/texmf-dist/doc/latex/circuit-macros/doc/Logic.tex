@@ -1,0 +1,212 @@
+\begin{tikzpicture}[scale=2.54]
+% dpic version 2020.03.01 option -g for TikZ and PGF 1.01
+\ifx\dpiclw\undefined\newdimen\dpiclw\fi
+\global\def\dpicdraw{\draw[line width=\dpiclw]}
+\global\def\dpicstop{;}
+\dpiclw=0.8bp
+\dpiclw=0.8bp
+\dpicdraw (0.2,0.45)
+ --(0,0.45)
+ --(0,0.75)
+ --(0.2,0.75)\dpicstop
+\dpicdraw (0.2,0.75)
+ ..controls (0.4,0.75) and (0.4,0.45)
+ ..(0.2,0.45)\dpicstop
+\draw (0.6,0.6) node[right=-2bp]{{\tt AND\_gate}};
+\dpicdraw (0.122222,0.348911)
+ --(0,0.348911)\dpicstop
+\dpicdraw (0.004513,0.351089)
+ ..controls (0.050565,0.25571) and (0.050948,0.144606)
+ ..(0.005556,0.048911)\dpicstop
+\dpicdraw (0,0.048911)
+ --(0.122222,0.048911)\dpicstop
+\dpicdraw (0.122222,0.348911)
+ ..controls (0.222661,0.348911) and (0.313857,0.290284)
+ ..(0.355556,0.198911)\dpicstop
+\dpicdraw (0.122222,0.048911)
+ ..controls (0.222661,0.048911) and (0.313857,0.107537)
+ ..(0.355556,0.198911)\dpicstop
+\draw (0.6,0.2) node[right=-2bp]{{\tt OR\_gate}};
+\dpicdraw (0.175,-0.2)
+ --(0,-0.3)
+ --(0,-0.1)
+ --(0.175,-0.2)\dpicstop
+\draw (0.6,-0.2) node[right=-2bp]{{\tt BUFFER\_gate}};
+\dpicdraw (-0,-0.451089)
+ ..controls (0.04503,-0.54602) and (0.04503,-0.656159)
+ ..(-0,-0.751089)\dpicstop
+\dpicdraw (0.166667,-0.451089)
+ --(0.044444,-0.451089)\dpicstop
+\dpicdraw (0.048957,-0.448911)
+ ..controls (0.095009,-0.54429) and (0.095392,-0.655394)
+ ..(0.05,-0.751089)\dpicstop
+\dpicdraw (0.044444,-0.751089)
+ --(0.166667,-0.751089)\dpicstop
+\dpicdraw (0.166667,-0.451089)
+ ..controls (0.267105,-0.451089) and (0.358302,-0.509716)
+ ..(0.4,-0.601089)\dpicstop
+\dpicdraw (0.166667,-0.751089)
+ ..controls (0.267105,-0.751089) and (0.358302,-0.692463)
+ ..(0.4,-0.601089)\dpicstop
+\draw (0.6,-0.6) node[right=-2bp]{{\tt XOR\_gate}};
+\dpicdraw (2.13718,0.45)
+ --(1.93718,0.45)
+ --(1.93718,0.75)
+ --(2.13718,0.75)\dpicstop
+\dpicdraw (2.13718,0.75)
+ ..controls (2.33718,0.75) and (2.33718,0.45)
+ ..(2.13718,0.45)\dpicstop
+\dpicdraw (2.32468,0.6) circle (0.014764in)\dpicstop
+\draw (2.53718,0.6) node[right=-2bp]{{\tt NAND\_gate}};
+\dpicdraw (2.059402,0.348911)
+ --(1.93718,0.348911)\dpicstop
+\dpicdraw (1.941693,0.351089)
+ ..controls (1.987745,0.25571) and (1.988128,0.144606)
+ ..(1.942736,0.048911)\dpicstop
+\dpicdraw (1.93718,0.048911)
+ --(2.059402,0.048911)\dpicstop
+\dpicdraw (2.059402,0.348911)
+ ..controls (2.159841,0.348911) and (2.251037,0.290284)
+ ..(2.292736,0.198911)\dpicstop
+\dpicdraw (2.059402,0.048911)
+ ..controls (2.159841,0.048911) and (2.251037,0.107537)
+ ..(2.292736,0.198911)\dpicstop
+\dpicdraw (2.330236,0.198911) circle (0.014764in)\dpicstop
+\draw (2.53718,0.2) node[right=-2bp]{{\tt NOR\_gate(3)}};
+\dpiclw=0.4bp
+\filldraw[line width=0bp](2.434402,0.218911)
+ --(2.367736,0.198911)
+ --(2.434402,0.178911) --cycle\dpicstop
+\dpicdraw (2.387069,0.198911)
+ --(2.444069,0.198911)
+ ..controls (2.482069,0.198911) and (2.501069,0.223911)
+ ..(2.501069,0.273911)
+ ..controls (2.501069,0.323911) and (2.509402,0.348911)
+ ..(2.526069,0.348911)
+ --(2.551069,0.348911)\dpicstop
+\draw (2.551069,0.348911) node[right=-2bp]{{\tt Out}};
+\filldraw[line width=0bp](2.350236,0.132244)
+ --(2.330236,0.198911)
+ --(2.310236,0.132244) --cycle\dpicstop
+\dpicdraw (2.330236,0.179577)
+ --(2.330236,0.122577)
+ ..controls (2.330236,0.084577) and (2.369819,0.062799)
+ ..(2.448986,0.057244)
+ --(2.567736,0.048911)\dpicstop
+\draw (2.567736,0.048911) node[right=-2bp]{{\tt N\_Out}};
+\filldraw[line width=0bp](1.902093,0.263339)
+ --(1.961918,0.298911)
+ --(1.892391,0.302144) --cycle\dpicstop
+\dpicdraw (1.943161,0.294221)
+ --(1.761918,0.248911)\dpicstop
+\draw (1.761918,0.268911) node[left=-2bp]{{\tt In1\/}};
+\filldraw[line width=0bp](1.916682,0.163339)
+ --(1.976508,0.198911)
+ --(1.906981,0.202144) --cycle\dpicstop
+\dpicdraw (1.957751,0.194221)
+ --(1.776508,0.148911)\dpicstop
+\draw (1.776508,0.148911) node[left=-2bp]{{\tt In2\/}};
+\filldraw[line width=0bp](1.902093,0.063339)
+ --(1.961918,0.098911)
+ --(1.892391,0.102144) --cycle\dpicstop
+\dpicdraw (1.943161,0.094221)
+ --(1.761918,0.048911)\dpicstop
+\draw (1.761918,0.028911) node[left=-2bp]{{\tt In3\/}};
+\dpiclw=0.8bp
+\dpicdraw (2.11218,-0.2)
+ --(1.93718,-0.3)
+ --(1.93718,-0.1)
+ --(2.11218,-0.2)\dpicstop
+\dpicdraw (2.14968,-0.2) circle (0.014764in)\dpicstop
+\draw (2.53718,-0.2) node[right=-2bp]{{\tt NOT\_gate}};
+\dpicdraw (1.992998,-0.451089)
+ ..controls (2.038027,-0.54602) and (2.038027,-0.656159)
+ ..(1.992998,-0.751089)\dpicstop
+\dpicdraw (2.159664,-0.451089)
+ --(2.037442,-0.451089)\dpicstop
+\dpicdraw (2.041955,-0.448911)
+ ..controls (2.088007,-0.54429) and (2.08839,-0.655394)
+ ..(2.042998,-0.751089)\dpicstop
+\dpicdraw (2.037442,-0.751089)
+ --(2.159664,-0.751089)\dpicstop
+\dpicdraw (2.159664,-0.451089)
+ ..controls (2.260103,-0.451089) and (2.351299,-0.509716)
+ ..(2.392998,-0.601089)\dpicstop
+\dpicdraw (2.159664,-0.751089)
+ ..controls (2.260103,-0.751089) and (2.351299,-0.692463)
+ ..(2.392998,-0.601089)\dpicstop
+\dpicdraw (2.430498,-0.601089) circle (0.014764in)\dpicstop
+\dpicdraw (1.97468,-0.501089) circle (0.014764in)\dpicstop
+\dpicdraw (1.97468,-0.701089) circle (0.014764in)\dpicstop
+\draw (2.53718,-0.6) node[right=-2bp]{{\tt NXOR\_gate(NPN)}};
+\filldraw[line width=0bp](1.834102,-0.501089)
+ --(1.93718,-0.501089)
+ --(1.846229,-0.452582) --cycle\dpicstop
+\dpicdraw (1.914958,-0.495534)
+ --(1.73718,-0.451089)\dpicstop
+\draw (1.73718,-0.431089) node[left=-2bp]{{\tt In1\/}};
+\filldraw[line width=0bp](1.923692,-0.601089)
+ --(2.02677,-0.601089)
+ --(1.935819,-0.552582) --cycle\dpicstop
+\dpicdraw (2.004548,-0.595534)
+ --(1.82677,-0.551089)\dpicstop
+\draw (1.82677,-0.551089) node[left=-2bp]{{\tt In2\/}};
+\filldraw[line width=0bp](1.834102,-0.701089)
+ --(1.93718,-0.701089)
+ --(1.846229,-0.652582) --cycle\dpicstop
+\dpicdraw (1.914958,-0.695534)
+ --(1.73718,-0.651089)\dpicstop
+\draw (1.73718,-0.671089) node[left=-2bp]{{\tt In3\/}};
+\dpicdraw (3.87436,0.6)
+ --(3.87436,0.775)
+ --(4.22436,0.775)
+ --(4.22436,0.425)
+ --(3.87436,0.425)
+ --(3.87436,0.6)\dpicstop
+\draw (4.04936,0.705815) node{{\scriptsize$ \& $}};
+\draw (4.47436,0.6) node[right=-2bp]{{\tt NAND\_gate(,B)}};
+\dpicdraw (3.87436,0.2)
+ --(3.87436,0.375)
+ --(4.22436,0.375)
+ --(4.22436,0.025)
+ --(3.87436,0.025)
+ --(3.87436,0.2)\dpicstop
+\draw (4.04936,0.305815) node{{\scriptsize$ \geq 1 $}};
+\dpicdraw (3.83686,0.316667) circle (0.014764in)\dpicstop
+\dpicdraw (3.83686,0.2) circle (0.014764in)\dpicstop
+\dpicdraw (3.83686,0.083333) circle (0.014764in)\dpicstop
+\dpicdraw (4.26186,0.2) circle (0.014764in)\dpicstop
+\draw (4.47436,0.2) node[right=-2bp]{{\tt NOR\_gate(3,NB)}};
+\dpicdraw (3.87436,-0.2)
+ --(3.87436,-0.025)
+ --(4.22436,-0.025)
+ --(4.22436,-0.375)
+ --(3.87436,-0.375)
+ --(3.87436,-0.2)\dpicstop
+\draw (4.04936,-0.094185) node{{\scriptsize$ =1 $}};
+\dpicdraw (3.83686,-0.2875) circle (0.014764in)\dpicstop
+\dpicdraw (4.26186,-0.2) circle (0.014764in)\dpicstop
+\draw (4.47436,-0.2) node[right=-2bp]{{\tt BOX\_gate(PN,N,{,},=1)}};
+\dpicdraw (3.87436,-0.1125)
+ --(3.72436,-0.1125)\dpicstop
+\dpicdraw (3.79936,-0.2875)
+ --(3.72436,-0.2875)\dpicstop
+\dpicdraw (4.29936,-0.2)
+ --(4.44936,-0.2)\dpicstop
+\dpicdraw (3.87436,-0.6)
+ --(3.87436,-0.425)
+ --(4.22436,-0.425)
+ --(4.22436,-0.775)
+ --(3.87436,-0.775)
+ --(3.87436,-0.6)\dpicstop
+\draw (4.04936,-0.494185) node{{\scriptsize$ = $}};
+\dpicdraw (4.26186,-0.6) circle (0.014764in)\dpicstop
+\draw (4.47436,-0.6) node[right=-2bp]{{\tt BOX\_gate(PP,N,{,},=)}};
+\dpicdraw (3.87436,-0.5125)
+ --(3.72436,-0.5125)\dpicstop
+\dpicdraw (3.87436,-0.6875)
+ --(3.72436,-0.6875)\dpicstop
+\dpicdraw (4.29936,-0.6)
+ --(4.44936,-0.6)\dpicstop
+\end{tikzpicture}
+\vspace*{-0.5\baselineskip}

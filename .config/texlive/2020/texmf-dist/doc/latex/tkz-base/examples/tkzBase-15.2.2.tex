@@ -1,0 +1,21 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 101 (Section 15.2.2 : Using the points of a scatter plot)
+
+\begin{tikzpicture}[scale=.5]
+\tkzInit[xmax=5,ymin=1000,
+         ymax=6000,ystep=1000]
+\tkzGrid[color=orange!30]
+\tkzDrawX[label=$m$,below=13pt]
+\tkzDrawY[label=$R(m)$]
+\tkzLabelX[font=\scriptsize]
+\tkzLabelY[font=\scriptsize]
+\tkzDefSetOfPoints[prefix=P]{%
+   1/2000,2/3000,3/2000,4/2500,5/4200}
+\tkzDrawPolySeg[%
+     color=brown!50,
+     line width=2pt](P1,P2,P3,P4,P5)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,1330 @@
+%%% ====================================================================
+%%%  @LaTeX-file{
+%%%     author          = "Alan Jeffrey and Rowland McDonnell and
+%%%                        Ulrik Vieth and Lars Hellstr{\"o}m",
+%%%     version         = "1.927",
+%%%     date            = "28 July 2004",
+%%%     time            = "23:20:27 CEST",
+%%%     filename        = "intro98.tex",
+%%%     email           = "fontinst@tug.org",
+%%%     checksum        = "",
+%%%     codetable       = "ISO/ASCII",
+%%%     keywords        = "fontinst, TeX, PostScript, documentation",
+%%%     supported       = "yes",
+%%%     abstract        = "This is documentation for the fontinst
+%%%                        font installation package.",
+%%%     package         = "fontinst",
+%%%     dependencies    = "ltxguide.cls, url.sty, xspace.sty"
+%%%  }
+%%% ====================================================================
+
+% Copyright 1993, 1994, 1995, 1996 Alan Jeffrey
+
+% Modified by Rowland McDonnell June 1998
+% Modified and revised by Ulrik Vieth June 1998
+
+\documentclass[a4paper]{ltxguide}
+\usepackage[OT1]{fontenc}
+\usepackage{url,xspace}
+\usepackage{graphicx}
+%\renewcommand\rmdefault{ppl}
+%\renewcommand\rmdefault{padx}
+%\renewcommand\rmdefault{pmnx}
+
+
+% Title page and running heads.
+
+\makeatletter
+\newcommand{\subtitle}[1]{\renewcommand{\@subtitle}{#1}}
+\newcommand{\version}[1]{\renewcommand{\@version}{#1}}
+\newcommand{\illustration}[1]{\renewcommand{\@illustration}{#1}}
+
+\newcommand{\@subtitle}{}
+\newcommand{\@version}{???}
+\newcommand{\@illustration}{cover.eps}
+
+\pagestyle{myheadings}
+\AtBeginDocument{\markright{\small\itshape
+  \@author\hfill\@title: \@subtitle\quad}}
+
+
+\renewcommand{\maketitle}{{%
+   \thispagestyle{empty}%
+   \normalfont\centering
+   \null
+   {\fontsize{100}{100}\textit{\@title}}%
+   \par\bigskip
+   {\Large\textbf{\@subtitle}}%
+   \vfill
+   \includegraphics[width=\textwidth]{\@illustration}%
+   \vfill
+   {\Large\textbf{%
+      \@author\\[\smallskipamount] \@title~v\@version
+      \quad\textperiodcentered\quad \@date}}%
+   \clearpage
+}}
+\makeatother
+
+
+% Set lists tighter (assuming non-zero \parskip).
+
+\makeatletter
+\renewcommand{\@listI}{%
+   \leftmargin\leftmargini
+   \parsep\medskipamount
+   \itemsep\z@ % + parsep
+   \topsep\z@ % + parskip
+   \partopsep\z@
+}
+\makeatother
+
+% Set spacing around captions.
+
+\setlength{\abovecaptionskip}{\medskipamount}
+\setlength{\belowcaptionskip}{\medskipamount}
+
+% Markup for logos, file types, programs, etc.
+
+\newcommand*{\cs}[1]{\texttt{\char`\\ #1}\xspace}
+
+\newcommand*{\OzTeX}{O\kern-.03em z\kern-.15em\TeX}
+\newcommand*{\OzMF}{O\kern-.03em zMF}
+\newcommand*{\OzTools}{O\kern-.03em z\kern-.15em Tools}
+
+\newcommand{\PS}{Post\-Script\xspace}
+\newcommand{\TT}{True\-Type\xspace}
+
+\newcommand*{\setfilename}[1]{\texttt{#1}}
+\newcommand*{\setdotfilename}[1]{\setfilename{.#1}}
+\newcommand*{\setpackagename}[1]{\textsc{#1}}
+
+\newcommand{\dvips}   {\setpackagename{dvips}\xspace}
+\newcommand{\Dvips}   {\setpackagename{Dvips}\xspace}
+\newcommand{\fontinst}{\setpackagename{font\-inst}\xspace}
+\newcommand{\Fontinst}{\setpackagename{Font\-inst}\xspace}
+
+% \show\fontname
+\newcommand{\fontnamekb}{fontname\xspace}
+\newcommand{\Fontnamekb}{Fontname\xspace}
+
+\newcommand{\mf} {\setfilename{mf}\xspace}
+\newcommand{\Mf} {\setfilename{Mf}\xspace}
+\newcommand{\vf} {\setfilename{vf}\xspace}
+\newcommand{\Vf} {\setfilename{Vf}\xspace}
+\newcommand{\pl} {\setfilename{pl}\xspace}
+\newcommand{\Pl} {\setfilename{Pl}\xspace}
+\newcommand{\fd} {\setfilename{fd}\xspace}
+\newcommand{\Fd} {\setfilename{Fd}\xspace}
+\newcommand{\pk} {\setfilename{pk}\xspace}
+\newcommand{\Pk} {\setfilename{Pk}\xspace}
+\newcommand{\afm}{\setfilename{afm}\xspace}
+\newcommand{\Afm}{\setfilename{Afm}\xspace}
+\newcommand{\vpl}{\setfilename{vpl}\xspace}
+\newcommand{\Vpl}{\setfilename{Vpl}\xspace}
+\newcommand{\tfm}{\setfilename{tfm}\xspace}
+\newcommand{\Tfm}{\setfilename{Tfm}\xspace}
+\newcommand{\mtx}{\setfilename{mtx}\xspace}
+\newcommand{\Mtx}{\setfilename{Mtx}\xspace}
+\newcommand{\etx}{\setfilename{etx}\xspace}
+\newcommand{\Etx}{\setfilename{Etx}\xspace}
+\newcommand{\pfa}{\setfilename{pfa}\xspace}
+\newcommand{\Pfa}{\setfilename{Pfa}\xspace}
+\newcommand{\pfb}{\setfilename{pfb}\xspace}
+\newcommand{\Pfb}{\setfilename{Pfb}\xspace}
+\newcommand{\dvi}{\setfilename{dvi}\xspace}
+\newcommand{\Dvi}{\setfilename{Dvi}\xspace}
+\newcommand{\ttf}{\setfilename{ttf}\xspace}
+\newcommand{\Ttf}{\setfilename{Ttf}\xspace}
+
+\newcommand{\vftovp}{\setpackagename{vftovp}\xspace}
+\newcommand{\vptovf}{\setpackagename{vptovf}\xspace}
+\newcommand{\pltotf}{\setpackagename{pltotf}\xspace}
+\newcommand{\tftopl}{\setpackagename{tftopl}\xspace}
+
+
+% Stolen from Dr Knuth
+\makeatletter % borrow the private macros of PLAIN (with care)
+\def\oct#1{\hbox{\rm\'{}\kern-.2em\it#1\/\kern.05em}} % octal constant
+\def\hex#1{\hbox{\rm\H{}\tt#1}} % hexadecimal constant
+% macros for font tables
+\def\oddline#1{\cr
+  \noalign{\nointerlineskip}
+  \multispan{19}\hrulefill&
+  \setbox0=\hbox{\lower 2.3pt\hbox{\hex{#1x}}}\smash{\box0}\cr
+  \noalign{\nointerlineskip}}
+\def\evenline{\cr\noalign{\hrule}}
+\def\chartstrut{\lower4.5pt\vbox to14pt{}}
+\def\beginchart#1{$$\global\count@=0 #1
+  \halign to\hsize\bgroup
+    \chartstrut##\tabskip0pt plus10pt&
+    &\hfil##\hfil&\vrule##\cr
+    \lower6.5pt\null
+    &&&\oct0&&\oct1&&\oct2&&\oct3&&\oct4&&\oct5&&\oct6&&\oct7&\evenline}
+\def\endchart{\raise11.5pt\null&&&\hex 8&&\hex 9&&\hex A&&\hex B&
+  &\hex C&&\hex D&&\hex E&&\hex F&\cr\egroup$$}
+\def\*{\global\advance\count@ by1 }
+\def\:{\setbox0=\hbox{\char\count@}%
+  \ifdim\ht0>7.5pt\reposition
+  \else\ifdim\dp0>2.5pt\reposition\fi\fi
+  \box0\global\advance\count@ by1 }
+\def\reposition{\setbox0=\hbox{$\vcenter{\kern2pt\box0\kern2pt}$}}
+\def\smallchart{%
+%\global\advance\count@ by16
+  &\oct{00x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline0
+  &\oct{01x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{02x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline1
+  &\oct{03x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{04x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline2
+  &\oct{05x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{06x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline3
+  &\oct{07x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{10x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline4
+  &\oct{11x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{12x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline5
+  &\oct{13x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{14x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline6
+  &\oct{15x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{16x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline7
+  &\oct{17x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline}
+
+\def\bigchart{%
+%\global\advance\count@ by16
+  &\oct{00x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline0
+  &\oct{01x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{02x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline1
+  &\oct{03x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{04x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline2
+  &\oct{05x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{06x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline3
+  &\oct{07x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{10x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline4
+  &\oct{11x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{12x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline5
+  &\oct{13x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{14x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline6
+  &\oct{15x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{16x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline7
+  &\oct{17x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{20x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline8
+  &\oct{21x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{22x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline9
+  &\oct{23x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{24x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline{A}
+  &\oct{25x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{26x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline{B}
+  &\oct{27x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{30x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline{C}
+  &\oct{31x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{32x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline{D}
+  &\oct{33x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{34x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline{E}
+  &\oct{35x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline
+  &\oct{36x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\oddline{F}
+  &\oct{37x}&&\:&&\:&&\:&&\:&&\:&&\:&&\:&&\:&\evenline}
+
+% \font\xrm = cmr10 at 10pt % change this line to test font
+% \beginchart\xrm \normalchart \endchart
+
+\newcommand{\smallfontchart}[1]{%
+  \font\xrm = #1 \beginchart\xrm \smallchart \endchart}
+\newcommand{\bigfontchart}[1]{%
+  \font\xrm = #1 \beginchart\xrm \bigchart \endchart}
+
+% \smallfontchart{cmr10 at 10pt}
+% \bigfontchart{ecrm1000 at 10pt}
+\makeatother
+% End stolen from Dr Knuth
+
+
+
+\title{fontinst}
+\subtitle{Font installation software for \TeX}
+\author{Alan Jeffrey and Rowland McDonnell}
+\illustration{roadmap.eps}
+\version{1.8}
+\date{30 June 1998}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{small}
+  This is the tutorial part of the 1998 \fontinst manual, chiefly 
+  written by Rowland McDonnell and conveying his then-view on related 
+  subjects. Although most of it is still correct, 
+  the passing of time has rendered it somewhat antiquated, and the 
+  average current (2004) user new to \fontinst would probably find 
+  Philipp Lehman's \emph{The Font Installation Guide} 
+  (\url{http://www.ctan.org/tex-archive/info/Type1fonts/fontinstallationguide/})
+  more relevant.
+\end{small}
+
+\tableofcontents
+
+
+\clearpage
+
+\section{Introduction}
+
+The \fontinst package is a set of \TeX\ macros written to create
+virtual fonts for use with \TeX. Its main use is creating the
+files needed so you can use PostScript Type 1 fonts with \LaTeX.
+
+\Fontinst needs information about the fonts it works with.  This
+information needs to be supplied in an Adobe Font Metric (\afm) or
+\TeX\ Property List (\pl) file.  \pl files can be created from
+\tfm files using \tftopl, a program normally included with a \TeX\
+system.
+
+The job that \fontinst does is complicated, but it can be used for
+many tasks by people who are not \TeX\ font wizards.  Having said
+that, you do need to understand at least the basics of \LaTeXe's
+font selection mechanism, which is documented in
+\texttt{fntguide.tex}, part of the standard \LaTeX\ distribution.
+\url{ftp://ftp.tex.ac.uk/tex-archive/macros/latex/base/fntguide.tex}
+will fetch a copy if you don't have one to hand.
+
+To get the most benefit out of \fontinst, it's important to
+understand and use Karl Berry's `\Fontnamekb' naming scheme.  The
+definitive version of this is available from your nearest CTAN
+server.  The following URL will fetch all the files needed
+compressed into a single ZIP archive:
+\url{ftp://ftp.tex.ac.uk/tex-archive/info/fontname.zip}.  I
+suggest that you print out the \Fontnamekb documentation and have
+it handy when you're learning about \fontinst.
+
+The \fontinst package:
+\begin{itemize}
+\item Is written in \TeX, for maximum portability (at the cost of
+  speed).
+\item Supports the OT1 (Computer Modern) and T1 (Cork) encodings.
+\item Allows fonts to be generated with arbitrary `fake'
+  characters; for example the `ij' character can be faked if
+  necessary by putting an `i' next to a `j'.
+\item Allows caps and small caps fonts with letter spacing and
+  kerning.
+\item Allows kerning to be shared between characters, for example
+  `ij' can be kerned on the left as if it were an `i' and on the
+  right as if it were a `j'.  This is useful, since many
+  PostScript fonts only include kerning information for characters
+  without diacriticals.
+\item Allows the generation of math fonts with \verb|nextlarger|,
+  \verb|varchar|, and arbitrary font dimensions.
+\item Allows more than one PostScript font to contribute to a
+  \TeX\ font, for example the `ffi' ligatures for a font can be
+  taken from the Expert encoding, if you have it.
+\item Can automatically generate a \fd file for use with \LaTeXe.
+\item Can be customized by the user to deal with arbitrary font
+  encodings.
+\end{itemize}
+Fontinst has been a stable piece of software since mid-1994.  All
+further updates will be upwardly compatible with the interface
+described in this document.
+
+\subsection{What does \fontinst do?}
+
+\Fontinst is a tool written in \TeX\ that can create the various
+extra files needed so you can use \PS fonts with \LaTeX\ and \TeX.
+It can read in \afm files, and produces the necessary \vpl, \pl,
+and \fd files to use the fonts (the human-readable \vpl and \pl
+files produced by \fontinst are turned into the machine-readable
+\vf and \tfm forms by \vptovf and \pltotf).  It does not help you
+configure your DVI driver.
+
+There also exists a \texttt{perl} front-end to \fontinst, intended
+specifically for use with a Unix \TeX\ system, which takes care of
+routine tasks such as running \vptovf and \pltotf on the generated
+files after \fontinst has finished it's job.  It also generates a
+font map file for use with \dvips.
+
+\Fontinst's main job is creating \vf files (virtual fonts).  Not
+all \TeX\ systems can use them.  As far as I know, all current
+(1998) free and shareware \TeX\ systems can; virtual fonts have
+been in widespread use with \TeX\ since 1990.  If you have a TeX
+system that can't use virtual fonts, \fontinst is most likely
+useless to you.
+
+There are some nice things about having a tool written in \TeX\ to
+do this: it's completely portable and you can modify its behaviour
+using \TeX\ commands.  The only real problem is that it's
+relatively slow: you can expect a typical \fontinst run to take
+something like 10--20 minutes on, say, a 40~MHz 80486SX PC or a
+25~MHz 68LC040 Macintosh.
+
+\Fontinst can do its work on any font for which you have a
+corresponding \afm or \tfm metric file, so it's not limited to
+working with \PS fonts; I have used it to produce the files I
+needed to use \TT fonts with \LaTeX. Whether or not you can do
+this depends on whether or not you have suitable metric files and
+whether or not your \TeX\ system can use \TT fonts.  In
+particular, the pdf\TeX\ program supports \TT fonts and includes a
+utility \texttt{ttf2afm} to generate \afm files from \ttf fonts.
+
+Some people have used \fontinst to produce `special effects' with
+normal \TeX\ fonts.  One example is the \setpackagename{eco} set
+of fonts (available from CTAN:
+\url{ftp://ftp.tex.ac.uk/tex-archive/fonts/eco/}).  These fonts
+are the same as the standard EC (European Modern) fonts, but with
+normal numerals replaced with old style numerals --
+\oldstylenums{12345} rather than 12345 -- everywhere except in
+maths mode.
+
+\subsection{Installation}
+
+To install \fontinst, put the contents of the \url{inputs/tex},
+\url{inputs/etx}, \url{inputs/mtx} and \url{examples} directories
+into a directory read by \TeX, for example
+\url{TEXMF/tex/generic/fontinst}.
+
+When you use \fontinst, you need to make sure that the \afm and
+\pl files it will work on are in a directory searched by \TeX.
+
+If you are using \texttt{web2c} \TeX\ on a Unix system with the
+\TeX\ directory structure (TDS), you might put all the \afm files
+in subdirectories of \url{TEXMF/fonts/afm/*}.  And then say:
+\begin{verbatim}
+   setenv TEXINPUTS $TEXMF/fonts/afm//::
+\end{verbatim}%$
+Note that \pl files are not normally kept in \TeX\ installations, so
+if you want to use MF fonts with \fontinst you have to generate the
+corresponding \pl files from \tfm files and put them in your working
+directory before running \fontinst.
+
+You could adopt a similar strategy with other \TeX\ systems:
+create directories for the required files and then change the
+relevant parameter (\url{input_folders} in the default
+configuration file with \OzTeX, for example).
+
+The approach I use is this: I write a file containing commands for
+\fontinst to process, and put the \afm and \pl files needed in the
+same directory as that file.  When \fontinst has finished working,
+I delete the \afm and \pl files because they are not needed and
+waste space on my hard disc drive.  Some application programs on
+some computers need \afm files, so it's not always a good idea to
+remove them completely.
+
+\subsection{Why do we need \fontinst?}
+
+\TeX\ refers to characters by number when it's typesetting.  When
+you use a command like \verb|\i|, \TeX\ puts a number (16 if
+you're using OT1, 25 if you're using T1) into the \dvi file.  If
+you're using a font designed for use with \TeX, this number will
+correspond to the character `\i'.  Assuming OT1 encoding for the
+moment, when you come to print out your \dvi file, the DVI driver
+will see the number 16 in the \dvi file, and select the character
+that sits in position 16 of the corresponding printer font file (a
+\pk file in the case of normal \TeX\ fonts).  Unless something has
+gone wrong, that will result in the character `\i' being placed on
+the page.
+
+It's useful to think of these numbers and the actual characters
+corresponding to each number as sets called `encodings'.  A
+particular set of characters are assigned particular numbers.  An
+example of an encoding is shown in table~\ref{OT1table}.
+
+\TeX\ began life using 7-bit fonts.  This means the original \TeX\
+fonts used the numbers 0--127 to represent characters:
+128~characters per font.  \TeX\ can now use 8-bit fonts:
+256~numbers from 0--255, but even so, most typesetting with \TeX\
+still uses the original 7-bit encoding, now called `OT1' (Old
+\TeX~1 encoding).  This has a correspondance between numbers and
+characters shown in table~\ref{OT1table}.  The numbers used in
+that table are hexadecimal and octal because it makes for a neat
+table and anyway I stole the code to generate it from Donald Knuth
+and that's how he did it.
+
+\begin{table}[!t]
+\smallfontchart{cmr10 at 10pt}
+\caption{The OT1 font encoding}\label{OT1table}
+\end{table}
+
+Returning to the example above, if you've a number 16 in your \dvi
+file (expecting `\i', a dotless~i), but rather than printing
+with an OT1 encoded font, you print using a non re-encoded \PS
+font in Adobe standard encoding, you'll get a blank, because the
+Adobe standard encoding has nothing in that character position.
+
+There are several ways round this problem; I'll consider two cases
+here.  If you are using \LaTeX\ you can tell it about a new
+encoding and re-define the commands that produce characters like
+`\i' that live in different positions in different encodings, or
+you can use a tool to re-encode the font so that it has the
+expected characters in the appropriate positions.
+
+Re-encoding is the approach \fontinst uses: it can produce files
+to map the characters in the new font to one of \TeX's existing
+encodings; this works with formats other than \LaTeX.
+
+The first approach is used to define the standard encodings that
+\LaTeX\ uses.  See, for example, the file \texttt{ot1enc.def} that
+comes with the current \LaTeX\ distribution, which defines the a
+few commands that refer to characters which aren't in the
+positions \TeX\ would otherwise assume.  This works only with
+modern versions of \LaTeX.
+
+The second approach is used to allow you to use fonts in other
+encodings with any dialect of \TeX. It has the some advantages
+over the first method: it works with any \TeX\ format; and it
+improves portability, because you can typeset a document using a
+standard \TeX\ encoding, sure that the same document will print
+correctly on a different kind of computer using a font with a
+different encoding.  For example, you might say:
+\begin{verbatim}
+  \usepackage{times}
+\end{verbatim}
+in the preamble of your document.  On my computer, that means my
+DVI driver will use a Macintosh encoded \TT version of Times.  On
+your computer, it might mean the dvi driver will use a Unicode
+encoded \PS version of Times-Roman.  The results will be identical
+in either case, without needing to modify the document.
+
+\subsection{How do you use \fontinst?}
+
+\Fontinst works on \afm files named (more-or-less) according to
+Karl Berry's font naming scheme (see
+\url{ftp://ftp.tex.ac.uk/tex-archive/info/fontname} at CTAN).
+Let's say you want to use the Adobe Times fonts.  You can get the
+metric files for this font from CTAN:
+\begin{center}
+\begin{small}
+\begin{tabular}{ll}
+  \emph{Location of file at CTAN} & \emph{Rename to} \\
+  \url{fonts/psfonts/adobeafm/base35/tib_____.afm} &
+  \texttt{ptmb8a.afm} \\
+  \url{fonts/psfonts/adobeafm/base35/tibi____.afm} &
+  \texttt{ptmbi8a.afm} \\
+  \url{fonts/psfonts/adobeafm/base35/tii_____.afm} &
+  \texttt{ptmri8a.afm} \\
+  \url{fonts/psfonts/adobeafm/base35/tir_____.afm} &
+  \texttt{ptmr8a.afm}
+\end{tabular}
+\end{small}
+\end{center}
+The new name is the name you should give the \tfm files so that
+\fontinst understands what each file contains.  The initial `|p|'
+means `Adobe'; `|tm|' means `Times'; `|b|' bold, `|r|' roman,
+`|i|' italic; and `|8a|' means `Adobe standard encoding'.
+
+The simplest use of \fontinst is to put the four \afm files in the
+same directory as \texttt{fontinst.sty} and run \TeX\ on
+\texttt{fontinst.sty}.  At the \verb|*| prompt type:
+\begin{verbatim}
+  *\latinfamily{ptm}{} \bye
+\end{verbatim}
+
+Some time later (about 17 minutes on my rather old computer),
+\fontinst will have finished, having created:
+\begin{itemize}
+\item Two \pl files for each \afm file
+\item One \vpl file for each \TeX\ font
+\item One \fd file for each family
+\end{itemize}
+The \pl files come in pairs: for example, \texttt{ptmb8a.pl} and
+\texttt{ptmb8r.pl}.  The |8a| version has the same encoding as the
+original font; the |8r| version is re-encoded to |TeXBase1| (|8r|)
+encoding, and is the font that is the base on which the T1 and OT1
+encoded versions are based on.  The raw |8a| (Adobe standard)
+encoded font is not normally used.
+
+These can be converted to \TeX\ fonts using \pltotf or \vptovf.
+If you have \OzTeX, launch \OzMF, select \pltotf (or \vptovf) from
+the Tools menu, and say `Do all files'.
+
+If you use the \texttt{bash} shell on a Unix system,  you can
+process all files using these one-liners at the \verb|$| prompt:
+\begin{verbatim}
+   $ for f in in *.pl;  do pltotf $f; done
+   $ for f in in *.vpl; do vptovf $f; done
+\end{verbatim}%$
+(This assumes that \pltotf and \vptovf can deduce the file names
+of the corresponding \tfm and \vf files automatically.)
+
+You should then:
+\begin{itemize}
+\item Move the \tfm files to your \TeX\ fonts directory\\
+   (e.g.~\url{TEXMFLOCAL/fonts/tfm/*}).
+\item Move the \vf files to your virtual fonts directory\\
+   (e.g.~\url{TEXMFLOCAL/fonts/vf/*}).
+\item Move the \fd files to your \TeX\ inputs directory\\
+   (e.g.~\url{TEXMFLOCAL/tex/latex/psfonts/*}).
+\end{itemize}
+If your \TeX\ installation is organized using the \TeX\ directory
+structure (TDS), it is customary to subdivide the \tfm and \vf
+files into subdirectories by supplier and typeface name.
+
+The \pl, \vpl, and \mtx files are debris that can now be deleted.
+\mtx files are font metric files \fontinst creates for its own use
+from \afm and \pl files.  They're just more convenient for \TeX\
+to read than other forms -- think of them as \fontinst readable
+\afm and \pl files.
+
+By now, you have all the files in place to produce a \dvi file
+using the new fonts.  You can make Adobe Times the default roman
+font in your document by putting this in your preamble:
+\begin{verbatim}
+   \renewcommand{\rmdefault}{ptm}
+\end{verbatim}
+
+\TeX\ will now happily produce a perfectly good \dvi file
+including the new font, which your DVI driver will choke on
+because you've not yet told it about the new fonts.  Exactly how
+you do this depends on the dvi driver, but they all need the same
+information: the name of a \TeX\ font; the printer font name it
+corresponds to; some information to handle an re-encoding needed;
+and (in the case of a \PS driver) perhaps an instruction to
+download the font to the printer.  You don't need to download the
+Times font to a \PS printer, because Times is built in to every
+\PS printer.
+
+If you use \dvips, these lines added to your \texttt{psfonts.map}
+file will do the job:
+\begin{verbatim}
+  ptmr8r   Times-Roman       "TeXBase1Encoding ReEncodeFont"  <<8r.enc
+  ptmri8r  Times-Italic      "TeXBase1Encoding ReEncodeFont"  <<8r.enc
+  ptmb8r   Times-Bold        "TeXBase1Encoding ReEncodeFont"  <<8r.enc
+  ptmbi8r  Times-BoldItalic  "TeXBase1Encoding ReEncodeFont"  <<8r.enc
+  ptmro8r  Times-Roman       "0.167 SlantFont TeXBase1Encoding ReEncodeFont"  <<8r.enc
+  ptmbo8r  Times-Bold        "0.167 SlantFont TeXBase1Encoding ReEncodeFont"  <<8r.enc
+\end{verbatim}
+And now you can print a \dvi file containing the new fonts.  If
+you really do want to use the `raw' |8a| encoded fonts for some
+reason, you need to add these lines to your \texttt{psfonts.map}
+file:
+\begin{verbatim}
+  ptmr8a   Times-Roman
+  ptmri8a  Times-Italic
+  ptmb8a   Times-Bold
+  ptmbi8a  Times-BoldItalic
+  ptmro8a  Times-Roman       "0.167 SlantFont"
+  ptmbo8a  Times-Bold        "0.167 SlantFont"
+\end{verbatim}
+
+Assuming that you're using the \fd file that \fontinst has
+produced, and that you've asked for the Adobe Times family (|ptm|)
+in medium series (|m|) and upright shape (|n| for normal) using
+the NFSS font selection commands:
+\begin{verbatim}
+  \renewcommand{\rmdefault}{ptm}
+  \rmfamily \mdseries \upshape
+\end{verbatim}
+Assuming further that you are using the \fd file \texttt{t1ptm.fd}
+produced by \fontinst, the \TeX\ font (\tfm file) \texttt{ptmr8t.tfm}
+will be selected by the above commands, as you can see from the
+relevant line in \texttt{t1ptm.fd}:
+\begin{verbatim}
+  \DeclareFontShape{T1}{ptm}{m}{n}{<<->> ptmr8t}{}
+\end{verbatim}
+
+This is what happens:
+\begin{itemize}
+\item \TeX\ typesets your document using the font metric file
+  \texttt{ptmr8t.tfm}; this is the font that is put in the \dvi
+  file.
+\item \Dvips looks at the \dvi file, and sees a reference to the
+  font \texttt{ptmr8t}.
+\item \Dvips searches for a \vf file corresponding to
+  \texttt{ptmr8t}; when it finds \texttt{ptmr8t.vf}, it knows it
+  has a virtual font on its hands.
+  %\footnote{This is a slight lie--why?}
+\item \Dvips follows the instructions in the \vf file, which map
+  characters in \texttt{ptmr8t.tfm} to characters in the font
+  \texttt{ptmr8r.tfm}.  That is, when it sees a number~25 in the
+  \dvi file (dotless~i -- `\i' -- in T1 encoding), it replaces it
+  with a number~17, which is a dotless~i in |8r| encoding.
+\item Then \dvips looks up the name of each number according to
+  the scheme given in the file \texttt{8r.enc}, and replaces each
+  number with the name of the character, in this case, number~17
+  is listed as `dotlessi'.
+\item And finally, \dvips tells the printer to print the named
+  character.
+\end{itemize}
+
+Not all DVI drivers can manage re-encoding as well as \dvips can.
+For example, \OzTeX's built-in non-\PS \dvi driver can only work
+with numbers, so if I'm using a \PS font, I can't print characters
+(such as Eth) that don't have a number in Macintosh text encoding
+unless I use \dvips and print on a \PS printer.  \Dvips works with
+character names, so it's not subject to this restriction.  In the
+example above, \OzTeX\ would replace the number~17 for `dotlessi'
+in |8r| encoding with a number~245 for `dotlessi' in Macintosh
+text encoding.
+
+The details of the \LaTeXe{} font selection scheme are described
+in \emph{\LaTeXe{} font selection} (distributed with \LaTeXe\ as
+the file \texttt{fntguide.tex}) and \emph{The \LaTeX\ Companion}
+(Goossens, Mittelbach and Samarin, Addison-Wesley).
+%You might also find useful the file \url{info/simple-nfss.tex}
+%available at your nearest comprehensive \TeX\ archive network
+%(CTAN) FTP server.
+
+The files you need to use Times, Helvetica, Courier, and the rest
+of the `standard' \PS fonts are distributed as part of the
+\setpackagename{PSNFSS} bundle available from CTAN, so there's no
+need to create new files to use these fonts.
+
+A more involved example of \fontinst use can be seen in the file
+\texttt{fontptcm.tex} which creates the files you need to use a
+combination of Times, Symbol, Zapf Chancery and Computer Modern as
+\TeX\ math fonts.
+
+
+\section{Installing your own font family}
+
+The \fontinst package has a command \verb|\latinfamily| meant to
+do most of the work to install a `normal' set (family) of roman
+text fonts from Adobe.  Assuming you have a set of \afm files to
+match the fonts you wish to use, the first step is to rename the
+\afm files according to the \Fontnamekb naming scheme.
+
+A `normal' set of text fonts usually includes the basic upright
+roman version, bold, italic, and bold italic.  Sometimes there
+will also be small caps versions, perhaps some `expert' fonts, and
+maybe some other weights such as light, medium, semi bold, black
+or ultra bold.
+
+The most important point to note is this: no matter what sort of
+computer you're using and no matter what font encoding it uses
+normally, \afm files for text fonts are almost always in |8a|
+encoding (Adobe standard encoding), so the \afm files when renamed
+normally end in |8a|.
+
+A typical set of four \afm files re-named for use with \fontinst
+is this:
+\begin{verbatim}
+  ptmr8r.afm    Times-Roman
+  ptmri8r.afm   Times-Italic
+  ptmb8r.afm    Times-Bold
+  ptmbi8r.afm   Times-BoldItalic
+\end{verbatim}
+Not all \afm files use |8a| encoding.  If you open an \afm file
+using a text editor, you'll see a line looking like this somewhere
+near the top:
+\begin{verbatim}
+  EncodingScheme AdobeStandardEncoding
+\end{verbatim}
+and if you see exactly that, the \afm file should end with |8a|.
+If you see something like this:
+\begin{verbatim}
+  EncodingScheme FontSpecific
+\end{verbatim}
+have a look at the name of the font in the \afm file.  If you see
+something like this:
+\begin{verbatim}
+  FontName AGaramondExp-Regular
+  FullName Adobe Garamond Regular Expert
+\end{verbatim}
+you have an `expert' encoded font on your hands, and the \afm file
+should end with |8x| to indicate this to \fontinst.  An |8x|
+encoded font contains extra glyphs like old style numerals, small
+capital letters, more ligatures, and so on.
+
+%% UV: taken out -- repeated below
+%%
+%If you have an expert font, you can tell \fontinst to use it when
+%it's processing a \verb|\latinfamily| command by putting an `|x|'
+%on the end of the family name:
+%\begin{verbatim}
+%  \latinfamily{padx}{}
+%\end{verbatim}
+%If you want to tell \fontinst to use expert fonts to install fonts
+%with old style numerals, you can do so by putting an `|j|' on the
+%end of the family name:
+%\begin{verbatim}
+%  \latinfamily{padj}{}
+%\end{verbatim}
+
+The |\latinfamily| command is used like this:
+\begin{decl}
+  |\latinfamily|\arg{family}\arg{commands}
+\end{decl}
+This installs a Latin family of fonts.
+
+For example, to install Adobe Times, you say:
+\begin{verbatim}
+  \latinfamily{ptm}{}
+\end{verbatim}
+The \textit{commands} issued by \LaTeX\ each time a font from that
+family is loaded.  This is most often used with typewriter fonts,
+to switch off hyphenation.  For example, Adobe Courier can be
+installed with:
+\begin{verbatim}
+  \latinfamily{pcr}{\hyphenchar\font=-1}
+\end{verbatim}
+Once the installation is over (which may take some time) the fonts
+can be used in \LaTeX\ by selecting an appropriate
+\verb|\fontfamily|, for example Adobe Times can be selected with:
+\begin{verbatim}
+  \fontfamily{ptm}\selectfont
+\end{verbatim}
+If the fourth letter of the family name is `|x|' then \fontinst
+will use expert fonts in creating the fonts.  If the fourth letter
+is `|j|' (or for backward compatibility `|9|') then \fontinst will
+use expert fonts to create fonts with old style digits.
+
+For example, to install Adobe Garamond using expert fonts, you say:
+\begin{verbatim}
+  \latinfamily{padx}{}
+\end{verbatim}
+To install Adobe Garamond using expert fonts with oldstyle digits,
+you say:
+\begin{verbatim}
+  \latinfamily{padj}{}
+\end{verbatim}
+
+When you have expert fonts, and you've told \fontinst to use
+them, it will carry on as normal, but the resulting font family
+will have the name `|padx|' or `|padj|', and it will use expert
+glyphs whenever possible, so you'll have a real (rather than
+faked) small caps font, real (rather than faked) `ffl' ligatures,
+and so on.
+
+Before using these commands, you will need to make sure that you
+have the Adobe Font Metric (\afm) files for the fonts, and that
+they have appropriate names.  The \fontinst package uses the
+\LaTeX\ convention for naming fonts, and uses a \emph{font family}
+name which consists of:
+\begin{itemize}
+\item a \emph{supplier} (or foundry), such as `|p|' for Adobe.
+\item a \emph{typeface}, such as `|ad|' for Adobe Garamond.
+\item up to two \emph{variants}, such as `|j|' or `|x|' for `old
+  style digits' or `expert'.
+\end{itemize}
+So the family name `|padj|' indicates Adobe Garamond with old
+style digits.  Note that the variants `|j|' or `|x|' are
+interpreted by \fontinst itself and do not appear in external font
+names, whereas other variants are passed through as part of the
+font names.  (This is needed for families which have a sans serif
+or typewriter variant.)
+
+The \emph{supplier} must be one letter, and the \emph{typeface}
+must be two (this is an attempt to fit all filenames into MS-DOS
+format).  Each variant is one letter.  The full list of foundries,
+typefaces, shapes and variants is given in Karl Berry's
+`\emph{Filenames for fonts}' (available by anonymous FTP from
+\url{ftp://ftp.tex.ac.uk/tex-archive/info/fontname}), but the more
+common ones are given in
+Tables~\ref{Tab:foundry}--\ref{Tab:typeface}.
+
+\begin{table}[!t]
+\begin{minipage}{0.5\textwidth}
+  \small
+  \begin{tabular}{ll}
+    |b| & Bitstream             \\
+    |f| & `free' (public domain) \\
+    |h| & Bigelow \& Holmes     \\
+    |i| & ITC                   \\
+    |l| & Linotype              \\
+    |m| & Monotype              \\
+    |p| & Adobe (|p| for \PS)   \\
+    |r| & `raw' (obsolete)      \\
+    |u| & URW                   \\
+    |z| & bizarre
+  \end{tabular}
+  \caption{A partial list of foundries}
+  \label{Tab:foundry}
+  \begin{tabular}{ll}
+    |a| & alternate             \\
+    |d| & display, titling      \\
+    |f| & fraktur, handtooled   \\
+    |j| & oldstyle digits       \\
+    |n| & informal, casual      \\
+    |p| & ornaments             \\
+    |s| & sans serif            \\
+    |t| & typewriter            \\
+    |w| & script, handwriting, swash \\
+    |x| & expert                \\
+  \end{tabular}
+  \caption{A partial list of variants}
+  \label{Tab:variant}
+  \begin{tabular}{ll}
+    |c| & small caps            \\
+    |i| & italic                \\
+    |o| & oblique (i.e.,~slanted) \\
+    |u| & unslanted italic      \\
+  \end{tabular}
+  \caption{A partial list of shapes}
+  \label{Tab:shape}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+  \small
+  \begin{tabular}{ll}
+    |ac| & Adobe Caslon \\
+    |ad| & Adobe Garamond \\
+    |ag| & Avantgarde \\
+    |bb| & Bembo \\
+    |bd| & Bodoni \\
+    |bk| & Bookman \\
+    |bv| & Baskerville \\
+    |ca| & Caslon \\
+    |ch| & Charter \\
+    |cr| & Courier \\
+    |fr| & Frutiger \\
+    |fu| & Futura \\
+    |gl| & Galliard \\
+    |gm| & Garamond \\
+    |gs| & Gill Sans \\
+    |hv| & Helvetica \\
+    |mn| & Minion \\
+    |lc| & Lucida \\
+    |lh| & Lucida Bright \\
+    |ls| & Lucida Sans \\
+    |nb| & New Baskerville \\
+    |nc| & New Century Schoolbook \\
+    |op| & Optima \\
+    |pl| & Palatino \\
+    |sy| & Symbol \\
+    |tm| & Times \\
+    |ut| & Utopia \\
+    |zc| & Zapf Chancery \\
+    |zd| & Zapf Dingbats \\
+  \end{tabular}
+  \caption{A partial list of faces}
+  \label{Tab:typeface}
+\end{minipage}
+\end{table}
+
+The \fontinst package uses Karl Berry's naming scheme for \afm
+files.  The full naming scheme is rather more flexible than the
+subset used by \fontinst, which uses filenames consisting of:
+\begin{itemize}
+\item a \emph{supplier}, such as `|p|' for Adobe.
+\item a \emph{typeface}, such as `|hv|' for Helvetica.
+\item a \emph{weight}, such as `|r|' for regular.
+\item up to two \emph{shapes} or \emph{variants}, such as `|o|'
+  for oblique.
+\item an \emph{encoding}, such as `|7t|' for Knuth's 7-bit \TeX{}
+  encoding.
+\item an optional \emph{width}, such as `|n|' for narrow.
+\item a \emph{file extension}, such as `\texttt{.tfm}'
+  for \TeX{} Font Metric.
+\end{itemize}
+So the filename name `\texttt{phvro7tn.tfm}' indicates Adobe
+Helvetica regular oblique narrow, in the 7-bit \TeX{} encoding.
+
+The full list of shapes, encodings and weights is given in Karl
+Berry's `\emph{Filenames for fonts}', but the more common ones are
+given in Tables~\ref{Tab:shape}--\ref{Tab:weight}.
+
+\begin{table}
+\begin{minipage}{0.5\textwidth}
+  \small
+  \begin{tabular}{ll}
+    |b| & bold \\
+    |c| & black \\
+    |d| & demibold \\
+    |h| & heavy \\
+    |k| & book \\
+    |l| & light \\
+    |m| & medium \\
+    |r| & regular \\
+    |s| & semibold \\
+    |u| & ultra bold \\
+    |x| & extra bold \\
+  \end{tabular}
+  \caption{A partial list of weights}
+  \label{Tab:weight}
+  \begin{tabular}{ll}
+    |c| & condensed \\
+    |n| & narrow \\
+    |w| & wide \\
+    |x| & extended \\
+  \end{tabular}
+  \caption{A partial list of widths}
+  \label{Tab:width}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+  \small
+  \begin{tabular}{ll}
+   |8a| & Adobe Standard        \\
+   |8x| & Adobe Expert          \\
+   |8r| & \TeX{} 8-bit `raw' (\texttt{TeXBase1})        \\
+   |8y| & \TeX{} 8-bit `raw' (\texttt{TeXnANSI})        \\
+   |7t| & \TeX{} 7-bit text             (\texttt{OT1})  \\
+   |7m| & \TeX{} 7-bit math italic      (\texttt{OML})  \\
+   |7y| & \TeX{} 7-bit math symbol      (\texttt{OMS})  \\
+   |7v| & \TeX{} 7-bit math extension   (\texttt{OMX})  \\
+   |8t| & \TeX{} 8-bit text             (\texttt{T1})   \\
+   |8c| & \TeX{} 8-bit text symbols     (\texttt{TS1})  \\
+   |9t| & \TeX{} 7-bit text with expert glyphs  \\
+   |9o| & \TeX{} 7-bit text with expert glyphs  \\
+        & and old-style digits  \\
+   |9e| & \TeX{} 8-bit text with expert glyphs  \\
+   |9d| & \TeX{} 8-bit text with expert glyphs  \\
+        & and old-style digits  \\
+   |9c| & \TeX{} 8-bit symbols with expert glyphs \\
+        & and old-style digits  \\
+   \end{tabular}
+   \caption{A partial list of encodings}
+\end{minipage}
+\end{table}
+
+For example, to install Adobe Garamond including the expert fonts, you
+would need to rename the \afm files:
+\begin{center}
+\begin{small}
+\begin{tabular}{lll}
+  \emph{Adobe name} & \emph{ATM name} & \emph{Fontinst name} \\
+  |AGaramond-Bold.afm|              & |gdb_____.afm|    & |padb8a.afm|   \\
+  |AGaramond-BoldItalic.afm|        & |gdbi____.afm|    & |padbi8a.afm|  \\
+  |AGaramond-Italic.afm|            & |gdi_____.afm|    & |padri8a.afm|  \\
+  |AGaramond-Regular.afm|           & |gdrg____.afm|    & |padr8a.afm|   \\
+  |AGaramond-Semibold.afm|          & |gdsb____.afm|    & |pads8a.afm|   \\
+  |AGaramond-SemiboldItalic.afm|    & |gdsbi___.afm|    & |padsi8a.afm|  \\
+  |AGaramondExp-Bold.afm|           & |geb_____.afm|    & |padb8x.afm|   \\
+  |AGaramondExp-BoldItalic.afm|     & |gebi____.afm|    & |padbi8x.afm|  \\
+  |AGaramondExp-Italic.afm|         & |gei_____.afm|    & |padri8x.afm|  \\
+  |AGaramondExp-Regular.afm|        & |gerg____.afm|    & |padr8x.afm|   \\
+  |AGaramondExp-Semibold.afm|       & |gesb____.afm|    & |pads8x.afm|   \\
+  |AGaramondExp-SemiboldItalic.afm| & |gesbi___.afm|    & |padsi8x.afm|  \\
+  |AGaramond-RegularSC.afm|         & |gdsc____.afm|    & |padrc8a.afm|  \\
+  |AGaramond-SemiboldSC.afm|        & |gdsbs___.afm|    & |padsc8a.afm|  \\
+\end{tabular}
+\end{small}
+\end{center}
+You can then run \TeX{} on the following document to install the
+Adobe Garamond family:
+\begin{verbatim}
+  \input fontinst.sty
+  \latinfamily{padx}{}
+  \latinfamily{padj}{}
+  \bye
+\end{verbatim}
+Not all font families can be installed using the \verb|\latinfamily|
+command, nor does it always produce optimal results. The main 
+interfaces to \fontinst are at a slightly lower level, where all font 
+names appear explicitly in command arguments, and at that level it is 
+possible to fine tune the font generation. The \verb|\latinfamily| 
+command is mainly a clever collection of macros which expand to a 
+mostly fixed\footnote{Commands that would refer to files which are 
+not present are skipped, and in some cases there is a ``Plan B'' 
+when ``Plan A'' would have made use of such a nonexistent file, but 
+that is about it.} sequence of lower level \fontinst commands.
+
+\begin{bfseries}
+  Descriptions of the sub-\verb|\latinfamily| commands can be found 
+  in the main \fontinst manual.
+\end{bfseries}
+
+
+
+\section{More on the \cs{latinfamily} command}
+
+The \verb|\latinfamily| command is essentially a short-cut to save you
+preparing a huge file with many different \fontinst commands in it.
+
+It takes \afm or \mtx files as the source of font metric data to work
+with.  Usually, you have a set of \afm files.  They must be named
+according to a subset of the \Fontnamekb naming scheme.  To illustrate
+the process, here is an edited part of the console log from a use of
+\verb|\latinfamily|:
+\begin{verbatim}
+  \latinfamily{pad}{}
+\end{verbatim}
+This log does not show \fontinst `in action'; it's just to illustrate
+which fonts are looked for when you use the \verb|\latinfamily|
+command.
+\begin{verbatim}
+  INFO>> to make LaTeX font shape <<pad,m,n,>> seek padr8r.mtx
+  INFO>> to make LaTeX font shape <<pad,m,sc,>> seek padrc8r.mtx
+  INFO>> to make LaTeX font shape <<pad,m,sl,>> seek padro8r.mtx
+  INFO>> to make LaTeX font shape <<pad,m,it,>> seek padri8r.mtx
+  INFO>> to make LaTeX font shape <<pad,m,n,c>> seek padr8rn.mtx
+  INFO>> to make LaTeX font shape <<pad,m,sc,c>> seek padrc8rn.mtx
+  INFO>> to make LaTeX font shape <<pad,m,sl,c>> seek padro8rn.mtx
+  INFO>> to make LaTeX font shape <<pad,m,it,c>> seek padri8rn.mtx
+\end{verbatim}
+
+The important point to notice is that \fontinst needs an |8r| encoded
+\mtx file for each font when you are using the \verb|latinfamily|
+command.  If it can't find an |8r| encoded \mtx file, it'll look for
+for an |8a| encoded \afm file.  It will automatically turn the file it
+finds into an |8r| encoded \mtx file.  So when \fontinst says
+`\verb|seek padr8r.mtx|', it is in fact looking for
+\texttt{padr8r.mtx} and \texttt{padr8a.afm}.  Whatever it finds, it
+will end up with \verb|padr8r.mtx| to work on.
+
+The first line of the log shows that \fontinst is trying to create a
+\vpl file for |pad/m/n|.  That is, font family |pad| (Adobe Garamond),
+font series |m| (normal `book' or `regular' weight), and font shape
+|n| (normal upright).
+
+If it finds what it's looking for, it will create the files:
+\begin{verbatim}
+  padr7t.vpl
+  padr8t.vpl
+  padr8c.vpl
+\end{verbatim}
+And add these lines to the given \fd files:
+\begin{verbatim}
+  OT1pad.fd:    \DeclareFontShape{OT1}{pad}{m}{n}{<<->> padr7t}{}
+   T1pad.fd:    \DeclareFontShape{T1} {pad}{m}{n}{<<->> padr8t}{}
+  TS1pad.fd:    \DeclareFontShape{TS1}{pad}{m}{n}{<<->> padr8c}{}
+\end{verbatim}
+This means you will have three new fonts to use in \LaTeX: the OT1, T1
+and TS1 encoded versions of |pad/m/n|.  You'll be able to select (say)
+|T1/pad/m/n| by saying:
+\begin{verbatim}
+  \fontencoding{T1}\fontfamily{pad}\fontseries{m}\fontshape{n}\selectfont
+\end{verbatim}
+This is the clumsiest way of selecting that particular font, but I've
+done it to illustrate exactly what's happening.
+
+The next line:
+\begin{verbatim}
+  INFO>> to make LaTeX font shape <<pad,m,sc,>> seek padrc8r.mtx
+\end{verbatim}
+shows that \fontinst is trying to install a small caps font.  If you
+have a real small caps metric file named \texttt{padrc8r.mtx} (don't
+forget it'll look for an |8a| encoded \afm file), \fontinst will go
+ahead and create the \vpl file and \fd file entry as expected.
+
+But you don't normally have a real small caps font, so \fontinst will
+quite happily produce a fake small caps font.  To do this, it looks
+for a suitable metric file by dropping the `|c|':
+\begin{quote}
+  `Hmm\ldots\ I can't find \texttt{padrc8r}, so I'll look for
+  \texttt{padr8r}.'
+\end{quote}
+And you will eventually have:
+\begin{verbatim}
+  padrc7t.vpl
+  padrc8t.vpl
+\end{verbatim}
+And add these lines to the given \fd files:
+\begin{verbatim}
+  OT1pad.fd:    \DeclareFontShape{OT1}{pad}{m}{sc}{<<->> padrc7t}{}
+   T1pad.fd:    \DeclareFontShape{T1} {pad}{m}{sc}{<<->> padrc8t}{}
+\end{verbatim}
+(Note that it won't install a TS1-encoded small caps font because
+TS1 is a text symbol font, which would look the same in the upright
+and small caps shape.)
+
+The next log line shows \fontinst trying to create a \vpl for the
+oblique version of Adobe Garamond:
+\begin{verbatim}
+  INFO>> to make LaTeX font shape <<pad,m,sl,>> seek padro8r.mtx
+\end{verbatim}
+It's quite usual for an oblique version to be unavailable, but
+\fontinst has a way round this: it can fake an oblique font from the
+corresponding `straight' version:
+\begin{quote}
+  `Oh dear: I can't find \texttt{padro8r}, so I'll look for
+  \texttt{padr8r} and use clever maths to fake a slanted version.'
+\end{quote}
+This is not as straightforward as the small caps case.  \Fontinst
+only works out what the metrics ought to be if the entire font is
+slanted to the right.  It's up to the DVI driver to actually print a
+slanted font.  \Dvips can do this.
+
+You will eventually have:
+\begin{verbatim}
+  padro7t.vpl
+  padro8t.vpl
+  padro8c.vpl
+\end{verbatim}
+And these lines added to the given \fd files:
+\begin{verbatim}
+  OT1pad.fd:    \DeclareFontShape{OT1}{pad}{m}{sl}{<<->> padro7t}{}
+   T1pad.fd:    \DeclareFontShape{T1} {pad}{m}{sl}{<<->> padro8t}{}
+  TS1pad.fd:    \DeclareFontShape{TS1}{pad}{m}{sl}{<<->> padro8c}{}
+\end{verbatim}
+
+The next line is straightforward:
+\begin{verbatim}
+  INFO>> to make LaTeX font shape <<pad,m,it,>> seek padri8r.mtx
+\end{verbatim}
+If \fontinst can't find a suitable metrics file (\texttt{padri8r.mtx}
+or \texttt{padri8a.afm}), it carries on without doing anything.  If it
+does find a suitable metrics file, it churns away until you will
+eventually have:
+\begin{verbatim}
+  padri7t.vpl
+  padri8t.vpl
+  padri8c.vpl
+\end{verbatim}
+And these lines added to the given \fd files:
+\begin{verbatim}
+  OT1pad.fd:    \DeclareFontShape{OT1}{pad}{m}{it}{<<->> padri7t}{}
+   T1pad.fd:    \DeclareFontShape{T1} {pad}{m}{it}{<<->> padri8t}{}
+  TS1pad.fd:    \DeclareFontShape{TS1}{pad}{m}{it}{<<->> padri8c}{}
+\end{verbatim}
+
+The next line is a bit different.  \Fontinst is now trying to create a
+\vpl file for a \emph{condensed} font:
+\begin{verbatim}
+  INFO>> to make LaTeX font shape <<pad,m,n,c>> seek padr8rn.mtx
+\end{verbatim}
+If it finds a suitable metric file (Adobe Garamond, medium weight,
+normal upright shape, condensed), it will eventually produce:
+\begin{verbatim}
+  padr7tn.vpl
+  padr8tn.vpl
+  padr8cn.vpl
+\end{verbatim}
+And these lines added to the given \fd files:
+\begin{verbatim}
+  OT1pad.fd:    \DeclareFontShape{OT1}{pad}{mc}{n}{<<->> padr7tn}{}
+   T1pad.fd:    \DeclareFontShape{T1} {pad}{mc}{n}{<<->> padr8tn}{}
+  TS1pad.fd:    \DeclareFontShape{TS1}{pad}{mc}{n}{<<->> padr8cn}{}
+\end{verbatim}
+There is no standard \LaTeX\ command like \verb|\bfseries| to select
+the medium condensed (|mc|) series created here.  If you want to use
+this font, you must do something like:
+\begin{verbatim}
+  \fontfamily{pad}\fontseries{mc}\selectfont
+\end{verbatim}
+If it doesn't find a suitable metric file for a narrow series,
+\fontinst will just skip over and continue, unless you specifically
+tell it to fake a narrow series.
+
+And so the process continues: \fontinst attempts to create \vpl files
+for condensed versions of all the font shapes met so far, and then
+goes on to:
+\begin{verbatim}
+  INFO>> to make LaTeX font shape <<pad,b,n,>> seek padb8r.mtx
+\end{verbatim}
+And again, if it finds a suitable metric file (\texttt{padb8r.mtx} or
+\texttt{padb8a.afm}), it'll potter off and create the files:
+\begin{verbatim}
+  padb7t.vpl
+  padb8t.vpl
+  padb8c.vpl
+\end{verbatim}
+And these lines added to the given \fd files:
+\begin{verbatim}
+  OT1pad.fd:    \DeclareFontShape{OT1}{pad}{b}{n}{<<->> padb7t}{}
+   T1pad.fd:    \DeclareFontShape{T1} {pad}{b}{n}{<<->> padb8t}{}
+  TS1pad.fd:    \DeclareFontShape{TS1}{pad}{b}{n}{<<->> padb8c}{}
+\end{verbatim}
+With this step done, fontinst will try to create \vpl files for the
+small caps, slanted, and italic versions of |pad/b|; and then it'll
+try to create condensed versions of all those:
+\begin{verbatim}
+  INFO>> to make LaTeX font shape <<pad,b,n,>> seek padb8r.mtx
+  INFO>> to make LaTeX font shape <<pad,b,sc,>> seek padbc8r.mtx
+  INFO>> to make LaTeX font shape <<pad,b,sl,>> seek padbo8r.mtx
+  INFO>> to make LaTeX font shape <<pad,b,it,>> seek padbi8r.mtx
+  INFO>> to make LaTeX font shape <<pad,b,n,c>> seek padb8rn.mtx
+  INFO>> to make LaTeX font shape <<pad,b,sc,c>> seek padbc8rn.mtx
+  INFO>> to make LaTeX font shape <<pad,b,sl,c>> seek padbo8rn.mtx
+  INFO>> to make LaTeX font shape <<pad,b,it,c>> seek padbi8rn.mtx
+\end{verbatim}
+If it manages to find the files it needs to create the \vpl files to
+use all those fonts with \LaTeX, you'll end up with the following
+lines in the T1 \fd file (I've ignored the OT1 \fd file to save some
+space):
+\begin{verbatim}
+  \DeclareFontShape{T1} {pad}{b} {n} {<<->> padb8t}{}
+  \DeclareFontShape{T1} {pad}{b} {sc}{<<->> padbc8t}{}
+  \DeclareFontShape{T1} {pad}{b} {sl}{<<->> padbo8t}{}
+  \DeclareFontShape{T1} {pad}{b} {it}{<<->> padbi8t}{}
+  \DeclareFontShape{T1} {pad}{bc}{n} {<<->> padb8tn}{}
+  \DeclareFontShape{T1} {pad}{bc}{sc}{<<->> padbc8tn}{}
+  \DeclareFontShape{T1} {pad}{bc}{sl}{<<->> padbo8tn}{}
+  \DeclareFontShape{T1} {pad}{bc}{it}{<<->> pckbi8tn}{}
+\end{verbatim}
+To translate into English: Adobe Garamond bold in `normal', small
+caps, slanted, and italic versions, as well as condensed versions of
+all four.
+
+Again, because there's no convenient way of selecting the condensed
+versions with existing \LaTeX\ commands, you need to say something
+like:
+\begin{verbatim}
+  \fontfamily{pad}\fontseries{bc}\selectfont
+\end{verbatim}
+to use the bold condensed (|bc|) versions of this font; you can of
+course use \verb|\itshape|, \verb|\scshape|, \verb|\slshape|, and
+\verb|upshape| to switch between the italic, small caps, slanted, and
+`normal' versions of Adobe Garamond bold condensed once you've got
+|pad/bc| selected.
+
+So far, you've seen \verb|\latinfamily| look at two different weights
+and two different widths.  For each weight, \verb|\latinfamily| will
+try and install eight different fonts as you can see above.  It will
+try and install the same eight different fonts for each of the
+following different weights:
+\begin{center}
+\begin{tabular}{lll}
+  \emph{\LaTeX} & \emph{Fontname} & \emph{description} \\
+  |ul|     & |a|           & ultra light  \\
+  |el|     & |i|           & extra light  \\
+  |l|      & |l|           & light        \\
+  |m|      & |k|, |r|      & book, regular \\
+  |mb|     & |m|           & medium       \\
+  |db|     & |d|           & demi bold    \\
+  |sb|     & |s|           & semi bold    \\
+  |b|      & |b|           & bold         \\
+  |eb|     & |c|, |h|, |x| & black, heavy, extra bold \\
+  |ub|     & |u|           & ultra bold
+\end{tabular}
+\end{center}
+The \LaTeX\ column contains the label that will be used in the
+\verb|\DeclareFontShape| command to specify the font series.  The
+\Fontnamekb column contains the width specifier used to name the font
+metric file that \fontinst will look for in that case.
+
+In other words, at some stage \fontinst will look for:
+\begin{verbatim}
+  INFO>> to make LaTeX font shape <<pad,sb,n,>> seek pads8r.mtx
+\end{verbatim}
+and if it finds a suitable metric file (\texttt{pads8r.mtx} or
+\texttt{pads8a.afm}), it will create:
+\begin{verbatim}
+  pads7t.vpl
+  pads8t.vpl
+  pads8c.vpl
+\end{verbatim}
+and \fd file entries like this:
+\begin{verbatim}
+  OT1pad.fd:    \DeclareFontShape{OT1}{pad}{sb}{n}{<<->> pads7t}{}
+   T1pad.fd:    \DeclareFontShape{T1} {pad}{sb}{n}{<<->> pads8t}{}
+  TS1pad.fd:    \DeclareFontShape{TS1}{pad}{sb}{n}{<<->> pads8c}{}
+\end{verbatim}
+and since |sb| is not a normal \LaTeX\ font series, you'll need to use
+something like:
+\begin{verbatim}
+  \fontfamily{pad}\fontseries{sb}\selectfont
+\end{verbatim}
+to use this font.
+
+% For example, \verb|\latinfamily{ptm}{}| is
+% syntactic sugar for:
+% \begin{verbatim}
+%    \transformfont{ptmr8r}{\reencodefont{8r}{\fromafm{ptmr8a}}}
+%    \transformfont{ptmri8r}{\reencodefont{8r}{\fromafm{ptmri8a}}}
+%    \transformfont{ptmb8r}{\reencodefont{8r}{\fromafm{ptmb8a}}}
+%    \transformfont{ptmbi8r}{\reencodefont{8r}{\fromafm{ptmbi8a}}}
+%    \transformfont{ptmro8r}{\slantfont{167}{\frommtx{ptmr8r}}}
+%    \transformfont{ptmbo8r}{\slantfont{167}{\frommtx{ptmb8r}}}
+%    \installfonts
+%       \installfamily{T1}{ptm}{}
+%       \installfamily{OT1}{ptm}{}
+%       \installfont{ptmr8t}{ptmr8r,latin}{T1}{T1}{ptm}{m}{n}{}
+%       \installfont{ptmr7t}{ptmr8r,latin}{OT1}{OT1}{ptm}{m}{n}{}
+%       \installfont{ptmrc8t}{ptmr8r,latin}{T1c}{T1}{ptm}{m}{sc}{}
+%       \installfont{ptmrc7t}{ptmr8r,latin}{OT1c}{OT1}{ptm}{m}{sc}{}
+%       \installfont{ptmri8t}{ptmri8r,latin}{T1}{T1}{ptm}{m}{it}{}
+%       \installfont{ptmri7t}{ptmri8r,latin}{OT1i}{OT1}{ptm}{m}{it}{}
+%       \installfont{ptmro8t}{ptmro8r,latin}{T1}{T1}{ptm}{m}{sl}{}
+%       \installfont{ptmro7t}{ptmro8r,latin}{OT1}{OT1}{ptm}{m}{sl}{}
+%       \installfont{ptmb8t}{ptmb8r,latin}{T1}{T1}{ptm}{b}{n}{}
+%       \installfont{ptmb7t}{ptmb8r,latin}{OT1}{OT1}{ptm}{b}{n}{}
+%       \installfont{ptmbc8t}{ptmb8r,latin}{T1c}{T1}{ptm}{b}{sc}{}
+%       \installfont{ptmbc7t}{ptmb8r,latin}{OT1c}{OT1}{ptm}{b}{sc}{}
+%       \installfont{ptmbi8t}{ptmbi8r,latin}{T1}{T1}{ptm}{b}{it}{}
+%       \installfont{ptmbi7t}{ptmbi8r,latin}{OT1i}{OT1}{ptm}{b}{it}{}
+%       \installfont{ptmbo8t}{ptmbo8r,latin}{T1}{T1}{ptm}{b}{sl}{}
+%       \installfont{ptmbo7t}{ptmbo8r,latin}{OT1}{OT1}{ptm}{b}{sl}{}
+%    \endinstallfonts
+% \end{verbatim}
+
+
+The \texttt{basicex.tex} file in the \texttt{examples} directory of 
+the main \fontinst distribution is an annotated command file which 
+does roughly the same things as the \verb|\latinfamily| command for 
+the \texttt{pad} family of fonts.
+
+
+\end{document}

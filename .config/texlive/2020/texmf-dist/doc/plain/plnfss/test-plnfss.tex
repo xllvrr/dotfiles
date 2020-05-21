@@ -1,0 +1,40 @@
+% plnfss-1.1
+
+% Copyright 2003-2005 Han The Thanh <hanthethanh@gmx.net>.
+% This file is part of plnfss.  License: LPPL, version 1.3 or newer,
+% according to http://www.latex-project.org/lppl.txt
+
+\input plnfss
+\input ot1cm.pfd
+
+\def\testfontdecl#1#2{%
+    \expandafter\setfont#1/10pt/%
+    \leftline{%
+        \hbox to 4cm{\setfont OT1/cmtt/m/n/10pt/#1\hss}%
+        The quick brown fox jumps over a lazy dog
+    }
+    \smallskip
+}
+
+\def\testpfd#1{{%
+    \centerline{\setfont OT1/cmr/m/n/15pt/Test of \texttt{#1}}
+    \bigskip
+    \input #1
+    \let\DeclareFont=\testfontdecl
+    \input #1
+    \vfil\eject
+}}
+
+\testpfd{il2cm.pfd}
+\testpfd{ly1lm.pfd}
+\testpfd{ot1cm.pfd}
+\testpfd{ot4cm.pfd}
+\testpfd{qxlm.pfd}
+\testpfd{t1lm.pfd}
+\testpfd{t5cm.pfd}
+\testpfd{t5lm.pfd}
+
+% \testpfd{ot1cmr.pfd}
+% \testpfd{t5cmr.pfd}
+% \testpfd{ams.pfd}
+\bye

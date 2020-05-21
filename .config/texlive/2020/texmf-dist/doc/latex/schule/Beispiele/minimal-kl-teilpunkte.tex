@@ -1,0 +1,60 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[
+    typ=kl,
+    klausurtyp=klausur,
+    fach=Physik,
+    lerngruppe=Q1/IV,
+]{schule}
+
+% Dieses Dokument gehört zu den Beispiel des LaTeX Paketes Schule und ist von den Autoren
+% des Pakets erstellt worden.
+%
+% Das Dokument steht unter der Lizenz: Creative Commons by-nc-sa Version 4.0
+% http://creativecommons.org/licenses/by-nc-sa/4.0/deed.de
+%
+% Nach dieser Lizenz darf das Dokument beliebig kopiert und bearbeitet werden,
+% sofern das Folgeprodukt wiederum unter gleichen Lizenzbedingungen vertrieben
+% und auf die ursprünglichen Urheber verwiesen wird.
+% Eine kommerzielle Nutzung ist ausdrücklich ausgeschlossen.
+
+\date{\today}
+\title{Test von Teilpunkten}
+
+\begin{document}
+    \begin{aufgabe}[subtitle=Erste ohne Teilpunkte,points=34]
+        Ohne Teilpunkte
+    \end{aufgabe}
+
+    \begin{aufgabe}[subtitle=Erste Aufgabe mit Teilpunkten]
+        \begin{teilaufgaben}
+            \teilaufgabe[4] Erste Teilaufgabe
+            \teilaufgabe[6] Zweite Teilaufgabe
+        \end{teilaufgaben}
+    \end{aufgabe}
+
+    \begin{aufgabe}[subtitle=Zweite mit Teilpunkten]
+        Davor noch ein Text
+        \begin{teilaufgaben}
+            \teilaufgabe[10] Erste zweite Teilaufgabe
+
+            \teilaufgabe[10] Zweite zweite Teilaufgabe
+        \end{teilaufgaben}
+    \end{aufgabe}
+
+    \begin{aufgabe}[subtitle=Ohne Punkte]
+        Ohne Teilpunkte und Punkte
+    \end{aufgabe}
+
+    \begin{aufgabe}[subtitle=Ohne Teilpunkte,points=23]
+        Ohne Teilpunkte
+    \end{aufgabe}
+
+\vspace{1cm}
+
+{\Huge Viel Erfolg!}
+
+\vspace{1cm}
+
+\punktuebersicht
+
+\end{document}

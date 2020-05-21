@@ -1,0 +1,177 @@
+% eparam.tex
+%%%%%%%%%%%%%%%%%%%%
+% Petr Olsak 2014
+
+% This macro enables full expansion during parameter scanning. 
+% The usage:
+% \def\macro#1{macro with #1}
+% \eparam\macro prameter-text
+%
+% The delimiters for the parameter are {...} or \start...\stop or
+% combination {...\stop, \start...}, where \start is declared by \eparamopen
+% and \stop is declared by \eparamclose. See more information at the end of
+% this file or at
+% http://tex.stackexchange.com/questions/196776/arguments-possibly-delimited-by-bgroup-and-egroup
+
+
+\def\tmp{% all expandable primitives (only from classical TeX, you can add others):
+  \botmark \csname \else \endcsname \endinput \expandafter \fi \firstmark \fontname
+  \if \ifcase \ifcat \ifdim \ifeof \iffalse \ifhbox \ifhmode \ifinner 
+  \ifmmode \ifnum \ifodd \iftrue \ifvbox \ifvmode \ifvoid \ifx
+  \input \jobname \meaning \noexpand \number \or \romannumeral
+  \splitbotmark \splitfirstmark \string \the \topmark
+}
+\def\skipmm#1->{}  \def\showmm#1->{#1}
+\edef\textmm{\expandafter\showmm\meaning\empty}
+\edef\expandprimitives{\expandafter\skipmm\meaning\tmp}
+
+\def\isinlist#1#2#3{% from opmac.tex
+   \def\tmp##1#2##2\end{\def\tmp{##2}%
+   \ifx\tmp\empty \csname iffalse\expandafter\endcsname \else
+                  \csname iftrue\expandafter\endcsname \fi}% end of \def\tmp
+   \expandafter\tmp#1\endlistsep#2\end
+}
+\def\isexpanded#1#2{% \isexpanded X\iftrue the X is expandable primitive or macro\fi
+   \edef\tmpb{\meaning#1\space}%
+   \expandafter\isinlist\expandafter\tmpb\expandafter{\textmm}%
+   \iftrue \csname iftrue\expandafter\endcsname\else
+      \def\nexxt{\expandafter\isinlist\expandafter\expandprimitives\expandafter{\tmpb}.}%
+      \expandafter\nexxt\fi
+}
+\def\eparamopen#1{\def\eparamopenA{\let#1=\eparamopenA}}
+\def\eparamclose#1{\def\eparamcloseA{\let#1=\eparamcloseA}}
+
+\newtoks\eparamT
+\def\eparam#1{\begingroup
+  \toks0={#1}\let\bgroup=\relax \let\egroup=\relax
+  \let\ifIamInGroup=\iffalse
+  \ifx\eparamopenA\undefined \def\eparamopenA{^\eparam^}\else \eparamopenA\fi
+  \ifx\eparamcloseA\undefined \def\eparamcloseA{^\eparam^}\else \eparamcloseA\fi
+  \eparamT={}\eparamA
+}
+\def\eparamA{\futurelet\tmpc\eparamB}
+\def\eparamB{\let\next=\eparamD
+   \isexpanded\tmpc\iftrue \def\next{\expandafter\eparamA}\fi
+   \ifx\tmpc\bgroupOri \let\next=\eparamC \let\nexxt=\eparamD \fi
+   \ifx\tmpc\eparamopenA  \let\next=\eparamC \let\nexxt=\eparamD \fi
+   \next
+}
+\def\eparamC{\afterassignment\nexxt \let\next= }
+\def\eparamD{\futurelet\tmpc\eparamE}
+\def\eparamE{\let\next=\eparamN
+   \isexpanded\tmpc\iftrue \def\next{\expandafter\eparamD}\fi
+   \ifx\tmpc\spacetoken \let\next=\eparamC \let\nexxt=\eparamD \eparamX{ }\fi
+   \ifx\tmpc\eparamcloseA \ifIamInGroup \let\next=\eparamN
+                          \else \let\next=\eparamC \let\nexxt=\eparamF \fi\fi
+   \ifx\tmpc\egroupOri \let\next=\eparamC \let\nexxt=\eparamF \fi
+   \ifx\tmpc\bgroupOri \let\next=\eparamC \let\nexxt=\eparamG \fi
+   \next
+}
+\def\eparamN#1{\eparamX#1\eparamD}
+\def\eparamG{\begingroup \let\ifIamInGroup=\iftrue \eparamT={}\eparamD}
+\def\eparamF{\ifIamInGroup \let\next=\eparamY \else \let\next=\eparamZ \fi \next}
+\long\def\eparamX#1{\eparamT\expandafter{\the\eparamT#1}}
+\def\eparamY{\expandafter\endgroup
+   \expandafter\eparamT\expandafter\expandafter\expandafter
+      {\expandafter\the\expandafter\eparamT\expandafter{\the\eparamT}}%
+   \eparamD
+}
+\def\eparamZ{\expandafter\endgroup\the\toks0\expandafter{\the\eparamT}}
+
+\let\bgroupOri=\bgroup
+\let\egroupOri=\egroup
+\def\tmp/{\let\spacetoken= }\tmp/ %
+
+\endinput
+
+tests:
+
+\def\macro#1{\toks0={#1}\message{the parameter is "\the\toks0"}}
+
+\eparam\macro {abc}  % the parameter is "abc"
+
+\def\x{ww}
+\eparam\macro {ab\x c}          % the parameter is "abwwc"
+\eparam\macro {a b\the\pageno c} % the parameter is "ab1c"
+\eparam\macro {ab\ifx\x\x true\else false\fi c}        % the parameter is "abtruec"
+\eparam\macro {ab\ifnum\folio=1 true\else false\fi c}  % the parameter is "abtruec"
+\eparam\macro {ab\ifcase\pageno oo\or one\or two\fi c} % the parameter is "abonec"
+
+\eparamopen\start \eparamclose\stop
+
+\eparam\macro {abc\stop        % the parameter is "abc"
+\eparam\macro \start abc\stop  % the parameter is "abc"
+\eparam\macro \start abc}      % the parameter is "abc"
+
+\eparam\macro abc}     % the parameter is "abc"
+\eparam\macro abc\stop % the parameter is "abc"
+
+\eparam\macro \start abc{uf\stop fu}ee\stop  % the parameter is "abc{uf\stop fu}ee"
+
+\def\y{end\stop}
+
+\eparam\macro {a\x\y   % the parameter is "awwend"
+
+\eparam {\def\aha#1#2}\start params: #1 and #2\stop
+
+\eparamopen\bgroup \eparamclose\egroup
+\eparam {\def\foo#1#2}\bgroup Something with #1 and #2\egroup
+
+\message{\meaning\foo}
+
+\end
+
+The question gives me a sense if it is read from its end: *give
+the possibility of creating a macro which expands its parameter during
+parameter scanning*. Then the variants `}` or `\egroup` as a delimiter of the
+parameter is serviceable.
+
+I've created the `\eparam` macro with this syntax:
+
+    \def\mymacro #1{the #1 parameter is declared as undelimited}
+    ...
+    \eparam\mymacro parameter-text
+
+The `parameter-text` is equal to `real-parameter-text` enclosed by braces or  
+by another control sequences declared by `\eparamopen` and \eparamclose`.
+Example:
+
+    \eparamopen\start  \eparamclose\stop
+    \eparam\mymacro {real-parameter-text}
+    \eparam\mymacro \start real-parameter-text\stop
+    \eparam\mymacro \start real-parameter-text}
+    \eparam\mymacro {real-parameter-text\stop
+
+The main point of the `\eparam` is that this is **Expanded Parameter**. 
+The `real-parameter-text` is expanded during parameter scanning like
+by `\edef`. This means that all expandable primitives and macros are
+expanded during the parameter is read. Unexpandable primitives does nothing
+in this time (like `\edef`) so you can do reassigmnent of registers/macros
+inside this parameter but without any effect for parameter scaninng.
+This is main difference between this case and the `\hbox {...}` primitive
+syntax.
+
+There is one difference between `\edef` and parameter scanning:
+undefined control sequences do nothing (like unexpandable primitives)
+during parameter scanning. The error can be occur only when the parameter is
+used (no during parameter scanning).
+
+The separator declared by `\eparamclose` can be hidden in a macro. Example:
+
+    \def\x{-text\stop}
+    \eparam\mymacro {real-parameter\x
+
+The first open brace or delimiter given by `\eparamopen` is optional. I.e.
+you can omit it:
+
+    \eparam\mymacro real-parameter-text\stop
+
+The parameter is always balanced. This means that the delimiter declared by
+`\eparamclose` does no effect inside inner braces pair (like normal
+parameter scanning):
+
+    \eparam \start text{inside \stop braces}text\stop
+    % the parameter is: "text{inside \stop braces}text"
+
+The implementation (or wipet's sorcery :) and little tests follow.
+ 

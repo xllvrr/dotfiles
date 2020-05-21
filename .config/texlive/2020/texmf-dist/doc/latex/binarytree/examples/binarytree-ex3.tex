@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{binarytree}
+
+\begin{document}
+\btreeset{%
+  math labels,%
+  separate,%
+  level distance scales=false,%
+  sibling distance scales=false,%
+  continue after turn=false,%
+  continue at path end=false,%
+  left label anchor=center,%
+  right label anchor=center}
+
+\BinaryTree{l:\nwarrow!r:\nearrow,r:\nearrow!l:\nwarrow}{3}
+\end{document}

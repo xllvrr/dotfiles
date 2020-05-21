@@ -1,0 +1,24 @@
+\begin{tikzpicture}[codeblocks,openroberta,scale=.90]
+
+\node[start,pinlow](start){start};
+\schleife[unter={start}{0}{0}]{wiederhole}{\intbox{4} mal}{\node[aktion]{setzte LED-Farbe auf \dropdown{Violett}};}{schl1}
+\wenndann[unter={schl1}{0}{0}]{\dropdown{wahr}}{\node[bild]{erstelle Bild: \bild[0.3]{\emptyled}};}{verz1}
+\node[variablen,unter={verz1}{0}{0}](plz1){ändere \dropdown{Platzhalter} auf \tikz\node[mathe,boden,keinezacken,puzzleteil]{\intbox{15}\dropdown{$\div$}\intbox{3}};};
+\node[aktion,unter={plz1}{0}{0}](bild1){Zeige LEDs:\\
+	\bild{
+		\X \X \X \X \X \\
+		\0 \X \X \X \0 \\
+		\0 \0 \X \0 \0 \\
+		\0 \X \X \X \0 \\
+		\X \X \X \X \X \\							
+	}
+};
+
+\wenndannsonst[unter={bild1}{0}{0}]
+{\intbox{5}\dropdown{<}\intbox{5}}
+{\node[sensor]{setze \intbox{5}V an Ausgang \stringbox{powerOut}};}
+{\node[aktion,draw,](akt1){spiele Note \dropdown{C} für \dropdown{1/4}\,Takt};
+ \node[aktion,draw,pinhigh,unter={akt1}{0}{0}](akt2){spiele Note \dropdown{D} für \dropdown{1/4}\,Takt};}
+{wds1}
+
+\end{tikzpicture}

@@ -1,0 +1,21 @@
+name table-fct
+category Package
+revision 41849
+shortdesc Draw a variations table of functions and a convexity table of its graph
+longdesc Draw a variations table of functions and a convexity table of
+longdesc its graph This version offers two environnements, to draw
+longdesc variations table of a function and a convexity table of its
+longdesc graph.
+containersize 2308
+containerchecksum a6300b1989f536fecb27d300bc0b27afd93f7f72b894fdb87bae5b0756ab241985ee2e5b4c0b68d1b2cc5611aafdb62b300fe40e2a08df5f6b11774f13309756
+doccontainersize 880
+doccontainerchecksum a9108cee93e6c7250643636619f923659d468a2148f5b04168fb08738d85e794c1050fef8152fb95d114551f6967c955f3d6f548e1ede37711b98b1362e9910a
+docfiles size=2
+ texmf-dist/doc/latex/table-fct/README details="Readme"
+ texmf-dist/doc/latex/table-fct/README.TEXLIVE
+runfiles size=4
+ texmf-dist/tex/latex/table-fct/table-fct.sty
+catalogue-ctan /graphics/table-fct
+catalogue-license lppl1.3
+catalogue-topics graphics
+catalogue-version 1.1

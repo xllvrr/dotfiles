@@ -1,0 +1,59 @@
+
+This directory contains examples.tex, source files for the diagrams
+that are imported when examples.tex is LaTeXed, and some other standalone
+diagrams. To generate examples.pdf in a unix-like environment (versions
+of unix, linux, cygwin, djgpp, ...):
+
+1.  Install the libraries as described in the top-level README file.
+2.  In this directory, type "make".  If your installed dpic is the
+    Mingw version included in the dpic distribution, (a) edit the
+    file windows.m4 to point to your installation folder, and (b) uncomment
+    the CUSTOM=windows.m4 line in the Makefile, or type
+    "make CUSTOM=windows.m4".
+
+To test one of the diagrams, say ex01.m4, type one of the following
+(and have a look at the comments at the top of the Makefile):
+"make ex01.ps"
+"make ex01.eps"
+"make ex01.pdf" (uses pdflatex)
+"make ex01.png" (requires Imagemagick convert)
+"make ex01.tif" (requires Imagemagick convert)
+"make ex01.svg" (requires Imagemagick convert, but see the svg folder)
+
+IN CASE OF DIFFICULTY: Look at files debug1.tex and debug2.m4, and
+follow the instructions.
+
+To test and debug a single diagram, write it into test.m4.  Type
+"make tst" to process the file, creating test.tex, which is imported into
+tst.tex.  The diagram source and tst.tex are processed twice in case
+the boxdim macro is being used.  If you only need to process once, type
+"make tst1".  In both cases the resulting file is tst.ps.
+To use tikz and pdflatex to produce test.pdf, type "make test.pdf" as above.
+
+To test and debug a single diagram in a different directory, copy Makefile
+and tst.tex to where you want to work, adjust the definition of LIBDIR
+in Makefile if environment variable M4PATH has not been defined, and type
+one of the above commands.
+
+By default, the dpic processor is invoked, producing TiKz commands.
+To use PSTricks instead, type "make clean; make examples.ps".
+To process the diagrams using TikZ PGF for processing either by LaTeX or
+PDFlatex, type "make" or "make examplespgf.ps" in the pgf subdirectory.
+
+There are often several methods of producing similar graphical results,
+particularly of text labels.  Some of the diagrams in this directory are
+slightly more complicated than required for Tikz or PSTricks in order
+that they will work with other postprocessors. Dpic output that does
+not handle LaTeX labels has to be treated separately as, for example,
+in the svg directory.
+
+To process the diagrams using .eps intermediate files with embedded psfrag
+strings, go into the psfrag directory and read the README file.
+
+To process the diagrams using MetaPost, look in the mpost subdirectory.
+
+The xfig subdirectory contains the file xfig/xfiglib.fig, which contains
+elements in xfig 3.2 format produced by dpic for importing into xfig.
+
+SVG: Look in the svg directory for an experimental configuration file and
+examples.

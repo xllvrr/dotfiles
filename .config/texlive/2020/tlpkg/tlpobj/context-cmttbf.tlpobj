@@ -1,0 +1,21 @@
+name context-cmttbf
+category ConTeXt
+revision 47085
+shortdesc Use Computer Modern Typewriter bold font in ConTeXt
+longdesc The module makes provision for bold typewriter CM fonts, in
+longdesc ConTeXt. Such a font may be found in the Computer Modern 'extra
+longdesc bold' font set.
+depend context
+containersize 1232
+containerchecksum e3bc048c09bfdf114efa25077fa4e6a6c20b4d0e2ba337cefa0a8a82348fd3376f82cae0c85b029b863b7a5db9d9552b4fc5f5487d5ed5f6d88484181ea98ced
+doccontainersize 160724
+doccontainerchecksum 2b55367f236330a07120229902405213a495de2ba455f333bc23e1c1abbe0f0a4be16ee95415f613d41572916722e3d023a71698f74e5e37f34a8de4fdca6e47
+docfiles size=45
+ texmf-dist/doc/context/third/cmttbf/VERSION
+ texmf-dist/doc/context/third/cmttbf/cmttbf-demo.pdf details="Demo of use"
+ texmf-dist/doc/context/third/cmttbf/cmttbf-doc.pdf details="Package documentation"
+runfiles size=1
+ texmf-dist/tex/context/third/cmttbf/t-cmttbf.tex
+catalogue-ctan /macros/context/contrib/context-cmttbf
+catalogue-license gpl
+catalogue-topics font-supp

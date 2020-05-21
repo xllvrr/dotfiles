@@ -1,0 +1,21 @@
+name dratex
+category Package
+revision 15878
+shortdesc General drawing macros
+longdesc A low level (DraTex.sty) and a high-level (AlDraTex.sty)
+longdesc drawing package written entirely in TeX.
+containersize 45280
+containerchecksum 1a18f8866d1cffb0ac3c277bf27e1585c7596eab60ed51756077abe3154b6d67ea95205f60b5a244e9acabb05e8dc95a792d48f0a2fc492f90d224f85895fdd8
+doccontainersize 12052
+doccontainerchecksum 0ff34bd23dd8718f4f8b0dc3e84068ca2b38a9758849d98230f1a8d4561705d6db7be3b0fcb34621054993f27df7a9215267b3ebbd7fb3d77b8cd9cfefa0ad60
+docfiles size=12
+ texmf-dist/doc/generic/dratex/Examples.tex
+ texmf-dist/doc/generic/dratex/README
+runfiles size=54
+ texmf-dist/tex/generic/dratex/AlDraTex.sty
+ texmf-dist/tex/generic/dratex/DraTex.sty
+ texmf-dist/tex/generic/dratex/TeXProject.sty
+ texmf-dist/tex/generic/dratex/wotree.sty
+catalogue-ctan /graphics/dratex
+catalogue-license lppl
+catalogue-topics graphics-in-tex

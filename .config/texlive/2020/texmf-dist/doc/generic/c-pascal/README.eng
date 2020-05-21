@@ -1,0 +1,112 @@
+PCAP --- macro package for typesetting programs in Python, C and Pascal
+
+Derived from original CAP package by Michal Gulczynski. Any errors (bugs)
+introduced are my own.
+
+Changes from CAP:
+* Improved minor deficiencies (there was a space in front of every 
+  "special" symbol)
+* Made it easy to change the "output" (not \TeX's \output) routine (instead 
+  of actually sending data to TeX, we use \@Output{...data...})
+* Added DVIPS color support (color \special's as used by DVIPS)
+* Added a "state" watch --- enabling the output of some "special" symbols
+  in different colors depending on a state (like "_" as identifier, "<" and ">"
+  in directives, and so forth)
+* Added Python language support with analogous commands of
+  \BeginPython, \EndPython, \InputPython 
+  (see original file for C and Pascal versions; these are used in the same way)
+
+
+
+Original README.eng follows:
+
+======================================================================
+
+   CAP  ---  macro package for typesetting programs in C and Pascal
+
+======================================================================
+
+
+ Contents
+----------
+This macro package consists of three files:
+  cap_c.tex     --  macros for typesetting programs in C
+  cap_pas.tex   --  macros for typesetting programs in Pascal
+  cap_comm.tex  --  helpful macros and declarations used for typesetting
+                    programs in both languages; this file does not contain
+                    any macros useful for a user
+
+
+ Programs in C
+---------------
+There are two macros available in the cap_c.tex file:
+
+  1. \BeginC ... \EndC
+       Between these commands you may insert sorce code of any program
+       written in the C language. The text of the program will be
+       formatted using appropriate fonts. The macro recognises the
+       following elements of a program:
+        * keywords --- by default typeset in boldface
+        * texts --- everything inside single quotes; by default slanted
+        * comments --- both /*these...*/ and //these... , but not nested;
+          italic typewriter
+        * symbols --- operators, brackets, etc.; typewriter
+        * compiler directives --- typeset using slanted typewriter font
+        * identifiers --- everything that is none of the above; italic
+       The macro does not change the layout of a program. All
+       indentations are left as they are in the source program. No line
+       breaks are inserted.
+       NOTE: While compiling, the \BeginC ... \EndC macro reads the whole
+       program into TeX's memory. Therefore, you may expect problems when
+       typesetting huge programs in this way. In my configuration
+       (emTeX under DOS) everything works fine if the program is not bigger
+       than about 15KB. If you REALLY need to insert a vast program
+       directly into your TeX source file you will have to split
+       the program into smaller pieces, each inserted into a separate
+       pair \BeginC ... \EndC.
+
+  2. \InputC{filename}
+       Inserts a C program from a separate file. The program is formatted
+       as above. If you use DOS you need to remember that all backslashes
+       in the pathname should be replaced by slashes.
+       This macro has NO limitations for the size of the program --- it reads
+       the file line by line, so TeX should never run out of memory.
+
+The list of keywords can be easily found in the cap_c.tex file. I do not
+guarantee that it is complete, so feel free to correct it if necessary.
+
+
+ Programs in Pascal
+--------------------
+In order to typeset programs in Pascal you need to \input the cap_pas.tex
+file. It contains two macros, as well:
+
+  1. \BeginPascal ... \EndPascal
+
+  2. \InputPascal{filename}
+
+They work similarly. They recognise the same elements of a Pascal program.
+Both {this} and (*this*) kind of comment is accepted, but they cannot
+be nested. In case of \BeginPascal ... \EndPascal size limitations are
+similar as in C.
+
+The list of keywords was taken from Borland Delphi Help. If you need, you
+may modify it.
+
+
+ Common
+--------
+Fonts used to typeset programs are declared in the beginning of
+the cap_comm.tex file. They are easy to redefine if necessary.
+
+
+ Note
+------
+If you modify any of the files in any way, mark your changes, please.
+I do not want to take responsibility for other people's modifications.
+
+
+------------
+
+  Michal Gulczynski
+  mgulcz@we.tuniv.szczecin.pl

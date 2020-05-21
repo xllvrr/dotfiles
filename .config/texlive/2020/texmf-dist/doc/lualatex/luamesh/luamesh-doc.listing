@@ -1,0 +1,84 @@
+  \documentclass{article}
+  %% lualatex compilation
+  \usepackage[margin=2.5cm]{geometry}
+  \usepackage{luamesh}
+  \usepackage{fontspec}
+  \usepackage{multido}
+  \pagestyle{empty}
+  \def\drawPath{draw (-2,-2)*u--(8,-2)*u--(8,6)*u--(-2,6)*u--cycle  withcolor 0.99white;}
+  \def\clipPath{clip currentpicture to (-2,-2)*u--(8,-2)*u--(8,6)*u--(-2,6)*u--cycle;}
+  \begin{document}
+  \drawPointsMeshinc[mode=ext, bbox = show,colorBbox = blue!20,print=points]{mesh.txt}%
+  {%
+    beginfig(0);
+    \drawPath
+  }%
+  {%
+    \clipPath
+    endfig;
+  }
+  \newpage\buildMeshBWinc[mode=ext,bbox = show,colorBbox = blue!20,print=points]{meshInit.txt}%
+  {%
+    beginfig(0);
+    \drawPath
+  }%
+  {%
+    \clipPath
+    endfig;
+  }
+  \multido{\ii=5+1}{4}{%
+    \newpage\meshAddPointBWinc[mode=ext,step=badtriangles,colorNew
+    =green!20!red,colorBack=red!10,colorCircle = blue,bbox =
+    show,colorBbox = blue!20]{mesh.txt}{\ii}%
+    {%
+      beginfig(0);
+      \drawPath
+    }%
+    {%
+      \clipPath
+      endfig;
+    }   \newpage
+    \meshAddPointBWinc[mode=ext,step=cavity,colorNew
+    =green!20!red,colorBack=red!10,colorCircle = blue,bbox =
+    show,colorBbox = blue!20]{mesh.txt}{\ii}%
+    {%
+      beginfig(0);
+      \drawPath
+    }%
+    {%
+      \clipPath
+      endfig;
+    }  \newpage
+    \meshAddPointBWinc[mode=ext,step=newtriangles,colorNew
+    =green!20!red,colorBack=red!10,colorCircle = blue,bbox =
+    show,colorBbox = blue!20]{mesh.txt}{\ii}%
+    {%
+      beginfig(0);
+      \drawPath
+    }%
+    {%
+      \clipPath
+      endfig;
+    }
+  }
+  \newpage
+  \buildMeshBWinc[mode=ext,bbox = show,colorBbox = blue!20,print=points]{mesh.txt}%
+  {%
+    beginfig(0);
+    \drawPath
+  }%
+  {%
+    \clipPath
+    endfig;
+  }
+  \newpage
+  \buildMeshBWinc[mode=ext,print=points]{mesh.txt}%
+  {%
+    beginfig(0);
+    \drawPath
+  }%
+  {%
+    \clipPath
+    endfig;
+  }
+\end{document}

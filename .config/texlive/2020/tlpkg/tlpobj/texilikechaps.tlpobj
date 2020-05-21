@@ -1,0 +1,16 @@
+name texilikechaps
+category Package
+revision 28553
+shortdesc Format chapters with a texi-like format
+longdesc The package enables the user to reduce the size of the rather
+longdesc large chapter headings in standard classes into a texi-like
+longdesc smaller format. Details of the format may be controlled with
+longdesc internal commands.
+containersize 1956
+containerchecksum b65e737c138a176e6674612dda6b066a9953d8b737fe2e947eb10c058d6b67eb27f154a3ca4f346481f4dc077fddc2c95cc302762a9e9eaa2f0f1d23160bd4be
+runfiles size=1
+ texmf-dist/tex/latex/texilikechaps/texilikechaps.sty
+catalogue-ctan /macros/latex/contrib/misc/texilikechaps.sty
+catalogue-license lppl
+catalogue-topics headings
+catalogue-version 1.0a

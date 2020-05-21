@@ -1,0 +1,29 @@
+name pracjourn
+category Package
+revision 15878
+shortdesc Typeset articles for PracTeX
+longdesc The pracjourn class is used for typesetting articles in the
+longdesc PracTeX Journal. It is based on the article class with
+longdesc modifications to allow for more flexible front-matter and
+longdesc revision control, among other small changes.
+containersize 4648
+containerchecksum 40e7ea03f0b244810952cf93cdc7799e0e130a7b11d384893b88e420ce6adb4b5606462ab6f2dbb2e134770eaf32540b9feb59393dea72a70f4d881f6f6fa43b
+doccontainersize 386140
+doccontainerchecksum 8e9b171919bd6412a3adb75abf1124beaf0fd562cca49076c1729814c7907b5b3f9b240fdb68d91055225e9b366749c2be6a2e421f52142d0a138e377a442046
+docfiles size=107
+ texmf-dist/doc/latex/pracjourn/README details="Readme"
+ texmf-dist/doc/latex/pracjourn/pjsample.ltx
+ texmf-dist/doc/latex/pracjourn/pjsample.pdf
+ texmf-dist/doc/latex/pracjourn/pracjourn.pdf details="Package documentation"
+srccontainersize 15244
+srccontainerchecksum a0f40eb8b245c3f6ca2c6e84f4b13d80b2c9d5f67a70c74fc14928fb3b4eba3659bdcca9852d0bcce18088f707955e8f0ef77e71879bd720c9dd8d59ef9713ce
+srcfiles size=14
+ texmf-dist/source/latex/pracjourn/pracjourn.dtx
+ texmf-dist/source/latex/pracjourn/pracjourn.ins
+runfiles size=4
+ texmf-dist/tex/latex/pracjourn/pracjourn.cls
+catalogue-contact-home http://tug.org/pracjourn
+catalogue-ctan /macros/latex/contrib/pracjourn
+catalogue-license gpl
+catalogue-topics journalpub
+catalogue-version 0.4n

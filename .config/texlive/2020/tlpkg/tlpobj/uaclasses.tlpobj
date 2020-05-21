@@ -1,0 +1,33 @@
+name uaclasses
+category Package
+revision 15878
+shortdesc University of Arizona thesis and dissertation format
+longdesc This package provides a LaTeX2e document class named
+longdesc 'ua-thesis' for typesetting theses and dissertations in the
+longdesc official format required by the University of Arizona.
+longdesc Moreover, there is a fully compatible alternative document
+longdesc class 'my-thesis' for private 'nice' copies of the
+longdesc dissertation, and the respective title pages are available as
+longdesc separate packages to work with any document class.
+containersize 5948
+containerchecksum 4341612f18d6f5f4352ec0bf0018fe3115be73f479479586a81d7f994ec23adea7c38fd773022b4d81a126e43bcbfe5f97f4c36d61bad73509f2c1b97882c00f
+doccontainersize 201492
+doccontainerchecksum 63beb08274ed7db9a2d77761277d65f89988812765a2484d7db54a8419cf67dad3fbf76b46bdafd8bd7cf17a1d540deb83c00c7b6df01f6f023bbb5f098c2ab1
+docfiles size=70
+ texmf-dist/doc/latex/uaclasses/README details="Readme"
+ texmf-dist/doc/latex/uaclasses/my-example.pdf details="my-thesis example"
+ texmf-dist/doc/latex/uaclasses/ua-example.pdf details="ua-thesis example"
+ texmf-dist/doc/latex/uaclasses/ua-example.tex
+srccontainersize 13868
+srccontainerchecksum ffc4902edf6b4007c3685a58d3e5a20a02a6ca3072466b7415cb4fa98de236e52c6a391c5e5cf30aabf37c7374cf00aaf2c7d6c845a3a61e2f9c0b0505e215bd
+srcfiles size=13
+ texmf-dist/source/latex/uaclasses/ua-classes.dtx
+ texmf-dist/source/latex/uaclasses/ua-classes.ins
+runfiles size=7
+ texmf-dist/tex/latex/uaclasses/my-thesis.cls
+ texmf-dist/tex/latex/uaclasses/my-title.sty
+ texmf-dist/tex/latex/uaclasses/ua-thesis.cls
+ texmf-dist/tex/latex/uaclasses/ua-title.sty
+catalogue-ctan /macros/latex/contrib/uaclasses
+catalogue-license pd
+catalogue-topics dissertation

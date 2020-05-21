@@ -1,0 +1,69 @@
+
+\SbSSCT{Chaine de vecteurs}{Vectors chain }
+\begin{center}
+\begin{tabular}{|l|} \hline
+\begin{pspicture}(-.5,-.5)(4.5,3.5)
+\psaxes[xticksize=3,yticksize=4,axesstyle=frame](4,3)
+\psStartPoint(1,1)
+\psVector[linecolor=blue](1;30)
+\psVector[linecolor=cyan](2;0)
+\psVector[linecolor=red](1;120)
+\psVector[linestyle=dashed](2;180)
+ \end{pspicture}\\ \hline
+\BSS{psStartPoint}(1,1) \BSI{psStartPoint}{pstricks-add} \\
+\BSS{psVector}[linecolor=blue](1;30)       	\BSI{psVector}{pstricks-add}\\
+\BS{psVector}[linecolor=cyan](2;0)\\
+\BS{psVector}[linecolor=red](1;120)\\
+\BS{psVector}[linestyle=dashed](2;180)\\ \hline
+ \end{tabular}
+\end{center}
+
+\subsection{Options}
+
+\begin{center}
+\begin{tabular}{|l|} \hline
+\psset{linecolor=blue}
+\begin{pspicture}(-.5,-.5)(4.5,3.5)
+\psaxes[xticksize=3,yticksize=4,axesstyle=frame](4,3)
+ \psStartPoint(.5,.5)
+\psVector[linecolor=blue,markAngle](2;30)
+\psVector[linecolor=red,markAngle](2;150)
+ \end{pspicture}\\ \hline
+ \BS{}psStartPoint(.5,.5) \\
+ \BS{}psVector[linecolor=blue,\RDD{markAngle}](2;30) \RDI{markAngle}{pstricks-add} \\
+ \BS{}psVector[linecolor=red,{\red markAngle}](2;150)\\  \hline
+ 
+ \end{tabular}
+\end{center} 
+ 
+ 
+ \begin{center}
+ \begin{tabular}{|l|l|} \hline 
+\begin{pspicture}(-.5,-.5)(5.5,4.5)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+ \psStartPoint[A](1,1)
+\psVector(1;30)
+\psVector(2;0)
+\psVector(2;120)
+
+\uput[90](A1){A1}
+\uput[-90](A2){A2}
+\uput[90](A3){A3}
+%\psline[linecolor=red]{->>}(A1)(A3)
+ \end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5.5,4.5)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](5,4)
+ \psStartPoint[A](2,1)
+\psVector[linecolor=blue](1;30)
+\psVector[linecolor=blue](2;0)
+ \psStartPoint[B](2,1)
+\psVector[linecolor=cyan](2;120)
+
+\psline[linecolor=red]{->>}(B1)(A2)
+ \end{pspicture}\\  \hline
+  \BS{}psStartPoint{\red[A]}(1,1) &  \BS{}psStartPoint{\red [A]}(2,1) \\
+\BS{}uput[90](A1){\red \AC{A1}} & \BS{}psStartPoint{\red [B]}(2,1) \\
+\BS{}uput[-90](A2){\red\AC{A2}} & \BS{}psline[linecolor=red]\AC{->>}{\red (B1)(A2)} \\ \hline
+ \end{tabular}
+\end{center} 

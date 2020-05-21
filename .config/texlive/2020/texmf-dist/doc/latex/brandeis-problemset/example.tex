@@ -1,0 +1,294 @@
+\documentclass[
+	gantt,
+	scheme,
+	assembly,
+	math,
+	pseudocode,
+	tabu
+]{brandeis-problemset}
+\bpsset{
+	coursenumber=21a,
+	author=Rebecca Turner,
+	instructor=Dr.\ Liuba Shrira,
+	duedate=2018-10-20,
+	number=3,
+}
+\newacronyms{io, cpu}
+\begin{document}
+\maketitle
+
+\Bf{Note:} This example document is provided to demonstrate the capability
+and visual style of the
+\href{https://ctan.org/pkg/brandeis-problemset}{\Tt{brandeis-problemset}}
+document class. The solutions below are not guaranteed to be correct,
+complete, or relevant.
+
+The source code for this document is available at
+\begin{quote}
+	\href{http://mirrors.ctan.org/macros/latex/contrib/brandeis-problemset/example.tex}{\Tt{/macros/latex/contrib/brandeis-problemset/example.tex}}
+\end{quote}
+on \href{https://ctan.org/}{\textsc{ctan}} (or, if you have
+\Tt{brandeis-problemset} installed, in your \TeX\ distribution's
+documentation directory).
+
+\tableofcontents
+
+\begin{problem}[part=Textbook problems]
+	An assembly language program implements the following loop:
+
+\begin{lstlisting}[language=c]
+int A[51];
+int i = 1;
+while(i <= 50) {
+	A[i] = i;
+	i++;
+}
+\end{lstlisting}
+
+	The array of integers $A$ is stored at memory location $x + 200$,
+	where $x$ is the address of the memory location where the assembly
+	program is loaded. Write the assembly program using the assembly
+	language introduced in class.
+
+	For a completely unrelated problem, see problem~\ref{schedule} (this
+	is an example of a \lstinline!\label! / \lstinline!\ref! pair).
+\end{problem}
+
+\begin{assembly}
+        LOAD  R1, $200      ; A = (program location) + 200
+        LOAD  R2, =1        ; i = 1
+LOOP:   STORE R2, @R1       ; *A = i
+        ADD   R1, =4        ; A++
+        INC   R2            ; i++
+        BLEQ  R2, =50, LOOP ; Ensure i <= 50
+        HALT
+\end{assembly}
+
+\begin{problem}[number=1.11]
+	Direct memory access is used for high-speed \io\ devices in order to
+	avoid increasing the \cpu's execution load.
+
+	\begin{enumerate}
+		\item How does the \cpu\ interface with the device to
+			coordinate the transfer?
+		\item How does the \cpu\ know when the memory operations are
+			complete?
+		\item The \cpu\ is allowed to execute other programs while
+			the \ac{dma} controller is transferring data. Does
+			this process interfere with the execution of user
+			programs? If so, describe what forms of interference
+			are caused.
+	\end{enumerate}
+\end{problem}
+
+\begin{enumerate}
+	\item The \cpu\ sets up ``buffers, pointers, and counters for the
+		\io\ device'' and then ignores the transaction entirely;
+		because \ac{dma} transfers don't involve the \cpu\ at all,
+		they're especially efficient because they don't saturate the
+		\cpu\ bus.
+	\item The device controller sends a \cpu\ interrupt when each block of
+		data finishes transferring.
+	\item A \ac{dma} transfer only interferes with user programs as much
+		as any other \io\ operation might, i.e.\ the program may not
+		be able to complete other meaningful work before the
+		transfer finishes. From the user's perspective, a \ac{dma}
+		transfer is indistinguishable from any other type of \io\
+		operation.
+
+		Additionally, a \ac{dma} takes a lock on \ac{ram}; while a
+		\ac{dma} transfer is in progress, no other processes may
+		access \ac{ram}, which can be extremely limiting.
+\end{enumerate}
+
+\begin{problem}
+	In the following, use either a direct proof for the statements (by
+	giving values for $c$ and $n_0$ in the definition of big-O notation)
+	or cite the rules given in the lecture notes.
+
+	\begin{enumerate}
+		\item $\max(f(n), g(n))$ is $O(f(n) + g(n))$. Assume that $f(n)$
+			and $g(n)$ are non-negative for $n > 0$
+		\item  If $d(n)$ is $O(f(n))$ and $e(n)$ is $O(g(n))$, then
+			the product $d(n) \cdot e(n)$ is $O(f(n) \cdot g(n))$
+		\item $(n + 1)^5$ is $O(n^5)$
+		\item $n^2$ is $\Omega(n\log n)$
+		\item $2n^4 - 3n^2 + 32n\sqrt n - 5n + 60$ is $\Theta(n^4)$
+		\item $5n\sqrt n \cdot \log n$ is $O(n^2)$
+	\end{enumerate}
+\end{problem}
+
+An example equation which defines $e$:
+\begin{equation}
+	\exists! e \in \Re \text{ such that }
+	\int_1^e \frac{1}{t} dt = 1.
+\end{equation}
+
+The definition of the Mandelbrot set:
+\begin{equation}
+\begin{split}
+		c \in \mathbb{C},\, z_0 = 0, \\
+		\lim_{n \to \infty} z_n = z_{n - 1}^2 + c \ne \infty
+		\implies c \in \mathcal{M}
+\end{split}
+\end{equation}
+
+\begin{solution}
+The blue text here is a solution; it will disappear if the
+\Tt{solutions} class option is removed.
+
+``Rule $n$'' should be taken to refer to the $n$th rule on page 3 of the 5th
+lecture notes, and ``$a$ is faster-growing than $b$'' is written as ``$O(a)
+> O(b)$''.
+
+\begin{enumerate}
+
+\item Given that big-O notation describes asymptotic
+growth, only the fastest-growing term matters --- therefore, given some $a$
+and $b$ that are functions of $n$, $O(a) > O(b) \implies O(a + b) = O(a)$.
+
+$\max(a, b)$ is defined to be the greater of $a$ and $b$, so $\max(a, b) \ge
+a$ and $\max(a, b) \ge b$. If $O(a) > O(b)$, $O(\max(a, b)) = O(a)$ (and
+vice-versa).
+
+Given these facts, if $O(f(n)) > O(g(n))$, $\lim_{n\to\infty} \max(f(n),
+g(n)) = f(n)$. Alternatively, if $O(f(n)) < O(g(n))$, $\lim_{n\to\infty}
+\max(f(n), g(n)) = g(n)$. More briefly, $O(\max(f(n), g(n)) = O(f(n))
+\Rm{ or } O(g(n))$.
+
+And finally, because $O(a) > O(b) \implies O(a + b) = O(a)$ and $O(a) < O(b)
+\implies O(a + b) = O(b)$, we may note that $O(a + b)$ simplifies to the
+faster-growing of $O(a)$ and $O(b)$. The mathematical operation for ``the
+greater of two terms'' is $\max(a, b)$, so $\max(f(n), g(n)) = O(f(n) +
+g(n))$.
+
+\item This is true as stated in rule 3, although it's very similar to how $O(a) >
+O(b) \implies O(a + b) = O(a)$ --- in the asymptotic case, the smaller
+factor becomes irrelevant.
+
+\item Given that $(n + 1)^5 = n^5 + 5n^4 + 10n^3 + 10n^2 + 5n +1$ and as rule 5
+states, only the highest degree of a polynomial matters (because
+$\lim_{n\to\infty} \sum_{i = 0}^{i = k} a_i n^i = a_k n^k$), $(n + 1)^5 =
+O(n^5)$.
+
+\item $c = 1, n_0 = 1$
+
+\item $c_1 = 1, c_2 = 3, n_0 = 4$
+
+\item $c = 2, n_0 = 1$
+
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+	What do the following two algorithms do? Analyze its worst-case
+	running time and express it using big-O notation.
+
+\begin{pseudocode}[Foo]
+Foo(a, n)
+	Input:  two integers, a and n
+	Output: a^n
+	k <- 0
+	b <- 1
+	while k < n do
+		k <- k + 1
+		b <- b * a
+	return b
+\end{pseudocode}
+
+\begin{pseudocode}[Bar]
+Bar(a, n)
+	Input:  two integers, a and n
+	Output: a^n
+	k <- n
+	b <- 1
+	c <- a
+	while k > 0 do
+		if k mod 2 = 0 then
+			k <- k/2
+			c <- c * c
+		else
+			k <- k - 1
+			b <- b * c
+	return b
+\end{pseudocode}
+
+\end{problem}
+
+$\Rm{Foo}(a, n)$ computes $a^n$, and will run in $O(n)$ time always.
+
+$\Rm{Bar}(a, n)$ \It{also} computes $a^n$, and runs in $O(\log n)$
+time --- this is referred to as exponentiation by squaring.
+
+\begin{problem}[number=5.4, part=Scheduling, label=schedule]
+	Consider the following set of processes, with the length of the
+	\cpu\ burst given in milliseconds:
+
+	\begin{center}
+		\begin{tabu} to 0.25\linewidth{X[1,$]rr}
+		\Th{Process} & \Th{Burst time} & \Th{Priority} \\
+		P_1 & 10 & 3 \\
+		P_2 & 1 & 1 \\
+		P_3 & 2 & 3 \\
+		P_4 & 1 & 4 \\
+		P_5 & 5 & 2 \\
+		\end{tabu}
+	\end{center}%$
+
+	The processes are assumed to have arrived in the order $P_1$, $P_2$,
+	$P_3$, $P_4$, $P_5$, all at time 0.
+
+	\begin{enumerate}
+		\item Draw four Gantt charts that illustrate the execution
+			of these processes using the following scheduling
+			algorithms: \ac{fcfs}, \ac{sjf}, nonpreemptive
+			priority (a smaller priority number implies a higher
+			priority), and \ac{rr} (quantum = 1).
+		\item What is the turnaround time of each process for each
+			of these scheduling algorithms?
+		\item What is the waiting time of each process for each of
+			the scheduling algorithms?
+		\item Which of the algorithms results in the minimum average
+			waiting time (over all processes)?
+	\end{enumerate}
+\end{problem}
+
+\begin{enumerate}
+\item \ac{sjf}
+
+	Average wait $= 3.2$.
+
+	\begin{tabu} to 0.25\linewidth{@{}>{$P_\bgroup}X[1]<{\egroup$}rr@{}}
+		\Th[@{}l]{Process} & \Th{Turnaround} & \Th[r@{}]{Waiting} \\
+		1 & 19 & 9 \\
+		2 &  1 & 0 \\
+		3 &  4 & 2 \\
+		4 &  2 & 1 \\
+		5 &  9 & 4
+	\end{tabu}
+
+
+	\begin{ganttschedule}{19}
+		\burst{2}{1}
+		\burst{4}{1}
+		\burst{3}{2}
+		\burst{5}{5}
+		\burst{1}{10}
+	\end{ganttschedule}
+\end{enumerate}
+
+\begin{problem}
+	Write a Scheme procedure to calculate an arbitrary up-arrow $a \uparrow^n
+	b$.
+\end{problem}
+
+\begin{scheme}
+;;; (up-arrow 2 3 4) = 2^^^4
+(define (up-arrow a n b)
+  (cond ((= n 1) (expt a b))
+        ((and (>= n 1) (= b 0)) 1)
+        (else (up-arrow a
+                        (- n 1)
+                        (up-arrow a n (- b 1))))))
+\end{scheme}
+\end{document}

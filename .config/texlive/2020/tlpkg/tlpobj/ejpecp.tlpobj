@@ -1,0 +1,32 @@
+name ejpecp
+category Package
+revision 50761
+shortdesc Class for EJP and ECP
+longdesc The class is designed for typesetting articles for the
+longdesc mathematical research periodicals Electronic Journal of
+longdesc Probability (EJP) and Electronic Communications in Probability
+longdesc (ECP). It depends on amsmath, amsfonts, amsthm, bera, dsfont,
+longdesc geometry, graphicx, hyperref, lastpage, latexsym, mathtools,
+longdesc microtype, and afterpackage.
+containersize 4968
+containerchecksum eddfab8de433480327dac32762640d610fce78903630bf0b8b26548024764d5ecf1b6356d6a8d725eda75f075a0b8627be6b90117a11a6dc39f0fb0e60eeb155
+doccontainersize 308828
+doccontainerchecksum 4131b375690a452fddfd5124611bd37017913cac6ade1bbf35ba01d2656f098141e2bfa83da2af7a25dd814312394c127fa1dbb0fd61a3e0f511e8d8c9e6d608
+docfiles size=88
+ texmf-dist/doc/latex/ejpecp/LPPL
+ texmf-dist/doc/latex/ejpecp/README details="Readme"
+ texmf-dist/doc/latex/ejpecp/ejpecp.pdf details="Package documentation"
+ texmf-dist/doc/latex/ejpecp/mgetmref.py
+ texmf-dist/doc/latex/ejpecp/sample.pdf details="Introduction, as a paper"
+ texmf-dist/doc/latex/ejpecp/sample.tex
+srccontainersize 6568
+srccontainerchecksum 0d7ca22abaf589a795717bc09b06b9d4b91b030880510a7696dd93f8d4dfea1320a417da18659dc4e1019e5f66e178c943cccf65842da611684a1ab543ce2097
+srcfiles size=6
+ texmf-dist/source/latex/ejpecp/ejpecp.dtx
+ texmf-dist/source/latex/ejpecp/ejpecp.ins
+runfiles size=4
+ texmf-dist/tex/latex/ejpecp/ejpecp.cls
+catalogue-ctan /macros/latex/contrib/ejpecp
+catalogue-license lppl1.2
+catalogue-topics journalpub class
+catalogue-version 1.7

@@ -1,0 +1,280 @@
+\SbSbSSCT{Point milieu}{midpoint}
+
+%\verb \pstMiddleAB %[hpari]{hAi}{hBi}{hIi}
+\begin{tabular}{|c|c|}\hline 
+\multicolumn{2}{|c|}{ \BSS{pstMiddleAB}[linecolor=red]\AC{A}\AC{B}\AC{C} \BSI{pstMiddleAB}{pst-eucl} }\\ \hline 
+\begin{pspicture}(-.5,-.5)(4,3.5)
+\psaxes[xticksize=3,yticksize=4,axesstyle=frame](4,3)
+\pstGeonode(1,2){A}(3,1){B}
+\pstMiddleAB[linecolor=red]{A}{B}{C}
+\end{pspicture}
+&  
+\begin{pspicture}(-.5,-.5)(4,3.5)
+\psaxes[xticksize=3,yticksize=4,axesstyle=frame](4,3)
+\pstGeonode(1,2){A}(3,1){B}
+\pstMiddleAB[CodeFig,CodeFigColor=green]{A}{B}{C}
+\end{pspicture}
+\\ \hline  
+[linecolor=red]
+&  
+[CodeFig,CodeFigColor=green]
+\\ \hline 
+\end{tabular} 
+
+%\begin{center}
+%\begin{tabular}{|c|} \hline
+%\begin{pspicture}(-.5,-.5)(4,3.5)
+%\psaxes[xticksize=3,yticksize=4,axesstyle=frame](4,3)
+%\pstGeonode(1,2){A}(3,1){B}
+%\pstMiddleAB[linecolor=red]{A}{B}{C}
+%\end{pspicture}
+%\\ \hline
+%\BSS{pstMiddleAB}[linecolor=red]\AC{A}\AC{B}\AC{C} \BSI{pstMiddleAB}{pst-eucl} \\ \hline
+%\end{tabular}
+%\end{center}
+
+
+
+
+
+%--------------------
+
+\SbSbSSCT{Centre de gravité d'un triangle}{Center of gravity of a triangle}
+
+%\verb \pstCGravABC %[hpari]{hAi}{hBi}{hCi}{hGi}
+
+
+
+\begin{center}
+\begin{tabular}{|c|} \hline
+\begin{pspicture}(-.5,-.5)(5,5.5)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstTriangle(1,2){A}(3,1){B}(4,4){C}
+\pstCGravABC[linecolor=red]{A}{B}{C}{G}
+\end{pspicture}
+\\ \hline
+\BSS{pstCGravABC}[linecolor=red]\AC{A}\AC{B}\AC{C}\AC{G} \BSI{pstCGravABC}{pst-eucl} \\ \hline
+\end{tabular}
+\end{center}
+
+%----------
+
+\SbSbSSCT{Centre du cercle circonscrit d'un triangle}{Circumcenter of a triangle}
+
+
+\begin{tabular}{|c|c|c|}\hline 
+\multicolumn{3}{|c|}{ \BSS{pstCircleABC}\AC{A}\AC{B}\AC{C}\AC{O} \BSI{pstCircleABC}{pst-eucl} }
+\\ \hline 
+\begin{pspicture}(-.5,-.5)(5,5.5)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstTriangle(1,2){A}(4,1){B}(3,4){C}
+\pstCircleABC[linecolor=red,linewidth=1pt]{A}{B}{C}{O}
+\end{pspicture}
+&  
+\begin{pspicture}(-.5,-.5)(5,5.5)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstTriangle(1,2){A}(4,1){B}(3,4){C}
+\pstCircleABC[CodeFig,CodeFigColor=red,linewidth=1pt]{A}{B}{C}{O}
+\end{pspicture}
+&  
+\begin{pspicture}(-.5,-.5)(5,5.5)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstTriangle(1,2){A}(4,1){B}(3,4){C}
+\pstCircleABC[CodeFig,CodeFigColor=red,DrawCirABC=false,linewidth=1pt]{A}{B}{C}{O}
+\end{pspicture}
+\\ \hline  
+[linecolor=red]
+&  
+[CodeFig,CodeFigColor=green]
+&
+[CodeFig,CodeFigColor=green \\
+&& ,\RDD{DrawCirABC=false}  \RDI{DrawCirABC}{pst-eucl}
+\\ \hline 
+\end{tabular}
+\bigskip
+
+\begin{tabular}{|c|c|c|}\hline 
+\multicolumn{3}{|c|}{ \BS{pstCircleABC}[CodeFig,CodeFigColor=red,\RDD{SegmentSymbolA}=MarkCros]\AC{A}\AC{B}\AC{C}\AC{O} \RDI{SegmentSymbolA}{pst-eucl} }
+\\ \hline 
+\begin{pspicture}(-.5,-.5)(5,5.5)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstTriangle(1,2){A}(4,1){B}(3,4){C}
+\pstCircleABC[CodeFig,CodeFigColor=red,linewidth=1pt,SegmentSymbolA=MarkCros]{A}{B}{C}{O}
+\end{pspicture}
+&  
+\begin{pspicture}(-.5,-.5)(5,5.5)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstTriangle(1,2){A}(4,1){B}(3,4){C}
+\pstCircleABC[CodeFig,CodeFigColor=red,linewidth=1pt,SegmentSymbolB=MarkCros]{A}{B}{C}{O}
+\end{pspicture}
+&  
+\begin{pspicture}(-.5,-.5)(5,5.5)
+\psaxes[ticksize=5,axesstyle=frame](5,5)
+\pstTriangle(1,2){A}(4,1){B}(3,4){C}
+\pstCircleABC[CodeFig,CodeFigColor=red,linewidth=1pt,,SegmentSymbolC=MarkCros]{A}{B}{C}{O}
+\end{pspicture}
+\\ \hline  
+\RDD{SegmentSymbolA}=MarkCros \RDI{SegmentSymbolA}{pst-eucl}
+&  
+\RDD{SegmentSymbolB}=MarkCros \RDI{SegmentSymbolB}{pst-eucl}
+&
+\RDD{SegmentSymbolC}=MarkCros \RDI{SegmentSymbolC}{pst-eucl}
+\\ \hline 
+\end{tabular}
+
+%
+%\begin{center}
+%\begin{tabular}{|c|} \hline
+%\begin{pspicture}(-.5,-.5)(5,5.5)
+%\psaxes[ticksize=5,axesstyle=frame](5,5)
+%\pstTriangle(1,2){A}(4,1){B}(3,4){C}
+%\pstCircleABC[linecolor=red,linestyle=dashed]{A}{B}{C}{O}
+%\end{pspicture}\\ \hline
+%\BSS{pstCircleABC}\AC{A}\AC{B}\AC{C}\AC{O} \BSI{pstCircleABC}{pst-eucl} \\ \hline
+%\end{tabular}
+%\end{center}
+
+
+
+
+
+%------------
+
+\SbSbSSCT{Perpendiculaire par rapport à une droite}{Perpendicular to a  line}
+
+\begin{tabular}{|c|c|}\hline 
+\multicolumn{2}{|c|}{ \BSS{pstMediatorAB}\AC{A}\AC{B}\AC{C}\AC{D} \BSI{pstMediatorAB}{pst-eucl}  }\\ \hline 
+\begin{pspicture}(-.5,-.5)(6,4.5)
+\psaxes[xticksize=4,yticksize=6,axesstyle=frame](6,4)
+\pstGeonode[CurveType=polyline](1,2){A}(5,1){B}
+
+\pstMediatorAB[linecolor=red]{A}{B}{C}{D}
+\end{pspicture}
+&  
+\begin{pspicture}(-.5,-.5)(6,4.5)
+\psaxes[xticksize=4,yticksize=6,axesstyle=frame](6,4)
+\pstGeonode[CurveType=polyline](1,2){A}(5,1){B}
+
+\pstMediatorAB[CodeFig,CodeFigColor=red]{A}{B}{C}{D}
+\end{pspicture}
+\\ \hline  
+[linecolor=red]
+&  
+[CodeFig,CodeFigColor=red]
+\\ \hline 
+\end{tabular} 
+\bigskip
+
+\begin{tabular}{|c|c|c|}\hline 
+\multicolumn{3}{|c|}{ \BS{pstMediatorAB}[linecolor=red,PointName=none,\RDD{nodesep}=-1]\AC{A}\AC{B}\AC{C}\AC{D} \RDI{nodesep}{pst-eucl}  }\\ \hline 
+\begin{pspicture}(-.5,-.5)(5,4.5)
+\psaxes[xticksize=4,yticksize=4,axesstyle=frame](4,4)
+\pstGeonode[CurveType=polyline](1,2){A}(3,1){B}
+\pstMediatorAB[linecolor=red,PointName=none,nodesep=-1]{A}{B}{C}{D}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.5)
+\psaxes[xticksize=4,yticksize=4,axesstyle=frame](4,4)
+\pstGeonode[CurveType=polyline](1,2){A}(3,1){B}
+\pstMediatorAB[linecolor=red,PointName=none,nodesepA=-2]{A}{B}{C}{D}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.5)
+\psaxes[xticksize=4,yticksize=4,axesstyle=frame](4,4)
+\pstGeonode[CurveType=polyline](1,2){A}(3,1){B}
+\pstMediatorAB[linecolor=red,PointName=none,nodesepB=-0.5]{A}{B}{C}{D}
+\end{pspicture}
+\\ \hline 
+\RDD{nodesep}=-1 \RDI{nodesep}{pst-eucl} & 
+\RDD{nodesepA}=-2 \RDI{nodesepA}{pst-eucl} &
+\RDD{nodesepB}=-0.5 \RDI{nodesepA}{pst-eucl}
+\\ \hline 
+\begin{pspicture}(-.5,-.5)(5,4.5)
+\psaxes[xticksize=4,yticksize=4,axesstyle=frame](4,4)
+\pstGeonode[CurveType=polyline](1,2){A}(3,1){B}
+\pstMediatorAB[linecolor=red,PointName=none,nodesep=0.3]{A}{B}{C}{D}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.5)
+\psaxes[xticksize=4,yticksize=4,axesstyle=frame](4,4)
+\pstGeonode[CurveType=polyline](1,2){A}(3,1){B}
+\pstMediatorAB[linecolor=red,PointName=none,nodesepA=0.3]{A}{B}{C}{D}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(5,4.5)
+\psaxes[xticksize=4,yticksize=4,axesstyle=frame](4,4)
+\pstGeonode[CurveType=polyline](1,2){A}(3,1){B}
+\pstMediatorAB[linecolor=red,PointName=none,nodesepB=0.3]{A}{B}{C}{D}
+\end{pspicture}
+\\ \hline 
+\RDD{nodesep}=0.3 & \RDD{nodesepA}=0.3 &\RDD{nodesepB}=0.3
+\\ \hline 
+
+\end{tabular}
+
+
+%\begin{center}
+%\begin{tabular}{|c|c|} \hline
+%\begin{pspicture}(-.5,-.5)(4,3.5)
+%\psaxes[xticksize=3,yticksize=4,axesstyle=frame](4,3)
+%\pstGeonode[CurveType=polyline](1,2){A}(3,1){B}
+%
+%\pstMediatorAB[linecolor=red]{A}{B}{C}{D}
+%\end{pspicture}
+%\\ \hline
+%\BSS{pstMediatorAB}\AC{A}\AC{B}\AC{C}\AC{D} \BSI{pstMediatorAB}{pst-eucl} \\ \hline
+%\end{tabular}
+%\end{center}
+
+%---------
+
+\SbSbSSCT{Bissectrice d'un angle}{Bissector}
+%\verb \pstBissectBAC %[hpari]{hBi}{hAi}{hCi}{hNi}
+%
+%\verb \pstOutBissectBAC %[hpari]{hBi}{hAi}{hCi}{hNi}
+
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+\begin{pspicture}(-.5,-1.5)(5.5,3.5)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](0,-1)(5,3)
+\pstGeonode[CurveType=polyline](1.5,2){A}(3,1){B}(4,2){C}
+%\pstBissectBAC[linecolor=red]{C}{B}{A}{D}
+\pstBissectBAC[linecolor=red]{A}{B}{C}{D}
+\pstCircleOA[linestyle=dotted,linecolor=red]{B}{A}
+%\pstCircleOA[linestyle=dotted,linecolor=red]{B}{C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-1.5)(5.5,3.5)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](0,-1)(5,3)
+\pstGeonode[CurveType=polyline](1.5,2){A}(3,1){B}(4,2){C}
+\pstOutBissectBAC[linecolor=red]{A}{B}{C}{D}
+%\pstOutBissectBAC[linecolor=cyan]{C}{B}{A}{E}
+\pstCircleOA[linestyle=dotted,linecolor=red]{B}{A}
+%\pstCircleOA[linestyle=dotted,linecolor=cyan]{B}{C}
+\end{pspicture}  
+\\ \hline
+\BSS{pstBissectBAC}\AC{A}\AC{B}\AC{C}\AC{D} \BSI{pstBissectBAC}{pst-eucl} & 
+\BSS{pstOutBissectBAC}\AC{A}\AC{B}\AC{C}\AC{D} 
+\BSI{pstOutBissectBAC}{pst-eucl}
+%\BS{pstBissectBAC}\AC{A}\AC{B}\AC{C}\AC{E} & 
+%\BS{pstOutBissectBAC}\AC{C}\AC{B}\AC{A}\AC{E} 
+\\ \hline
+\begin{pspicture}(-.5,-1.5)(5.5,3.5)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](0,-1)(5,3)
+\pstGeonode[CurveType=polyline](1.5,2){A}(3,1){B}(4,2){C}
+\pstBissectBAC[linecolor=red]{C}{B}{A}{D}
+\pstCircleOA[linestyle=dotted,linecolor=red]{B}{C}
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-1.5)(5.5,3.5)
+\psaxes[xticksize=4,yticksize=5,axesstyle=frame](0,-1)(5,3)
+\pstGeonode[CurveType=polyline](1.5,2){A}(3,1){B}(4,2){C}
+\pstOutBissectBAC[linecolor=red]{C}{B}{A}{D}
+\pstCircleOA[linestyle=dotted,linecolor=cyan]{B}{C}
+\end{pspicture}  
+\\ \hline
+\BS{pstBissectBAC}\AC{A}\AC{B}\AC{C}\AC{D} & 
+\BS{pstOutBissectBAC}\AC{C}\AC{B}\AC{A}\AC{D} 
+\\ \hline
+\end{tabular}
+\end{center}

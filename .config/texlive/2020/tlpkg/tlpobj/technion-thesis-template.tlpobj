@@ -1,0 +1,33 @@
+name technion-thesis-template
+category Package
+revision 49889
+shortdesc Template for theses on the Technion graduate school
+longdesc This is a template for writing a thesis according to the
+longdesc Technion specifications.
+containersize 6760
+containerchecksum 5e9c6bd47744601258bef52102acdfc744e0dd1219a7236a5710d6dd98ba5ebf1061bd6070c5d02707a7c8b895e362db51f48ee081126bcd9a99e523c6b9e5c0
+doccontainersize 120248
+doccontainerchecksum bcc290eae933b00cb32af0da6d31c6190f3b38d02a599fec7f8cbfcdb6f8737380d4c440911b08de5d768d9925526a63521c97c20a8c075ce8e9500dd3a62c24
+docfiles size=49
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/abbrev.tex
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/abstract.tex
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/acknowledgments.tex
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/appendix.tex
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/chapfirst.tex
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/chapsecond.tex
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/discussion.tex
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/habstract.tex
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/hacknowledgments.tex
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/introduction.tex
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/main.pdf details="Example of use"
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/main.tex
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/mybib.bib
+ texmf-dist/doc/xelatex/technion-thesis-template/Example/technionThesisMacros.sty
+ texmf-dist/doc/xelatex/technion-thesis-template/README.md details="Readme"
+runfiles size=6
+ texmf-dist/tex/xelatex/technion-thesis-template/technionThesis.cls
+ texmf-dist/tex/xelatex/technion-thesis-template/technionThesisSetup.sty
+catalogue-ctan /macros/xetex/latex/technion-thesis-template
+catalogue-license cc-by-4
+catalogue-topics dissertation class
+catalogue-version 1.0

@@ -1,0 +1,79 @@
+
+`dowith' -- iterate on separator-less arglists in TeX's gullet
+
+________________________________________________________________
+
+r0.32 2015/11/14 
+
+  * `domore.sty' v0.32 fixes:
+    * finally works without LaTeX indeed
+    * \StopDoing without `dowith.sty',
+      e.g., vital with recent `texlinks.sty'
+    * documentation fix \DoWithMore
+
+  * `dowith.pdf' has two documentation modifications
+    (`dowith.tex' r0.3a, strange word removed from explanation 
+     of "arglist") and has been typeset with recent 
+    documentation packages
+
+________________________________________________________________
+
+r0.31a 2013/03/23 
+    publishes fdatechk.tex needed for proper compilation of 
+    documentation, created for r0.31, enhanced for r0.31a
+
+________________________________________________________________
+
+Iterate stuff on argument list (no separators) expandably
+
+r0.31 2013/03/22
+
+domore.sty v0.3 only enhanced dowith.sty's \DoWith{<do>} so that
+<do> can be complex. domore v0.31 enhances dowith.sty's 
+\DoWithAllOf{<do>}{<args>} and \DoWithAllIn{<do>}{<macro>} 
+in the same respect.
+
+________________________________________________________________
+
+r0.3a corrects TDS -- "generic", not "latex"
+________________________________________________________________
+
+Iterate stuff on argument list in TeX's gullet (no separators)
+
+r0.3 2012/11/19
+
+ * new `domore.sty' enhances `dowith.sty', allowing iterated
+   application of multi-parameter macros and inserting 
+   "separator material".
+
+ * `dowith.sty' documentation correction: according to Knuth, 
+   this is TeX's "gullet", while some authors have called it 
+   "TeX's mouth", see quotations in section 1.4 of `dowith.pdf'.
+
+ * `dowith.sty' (v0.3) "generic" now by `plainpkg' 
+   (instead of imitating `german.sty').
+
+ * `dowith.sty' documentation `dowith.pdf' furthermore reworked.
+
+________________________________________________________________
+
+Iterate command on argument list in TeX's mouth (no separators)
+
+r0.22 2012/06/03
+
+Documentation
+  (i) discusses what <cmd> in \DoWith<cmd>... can be
+ (ii) extends comparison with \@tfor
+(iii) has some contentual corrections 
+ (iv) celebrates 25 years of Alois Kabelschacht's idea
+________________________________________________________________
+
+Iterate macro on argument list in TeX's mouth – no separators
+
+r0.21c 2012/05/18
+
+  (i) @ fix for "generic" and `typeoutfileinfo' 
+ (ii) documentation much extended to clarify kind of "items," 
+      distinguishing tokens from code
+(iii) `dowith.RLS' provides release info as LaTeX file info
+

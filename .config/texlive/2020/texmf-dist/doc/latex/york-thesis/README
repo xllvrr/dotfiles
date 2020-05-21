@@ -1,0 +1,35 @@
+The york-thesis class
+*********************
+
+This class file is what you need to write theses and dissertations at
+York University (Toronto, Canada).
+
+To get the class file run york-thesis.ins through latex:
+
+$ latex york-thesis.ins
+
+The documentation is provided in york-thesis.pdf, but to generate the
+documentation yourself, run york-thesis.dtx through latex (or
+pdflatex):
+
+$ latex york-thesis.dtx
+
+The york-thesis-Template.tex file is a sample master document for your
+work. The york-thesis.el file is a style file for AUCTeX.
+
+author: Diane Gall <gall@spookyhill.net>
+
+Copyright (C) 2002-11 by Diane Gall <gall@spookyhill.net>
+-------------------------------------------------------
+
+This file may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3
+of this license or (at your option) any later version.
+The latest version of this license is in:
+
+    http://www.latex-project.org/lppl.txt
+
+and version 1.3 or later is part of all distributions of LaTeX 
+version 2003/06/01 or later.
+
+This work has the LPPL maintenance status "author-maintained".

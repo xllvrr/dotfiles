@@ -1,0 +1,86 @@
+\psset{unit=0.8cm}
+\label{hom}
+
+\begin{tabular}{|c|} \hline
+\parbox{10cm}{  
+\BS{pscircle}[linestyle=dotted]\AC{1}  
+\\
+\BSS{psHomothetie}[linecolor=magenta](2,1)\AC{.5}\AC{\BS{pscircle}\AC{1}}  \BSI{psHomothetie}{pstricks-add}
+\\
+\BSS{psHomothetie}[linecolor=red](2,1)\AC{2}\AC{\BS{pscircle}\AC{1}}
+\\
+\BSS{psHomothetie}[linecolor=green](2,1)\AC{3}\AC{\BS{pscircle}\AC{1}}  }
+\\ 	\hline 
+\begin{pspicture}(-8.3,-6.3)(2.3,2.5)
+\psgrid[subgriddiv=0](-8,-6)(2,2)
+\pscircle[linecolor=blue,linestyle=dotted,linewidth=2pt]{1}
+\psline(-8,-4)(2,1)
+\psHomothetie[linecolor=magenta](2,1){.5}{\pscircle{1}}
+\psHomothetie[linecolor=red](2,1){2}{\pscircle{1}}
+\psHomothetie[linecolor=green](2,1){3}{\pscircle{1}}
+\psdots[linecolor=red,dotsize=8pt](2,1)
+\psline[linewidth=3pt,linecolor=red]{->}(2,1)(0,0)	\psdots(-4,-2)(-2,-1)(0,0)(1,.5)
+%\end{psgraph}
+\end{pspicture}
+	\\ 	\hline 
+\end{tabular} 
+
+
+\bigskip
+
+
+\begin{tabular}{|c|} \hline
+\parbox{10cm}{  
+\BS{pscircle}[linestyle=dotted]\AC{1}  
+\\
+\BSS{psHomothetie}[linecolor=magenta](-2,-1)\AC{.5}\AC{\BS{pscircle}\AC{1}}
+\\
+\BSS{psHomothetie}[linecolor=red](-2,-1)\AC{2}\AC{\BS{pscircle}\AC{1}}
+\\
+\BSS{psHomothetie}[linecolor=green](-2,-1)\AC{3}\AC{\BS{pscircle}\AC{1}} }
+\\ 	\hline 
+\begin{pspicture}(-2.3,-2.3)(8.3,6.5)
+\psgrid[subgriddiv=0](-2,-2)(8,6)
+\pscircle[linecolor=blue,linestyle=dotted,linewidth=2pt]{1}
+\psline(8,4)(-2,-1)
+\psHomothetie[linecolor=magenta](-2,-1){.5}{\pscircle{1}}
+\psHomothetie[linecolor=red](-2,-1){2}{\pscircle{1}}
+\psHomothetie[linecolor=green](-2,-1){3}{\pscircle{1}}
+\psdots[linecolor=red,dotsize=8pt](2,1)
+\psline[linewidth=3pt,linecolor=red]{->}(-2,-1)(0,0)	\psdots(4,2)(2,1)(0,0)(-1,-.5)
+\end{pspicture}
+	\\ 	\hline 
+\end{tabular}
+
+
+\begin{tabular}{|c|} \hline 
+\parbox{10cm}{ 
+\BS{pscircle}[linestyle=dotted]\AC{1}  
+\\
+\BSS{psHomothetie}[linecolor=magenta](2,1)\AC{-.5}\AC{\BS{pscircle}\AC{1}}
+\\
+\BSS{psHomothetie}[linecolor=black](2,1)\AC{-1}\AC{\BS{pscircle}\AC{1}}
+\\
+\BSS{psHomothetie}[linecolor=red](2,1)\AC{-2}\AC{\BS{pscircle}\AC{1}}
+\\
+\BSS{psHomothetie}[linecolor=green](2,1)\AC{-3}\AC{\BS{pscircle}\AC{1}} }
+\\ 	\hline 
+\psset{unit=0.8cm}
+\begin{pspicture}(-2.5,-2.5)(12.5,8.7)
+\psgrid[subgriddiv=0](-2,-2)(12,8)
+%\begin{psgraph}[axesstyle=none,xticksize=-3 12 ,yticksize=-2 15, subticks=0,gridcolor=lightgray](0,0)(-2,-3)(15,12){8cm}{8cm} 
+\pscircle[linecolor=blue,linestyle=dotted,linewidth=2pt]{1}
+\psline(-2,-1)(12,6)
+\psHomothetie[linecolor=magenta](2,1){-.5}{\pscircle{1}}
+\psHomothetie[linecolor=black](2,1){-1}{\pscircle{1}}
+\psHomothetie[linecolor=red](2,1){-2}{\pscircle{1}}
+\psHomothetie[linecolor=green](2,1){-3}{\pscircle{1}}
+\psdots[linecolor=red,dotsize=8pt](2,1)
+\psline[linewidth=3pt,linecolor=red]{->}(2,1)(0,0)	\psdots(8,4)(6,3)(0,0)(3,1.5)(4,2)
+%	\end{psgraph}
+	\end{pspicture}
+\psset{unit=1cm}
+	\\ 	\hline 
+\end{tabular} 
+
+\psset{unit=1cm}

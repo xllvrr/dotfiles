@@ -1,0 +1,1597 @@
+% knitting-doc.tex
+%
+% Provides documentation for the knitting package
+%
+% author: Ariel Barton
+%
+% Copyright Ariel Barton, 2010-2019
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% The complete list of files considered part of this work is in
+% the file `knitting-doc.pdf' and later in this file.
+%
+% Date: 2019/04/03
+%
+% Version: 3
+
+\documentclass[draft]{amsart}
+% Do not remove the [draft] option; we need it to explain something
+% in Section 5.
+
+\usepackage{knitting}
+
+\raggedbottom
+
+\definecolor{gray}{gray}{0.8}
+\definecolor{lightblue}{rgb}{0.5,0.5,1}
+
+\usepackage{color,verbatim}
+\hyphenation{auto-number-chart}
+
+\usepackage[draft=false,pdfborder={0 0 0}]{hyperref}
+\DeclareRobustCommand{\SkipTocEntry}[5]{}
+
+\title{The \textsf{knitting} package}
+
+\author{Ariel Barton}
+
+\renewcommand\sectionautorefname{Section}
+\renewcommand\subsectionautorefname{Section}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+%\listoffigures
+
+%\listoftables
+
+This package was written to make knitting charts using \LaTeX\ or plain
+\TeX. It consists of several PostScript fonts of knitting symbols,
+font-support documents, and packages of commands.
+
+Here's an example of the code and output:
+\begin{center}
+\begin{minipage}[b]{108pt}
+\obeylines\parindent=0pt\tt
+\verb|\chart{|
+=CCppggKKCCppggKK=
+===KKkk====KKkk===
+=ggKKCCppggKKCCpp=
+=--====kkKK====--=
+=CCppggKKCCppggKK=
+===KKkk====KKkk===
+=ggKKCCppggKKCCpp=
+\verb|}|
+\end{minipage}
+\quad
+\begin{minipage}[t]{220pt}
+\chart{
+\nonumber``
+=CCppggKKCCppggKK=
+===KKkk====KKkk===
+=ggKKCCppggKKCCpp=
+=--====kkKK====--=
+=CCppggKKCCppggKK=
+===KKkk====KKkk===
+=ggKKCCppggKKCCpp=
+\nonumber``
+}
+
+\end{minipage}
+\end{center}
+
+More examples may be found in the file \texttt{knitexamples.tex} and in
+later sections of this document.
+
+\section{License}
+
+This work (the \textsf{knitting} package) consists of all files listed
+in \autoref{sec:manifest}. It is copyright Ariel Barton, 2011--2019.
+
+This work may be distributed and/or modified under the
+conditions of the \LaTeX\ Project Public License, either
+version 1.3 of this license or (at your option) any
+later version.
+The latest version of the license is in
+\begin{quote}
+\href {http://www.latex-project.org/lppl.txt}
+{http://www.latex-project.org/lppl.txt}
+\end{quote}
+and version 1.3 or later is part of all distributions of
+\LaTeX\ version 2003/06/01 or later.
+
+This work has the LPPL maintenance status ``author-maintained''.
+
+The \LaTeX\ project license above gives the conditions under which you
+may redistribute or modify the fonts and files listed in
+\autoref{sec:manifest}. This license (loosely speaking) allows you to
+pass around copies of the package provided you redistribute it in its
+entirety. In addition, any part, no matter how large or small, of the
+files \texttt{knitkey.tex} and \texttt{knitexamples.tex}, \emph{and
+these two files only}, may be freely copied, verbatim or modified, into
+any document you write, without restriction.
+
+As per the conditions of the LPPL, no restrictions are placed on running
+this package (i.e., compiling \LaTeX\ documents that use this package).
+In particular, no restrictions are placed by the package author on
+selling or distributing patterns typeset using this package. Not
+all \LaTeX\ packages may be used in commercial products; if you use
+other packages to produce a PDF or paper document, you must check their
+documentation to see if you are allowed to sell the result.
+
+Suggestions and questions may be sent to the package author at
+\texttt{origamist@\allowbreak gmail.com}.
+
+\section{Installation}
+
+This package involves many supporting files. They should be put in
+appropriate places. Your distribution of \TeX\ may be able to do this
+for you. If it can't, you'll have to place them yourself.
+
+Most modern \TeX\ distributions have a folder, usually named
+\texttt{texmf}, where you can store supporting files for the packages
+you add yourself.\footnote{If you're using Mac\TeX, this folder should
+be \texttt{Users\slash username\slash Library\slash texmf}. If it isn't
+there, create it.
+
+If you're using MiK\TeX, it is possible to designate any folder you like
+as the root of your local tree, that is, the place where you store
+supporting files. Instructions may be found at
+\href{http://docs.miktex.org/manual/localadditions.html\#id573803}
+{\texttt{http:/\slash docs.miktex.org\slash manual\slash localadditions.html\allowbreak\#id573803}}
+or through the manual which should have come with MiKTeX.
+
+Any time you add supporting files to a local MiKTeX root, you have to
+refresh the file name database; see
+\href{http://docs.miktex.org/manual/configuring.html\#fndbupdate}
+{\texttt{http:/\slash docs.miktex.org\slash manual\slash configuring.html\allowbreak\#fndbupdate}}. }
+All supporting files should be sorted into specific subfolders of
+\texttt{texmf}. The sorting rules are:
+\begin{itemize}
+\item \texttt{.fd} and \texttt{.sty} files go in \verb.texmf/tex/latex.
+\item \texttt{.tex} files go in  \verb.texmf/tex/plain.
+\item \texttt{.tfm} files go in \verb.texmf/fonts/tfm.
+%\item \texttt{.vf} files go in \verb.texmf/fonts/vf.
+\item \texttt{.pfb} files go in \verb.texmf/fonts/type1.
+\item \texttt{.map} files go in \verb.texmf/fonts/map.
+%\item \texttt{.enc} files go in \verb.texmf/fonts/enc.
+\item \texttt{.mf} files go in \verb.texmf/fonts/source.
+\item \texttt{.afm} files go in \verb.texmf/fonts/afm.
+%\item \texttt{.ttf} files go in \verb.texmf/fonts/truetype.
+\end{itemize}
+In all cases they can go in sub-subfolders; for example, \texttt{.tfm}
+files may be put into \texttt{texmf/fonts\slash tfm/knit} and not
+\texttt{texmf/fonts/tfm}.
+
+If you're using some other distribution, you may have some entirely
+different place where you can put these files. Your distribution's
+documentation should tell you where.
+
+If you really can't figure out where to put the files, if you're in a
+hurry, or if you're using someone else's computer and don't want to mess
+with their \texttt{texmf} folder, just dump every file you think you
+might need into the same folder as the document that uses the package.
+(This is probably all the \texttt{.tfm}, \texttt{.pfb}, and
+\texttt{.map} files, plus the \texttt{.sty} and \texttt{.fd} files if
+you are using \LaTeX\ or the \texttt{.tex} file if you are using plain
+\TeX.)
+
+You aren't done! \TeX\ now knows everything it needs to do its job and
+\emph{arrange} the characters in the font, and so your document will
+compile, but the postprocessing software (your DVI viewer, your printer,
+or the PDF files that pdf\/\TeX\ produces) don't know about the fonts
+themselves.
+
+There's a simple way to tell pdf\/\TeX\ about the fonts: use the command
+\begin{quote}\verb|\pdfmapfile{+knitfont.map}|\end{quote}
+This map line can go in
+\texttt{knitting.sty} or the file that uses the package.
+
+%You may need to downoad the file \texttt{T1-WGL4.enc}. I got this file
+% from
+%\begin{quote}\raggedright
+%\href{http://ctan.binkerton.com/info/german/MiKTeX-WinEdt-TrueType-Anleitung/T1-WGL4.enc}
+%{\texttt{http://ctan.binkerton.com/info/german/MiKTeX-WinEdt-\allowbreak TrueType-Anleitung\slash T1-WGL4.enc}}
+%\end{quote}
+%It goes in \texttt{texmf/fonts/enc}.
+
+The advantage to this is that it involves nothing outside of the
+document you are compiling.
+On the other hand, it can be annoying to have to say that everywhere.
+And this doesn't work at all if you decide you want to produce DVI files
+and use a postprocessor such as \textsf{dvips}.
+
+With Mac\TeX, I can
+cause \textsf{dvips}, \textsf{dvipdfm}, and pdf\/\TeX\ to know about
+these fonts by opening a Terminal window (command prompt) and typing
+{\tt updmap -{}-enable Map=knitfont.map}.
+
+With MiK\TeX, I need to say \texttt{initexmf -{}-edit-config-file
+updmap} and then add the line \texttt{Map knitfont.map} to the file
+which opens, then run \texttt{updmap} from the command line.
+
+Something similar should work with most distributions; it is always wise
+to check and see what your distribution's documentation says about
+\texttt{updmap} before using it.
+
+\section{Using the package}
+
+Here is a minimal \LaTeX\ document that will produce a knitting pattern with a chart:
+
+\bigskip
+
+\begin{minipage}{0.45\textwidth}
+\begin{verbatim}
+\documentclass{article}
+\usepackage{knitting}
+\begin{document}
+Here is my chart:
+\chart{
+--OAO--
+<O---O>
+-<O-O>-
+}
+\end{document}
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+Here is my chart:
+\chart{
+--OAO--
+<O---O>
+-<O-O>-
+}
+\end{minipage}
+
+\bigskip
+
+Here is a minimal plain \TeX\ document that will do the same thing:
+
+\bigskip
+
+\begin{minipage}{0.45\textwidth}
+\begin{verbatim}
+\input knitting
+Here is my chart:
+\chart{
+--OAO--
+<O---O>
+-<O-O>-
+}
+\bye
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+Here is my chart:
+\chart{
+--OAO--
+<O---O>
+-<O-O>-
+}
+\end{minipage}
+
+\bigskip
+
+\begin{figure}
+\caption{The normal symbols}\label{fig:symbols}
+\newcommand\knitrow[1]{\texttt{#1}&\knitgrid\textknit{#1}&\knitnogrid \textknit{#1}\\}
+\newcommand\displaypair[2]{\texttt{#2}&\knitgrid\textknit{#1}&\knitnogrid \textknit{#1}\\}
+\begin{tabular}[t]{|ccc|}
+\hline
+\knitrow{-}
+\knitrow{=}
+\knitrow{<}
+\knitrow{>}
+\knitrow{;}
+\knitrow{:}
+\knitrow{L}
+\knitrow{R}
+\knitrow{l}
+\knitrow{r}
+\knitrow{A}
+\knitrow{a}
+\knitrow{!}
+\knitrow{2}
+\knitrow{3}
+\knitrow{4}
+\knitrow{5}
+\knitrow{m}
+\knitrow{M}
+\knitrow{O}
+\knitrow{*}
+\hline
+\end{tabular}
+\hfill
+\begin{tabular}[t]{|ccc|}
+\hline
+\knitrow{t}
+\knitrow{T}
+\knitrow{x}
+\knitrow{X}
+\knitrow{b}
+\knitrow{B}
+\knitrow{q}
+\knitrow{Q}
+\knitrow{v}
+\knitrow{V}
+\knitrow{y}
+\knitrow{u}
+\knitrow{0}
+\knitrow{\#}
+\knitrow{w}
+\knitrow{W}
+\knitrow{E}
+\knitrow{\&}
+\knitrow{Y}
+\knitrow{6}
+\knitrow{@}
+%\knitrow{0}
+\hline
+\end{tabular}
+\hfill
+\begin{tabular}[t]{|ccc|}
+\hline
+\knitrow{(}
+\knitrow{)}
+\knitrow{i}
+\knitrow{I}
+\knitrow{j}
+\knitrow{J}
+\knitrow{h}
+\knitrow{H}
+\knitrow{s}
+\knitrow{S}
+\knitrow{[}
+\knitrow{]}
+\knitrow{z}
+\knitrow{Z}
+\knitrow{9}
+\knitrow{U}
+\knitrow{f}
+\knitrow{F}
+\knitrow{7}
+\knitrow{8}
+\knitrow{"}
+\hline
+\end{tabular}
+\hfill
+\begin{tabular}[t]{|ccc|}
+\hline
+\knitrow{""}
+\knitrow{,.,}
+\knitrow{'`'}
+\knitrow{111}
+\knitrow{???}
+\knitrow{+++}
+\knitrow{+/+}
+\displaypair{\|}{\char`\\|}
+\displaypair{\!}{\char`\\!}
+\knitrow{kK}
+\knitrow{pK}
+\displaypair{\bobble 5}{\char`\\\char`\@5}
+\displaypair{\narrowincrease 5}{\char`\\<5}
+\displaypair{\narrowdecrease 5}{\char`\\>5}
+\displaypair{\pnarrowincrease 5}{\char`\\[5}
+\displaypair{\pnarrowdecrease 5}{\char`\\]5}
+\displaypair{\wideincrease{4}}{}
+\displaypair{\widedecrease{4}}{}
+&\knitgrid\textknit{\knitbox{3}{3}}&\knitmixed\textknit{\Knit{3}{3}}\\
+\hline
+\multicolumn{3}{p{1.85in}}{\rule{0pt}{10pt}See \autoref{sec:fancystitches} for the commands for the last eight rows.}
+\end{tabular}
+\end{figure}
+
+To draw your own chart, you first need access to various knitting symbols. They are produced inside charts using normal letters: \texttt{A} produces \textknit{A}, \texttt{O} produces \textknit{O}, and so on. An almost-complete typing key is provided in \autoref{fig:symbols}. The file \texttt{knitkey.tex} contains my suggested meanings for all the available symbols.
+
+Ways to modify these symbols are described in \autoref{sec:fancystitches}.
+
+Some commands to change the overall appearance of the charts or the document are given in \autoref{sec:fourfonts}.
+
+Sometimes a part of a knitting chart (usually a repeat) should be outlined; the machinery to do so is described in \autoref{sec:outline}.
+
+Some miscellaneous commands, including control over the various grays and colors used in knitting charts, are described in \autoref{sec:color}. The behavior of spaces and carriage returns in the input is described in \autoref{sec:spacein}.
+
+Cable symbols such as {\knitgrid\textknit{Kk} or \knitmixed\textknit{Kk}} are complicated; they are described in \autoref{sec:cables}.
+
+Finally, \textsf{knitting} will count rows and stitches for you automatically; the machinery to do so is described in
+\autoref{sec:rowcount} and
+\autoref{sec:counting}.
+
+
+These sections describe the commands defined by \textsf{knitting}.
+Many of these commands (indicated
+with $\star$s and not bullets) only work inside of a knitting chart, to
+avoid conflicts: \verb|\overline|, for example, already has a meaning
+$\overline{xy}$ in math mode.
+
+The command \verb|\chart| is fairly complicated, and as such, may be prone to strange behavior when used with other commands. An alternative command, \verb|\textknit|, may be used inside of, for example, a tabular environment with less risk of unexpected behavior. This is useful for writing chart keys.
+
+Most of the commands labeled with $\star$ do \emph{not} work in concert
+with \verb|\textknit|. Also, \textknit{\#} and
+\textknit{\&} must be accessed with \verb|\textknit{\#}| and
+\verb|\textknit{\&}|, not \verb|\textknit{#}| and \verb|\textknit{&}|.
+(Unadorned \verb|#| and~\verb|&| may be used with \verb|\chart|.)
+
+
+
+\subsection{Stitch symbols produced or modified with commands}
+\label{sec:fancystitches}
+
+You can generate new symbols with the command \verb|\knitbox|: \textknit{\knitbox{a}{1}} \textknit{\knitbox{Cable 6 left}{6}}. A great many strange symbols are available by using math symbols:
+\begin{quote}
+\verb|\knitbox{$\vspace{-1.5pt}\heartsuit$}{1}| \chart{\knitbox{$\vspace{-1.5pt}\heartsuit$}{1}}. \end{quote}
+However, these may look a little incongruous with the rest of the font, so use with care.
+
+Here are some other commands that produce particular symbols:
+
+\medskip
+
+\newcommand\myminitable[1]{\begin{tabular}[t]{@{}lc@{}}#1
+\end{tabular}}
+
+
+\noindent
+\begin{tabular}{lcc}
+Command&\texttt{\char`\\chart}-only shorthand&Symbol\\
+\texttt{\char`\\wideincrease\char`\{3\char`\}}& & \textknit{\wideincrease{3}}\\
+\texttt{\char`\\widedecrease\char`\{3\char`\}}& & \textknit{\widedecrease{3}}\\
+\texttt{\char`\\bobble\char`\{3\char`\}}&\verb|\@| & \textknit{\bobble{3}}\\
+\texttt{\char`\\narrowincrease\char`\{3\char`\}}&\verb|\<| &  \textknit{\narrowincrease{3}}\\
+\texttt{\char`\\narrowdecrease\char`\{3\char`\}}&\verb|\>| & \textknit{\narrowdecrease{3}}\\
+\texttt{\char`\\pnarrowincrease\char`\{3\char`\}}&\verb|\[| & \textknit{\pnarrowincrease{3}}\\
+\texttt{\char`\\pnarrowdecrease\char`\{3\char`\}}&\verb|\]| & \textknit{\pnarrowdecrease{3}}\\
+& $\sim$& Empty space
+\end{tabular}
+
+\medskip
+
+The arguments to \verb|\wideincrease| and \verb|\widedecrease| must be numbers; they are the width (in stitches). The arguments to \verb|\bobble| and so on may be any text (although you will probably use numbers). The \texttt{\char`\\chart}-only shorthand may be used inside \verb|\chart|s but not inside \verb|\textknit|.
+
+The $\sim$ should be used on the edges of non-rectangular charts:
+\bigskip
+
+\begin{minipage}{0.45\textwidth}
+\begin{verbatim}
+====
+~===
+~~==
+~~~=
+\end{verbatim}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\chart{
+====
+~===
+~~==
+~~~=
+}
+\end{minipage}
+
+\bigskip
+You can also use $\sim$ inside a chart, although \verb|`|, \verb|'| or \verb|.| may be better choices. (Do not use $\sim$ on its own line; if you need a blank line in a cable chart, use~\verb|`|.)
+
+Here are some commands that  modify or reaarrange existing symbols in odd ways:
+
+\begin{itemize}
+
+\item \verb|\purlbackground|. I use a gray background to indicate simple purls, and also the purl version of more complicated stitches: \textknit{<} for slip, slip, knit, and \textknit{;} for purl 2 together. You can get \textknit{3} instead of \textknit{A} by typing~\texttt{3} instead of~\texttt{A}, but I didn't have space to provide a purl version of every symbol; so the only way to get \textknit{\purlbackground{r}} is with \verb|\purlbackground{r}|.
+
+\item \verb|\widesymbol| places a symbol or sequence of symbols in a box of a given width: {\knitgrid \verb|\widesymbol{W}{2}| \textknit{\widesymbol{W}{2}}}. In other words, \verb|\widesymbol| behaves like \verb|\knitbox|, but typesets its first argument using the knit symbol font rather than a Roman font.
+
+\item \verb|\cableleft| and \verb|\cableright| will produce the most general possible cable symbols. While there are simple methods to get {\knitnogrid \textknit{kkKK}} (see \autoref{sec:cables}), these let you get such obscure symbols as \textknit{\cableright{*}{-Q-}} or even (in concert with \verb|\bobble| and \verb|\knitbox|) \textknit{\cableleft{\narrowincrease{3}\knitbox{knit}{2}}{\purlbox{purl}{2}\bobble{3}}}. \verb|\cableforeground| and \verb|\cablebackground| may be used for similar effects.
+
+\end{itemize}
+
+\noindent
+And here are some commands designed to deal with long sequences of knits and purls in a chart, although \verb|\knitbox| can be used to generate other symbols:
+
+\begin{itemize}
+
+\item \verb|\knit| and \verb|\purl|. These macros take one argument each and type out that many plain knit or plain purl symbols.
+
+\item \verb|\Knit|, \verb|\Purl|, \verb|\knitbox|, \verb|\purlbox|. These macros were designed to produce appropriate shorthand for ``Knit or purl 12 stitches, regardless of how many are actually shown''. The first argument is text to appear inside the box; the second is the desired width of the box (in units of one stitch).
+
+They look like this:
+\begin{quote}\raggedright
+\knitgrid
+\verb|\knitgrid|\\
+\verb|\Knit{12}{5}| \textknit{\Knit{12}{5}}
+\verb|\knitbox{12}{5}| \textknit{\knitbox{12}{5}}\\
+\verb|\Purl{12}{5}| \textknit{\Purl{12}{5}}
+\verb|\purlbox{12}{5}| \textknit{\purlbox{12}{5}}
+\knitmixed
+\verb|\knitmixed|\\
+\verb|\Knit{12}{5}| \textknit{\Knit{12}{5}}
+\verb|\knitbox{12}{5}| \textknit{\knitbox{12}{5}}\\
+\verb|\Purl{12}{5}| \textknit{\Purl{12}{5}}
+\verb|\purlbox{12}{5}| \textknit{\purlbox{12}{5}}
+\knitnogrid
+\verb|\knitnogrid|\\
+\verb|\Knit{12}{5}| \textknit{\Knit{12}{5}}
+\verb|\knitbox{12}{5}| \textknit{\knitbox{12}{5}}\\
+\verb|\Purl{12}{5}| \textknit{\Purl{12}{5}}
+\verb|\purlbox{12}{5}| \textknit{\purlbox{12}{5}}
+\end{quote}
+
+Normally, the first argument is centered inside the box. However, you can offset the label with an optional first argument. This is the displacement to the right in half-stitches; to get a displacement to the left, use negative numbers.
+
+If you want to make these characters more obvious, you can change the colors for the knit and purl boxes (and the generated {\knitnogrid \textknit{=}s and \textknit{-}s}) by redefining the commands \verb|\knitboxforeground|, \verb|\purlboxforeground|, \verb|\knitboxbackground|, \verb|\purlboxbackground|; by default, they are blank and \verb|\color{purlgray}| (or \verb|\purlgray|).
+
+\begin{quote}\raggedright
+\knitnogrid
+\verb?\definecolor{purlboxbg}{gray}{0.57}?\\
+\verb?\definecolor{purlboxfg}{gray}{0.2}?\\
+\verb?\renewcommand\purlboxbackground{\color{purlboxbg}}?\\
+\verb?\renewcommand\purlboxforeground{\color{purlboxfg}}?\\
+\verb?\textknit{Kp\Purl[-1]{12}{6}}?
+\definecolor{purlboxbg}{gray}{0.57}
+\definecolor{purlboxfg}{gray}{0.2}
+\renewcommand\purlboxbackground{\color{purlboxbg}}
+\renewcommand\purlboxforeground{\color{purlboxfg}}
+\textknit{Kp\Purl[-1]{12}{6}}
+\end{quote}
+
+\end{itemize}
+
+\subsection[Overall appearance]{The four knitting fonts and other commands affecting overall appearance}
+
+\label{sec:fourfonts}
+\begin{itemize}
+
+\item There are four available knitting fonts. They are selected with
+the commands  \verb|\knitgrid|, \verb|\knitnogrid|, \verb|\knitwide|,
+\verb|\knitmixed|. These commands should be used outside the chart they
+are to affect. See \autoref{fig:fourfonts} or the end of this section for a discussion of when each
+font should be used.
+
+\item In \LaTeX, you can change the sizes of the chart symbols with the
+usual commands \verb|\small|, \verb|\large|, etc.
+
+In plain \TeX, use the command \verb|\changeknitsize|, which takes one
+argument (the desired size). After \verb|\changeknitsize{10pt}| (the
+default size), five lines of a knitting chart will take up as much
+vertical space as five lines of 10-point text. This means that chart
+cells are 12 (not 10) points tall.
+
+\item The package option \verb|chartsonly| (\LaTeX) or the command
+\verb|\chartsonly| (plain \TeX) causes charts to be typeset in small PDF
+files which can be easily included in other documents, or converted to
+image files for use on a webpage.
+
+If you would also like to bundle your chart key into a little PDF, you
+can do it with the environment \verb|smallpage| (\LaTeX) or
+\verb|\smallpage| and \verb|\endsmallpage| (plain \TeX).
+
+The charts will automatically be the right width. The pages you generate
+with \verb|smallpage| will be the natural width of their contents; this
+is usually \verb|\textwidth| (\LaTeX) or \verb|\hsize| (plain \TeX).
+
+For some reason, \verb|smallpage| won't work if your small page only has
+one line. Also, your PDF viewer may cut off a few pixels around the
+edges.
+
+This command doesn't work with dvi-\TeX; this is a pdf\/\TeX\ command
+only.
+
+\item \texttt{fullpages}. Changing page dimensions mid-document in
+\LaTeX\ is hard, but a knitting pattern writer might want several pages
+of instructions with the usual large \LaTeX\ margins followed by several
+pages of charts with smaller margins. The environment \texttt{fullpages}
+does this. (Changing margins in plain \TeX\ is easy enough that
+\texttt{knitting.tex} has no special commands for it.)
+
+The \textsf{geometry} package now has the ability to change page
+dimensions mid-document, which affords much more flexibility than the
+\texttt{fullpages} environment; the \texttt{fullpages} environment is
+retained only for reasons of backwards compatibility.
+
+\end{itemize}
+
+\begin{figure}
+\caption{Suggested use of the fonts}
+\label{fig:fourfonts}
+\medskip
+\small
+\begin{tabular}[b]{lcp{220pt}}
+Font & Example & Suggested use \\
+\texttt{\char`\\knitgrid} & \knitgrid \textknit{A-Kp-} & Most simple patterns\\
+\texttt{\char`\\knitwide} & \knitwide \textknit{AKp-} & Colorwork\\
+\texttt{\char`\\knitmixed} & \knitmixed \textknit{A-Kp-} & Patterns with complicated cables; patterns that use \texttt{\char`\\Knit} and \texttt{\char`\\Purl} to deal with altered stitch counts \\
+\texttt{\char`\\knitnogrid} & \knitnogrid \textknit{A-Kp-} & Patterns that use empty squares (``no stitch'' symbols) to deal with altered stitch counts\\
+\end{tabular}
+\end{figure}
+
+
+The suggested uses of the four knitting fonts are summarized in \autoref{fig:fourfonts}.
+I prefer to draw most charts with \texttt{\char`\\knitgrid}. However, there are some situations where each of the other four fonts is more useful.
+
+The cells in the \texttt{\char`\\knitwide} fonts are the approximate dimensions of a knit stitch, so a colorwork chart done using the \texttt{\char`\\knitwide} font will look more like the finished piece than a colorwork chart done using \texttt{\char`\\knitgrid}.
+However, if a chart does not display wrong-side rows, the chart will not have the same proportions as the finished result. Also, lace is often blocked severely, and cables pull in. Thus, such charts will not have the same proportions as the finished piece, even if drawn with \texttt{\char`\\knitwide}; \texttt{\char`\\knitgrid} is probably a better choice.
+
+The \texttt{\char`\\knitgrid} cables look better than the \texttt{\char`\\knitnogrid} cables; however, wide cables, as well as cables involving increases, decreases, ribbing, and so on, can be expressed much more clearly with \texttt{\char`\\knitnogrid} or \texttt{\char`\\knitmixed}.
+
+Finally, many knitting patterns exist that have more stitches in some rows than in others. This is usually expressed by using special ``no stitch'' symbols:
+
+\bigskip
+
+\noindent
+\begin{minipage}[t]{60pt}
+\knitnogrid
+\chart{
+-.A.-
+-----
+-.w.-}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{60pt}
+\knitmixed
+\chart{
+-.A.-
+-----
+-.w.-}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{60pt}
+\knitgrid
+\chart{
+-.A.-
+-----
+-.w.-}
+\end{minipage}
+
+\bigskip
+
+It is my feeling that the empty gaps of \texttt{\char`\\knitnogrid} are the clearest way to express this, and thus \texttt{\char`\\knitnogrid} should be preferred in charts that involve ``no stitch'' blocks.
+
+However, in some patterns, we can omit knit or purl symbols to keep the chart the same width. This is best done using \texttt{\char`\\purlbox} or \texttt{\char`\\Purl}:
+
+\bigskip
+
+\noindent
+\begin{minipage}[t]{108pt}
+\knitnogrid
+\chart{
+====A====
+\purlbox{4}{3}---\purlbox{4}{3}
+====w====}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{108pt}
+\knitmixed
+\chart{
+====A====
+\Purl{4}{3}---\Purl{4}{3}
+====w====}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{108pt}
+\knitgrid
+\chart{
+====A====
+\purlbox{4}{3}---\purlbox{4}{3}
+====w====}
+\end{minipage}
+
+\bigskip
+
+You may feel that such things look better if a grid is involved. (I do.) This is a way to avoid ``no stitch'' boxes with \texttt{\char`\\knitgrid} or \texttt{\char`\\knitmixed}; again, the presence of complicated cables probably determines which you should use.
+
+
+\clearpage\subsection{Repeat outlines}
+\label{sec:outline}
+
+As illustrated in \autoref{fig:outlineex}, there are ways to outline part of a knitting chart.
+
+\begin{figure}
+\caption{Outline examples}\label{fig:outlineex}
+
+%\renewcommand \printrightrownumber[1]{\knitleftarrowhead\smash{\rule[-\stitchdp]{1pt}{\stitchht}}{\color{rncolor}\textnormal{#1}}}
+
+\medskip
+
+\advance\hsize 60pt
+\noindent \hskip -30pt
+\begin{minipage}[b]{3.2in}
+\obeylines
+\rlap{\texttt{\char`\\definecolor\char`\{knitlinecolor\char`\}\char`\{rgb\char`\}\char`\{0,0.5,0.8\char`\}}}
+\verb?\chart[right]{?
+\verb?                 ---|---|- ?
+\verb?       -\overline{--|---|-}?
+\verb?~\={2}~\={2}~ \\ -|---|--- ?
+\verb?~\={2}~\={2}~ \\ ---|---|- ?
+\verb?\vspace{12pt}?
+\verb?    -\cableleft{--\!}{--}--?
+\verb?     \-{7} \\   ---\!---\!-?
+\verb?     -\overline*{--\!---\!-}?
+\verb?~\_\_~\_\_~ \\  -\!---\!---?
+\verb?~\_\_~\_\_~ \\  ---\!---\!-?
+\vspace{0pt}
+\verb?}?
+\end{minipage}%
+\hfill
+\begin{minipage}[b]{105pt}
+\knitnogrid
+\definecolor{knitlinecolor}{rgb}{0,0.5,0.8}
+\chart[right]{
+                 ---|---|-
+       -\overline{--|---|-}
+~\={2}~\={2}~ \\ -|---|---
+~\={2}~\={2}~ \\ ---|---|-
+\vspace{12pt}
+    -\cableleft{--\!}{--}--
+     \-{7} \\   ---\!---\!-
+     -\overline*{--\!---\!-}
+~\_\_~\_\_~ \\  -\!---\!---
+~\_\_~\_\_~ \\  ---\!---\!-
+\vspace{12pt}
+}
+\chart{}
+\vspace{0pt}
+\end{minipage}%
+\hfill
+\begin{minipage}[b]{110pt}
+\knitgrid
+\definecolor{knitlinecolor}{rgb}{0,0.5,0.8}
+\chart[right]{
+ \\    ---|---|-
+       -\overline{--|---|-}
+~\={2}~\={2}~ \\ -|---|---
+~\={2}~\={2}~ \\ ---|---|-
+\vspace{12pt}
+\vspace{12pt}
+     \-{7} \\   ---\!---\!-
+     -\overline*{--\!---\!-}
+~\_\_~\_\_~ \\  -\!---\!---
+~\_\_~\_\_~ \\  ---\!---\!-
+\vspace{12pt}
+}
+\vspace{0pt}
+\end{minipage}
+\end{figure}
+
+
+\begin{itemize}
+
+\item[$\star$] \verb|\overline| and \verb|\underline| take one argument and typeset it, then put a colored bar over or under it. This is designed to provide a way to outline vertical pattern repeats.
+
+These commands have starred and unstarred forms. \verb|\overline| spreads the chart rows to make room for the line; it should be used for lines that go all the way across the chart. \verb|\overline*| does not (the lines overlap the chart a bit) and so should be used for lines that go only partway across the chart.
+
+\item[$\star$] A line that goes across the chart can be specified with \verb|\-|, which takes an argument (the width of the overlining in stitches). This has starred forms and unstarred forms, like \verb|\overline|.
+
+\item[$\star$] The character \texttt{|} and the command \verb?\|? produce a vertical line suitable for outlining horizontal pattern repeats. The command \verb?\!? produces a slightly different vertical line: like \verb|\overline*|, it will overlap the adjacent cells to avoid disrupting the alignment of columns. Thus, \texttt{|} and \verb?\|? should be used with \verb|\overline|, while \verb|\!| should be used with \verb|\overline*|.
+
+\item[$\star$] You may prefer to specify horizontal lines on their own, without interleaving them with the chart symbols using \verb|\overline|. This may be done, but implementation is complicated.
+
+You can get short horizontal lines to go with \verb?\!? by using \verb|\_|; it should be positioned using tildes~\texttt{\char`\~}.
+
+If you want to use short horizontal lines between two \verb?\|?s, you should use the command \verb|\=|, which like \verb|\-| takes an argument. (This will look wrong if you use it at the edge of a chart; it's better to use \verb|\overline| or \verb|\underline|.)
+
+\end{itemize}
+
+\clearpage
+
+\subsection{Colors and miscellaneous commands}
+\label{sec:color}
+
+\textsf{knitting} uses several colors and shades of gray to draw charts. You can customize these.
+
+The \LaTeX\ package \texttt{knitting.sty} loads the \textsf{color} package and uses it to define colors; so the color of purl stitches is accessed via \verb|\color{purlgray}|. If you want a different purl color, you can use \textsf{color}'s \verb|\definecolor| syntax to change \verb|{purlgray}|. This is especially useful if you want to write two-color colorwork charts.
+
+\texttt{knitting.tex} defines \verb|\purlgray| itself, using syntax that works for pdf\/\TeX\ and \textsf{dvips}, but possibly not other drivers. If you insist on using plain \TeX\ and another driver, you are assumed to know enough to edit \texttt{knitting.tex} to compensate. Redefining colors in plain \TeX\ is complicated and driver-dependent; read \texttt{knitting.tex} itself to get an idea of the color definition syntax.
+
+\begin{itemize}
+
+\item \verb|purlgray| is the color of the purl background.
+
+\item \texttt{gridcolor} is the color of the grid lines in the grid fonts.
+
+\item \texttt{knitlinecolor} controls the lines produced by \verb?\!?,~\verb?|?, \verb|\=|, \verb|\_|, \verb|\-|, \verb|\overline|, and \verb|\underline|.
+
+\item \texttt{rncolor} is used by \verb|\printrownumber| and \texttt{\char`\\print\-stitch\-count} so that the row numbers and stitch counts cannot be mistaken for parts of the chart proper. The color \texttt{rnarrowcolor} is used for just the small arrows in left and right row numbers. See \autoref{sec:rowcount} and \autoref{sec:counting}.
+
+\end{itemize}
+
+There are also some commands you might want to use:
+
+\begin{itemize}
+
+\item \verb|\purlpass|, \verb|\gridpass|, \verb|\mainpass|.  \verb|\chart| and \verb|\textknit| compile their argument twice: once in gray, for the purl background, and then once in black for the foreground. They then put them on top of each other. (The grid fonts do a third pass, in the middle, for just the grid; this lets us have grid lines that are gray rather than black.) \verb|\purlpass| takes one mandatory argument (something to do only during the purl pass) and one optional first argument (something to do during the other two passes.) These let you produce a variety of effects:
+\begin{quote}
+\verb|\purlpass{\color{blue}} pK| \textknit{\purlpass{\color{blue}} pK}
+\end{quote}
+
+\item \verb|\knitlinewd|, \verb|\gridwidth|, \verb|\stitchwd|, \verb|\stitchht|, and  \verb|\stitchdp| store most of the dimensional information about the knitting fonts.\footnote{Grid cells are designed to be 12pt (or 16.3pt) by 12pt, and extend slightly below the baseline. In \LaTeX, \texttt{\char`\\ stitchht} is 12pt. In plain \TeX, \texttt{\char`\\ stitchht} is 12pt$-$\texttt{\char`\\ stitchdp}. This is because the plain \TeX\ \texttt{\char`\\ raise} macro and the \LaTeX\ \texttt{\char`\\ raisebox} macro work differently.}
+
+It is inadvisable to change any of these (except \verb|\knitlinewd|); a \the\gridwidth\ grid is built into the fonts, and changing \verb|\gridwidth| won't change it, just mess up any code that relies on \verb|\gridwidth|.
+
+You can change \verb|\knitlinewd| with \verb|\setlength|; however, \verb|\knitlinewd| is defined by \textsf{knitting} in a complicated way so as to change gracefully with changing knit sizes, and so it is probably best to say \verb|\newdimen| \verb|\knitlinewd| (not \verb|\newlength|\allowbreak\verb|{\knitlinewd}|) first.
+
+If you use one of these parameters outside of a \verb|\chart| or \verb|\textknit|, you may get error messages about undefined fonts. To fix them, use \verb|\knitgrid|, \verb|\knitnogrid| or \verb|\knitwide| again.
+
+\item The boolean variables \verb|\ifgrid|, \verb|\ifknitsymbol| and \verb|\ifchartsonly| are standard \TeX\ conditionals: they may be used as
+\begin{center}\verb|\ifgrid| Grid code \verb|\else| Nongrid code \verb|\fi|
+\end{center}
+
+They are useful if you haven't decided yet how you want to format your document, or if you want to compile it several times with slightly different results. (\verb|\ifgrid| distinguishes between \verb|\knitnogrid| and the other three options; \verb|\ifknitsymbol| distinguishes between \verb|\knitnogrid|\slash\verb|\knitmixed| and \verb|\knitgrid|\slash\verb|\knitwide|.)
+
+\item In \LaTeX, you get sans serif text (the font inside the knit boxes) and roman text (the row number/stitch count font) with the usual commands \verb|\textsf| and \verb|\textnormal|. In plain \TeX, you can get these fonts with \verb|\knitsf| and \verb|\knitrm|.
+
+\end{itemize}
+
+\subsection{Spaces in the input}
+\label{sec:spacein}
+
+A normal space in the source code in a knitting chart, like a space in math mode, is ignored.
+In a knitting chart, unlike in normal text, you want to prescribe all your line breaks. For convenience, knitting charts have the macro \verb|\obeylines| built in, so that a single $\langle$return$\rangle$ produces a new paragraph (and therefore a new line), like a double $\langle$return$\rangle$ usually does.
+
+If you want two or more lines in the source code to produce one line on the chart, end all but the last with the comment character~\verb|%|.
+
+Unfortunately, the trick I use to make $\langle$return$\rangle$s trigger new lines is delicate; specifically, if you put your chart inside another command, it stops working. (It works fine inside environments.) (Similarly, \verb?|? and \verb?#? are redefined inside knitting charts, so that \verb?|? produces a colored bar \textknit{\|} and \verb?#? produces a symbol \textknit{\#}. If your chart ends up inside a command, \verb?|? will produce a plain black bar and \verb?#? will produce an error; use \verb?\|? and \verb?\#? instead.)
+
+So if you want to embed your chart inside another command, you have to end each line with a \verb|\par|, \verb|\\|, or a double $\langle$return$\rangle$ (blank line).
+
+\let \saveknitlinewd \knitlinewd
+
+\begin{figure}[h]
+\caption{The effects of embedding charts in commands and environments}
+\par\bigskip\par
+\begin{minipage}[b]{2.5in}
+\begin{verbatim}
+\newdimen\knitlinewd
+\setlength{\knitlinewd}{4pt}
+\parbox{77pt}{
+\chart{
+tt|
+AA\|%
+--\\
+==|==\\}
+}
+\end{verbatim}
+\end{minipage}%
+\hskip -108pt
+\begin{minipage}[b]{80pt}
+\newdimen\knitlinewd
+\setlength{\knitlinewd}{4pt}
+\parbox{80pt}{
+\chart{
+tt|
+AA\|%
+--\\
+==|==\\}}
+\vspace{24pt}
+\end{minipage}%
+\hskip 12pt
+\begin{minipage}[b]{2.5in}
+\begin{verbatim}
+\newdimen\knitlinewd
+\setlength{\knitlinewd}{4pt}
+\begin{center}
+\chart{
+tt|
+AA\|%
+--\\
+==|==\\}
+\end{center}
+\end{verbatim}
+\end{minipage}%
+\hskip -84pt
+\begin{minipage}[b]{55pt}
+\newdimen\knitlinewd
+\setlength{\knitlinewd}{4pt}
+\begin{center}
+\chart{
+tt|
+AA\|%
+--\\
+==|==\\}
+\end{center}
+\vspace{24pt}
+\end{minipage}
+\end{figure}
+
+\let \knitlinewd \saveknitlinewd
+
+
+
+\section{Ligatures and cables}
+\label{sec:cables}
+
+\TeX\ has a built-in ligature mechanism that lets it get {?`fire--fly?} instead of {?{}`f{}ire-{}-f{}ly?} when you type \texttt{?{}`fire--fly?}. \textsf{knitting} uses this for wide horizontal sequences such as \textknit{???}. The ligature mechanism also lets you generate the reverse of \textknit{"}: \texttt{-"}, \texttt{="} and \texttt{""} produce \textknit{-"}, \textknit{="}, and \textknit{""}, respectively.
+
+However, the ligature mechanism really comes into its own when making cable symbols.
+
+\subsection{Symbolic cables}
+\knitnogrid
+
+In the fonts which represent ``knit 1'' by a vertical bar symbol (\verb|\knitnogrid|\slash\verb|\knitmixed|), cables look like this: \textknit{kkKK} or {\knitmixed\textknit{kkKK}}. The symbols are a stylized representation of what you must do to produce the cables.
+
+The keys \texttt{k},~\texttt{p}, \texttt{K}, and \texttt{P} produce raised or lowered knit and purl symbols, and the ligature mechanism adds in the underbars or slant connectors automatically.
+
+So:
+\begin{quote}
+\noindent\hfil\parbox{108pt}{
+\tt kkKK\\
+KKpp\\
+kpkpKPKP}
+\parbox{108pt}{\chart{
+kkKK\\
+KKpp\\
+kpkpKPKP}}
+\end{quote}
+
+Some allowance for peculiar cables has been made. You can get a front increase or decrease with \texttt{N}~or \texttt{D}, or a back increase or decrease with \texttt{n}, \texttt{d}, \texttt{e}, or~\texttt{o}:
+\texttt{nedoND} \textknit{nedoND}.
+
+All of the symbols present in the font can be used in cables with the help of \verb|\cableleft| and \verb|\cableright|: \verb|\cableleft{AOA}{=*=}| \textknit{\cableleft{AOA}{=*=}}.
+
+If you have a lot of cables involving the same obscure symbol, you may wish to use the commands \verb|\cableforeground| and \verb|\cablebackground| instead:
+
+\begin{center}
+\begin{minipage}[b]{224pt}
+\obeylines
+\verb?\renewcommand\${\cableforeground{b}}?
+\verb?\renewcommand\#{\cablebackground{b}}?
+\verb?\chart{?
+\verb?                -\$\$\#\#-?
+\verb?                 -\$\$kk- ?
+\verb?                \$\#--\#\$}?
+\end{minipage}
+\quad
+\begin{minipage}[b]{108pt}
+	\renewcommand\${\cableforeground{b}}
+	\renewcommand\#{\cablebackground{b}}
+	\chart{
+	-\$\$\#\#-
+	 -\$\$kk-
+	\$\#--\#\$
+	}
+\end{minipage}
+\end{center}
+
+Be aware that the implementation of \verb|\cablebackground| is such that only cable connectors are drawn in the main pass; the symbols are drawn during the purl pass, and so \verb|\cablebackground| interacts in unexpected ways with color effects and with \verb|\purlpass|.
+
+Explaining to \textsf{knitting} when one cable starts and another ends can be hard: \texttt{pKKKKp} probably means \textknit{pKK KKp}, but it could mean \textknit{pK KKKp} or \textknit{pKKK Kp}, and the ligature mechanism isn't smart enough to default to \textknit{pKK KKp}, let alone read your mind. So you have to tell it what you want.
+
+There are two ways to do this. You can put a space in: \texttt{ppKK KKpp}. You can also use the characters \texttt{c},~\texttt{g}, \texttt{C}, and~\texttt{G}: these behave just like \texttt{k},~\texttt{p}, \texttt{K}, and~\texttt{P}, except that they are only allowed to show up in the left part of a cable.
+
+Some limited debugging mechanisms are available. A sequence of background cables \texttt{kkp} which is not paired with a sequence of foreground stitches is not a cable; it is an orphaned half-cable. If for some reason you want an orphaned half-cable \textknit{\cableright{==}{}}, use \verb|\cableleft| or \verb|\cableright| with an empty argument.
+
+Orphaned half-cables produced by other methods (unaccompanied \texttt{pp}) are probably due to a typographical error which must be fixed. So they are made obvious. If you have an orphaned half-cable somewhere, the last square will be shaded: \texttt{ppKKKKpp} produces \textknit{ppKKKKpp} since the terminal \texttt{p}s are not part of a full cable.
+
+So:
+\begin{center}
+\begin{minipage}[b]{108pt}
+\obeylines\parindent=0pt\tt
+=DKp,,pKD DKp,,pKD=
+===----====----===
+===KKkk====KKkk===
+===----====----===
+=ppKKCCppggKKCCpp=
+=--====----====--=
+=--====kkKK====--=
+=--====----====--=
+=KKepgeKKCCepgeKK=
+,==----=,,=----==,
+\end{minipage}
+\quad
+\begin{minipage}[t]{224pt}
+\chart{
+=DKp,,gKD DCp,,gKD=
+===----====----===
+===KKkk====KKkk===
+===----====----===
+=ppKKCCppggKKCCpp=
+=--====----====--=
+=--====kkKK====--=
+=--====----====--=
+=KKepgeKKCCepgeKK=
+,==----=,,=----==,
+}
+\end{minipage}
+\end{center}
+
+\subsection{Stylized cables}
+\knitgrid
+
+In the fonts which represent ``knit 1'' by an empty box (\verb|\knitgrid|\slash\verb|\knitwide|), cables look like this: \textknit{kkKK}. The symbols are a stylized sketch of how the cables actually look.
+
+The letters \texttt{kpcgKPCG} work for simple cables as in the non-grid
+font. These cables are fairly limited. You can cross 1, 2, or 3 stitches
+over 1, 2, or 3 stitches, going left or right. The letters
+\texttt{kpcgKPCG} will let you draw purl-over-purl, knit-over-purl, or
+knit-over-knit cables.
+
+Twelve special cable symbols are also possible:
+\begin{center}
+\textknit{kpK~Kpk~kkpKK~KKpkk~kkppKK~KKppkk}\\
+\textknit{kpD~Kpd~kkpKD~KKpkd~kkppKD~KKppkd}\\
+\end{center}
+You get these by putting \texttt{p}s (not \texttt{g}s) between the \texttt{k}s and \texttt{K}s.\footnote{{The rules for these cables are actually more complicated. The only way to get \knitnogrid\textknit{kkpKK}, the nogrid equivalent of \knitgrid\textknit{kkpKK}, is by typing \texttt{kkpKK} or some equivalent with \texttt{c}s and~\texttt{g}s. In the grid font, you can't use \texttt{g} for the middle purl stitch. More importantly, the fonts don't check to make sure you typed exactly \texttt{kkpKK}. The only grid cable that can start with \texttt{kkp} is \textknit{kkp}; so \texttt{kkp} followed by any number of \texttt{K}s will produce \textknit{kkpKKKKK}.}}
+
+In the wide-cell grid font, for technical reasons no symbols more than five cells wide are available; so while \knitwide\textknit{pK} is available, a wider version of \knitgrid\textknit{kkppKK} is not.
+
+The keys \texttt{N},~\texttt{n}, \texttt{e}, \texttt{o}, \texttt{d} and~\texttt{D} have a different function here.
+
+If a knit-over-knit cable ends with a \texttt{d} or \texttt{D} instead of \texttt{k} or \texttt{K}, the result will have a solid white background instead of a gray one. The letters \texttt{n}, \texttt{N}, \texttt{e} and \texttt{o} produce symbols that are hybrids of twist and cable symbols.\footnote{A \texttt{k}, \texttt{p}, \texttt{K}, or \texttt{P} after a \texttt{n}, \texttt{e}, \texttt{o}, \texttt{d}, \texttt{N}, or \texttt{D} starts a new cable; you don't need to use \texttt{C}, \texttt{G}, \texttt{c}, \texttt{g} or spaces to separate them.}
+\begin{center}
+\begin{minipage}[b]{108pt}
+\obeylines\parindent=0pt\tt
+kkDD~kkNN~ppNN
+KKdd~KKnn~KKoo
+\end{minipage}
+\quad
+\begin{minipage}[t]{224pt}
+\chart{
+kkDD~kkNN~ppNN
+KKdd~KKnn~KKoo
+}
+\end{minipage}
+\end{center}
+\texttt{e} and \texttt{o} have the same effect.
+
+Again, orphaned half-cables are indicated with diagonal hash marks \textknit{kk}.
+
+Some special effects are possible. You can get fancy with the colors of these symbols:\footnote{If you use \texttt{\char`\\colorbox} with \texttt{\char`\\textknit} insteat of \texttt{\char`\\chart}, you will need to say \texttt{\char`\\setlength\allowbreak\char`\{\char`\\fboxsep\char`\}\char`\{0pt\char`\}} at some point to make this work; this statement is built into \texttt{\char`\\chart}.}
+
+\bigskip
+
+\noindent{\setlength{\fboxsep}{0pt}
+\verb|\colorbox{lightblue}{A}|
+\hfill\textknit{`\colorbox{lightblue}{A}`}}
+
+\smallskip
+
+\noindent{\setlength{\fboxsep}{0pt}
+\verb|\purlpass[Kk]{\colorbox{lightblue}{\color{blue}kK}}|
+\hfill\textknit{\purlpass[Kk]{\colorbox{lightblue}{\color{blue}kK}}}}
+
+\bigskip
+
+You can also indicate unusual cables by superimposing other symbols: \nopagebreak
+
+\bigskip
+
+\noindent\hspace{-10pt}\begin{minipage}[t]{310pt}
+\verb?\mainpass{\rlap{\knitbox{D}{4}}} kkKK?\par
+\verb?\mainpass{\rlap{\knitbox{m\vspace{2pt}}{1}}} ppKK?
+\end{minipage}
+\hfill
+\begin{minipage}[t]{48pt}
+\textknit{\mainpass{\rlap{\knitbox{D}{4}}} kkKK}\par
+\textknit{\mainpass{\rlap{\knitbox{m\vspace{2pt}}{1}}}%
+ppKK}
+\end{minipage}
+
+\bigskip
+
+This is enough for most cable patterns.
+
+
+\section{Counting rows}
+\label{sec:rowcount}
+
+This section describes how to get and modify the little red numbers shown here.
+
+\par\bigskip\par
+\begin{minipage}[b]{3.2in}
+\obeylines
+\verb?\chart{?
+\verb?  \rnleft ======?
+\verb?  \rnleft ======\addtocounter{rownumber}{-1}?
+\verb?  \rnleft ======?
+\verb?  \addtocounter{rownumber}{-5}}?
+\end{minipage}%
+\hfill
+\begin{minipage}[b]{1.33in}
+\knitgrid
+\chart{
+\rnleft======
+\rnleft======\addtocounter{rownumber}{-1}
+\rnleft======
+\addtocounter{rownumber}{-5}
+``\nonumber}
+\end{minipage}
+\par\bigskip\par
+\begin{minipage}[b]{3.2in}
+\obeylines
+\verb?\chart[right]{?
+\verb?  ======?
+\verb?  ====== \nonumber ?
+\verb?  ======?
+\verb?  ======?
+\verb?  \numberrow{6}{2}{2}}?
+\end{minipage}%
+\hfill
+\begin{minipage}[b]{1.33in}
+\knitgrid
+\hskip\stitchwd\chart[right]{
+======
+====== \nonumber
+======
+======
+\numberrow{6}{2}{2}
+}
+\end{minipage}
+
+\bigskip
+
+\begin{itemize}
+
+\item[$\star$] \verb|\rn| prints out the value of the counter
+\verb|rownumber|, then decreases it by the value of the counter
+\texttt{rownumberskip}.
+For better results, use \verb|\rnleft| on the left edge and \verb|\rnright| on
+the right edge.
+
+If you want to skip a few row numbers, you can say
+\verb|\addtocounter|\allowbreak\verb|{rownumber}{-3}| (\LaTeX) or \verb|\global|
+\verb|\advance| \verb|\rownumber| \verb|by -3| (plain \TeX).
+
+\verb|\chart| will usually automatically arrange things so that the
+last \verb|\rn| produces a~1. If you want numbers in different charts
+to be numbered consecutively (e.g., if they are pieces of one big
+chart), you can turn this behavior off with \verb|\resetrnfalse| and
+back on with \verb|\resetrntrue|. You can then reset the row numbers
+with \verb|\setcounter{rownumber}{20}|; all future charts will count
+down from there.
+
+This may be necessary if you have very long charts, since charts do not break across pages. (You may need to put a \verb|\par\nointerlineskip\par| between the pieces of charts.)
+
+\item \verb|\chart| has an optional first argument that places row numbers automatically. It should be one of the seven words \texttt{left}, \texttt{right}, \texttt{oddleft}, \texttt{oddright}, \texttt{evenleft}, \texttt{evenright}, or \texttt{both}. This will automatically place numbers down the left edge, the right edge, or put the odd numbers on one side and the even numbers on the other side.
+
+If you want to show only even or only odd numbers, you can do it with the commands \verb|\rnoddonly| or \verb|\rnevenonly|, and can restore normal behavior with the command \verb|\rnnormal|. Alternatively, you can redefine \verb|\printrightrownumber| to only print if the counter \texttt{rownumber} is odd; effects like this are why the \texttt{[both]} option exists.
+
+I suggest using \verb|\setcounter{rownumberskip}{2}| \verb|\chart[right]| for charts which show only right-side rows. For charts which show all rows, I suggest using \verb|[right]| for charts which are meant to be worked in the round, \verb|[oddright]| or \verb|[oddleft]| for charts which are meant to be worked flat (back and forth), and \verb|\rnevenonly| or \verb|\rnoddonly| with \verb|[right]| for charts which may be used either flat or in the round.
+
+\item[$\star$] Inside an auto-numbered chart, \verb|\nonumber| skips the next row number.
+
+\item[$\star$] To number the stitches (by producing a \emph{row} of stitch numbers), you can use the command \verb|\numberrow|. It takes three arguments: the first number to be printed, the countdown (how often to print intermediate numbers), and  the last number to be printed.
+
+\item[$\star$] If you don't like any of my automatic countdown options, you can use \verb|\rnbox{8}|, \verb|\rnboxleft{12}|, \verb|\rnboxright{3}| to do your own row-number boxes.
+
+\item Two commands exist to let you get \TeX\ to count stitches for you: \texttt{\char`\\stitch\-count\-chart} and \verb|\countstitches|. The command \texttt{\char`\\ adjust\-stitch\-count} is also useful here. See \autoref{sec:counting} for more details.
+
+\end{itemize}
+
+You can adjust the appearance of the row numbers in a few ways. \texttt{\char`\\ rn} puts the number
+in a box of width \texttt{\char`\\ rownumberwd}; you can change the
+width by saying
+\texttt{\char`\\renewcommand\allowbreak
+	\char`\{\char`\\rownumberwd\char`\}\char`\{1em\char`\}}.
+You can change the appearance of the rownumbers by renewing the commands \texttt{\char`\\ printrownumber}, \texttt{\char`\\ printleftrownumber} and \texttt{\char`\\ printrightrownumber}; the default values (in \LaTeX) are
+\begin{quote}
+\verb|{{\color{rncolor}\textnormal{#1}}}|,\\
+\verb|{\knitleftarrowhead{\color{rncolor}\textnormal{#1}}}| and\\
+\verb|{{\color{rncolor}\textnormal{#1}}\knitrightarrowhead}|.
+\end{quote}
+
+\verb|\printrownumber| controls the appearance of both \verb|\rn| and \verb|\rnbox|. You can also change the appearance of \verb|\rn|, but not \verb|\rnbox|, by redefining  \verb|\therownumber|. \verb|\roman{rownumber}| (\LaTeX) or \verb|\romannumeral| \verb|\rownumber| (plain \TeX), for example, will number rows with Roman numerals.
+
+\section{Counting stitches}
+\label{sec:counting}
+
+\setcounter{rownumberskip}{1}
+
+When knitting a complicated pattern, it can be helpful if the chart indicates the expected stitch count after each row. When writing a complicated chart, and especially when designing a new stitch pattern, it can be \emph{very} helpful to have some way of checking to see that each row uses exactly as many stitches as the previous row generated. \textsf{knitting} provides a mechanism for counting stitches and for comparing them from row to row.
+
+If used inside a knitting chart, the command \verb|\countstitches| takes one argument and sets the counters \texttt{stitchcountout} and \texttt{stitchcountin} to reflect how many stitches that sequence of stitches would produce or consume, assuming that all the symbols have the meanings given in \textsf{knitkey.tex}.
+
+So, for example:
+
+\bigskip
+
+\noindent\begin{minipage}[t]{224pt}
+\obeylines\parindent=0pt\tt
+\verb?\chart{\countstitches{->-} ->-}?
+\verb?stitchcountout: \thestitchcountout?
+\verb?stitchcountin: \thestitchcountin?
+\end{minipage}
+\quad
+\begin{minipage}[t]{108pt} \obeylines
+\chart{\countstitches{->-}{->-}}
+stitchcountout: \thestitchcountout
+stitchcountin: \thestitchcountin
+\end{minipage}
+
+\bigskip
+
+This can be used to automatically label each row with its stitch count.
+
+\bigskip
+
+\noindent\begin{minipage}[b]{350pt}
+\obeylines\parindent=0pt\tt
+\verb?\newcommand{\mystitchcount}[1]{\countstitches{#1}#1?
+\verb?     \mainpass{{\color{rncolor}%?
+\verb?     \textnormal{ (\thestitchcountout\ sts)}}}}?
+\verb?\chart{?
+\verb?   \mystitchcount{~-A-~}?
+\verb?   \mystitchcount{-----}?
+\verb?   \mystitchcount{~-w-~}}?
+\end{minipage}
+\hskip -108pt
+\begin{minipage}[b]{108pt}
+\newcommand{\mystitchcount}[1]{\countstitches{#1}#1
+     \mainpass{{\color{rncolor}%
+     \textnormal{ (\thestitchcountout\ sts)}}}}
+\chart{
+   \mystitchcount{~-A-~}
+   \mystitchcount{-----}
+   \mystitchcount{~-w-~}}
+\end{minipage}
+
+\bigskip
+
+(A more complicated example is in \texttt{knitexamples.tex}. Repeated patterns affect stitch count in strange ways; that example should show you how to cope.)
+
+You can adjust the stitch count using the command \verb|\adjuststitchcount|. It takes a mandatory argument (how many stitches to add) and an optional argument (a different number of stitches to add to the incount.)
+
+By using the command \verb|\stitchcountwarningbar|, we can check to see that stitch counts are consistent from row to row:
+
+\bigskip
+
+\noindent\begin{minipage}[b]{\textwidth}
+\obeylines\parindent=0pt\tt
+\verb?\newcommand{\mystitchcount}[1]{\countstitches{#1}#1%?
+\verb?   \textnormal{\color{rncolor}?
+\verb?   \mainpass{ (\thestitchcountout\ sts)\stitchcountwarningbar}}?
+\end{minipage}
+
+\noindent\begin{minipage}[b]{350pt}
+\obeylines\parindent=0pt\tt
+\verb?\chart{?
+\verb?   \setcounter{stitchcountin}{-100}?
+\verb?   \mystitchcount{~-A-~}?
+\verb?   \mystitchcount{-----}?
+\verb?   \mystitchcount{-->--}?
+\verb?   \mystitchcount{-----}?
+\verb?   \mystitchcount{~-w-~}}?
+\end{minipage}
+\hskip -108pt
+\begin{minipage}[b]{108pt}
+\newcommand{\mystitchcount}[1]{%
+   \countstitches{#1}#1%
+   \textnormal{\color{rncolor}
+   \mainpass{ (\thestitchcountout\ sts)\stitchcountwarningbar}}}
+\chart{
+   \setcounter{stitchcountin}{-100}
+   \mystitchcount{~-\>3-~}
+   \mystitchcount{-----}
+   \mystitchcount{-->--}
+   \mystitchcount{-----}
+   \mystitchcount{~-w-~}}
+\end{minipage}
+
+\bigskip
+
+The heavy bar beside Row 2 indicates that Row~3 uses six stitches, but Row~2 produces only five. \verb|\stitchcountwarningbar| is built using the same code as \TeX's usual overfull rules; thus, it will only appear (in \LaTeX) if the \texttt{draft} document option is enabled.
+
+The initial \verb?\setcounter{stitchcountin}{-100}? prevents a warning bar from showing up on the very first row. A \verb?\setcounter{stitchcountin}{3}? would work in this case as well, since the top row produces 3 stitches.
+
+All of this gives you a lot of control over the stitch-counting mechanism in your chart. However, it requires a lot of work to set up. \textsf{knitting} has a quick command for generating charts with stitch counts:
+
+\bigskip
+
+\noindent\begin{minipage}[b]{300pt}
+\obeylines\parindent=0pt\tt
+\verb?\rnoddonly?
+\verb?\stitchcountchart[right]{?
+\verb?    -O-----O-?
+\verb?    ~-O---O-?
+\verb?    ~~-O-O-?
+\verb?    ~~~---?
+\verb?   }?
+\end{minipage}
+\hskip -108pt
+\begin{minipage}[b]{158pt}
+\rnoddonly
+\stitchcountchart[right]{
+    -O-----O-
+    ~-O---O-
+    ~~-O-O-
+    ~~~---
+	}
+\par\strut
+\end{minipage}
+\bigskip
+
+You can customize this with the optional argument (which places row numbers as usual), the command \texttt{\char`\\ knitdebug} (which shows the stitch counts both before and after knitting the row), and by redefining the commands \texttt{\char`\\ printleftstitchcount} and \texttt{\char`\\ printrightstitchcount}. The default (\LaTeX) values are
+\begin{quote}
+\verb?\newcommand{\printleftstitchcount}{{\color{rncolor}%?\\
+\verb?   \textnormal{(\thestitchcountout\ sts) }}}?\\
+\verb?\newcommand{\printrightstitchcount}{}?
+\end{quote}
+\texttt{\char`\\ knitdebug} redefines \texttt{\char`\\ printleftstitchcount} to
+\begin{quote}
+\verb?\renewcommand \printleftstitchcount{{\color{rncolor}%?\\
+\verb?	\textnormal{(\thestitchcountout\ out, ?\\
+\verb?		\thestitchcountin\ in) }}}?\\
+\end{quote}
+
+\bigskip
+
+\noindent\begin{minipage}[b]{250pt}
+\obeylines\parindent=0pt\tt
+\verb?\rnoddonly?
+\verb?\knitdebug?
+\verb?\stitchcountchart[right]{?
+\verb?    -O-----O-?
+\verb?    ~-O---O-?
+\verb?    ~~-O-O-?
+\verb?    ~~~---?
+\verb?	}?
+\end{minipage}
+\hskip -108pt
+\begin{minipage}[b]{208pt}
+\rnoddonly
+\knitdebug
+\stitchcountchart[right]{
+    -O-----O-
+    ~-O---O-
+    ~~-O-O-
+    ~~~---
+	}
+\par\strut
+\end{minipage}
+\bigskip
+
+
+
+The commands \verb|\narrowincrease| and so on, when used with the stitch-counting mechanism, do require that their arguments be numbers: if your chart involves the symbol \textknit{\narrowincrease{Z}}, that symbol cannot be counted.
+
+The commands \verb|\Knit|, \verb|\Purl|, \verb|\knitbox| and \verb|\purlbox| by default are assumed to be as many stitches wide as they take up stitches on the chart: so \verb|\knitbox{A}{2}| is assumed to be two stitches wide.
+
+This means that \verb|\Knit{4}{3}| is assumed to be three, not four, stitches wide. You can change this behavior by redefining the commands \verb|\Knitstitchcount|, \texttt{\char`\\Purl\-stitch\-count}, \verb|\knitboxstitchcount|, \verb|\purlboxstitchcount|:
+\begin{quote}
+\verb|\renewcommand{\Knitstitchcount}[2]{#1}|
+\end{quote}
+Redefining \verb|\Knitstitchcount| does mean that you must give \verb|\Knit| a number as its first argument.
+
+Similarly, \verb|\widesymbol| normally is assumed to be as many stitches as its contents: \textknit{\widesymbol{w}{3}} represents one in-stitch and three out-stitches, just like \textknit{w}. If you prefer for \textknit{\widesymbol{*}{3}} to represent three stitches, redefine \verb|widesymbolspacer|:
+\begin{quote}
+\verb|\renewcommand{\widesymbolspacer}[2]{\hskip #2\stitchwd}|
+\end{quote}
+The arguments of \verb|\widesymbolspacer| are the two arguments of \verb|\widesymbol|; the default value is just
+\begin{quote}
+\verb|\newcommand{\widesymbolspacer}[2]{#1}|.
+\end{quote}
+
+There is a way to deal with a series of short rows: put the rows inside the command \verb|\shortrows|, or use the command \verb|\nostitchcount| to omit a stitch count.
+
+\bigskip
+
+\noindent\begin{minipage}[b]{300pt}
+\obeylines\parindent=0pt\tt
+\verb?\rnevenonly?
+\verb?\stitchcountchart[right]{?
+\verb? \nostitchcount-------?
+\verb?               -------?
+\verb?               -------?
+\verb?    \shortrows{~~~~---?
+\verb?               ~~~"---}?
+\verb?               -------?
+\verb?    \shortrows{-----?
+\verb?               ~~---"?
+\verb?               ~"-----}?
+\verb?               -------?
+\verb?   }?
+\end{minipage}
+\hskip -108pt
+\begin{minipage}[b]{158pt}
+\rnevenonly
+\stitchcountchart[right]{
+    \nostitchcount-------
+    -------
+    -------
+    \shortrows{
+    ~~~~---
+    ~~~"---}
+    -------
+    \shortrows{
+    -----
+    ~~---"
+    ~"-----}
+    -------
+   }
+\par\strut
+\end{minipage}
+\bigskip
+
+
+
+
+\addtocontents{toc}{\SkipTocEntry}\subsection*{Warnings} The stitch-counting machinery cannot, of course, actually know what meanings you assign to symbols. It is designed for the meanings in \textsf{knitkey.tex}. If you deviate from these, it will get the wrong answer.
+
+Also, \verb|\stitchcountchart| is delicate; it must not be used inside commands, the closing~\verb|}| must be on its own line, and it often has trouble if strange things are put at the start of a line. (You can fix this by starting the line with a \verb|\noindent| or \verb|\leavevmode| or \verb|\mbox{}|.)
+
+\section{Revision history}
+
+\addtocontents{toc}{\SkipTocEntry}\subsection*{August 2010}
+
+I've added the symbols \textknit{(}, \textknit{)}, \textknit{6}, \textknit{7}, \textknit{8}, and~\textknit{9} to the fonts for the benefit of people who want to use the symbols suggested by the Craft Yarn Council of America, and updated \texttt{knitkey.tex} to include these symbols (and a few others that can be generated by judicious use of \verb|\knitbox| and \verb|\purlpass|).
+
+I've added the commands \texttt{\char`\\ print\-rightrownumber}, \texttt{\char`\\ printleftrownumber} and \texttt{\char`\\ print\-row\-number} to make row numbers easier to customize. I've redefined the left and right row number macros to include little arrows.
+
+I've added the starred forms of \verb|\overline| and \verb|\underline| and the optional argument to \verb|\Knit|, \verb|\Purl|, \verb|\knitbox| and \verb|\purlbox| to offset the labels, and have rewritten those commands to use \verb|\knitboxbackground| and \verb|\purlboxbackground| in order to make them easier to customize.
+
+\catcode`\_=12
+
+I've added the stitch-counting mechanism. This has entailed minor revisions to a number of existing commands, writing the stitch-counting macros themselves, and also creating the supporting fonts \texttt{knitn_sc_in}, \texttt{knitn_sc_out}, \texttt{knitg_sc_in}, \texttt{knitg_sc_out}, \texttt{knitw_sc_in}, and \texttt{knitw_sc_out}.
+
+\addtocontents{toc}{\SkipTocEntry}\subsection*{\today}
+
+The fonts \verb|knitw_sc_in| and \verb|knitw_sc_out| have been removed, because I realized that \verb|knitg_sc_in| and \verb|knitg_sc_out| could be used instead.
+
+The commands \verb?\|? and \verb?\!? now work with \verb|\textknit|.
+
+The following have been added:
+
+\begin{itemize}
+\item The characters \textknit{0}, \textknit{\&} and \textknit{\#}.
+
+\item The commands
+\\
+\verb|\Knitstitchcount|, \verb|\Purlstitchcount|, \\\verb|\knitboxstitchcount|, \verb|\purlboxstitchcount|;
+\\
+\verb|\cableforeground|, \verb|\cablebackground|;
+\\\verb|\widesymbol|.
+
+\item The \verb|\knitmixed| fonts.
+
+\item Support for counting stitches in short rows.
+
+\item Hash marks to show errors in cables.
+
+\item Some tweaks to the appearance of cables in the grid font.
+\end{itemize}
+
+\section{List of files that are considered part of this package}
+\label{sec:manifest}
+
+This package should have come with all the following files, organized into the directories listed.
+
+\medskip
+
+\begingroup \ttfamily
+\noindent README
+
+\noindent knitting/docs
+\begin{itemize}
+    \item knitexamples.pdf
+    \item knitexamples.tex
+    \item knitkey.pdf
+    \item knitkey.tex
+    \item knitting-doc.pdf
+    \item knitting-doc.tex
+\end{itemize}
+
+\noindent knitting/fonts/afm
+\begin{itemize}
+	\item knitg_sc_in.afm
+	\item knitg_sc_out.afm
+	\item knitgg.afm
+	\item knitgn.afm
+	\item knitgp.afm
+	\item knitmg.afm
+	\item knitml.afm
+	\item knitmn.afm
+	\item knitmp.afm
+	\item knitmr.afm
+	\item knitn_sc_in.afm
+	\item knitn_sc_out.afm
+	\item knitnl.afm
+	\item knitnn.afm
+	\item knitnp.afm
+	\item knitnr.afm
+	\item knitwg.afm
+	\item knitwn.afm
+	\item knitwp.afm
+\end{itemize}
+
+\noindent knitting/fonts/map
+\begin{itemize}
+    \item knitfont.map
+\end{itemize}
+
+\noindent knitting/fonts/source
+\begin{itemize}
+	\item knit_grid_cables.mf
+	\item knit_nogrid_cables.mf
+	\item knit_symbols.mf
+	\item knitg_sc_in.mf
+	\item knitg_sc_out.mf
+	\item knitgg.mf
+	\item knitgn.mf
+	\item knitgp.mf
+	\item knitmg.mf
+	\item knitml.mf
+	\item knitmn.mf
+	\item knitmp.mf
+	\item knitmr.mf
+	\item knitn_sc_in.mf
+	\item knitn_sc_out.mf
+	\item knitnl.mf
+	\item knitnn.mf
+	\item knitnp.mf
+	\item knitnr.mf
+	\item knitwg.mf
+	\item knitwn.mf
+	\item knitwp.mf
+\end{itemize}
+
+\noindent knitting/fonts/tfm
+\begin{itemize}
+	\item knitg_sc_in.tfm
+	\item knitg_sc_out.tfm
+	\item knitgg.tfm
+	\item knitgn.tfm
+	\item knitgp.tfm
+	\item knitmg.tfm
+	\item knitml.tfm
+	\item knitmn.tfm
+	\item knitmp.tfm
+	\item knitmr.tfm
+	\item knitn_sc_in.tfm
+	\item knitn_sc_out.tfm
+	\item knitnl.tfm
+	\item knitnn.tfm
+	\item knitnp.tfm
+	\item knitnr.tfm
+	\item knitwg.tfm
+	\item knitwn.tfm
+	\item knitwp.tfm
+\end{itemize}
+
+\noindent knitting/fonts/type1
+\begin{itemize}
+	\item knitg_sc_in.pfb
+	\item knitg_sc_out.pfb
+	\item knitgg.pfb
+	\item knitgn.pfb
+	\item knitgp.pfb
+	\item knitmg.pfb
+	\item knitml.pfb
+	\item knitmn.pfb
+	\item knitmp.pfb
+	\item knitmr.pfb
+	\item knitn_sc_in.pfb
+	\item knitn_sc_out.pfb
+	\item knitnl.pfb
+	\item knitnn.pfb
+	\item knitnp.pfb
+	\item knitnr.pfb
+	\item knitwg.pfb
+	\item knitwn.pfb
+	\item knitwp.pfb
+\end{itemize}
+
+\noindent knitting/tex/latex
+\begin{itemize}
+    \item knitting.sty
+    \item uknit.fd
+\end{itemize}
+\noindent knitting/tex/plain
+\begin{itemize}
+    \item knitting.tex
+\end{itemize}
+
+\endgroup
+
+\end{document}
+

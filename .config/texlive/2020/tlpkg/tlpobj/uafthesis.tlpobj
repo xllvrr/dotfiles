@@ -1,0 +1,35 @@
+name uafthesis
+category Package
+revision 29349
+shortdesc Document class for theses at University of Alaska Fairbanks
+longdesc This is an "unofficial" official class.
+containersize 7604
+containerchecksum 3f8146ae2cddcc8f136c7dad5cd926919d4d81a2b43038fcce55620c6c240326123b6f48c32504b44cbbd9b62aa3a61cd80f5b85c9890ecddef9d96342cc0eb7
+doccontainersize 30020
+doccontainerchecksum bb1e0fddf66350187d8507b34811c0c1ea84fbf0c6cd3e9eeaec8ef6c7111fa2ad1eb4d805df01fa6bed58030056ddf0b2b4305ad821e696fa6de977cff46c98
+docfiles size=36
+ texmf-dist/doc/latex/uafthesis/Makefile
+ texmf-dist/doc/latex/uafthesis/README.md details="Readme"
+ texmf-dist/doc/latex/uafthesis/bib_styles/agufull08.bst
+ texmf-dist/doc/latex/uafthesis/bib_styles/unsrtabbrv3.bst
+ texmf-dist/doc/latex/uafthesis/example/abstract.tex
+ texmf-dist/doc/latex/uafthesis/example/acknowledgements.tex
+ texmf-dist/doc/latex/uafthesis/example/apx1.tex
+ texmf-dist/doc/latex/uafthesis/example/build.sh
+ texmf-dist/doc/latex/uafthesis/example/ch1.tex
+ texmf-dist/doc/latex/uafthesis/example/ch2.tex
+ texmf-dist/doc/latex/uafthesis/example/ch3.tex
+ texmf-dist/doc/latex/uafthesis/example/custom-macros.tex
+ texmf-dist/doc/latex/uafthesis/example/example.loa.bk
+ texmf-dist/doc/latex/uafthesis/example/example.tex
+ texmf-dist/doc/latex/uafthesis/example/example.toc.bk
+ texmf-dist/doc/latex/uafthesis/example/fig/fivebatteries.png
+ texmf-dist/doc/latex/uafthesis/example/fig/onebattery.png
+ texmf-dist/doc/latex/uafthesis/example/quotepage.tex
+runfiles size=8
+ texmf-dist/tex/latex/uafthesis/uafthesis.cls
+catalogue-contact-repository https://github.com/jesusabdullah/uafthesis
+catalogue-ctan /macros/latex/contrib/uafthesis
+catalogue-license lppl
+catalogue-topics dissertation
+catalogue-version 12.12

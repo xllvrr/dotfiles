@@ -1,0 +1,43 @@
+name curve
+category Package
+revision 20745
+shortdesc A class for making curriculum vitae
+longdesc CurVe is a class for writing a CV, with configuration for the
+longdesc language in which you write. The class provides a set of
+longdesc commands to create rubrics, entries in these rubrics etc. CurVe
+longdesc then format the CV (possibly splitting it onto multiple pages,
+longdesc repeating the titles etc), which is usually the most painful
+longdesc part of CV writing. Another nice feature of CurVe is its
+longdesc ability to manage different CV 'flavours' simultaneously. It is
+longdesc often the case that you want to maintain slightly divergent
+longdesc versions of your CV at the same time, in order to emphasize on
+longdesc different aspects of your background. CurVe also comes with
+longdesc support for use with AUC-TeX.
+containersize 6868
+containerchecksum 9d318d35ef04d171da1c36ab4646465d4aa0feebd90fd3e97db5f1cf09c28c174d0c3be288c369215812f51ca83b341abbfdf3fa44458d1994cf68dfaeef0615
+doccontainersize 249672
+doccontainerchecksum 7a56d7c3bd8b9b13ee675b99a2f5a8a27fb3dfd81dc5225f3a880f338d5390c893ca887cbbcd9ad8deae2a1d6b6620ef664ea64384f93fd93a75a5c886641a2d
+docfiles size=80
+ texmf-dist/doc/latex/curve/NEWS
+ texmf-dist/doc/latex/curve/README details="Readme"
+ texmf-dist/doc/latex/curve/THANKS
+ texmf-dist/doc/latex/curve/curve.el
+ texmf-dist/doc/latex/curve/curve.pdf details="Package documentation"
+ texmf-dist/doc/latex/curve/examples/Makefile
+ texmf-dist/doc/latex/curve/examples/bib.bib
+ texmf-dist/doc/latex/curve/examples/bib.tex
+ texmf-dist/doc/latex/curve/examples/raw.tex
+ texmf-dist/doc/latex/curve/examples/rubric.tex
+ texmf-dist/doc/latex/curve/header.inc
+srccontainersize 22616
+srccontainerchecksum 8e5026da24dddda0f266b8431fb28c27037ad920e37010fd97fdbfb5dae8024cb687b681356a6e27244dd4812bbd043e12c91508978dbe796a119e3e8633566e
+srcfiles size=23
+ texmf-dist/source/latex/curve/curve.dtx
+ texmf-dist/source/latex/curve/curve.ins
+runfiles size=7
+ texmf-dist/tex/latex/curve/curve.cls
+catalogue-also currvita cv esieecv europecv vita
+catalogue-ctan /macros/latex/contrib/curve
+catalogue-license lppl
+catalogue-topics cv class
+catalogue-version 1.16

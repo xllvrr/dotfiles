@@ -1,0 +1,55 @@
+name listings
+category Package
+revision 54554
+shortdesc Typeset source code listings using LaTeX
+longdesc The package enables the user to typeset programs (programming
+longdesc code) within LaTeX; the source code is read directly by TeX--no
+longdesc front-end processor is needed. Keywords, comments and strings
+longdesc can be typeset using different styles (default is bold for
+longdesc keywords, italic for comments and no special style for
+longdesc strings). Support for hyperref is provided. To use,
+longdesc \usepackage{listings}, identify the language of the object to
+longdesc typeset, using a construct like: \lstset{language=Python}, then
+longdesc use environment lstlisting for inline code. External files may
+longdesc be formatted using \lstinputlisting to process a given file in
+longdesc the form appropriate for the current language. Short (in-line)
+longdesc listings are also available, using either \lstinline|...| or
+longdesc |...| (after defining the | token with the \lstMakeShortInline
+longdesc command).
+containersize 146216
+containerchecksum 32c0892e650805d57a407ad0846f6ffbd207aa2840a261b4b8652c389f96ce89a2c6309b4bf5488e7c7a0927caf2b21bd97db6d380f396398113ca5110d687ff
+doccontainersize 2163008
+doccontainerchecksum 38775e89b09ad00efe1c8fbea71dd5e7321789b24be407fdec53da87966e31b3b79ebbf085d9601f1c0b80177993af7048f58a4086185ead488a9a118d37e7bd
+docfiles size=604
+ texmf-dist/doc/latex/listings/README details="Package Readme"
+ texmf-dist/doc/latex/listings/listings-devel.pdf
+ texmf-dist/doc/latex/listings/listings.pdf details="Package documentation"
+ texmf-dist/doc/latex/listings/lstdrvrs.pdf details="Language drivers details"
+srccontainersize 267480
+srccontainerchecksum 714c0fa4f6100e1c7e1b1ba28f4544f2c0d0eeb54c73c76ced4f362ceabcd8d284c8288c610643b14c8baa75cd18c9c44b5843ad3116f0ac34ee708916f177f0
+srcfiles size=275
+ texmf-dist/source/latex/listings/Makefile
+ texmf-dist/source/latex/listings/listings.dtx
+ texmf-dist/source/latex/listings/listings.ins
+ texmf-dist/source/latex/listings/lstdrvrs.dtx
+ texmf-dist/source/latex/listings/lstdrvrs.ins
+ texmf-dist/source/latex/listings/ltxdoc.cfg
+runfiles size=145
+ texmf-dist/tex/latex/listings/listings-acm.prf
+ texmf-dist/tex/latex/listings/listings-bash.prf
+ texmf-dist/tex/latex/listings/listings-fortran.prf
+ texmf-dist/tex/latex/listings/listings-hansl.prf
+ texmf-dist/tex/latex/listings/listings-lua.prf
+ texmf-dist/tex/latex/listings/listings-python.prf
+ texmf-dist/tex/latex/listings/listings.cfg
+ texmf-dist/tex/latex/listings/listings.sty
+ texmf-dist/tex/latex/listings/lstdoc.sty
+ texmf-dist/tex/latex/listings/lstlang1.sty
+ texmf-dist/tex/latex/listings/lstlang2.sty
+ texmf-dist/tex/latex/listings/lstlang3.sty
+ texmf-dist/tex/latex/listings/lstmisc.sty
+catalogue-also listing
+catalogue-ctan /macros/latex/contrib/listings
+catalogue-license lppl1.3c
+catalogue-topics listing synt-hlt
+catalogue-version 1.8d

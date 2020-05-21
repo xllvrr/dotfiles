@@ -1,0 +1,8 @@
+name petri-nets.x86_64-linux
+category Package
+revision 39165
+shortdesc x86_64-linux files of petri-nets
+containersize 344
+containerchecksum e0e68dab011ce5ce45076cbe8d4d3618bc6f96fad95479df049b653e473e5d927a784507b9ba8626a71ce39c54501d9d6c82d6330244a766026edf5510b0cf8f
+binfiles arch=x86_64-linux size=1
+ bin/x86_64-linux/pn2pdf

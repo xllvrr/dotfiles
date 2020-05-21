@@ -1,0 +1,25 @@
+name drs
+category Package
+revision 19232
+shortdesc Typeset Discourse Representation Structures (DRS)
+longdesc The package draws Discourse Representation Structures (DRSs).
+longdesc It can draw embedded DRSs, if-then conditions and
+longdesc quantificational "duplex conditions" (with a properly scaled
+longdesc connecting diamond). Formatting parameters allow the user to
+longdesc control the appearance and placement of DRSs, and of DRS
+longdesc variables and conditions. The package is based on DRS macros in
+longdesc the covington package.
+containersize 4560
+containerchecksum 5054b389c79b6895e648d3d4fcd1a3f7b06b213963245702e5bc4c0e8b6e3a87c6a2d3f72509998216e25553148008e597c6dd3015ef0b94724e84f3fade5936
+doccontainersize 99960
+doccontainerchecksum c265c462094e50872fc2748167226319a5723aabe54ca057661b95c7cff897afd08f42ce6d520b7ab35f259b760800e79ac6deae0f1ca0c776c2c2aa7839cf80
+docfiles size=30
+ texmf-dist/doc/latex/drs/README details="Readme"
+ texmf-dist/doc/latex/drs/drsdoc.pdf details="Package documentation"
+ texmf-dist/doc/latex/drs/drsdoc.tex
+runfiles size=3
+ texmf-dist/tex/latex/drs/drs.sty
+catalogue-ctan /macros/latex/contrib/drs
+catalogue-license lppl1.3
+catalogue-topics linguistic
+catalogue-version 1.1b

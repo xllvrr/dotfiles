@@ -1,0 +1,34 @@
+name pgfmolbio
+category Package
+revision 35152
+shortdesc Draw graphs typically found in molecular biology texts
+longdesc The package draws graphs typically found in molecular biology
+longdesc texts. Currently, the package contains modules for drawing DNA
+longdesc sequencing chromatograms and protein domain diagrams.
+containersize 13796
+containerchecksum bdbd89379ed7310b78a3847c43022f6cd65f5fccfabfc4723551f5ef4f4cad3e3dcf596ff65cb4c5ba4a354f9bd59fa4aa39147782a0ed369a7dfcb68ef7f9cc
+doccontainersize 858652
+doccontainerchecksum a9dbe657b4037477adcf3ead4ad4ca5b703ee8c53739da9de0bed8e02c8e14961a963e9a4a5a86b3f53348da9eab5cdbada1b5ddd073bc18c82177abc92023f2
+docfiles size=245
+ texmf-dist/doc/lualatex/pgfmolbio/README details="Readme"
+ texmf-dist/doc/lualatex/pgfmolbio/SampleGff.gff
+ texmf-dist/doc/lualatex/pgfmolbio/SampleScf.scf
+ texmf-dist/doc/lualatex/pgfmolbio/SampleUniprot.txt
+ texmf-dist/doc/lualatex/pgfmolbio/pgfmolbio.pdf details="Package documentation"
+srccontainersize 45240
+srccontainerchecksum 1552182819893f7538ee5b38816d339639ff6e6ed3e092a67dde1dfa2a73eb7bca1490909fa34d4999399a8328b2ec8885ad86e76438e4f177dd81e2e6accdd0
+srcfiles size=54
+ texmf-dist/source/lualatex/pgfmolbio/pgfmolbio.dtx
+ texmf-dist/source/lualatex/pgfmolbio/pgfmolbio.ins
+runfiles size=21
+ texmf-dist/scripts/pgfmolbio/pgfmolbio.lua
+ texmf-dist/tex/lualatex/pgfmolbio/pgfmolbio.chromatogram.lua
+ texmf-dist/tex/lualatex/pgfmolbio/pgfmolbio.chromatogram.tex
+ texmf-dist/tex/lualatex/pgfmolbio/pgfmolbio.convert.tex
+ texmf-dist/tex/lualatex/pgfmolbio/pgfmolbio.domains.lua
+ texmf-dist/tex/lualatex/pgfmolbio/pgfmolbio.domains.tex
+ texmf-dist/tex/lualatex/pgfmolbio/pgfmolbio.sty
+catalogue-ctan /macros/luatex/latex/pgfmolbio
+catalogue-license lppl1.3
+catalogue-topics molbio diagram luatex
+catalogue-version 0.21

@@ -1,0 +1,153 @@
+
+\psset{unit=.6cm}
+
+ \RDD{blendmode} ({\blue \dft{} : blendmode=0})
+
+\bigskip
+\begin{tabular}{|c|c|c|c|}
+\hline
+\BS{}psset\AC{\red{blendmode=1}}   & \BS{}psset\AC{\red{blendmode=2}}  & \BS{}psset\AC{\red{blendmode=3}} & \BS{}psset\AC{\red{blendmode=0}} \\ 
+( type /Compatible)   & (type /Screen )  & (type /Multiply) & (type /Normal) \\ 
+ 
+\hline
+\psset{blendmode=1}% type /Compatible
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape](-1,-1)(2,2)
+\end{pspicture}
+ &
+ \psset{blendmode=2}% type /Screen 
+ \begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+  \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+  \psframe[fillcolor=blue,fillstyle=shape](-1,-1)(2,2)
+ \end{pspicture} 
+   & 
+\psset{blendmode=3}% type /Multiply
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape](-1,-1)(2,2)
+\end{pspicture}
+    &
+\psset{blendmode=0}% type /Normal
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape](-1,-1)(2,2)
+\end{pspicture} 
+      \\ \hline 
+\multicolumn{4}{|c|}{ \BS{}psframe[fillcolor=red,fillstyle=\RDDD{shape}{fillstyle}](-2,-2)(1,1)
+       \BS{}psframe[fillcolor=blue,fillstyle=shape](-1,-1)(2,2)}\\
+
+\hline 
+\end{tabular} 
+\bigskip
+
+
+ \RDD{shapealpha} ({\blue  \dft{} : shapealpha=0.6})
+
+\bigskip
+
+
+
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+&\BS{}psset\AC{blendmode=1}   & \BS{}psset\AC{blendmode=2}  & \BS{}psset\AC{blendmode=3} & \BS{}psset\AC{blendmode=0} \\ 
+\hline
+\begin{pspicture}(0,-2.5)(1,2.5)
+\psTextFrame*[linecolor=white,rot=90](0,-2)(1,2){%
+{\centering \color{red} shapealpha=0}}
+\end{pspicture}
+&
+\psset{blendmode=1}% type /Compatible
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=0](-1,-1)(2,2)
+\end{pspicture}
+&
+\psset{blendmode=2}% type /Screen 
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=0](-1,-1)(2,2)
+\end{pspicture} 
+&
+\psset{blendmode=3}% type /Multiply
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=0](-1,-1)(2,2)
+\end{pspicture}
+&
+\psset{blendmode=0}% type /Normal
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=0](-1,-1)(2,2)
+\end{pspicture}\\
+
+\hline
+\begin{pspicture}(0,-2.5)(1,2.5)
+\psTextFrame*[linecolor=white,rot=90](0,-2)(1,2){%
+{\centering \color{red} shapealpha=0.3}}
+\end{pspicture}
+&
+\psset{blendmode=1}% type /Compatible
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=0.3](-1,-1)(2,2)
+\end{pspicture}
+&
+\psset{blendmode=2}% type /Screen 
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=0.3](-1,-1)(2,2)
+\end{pspicture} 
+&
+\psset{blendmode=3}% type /Multiply
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=0.3](-1,-1)(2,2)
+\end{pspicture}
+&
+\psset{blendmode=0}% type /Normal
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=0.3](-1,-1)(2,2)
+\end{pspicture}\\
+
+\hline
+\begin{pspicture}(0,-2.5)(1,2.5)
+\psTextFrame*[linecolor=white,rot=90](0,-2)(1,2){%
+{\centering \color{red} shapealpha=1}}
+\end{pspicture}
+&
+\psset{blendmode=1}% type /Compatible
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=1](-1,-1)(2,2)
+\end{pspicture}
+&
+\psset{blendmode=2}% type /Screen 
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=1](-1,-1)(2,2)
+\end{pspicture} 
+&
+\psset{blendmode=3}% type /Multiply
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=1](-1,-1)(2,2)
+\end{pspicture}
+&
+\psset{blendmode=0}% type /Normal
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+ \psframe[fillcolor=red,fillstyle=shape](-2,-2)(1,1)
+ \psframe[fillcolor=blue,fillstyle=shape,shapealpha=1](-1,-1)(2,2)
+\end{pspicture}\\
+
+\hline 
+\multicolumn{5}{|c|}{
+       \BS{}psframe[fillcolor=blue,fillstyle=shape,shapealpha=1](-1,-1)(2,2)}\\
+
+\hline  
+\end{tabular}
+
+
+\psset{unit=1cm}

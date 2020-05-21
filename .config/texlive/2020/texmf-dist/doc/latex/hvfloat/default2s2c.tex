@@ -1,0 +1,81 @@
+\documentclass[twoside,twocolumn]{scrartcl}
+%% $Id: default2s2c.tex 1033 2019-04-04 07:24:57Z herbert $
+
+\input{preamble.ltx}
+\setlength\columnseprule{0.4pt}
+
+\begin{document}
+\title{Example for fullpage floats}
+\author{Herbert Voß}
+\maketitle
+
+\tableofcontents
+
+\blinddocument
+
+\section{File \texttt{\jobname}}
+
+\begin{lstlisting}
+The fullpage image~\vref{fig:fullpage0} has a caption~\vpageref{fig:fullpage0-cap}.
+\end{lstlisting}
+
+The fullpage image~\vref{fig:fullpage0} has a caption~\vpageref{fig:fullpage0-cap}.
+
+\begin{lstlisting}
+\hvFloat[fullpage]%
+  {figure}%
+  {\includegraphics[fullpage]{frose}}%
+  [A fullpage float with the default caption setting]%
+  {A default caption of a ``fullpage'' object with the default setting, which
+   is a ``left''  caption which means that it always appears before the object.
+   This can be an even or odd page. And some more text whch has no
+   real meaning because it fills only the space for a long caption.}%
+  {fig:fullpage0}
+\end{lstlisting}
+
+
+\Float[default]
+\hvFloat[fullpage]%
+  {figure}%
+  {\includegraphics[fullpage]{frose}}%
+  [A fullpage float with the default caption setting]%
+  {A default caption of a ``fullpage'' object with the default setting, which
+   is a ``left''  caption which means that it always appears before the object.
+   This can be an even or odd page. And some more text whch has no
+   real meaning because it fills only the space for a long caption.}%
+  {fig:fullpage0}
+
+\blinddocument
+
+\begin{lstlisting}
+\hvFloat[fullpage]%
+  {figure}%
+  {\includegraphics[fullpage]{frose}}%
+  [A fullpage float with the default caption setting]%
+  {A default caption of a ``fullpage'' object with the default setting, which
+   is a ``left''  caption which means that it always appears before the object.
+   This can be an even or odd page. And some more text whch has no
+   real meaning because it fills only the space for a long caption.}%
+  {fig:fullpage1}
+\end{lstlisting}
+
+
+\Float[default]
+\hvFloat[fullpage]%
+  {figure}%
+  {\includegraphics[fullpage]{frose}}%
+  [A fullpage float with the default caption setting]%
+  {A default caption of a ``fullpage'' object with the default setting, which
+   is a ``left''  caption which means that it always appears before the object.
+   This can be an even or odd page. And some more text whch has no
+   real meaning because it fills only the space for a long caption.}%
+  {fig:fullpage1}
+
+\blinddocument
+
+\Blindtext
+
+\blindtext
+
+
+\end{document}

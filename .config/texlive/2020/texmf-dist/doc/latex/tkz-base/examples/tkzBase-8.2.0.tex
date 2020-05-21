@@ -1,0 +1,17 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 56 (Section  8.2 : Placing a label with the library \tkzname{quotes})
+
+\begin{tikzpicture}[trim left=-1cm]
+ \tkzDefPoint["-60:$A_n$" ](2,3){A}
+ \tkzDefPoint[shift={(2,3)},%
+    "$B_n$" above left](31:3){B}
+ \tkzDefPoint[shift={(2,3)},%
+     "$C_n$" above right](158:3){C}
+ \tkzDrawSegments[color=red,%
+          line width=1pt](A,B A,C)
+ \tkzDrawPoints[color=red](A,B,C)
+\end{tikzpicture}
+
+\end{document}

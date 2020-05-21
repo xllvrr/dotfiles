@@ -1,0 +1,101 @@
+% !Mode:: "TeX:UTF-8"
+% +-----------------------------------------------------------------------------
+% | File: resume-en
+% | Author: huxuan
+% | E-mail: i(at)huxuan.org
+% | Created: 2012-12-18
+% | Last modified: 2020-04-20
+% | Description:
+% |     A English Resume Example in LaTeX based on resumecls
+% |
+% | Copyright (c) 2012-2020 by huxuan. All rights reserved.
+% +-----------------------------------------------------------------------------
+
+\documentclass[color]{resumecls}
+
+\include{resume-common}
+
+\name{Name}
+\organization{School or Organization}
+\address{Address, Zip Code}
+\leftfooter{Last Modified: \today}
+\rightfooter{\url{http://example.com/resume-en.pdf}}
+
+\ctexset{today=old}
+
+\begin{document}
+\begin{table}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\heading{Experience (Compact Version)}
+\entry{0em}{Xlr}{{\bfseries Organization} \quad Department & Position & Time Period}
+\entry{2em}{X}{%
+    Description1 \\
+    Description2 \\
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\heading{Education}
+\entry{0em}{Xrr}{{\bfseries School} & City & Time Period}
+\entry{2em}{lXX}{%
+    Degree1 & College1 & Major1 \\
+    Degree2 & College2 & Major2 \\
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\heading{Research Experience}
+\entry{0em}{Xr}{{\bfseries Insitute} & Time Period}
+\entry{2em}{X}{Lab \quad Position}
+\entry{4em}{X}{%
+    Description \\
+    bibtex can be used here, like \cite{label} \\
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\heading{Working Experience}
+\entry{0em}{Xr}{{\bfseries Organization} & Time Period}
+\entry{2em}{X}{Department \quad Position}
+\entry{4em}{X}{%
+    Description \\
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\heading{School Experience}
+\entry{0em}{Xr}{%
+    Experience1 & Time Period \\
+    Experience2 & Time Period \\
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\heading{Awards}
+\entry{0em}{Xr}{%
+    Award1 & Time \\
+    Award2 & Time \\
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\heading{Professional Skill}
+\entry{0em}{lX}{%
+    Proficient in  & XXX \\
+    Experienced in & XXX \\
+    Familiar with  & XXX \\
+    Use            & XXX \\
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\heading{Other listings, such as hobby, network profile and so on}
+\entry{0em}{lX}{%
+    Label1 & Content1 \\
+    Label2 & Content2 \\
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% If there is no publications, just comment this part.
+\heading{Publications}
+\vspace{-6em}
+\bibliography{resume}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Sample for two or more pages.
+\end{table}
+\clearpage
+\begin{table}
+\heading{Heading for Page 2}
+\entry{0em}{X}{
+    Each page is enclosed inside a table environment. \\
+    \verb|\clearpage| between the tables will lead to a new page. \\
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{table}
+\end{document}

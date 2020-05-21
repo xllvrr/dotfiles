@@ -1,0 +1,42 @@
+\input cap_c
+\magnification 1440
+
+
+\BeginC
+// this is a short demo program
+/* both kinds of comment are recognised */
+
+// some compiler directives
+#pragma hdrfile "hello.sym"
+#include <stdio.h>
+#include <sys/stat.h>
+#pragma hdrstop
+
+void hello(int n)
+{
+  // obviously, keywords inside comments or
+  // texts are not emphasized:
+  // void return switch for double
+  for (; n>0; n--)
+    printf("Hello, void world!\n");
+    /*     ^ isn't that beautiful?   */
+}
+
+float silly_funct()
+{
+  #define max(a,b)   ((a)>(b))?(a):(b)
+  printf("%7.4lf\n", max(3.14, 012));
+}
+
+// words not recognised as keywords are considered
+// to be identifiers and are typeset in italic
+void main()
+{
+  int n;
+  hello(0x1C);
+  silly_funct();
+}
+\EndC
+
+
+\bye

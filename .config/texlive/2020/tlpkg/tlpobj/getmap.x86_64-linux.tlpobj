@@ -1,0 +1,8 @@
+name getmap.x86_64-linux
+category Package
+revision 34971
+shortdesc x86_64-linux files of getmap
+containersize 344
+containerchecksum fa908890dc366cc03f1ef0a3b7ac23fef70b49bd48ce1d6729643f235d63b0e09f74a91080c0936e96e90affabceee72967e85bb14ed93e33eb8d839b7bfd55e
+binfiles arch=x86_64-linux size=1
+ bin/x86_64-linux/getmapdl

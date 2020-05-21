@@ -1,0 +1,19 @@
+name ebook
+category Package
+revision 29466
+shortdesc Helps creating an ebook by providing an ebook class
+longdesc The package defines a command \ebook that defines page layout,
+longdesc fonts, and font-sizes for documents to be rendered as
+longdesc PDF-ebooks on small ebook-readers. The package has been tested
+longdesc with Kindle e-ink and iPad mini.
+containersize 1596
+containerchecksum 3345ec303d77965800fb78a1a6b0645c206534bdf84e5b5287d23fb273a720025ec770527d662a5a535e98fb6cb9a6d37d50569963ca24225af8d626ea7d4dfd
+doccontainersize 824
+doccontainerchecksum 0aba8d5010ece8e6e3c155d05a87eea960d8ec1b4deb1cd7ba948b4106eb8e20d752d3032696bb98c1d23b1927317d3d53a79fdf0b62e9053245aa86ef6e79e5
+docfiles size=1
+ texmf-dist/doc/latex/ebook/README details="Readme"
+runfiles size=1
+ texmf-dist/tex/latex/ebook/ebook.sty
+catalogue-ctan /macros/latex/contrib/ebook
+catalogue-license pd
+catalogue-topics geometry font-use ebook

@@ -1,0 +1,16 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 52 (Section  7.0.9 : Use of \tkzname{pi} with \tkzcname{tkzGrid})
+
+\begin{tikzpicture}[scale=.75]
+   \tkzInit[xmax=6.5,ymax=6.5]
+   \tkzGrid[xstep=pi,ystep=pi/2,sub,
+            subxstep=pi/4,subystep=pi/4]
+   \tkzLabelX[label=$t$,orig=false,trig=4,
+            below=6pt,font=\scriptsize]
+   \tkzLabelY[trig=2,font=\scriptsize]
+   \tkzDrawXY
+\end{tikzpicture}
+
+\end{document}

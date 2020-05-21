@@ -1,0 +1,98 @@
+
+\psset{fillcolor=yellow,fillstyle=solid,linecolor=blue}
+
+
+\psset{linecolor=blue,linewidth=2pt,fillcolor=yellow}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}\hline
+\multicolumn{3}{|c|}{ \BS{psframebox*}\AC{objet}} \\ \hline 
+& \textbf{\TFRGB{sans astérisque}{without asterisk}} & \textbf{\TFRGB{avec astérisque}{with asterisk}} \\
+\hline \BSS{psframebox}* 	&\rule[-.5cm]{0pt}{1cm}  \psframebox{objet} 	& \psframebox*{objet} \\ 
+
+\hline \BSS{psdblframebox}*	&\rule[-.5cm]{0pt}{1cm}  \psdblframebox{objet} 	& \psdblframebox*{objet} \\ 
+
+\hline \BSS{psshadowbox}* &\rule[-.5cm]{0pt}{1cm}\psshadowbox{objet} 	& \psshadowbox*{objet} \\
+
+\hline \BSS{pscirclebox}*	&\rule[-.5cm]{0pt}{1.3cm}  \pscirclebox{objet}  & \pscirclebox*{objet} \\
+
+\hline \BSS{psovalbox}*		&\rule[-.5cm]{0pt}{1cm}  \psovalbox{objet} 	& \psovalbox*{objet} \\
+
+\hline \BSS{psdiabox}*		&\rule[-.5cm]{0pt}{1.3cm}  \psdiabox{objet}  	& \psdiabox*{objet} \\
+
+\hline \BSS{pstribox}*		&\rule[-.3cm]{0pt}{1.3cm}  \pstribox{objet}  	& \pstribox*{objet} \\
+
+\hline 
+\end{tabular} 
+\end{center}
+
+\TFRGB{Exemple}{Example} :  \BS{}psdiabox\AC{\BS{}DFR}  \psdiabox{\DFR} 
+
+
+\subsection{Options }
+
+
+
+%\subsubsection{framesep=dimension}
+
+\begin{tabular}{|c|c|c|}
+\hline 
+\multicolumn{3}{|c|}{ \BS{psframebox} \RDD{framesep}=.5cm]\AC{framesep=.5cm}} \\ \hline 
+\psframebox{\dft{}}
+&  
+\psframebox[framesep=0cm]{framesep=0cm}
+&  
+\psframebox[framesep=.5cm]{framesep=.5cm}
+\\ 
+\hline {\blue \dft{} :  framesep=3pt }& framesep=0cm & framesep=.5cm \\ 
+\hline 
+\end{tabular} 
+
+ 
+\bigskip
+
+
+%\subsubsection{boxsep=true/false}
+
+\begin{tabular}{|c|} \hline
+\RDD{boxsep} {\blue  \dft : true} (\TFRGB{Ce paramètre ne s'applique qu'à}{Apply only to}  \BS{psframebox}, \BS{pscirclebox} \TFRGB{et}{and} \BS{psovalbox}) 
+\\ \hline 
+\TFRGB{texte avant}{text before} \psframebox[boxsep=true]{boxsep=true} \TFRGB{texte entre les 2 boites}{text between} \psframebox[boxsep=false]{boxsep=false} \TFRGB{texte après}{text after}
+ \\ \hline 
+\end{tabular} 
+
+
+
+\bigskip
+%\subsubsection{Options trimode pour  \BS{}pstribox}
+
+
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{3}{|c|}{ Option \RDD{trimode}  \TFRGB{pour}{only for}  \BS{pstribox} } \\ \hline 
+& \textbf{\TFRGB{sans astérisque}{without asterisk}} & \textbf{\TFRGB{avec astérisque}{with asterisk}}  \\
+\hline \BS{}pstribox*[{\red trimode=U}] &\rule[-.3cm]{0pt}{1.2cm} \pstribox[trimode=U]{objet}  & \pstribox*[trimode=U]{objet} \\
+\hline \BS{}pstribox*[{\red trimode=D}] & \rule[-.5cm]{0pt}{1cm}\pstribox[trimode=D]{objet} & \pstribox*[trimode=D]{objet} \\
+\hline \BS{}pstribox*[{\red trimode=R}] & \rule[-.5cm]{0pt}{1.2cm}\pstribox[trimode=R]{objet}  & \pstribox*[trimode=R]{objet} \\
+\hline \BS{}pstribox*[{\red trimode=L}] & \rule[-.5cm]{0pt}{1.2cm}\pstribox[trimode=L]{objet}  & \pstribox*[trimode=L]{objet} \\
+\hline 
+\end{tabular} 
+
+\bigskip
+%\subsubsection{Limitation de la taille de la boite}
+
+\begin{tabular}{|c|}\hline    
+\BS{psframebox}\AC{\BS{parbox}[l]\AC{3cm}\AC{\TFRGB{utilisation de \BSS{parbox} pour limiter la largeur de la boite à 3cm}{use of \BSS{parbox} to limit the width of the framebox}}}
+\\ \hline 
+\psframebox{\parbox[l]{4cm}{\TFRGB{utilisation de \BSS{parbox} pour limiter la largeur de la boite à 3cm}{use of \BSS{parbox} to limit the width of the framebox}}}
+ \\ \hline 
+\end{tabular} 
+
+
+
+
+\begin{center}
+
+
+\end{center}
+
+\psset{fillcolor=white}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>alternative sequence</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<meta name="originator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<!-- xhtml,th4,index --> 
+<meta name="src" content="mn.tex" /> 
+<meta name="date" content="2004-02-11 18:07:00" /> 
+<link rel="stylesheet" type="text/css" href="mn.css" /> 
+</head><body 
+>
+<dl > <dt>An alternative mode</dt><dd>
+
+<div class="Verbatim"><span class="cmtt-10">&nbsp;Gdvips</span><span class="cmtt-10">&nbsp;-T</span><span class="cmtt-10">&nbsp;14in,14in</span><span class="cmtt-10">&nbsp;-Ppdf</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;-mode</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;epstypro</span><span class="cmtt-10">&nbsp;-D</span><span class="cmtt-10">&nbsp;360</span><span class="cmtt-10">&nbsp;-f</span><span class="cmtt-10">&nbsp;%%1</span><span class="cmtt-10">&nbsp;-pp</span><span class="cmtt-10">&nbsp;%%2</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;&gt;</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+    </dd><dt>A Netpbm-based script (<a 
+ href="ftp://ftp.x.org/R5contrib/netpbm-1mar1994.tar.gz" >src</a>)</dt><dd>
+<div class="Verbatim"><span class="cmtt-10">&nbsp;Ggs</span><span class="cmtt-10">&nbsp;-sDEVICE=ppm</span><span class="cmtt-10">&nbsp;-sOutputFile=zz%%4.ppm</span><span class="cmtt-10">&nbsp;-q</span><span class="cmtt-10">&nbsp;-dbatch</span><span class="cmtt-10">&nbsp;-dNOPAUSE</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;-c</span><span class="cmtt-10">&nbsp;quit</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;Gmv</span><span class="cmtt-10">&nbsp;zz%%4.ppm</span><span class="cmtt-10">&nbsp;yz%%4.ppm</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;Gpnmcrop</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;yz%%4.ppm</span><span class="cmtt-10">&nbsp;&gt;</span><span class="cmtt-10">&nbsp;zz%%4.ppm</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">&nbsp;Gppmtogif</span><span class="cmtt-10">&nbsp;-interlace</span><span class="cmtt-10">&nbsp;-transparent</span><span class="cmtt-10">&nbsp;1,1,1</span><span class="cmtt-10">&nbsp;zz%%4.ppm</span><span class="cmtt-10">&nbsp;&gt;</span><span class="cmtt-10">&nbsp;%%3</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+    </dd><dt>A PDF-based script (<a 
+ href="http://www.cs.wisc.edu/~ghost/doc/AFPL/6.50/Ps2pdf.htm" >ps2pdf</a>)</dt><dd>
+<div class="Verbatim"><span class="cmtt-10">Gdvips</span><span class="cmtt-10">&nbsp;-mode</span><span class="cmtt-10">&nbsp;ibmvga</span><span class="cmtt-10">&nbsp;-D</span><span class="cmtt-10">&nbsp;110</span><span class="cmtt-10">&nbsp;-f</span><span class="cmtt-10">&nbsp;%%1</span><span class="cmtt-10">&nbsp;-pp</span><span class="cmtt-10">&nbsp;%%2</span><span class="cmtt-10">&nbsp;</span><span class="cmtt-10">&nbsp;&gt;</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Gps2pdf</span><span class="cmtt-10">&nbsp;zz%%4.ps</span><span class="cmtt-10">&nbsp;zz%%4.pdf</span><span class="cmtt-10">&nbsp;</span>
+<br /><span class="cmtt-10">Gconvert</span><span class="cmtt-10">&nbsp;-crop</span><span class="cmtt-10">&nbsp;0x0</span><span class="cmtt-10">&nbsp;-density</span><span class="cmtt-10">&nbsp;110x110</span><span class="cmtt-10">&nbsp;-transparent</span><span class="cmtt-10">&nbsp;'#FFFFFF'</span><span class="cmtt-10">&nbsp;zz%%4.pdf</span><span class="cmtt-10">&nbsp;%%3</span><span class="cmtt-10">&nbsp;</span>
+<br /></div>
+    </dd></dl>
+
+     
+</body></html> 

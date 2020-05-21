@@ -1,0 +1,106 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture & note de frais %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Chargement des extensions %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{fontspec} 
+
+%\RequirePackage{fontenc}
+
+\RequirePackage[top=2 cm, bottom=2 cm, left=2.5 cm, right=2.5 cm]{geometry}
+\RequirePackage{soul}
+\RequirePackage{ulem}
+\RequirePackage{eurosym}
+\RequirePackage{lmodern}
+\RequirePackage{color}
+\RequirePackage{colortbl}
+\RequirePackage[colorlinks=true, urlcolor=magenta]{hyperref}
+\RequirePackage{mathtools}
+\RequirePackage{amssymb}
+\RequirePackage{mathrsfs}
+\RequirePackage{multirow}
+\RequirePackage{fancyhdr}
+\RequirePackage{array}
+\RequirePackage{ifthen}
+
+\RequirePackage{calctab}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture & note de frais %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Déclaration des options %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newif\if@latinUn \@latinUnfalse
+\DeclareOption{latin1}{\@latinUntrue}
+
+%% \DeclareOption{option}{...}
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{babel}}
+\ProcessOptions
+
+\RequirePackage{babel} 
+
+\if@latinUn
+    \RequirePackage{inputenc}
+    \newcommand{\rsEncodage}{latin1}
+\else
+%    \RequirePackage[utf8]{inputenc}
+    \newcommand{\rsEncodage}{UTF8}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture & note de frais %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Définition des commandes  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Toutes les commandes sont obligatoirement sous la forme \rsQuelqueChose %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture & note de frais %%
+%% Couleurs de mise en évidence
+\definecolor{grisfonce}{gray}{0.3}
+\definecolor{grisclair}{gray}{0.7}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture & note de frais communs %%
+%%%%%%%%%%%%%
+%% diverses
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture & note de frais communs %%
+%% \rsCredit permet d'ajouter les crédits dans le footer.
+\pagestyle{fancy} 
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\newcommand{\rsCredit}{
+\fancyfoot[EOC]{\footnotesize Extension \og \rsvarname \fg, V \rsvarversion, \rsvardate, \copyright\ \rsvarauthor.}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture & note de frais communs %%
+%% permet de choisir l'unité monétaire ailleurs que dans le tableau 
+%% des produits pour la facture  (package cactab).
+%% \euro (defaut), \pounds (livre anglaise) \$ (dollar américain) \textyen (yen japonais)
+%% Decomenter ci-dessous pour voir les unités
+%%\$ \pounds \euro \textyen
+\newcommand{\rsChoisirUniteMonetaire}[1]{\newcommand{\rsuniteMonetaire}{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Facture & note de frais communs %%
+%% \rsAerationVerticale fixe la longueur de l'espacement vertical, par defaut 1.5 cm
+%% et permet d'aérer la page verticalement; le paramètre est une mesure LaTeX
+%% TeX comprend six unités de mesure :
+%% + pt point = 0,35 mm
+%% + mm millimètre
+%% + ex correspond à la hauteur d'un x dans la fonte courante
+%% + em correspond à la largeur d'un m dans la fonte courante
+%% + cm centimètre
+%% + in pouce = 2,54 cm
+\newlength{\rsespaceVertical}
+\newcommand{\rsAerationVerticale}[1]{\setlength{\rsespaceVertical}{#1}}

@@ -1,0 +1,1217 @@
+
+\TFRGB{Voir aussi le module  de géométrie page}{See also the package of geometry on page} \pageref{geom}
+
+\SbSSCT{Création de n\oe uds multiples}{Multiples nodes creation}
+
+\psset{linewidth=1pt,tickcolor=black!10}
+\psset{unit=1cm,fillcolor=white,fillstyle=none,linecolor=blue}
+
+\begin{tabular}{|l|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 4,yticksize=0 4,subticks=0](0,0)(4,4){3cm}{3cm} 
+\pnodes(3,1){A}(2,3){B} (1,2){C}
+\psdots[dotstyle=*,linecolor=blue](A) \nput{45}{A}{A} 
+\psdots[dotstyle=*,linecolor=blue](B) \nput{45}{B}{B} 
+\psdots[dotstyle=*,linecolor=blue](C) \nput{135}{C}{C} 
+\psline (A) (B) (C)
+ \end{psgraph}
+& 
+\begin{psgraph}[axesstyle=none,xticksize=0 4,yticksize=0 4,subticks=0](0,0)(4,4){3cm}{3cm} 
+\pnodes{A} (3,1) (2,3) (1,2)
+\psdots[dotstyle=*,linecolor=blue](A0) \nput{45}{A0}{A0} 
+\psdots[dotstyle=*,linecolor=blue](A1) \nput{45}{A1}{A1} 
+\psdots[dotstyle=*,linecolor=blue](A2) \nput{135}{A2}{A2} 
+\psline (A0) (A1) (A2)
+ \end{psgraph}
+\\ \hline 
+
+\BSS{pnodes}(3,1)\AC{A}(2,3)\AC{B} (1,2)\AC{C} \BSI{pnodes}{pst-node} 
+&
+\BSS{pnodes}\AC{A} (3,1)(2,3) (1,2)  \\
+\BS{psline} (A) (B) (C)
+&  
+\BS{psline} (A0) (A1) (A2)
+\\ \hline 
+\end{tabular} 
+
+%-----------------------------------------------------------------------------
+\SbSSCT{Positionement calculé de n\oe uds}{Node positions calculated }
+
+\SbSbSSCT{Positions relatives avec psLNode}{Relative position width psLNode}
+
+\begin{tabular}{|c|c|}\hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 2cm,yticksize=0 6,subticks=0](0,0)(6,2){6cm}{2cm}
+\pnode(1,1){B}\pnode(5,1){C}
+  \psLNode(B)(C){0.75}{A}
+\psdots[dotstyle=*,linecolor=red](A)  \nput{45}{A}{A}%
+\psdots[dotstyle=*,linecolor=blue](B) \nput{45}{B}{B} 
+\psdots[dotstyle=*,linecolor=blue](C) \nput{45}{C}{C}%
+ \end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 2cm,yticksize=0 6cm,subticks=0](0,0)(6,2){6cm}{2cm}
+\pnode(1,1){B}\pnode(5,1){C}
+  \psLNode(B)(C){-0.25}{A}
+\psdots[dotstyle=*,linecolor=red](A)  \nput{45}{A}{A}%
+\psdots[dotstyle=*,linecolor=blue](B) \nput{45}{B}{B} 
+\psdots[dotstyle=*,linecolor=blue](C) \nput{45}{C}{C}%
+ \end{psgraph} 
+\\ \hline  
+\BSS{psLNode}(B)(C)\AC{{\red 0.75}}\AC{A} \BSI{pslNode}{pst-node} 
+&  
+\BSS{psLNode}(B)(C)\AC{{\red -0.25}}\AC{A}
+\\ \hline 
+\end{tabular}
+
+\SbSbSSCT{Positions relatives avec midAB}{Relative position width midAB}
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 2cm,yticksize=0 6cm,subticks=0](0,0)(6,2){6cm}{2cm}
+\pnode(1,1){B}\pnode(5,1){C}
+\midAB(B)(C){A}
+\psdots[dotstyle=*,linecolor=red](A)  \nput{45}{A}{A}%
+\psdots[dotstyle=*,linecolor=blue](B) \nput{45}{B}{B} 
+\psdots[dotstyle=*,linecolor=blue](C) \nput{45}{C}{C}%
+ \end{psgraph}
+\\ \hline  
+\BSS{midAB}(B)(C)\AC{A} \BSI{midAB}{pst-node} 
+\\ \hline 
+\end{tabular}
+
+%-------------------------------
+\SbSbSSCT{Positions  avec psLDNode}{Position width psLDNode}
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 2cm,yticksize=0 6cm,subticks=0](0,0)(6,2){6cm}{2cm}
+\pnode(1,1){B}\pnode(5,1){C}
+\psLDNode(B)(C){1cm}{A} 
+\psdots[dotstyle=*,linecolor=red](A)  \nput{45}{A}{A}%
+\psdots[dotstyle=*,linecolor=blue](B) \nput{45}{B}{B} 
+\psdots[dotstyle=*,linecolor=blue](C) \nput{45}{C}{C}%
+\end{psgraph} 
+\\ \hline  
+\BSS{psLDNode}(B)(C)\AC{{\red 1cm}}\AC{A} \BSI{psLNDode}{pst-node}  
+\\ \hline 
+\end{tabular} 
+
+%-------------------------------------
+
+\SbSbSSCT{Positions relatives avec psLCNode}{Relative position width psLCNode}
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 5,subticks=0](0,0)(5,5){3cm}{3cm}
+\psline{-D>}(4,1)
+\psline{-D>}(1,2)
+\psLCNode(4,1){1}(1,2){1}{A}
+\psdots[dotstyle=*,linecolor=red](A) \nput{135}{A}{A} 
+\psline[linestyle=dashed](4,1)(A)
+\psline[linestyle=dashed](1,2)(A)
+\end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 5,subticks=0](0,0)(5,5){3cm}{3cm}
+\psline{-D>}(4,1)
+\psline{-D>}(1,2)
+\psLCNode(4,1){.5}(1,2){1}{A}
+\psdots[dotstyle=*,linecolor=red](A) \nput{135}{A}{A} 
+\psline[linestyle=dashed](2,.5)(A)
+\psline[linestyle=dashed](1,2)(A)
+\end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 6,subticks=0](0,0)(6,5){3cm}{3cm}
+\psline[linestyle=dashed](1.5,3)
+\psline{-D>}(4,1)
+\psline{-D>}(1,2)
+\psLCNode(4,1){1}(1,2){1.5}{A}
+\psdots[dotstyle=*,linecolor=red](A) \nput{135}{A}{A} 
+\psline[linestyle=dashed](4,1)(A)
+\psline[linestyle=dashed](1.5,3)(A)
+\end{psgraph}
+\\ \hline  
+\BSS{psLCNode}(4,1){\red \AC{1}}(1,2){\red \AC{1}}\AC{A} \BSI{psLCNode}{pst-node} & 
+\BSS{psLCNode}(4,1){\red \AC{.5}}(1,2){\red \AC{1}}\AC{A} &
+\BSS{psLCNode}(4,1){\red \AC{1}}(1,2){\red \AC{1.5}}\AC{A}  \\ 
+\hline 
+\end{tabular} 
+
+%-----------------------------------
+
+\SbSbSSCT{Positions relatives avec psLCNodeVar}{Relative position width psLCNodeVar}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 4,subticks=0](0,0)(5,4){3cm}{3cm}
+\psline{-D>}(4,1)
+\psline{-D>}(1,2)
+\psLCNodeVar(4,1)(1,2)(1,1){A}
+\psdots[dotstyle=*,linecolor=red](A) \nput{135}{A}{A} 
+\psline[linestyle=dashed](4,1)(A)
+\psline[linestyle=dashed](1,2)(A)
+\end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,xticksize=0 4,yticksize=0 5,subticks=0](0,0)(5,4){3cm}{3cm}
+\psline{-D>}(4,1)
+\psline{-D>}(1,2)
+\psLCNodeVar(4,1)(1,2)(0.5,1){A}
+\psdots[dotstyle=*,linecolor=red](A) \nput{135}{A}{A} 
+\psline[linestyle=dashed](2,.5)(A)
+\psline[linestyle=dashed](1,2)(A)
+\end{psgraph}
+\\ \hline 
+\BSS{psLCNodeVar}(4,1)(1,2)({\red 1,1})\AC{A} \BSI{psLCNodeVar}{pst-node}  &
+\BSS{psLCNodeVar}(4,1)(1,2)({\red 0.5,1})\AC{A} 
+\\ \hline  
+\end{tabular} 
+
+%----------------------------------
+
+\SbSbSSCT{Positions relatives avec rhombus}{Relative position width rhombus}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 6,yticksize=0 6,subticks=0](0,0)(6,6){3cm}{3cm}
+\pnodes(5,2){A}(2,4){B} 
+\uput[-135](B){B}
+\uput[-45](A){A}
+\psdots[dotstyle=*,linecolor=blue](B)
+\psdots[dotstyle=*,linecolor=blue](A)
+\rhombus{2}(A)(B){C}{D}
+\psdots[dotstyle=*,linecolor=red](C)
+\psdots[dotstyle=*,linecolor=red](D)
+\uput[45](C){C}
+\uput[45](D){D}
+\psline[linestyle=dotted ](A)(B)
+\psline[linestyle=dotted ](A)(C)
+\psline[linestyle=dotted ](A)(D)
+\psline[linestyle=dotted ](B)(C)
+\psline[linestyle=dotted ](B)(D)
+\psarc[linestyle=dashed,linewidth=1pt](A){2}{80}{210}
+\end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 6,yticksize=0 6,subticks=0](0,0)(6,6){3cm}{3cm}
+\pnodes(5,2){A}(2,4){B} 
+\uput[-135](B){B}
+\uput[-45](A){A}
+\psdots[dotstyle=*,linecolor=blue](B)
+\psdots[dotstyle=*,linecolor=blue](A)
+\rhombus{3}(A)(B){X}{Y}
+\psdots[dotstyle=*,linecolor=red](X)
+\psdots[dotstyle=*,linecolor=red](Y)
+\psline[linestyle=dotted ](A)(B)
+\psline[linestyle=dotted ](A)(X)
+\psline[linestyle=dotted ](A)(Y)
+\psline[linestyle=dotted ](B)(X)
+\psline[linestyle=dotted ](B)(Y)
+\uput[45](X){X}
+\uput[45](Y){Y}
+\psline[linestyle=dotted ](A)(B)
+\psarc[linestyle=dashed,linewidth=1pt](A){3}{80}{210}
+\end{psgraph}
+\\ \hline  
+\BSS{rhombus}\AC{{\red 2}}(A)(B)\AC{C}\AC{D} \BSI{rhombus}{pst-node} 
+&  
+\BSS{rhombus}\AC{{\red 3}}(A)(B)\AC{X}\AC{Y}
+\\ \hline 
+\end{tabular}
+ 
+%-----------------------------------
+
+\SbSbSSCT{Positions relatives avec psRelNodeVar}{Relative position width psRelNodeVar}
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 5,subticks=0](0,0)(5,5){3cm}{3cm}
+ \pnode(0,1){B}
+ \pnode(2,1){C}
+\psRelNodeVar(B)(C)(1;45){A}
+ \psline(B)(C)
+\psline[linestyle=dotted](B)(A)
+\psline[linestyle=dotted](C)(A)
+\psarc[linestyle=dashed](B){2}{-20}{60}
+\uput[-45](B){B}
+\uput[45](A){A}
+\uput[-45](C){C}
+\psdots[dotstyle=*,linecolor=blue](B)
+\psdots[dotstyle=*,linecolor=red](A)
+\psdots[dotstyle=*,linecolor=blue](C)
+ \end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 5,subticks=0](0,0)(5,5){3cm}{3cm}
+\pnode(0,1){B}
+\pnode(2,1){C}
+\psRelNodeVar(B)(C)(2;45){A}
+\psline(B)(C)
+\psline[linestyle=dotted](B)(A)
+\psarc[linestyle=dashed](B){4}{-20}{60}
+\uput[-45](B){B}
+\uput[45](A){A}
+\uput[-45](C){C}
+\psdots[dotstyle=*,linecolor=blue](B)
+\psdots[dotstyle=*,linecolor=red](A)
+\psdots[dotstyle=*,linecolor=blue](C)
+ \end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 5,subticks=0](0,0)(5,5){3cm}{3cm}
+\pnode(0,1){B}
+\pnode(2,1){C}
+\psRelNodeVar(B)(C)(2;30){A}
+\psline(B)(C)
+\psline[linestyle=dotted](B)(A)
+\psarc[linestyle=dashed](B){4}{-20}{60}
+\uput[-45](B){B}
+\uput[45](A){A}
+\uput[-45](C){C}
+\psdots[dotstyle=*,linecolor=blue](B)
+\psdots[dotstyle=*,linecolor=red](A)
+\psdots[dotstyle=*,linecolor=blue](C)
+\end{psgraph}
+\\ \hline
+\BSS{psRelNodeVar}(B)(C)({\red 1;45})\AC{A} \BSI{psRelNodeVar}{pst-node} 
+&
+\BSS{psRelNodeVar}(B)(C)({\red 2;45})\AC{A}
+&  
+\BSS{psRelNodeVar}(B)(C)({\red 2;30})\AC{A}
+\\ \hline 
+\end{tabular} 
+
+%-----------------------------------
+
+\SbSbSSCT{Positions relatives avec AplusB}{Relative position width AplusB} 
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 4,yticksize=0 4,subticks=0](0,0)(4,4){3cm}{3cm}
+\pnode(1,2){B}\pnode(2,1){C}
+\pnode(0,0){O}
+\AplusB(B)(C){A}
+\psdots[dotstyle=*,linecolor=blue](B)
+\psdots[dotstyle=*,linecolor=blue](C)
+\psdots[dotstyle=*,linecolor=red](A)
+\nput{45}{A}{A}%
+\nput{135}{B}{B} 
+\nput{135}{C}{C}%
+\ncline {O} {B}
+\ncline{O} {C}
+\ncline {O} {B}
+\ncline[linestyle=dashed]{->} {B} {A}
+\ncline[linestyle=dashed]{->} {C} {A}
+ \end{psgraph}
+\\ \hline  
+\BSS{AplusB}(B)(C)\AC{A} \BSI{AplusB}{pst-node} 
+\\ \hline 
+\end{tabular} 
+
+%-----------------------------------
+
+\SbSbSSCT{Positions relatives avec AtoB}{Relative position width AtoB} 
+
+\begin{tabular}{|c|}\hline 
+\begin{psgraph}[axesstyle=none,xticksize=-2 3,yticksize=-1 3,subticks=0](0,0)(-1,-2)(3,3){4cm}{4cm}
+\pnode(1,2){B}\pnode(2,1){C}
+\pnode(0,0){O}
+\AtoB(B)(C){A}
+\psdots[dotstyle=*,linecolor=blue](B)
+\psdots[dotstyle=*,linecolor=blue](C)
+\psdots[dotstyle=*,linecolor=red](A)
+\nput{45}{A}{A}%
+\nput{45}{B}{B} 
+\nput{45}{C}{C}%
+\ncline {O} {B}
+\ncline {O} {C}
+\ncline {O} {B}
+\ncline[linestyle=dashed]{->} {B} {C}
+\ncline[linestyle=dashed]{->} {O} {A}
+\end{psgraph}
+\\ \hline  
+\BSS{AtoB}(B)(C)\AC{A} \BSI{AtoB}{pst-node} 
+\\ \hline 
+\end{tabular} 
+
+
+
+%==================================================
+
+\SbSSCT{N\oe ud sur une courbe}{Node on a curve} 
+
+\SbSbSSCT{N\oe ud sur une courbe avec fnpnode  }{Node on a curve with fnpnode } 
+
+\begin{tabular}{|l|} \hline  
+\begin{psgraph}[axesstyle=frame,xticksize=-1.5 1.5cm,yticksize=0 8cm,subticks=0](0,0)(0,-1.5)(13,1.5){8cm}{3cm}
+\psset{algebraic}
+\psplot[plotpoints=200,linewidth=2pt]{0}{13}{sin(x)}
+\fnpnode{2}{sin(x)}{A}
+\fnpnode{10}{sin(x)}{B}
+\psdots[dotstyle=*,linecolor=red](A) \uput[-135](A){A}
+\psdots[dotstyle=*,linecolor=red](B) \uput[45](B){B}
+\psline[linestyle=dashed] (A) (B)
+ \end{psgraph}
+\\ \hline  
+\BS{psplot}[plotpoints=200,linewidth=2pt]{0}\AC{13}{sin(x)}\\
+\BSS{fnpnode}\AC{2}\AC{sin(x)}\AC{A} \BSI{fnpnode}{pst-node} \\
+\BSS{fnpnode}\AC{10}\AC{sin(x)}\AC{B}\\
+\BS{psline}[linestyle=dashed] (A) (B)
+\\ \hline 
+\end{tabular} 
+
+%--------------------------------------
+
+\SbSbSSCT{N\oe uds sur une courbe avec fnpnodes  }{Nodes on a curve with fnpnodes } 
+
+\begin{tabular}{|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=-1.5 1.5cm,yticksize=0 8cm,subticks=0](0,0)(0,-1.5)(13,1.5){8cm}{3cm}
+\psset{algebraic}
+\psplot[plotpoints=200,linewidth=2pt]{0}{13}{sin(x)}
+\fnpnodes[plotpoints=14]{0}{13}{sin(x)}{A}
+\psdots[dotstyle=*,linecolor=red](A3)
+\psdots[dotstyle=*,linecolor=red](A4)
+\psdots[dotstyle=*,linecolor=red](A5)
+\psdots[dotstyle=*,linecolor=red](A6)
+\psdots[dotstyle=*,linecolor=red](A7)
+\psdots[dotstyle=*,linecolor=red](A8)
+\psdots[dotstyle=*,linecolor=red](A9)
+\psdots[dotstyle=*,linecolor=red](A11)
+\psdots[dotstyle=*,linecolor=red](A12)
+\psdots[dotstyle=*,linecolor=red](A13)
+\psdots[dotstyle=*,linecolor=red](A14)
+\psdots[dotstyle=*,linecolor=red](A1)
+\psdots[dotstyle=*,linecolor=red](A2) \uput[45](A2){A2}
+\psdots[dotstyle=*,linecolor=red](A10) \uput[45](A10){A10}
+\psline[linestyle=dashed]  (A2) (A10)
+ \end{psgraph}
+\\ \hline  
+\BS{psplot}[plotpoints=200,linewidth=2pt]{0}\AC{13}{sin(x)} \\
+\BSS{fnpnodes}[plotpoints=14]\AC{0}\AC{13}\AC{sin(x)}\AC{A} \BSI{fnpnodes}{pst-node}  \\
+\BS{psline}[linestyle=dashed]  (A2) (A10)
+\\ \hline 
+\end{tabular} 
+ 
+ 
+%--------------------------------------
+
+\SbSbSSCT{N\oe ud sur une courbe paramétrique avec curvepnode  }{Node on a parametric curve with curvepnode } 
+
+\begin{tabular}{|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=-1.2 1.2 ,yticksize=-1.2 1.2 , subticks=0](0,0)(-1.2,-1.2)(1.2,1.2){4cm}{4cm}
+\psset{algebraic}
+\parametricplot[plotpoints=200,linewidth=2pt]{0}{6.28}{sin(t)|sin(2*t)}
+\curvepnode{2}{sin(t)|sin(2*t)}{A}
+\curvepnode{6}{sin(t)|sin(2*t)}{B}
+\psdots[dotstyle=*,linecolor=red](A)  \uput[-45](A){A}
+\psdots[dotstyle=*,linecolor=red](B)  \uput[135](B){B}
+\psline[linestyle=dashed] (A) (B)
+\end{psgraph}
+\\ \hline  
+\BS{parametricplot}[plotpoints=200]\AC{0}\AC{6.28}\AC{sin(t)|sin(2*t)}\\
+\BSS{curvepnode}\AC{2}\AC{sin(t)|sin(2*t)}\AC{A} \BSI{curvepnode}{pst-node} \\
+\BSS{curvepnode}\AC{6}\AC{sin(t)|sin(2*t)}\AC{B}\\
+\BS{psline}[linestyle=dashed] (A) (B)
+\\ \hline 
+\end{tabular} 
+
+\bigskip 
+
+\paragraph{Création automatique d'un n\oe ud pour la tangente} :
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=-1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0](0,0)(-1.5,-1.5)(1.5,1.5){4cm}{4cm}
+\psset{algebraic}
+\parametricplot[plotpoints=200]{0}{6.28}{sin(t)|sin(2*t)}
+\curvepnode{2}{sin(t)|sin(2*t)}{A}
+\psxline[linewidth=2pt,linecolor=red]{<->}(A){-(Atang)}{(Atang)}
+\uput[-45](A){A} 
+\psline[linewidth=2pt,linecolor=red] (0,0) (Atang)
+\psdots[dotstyle=*,linecolor=blue](Atang)
+\psdots[dotstyle=*,linecolor=blue](A) 
+\uput[-90](Atang){Atang}
+\end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=-1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0](0,0)(-1.5,-1.5)(1.5,1.5){4cm}{4cm}
+\psset{algebraic}
+\parametricplot[plotpoints=200]{0}{6.28}{sin(t)|sin(2*t)}
+\curvepnode{4}{sin(t)|sin(2*t)}{X}
+\psxline[linewidth=2pt,linecolor=red]{<->}(X){-1.5(Xtang)}{0.5(Xtang)}
+\uput[-90](X){X} 
+\psline[linewidth=2pt,linecolor=red] (0,0) (Xtang)
+\psdots[dotstyle=*,linecolor=blue](Xtang)
+\psdots[dotstyle=*,linecolor=blue](X) \uput[-90](Xtang){Xtang}
+\end{psgraph}
+\\ \hline  
+\BS{curvepnode}\AC{2}\AC{sin(t)|sin(2*t)}\AC{{\red A}}
+&  
+\BS{curvepnode}\AC{4}\AC{sin(t)|sin(2*t)}\AC{{\red X} }
+\\
+\BS{psxline}\AC{<->}(X)\AC{-({\red Atang})}\AC{({\red Atang})}
+&
+\BS{psxline}\AC{<->}(A)\AC{-0.5({\red Xtang})}\AC{1.5({\red Xtang})}
+\\ \hline
+\end{tabular} 
+
+
+%--------------------------------------
+
+\SbSbSSCT{N\oe uds sur une courbe paramétrique avec curvepnodes  }{Nodes on a parametric curve with curvepnodes }
+
+\begin{tabular}{|c|c|} \hline 
+\multicolumn{2}{|c|}{ \BSS{curvepnodes}[plotpoints=100]\AC{1}\AC{5}\AC{sin(t)|sin(2*t)}\AC{A} \BSI{curvepnodes}{pst-node}  } \\ \hline 
+\begin{psgraph}[axesstyle=none,xticksize=-1.2 1.2 ,yticksize=-1.2 1.2 , subticks=0](0,0)(-1.2,-1.2)(1.2,1.2){4cm}{4cm}
+\psset{algebraic}
+\parametricplot[plotpoints=200,linecolor=red]{1}{5}{sin(t)|sin(2*t)}
+\curvepnodes[plotpoints=100]{1}{5}{sin(t)|sin(2*t)}{A}
+\cnodeput[fillstyle=solid](A20){A}{20}
+\cnodeput[fillstyle=solid](A80){B}{80}
+\psline[linestyle=dotted] (A) (B)
+\end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=-1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0](0,0)(-1.5,-1.5)(1.5,1.5){4cm}{4cm}
+\psset{algebraic}
+\parametricplot[plotpoints=200,linecolor=red]{1}{5}{sin(t)|sin(2*t)}
+\curvepnodes[plotpoints=100]{1}{5}{sin(t)|sin(2*t)}{A}
+\psline[linewidth=2pt] (A20) (A80)
+\end{psgraph}
+\\ \hline  
+\BS{cnodeput}(A20)\AC{A}\AC{20}
+
+&  
+\BS{psline}[linewidth=2pt] (A20) (A80)
+\\
+\BS{cnodeput}(A80)\AC{B}\AC{80}
+&
+
+\\ \hline 
+\end{tabular} 
+
+%--------------------------------------
+
+\SbSSCT{Lignes relatives }{ Relative line }
+
+\SbSbSSCT{Lignes relatives avec psRelNode  }{Relative line width psRelNode }
+
+\begin{tabular}{|l|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 6,subticks=0](0,0)(0,0)(6,5){3cm}{2.5cm} 
+\psline[linewidth=4pt](1,1)(3,2)
+\psRelLine[linecolor=red](1,1)(3,2){2}{A}
+\psdots[dotstyle=*,linecolor=red](A)  \nput{45}{A}{A}%
+\psRelLine[linecolor=green,angle=30](1,1)(3,2){2}{B}
+\psdots[dotstyle=*,linecolor=green](B)  \nput{0}{B}{B}%
+\psdots[dotstyle=*,](1,1)
+\psdots[dotstyle=*,](3,2)
+\end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 6,subticks=0](0,0)(0,0)(6,5){3cm}{2.5cm} 
+%\psline[linewidth=3pt](1,1)(3,2)
+\pnode(1,1){B}\pnode(3,2){C}
+\psRelNode[linecolor=red,angle=30](B)(C){2}{A}
+\psdots[dotstyle=*,linecolor=red](A)  \nput{-45}{A}{A}%
+\psdots[dotstyle=*,linecolor=blue](B) \nput{135}{B}{B} 
+\psdots[dotstyle=*,linecolor=blue](C) \nput{45}{C}{C}%
+\psline[linewidth=2pt](B)(C)
+\psline[linewidth=2pt,linecolor=red](B)(A)
+\end{psgraph}
+\\ \hline  
+\BSS{psRelLine}(1,1)(3,2)\AC{2}\AC{{\red A}}
+\BSI{psRelLine}{pst-node}   \BSI{psRelLine}{pstricks-add} 
+&  
+
+\\
+\BS{}psRelLine[{\red angle=30}](0,0)(2,1)\AC{2}\AC{{\red B}} 
+&
+\BSS{psRelNode}[linecolor=red,angle=30](B)(C)\AC{2}\AC{{\red A}}   \BSI{psRelNode}{pst-node}  \BSI{psRelNode}{pstricks-add} 
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\paragraph{Paramètre trueAngle} :
+ 
+\begin{tabular}{|l|}  \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 4,subticks=0](0,0)(0,0)(4,6){6cm}{3cm} 
+\psline[linewidth=3pt,linecolor=blue](1,1)(3,1)
+\psRelLine[linecolor=red,angle=45](1,1)(3,1){1}{A}
+\psRelLine[linecolor=red,angle=45,trueAngle](1,1)(3,1){1}{B}
+\psdots[dotstyle=*,linecolor=red](A)   \nput{90}{A}{A}%
+\psdots[dotstyle=*,linecolor=red](B)   \nput{90}{B}{B}%
+\end{psgraph} 
+\\  \hline  
+\BS{psRelLine}[angle=45](1,1)(3,1)\AC{1}\AC{{\red A}} 
+\\
+\BS{psRelLine}[angle=45,\RDD{trueAngle}](1,1)(3,1)\AC{1}\AC{{\red B}} 
+\\  \hline 
+\end{tabular} 
+
+%--------------------------------------
+
+ 
+\SbSbSSCT{Lignes relatives avec psRelLineVar }{Relative line width psRelLineVar }
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 6,yticksize=0 6,subticks=0](0,0)(6,6){3cm}{3cm}
+\pnodes(4,1){A}(2,3){B} (1,2){C}
+\uput[-135](B){B}
+\uput[-45](A){A}
+\psdots[dotstyle=*,linecolor=blue](B)
+\psdots[dotstyle=*,linecolor=blue](A)
+\psRelLineVar[linecolor=red](B)(A)(1;90){X}
+\psarc[linestyle=dashed](B){2.828}{-60}{60}
+\uput[45](X){X}
+\psdots[dotstyle=*,linecolor=red](X) 
+\psline(A)(B)
+\end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,xticksize=0 6,yticksize=0 6,subticks=0](0,0)(6,6){3cm}{3cm}
+\pnodes(4,1){A}(2,3){B} (1,2){C}
+\uput[-135](B){B}
+\uput[-45](A){A}
+\psdots[dotstyle=*,linecolor=blue](B)
+\psdots[dotstyle=*,linecolor=blue](A)
+\psRelLineVar[linecolor=red](B)(A)(0.5;135){Y} 
+\uput[45](Y){Y}
+\psarc[linestyle=dashed](B){1.414}{-70}{120}
+\psdots[dotstyle=*,linecolor=red](Y)
+\psline(A)(B)
+\end{psgraph}
+\\ \hline 
+\BSS{psRelLineVar}(B)(A)({\red 1;90})\AC{X}  \BSI{psRelLineVar}{pst-node} &
+\BSS{psRelLineVar}(B)(A)({\red 0.5;135})\AC{Y} 
+\\ \hline 
+\end{tabular} 
+ 
+%--------------------------------------
+
+ 
+\SbSbSSCT{Ligne par une série de points  avec psnline  }{ Line from seval points width psnline  }
+
+\begin{tabular}{|l|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 5cm,subticks=0](0,0)(5,3){5cm}{3cm}
+\pnodes{A}(1,1)(3,0.5)(4,2)(2,3)(1,2)
+
+\psdots[dotstyle=*,linecolor=blue](A0) \uput[-135](A0){A0}
+\psdots[dotstyle=*,linecolor=blue](A1) \uput[-45](A1){A1}
+\psdots[dotstyle=*,linecolor=blue](A2) \uput[-45](A2){A2}
+\psdots[dotstyle=*,linecolor=blue](A3) \uput[-90](A3){A3}
+\psdots[dotstyle=*,linecolor=blue](A4) \uput[-45](A4){A4}
+\psnline[linecolor=red](0,3){A}
+\end{psgraph}
+ &
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 5cm,subticks=0](0,0)(5,3){5cm}{3cm}
+\pnodes{A}(1,1)(3,0.5)(4,2)(2,3)(1,2)
+\psdots[dotstyle=*,linecolor=blue](A0) \uput[-135](A0){A0}
+\psdots[dotstyle=*,linecolor=blue](A1) \uput[-45](A1){A1}
+\psdots[dotstyle=*,linecolor=blue](A2) \uput[-45](A2){A2}
+\psdots[dotstyle=*,linecolor=blue](A3) \uput[-90](A3){A3}
+\psdots[dotstyle=*,linecolor=blue](A4) \uput[-45](A4){A4}
+\psnline[linecolor=red](2,2){A}
+\end{psgraph}
+\\ \hline  
+ \BS{pnodes}\AC{A}(1,1)(3,0.5)(4,2)(2,3)(1,1) 
+ &
+  \BS{pnodes}\AC{A}(1,1)(3,0.5)(4,2)(2,3)(1,1) 
+ \\
+ \BSS{psnline}({ \red 0,3})\AC{A} \BSI{psnline}{pst-node} 
+ &
+  \BSS{psnline}({ \red 2,2})\AC{A}
+\\ \hline 
+\end{tabular} 
+
+%--------------------------------------
+
+ 
+\SbSbSSCT{Courbe par une série de points  avec psncurve }{ Curve from seval points width psncurve }
+
+
+\begin{tabular}{|l|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 5cm,subticks=0](0,0)(5,3){5cm}{3cm}
+\pnodes{A}(1,1)(3,0.5)(4,2)(2,3)(1,2)
+
+\psdots[dotstyle=*,linecolor=blue](A0) \uput[-135](A0){A0}
+\psdots[dotstyle=*,linecolor=blue](A1) \uput[-45](A1){A1}
+\psdots[dotstyle=*,linecolor=blue](A2) \uput[-45](A2){A2}
+\psdots[dotstyle=*,linecolor=blue](A3) \uput[-90](A3){A3}
+\psdots[dotstyle=*,linecolor=blue](A4) \uput[-45](A4){A4}
+\psncurve[linecolor=red](0,3){A}
+\end{psgraph}
+ &
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 5cm,subticks=0](0,0)(5,3){5cm}{3cm}
+\pnodes{A}(1,1)(3,0.5)(4,2)(2,3)(1,2)
+\psdots[dotstyle=*,linecolor=blue](A0) \uput[-135](A0){A0}
+\psdots[dotstyle=*,linecolor=blue](A1) \uput[-45](A1){A1}
+\psdots[dotstyle=*,linecolor=blue](A2) \uput[-45](A2){A2}
+\psdots[dotstyle=*,linecolor=blue](A3) \uput[-90](A3){A3}
+\psdots[dotstyle=*,linecolor=blue](A4) \uput[-45](A4){A4}
+\psncurve[linecolor=red](2,2){A}
+\end{psgraph}
+\\ \hline  
+ \BS{pnodes}\AC{A}(1,1)(3,0.5)(4,2)(2,3)(1,1) 
+ &
+  \BS{pnodes}\AC{A}(1,1)(3,0.5)(4,2)(2,3)(1,1) 
+ \\
+ \BSS{psncurve}({\red 0,3})\AC{A} \BSI{psncurve}{pst-node} 
+ &
+  \BSS{psncurve}({\red 2,2})\AC{A}
+\\ \hline 
+\end{tabular}
+
+%--------------------------------------
+ 
+\SbSbSSCT{ligne par pas succesifs  avec psrline }{ Line by succesive step  width psrline }
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 2cm,yticksize=0 5cm,subticks=0](0,0)(5,2){5cm}{2cm}
+ \psrline[linewidth=2pt,linecolor=red](0,.5)(1,1)(1,-1)(2,1)
+\psline[linestyle=dashed,arrowscale=2]{->}(0,.5)(1,.5)(1,1.5)\psline[linestyle=dashed,arrowscale=2]{->}(1,1.5)(2,1.5)(2,0.5)
+\psline[linestyle=dashed,arrowscale=2]{->}(2,.5)(4,.5)(4,1.5)
+ \end{psgraph}
+\\ \hline  
+\BSS{psrline}(0,0.5)(1,1)(1,-1)(2,1) \BSI{psrline}{pst-node} 
+
+\\ \hline 
+\end{tabular} 
+
+%--------------------------------------
+ 
+\SbSbSSCT{Lignes par rapport à un point avec psxline }{ Lines relative at a point  width psxline }
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 6,yticksize=0 6,subticks=0](0,0)(6,6){4cm}{4cm}
+\pnodes(3,1){A}(2,3){B} (1,2){C}
+\uput[-45](B){B}
+ \psxline[linecolor=red]{<->}(B){1,2}{3,1}
+\psdots[dotstyle=*,dotscale=2](B)
+ \psline (B)(3,5)
+ \psline (B)(5,4) 
+\end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 6,yticksize=0 6,subticks=0](0,0)(6,6){4cm}{4cm}
+\pnodes(3,1){A}(2,3){B} (1,2){C}
+\uput[-45](A){A}
+\uput[-45](B){B}
+\uput[-45](C){C}
+ \psxline[linecolor=red]{<->}(B){A}{C}
+\psdots[dotstyle=*,linecolor=blue](A)
+\psdots[dotstyle=*,linecolor=blue](B)
+\psdots[dotstyle=*,linecolor=blue](C)
+ \psline(0,0)(C)
+  \psline (0,0)(A)
+ \psline (B)(3,5)
+ \psline (B)(5,4) 
+\end{psgraph}
+\\ \hline  
+\BSS{psxline}\AC{<->}(B)\AC{1,2}\AC{3,1} \BSI{psxline}{pst-node} 
+&  
+\BSS{psxline}\AC{<->}(B)\AC{A}\AC{C}
+\\ \hline 
+\end{tabular}
+
+\psset{unit=1}
+
+ %-----------------------------------------------------------
+\SbSSCT{Lignes parallèles et leur noeud final}{Parallel lines and their endpoint} 
+
+\TFRGB{ Syntaxe : \\
+\BS{}psParallelLine(Point 1)(point 2 )(point 3)\AC{longueur}\AC{nom extrémité} }{Syntax : 
+\BS{}psParallelLine(Point 1)(point 2 )(point 3)\AC{lengh}\AC{end name}}
+
+\bigskip
+
+
+\begin{tabular}{|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 6,subticks=0](0,0)(0,0)(6,5){3cm}{2.5cm} 
+\psline[linewidth=3pt,linecolor=blue](2,1)(4,2)
+\psParallelLine[linecolor=red](2,1)(4,2)(1,2){2}{A}
+\psdots[dotstyle=*,linecolor=red](A)   \nput{45}{A}{A}%
+\psParallelLine[linecolor=green](2,1)(4,2)(1,3){1}{B} 
+\psdots[dotstyle=*,linecolor=green](B)   \nput{45}{B}{B}%
+\psParallelLine[linecolor=cyan](2,1)(4,2)(1,4){.5}{C}
+\psdots[dotstyle=*,linecolor=cyan](C)   \nput{45}{C}{C}%
+\end{psgraph} 
+\\ \hline  
+\BSS{psParallelLine}(2,1)(4,2))(1,2)\AC{{\red 2}}\AC{{\red A}}  \BSI{psParallelLine}{pstricks-add} 
+\\
+\BS{psParallelLine}(2,1)(4,2)(1,3)\AC{{\green 1}}\AC{{\green B}} 
+\\
+\BS{psParallelLine}(2,1)(4,2)(1,4)\AC{{\cyan 0.5}}\AC{{\cyan C}}
+\\ \hline 
+\end{tabular} 
+
+%---------------------------
+
+\SbSSCT{Lignes perpendiculaires une droite}{Perpendiculars to a lines}
+
+\begin{tabular}{|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 5,yticksize=0 6,subticks=0](0,0)(0,0)(6,5){3cm}{2.5cm} 
+\psline(5,5)(3,0)
+\psPline[linecolor=red,arrowscale=2]{->}(0,3)(5,5)(3,0)
+\psPline[linecolor=green,arrowscale=2](1,4)(5,5)(3,0)
+\end{psgraph} 
+\\ \hline  
+\BS{}psline(5,5)(3,0)
+\\
+\BSS{psPline}[linecolor=red]\AC{->}(0,3)(5,5)(3,0)
+\\ 
+\BS{}psPline[linecolor=green](1,4)(5,5)(3,0)
+\\ \hline 
+\end{tabular} 
+
+%---------------------------------------
+
+\subsection{Vecteur normal }
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=-2 4cm,subticks=0](0,0)(-2,0)(4,3){6cm}{3cm}
+\pnode(2,1){B}
+\normalvec(B){A}
+\psline[linecolor=red]{->}(0,0) (A)
+\psline{->}(0,0) (B)
+\nput{90}{B}{B} 
+\nput{90}{A}{A}%
+\end{psgraph}
+&
+\begin{psgraph}[axesstyle=none,xticksize=-1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0](0,0)(-1.5,-1.5)(1.5,1.5){2.5cm}{2.5cm}
+\psset{algebraic}
+\parametricplot[plotpoints=200]{0}{6.28}{sin(t)|sin(2*t)}
+\curvepnode{2}{sin(t)|sin(2*t)}{A}
+\psxline[linewidth=2pt,linestyle=dashed]{<->}(A){-(Atang)}{(Atang)}
+\uput[-45](A){A}
+\normalvec(Atang){B} 
+\psdots[dotstyle=*,linecolor=blue](A) 
+\psxline[linewidth=2pt,linecolor=red]{->}(A){}{-2(B)}
+\end{psgraph}
+\\ \hline  
+\BSS{normalvec}(B)\AC{A} \BSI{normalvec}{pst-node} 
+&
+\BSS{normalvec}(Atang)\AC{B}
+\\
+&
+\BS{psxline}\AC{->}(A)\AC{} \AC{-2(B)}
+\\ \hline 
+\end{tabular}
+
+%-----------------------------------------
+
+\SbSSCT{Tangentes}{Tangents}
+
+\SbSbSSCT{Tangentes à un cercle par rapport à un point}{Tangent lines of a circle}
+
+\begin{tabular}{|l|} \hline 
+\begin{psgraph}[axesstyle=none,xticksize=-2 2,yticksize=-4 2,subticks=0](0,0)(-4,-2)(5,2){7cm}{3cm}  
+\pscircle(03, 0){1}
+\psdots[dotstyle=*,linecolor=blue,dotscale=2](-3,0)
+\psCircleTangents(-3, 0)(3, 0){1}
+\pcline[nodesep=-1cm,linestyle=dashed](-3, 0)(CircleT1)
+\pcline[nodesep=-1cm,linestyle=dashed](-3, 0)(CircleT2)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleT1)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleT2)
+\nput{-90}{CircleT1}{CircleT1}%
+\nput{90}{CircleT2}{CircleT2}%
+\psdots[dotstyle=*](3,0)
+\psrline[linestyle=dotted]{->}(3,0)(1;45)
+\end{psgraph}
+\\ \hline  
+\BS{pscircle}(3,0)\AC{1} \\
+\BSS{psCircleTangents}(-3,0)(3,0)\AC{1}  \BSI{psCircleTangents}{pstricks-add} \\
+\BS{pcline}[nodesep=-1cm,linecolor=blue](-3,0)({\red CircleT1}) \\
+\BS{nput}\AC{-90}\AC{{\red CircleT1}}\AC{CircleT1}%
+\\ \hline 
+\end{tabular} 
+ 
+
+%------------------------------------------------------------------------------
+\SbSbSSCT{Tangentes à une ellipse par rapport à un point}{Tangent lines of an ellipse}
+
+\begin{tabular}{|l|} \hline  
+ 
+\begin{psgraph}[axesstyle=none,xticksize=-2 2,yticksize=-5 6,subticks=0](0,0)(-5,-2)(6,2){7cm}{3cm}  
+\psellipse(3, 0)(2, 1)
+\psdots[dotstyle=*,linecolor=blue,dotscale=2](-3,0)
+\psEllipseTangents(3, 0)(2, 1)(-3,0)
+\pcline[nodesep=-1cm,linestyle=dashed](-3, 0)(EllipseT1)
+\pcline[nodesep=-1cm,linestyle=dashed](-3, 0)(EllipseT2)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](EllipseT1)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](EllipseT2)
+\nput{-90}{EllipseT1}{EllipseT1}%
+\nput{90}{EllipseT2}{EllipseT2}%
+\psline[linestyle=dotted]{<->}(1,0)(3,0)
+\psline[linestyle=dotted]{<->}(3,0)(3,1)
+\end{psgraph}
+\\ \hline  
+\BS{}psellipse(3,0)(2,1) \\
+\BSS{psEllipseTangents}(3,0)(2,1)(-3,0) \BSI{psEllipseTangents}{pstricks-add} \\
+\BS{}pcline[nodesep=-1cm](-3,0)({\red EllipseT1}) \\
+\BS{}nput\AC{90}\AC{{\red EllipseT1}}\AC{EllipseT1}%
+\\ \hline 
+\end{tabular} 
+
+ 
+ %-----------------------------------------------------------\BSS{psCircleTangents}(-3,0)(3,0)\AC{1}-------------------------------------
+\SbSbSSCT{Tangentes à deux cercles}{Tangent lines of circles}
+ \psset{unit=.5cm}
+
+
+\begin{tabular}{|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=-3 3,yticksize=-4 14,subticks=0](0,0)(-4,-3)(14,3){9cm}{3cm}  
+\pscircle(-1, 0){2}
+\pscircle(5, 0){1}
+\psCircleTangents(-1, 0){2}(5, 0){1}
+\pcline[nodesep=-1cm,linestyle=dashed](CircleTO1)(CircleTO2)
+\pcline[nodesep=-1cm,linestyle=dashed](CircleTO3)(CircleTO4)
+\pcline[nodesep=-1cm,linestyle=dashed](CircleTO3)(CircleTC2)
+\pcline[nodesep=-1cm,linestyle=dashed](CircleTO2)(CircleTC2)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleTC2)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleTO1)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleTO2)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleTO3) 
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleTO4)
+\nput{90}{CircleTC2}{CircleTC2}% 
+\nput{45}{CircleTO1}{CircleTO1}% 
+\nput{45}{CircleTO2}{CircleTO2}% 
+\nput{-45}{CircleTO3}{CircleTO3}% 
+\nput{-45}{CircleTO4}{CircleTO4}% 
+\end{psgraph}
+\\ \hline  
+\BSS{psCircleTangents}(-1, 0)\AC{2}(5,0)\AC{1} \\
+
+\BS{}psdots[dotstyle=*,linecolor=red,dotscale=2]({\red CircleTC2})
+
+\\ \hline  
+\end{tabular} 
+ 
+
+ 
+\bigskip
+ \psset{xunit=1cm}
+
+
+\begin{tabular}{|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=-3 3,yticksize=-3 6,subticks=0](0,0)(-3,-3)(6,3){9cm}{3cm} 
+\pscircle(-1, 0){2}
+\pscircle(5, 0){1}
+\psCircleTangents(-1, 0){2}(5, 0){1}
+\pcline[nodesep=-1cm,linestyle=dashed](CircleTI1)(CircleTI2)
+\pcline[nodesep=-1cm,linestyle=dashed](CircleTI3)(CircleTI4)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleTC1)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleTI1)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleTI2)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleTI3)
+\psdots[dotstyle=*,linecolor=red,dotscale=2](CircleTI4)
+\nput{90}{CircleTC1}{CircleTC1}% 
+\nput{45}{CircleTI1}{CircleTI1}% 
+\nput{-135}{CircleTI2}{CircleTI2}% 
+\nput{-45}{CircleTI3}{CircleTI3}% 
+\nput{135}{CircleTI4}{CircleTI4}% 
+\end{psgraph}
+\\ \hline  
+\BS{}psdots[dotstyle=*,linecolor=red,dotscale=2]({\red CircleTC1}) \\
+
+\BS{}nput\AC{90}\AC{{\red CircleTC1}}\AC{CircleTC1}% 
+\\ \hline 
+\end{tabular}  
+ 
+
+\psset{unit=1cm,fillcolor=white,fillstyle=none,linecolor=blue}
+
+%------------------------------------------------------------
+\subsection{Intersections}
+
+\SbSbSSCT{Point d'intersection avec psIntersectionPoint}{Intersection point of two lines width psIntersectionPoint}
+\TFRGB{Syntaxe : \\
+\BS{}psIntersectionPoint(point 1)(point 2)(point 3)(point 4)\AC{nom}}{Syntax : \BS{}psIntersectionPoint(point 1)(point 2)(point 3)(point 4)\AC{name}}
+
+\bigskip
+\psset{unit=1cm}
+
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=-1 4,yticksize=0 5,subticks=0](0,0)(0,-1)(5,4){3cm}{3cm} 
+\psdots[dotstyle=*,dotsize=6pt](1,3)
+\psdots[dotstyle=*,dotsize=6pt](4,0)
+\pnode(1,0){B} \pscircle*(B){3pt} \nput{135}{B}{B}%
+\pnode(4,3){C} \pscircle*(C){3pt} \nput{45}{C}{C}%
+\psline[linecolor=blue](B)(C)
+\psline[linecolor=blue](1,3)(4,0)
+\psIntersectionPoint(B)(C)(1,3)(4,0){A}
+\psdots[dotstyle=*,linecolor=red,dotscale=2](A)   \nput{90}{A}{A}%
+\end{psgraph}
+\\ \hline  
+\BSS{psIntersectionPoint}(B)(C)(1,3)(4,0)\AC{{\red A}}  \BSI{psIntersectionPoint}{pstricks-add} 
+\\ \hline 
+\end{tabular} 
+  
+%----------------------------------------
+
+\SbSbSSCT{Points d'intersection avec polyIntersections} {Intersection points with polyIntersections}
+%\subsubsection{polyIntersections}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 4cm,subticks=0](0,0)(0,0)(4,3){4cm}{3cm}
+\psline(0.5,.5)(3,.5)(2.5,2)(1,2.5)(.5,1)
+\pnodes(1,1.5){A}(1.5,1){B} 
+\polyIntersections{X}{Y}(A)(B)(0.5,.5)(3,.5)(2.5,2)(1,2.5)(.5,1)
+\psdots(A)(B)\psline(X)(Y)
+\psdots[dotstyle=*,linecolor=red](X)
+\psdots[dotstyle=*,linecolor=red](Y)
+\uput[0](X){X}\uput[-180](Y){Y}
+\uput[0](A){A}\uput[-180](B){B}
+\end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0 3cm,yticksize=0 4cm,subticks=0](0,0)(0,0)(4,3){4cm}{3cm}
+\pnodes{P}(0.5,.5)(3,.5)(2.5,2)(1,2.5)(.5,1)
+\pnode(1,1.5){A}\pnode(1.5,1){B}
+\polyIntersections{X}{Y}(A)(B){P}{4}
+\psnline(0,4){P}
+\psdots(A)(B)\psline(X)(Y)
+\psdots[dotstyle=*,linecolor=red](X)
+\psdots[dotstyle=*,linecolor=red](Y)
+\uput[-45](X){X}\uput[-180](Y){Y}
+\uput[0](A){A}\uput[-180](B){B}
+\end{psgraph}
+\\ \hline  
+\BSS{polyIntersections}\AC{X}\AC{Y}(A)(B) \BSI{polyIntersections}{pst-node} 
+&  
+\BS{pnodes}\AC{P}(0.5,.5)(3,.5)(2.5,2)(1,2.5)(.5,1)
+\\
+(0.5,0.5)(3,0.5)(2.5,2)(1,2.5)(0.5,1)
+&
+\BSS{polyIntersections}\AC{X}\AC{Y}(A)(B)\AC{P}\AC{4}
+\\ \hline 
+\end{tabular} 
+
+
+\bigskip
+
+\begin{tabular}{|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=-1.5 1.5cm,yticksize=0 8cm,subticks=0](0,0)(0,-1.5)(13,1.5){12cm}{3cm}
+\psset{algebraic}
+\psplot[plotpoints=200]{0}{13}{sin(x)}
+\fnpnodes[plotpoints=100]{0}{13}{sin(x)}{A}
+\pnode(4,0.5){C} \pnode(6,.5){B}
+\polyIntersections{X}{Y}(C)(B){A}{60}
+\psline(X)(Y)
+\psdots[dotstyle=*](B)
+\psdots[dotstyle=*](C) 
+\psdots[dotstyle=*,linecolor=red](X)
+\psdots[dotstyle=*,linecolor=red](Y)
+\psdots[dotstyle=*,linecolor=green](A60)
+\uput[90](C){C}\uput[90](B){B}
+\uput[0](X){X}\uput[180](Y){Y}\uput[90](A60){A60}
+\end{psgraph}
+\\ \hline  
+\BS{fnpnodes}[plotpoints=100]\AC{0}\AC{13}\AC{sin(x)}\AC{A} \\
+\BSS{polyIntersections}\AC{X}\AC{Y}(C)(B)\AC{A}\AC{60}
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|l|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=-1.2 1.2 ,yticksize=-1.5 1.5 , subticks=0](0,0)(-1.5,-1.2)(1.5,1.2){8cm}{3cm}
+\psset{algebraic}
+\parametricplot[plotpoints=200]{1}{5}{sin(t)|sin(2*t)}
+\curvepnodes[plotpoints=100]{1}{5}{sin(t)|sin(2*t)}{A}
+\pnode(0,0.5){C} \pnode(.5,.5){B}
+\polyIntersections{X}{Y}(C)(B){A}{75}
+\psline(X)(Y)
+\psdots[dotstyle=*](B)
+\psdots[dotstyle=*](C) 
+\psdots[dotstyle=*,linecolor=red](X)
+\psdots[dotstyle=*,linecolor=red](Y)
+\psdots[dotstyle=*,linecolor=green](A75)
+\uput[90](C){C}\uput[90](B){B}
+\uput[0](X){X}\uput[180](Y){Y}\uput[90](A75){A75}
+\end{psgraph}
+\\ \hline 
+\BS{curvepnodes}[plotpoints=100]\AC{1}\AC{5}\AC{sin(t)|sin(2*t)}\AC{A} \\
+\BSS{polyIntersections}\AC{X}\AC{Y}(C)(B)\AC{A}\AC{75}
+\\ \hline 
+\end{tabular} 
+
+ 
+ 
+
+\newpage
+%-----------------------------------------------------------------------
+\SbSSCT{Les 9 positions d'une figure par \BS{}psDefPSPNodes}{The 9 positions with \BS{}psDefPSPNodes}
+\bigskip
+
+\begin{tabular}{l}  
+\begin{pspicture}(6,4)
+\psaxes[xticksize=4,yticksize=6,axesstyle=none](6,4)
+\psDefPSPNodes
+\psdots[linecolor=red,dotscale=2](PSPbl)(PSPbc)(PSPbr)(PSPcl)(PSPcc)(PSPcr)(PSPtl)(PSPtc)(PSPtr)
+ \uput[45](PSPbl){PSPbl} \uput[90](PSPbc){PSPbc}
+\uput[90](PSPbr){PSPbr} \uput[45](PSPcl){PSPcl}
+\uput[90](PSPcc){PSPcc} \uput[90](PSPcr){PSPcr}
+\uput[45](PSPtl){PSPtl} \uput[90](PSPtc){PSPtc}
+ \uput[90](PSPtr){PSPtr}
+ \end{pspicture}
+\\ 
+\\ 
+\\ \hline 
+\BS{}begin{pspicture}(6,4)\\
+ 
+\BSS{psDefPSPNodes}  \BSI{psDefPSPNodes}{pstricks-add} \\
+
+\BS{}psdots({\red PSPbl})\\
+
+\BS{}uput[45](PSPbl)\AC{{\red PSPbl}}
+\\ 
+\end{tabular}  
+
+%--------------------------------
+
+\SbSSCT{N\oe uds sur du texte avec  \BS{}psDefBoxNodes}{Nodes on text with \BS{}psDefBoxNodes}
+\bigskip
+
+\begin{tabular}{|l|} \hline  
+ \psscalebox{8}{\psDefBoxNodes{nom}{\color{red!20} abcdefghij}}%
+\shorthandoff{ :}
+\uput[90](nom:tl){tl} \qdisk(nom:tl){3pt}
+\uput[90](nom:tC){tC} \qdisk(nom:tC){3pt}
+\uput[90](nom:tr){tr} \qdisk(nom:tr){3pt}
+\uput[90](nom:Cl){Cl} \qdisk(nom:Cl){3pt}
+\uput[90](nom:C){C} \qdisk(nom:C){3pt}
+\uput[90](nom:Cr){Cr} \qdisk(nom:Cr){3pt}
+\uput[90](nom:Bl){Bl} \qdisk(nom:Bl){3pt}
+\uput[90](nom:BC){BC} \qdisk(nom:BC){3pt}
+\uput[90](nom:Br){Br} \qdisk(nom:Br){3pt}
+\uput[90](nom:bl){bl} \qdisk(nom:bl){3pt}
+\uput[90](nom:bC){bC} \qdisk(nom:bC){3pt}
+\uput[90](nom:br){br} \qdisk(nom:br){3pt}
+\shorthandon{ :}
+\\ \hline 
+\\ 
+ \BS{psscalebox}\AC{15}\AC{ \BSS{psDefBoxNodes}\AC{{\red nom}} \AC{ \BS{color}\AC{red!20} abcdefghij}}\\
+ \BSS{shorthandoff}\AC{:} \footnotemark[1]  \\
+\BS{uput}[90]({\red nom\xx tl})\AC{tl} \hspace{1cm} \BS{qdisk}({\red nom\xx tl})\AC{3pt} \\ \hspace{1cm} $\vdots $\\
+ \BSS{shorthandon}\AC{:}
+\\ \hline 
+\end{tabular} 
+ \footnotetext[1]{désactivation et ré-activation de \og : \fg  conflit entre ce module et Babel en français }
+
+
+\subsection{ArrowNotch}
+
+\begin{tabular}{|l|l|} \hline 
+\multicolumn{2}{|c|}{ \BS{curvepnodes}[plotpoints=100]\AC{1}\AC{1.1}\AC{sin(t)|sin(2*t)}\AC{{\red A}} } 
+\\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0.5 0.6 ,yticksize=0.5 0.6 , subticks=0](0.8,0.8)(.9,.95){5cm}{5cm}
+ \psset{algebraic}
+\parametricplot[plotpoints=200]{1}{1.1}{sin(t)|sin(2*t)}
+\curvepnodes[plotpoints=100]{1}{1.3}{sin(t)|sin(2*t)}{A} 
+\ArrowNotch[arrowscale=10]{A}{0}{>}{X}
+\psline[linecolor=red,arrowscale=5]{-D>}(X)(A0)
+\psdots[dotstyle=*](X) \uput[-135](X){X}
+\psdots[dotstyle=*](A0) \uput[-135](A0){A0}
+\end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0.5 0.6 ,yticksize=0.5 0.6 , subticks=0](0.8,0.8)(.9,.95){5cm}{5cm}
+\psset{algebraic}
+\parametricplot[plotpoints=200]{1}{1.1}{sin(t)|sin(2*t)}
+\curvepnodes[plotpoints=100]{1}{1.5}{sin(t)|sin(2*t)}{A} 
+\ArrowNotch[arrowscale=10]{A}{0}{<}{V}
+\psline[linecolor=red,arrowscale=5]{-D>}(V)(A0)
+\psdots[dotstyle=*](V) \uput[-135](V){V}
+\psdots[dotstyle=*](A0) \uput[-135](A0){A0}
+\end{psgraph}
+\\ \hline  
+\BSS{ArrowNotch}[arrowscale=10]\AC{{\red A}}\AC{0}\AC{>}\AC{X} \BSI{ArrowNotch}{pst-node} 
+&  
+\BSS{ArrowNotch}[arrowscale=10]\AC{{\red A}}\AC{0}\AC{<}\AC{V}
+\\
+\BS{psline}[arrowscale=5]\AC{-D>}(X)(A0)
+&
+\BS{psline}[arrowscale=5]\AC{-D>}(V)(A0)
+
+\\ \hline
+\begin{psgraph}[axesstyle=none,xticksize=0.5 0.6 ,yticksize=0.5 0.6 , subticks=0](0.8,0.8)(.9,.95){5cm}{5cm}
+ \psset{algebraic}
+\parametricplot[plotpoints=200]{1}{1.1}{sin(t)|sin(2*t)}
+\curvepnodes[plotpoints=100]{1}{1.3}{sin(t)|sin(2*t)}{A} 
+\ArrowNotch[arrowscale=10]{A}{20}{>}{X}
+\psline[linecolor=red,arrowscale=5]{-D>}(X)(A20)
+\psdots[dotstyle=*](X) \uput[-135](X){X}
+\psdots[dotstyle=*](A20) \uput[-135](A20){A20}
+\end{psgraph}
+&  
+\begin{psgraph}[axesstyle=none,xticksize=0.5 0.6 ,yticksize=0.5 0.6 , subticks=0](0.8,0.8)(.9,.95){5cm}{5cm}
+\psset{algebraic}
+\parametricplot[plotpoints=200]{1}{1.1}{sin(t)|sin(2*t)}
+\curvepnodes[plotpoints=100]{1}{1.3}{sin(t)|sin(2*t)}{A} 
+\ArrowNotch[arrowscale=10]{A}{20}{<}{V}
+\psline[linecolor=red,arrowscale=5]{-D>}(V)(A20)
+\psdots[dotstyle=*](V) \uput[-135](V){V}
+\psdots[dotstyle=*](A20) \uput[-135](A20){A20}
+\end{psgraph}
+\\ \hline  
+\BSS{ArrowNotch}[arrowscale=10]\AC{{\red A}}\AC{0}\AC{>}\AC{X}
+&  
+\BSS{ArrowNotch}[arrowscale=10]\AC{{\red A}}\AC{0}\AC{<}\AC{V}
+\\
+\BS{psline}[arrowscale=5]\AC{-D>}(X)(A0)
+&
+\BS{psline}[arrowscale=5]\AC{-D>}(V)(A0)
+\\ \hline 
+\end{tabular} 
+
+
+
+\subsection{Placement d'une étiquette à une distance donnée avec nlput }
+\SbSSCT{Placement d'une étiquette à une distance donnée avec nlput }{nlput}
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph}[axesstyle=none,xticksize=0 2cm,yticksize=0 6cm,subticks=0](0,0)(6,2){6cm}{2cm}
+\pnode(1,1){B}\pnode(5,1){C}
+ \nlput(B)(C){1cm}{Texte}
+\psdots[dotstyle=*,linecolor=blue](B) \nput{90}{B}{B} 
+\psdots[dotstyle=*,linecolor=blue](C) \nput{90}{C}{C}%
+ \end{psgraph}
+\\ \hline  
+\BSS{nlput}(B)(C)\AC{{\red 1cm}}\AC{Texte} \BSI{nlput}{pst-node} 
+\\ \hline 
+\end{tabular}  
+
+\bigskip
+
+
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{  \BSS{nlput}[\RDD{nrot}=\xx U](B)(C)\AC{1cm}\AC{\BS{red} Texte} \RDI{nrot}{pst-node}} \\ \hline  
+\begin{pspicture}(5,2)
+\pnode(0,0){A}
+ \pnode(4,2){B}
+ \ncline{A}{B}
+ \nlput[nrot=:U](A)(B){1cm}{\red Texte}
+ \end{pspicture}
+&  
+\begin{pspicture}(5,2)
+\pnode(0,0){A}
+ \pnode(4,2){B}
+ \ncline{A}{B}
+ \nlput[nrot=:D](A)(B){1cm}{\red Texte}
+ \end{pspicture}
+&  
+\begin{pspicture}(5,2)
+\pnode(0,0){A}
+ \pnode(4,2){B}
+ \ncline{A}{B}
+ \nlput[nrot=90](A)(B){1cm}{\red Texte}
+ \end{pspicture}
+\\ \hline 
+ nrot=\xx U  &  nrot=\xx U  & nrot=90
+\\ \hline 
+\begin{pspicture}(5,2)
+\pnode(0,0){A}
+ \pnode(4,2){B}
+ \ncline{A}{B}
+ \nlput[nrot=:L](A)(B){1cm}{\red Texte}
+ \end{pspicture}
+ &  
+ \begin{pspicture}(5,2)
+ \pnode(0,0){A}
+ \pnode(4,2){B}
+  \ncline{A}{B}
+  \nlput[nrot=:R](A)(B){1cm}{\red Texte}
+  \end{pspicture}
+ &  
+  \begin{pspicture}(5,2)
+  \pnode(0,0){A}
+  \pnode(4,2){B}
+   \ncline{A}{B}
+   \nlput(A)(B){1cm}{\red Texte}
+\end{pspicture}
+\\ \hline 
+ nrot=\xx L  &  nrot=\xx R  & sans paramètre
+ \\ \hline 
+\end{tabular} 
+
+ 

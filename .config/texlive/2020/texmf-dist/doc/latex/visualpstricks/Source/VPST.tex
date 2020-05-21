@@ -1,0 +1,484 @@
+\input{VPSTdebut}
+
+\input{versFR} % version française
+%\input{versGB} % english version
+
+ %======================================
+
+ \begin{document}
+  \newrgbcolor{Vert}{0 .8 0}
+ 
+  
+\input{VPSTtitre}
+
+\newpage
+
+\input{VPSTobj} 
+
+
+\bigskip
+
+\input{merci}
+
+\newpage
+\TFRGB{
+\textbf{Quoi de neuf dans cette mise à jour}
+
+\begin{itemize}
+\item Ajout des modules :
+\begin{itemize}
+\item pst-bezier : voir page \pageref{bezier}
+\item  pst-fun : voir page \pageref{fun}
+\item    pst-func : voir page \pageref{func}
+\end{itemize}
+\item différentes mises à jour du module pstricks-add : 
+\begin{itemize}
+\item pscspline  : voir page \pageref{pscspline}
+\item  psellipseAB  : voir page \pageref{psellipseAB}
+\item  Notion de chemin PSTricks : voir page \pageref{chem}
+\item Commenter un élément : voir page \pageref{com}
+\item Homothétie : voir page \pageref{hom}
+\item Commande psrotate : voir page \pageref{rot}
+\item Annuler des objets : voir page \pageref{ann}
+\item Des dés : voir page \pageref{des}
+\item paramètres d’un graphe en barres : voir page \pageref{bar}
+\item Options VarStep et VarStepEpsilon  : voir page \pageref{var}
+\item Macro psVectorfield : voir page \pageref{vec}
+\end{itemize}
+\end{itemize}
+}{}
+ %ù==========================================================
+ 
+\addtolength{\hoffset}{-1.5cm}
+
+\setcounter{tocdepth}{1}
+%\setcounter{tocdepth}{3}
+ \tableofcontents
+ 
+ 
+ \newpage
+
+\SSCT{Les figures de base}{basic figures}
+%\section{Les figures de base}
+
+\input{pst1}
+
+\newpage
+
+\input{pst2a}
+
+\newpage
+
+\input{pst3}
+
+\newpage
+
+\input{pstpoly} %>>>voir conflit PstPicture pst-gantt
+
+\newpage
+
+\input{bezier}
+
+\newpage
+
+\input{pst5}
+
+
+%%%%% % % %===================================
+
+\newpage
+%\section{Les coordonnées }
+\SSCT{Les coordonnées }{coordinates}
+ 
+\input{grid}
+
+
+\input{Coord}
+
+%%%%%======================================================== 
+\newpage
+
+%\section[Les n\oe uds]{Les n\oe uds    \cite{pst-node}}
+\SSCT{Les n\oe uds}{Nodes}
+
+Utilisation du module \textbf{pst-node} \label{pst-node}
+
+\input{noeud1}
+
+
+\newpage
+\input{noeud2}
+ \newpage
+ 
+\input{com}
+
+ \newpage
+%%======================================================
+
+\SSCT{Constructions particulières}{Particular constructions}
+
+%\section[Constructions particulières]{Constructions particulières \cite{pstricks-add} }
+
+\input{pst4} 
+
+\newpage
+
+%\subsection{Homothétie}
+\SSCT{Homothétie}{Homothety}
+
+\input{homo}
+
+\newpage
+%\section{Placer son dessin}
+\SSCT{Placer son dessin}{Placing the picture}
+
+\input{fig}
+
+\newpage 
+%\section{Placer des objets}
+\SSCT{Placer des objets}{Placing objects}
+
+\input{plac}
+
+%\essais{pstplacess.tex}
+
+\newpage
+
+%%%===================================================
+\SSCT{Créer ses couleurs}{Creating color}
+%\section{Créer ses couleurs}
+
+\input{Coul}
+
+%\essais{pstcouless.tex}
+%
+%
+
+%\subsection[Opacité des couleurs ]{Opacité des couleurs \cite{pst-news08}}
+\SbSSCT{Opacité des couleurs }{Opacity} 
+
+\input{Coul1}
+\newpage
+
+%\subsection[Transparence des couleurs]{Transparence des couleurs \cite{pst-news08}} 
+\SbSSCT{Transparence des couleurs}{Tranparency} 
+
+\input{Coul2}
+
+
+%\subsection[en noir et blanc , en niveaux de gris ou en couleur]{en noir et blanc , en niveaux de gris ou en couleur \cite{pst-news13}}
+ 
+\SbSSCT{en noir et blanc , en niveaux de gris ou en couleur}{Monochrome,Grayscale \& resetColor }
+\input{Coul3}
+
+\newpage
+%\section{Créer ses commandes}
+\SSCT{Créer ses commandes}{Own commands}
+
+\input{Cde}
+%
+%\essais{pstcdeess.tex}
+%
+ 
+ 
+%\section[Créer ses styles]{Créer ses styles \cite{pst-user}}
+\SSCT{Créer ses styles}{Own styles}
+
+\input{styl}
+%
+%\essais{pststyless.tex}
+
+ 
+%\section[Créer ses objets]{Créer ses objets \cite{pst-user}}
+\SSCT{Créer ses objets}{Own objects}
+
+\input{obj} 
+
+
+%%%%%%%======================================================================
+%\section{Mettre des objets en boîte}
+\SSCT{Mettre des objets en boîte}{Boxed objects}
+
+%\subsection[Les différentes boites]{Les différentes boites  \cite{pst-user}}
+
+\input{boit1}
+%
+%\essais{pstboit1ess.tex}
+
+%\section[Mettre des objets en cadre]{Mettre des objets en cadre \cite{pst-news08}}
+\SSCT{Mettre des objets en cadre}{Framed objects}
+
+\input{cadre}
+
+\newpage
+%\section[Mettre des objets en bouton]{Mettre des objets en bouton  \cite{pst-fr3d}}
+\SSCT{Mettre des objets en bouton}{Buttoned objects}
+
+\input{boit2}
+
+\newpage
+%\section{Annuler des objets}
+\SSCT{Annuler des objets}{Canceling objects}
+
+\input{ann}
+
+
+\newpage
+
+%%%%%%======================================================================
+%\section{Des lignes et liaisons spéciales}
+\SSCT{Des lignes et liaisons spéciales}{
+Lines and special connections }
+
+%\subsection[Des lignes et liaisons spéciales]{Trait à main levé  \cite{pstricks-add}}
+\SbSSCT{Trait à main levé }{Line by hand}
+
+\input{eff1}
+
+%\subsection[Tracer avec des symboles]{Tracer avec des symboles  \protect \footnote{ valable seulement pour \BS{}psline, \BS{pspolygon},\BS{pscurve}
+%\BS{psccurve} et \BS{psbezier}} \cite{pst-news10}} 
+\SbSSCT{Tracer avec des symboles}{Drawing with symbols} \protect \footnote{ valable seulement pour \BS{}psline, \BS{pspolygon},\BS{pscurve}
+\BS{psccurve} et \BS{psbezier}}
+
+%\SbSSCT{Tracer avec des symboles}{Drawing with symbols}
+
+\input{symb}
+
+\newpage
+%\subsection[Les bobines]{Les bobines \cite{pst-user} \cite{pst-coil}}
+\SbSSCT{Les bobines}{Coils}
+
+\input{eff4}  % pst-coil
+
+\newpage
+
+%\subsection[Les accolades]{Les accolades  \cite{pstricks-add}}
+\SbSSCT{Les accolades}{Braces}
+
+\input{brace} 
+
+%%%%%======================================================================
+\SSCT{Des remplissages spéciaux}{Special fillings}
+%\section{Des remplissages spéciaux}
+%\subsection{Des gradients de couleurs}
+\SbSSCT{Des gradients de couleurs}{Color gradient}
+
+\subsubsection[Module pst-grad]{Module pst-grad \cite{pst-user} \cite{pst-grad}}
+
+\input{eff2} % pst-grad
+ 
+\newpage
+\subsubsection[Module pst-slpe]{Module pst-slpe  \cite{pst-slpe}}
+
+\input{eff3} % pst-slpe
+
+\newpage
+%\subsection[Remplissage par des motifs]{Remplissage par des motifs \cite{pst-fill}}
+\SbSSCT{Remplissage par des motifs}{Filling with pattern}
+
+\input{fill} % pst-fill
+
+%\subsection[Remplissage par des points aléatoires]{Remplissage par des points aléatoires \cite{pstricks-add}}
+\SbSSCT{Remplissage par des points aléatoires}{random points filling}
+
+\input{alea} % random dots
+\newpage
+
+% ========================================================================
+%\section[Effets spéciaux avec du texte ]{Effets spéciaux avec du texte  \cite{pst-user}  \cite{pst-text}}
+\SSCT{Effets spéciaux avec du texte}{Special effects}
+
+\input{text}
+\newpage
+
+ ========================================================================
+%\section[Objets divers ]{Objets divers \cite{pstricks-add}}
+\SSCT{Objets divers}{Various objects}
+
+\input{divers}
+
+
+%\section{Dessins humouristiques}
+\SbSSCT{Dessins humouristiques}{Fun drawing}
+
+\input{fun}
+
+\newpage
+%======================================================================
+
+%\section[Créer un graphe]{Créer un graphe \cite{pst-user}  \cite{pst-plot}}
+\SSCT{Créer un graphe}{Create a graph}
+
+Utilisation du module \textbf{pst-plot} \label{pst-plot}
+
+\input{graph1}
+
+
+\newpage
+
+%\section[Créer un graphe d'après un fichier de données]{Créer un graphe d'après un fichier de données  \cite{pst-user}  \cite{pst-plot}}
+\SSCT{Créer un graphe d'après un fichier de données}{Data graph}
+
+\input{graph2}
+
+%%\essais{pstgraph2ess.tex}
+
+\newpage
+
+%\section[Créer un graphe d'après une équation]{Créer un graphe d'après une équation  \cite{pst-user} \cite{pst-plot}}
+\SSCT{Créer un graphe d'après une équation}{Equation graph}
+ \input{graph3}
+
+\newpage
+
+% \section[Des outils pour les graphes]{Des outils pour les graphes \cite{pstricks-add} }
+\SSCT{Des outils pour les graphes}{Tools for graph} 
+\input{graph4} 
+
+\newpage
+
+%\section{Tracé de fonctions mathématiques \cite{pst-func} }
+\SSCT{Tracé de fonctions mathématiques}{mathematical functions}
+\input{func} 
+
+\newpage
+
+% \section[Créer un graphe en camembert]{Créer un graphe en camembert \cite{pstricks-add} }
+\SSCT{Créer un graphe en camembert}{Pie chart} 
+\input{chart} % camembert
+
+
+\newpage
+%%%=============================================
+
+%\section{Les répétitions}
+\SSCT{Les répétitions}{Repetitions}
+
+\subsection[Multirput]{Multirput \cite{pst-user} }
+
+\input{rep1}
+%
+%\essais{pstrep1ess.tex}
+
+\subsection[Multido]{Multido \cite{pst-user} \cite{multido} }
+
+\input{rep2}
+%
+%\essais{pstrep2ess.tex}
+
+\subsection[Psforeach]{  Commande psforeach \cite{pst-news10} }
+
+\input{rep3}
+
+%\essais{pstrep3ess.tex}
+
+
+\newpage
+
+
+ %======================================================================
+ 
+%\section[La géométrie]{La géométrie  \cite{pst-eucl} }
+\SSCT{La géométrie}{Geometry}
+
+Utilisation du module \textbf{pst-eucl} \label{pst-eucl}(consultez le fichier\textbf{ pst-eucl-doc.pdf} )
+
+
+
+
+%\subsection{\'Elements de base}
+\SbSSCT{\'Elements de base}{Basic elements}
+
+\input{geom1}
+
+%\subsection[Transformations géométriques]{Transformations géométriques \cite{pst-eucl} }
+\SbSSCT{Transformations géométriques}{Geometric transformations}
+
+\input{geom2}
+
+
+%\subsection[Constructions particulières en géométrie ]{Constructions particulières en géométrie \cite{pst-eucl} }
+\SbSSCT{Constructions particulières en géométrie}{Particular constructions}
+
+\input{geom3}
+
+\subsection[Intersections]{Intersections \cite{pst-eucl} }
+
+\input{geom4}
+
+%%--------------------------------------------------------------
+
+%\section[Les vecteurs]{Les vecteurs  \cite{pstricks-add}}
+\SSCT{Les vecteurs }{Vectors}
+\input{vect}
+
+%%==============================================================
+\newpage
+
+%\section[Les diagrammes arborescents ]{Les diagrammes arborescents \cite{pst-tree}}
+\SSCT{Les diagrammes arborescents}{Trees} 
+
+\input{tree}
+
+%%==============================================================
+\newpage
+
+%\section[Les animations ]{ Les animations \cite{anim}}
+\SSCT{Les animations}{Animations}
+\input{anim}
+
+\newpage
+
+%\section[Créer un dessin en 3D]{Créer un dessin en 3D  \cite{pst-3dplot}}
+\SSCT{Créer un dessin en 3D}{3D drawing}
+
+Utilisation du module \textbf{pst-3dplot} \label{pst-3dplot}
+
+\input{3dplot1}
+
+
+%\subsection{Les objets en 3D}
+\SSCT{Les objets en 3D}{3D Objects}
+
+\input{3dplot2}
+
+\newpage
+%\subsection[Créer un graphe en 3D]{Créer un graphe en 3D } 
+\SbSSCT{Créer un graphe en 3D}{3D graph}
+
+\input{3dplot3}
+
+\newpage
+%\section[Créer un dessin en 3D avec pst-solides3d]{Créer un dessin en 3D avec pst-solides3d \cite{pst-sol3d}}
+\SSCT{Créer un dessin en 3D avec pst-solides3d}
+{3D solid}
+Utilisation du module \textbf{pst-solides3d} \label{sol3d}
+
+\input{sol3d}
+
+\newpage
+
+\appendix
+
+\input{poscript}
+
+\newpage
+
+%%%=======================================================================
+%\section{Les modules étudiés dans ce document}
+\SSCT{Les modules étudiés dans ce document}{Packages studied in this document}
+
+\input{pstmodules}
+
+
+\newpage
+
+\section{Sources}
+\input{bib}
+
+\newpage 
+
+\section{Index}
+
+ \printindex 
+\end{document}

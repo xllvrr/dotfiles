@@ -1,0 +1,32 @@
+name petri-nets
+category Package
+revision 39165
+shortdesc A set TeX/LaTeX packages for drawing Petri nets
+longdesc Petri-nets offers a set of TeX/LaTeX packages about Petri nets
+longdesc and related models. Three packages are available: the first
+longdesc allows the user to draw Petri-nets in PostScript documents; the
+longdesc second defines macros related to PBC, M-nets and B(PN) models;
+longdesc and a third that combines the other two.
+depend petri-nets.ARCH
+containersize 7900
+containerchecksum 0807444f934acf16b052dc499a097a2a645d037622a71430cd82fcef85d11bc652341ce6396a27d717effd08bde8ba3224c5235351fa9146000c01abd522f644
+doccontainersize 190288
+doccontainerchecksum cf03048e2bccded143fb493b100fd19103ab90f40713441c5380446702d6c57ac3820f2892a3dfdb80880952e09de78e69b309783767a3e157f76b81c9360535
+docfiles size=69
+ texmf-dist/doc/generic/petri-nets/COPYING
+ texmf-dist/doc/generic/petri-nets/ChangeLog
+ texmf-dist/doc/generic/petri-nets/README
+ texmf-dist/doc/generic/petri-nets/pndoc.pdf details="Package documentation"
+ texmf-dist/doc/generic/petri-nets/pndoc.tex
+runfiles size=14
+ texmf-dist/scripts/petri-nets/pn2pdf
+ texmf-dist/tex/generic/petri-nets/pndraw.sty
+ texmf-dist/tex/generic/petri-nets/pndraw.tex
+ texmf-dist/tex/generic/petri-nets/pnets.sty
+ texmf-dist/tex/generic/petri-nets/pnets.tex
+ texmf-dist/tex/generic/petri-nets/pntext.sty
+ texmf-dist/tex/generic/petri-nets/pntext.tex
+ texmf-dist/tex/generic/petri-nets/pnversion.tex
+catalogue-ctan /macros/generic/petri-nets
+catalogue-license gpl
+catalogue-topics maths

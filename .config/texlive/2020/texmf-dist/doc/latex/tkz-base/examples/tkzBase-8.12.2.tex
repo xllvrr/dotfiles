@@ -1,0 +1,18 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 77 (Section  8.12.2 : Example with \tkzcname{tkzPointShowCoord})
+
+\begin{tikzpicture}[scale=1.5]
+   \tkzInit[xmax=3,ymax=2]
+   \tkzAxeXY
+   \tkzDefPoint(2,1){a}
+   \tkzPointShowCoord(a)
+   \tkzDrawPoint(a)
+   \tkzLabelPoint(a){$A_1$}
+   \tkzPointShowCoord({1,2})
+   \tkzDrawPoint({1,2})
+   \tkzLabelPoint({1,2}){$A_2$}
+\end{tikzpicture}
+
+\end{document}

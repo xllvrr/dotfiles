@@ -1,0 +1,71 @@
+\section{Funktionen für Entwickler}
+	\subsection{Fehlerbehandlung und Debugging}
+		\subsubsection{Paketoptionen}
+			\begin{options}
+				\opt{debug}
+				schaltet das Paket in den Debugmodus. Verhindert zudem
+				die Unterdrückung ungefährlicher Warnungen, die
+				standardmäßig aktiv ist.
+				
+				Diese Paketoption setzt zudem die boolesche Variable 
+				\code{schule\cnltxat debug} auf \code{true}, sodass
+				jederzeit geprüft werden kann, ob der Debugmodus aktiv
+				ist oder nicht.
+			\end{options}
+		\subsubsection{Befehle}
+			\begin{commands}
+				\command{sinfo}[\marg{Text}]
+					schreibt den angegebenen Text in die Logdatei.
+				\command{swarnung}[\marg{Text}]
+					schreibt den angegebenen Text als Warnung in die
+					Logdatei.
+				\command{sfehler}[\marg{Text}]
+					schreibt den angegebenen Text als Fehler in die
+					Logdatei und beendet die Kompilierung.
+				\command{sdinfo}[\marg{Text}]
+					schreibt den angegebenen Text in die Logdatei,
+					falls der Debugmodus aktiv ist.
+				\command{sdwarnung}[\marg{Text}]
+					schreibt den angegebenen Text als Warnung in die
+					Logdatei, falls der Debugmodus aktiv ist.
+			\end{commands}
+	
+	\subsection{Interne Makros}
+		\subsubsection{Befehle}
+			\begin{commands}
+				\command{schule\cnltxat kopfUmbruch}
+					liefert einen Zeilenumbruch, wenn die Kopfzeile an
+					einer Stelle zweizeilig ist, \zB\space durch die
+					Darstellung eines Namensfelds oder die Anzeige
+					des Datums.
+				\command{schule\cnltxat modulDateiLaden}[
+				\marg{Kategorie}\marg{Modulname}\marg{Abschnitt}]
+				Lädt einen Abschnitt eines Moduls. Interne
+				Hilfsfunktion für das Laden von Modulen. 
+				
+				\achtung{Sollte nicht manuell verwendet werden,
+				sondern nur an den entsprechenden Stellen der
+				\code{schule.sty}.}
+				
+				\achtung{Kann mit viel Sorgfalt zur Erfüllung von 
+				Abhängigkeiten zwischen Modulen genutzt werden.
+				Es ist darauf zu achten, dass dann zu Beginn der
+				Abschnitte des ladenden Moduls die entsprechenden
+				Abschnitte des zu ladenden Moduls eingebunden 
+				werden.
+				
+				Dies führt dazu, dass die Ladereihenfolge der Module
+				nicht mehr sichergestellt werden kann.}
+				
+				\command{schule@modulNachladen}[\marg{Modulname}]
+				Lädt ein Modul mit allen Abschnitten. Interne
+				Hilfsfunktion für die Erfüllung von Abhängigkeiten in
+				Modulen. 
+				
+				\achtung{Die Verwendung zu anderen Zwecken wird nicht
+				empfohlen, da die Reihenfolge der zu ladenden Module
+				hier nicht beachtet werden kann. Ebenfalls kann so
+				nicht sichergestellt werden, dass der geladene Code
+				an der richtigen Stelle im Quelltext landet, vielmehr
+				wird er genau an der Stelle des Befehls geladen.}
+			\end{commands}

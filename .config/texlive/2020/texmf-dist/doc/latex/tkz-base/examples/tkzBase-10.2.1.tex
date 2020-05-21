@@ -1,0 +1,19 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 82 (Section 10.2.1 : Example with \tkzcname{tkzClipBB} and the bisectors)
+
+\begin{tikzpicture}
+  \tkzInit[xmin=-3,xmax=6, ymin=-1,ymax=6]
+  \tkzDefPoint(0,0){O}\tkzDefPoint(3,1){I}
+  \tkzDefPoint(1,4){J}
+  \tkzDefLine[bisector](I,O,J) \tkzGetPoint{i}
+  \tkzDefLine[bisector out](I,O,J) \tkzGetPoint{j}
+  \tkzDrawPoints(O,I,J,i,j)
+  \tkzClipBB
+  \tkzDrawLines[add = 1 and 2,color=red](O,I O,J)
+  \tkzDrawLines[add = 1 and 2,color=blue](O,i O,j)
+  \tkzShowBB
+\end{tikzpicture}
+
+\end{document}

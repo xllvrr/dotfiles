@@ -1,0 +1,260 @@
+<html lang="en">
+<head>
+<title>Filenames for TeX fonts</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Filenames for TeX fonts">
+<meta name="generator" content="makeinfo 4.6">
+<!--
+This document is in the public domain and may be used freely.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+Node:&nbsp;<a name="Variants">Variants</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Widths.html#Widths">Widths</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Weights.html#Weights">Weights</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Filenames-for-fonts.html#Filenames%20for%20fonts">Filenames for fonts</a>
+<hr><br>
+</div>
+
+<h3 class="section">Variants</h3>
+
+<p><dfn>Variants</dfn> include typeface variations (e.g., italic, sans serif),
+and font encodings (e.g., Adobe standard, TeX text).
+
+   <p>A fontname may require multiple variants.  To resolve the worst
+ambiguities, we specify that any encoding variant (<code>7</code>, <code>8</code>,
+or <code>9</code>, see below) come last and any other numeral variant come
+first (to avoid confusion with a design size).  We recommend but do not
+require that the other variants be given in alphabetical order.  (It's
+not required because it's too painful to implement the sorting in
+TeX, and many existing names already have non-alphabetized variants.)
+
+   <p>The letterspacing possibilities introduced by <code>fontinst</code> and
+virtual fonts have not yet become sufficiently widespread to make
+standardization beneficial.  Likewise for the many possible ways to
+generate small caps fonts.
+
+   <p>Notes on specific variants, both old and new:
+
+     <dl>
+<dt><code>1</code>
+     <dd><dt><code>4</code>
+     <dd><dt><code>6</code>
+     <dd><dt><code>b</code>
+     <dd>These variants (`semisans', `bright', `semiserif', and `fax') were used
+only for single typefaces, so to conserve variant abbreviations, they
+now have typeface abbreviations instead.  Also, for <code>b</code>, to avoid
+too-long names; and for the others, to avoid variant vs. design-size
+ambiguities.
+
+     <br><dt><code>g</code>
+     <dd><dt><code>h</code>
+     <dd>Since these variants were not actually used in any font names, they are
+now obsolete and may be reassigned in the future.
+
+     <br><dt><code>5</code>
+     <dd><dt><code>6</code>
+     <dd><dt><code>7</code>
+     <dd><dt><code>8</code>
+     <dd><dt><code>9</code>
+     <dd>These characters begin a two-character <dfn>encoding variant</dfn>. 
+Generally, <code>7</code> is for 7-bit encodings, <code>8</code> is for 8-bit
+encodings, and <code>9</code> is for expertised encodings with or without
+oldstyle digits (see the <code>x</code> item below), but this is not an
+absolute rule. Also, <code>5</code> is presently used for phonetic encodings
+and <code>6</code> for Cyrillic encodings.  The <code>9s</code> (<code>SuperFont</code>)
+variant contain all of Adobe, Latin 1, and Expert glyphs, perhaps with
+slightly different metrics than the original fonts.
+
+     <p>For a font to be named with a certain encoding variant, it's not
+necessary that all the characters appear in precisely the same positions
+as in the encoding definition.  It's enough that the usual TeX macros
+work. In practice, this means that it's ok for a font to be labelled
+<code>7t</code> if the only difference from Computer Modern is that the
+ligatures and the <code>lslash</code> and <code>Lslash</code> characters are
+different, since it's impossible to access or change the ligature table
+from TeX.  Standard PostScript fonts don't have an <code>lslash</code>
+character the way Computer Modern does, but they do have the
+<code>Lslash</code> and <code>lslash</code> characters themselves, so the usual
+TeX <code>\lslash</code> and <code>\Lslash</code> macros can be made to work via
+ligatures.  See the file <code>T1.etx</code> file in the <code>fontinst</code>
+distribution for details.
+
+     <p>If a name does not contain a specific encoding variant, its encoding is
+unspecified.  For example, some of the fonts distributed with Dvips(k)
+have names like <code>ptmr</code> for <code>Times-Roman</code>; they use the Dvips
+encoding (see <a href="dvips.html#dvips">dvips</a>), which is close to (but not the same
+as) the TeX text encoding (as in Computer Modern Roman).  Similarly,
+the TFM files distributed with Dvilj(k) for the builtin LaserJet 4 fonts
+have names like <code>cunm</code>, since these fonts, while compatible with
+TeX text, contain many additional characters.
+
+     <br><dt><code>9</code>
+     <dd>These items are needed only because <code>x</code> (and possibly <code>j</code>)
+followed by a two-character regular variant makes some names too long. 
+That is, <code>9t</code> is equivalent in meaning to <code>x7t</code>, and <code>9d</code>
+is equivalent to <code>jx7t</code>.  (This may not be true for all
+<code>9</code><var>x</var><code></code> encodings, though.)
+
+     <br><dt><code>k</code>
+     <dd><dt><code>z</code>
+     <dd>These variants (indicating Greek and Cyrillic fonts, respectively) are
+obsolete; future fonts in different scripts should be assigned an
+appropriate encoding abbreviation.  These are not currently
+standardized, due to ignorance of the appropriate encodings.  Please
+send suggestions for abbreviations to the address in <a href="Introduction.html#Introduction">Introduction</a>.
+
+     <br><dt><code>m</code>
+     <dd><dt><code>v</code>
+     <dd><dt><code>y</code>
+     <dd>These math-related variants remain for the sake of typeface-specific
+math encodings, e.g., Lucida.  Fonts that use the Computer Modern math
+encodings should use <code>7m</code> (see <a href="texmital.html#texmital">texmital</a>), <code>7v</code>
+(see <a href="texmext.html#texmext">texmext</a>), and <code>7y</code> (see <a href="texmsym.html#texmsym">texmsym</a>).
+
+     <br><dt><code>n</code>
+     <dd>This is used for several different (but very rare) variants: only the
+Stone typeface has an "informal" variant, and only a few Monotype
+fonts have a "schoolbook" variant, with different `a', `g', and `y'
+shapes.
+
+     <br><dt><code>r</code>
+     <dd>Included only if no other variants, including encodings, apply, and
+either the width (see <a href="Widths.html#Widths">Widths</a>) is not <code>r</code> or a design size is
+present.  I.e., <code>r</code> is only used as a placeholder.  When the normal
+version of the typeface is sans serif (e.g., Helvetica), <code>r</code> should
+be used when necessary, not <code>s</code>.  Use <code>s</code> only when the
+typeface family has both serif and sans serif variants.
+
+     <br><dt><code>s</code>
+     <dd><dt><code>t</code>
+     <dd>Mittelbach in <cite>TUGboat</cite> 13(1) suggests that these variants (for
+`sans' and `typewriter') should be identified as part of the typeface
+name, because there are few typeface families with these variants.  I
+feel that since they are logically variants, it's best to name them that
+way.  But <code>LucidaSans</code> (see <a href="Typefaces.html#Typefaces">Typefaces</a>) and a few others are
+exceptions, to avoid too-long names.
+
+     <br><dt><code>x</code>
+     <dd><dt><code>8x</code>
+     <dd><dt><code>9?</code>
+     <dd><code>8x</code> indicates a font in the <code>Expert</code> encoding itself. 
+<code>x</code> indicates an <dfn>expertised</dfn> font, i.e., a composite (virtual)
+font that includes characters from an <code>8x</code> font.  And in fact an
+<code>x</code><var>ee</var><code></code> sequence is replaced by <code>9</code><var>e</var><code></code>, to save
+characters. 
+</dl>
+
+   <p>Fontname 1 assignments are shown in brackets in the following table,
+from the file <code>variant.map</code>.  It is organized alphabetically by
+abbreviation.  Each line consists of an abbreviation and either any
+parts of a PostScript <code>FontName</code> which use that abbreviation or the
+PostScript <code>Encoding</code> name.
+
+<pre class="example">
+
+     0 inferior
+     1 superior
+     obsolete [2=&gt;7c] Fraktur encoding
+     obsolete [3=&gt;7f] Fraction
+     obsolete [4 fax; now typeface <code>lx</code>, Lucida Fax]
+     5 escape for (presently) phonetic encodings
+     6 escape for Cyrillic encodings [was <code>SemiSerif</code>]
+     7 escape for (mostly) 7-bit encodings
+     8 escape for (mostly) 8-bit encodings
+     9 escape for (presently) expert encodings [was oldstyle digits]
+     a Alt Arrows Alternative             [was alternate encoding]
+     obsolete [b bright; now typeface lh, Lucida Bright]
+     c SmallCaps
+     d Display Titling Caption Headline TallCaps SwashCaps LombardicCaps Festive
+     e Engraved Copperplate Elite
+     f Fraktur Gothic OldEnglish Handtooled (`gothic' can also be sans)
+     g SmallText      designed for small sizes [was grooved, as in the IBM logo]
+     h Shadow
+     i Italic Kursiv Ital                 text italic
+     j                                    old-style digits [was invisible]
+     k Greek                              obsolete
+     l Outline OpenFace Blanks
+     m math italic
+     n Informal Fashion Schlbk            for Stone
+     o Oblique Obl                        slanted
+     p Ornaments
+     obsolete [q=&gt;8t Cork (TeX extended) encoding]
+     r                                    roman or sans; often omitted, see text
+     s Gothic                             sans serif
+     t Monospace                          fixed-width typewriter
+     u                                    unslanted italic
+     v MathExtension
+     w Script Handwritten Swash Calligraphy Cursive Tango
+     x built with Adobe expert encoding [was expert-encoded]
+     y MathSymbol
+     z Cyrillic                           font-dependent Cyrillic
+     5a PhoneticAlternate
+     5i PhoneticIPA
+     5s sil-IPA
+     5t TeX-IPA                           Fukui Rei, LaTeX T3
+     5w TeXAfricanLatin                   wsuipa fonts, LaTeX OT3
+     5z user
+     6a T2A
+     6b Cyrillic part of ISO 8859-5, seven bits
+     6c T2C
+     6d Cyrillic CP866 encoding
+     6i ISO 8859-5
+     6k Cyrillic KOI8-R encoding
+     6m Cyrillic Macintosh encoding
+     6s Storm extra encoding
+     6t T2B
+     6w Cyrillic CP1251 encoding
+     6x X2
+     6y LCY
+     6z user
+     7a A                                 alternate characters only
+     7c Dfr                               Fraktur
+     7d OsF OSF                           oldstyle digit encoding
+     7f Fraction
+     7k OT2Cyrillic
+     7m TeXMathItalicEncoding             see <a href="texmital.html#texmital">texmital</a>
+     7t                       TeX text encoding (as in Computer Modern Roman)
+     7v TeXMathExtensionEncoding          see <a href="texmext.html#texmext">texmext</a>
+     7y TeXMathSymbolEncoding             see <a href="texmsym.html#texmsym">texmsym</a>
+     7z user
+     82 GreekKeys
+     83 Ibycus1
+     84 Ibycus2
+     8a StandardEncoding                  Adobe standard encoding, see <a href="8a.html#8a">8a</a>
+     8c TeXTextCompanion                  LaTeX TS1
+     8f TeXAfricanLatin                   LaTeX T4
+     8i TS0                               Intersection of TS1/Adobe Standard
+     8m Macintosh standard encoding
+     8n LM1 Textures
+     8r TeXBase1Encoding                  see <a href="8r.html#8r">8r</a>
+     8t CorkEncoding                      see <a href="cork.html#cork">cork</a>
+     8u XT2Encoding                       cmtt + Latin 2, see <code>xl2.enc</code>
+     8v TeXVietnamese                     to be defined
+     8w Windows 3.1 ANSI encoding
+     8x Expert                            expert encoding
+     8y LY1                               TeX 'n ANSI
+     8z XL2Encoding                       cmr + Latin 2, see <code>xl2.enc</code>
+     9c expert + Text companion
+     9d expert + oldstyle digits + Cork
+     9e expert + Cork
+     9i TS0X                              Intersection of TS1/Standard/Expert
+     9o expert + oldstyle digits + TeX text
+     9s SF                                SuperFont
+     9t expert + TeX text
+     9z user
+     -  songti                            for mnm
+     </pre>
+
+   </body></html>
+

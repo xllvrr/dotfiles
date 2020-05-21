@@ -1,0 +1,161 @@
+%\iffalse meta-comment
+%Copyright (c) 2019 Matthew Scroggs & Adam Townsend
+%
+%Permission is hereby granted, free of charge, to any person obtaining a copy
+%of this software and associated documentation files (the "Software"), to deal
+%in the Software without restriction, including without limitation the rights
+%to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+%copies of the Software, and to permit persons to whom the Software is
+%furnished to do so, subject to the following conditions:
+%
+%The above copyright notice and this permission notice shall be included in all
+%copies or substantial portions of the Software.
+%
+%THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+%IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+%FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+%AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+%LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+%OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+%SOFTWARE.
+%\fi
+
+%\lstinline{realhats} is a package for \LaTeX{} that makes the \lstinline{\hat} command
+%put real hats on symbols.
+%For example, the input \lstinline@\hat{a}=\hat{b}@ will produce the output:
+%\[\hat{a}=\hat{b}\]
+%To make a vector with a hat, the input \lstinline@\hat{\mathbf{a}}@ produces:
+%\[\hat{\mathbf{a}}\]
+%
+%The command \lstinline{\hat} will choose a hat randomly from ten hats:
+%\begin{itemize}
+%\item \(\hatn{a}{beret}\) - A beret
+%\item \(\hatn{a}{santa}\) - A Santa hat
+%\item \(\hatn{a}{sombrero}\) - A sombrero
+%\item \(\hatn{a}{witch}\) - A witch's hat
+%\item \(\hatn{a}{tophat}\) - A top hat
+%\item \(\hatn{a}{ash}\) - Ash's hat
+%\item \(\hatn{a}{fez}\) - A fez
+%\item \(\hatn{a}{cowboy}\) - A cowboy hat
+%\item \(\hatn{a}{crown}\) - A crown
+%\item \(\hatn{a}{dunce}\) - A dunce's cap
+%\end{itemize}
+%
+%Variables can be given a non-random hat, using the command \lstinline{\hat} with an optional parameter:
+%\begin{itemize}
+%\item \lstinline@\hat[beret]{a}@ produces \(\hat[beret]{a}\)
+%\item \lstinline@\hat[santa]{a}@ produces \(\hat[santa]{a}\)
+%\item \lstinline@\hat[sombrero]{a}@ produces \(\hat[sombrero]{a}\)
+%\item \lstinline@\hat[witch]{a}@ produces \(\hat[witch]{a}\)
+%\item \lstinline@\hat[tophat]{a}@ produces \(\hat[tophat]{a}\)
+%\item \lstinline@\hat[ash]{a}@ produces \(\hat[ash]{a}\)
+%\item \lstinline@\hat[fez]{a}@ produces \(\hat[fez]{a}\)
+%\item \lstinline@\hat[cowboy]{a}@ produces \(\hat[cowboy]{a}\)
+%\item \lstinline@\hat[crown]{a}@ produces \(\hat[crown]{a}\)
+%\item \lstinline@\hat[dunce]{a}@ produces \(\hat[dunce]{a}\)
+%\end{itemize}
+%
+%You can also pass these same options when loading the package.
+%For example, \verb@\usepackage[ash]{realhats}@ will cause the package to use make {\LaTeX} great again hats
+%everywhere (unless an different hat is given to the \verb@\hat@ command).
+%\iffalse
+%<*documentation>
+\documentclass{article}
+\usepackage{realhats}
+\usepackage{doc}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\footnotesize,commentstyle=\color{white},language=TeX}
+\title{realhats v\input{VERSION}}
+\author{Matthew W.~Scroggs \& Adam K.~Townsend}
+\begin{document}
+\maketitle
+    \DocInput{realhats.dtx}
+\end{document}
+%</documentation>
+%\fi
+
+%\iffalse
+%<*realhats>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{realhats}[2019/04/14 realhats 3.0]
+
+\RequirePackage{amsmath}
+\RequirePackage{graphicx}
+\RequirePackage{ifthen}
+\RequirePackage[first=0, last=9, counter=hat]{lcg}
+\RequirePackage{calc}
+\RequirePackage{stackengine}
+
+\newcommand\myhat{}
+\newlength{\hatwidth} %hat width
+\newlength{\hshif} %horizontal shift
+\newlength{\vshif} %vertical shift
+
+\global\def\hatused{-1}
+\DeclareOption{beret}{\global\def\hatused{beret}}
+\DeclareOption{santa}{\global\def\hatused{santa}}
+\DeclareOption{sombrero}{\global\def\hatused{sombrero}}
+\DeclareOption{witch}{\global\def\hatused{witch}}
+\DeclareOption{tophat}{\global\def\hatused{tophat}}
+\DeclareOption{ash}{\global\def\hatused{ash}}
+\DeclareOption{fez}{\global\def\hatused{fez}}
+\DeclareOption{cowboy}{\global\def\hatused{cowboy}}
+\DeclareOption{crown}{\global\def\hatused{crown}}
+\DeclareOption{dunce}{\global\def\hatused{dunce}}
+\ProcessOptions\relax
+
+\newcommand{\gethat}{%
+    \ifcase\thehat beret%
+        \or santa%
+        \or sombrero%
+        \or witch%
+        \or tophat%
+        \or ash%
+        \or fez%
+        \or cowboy%
+        \or crown%
+        \or dunce%
+    \fi
+}
+
+\renewcommand{\hat}[2][]{%
+    \ifthenelse{\equal{#1}{}}{%
+        \ifthenelse{\equal{\hatused}{-1}}%
+        {\rand\hatn{#2}{\gethat}}%
+        {\hatn{#2}{\hatused}}%
+    }{%
+        \ifthenelse{\equal{#1}{beret}}{\hatn{#2}{beret}}{}%
+        \ifthenelse{\equal{#1}{santa}}{\hatn{#2}{santa}}{}%
+        \ifthenelse{\equal{#1}{sombrero}}{\hatn{#2}{sombrero}}{}%
+        \ifthenelse{\equal{#1}{witch}}{\hatn{#2}{witch}}{}%
+        \ifthenelse{\equal{#1}{tophat}}{\hatn{#2}{tophat}}{}%
+        \ifthenelse{\equal{#1}{ash}}{\hatn{#2}{ash}}{}%
+        \ifthenelse{\equal{#1}{fez}}{\hatn{#2}{fez}}{}%
+        \ifthenelse{\equal{#1}{cowboy}}{\hatn{#2}{cowboy}}{}%
+        \ifthenelse{\equal{#1}{crown}}{\hatn{#2}{crown}}{}%
+        \ifthenelse{\equal{#1}{dunce}}{\hatn{#2}{dunce}}{}%
+    }%
+}
+
+\newcommand{\hatn}[2]{\hatnoptions{#1}{#2}{0ex}{0ex}}
+
+\newcommand{\hatnoptions}[4]{%
+\setlength{\hshif}{1pt}
+\setlength{\hatwidth}{2ex}
+\ifthenelse{\equal{#2}{beret}}{\renewcommand\myhat{hats/realhats-beret}\setlength{\vshif}{-0.6ex} \setlength{\hshif}{0.5ex} }{}%
+\ifthenelse{\equal{#2}{santa}}{\renewcommand\myhat{hats/realhats-santa}\setlength{\vshif}{-0.1ex} }{}%
+\ifthenelse{\equal{#2}{sombrero}}{\renewcommand\myhat{hats/realhats-sombrero}\setlength{\vshif}{-0.17ex} \addtolength{\hshif}{-1pt}}{}%
+\ifthenelse{\equal{#2}{witch}}{\renewcommand\myhat{hats/realhats-witch}\setlength{\vshif}{-0.12ex} \addtolength{\hshif}{-1pt}}{}%
+\ifthenelse{\equal{#2}{tophat}}{\renewcommand\myhat{hats/realhats-tophat}\setlength{\vshif}{-0.4ex} \setlength{\hatwidth}{1.8ex} \addtolength{\hshif}{-1pt}}{}%
+\ifthenelse{\equal{#2}{ash}}{\renewcommand\myhat{hats/realhats-ash}\setlength{\vshif}{-0.6ex} \setlength{\hatwidth}{1.8ex} \addtolength{\hshif}{-1pt}}{}%
+\ifthenelse{\equal{#2}{fez}}{\renewcommand\myhat{hats/realhats-fez}\setlength{\vshif}{-0.4ex} \setlength{\hatwidth}{1ex} \addtolength{\hshif}{-1pt}}{}%
+\ifthenelse{\equal{#2}{cowboy}}{\renewcommand\myhat{hats/realhats-cowboy}\setlength{\vshif}{-0.3ex} \setlength{\hshif}{0.2ex}}{}%
+\ifthenelse{\equal{#2}{crown}}{\renewcommand\myhat{hats/realhats-crown}\setlength{\vshif}{-0.3ex} \setlength{\hshif}{0.2ex}}{}%
+\ifthenelse{\equal{#2}{dunce}}{\renewcommand\myhat{hats/realhats-dunce}\setlength{\vshif}{-0.3ex} \setlength{\hatwidth}{1.4ex}}{}%
+\addtolength{\hshif}{#3}%
+\addtolength{\vshif}{#4}%
+\stackMath %
+\stackon[\vshif]{#1}{\hspace{\hshif}\includegraphics[width=\hatwidth]{\myhat}}
+}
+%</realhats>
+%\fi

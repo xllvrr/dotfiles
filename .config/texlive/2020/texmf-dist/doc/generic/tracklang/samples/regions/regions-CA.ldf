@@ -1,0 +1,9 @@
+\TrackLangProvidesResource{CA}[2016/10/06 v1.2]
+
+\providecommand*{\CAunits}{%
+  \renewcommand*{\weightunit}{kg}%
+  \renewcommand*{\lengthunit}{mm}%
+  \renewcommand*{\currencyunit}{CAD}%
+}
+
+\TrackLangAddToCaptions\CAunits

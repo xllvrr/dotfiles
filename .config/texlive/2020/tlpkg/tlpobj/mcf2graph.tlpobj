@@ -1,0 +1,29 @@
+name mcf2graph
+category Package
+revision 53550
+shortdesc Draw chemical structure diagrams with Metafont/MetaPost
+longdesc The Molecular Coding Format (MCF) is a linear notation for
+longdesc describing chemical structure diagrams. This package converts
+longdesc MCF to graphic files using Metafont / MetaPost.
+containersize 20036
+containerchecksum 39324ce41fd8bf3f6c478533bb96f8c743d183754e28ab68f431fc74b1e873221a81fb782ef5f8b897dc9f929e19b41e617d042adac54d8b3c1c3b1094dbc3f0
+doccontainersize 880812
+doccontainerchecksum e005ebab9b4ccbd6766ae91a59fea1be987ce290c56569fe754ab0ac4fd7c68046345704d7fa17e75d4b3b5ff361ca907c34965cb6eff26549909ef55804a145
+docfiles size=282
+ texmf-dist/doc/metapost/mcf2graph/CHANGELOG
+ texmf-dist/doc/metapost/mcf2graph/README details="Readme"
+ texmf-dist/doc/metapost/mcf2graph/mcf_exa_soc.mf
+ texmf-dist/doc/metapost/mcf2graph/mcf_example.pdf details="Molecular Coding Format Examples"
+ texmf-dist/doc/metapost/mcf2graph/mcf_example.tex
+ texmf-dist/doc/metapost/mcf2graph/mcf_man_soc-064.mps
+ texmf-dist/doc/metapost/mcf2graph/mcf_man_soc.mf
+ texmf-dist/doc/metapost/mcf2graph/mcf_manual.pdf details="Package documentation"
+ texmf-dist/doc/metapost/mcf2graph/mcf_manual.tex
+ texmf-dist/doc/metapost/mcf2graph/mcf_mplib_exa.pdf details="MCF Example for LuaLaTeX"
+ texmf-dist/doc/metapost/mcf2graph/mcf_mplib_exa.tex
+runfiles size=22
+ texmf-dist/metapost/mcf2graph/mcf2graph.mf
+catalogue-ctan /graphics/mcf2graph
+catalogue-license mit
+catalogue-topics graphics graphics-mpost chemistry
+catalogue-version 4.48

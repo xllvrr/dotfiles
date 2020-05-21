@@ -1,0 +1,49 @@
+\begin{tikzpicture}[codeblocks,scale=.90]
+\node[grundlage] (start) {dauerhaft}; 
+	\node[schleife,unter={start}{1}{3}]	(schleife1) {\intbox{4} mal wiederholen mache};
+		\node[grundlage,unter={schleife1}{1}{0.5}]
+(musik1) {setze LED-Farbe auf \dropdown{Violett}};
+		\node[musik, unter={musik1}{0}{1}]
+(musik2) {Spiele Note \dropdown{C} für \dropdown{1/16} Takt};
+	\node[logik, unter={musik2}{-1}{4.5}]
+(logik1) {wenn \boolbox{\dropdown{wahr}}};
+		\node[bild, unter={logik1}{1}{1}] (bild) {
+			erstelle Bild:\\
+			\bild{\emptyled}
+		};
+	
+		\node[platzhalter, unter={bild}{-1}{3}] (platz1) {ändere \dropdown{Platzhalter} auf
+		\tikz[boden]\node[mathe]{\intbox{15}\dropdown{$\div$}\intbox{3}};
+	}; 
+	\node[grundlage,umgebung, unter={platz1}{0}{1}]  (bildmalen){
+		Zeige LEDs:
+		\bild[0.3]{
+			\X \X \X \X \X \\
+			\0 \X \X \X \0 \\
+			\0 \0 \X \0 \0 \\
+			\0 \X \X \X \0 \\
+			\X \X \X \X \X \\						
+		}
+	};
+\node[logik, unter={bildmalen}{0}{3}](log3wenndann) {Wenn \dropdown{5} \dropdown{<} \intbox{5} dann mache};
+	\node[motor, unter={log3wenndann}{1}{1}]		(motorlogik1)		{setze \intbox{5}V an Ausgang \stringbox{powerOut}};
+\node[logik, unter={motorlogik1}{-1}{0}]	(log3sonst)			{ansonsten mache};
+	\node[musik, unter={log3sonst}{1}{1}]		(musiklogik2)		{spiele Note \dropdown{C} für \dropdown{1/4} Takt};
+
+% Umgebungen setzen 		
+\begin{pgfonlayer}{background}
+	\node[grundlage,umgebung,fit= (start) (musiklogik2) (motorlogik1) (platz1)]{};
+	\node[schleife, umgebung, fit = (schleife1) (musik1)(musik2)] (schleife1fit) {};
+	\node[logik,umgebung, fit=(bild) (logik1)] (log1fit){};
+	
+	
+	\node[logik,umgebung,fit=(log3wenndann)(motorlogik1)(log3sonst)(musiklogik2)]{};
+	
+	\node[umgebung, logik, fit=(log3wenndann) (motorlogik1)](log11){};
+	\node[umgebung, logik, fit=(log3sonst) (musiklogik2)](log22){};
+\end{pgfonlayer}	
+
+% Puzzlenippel setzen
+%\setzenippel{start,schleife1,musik1,logik1,platz1,schleife1fit,log1fit,bildmalen,log3wenndann, log3sonst}
+
+\end{tikzpicture}

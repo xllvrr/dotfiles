@@ -1,0 +1,28 @@
+name asmeconf
+category Package
+revision 54758
+shortdesc A template for ASME conference papers
+longdesc This class provides a template to format ASME Conference papers
+longdesc according to the requirements on ASME's web pages (as posted in
+longdesc early 2020). The .tex and .cls files are commented and should
+longdesc be self-explanatory. The package depends on newtx. This work is
+longdesc not a publication of ASME itself.
+containersize 17360
+containerchecksum d2f3321e999dec78f16dab1e6ec143dd561f12179cc60ff614159bb45b90597b21c88c697332e79b985aa3b3ca69e64aa27ee1f047232be36741f73742f1ec2d
+doccontainersize 401200
+doccontainerchecksum 46d889bca457a12de54ead3e2ba52dfb680bf75257cb476a6bbc2a37dbb4a7700aba4d3c52c1040e03acef70fbdb9b18712f052f81aca36bb09c23905b7b1437
+docfiles size=170
+ texmf-dist/doc/latex/asmeconf/README.md details="Readme"
+ texmf-dist/doc/latex/asmeconf/asmeconf-sample.bib
+ texmf-dist/doc/latex/asmeconf/asmeconf-template.pdf details="Example of use"
+ texmf-dist/doc/latex/asmeconf/asmeconf-template.tex
+ texmf-dist/doc/latex/asmeconf/sample-figure-1.pdf
+ texmf-dist/doc/latex/asmeconf/sample-figure-2a.pdf
+ texmf-dist/doc/latex/asmeconf/sample-figure-2b.pdf
+runfiles size=19
+ texmf-dist/bibtex/bst/asmeconf/asmeconf.bst
+ texmf-dist/tex/latex/asmeconf/asmeconf.cls
+catalogue-ctan /macros/latex/contrib/asmeconf
+catalogue-license mit
+catalogue-topics bibtex-sty class confproc engineering scientific-docs
+catalogue-version 1.18

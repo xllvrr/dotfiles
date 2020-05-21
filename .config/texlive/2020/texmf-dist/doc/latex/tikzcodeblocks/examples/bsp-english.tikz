@@ -1,0 +1,10 @@
+\begin{otherlanguage}{english}
+\begin{tikzpicture}[codeblocks]
+\moveindent{
+	\node[start,pinlow](one){start};
+	}
+	\ifthenelseblocks[under={one}{1}{0}]{A=B}{\node{A++};}{\node{B-{}-};}{two}
+	\loopblocks[under={two}{0}{0}]{for}{A!=B}{\node{A-{}-};}{three}
+	\node[under={three}{0}{0},aktion,pinhigh]{\intbox{3}+\intbox[puzzlepiece]{5}};
+\end{tikzpicture}
+\end{otherlanguage}

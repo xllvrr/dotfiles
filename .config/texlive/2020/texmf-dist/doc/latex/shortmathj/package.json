@@ -1,0 +1,26 @@
+{
+  "name": "latex-shortmathj",
+  "version": "0.5.0",
+  "description": "Scripts for generating LaTeX package shortmathj",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Nickkolok/latex-shortmathj.git"
+  },
+  "keywords": [
+    "latex",
+    "AMS"
+  ],
+  "author": "Nikolai Avdeev aka @nickkolok",
+  "license": "LPPL-1.3c",
+  "bugs": {
+    "url": "https://gitlab.com/Nickkolok/latex-shortmathj/issues"
+  },
+  "homepage": "https://gitlab.com/Nickkolok/latex-shortmathj#readme",
+  "dependencies": {
+    "csv-parser": "^2.3.2"
+  }
+}

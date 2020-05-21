@@ -1,0 +1,18 @@
+hvfloat
+hvfloat-fps (float placement setting)
+
+hvfloat
+Placing figures/tables with various options, like rotating
+the image/table and/or caption. Placing object and caption
+side by side in one- and twocolumn mode. Fullpage objects
+with captions on the preceeding or following page in
+one- and twocolumn mode.
+
+hvfloat-fps
+Simple global placement setting for floats
+
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+
+hvoss@tug.org

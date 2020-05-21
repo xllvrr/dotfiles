@@ -1,0 +1,26 @@
+name mentis
+category Package
+revision 15878
+shortdesc A basis for books to be published by Mentis publishers
+longdesc This LaTeX class loads scrbook and provides changes necessary
+longdesc for publishing at Mentis publishers in Paderborn, Germany. It
+longdesc is not an official Mentis class, merely one developed by an
+longdesc author in close co-operation with Mentis.
+containersize 4180
+containerchecksum ee03fae28adbf147945a88548e8223bfe8c8ce220a61726bc6738f34cc90ec776aa468a1cf7fc862d1f7f091cf87964cf665839922819130f3575d56301a5d26
+doccontainersize 137680
+doccontainerchecksum 2e869d1368b807a70f3de5550d2c79f229dbeb8d888a927005fcc43c70644da0ccd36eb2464fa6437c9947c78d59e77c4013824b1e8d5a4bb517b80f1cfb5a8e
+docfiles size=40
+ texmf-dist/doc/latex/mentis/README details="Readme"
+ texmf-dist/doc/latex/mentis/mentis.pdf details="Package documentation"
+srccontainersize 16980
+srccontainerchecksum 10858cb9cb2db0f7db31d371e42436ca001ef20fede5f6b34dca61fa48248383e32547576a2dd3a4a98acddfcaf9e1d3fec89183c48ae76d5b3b677fabda7549
+srcfiles size=14
+ texmf-dist/source/latex/mentis/mentis.dtx
+ texmf-dist/source/latex/mentis/mentis.ins
+runfiles size=4
+ texmf-dist/tex/latex/mentis/mentis.cls
+catalogue-ctan /macros/latex/contrib/mentis
+catalogue-license lppl
+catalogue-topics class book-pub publisher
+catalogue-version 1.5

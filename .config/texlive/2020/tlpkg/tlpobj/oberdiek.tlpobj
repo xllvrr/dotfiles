@@ -1,0 +1,220 @@
+name oberdiek
+category Package
+revision 53283
+shortdesc A bundle of packages submitted by Heiko Oberdiek
+longdesc The bundle comprises packages to provide: aliascnt: 'alias
+longdesc counters'; bmpsize: get bitmap size and resolution data;
+longdesc centernot: a horizontally-centred \not symbol; chemarr:
+longdesc extensible chemists' reaction arrows; classlist: record
+longdesc information about document class(es) used; colonequals: poor
+longdesc man's mathematical relation symbols; dvipscol: dvips colour
+longdesc stack management; engord: define counter-printing operations
+longdesc producing English ordinals; eolgrab: collect arguments
+longdesc delimited by end of line; flags: setting and clearing flags in
+longdesc bit fields and converting the bit field into a decimal number;
+longdesc holtxdoc: extra documentation macros; hopatch: safely apply
+longdesc package patches; hypbmsec: bookmarks in sectioning commands;
+longdesc hypcap: anjusting anchors of captions; hypdestopt: optimising
+longdesc hyperref's pdfTeX driver destinations; hypdoc: hyper-references
+longdesc in the LaTeX standard doc package; hypgotoe: experimental
+longdesc package for links to embedded files; hyphsubst: substitute
+longdesc hyphenation patterns; ifdraft: switch for option draft; iflang:
+longdesc provides expandable checks for the current language; pagegrid:
+longdesc prints a page grid in the background; pagesel: select pages of
+longdesc a document for output; pdfcolfoot: using pdfTeX's color stack
+longdesc for footnotes; pdfcol: macros for setting and maintaining new
+longdesc color stacks; pdfcolparallel: fixes colour problems in package
+longdesc parallel; pdfcolparcolumns: fixes colour problems in package
+longdesc parcolumns; pdfcrypt: setting PDF encryption; pdfrender:
+longdesc control PDF rendering modes; protecteddef: define a command
+longdesc that protected against expansion; resizegather: automatically
+longdesc resize overly large equations; rotchiffre: performs simple
+longdesc rotation cyphers; scrindex: redefines environment 'theindex' of
+longdesc package 'index', if a class from KOMA-Script is loaded;
+longdesc setouterhbox: set \hbox in outer horizontal mode; settobox:
+longdesc getting box sizes; soul and adds some support for UTF-8;
+longdesc stackrel: extensions of the \stackrel command; stampinclude:
+longdesc selects the files for \include by inspecting the timestamp of
+longdesc the .aux file(s); tabularht: tabulars with height
+longdesc specification; tabularkv: key value interface for tabular
+longdesc parameters; telprint: print German telephone numbers;
+longdesc thepdfnumber: canonical numbers for use in PDF files and
+longdesc elsewhere; twoopt: commands with two optional arguments; Each
+longdesc of the packages is represented by two files, a .dtx (documented
+longdesc source) and a PDF file; the .ins file necessary for
+longdesc installation is extracted by running the .dtx file with Plain
+longdesc TeX.
+depend auxhook
+depend grfext
+depend grffile
+depend iftex
+depend infwarerr
+depend kvoptions
+depend pdftexcmds
+containersize 48116
+containerchecksum 6e3aeb760239bd3f8ee92655703b6155f9f096f4baf0cd8efa3b6cdfb67f96ca16149ea3e11dd851960d98304eb88c78373241d0b00948b3d717ed92e32d858c
+doccontainersize 9330492
+doccontainerchecksum 76baac4bb06b595e05bf235a6436e8d59b06ea6917ffa66d6e82ccba994975b6992caf422b40d864ecf7ba7152446859299cb158eadef3c37a6d96354649f6e0
+docfiles size=3376
+ texmf-dist/doc/latex/oberdiek/README.txt details="Bundle README"
+ texmf-dist/doc/latex/oberdiek/aliascnt.pdf
+ texmf-dist/doc/latex/oberdiek/bmpsize.pdf
+ texmf-dist/doc/latex/oberdiek/centernot.pdf
+ texmf-dist/doc/latex/oberdiek/chemarr-example.tex
+ texmf-dist/doc/latex/oberdiek/chemarr.pdf
+ texmf-dist/doc/latex/oberdiek/classlist.pdf
+ texmf-dist/doc/latex/oberdiek/colonequals.pdf
+ texmf-dist/doc/latex/oberdiek/dvipscol.pdf
+ texmf-dist/doc/latex/oberdiek/engord.pdf
+ texmf-dist/doc/latex/oberdiek/enparen.pdf
+ texmf-dist/doc/latex/oberdiek/eolgrab.pdf
+ texmf-dist/doc/latex/oberdiek/example/eolgrab-example-env.tex
+ texmf-dist/doc/latex/oberdiek/example/eolgrab-example-ltx.tex
+ texmf-dist/doc/latex/oberdiek/example/eolgrab-example-sec.tex
+ texmf-dist/doc/latex/oberdiek/fibnum.pdf
+ texmf-dist/doc/latex/oberdiek/flags.pdf
+ texmf-dist/doc/latex/oberdiek/holtxdoc.pdf
+ texmf-dist/doc/latex/oberdiek/hopatch.pdf
+ texmf-dist/doc/latex/oberdiek/hypbmsec.pdf
+ texmf-dist/doc/latex/oberdiek/hypcap.pdf
+ texmf-dist/doc/latex/oberdiek/hypdestopt.pdf
+ texmf-dist/doc/latex/oberdiek/hypdoc.pdf
+ texmf-dist/doc/latex/oberdiek/hypgotoe-example.tex
+ texmf-dist/doc/latex/oberdiek/hypgotoe.pdf
+ texmf-dist/doc/latex/oberdiek/hyphsubst.pdf
+ texmf-dist/doc/latex/oberdiek/ifdraft.pdf
+ texmf-dist/doc/latex/oberdiek/iflang.pdf
+ texmf-dist/doc/latex/oberdiek/oberdiek.pdf details="Table of contents of the bundle"
+ texmf-dist/doc/latex/oberdiek/pagegrid.pdf
+ texmf-dist/doc/latex/oberdiek/pagesel.pdf
+ texmf-dist/doc/latex/oberdiek/pdfcol.pdf
+ texmf-dist/doc/latex/oberdiek/pdfcolfoot.pdf
+ texmf-dist/doc/latex/oberdiek/pdfcolparallel.pdf
+ texmf-dist/doc/latex/oberdiek/pdfcolparcolumns.pdf
+ texmf-dist/doc/latex/oberdiek/pdfcrypt.pdf
+ texmf-dist/doc/latex/oberdiek/pdfrender.pdf
+ texmf-dist/doc/latex/oberdiek/protecteddef.pdf
+ texmf-dist/doc/latex/oberdiek/resizegather.pdf
+ texmf-dist/doc/latex/oberdiek/rotchiffre.pdf
+ texmf-dist/doc/latex/oberdiek/scrindex-example1.tex
+ texmf-dist/doc/latex/oberdiek/scrindex-example2.tex
+ texmf-dist/doc/latex/oberdiek/scrindex.pdf
+ texmf-dist/doc/latex/oberdiek/setouterhbox-example.tex
+ texmf-dist/doc/latex/oberdiek/setouterhbox.pdf
+ texmf-dist/doc/latex/oberdiek/settobox-example.tex
+ texmf-dist/doc/latex/oberdiek/settobox.pdf
+ texmf-dist/doc/latex/oberdiek/stackrel.pdf
+ texmf-dist/doc/latex/oberdiek/stampinclude.pdf
+ texmf-dist/doc/latex/oberdiek/tabularht-example1.tex
+ texmf-dist/doc/latex/oberdiek/tabularht-example2.tex
+ texmf-dist/doc/latex/oberdiek/tabularht.pdf
+ texmf-dist/doc/latex/oberdiek/tabularkv-example.tex
+ texmf-dist/doc/latex/oberdiek/tabularkv.pdf
+ texmf-dist/doc/latex/oberdiek/telprint.pdf
+ texmf-dist/doc/latex/oberdiek/thepdfnumber.pdf
+ texmf-dist/doc/latex/oberdiek/twoopt.pdf
+srccontainersize 127840
+srccontainerchecksum 79b9c0a1e6c01cd20f8d9d7fbba82b0f4779d1724cc8b777e537e289833cb6a712de8ad4b2fa44083e3b3fdfee375ffa68c518779ceb7944091cb3e3a1e1d207
+srcfiles size=293
+ texmf-dist/source/latex/oberdiek/README.txt
+ texmf-dist/source/latex/oberdiek/aliascnt.dtx
+ texmf-dist/source/latex/oberdiek/bmpsize.dtx
+ texmf-dist/source/latex/oberdiek/centernot.dtx
+ texmf-dist/source/latex/oberdiek/chemarr.dtx
+ texmf-dist/source/latex/oberdiek/classlist.dtx
+ texmf-dist/source/latex/oberdiek/colonequals.dtx
+ texmf-dist/source/latex/oberdiek/dvipscol.dtx
+ texmf-dist/source/latex/oberdiek/engord.dtx
+ texmf-dist/source/latex/oberdiek/enparen.dtx
+ texmf-dist/source/latex/oberdiek/eolgrab.dtx
+ texmf-dist/source/latex/oberdiek/fibnum.dtx
+ texmf-dist/source/latex/oberdiek/flags.dtx
+ texmf-dist/source/latex/oberdiek/holtxdoc.dtx
+ texmf-dist/source/latex/oberdiek/hopatch.dtx
+ texmf-dist/source/latex/oberdiek/hypbmsec.dtx
+ texmf-dist/source/latex/oberdiek/hypcap.dtx
+ texmf-dist/source/latex/oberdiek/hypdestopt.dtx
+ texmf-dist/source/latex/oberdiek/hypdoc.dtx
+ texmf-dist/source/latex/oberdiek/hypgotoe.dtx
+ texmf-dist/source/latex/oberdiek/hyphsubst.dtx
+ texmf-dist/source/latex/oberdiek/ifdraft.dtx
+ texmf-dist/source/latex/oberdiek/iflang.dtx
+ texmf-dist/source/latex/oberdiek/oberdiek.ins
+ texmf-dist/source/latex/oberdiek/oberdiek.tex
+ texmf-dist/source/latex/oberdiek/pagegrid.dtx
+ texmf-dist/source/latex/oberdiek/pagesel.dtx
+ texmf-dist/source/latex/oberdiek/pdfcol.dtx
+ texmf-dist/source/latex/oberdiek/pdfcolfoot.dtx
+ texmf-dist/source/latex/oberdiek/pdfcolparallel.dtx
+ texmf-dist/source/latex/oberdiek/pdfcolparcolumns.dtx
+ texmf-dist/source/latex/oberdiek/pdfcrypt.dtx
+ texmf-dist/source/latex/oberdiek/pdfrender.dtx
+ texmf-dist/source/latex/oberdiek/protecteddef.dtx
+ texmf-dist/source/latex/oberdiek/resizegather.dtx
+ texmf-dist/source/latex/oberdiek/rotchiffre.dtx
+ texmf-dist/source/latex/oberdiek/scrindex.dtx
+ texmf-dist/source/latex/oberdiek/setouterhbox.dtx
+ texmf-dist/source/latex/oberdiek/settobox.dtx
+ texmf-dist/source/latex/oberdiek/stackrel.dtx
+ texmf-dist/source/latex/oberdiek/stampinclude.dtx
+ texmf-dist/source/latex/oberdiek/tabularht.dtx
+ texmf-dist/source/latex/oberdiek/tabularkv.dtx
+ texmf-dist/source/latex/oberdiek/telprint.dtx
+ texmf-dist/source/latex/oberdiek/thepdfnumber.dtx
+ texmf-dist/source/latex/oberdiek/twoopt.dtx
+runfiles size=115
+ texmf-dist/bibtex/bib/oberdiek/oberdiek-bundle.bib
+ texmf-dist/bibtex/bib/oberdiek/oberdiek-source.bib
+ texmf-dist/tex/generic/oberdiek/engord.sty
+ texmf-dist/tex/generic/oberdiek/eolgrab.sty
+ texmf-dist/tex/generic/oberdiek/fibnum.sty
+ texmf-dist/tex/generic/oberdiek/hyphsubst.sty
+ texmf-dist/tex/generic/oberdiek/iflang.sty
+ texmf-dist/tex/generic/oberdiek/pdfcol.sty
+ texmf-dist/tex/generic/oberdiek/pdfcrypt.sty
+ texmf-dist/tex/generic/oberdiek/pdfrender.sty
+ texmf-dist/tex/generic/oberdiek/protecteddef.sty
+ texmf-dist/tex/generic/oberdiek/rotchiffre.sty
+ texmf-dist/tex/generic/oberdiek/setouterhbox.sty
+ texmf-dist/tex/generic/oberdiek/telprint.sty
+ texmf-dist/tex/generic/oberdiek/thepdfnumber.sty
+ texmf-dist/tex/latex/oberdiek/aliascnt.sty
+ texmf-dist/tex/latex/oberdiek/bmpsize-base.sty
+ texmf-dist/tex/latex/oberdiek/bmpsize-dvipdfm.def
+ texmf-dist/tex/latex/oberdiek/bmpsize-dvipdfmx.def
+ texmf-dist/tex/latex/oberdiek/bmpsize-dvips.def
+ texmf-dist/tex/latex/oberdiek/bmpsize-test.tex
+ texmf-dist/tex/latex/oberdiek/bmpsize.sty
+ texmf-dist/tex/latex/oberdiek/centernot.sty
+ texmf-dist/tex/latex/oberdiek/chemarr.sty
+ texmf-dist/tex/latex/oberdiek/classlist.sty
+ texmf-dist/tex/latex/oberdiek/colonequals.sty
+ texmf-dist/tex/latex/oberdiek/dvipscol.sty
+ texmf-dist/tex/latex/oberdiek/enparen.sty
+ texmf-dist/tex/latex/oberdiek/flags.sty
+ texmf-dist/tex/latex/oberdiek/holtxdoc.sty
+ texmf-dist/tex/latex/oberdiek/hopatch.sty
+ texmf-dist/tex/latex/oberdiek/hypbmsec.sty
+ texmf-dist/tex/latex/oberdiek/hypcap.sty
+ texmf-dist/tex/latex/oberdiek/hypdestopt.sty
+ texmf-dist/tex/latex/oberdiek/hypdoc.sty
+ texmf-dist/tex/latex/oberdiek/hypgotoe.sty
+ texmf-dist/tex/latex/oberdiek/ifdraft.sty
+ texmf-dist/tex/latex/oberdiek/pagegrid.sty
+ texmf-dist/tex/latex/oberdiek/pagesel.sty
+ texmf-dist/tex/latex/oberdiek/pdfcolfoot.sty
+ texmf-dist/tex/latex/oberdiek/pdfcolparallel.sty
+ texmf-dist/tex/latex/oberdiek/pdfcolparcolumns.sty
+ texmf-dist/tex/latex/oberdiek/resizegather.sty
+ texmf-dist/tex/latex/oberdiek/scrindex.sty
+ texmf-dist/tex/latex/oberdiek/settobox.sty
+ texmf-dist/tex/latex/oberdiek/stackrel.sty
+ texmf-dist/tex/latex/oberdiek/stampinclude.sty
+ texmf-dist/tex/latex/oberdiek/tabularht.sty
+ texmf-dist/tex/latex/oberdiek/tabularkv.sty
+ texmf-dist/tex/latex/oberdiek/twoopt.sty
+catalogue-contact-bugs https://github.com/ho-tex/oberdiek/issues
+catalogue-contact-repository https://github.com/ho-tex/oberdiek
+catalogue-ctan /macros/latex/contrib/oberdiek
+catalogue-license lppl1.3c
+catalogue-topics collection

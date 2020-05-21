@@ -1,0 +1,992 @@
+%
+% ^^A This is file luasseq.dtx. First LaTeX the accompanying file luasseq.ins
+% ^^A to produce the package file luasseq.sty.
+% ^^A Then LaTeX this file to produce the documentation of the luasseq package.
+% ^^A
+% ^^A (c) 2003-2010 Tilman Bauer. Freely distributable under the LaTeX Project Public License (LPPL)
+% ^^A
+% \ifthenelse{0=1}{
+%<*never>
+\documentclass{ltxdoc}
+\usepackage{luasseq}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+\DocInput{luasseq.dtx} \PrintIndex \PrintChanges
+\end{document}
+%</never>
+% }{}
+
+% 
+% \changes{v1.0}{November 12, 2003}{First release of code and documentation}
+% \changes{v1.01}{November 15, 2003}{Bug fix with clipping after a ssgoto}
+% \changes{v1.02}{November 18, 2003}{Bug fix that would mess up page numbering in some cases}
+% \changes{v1.03}{December 11, 2003}{Added examples to documentation, bug fix in grid drawing}
+% \changes{v1.04}{January 19, 2004}{Up to nine drops per square now possible, added customization of the grid}
+% \changes{v1.05}{December 9, 2004}{Added support for different packing strategies; support for dotted lines}
+% \changes{v1.06}{August 1, 2005}{sseqxstep=0 will now suppress printing of horizontal label; similarly sseqystep=0 and vertical labels}
+% \changes{v2.0a}{July 16, 2007}{Completely recoded the graphics for using pgf instead of xyPic. Many new features. Consult the manual.}
+% \changes{v2.0}{April 9, 2009}{bug fix with arrows leaving the chart}
+% \ifthenelse{0=1}{
+%<*package>
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{luasseq}[2010/11/06 ver 2.1]
+
+\RequirePackage{ifthen,calc,pifont}
+\RequirePackage{pgf}[2006/01/01]
+\RequirePackage{xkeyval}
+\usepgflibrary{snakes}
+
+\newboolean{debug}
+\setboolean{debug}{false}
+
+\DeclareOption{ps}{\errmessage{sseq: ps/nops is deprecated}}
+\DeclareOption{nops}{\errmessage{sseq: ps/nops is deprecated}}
+\DeclareOption{dvips}{\errmessage{sseq: deprecated option dvips ignored}}
+\DeclareOption{xdvi}{\errmessage{sseq: deprecated option xdvi ignored}}
+\DeclareOption{color}{\errmessage{sseq: deprecated option color ignored}}
+\DeclareOption{nocolor}{\errmessage{sseq: deprecated option nocolor ignored}}
+\DeclareOption{debug}{\setboolean{debug}{true}}
+
+\ProcessOptions
+
+%</package>
+% }{}
+%
+% \title{Typesetting spectral sequences in \LaTeX\ with luasseq.sty}
+% \author{Tilman Bauer\footnote{tilman@alum.mit.edu}}
+% \date{November 6, 2010}
+%
+% \MakeShortVerb{\|}
+%
+% \maketitle
+%
+% \section{Introduction}
+% 
+% The present package, \texttt{luasseq}, facilitates the typesetting of mathematical objects called \emph{spectral sequence charts} (henceforth simply called ``chart''). It is a re-coded and largely code-compatible version of the older package |sseq| with new functionality and much higher typesetting speed and lower memory requirements. It requires to be run with |luatex|, a \TeX extension by the Lua programming language nowadays included in many \TeX distributation.
+%
+% From a typographical point of view, a chart is a two-dimensional grid with integer coordinates; at every position (x,y), there may be any number of symbols (usually dots, little circles or boxes, digits etc.), possibly decorated with labels, and between any two such symbols may or may not be a connection---e.~g., a line, an arrow, or some curved line.
+%
+% The \texttt{luasseq} package is built on top of the pgf package by Till Tantau. Previous versions of |sseq| (pre-2.0) were based on the graphics package xy-Pic; the current version produces higher quality output and allows for more customization, at the cost of requiring a fairly recent \TeX distribution (or, at least, the packages |pgf| and |xkeyval| should be installed and the former should be no older than from 2006) as well as LuaTeX.
+%
+% This package automates the following functions:
+%
+% \begin{itemize}
+% \item Automatic drawing of the grid and the axis labels;
+% \item Clipping. Anything outside the displayed portion of the chart is clipped away. This has the advantage that a large chart, which does not fit on a page, can be cut into smaller pieces which contain exactly the same \texttt{sseq} code, but different clipping regions.
+% \item Arranging. Multiple symbols dropped at the same integer coordinates will be automatically arranged so that they usually do not overlap. The algorithm for doing this is rather primitive, but still powerful enough for most applications.
+% \item Simplified ``turtle graphics'' syntax. Every primitive element of a chart is typeset with a macro defined by \texttt{sseq}.
+% \item Control structures (loops, if/then, etc.) are allowed inside the \texttt{sseq} environment.
+% \end{itemize}
+%
+%
+% \section{Loading}
+% 
+% The |luasseq| package is loaded with
+%
+% |\usepackage{luasseq}|.
+%
+% All options from previous versions of |sseq| are deprecated.
+%
+% \section{Basic usage}
+%
+% \DescribeEnv{sseq}
+% A spectral sequence is typeset by the code
+%
+% |\begin{sseq}[|\meta{options...}|]{|\meta{x-range}|}{|\meta{y-range}|}|
+%
+% \meta{sseq commands...}
+%
+% |\end{sseq}|
+%
+% In the simplest case, a range is of the form \meta{min}|...|\meta{max}, where \meta{min} and \meta{max} are two integers with \meta{min} $\leq$ \meta{max}.
+%
+% Thus |\begin{sseq}{2...5}{-3...-1}\end{sseq}| will typeset
+% \[\begin{sseq}{2...5}{-3...-1}\end{sseq}.\]
+%
+% It is also possible for ranges to be a comma-separated list of ranges of the above form, e.g. |0...3,8...10|. In this case, the chart is broken into several pieces. Here is an example:
+%
+% \noindent\begin{minipage}{\textwidth/2}
+% \begin{verbatim}\begin{sseq}{-1...3,5...8,20...24}
+%            {0...2,4...4}
+%\end{sseq}\end{verbatim}\end{minipage}\begin{minipage}{\textwidth/2}\begin{sseq}{-1...3,5...8,20...24}{0...2,4...4}\end{sseq}\bigskip\end{minipage}
+%
+% The minimum value of one block always has to be at least two greater than the maximum of the previous block; |0...2,3...5| is illegal.
+%
+%
+% The following options are defined for the |sseq| environment. Options in bold face are the default setting.
+% \begin{description}
+% \item[|grid=|]\meta{none,\textbf{crossword},go,dots,chess} Select an option of drawing the background grid.
+%
+% \begin{tabular}{ccccc}
+% none & crossword & go & dots & chess\\
+% \begin{sseq}[entrysize=2mm,labels=none,grid=none]{4}{4}\end{sseq} &
+% \begin{sseq}[entrysize=2mm,labels=none,grid=crossword]{4}{4}\end{sseq} &
+% \begin{sseq}[entrysize=2mm,labels=none,grid=go]{4}{4}\end{sseq} &
+% \begin{sseq}[entrysize=2mm,labels=none,grid=dots]{4}{4}\end{sseq} &
+% \begin{sseq}[entrysize=2mm,labels=none,grid=chess]{4}{4}\end{sseq}
+% \end{tabular}
+%
+% With the |chess| option, all squares with coordinates (x,y) with x+y even are white.
+% \item[|gridstroke=|\meta{thickness}] For the grid types |crossword| and |go|, this sets the line width. The default is .1pt. A good option is to set it to the resolution of your output device.
+%
+% \item[|gapsize=|\meta{size},|xgapsize=|\meta{size},|ygapsize=|\meta{size}] This sets the size of the gap between two pieces in a range (i.e. in the above example, the distance between the $3$-column and the $5$-column). The |gapsize| option sets both |xgapsize| and |ygapsize| to the same given value. The default is 3mm.
+%
+% \item[|entrysize=|\meta{size}] Specify the size of each square of the grid. The default is 4mm.
+% \item[|labels=|\meta{labels},|xlabels=|\meta{labels},|ylabels=|\meta{labels}] Specify how labels on the x- and y-axis are drawn, respectively. The |labels| option sets both |xlabels| and |ylabels| to the same. Possible values are |none|, |numbers|, or an explicit list of semicolon-separated labels |{|\meta{$x_1$}|;|\meta{$x_2$}|;|\dots|}| which will be typeset in math mode. If the range consists of more than one block, the labels for the separate blocks are separated by a comma; see the example below. The default is |numbers|. Inside the label strings, one can use the following placeholder:
+% \begin{description}
+% \item[|\&n|] will be replaced by the  coordinate
+% \item[|\&c|] will be replaced by the number of the piece in a multi-piece range (starting with 0)
+% \item[|\&i|] will be replaced by the index within the current piece (starting with 0) 
+% \end{description}
+% \item[|labelstep=|\meta{step},|xlabelstep=|\meta{step},|ylabelstep=|\meta{step}] Frequently it is not desirable that every label is printed, but only every second or third label. This can be done by setting this option to a positive integer. The default is 2.
+%
+% The following example illustrates how labels can be customized:
+%
+% \noindent\begin{minipage}{\textwidth*2/3}
+% \begin{verbatim}\begin{sseq}[xlabelstep=1,ylabelstep=4,
+%             xlabels={x_{&n},y_1;y_2;y_3}]
+%            {1...3,10...11}{0...4}
+%\end{sseq}\end{verbatim}\end{minipage}\begin{minipage}{\textwidth/3}\begin{sseq}[xlabelstep=1,ylabelstep=4,xlabels={x_{&n},y_1;y_2;y_3}]{1...3,10...11}{0...4}\end{sseq}\end{minipage}
+% \item[|leak=|\meta{size},|xleak=|\meta{size},|yleak=|\meta{size}] When a line is drawn from within the visible range of the chart to a point outside, or vice versa, this line will protrude beyond the boundaries of the grid. These values define how far; the default is one third of |gapsize|. Do not set this to a value larger than half of |gapsize|.
+% \item[|arrows=|\meta{arrow type}] Sets the default arrow type to use in the spectral sequence. Here are some default arrow types:
+%
+%\begin{sseq}[grid=none,labels=none]{0...3}{-2...0}
+% \ssdrop{} \ssmove 3 0 \ssdrop{\;to} \ssstroke[arrowto=to] \ssmove {-3}{-1}
+% \ssdrop{} \ssmove 3 0 \ssdrop{\;stealth} \ssstroke[arrowto=stealth] \ssmove {-3}{-1}
+% \ssdrop{} \ssmove 3 0 \ssdrop{\;latex} \ssstroke[arrowto=latex]
+%\end{sseq}
+%
+% Other arrow types can be defined by the user or loaded from a library; see the pgf package documentation for details.
+%
+% \item[|packing=|] \meta{\textbf{auto},horizontal,vertical,diagonal} Specify which algorithm you want to use to arrange multiple objects in a grid square. The following charts illustrate the effect:
+%
+% \begin{sseq}[packing=auto,ylabels={\hbox to 1.8cm{auto}},xlabelstep=1,entrysize=.6cm]{1...5}{0...0}
+% \ssmove 1 0 \ssdropbull\ssmove 1 0 \ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull\ssdropbull\ssdropbull
+% \end{sseq}
+% \hspace{1cm}
+% \begin{sseq}[packing=diagonal,ylabels={\hbox to 1.8cm{diagonal}},xlabelstep=1,entrysize=.6cm]{1...5}{0...0}
+% \ssmove 1 0 \ssdropbull\ssmove 1 0 \ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull\ssdropbull\ssdropbull
+% \end{sseq}
+% \\[.5cm]
+% \begin{sseq}[packing=vertical,ylabels={\hbox to 1.8cm{vertical}},xlabelstep=1,entrysize=.6cm]{1...5}{0...0}
+% \ssmove 1 0 \ssdropbull\ssmove 1 0 \ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull\ssdropbull\ssdropbull
+% \end{sseq}
+% \hspace{1cm}
+% \begin{sseq}[packing=horizontal,ylabels={\hbox to 1.8cm{horizontal}},xlabelstep=1,entrysize=.6cm]{1...5}{0...0}
+% \ssmove 1 0 \ssdropbull\ssmove 1 0 \ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull\ssdropbull
+% \ssmove 1 0 \ssdropbull\ssdropbull\ssdropbull\ssdropbull\ssdropbull
+% \end{sseq}
+%
+% \bigskip
+% \emph{Notice for advanced users:} you can define your own packing algorithm, say |mypack|, by defining a Lua function |sseq_packing_mypack(i,n)| which returns a pair of coordinates (in \TeX{} scaled points) indicating the offset of the center of object |i| out of a total of |n| dropped objects from the lower left corner of the square.
+% \end{description}
+%
+% \section{sseq commands}
+%
+% Inside an |sseq| environment there is defined a virtual cursor, which starts out at position $(0,0)$ (even if that position is not within the visible range!). Most drawing commands are relative to the current cursor position; this facilitates reusage of |sseq| code when a certain pattern has to be repeated, as is often the case in mathematical spectral sequences.
+%
+% 
+% \ifthenelse{0=1}{
+%
+% 
+
+\directlua0{dofile(kpse.find_file("luasseq.lua","lua"))}
+
+
+ \definecolor{sseqgr}{gray}{0.65}
+ \definecolor{sslightgr}{gray}{0.9}
+ \definecolor{ssred}{rgb}{1,0,0}
+ \definecolor{ssblack}{rgb}{0,0,0}
+\newcommand{\ssconncolor}{ssblack}
+\newcommand{\sslabelcolor}{ssblack}
+\newcommand{\ssplacecolor}{ssblack}
+
+%% ^^A Initialization
+\newcount\sseqxstart \sseqxstart=0
+\newcount\sseqystart \sseqystart=0
+\newdimen\sseq@dimen % ^^A To convert dimensions to scaled points (in TeX)
+\newbox\sseqbox % ^^A To compute the size of dropped objects (in TeX)
+
+
+
+
+
+\long\def\for #1=#2\to#3\do#4\od{#1=#2 \sseq@for #1\to #3\do #4\od}
+\long\def\sseq@for #1\to #2\do #3\od{%
+ \ifnum #1>#2 \else
+   #3\relax
+  \advance #1 by 1
+   \def\tempcmd{\sseq@for #1\to #2\do #3\od}%
+   \expandafter\tempcmd
+ \fi
+}
+
+\def\@eval#1#2{%
+  \edef\tempcmd{\noexpand#1#2}%
+  \tempcmd
+}
+
+%
+%
+%
+% ^^A This replaces \ssplacespecial in the xy version.
+% ^^A Arguments: 1,2 = x- and y-coordinates
+% ^^A              3 = pgf shape
+% ^^A              4 = pgf path usage
+% ^^A              5 = contents
+%
+\def\ss@placespecial#1#2#3#4#5{
+\directlua0{sseq_drop_object(#1,#2,[[#3]],[[#4]],[[#5]],[[\ssplacecolor]])}}
+
+\newcommand{\ssplace}[3]{
+ \ss@placespecial{#1}{#2}{rectangle}{discard}{#3}
+}
+
+\newcommand{\ssplaceboxed}[3]{
+ \ss@placespecial{#1}{#2}{rectangle}{stroke}{\ensuremath{#3}}
+}
+
+\newcommand{\ssplacecircled}[3]{
+   \ss@placespecial{#1}{#2}{circle}{stroke}{\ensuremath{#3}}
+}
+
+% }{}
+%
+% \DescribeMacro{\ssmoveto} 
+% To move the cursor to the absolute position (x,y), use |\ssmoveto{x}{y}|.
+%
+% \ifthenelse{0=1}{
+\newcommand{\ssmoveto}[2]{\directlua0{sseq_moveto(#1,#2)}}
+% }{}
+% \DescribeMacro{\ssmove}
+% To move the cursor relative to the current position by (x,y), use |\ssmove{x}{y}|.
+%
+% \iffalse
+\newcommand{\ssmove}[2]{\directlua0{sseq_move(#1,#2)}}
+% \fi
+%
+%
+% \DescribeMacro{\ssdrop}
+% The command |\ssdrop[|\meta{options}|]{|\meta{mathcode}|}| will display \emph{mathcode} at the current cursor position. The argument is always interpreted in math mode.
+% The following options can be given:
+% \begin{description}
+% \item[|circled|] A circle is drawn around the object.
+% \item[|boxed|] A box is drawn around the object.
+% \item[|color=|\meta{color}] The object is drawn in the specified color. Any \LaTeX{} color can be used, e.g. predefined colors such as |black|, |blue|, |PineGreen|, etc., or user defined rgb colors.
+% \item[|name=|\meta{name}] This is equivalent to issuing |\ssname{|\meta{name}|}| after |\ssdrop|, see below.
+% \end{description}
+% If the argument is |\bullet|, |\circle|, or |\square|, the object is replaced by a better-spaced graphics primitive.
+%
+% \ifthenelse{0=1}{
+\define@key{sseqdrop}{circled}[true]{\newif\ifKV@sseqdrop@circled\csname KV@sseqdrop@circled#1\endcsname}
+\define@key{sseqdrop}{boxed}[true]{\newif\ifKV@sseqdrop@boxed\csname KV@sseqdrop@boxed#1\endcsname}
+\define@key{sseqdrop}{color}{\def\sseq@color{#1}}
+\define@key{sseqdrop}{name}{\def\sseq@name{#1}}
+%
+\def\ssdrop{\@ifnextchar[\sseq@drop{\sseq@drop[]}}
+\def\sseq@drop[#1]#2{
+ \presetkeys{sseqdrop}{circled=false,boxed=false,color=\ssplacecolor,name=\relax}{}
+ \setkeys{sseqdrop}{#1}
+ \ifKV@sseqdrop@circled
+   \directlua0{sseq_drop_object_here("circle","stroke",[[#2]],"\sseq@color")}
+ \else
+   \ifKV@sseqdrop@boxed
+     \directlua0{sseq_drop_object_here("rectangle","stroke",[[#2]],"\sseq@color")}
+   \else
+     \directlua0{sseq_drop_object_here("rectangle","discard",[[#2]],"\sseq@color")}
+   \fi
+ \fi
+ \def\temp{\relax}
+ \ifx\sseq@name\temp \else
+   \@eval\ssname{{\sseq@name}}
+ \fi
+}
+% }{}
+%
+% ^^A The following are commands purely kept for compatibility.
+%
+% \iffalse
+%
+\newcommand{\ssdropbull}{\ssdrop{\bullet}}
+\newcommand{\ssdropboxed}[1]{\ssdrop[boxed]{#1}}
+\newcommand{\ssdropcircled}[1]{\ssdrop[circled]{#1}}
+% \fi
+%
+% \DescribeMacro{\ssname}
+% |\ssname{|\meta{name}|}| gives the object most recently dropped the name \meta{name}. If the previous command is one of the drop commands, then it refers to that object; if it is not, then if there is one and only one object at the current cursor position, it refers to that object; if that is also not the case, an error message is generated. \emph{New in luasseq:} The argument |name| is a space-separated list of alphanumerical strings, such as |3 alpha beta2 beta2|; the order of the strings is irrelevant, thus this name is equal to |beta2 alpha 3 beta2|.
+%
+% \iffalse
+\def\ssname#1{\directlua0{sseq_name("#1")}}
+% \fi
+%
+% \DescribeMacro{\ssgoto}
+% After an object has been given a \meta{name} with |\ssname|, the cursor can be moved back to that object at any time by issuing |\ssgoto{|\meta{name}|}|. This becomes necessary when there is more than one object in one position.
+%
+% \iffalse
+\newcommand{\ssgoto}[1]{\directlua0{sseq_goto("#1")}}
+% \fi
+%
+% \DescribeMacro{\ssprefix}
+% Often the mechanism provided by |\ssname|/|\ssgoto| is not flexible enough to deal with repeated code. In that case, |\ssprefix{|\meta{prefix}|}| defines a ``multiplier'' for all names that follow; i.e. a |\ssname{|\meta{name}|}| after such a command will really define a name \meta{prefix} \meta{name} (with a space in between, so that the order is irrelevant). However, since |\ssgoto| also observes the prefix, |\ssgoto{|\meta{name}|}| will still work. |\ssprefix| commands can be iterated; the prefices are then concatenated.
+%
+% \iffalse
+\newcommand{\ssprefix}[1]{\directlua0{sseq_prefix("#1")}}
+% \fi
+%
+% \DescribeMacro{\ssresetprefix}
+% This command resets the prefix defined by (a sequence of) |\ssprefix| to the empty prefix.
+%
+% \iffalse
+\newcommand{\ssresetprefix}{\directlua0{sseq_reset_prefix()}}
+% \fi
+%
+% \DescribeMacro{\ssabsgoto}
+% This is a version of |\ssgoto| that ignores the current prefix.
+%
+% \ifthenelse{0=1}{
+\newcommand{\ssabsgoto}[1]{\directlua0{sseq_abs_goto("#1")}}
+% }{}
+%
+% \DescribeMacro{\ssdroplabel}
+% This command decorates the previously typeset object with a label. It is used in the form
+% |\ssdroplabel[|\meta{options...}|]{|\meta{label}|}|.
+%
+% The \meta{label} will then be typeset next to the most recently dropped object (for a definition for what that is, exactly, consult the description of |\ssname|). If you specify one of |U|,|LU|,|RU|,|L|,|R|,|LD|,|RD|,|D| as an option, the label is positioned relative to the object it labels (default: |U|=up).
+% As in |\ssdrop|, an option |color=|\meta{color} will typeset the label in the \LaTeX{} color \meta{color}.
+%
+% \ifthenelse{0=1}{
+\define@key{sseqlabel}{color}{\def\sseq@color{#1}}
+\define@key{sseqlabel}{pos}{\def\sseq@position{#1}}
+\define@key{sseqlabel}{U}[]{\def\sseq@position{U}}
+\define@key{sseqlabel}{LU}[]{\def\sseq@position{LU}}
+\define@key{sseqlabel}{L}[]{\def\sseq@position{L}}
+\define@key{sseqlabel}{LD}[]{\def\sseq@position{LD}}
+\define@key{sseqlabel}{D}[]{\def\sseq@position{D}}
+\define@key{sseqlabel}{RD}[]{\def\sseq@position{RD}}
+\define@key{sseqlabel}{R}[]{\def\sseq@position{R}}
+\define@key{sseqlabel}{RU}[]{\def\sseq@position{RU}}
+%
+\def\ssdroplabel{\@ifnextchar[\sseq@droplabel{\sseq@droplabel[]}}
+\def\sseq@droplabel[#1]#2{
+ \def\sseq@position{L}
+ \presetkeys{sseqlabel}{color=\ssplacecolor}{}
+ \setkeys{sseqlabel}{#1}
+ \directlua0{sseq_drop_label("\sseq@position","\sseq@color",[[#2]])}
+}
+% }{}
+%
+% \DescribeMacro{\ssdropextension}
+% The command |\ssdropextenstion[|\meta{options...}|]| has only optional arguments and is rather specialized. It refers to a previously dropped object (see |\ssname|), draws a circle or box around it (default: a circle, can be changed by giving the option |boxed|, and considers that circle a new object. Thus it produces a new object that is attached to the original object, and not subject to the packing algorithm that tries to make objects non-overlapping. Further options are |color| and |name| with the same usage as in |\ssdrop|.
+%
+% \ifthenelse{0=1}{
+\define@key{sseqdropext}{circled}[true]{\newif\ifKV@sseqdrop@circled\csname KV@sseqdrop@circled#1\endcsname}
+\define@key{sseqdropext}{boxed}[true]{\newif\ifKV@sseqdrop@boxed\csname KV@sseqdrop@boxed#1\endcsname}
+\define@key{sseqdropext}{color}{\def\ssplacecolor{#1}}
+\define@key{sseqdropext}{name}{\def\sseq@name{#1}}
+%
+\def\ssdropextension{\@ifnextchar[\sseq@dropextension{\sseq@dropextension[]}}
+\def\sseq@dropextension[#1]{
+ \edef\sseq@savecolor{\ssplacecolor}
+ \def\sseq@name{\relax}
+ \presetkeys{sseqdropext}{circled=false,boxed=false}{}
+ \setkeys{sseqdrop}{#1}
+  \ifKV@sseqdrop@boxed
+   \directlua0{sseq_drop_extension("rectangle","stroke","\sseq@color")}
+ \else
+   \directlua0{sseq_drop_extension("circle","stroke","\sseq@color")}
+ \fi
+
+ \def\temp{\relax}
+ \ifx\sseq@name\temp \else
+   \@eval\ssname{{\sseq@name}}
+ \fi
+}
+%
+% }{}
+%
+%
+% \DescribeMacro{\ssstroke}
+% There are two ways of typesetting connections between objects. One of them is the command |\ssstroke|, which 
+% requires that the cursor recently moved from one object to another. It takes no non-optional arguments and typesets a 
+% line between the two objects. Example: Suppose there are two objects, which have been given the names |a| and |b| 
+% by |\ssname|. Drawing a line between them is achieved by the command |\ssgoto{a} \ssgoto{b} \ssstroke|.
+%
+% The following options can be given in the form |\ssstroke[options]|:
+% \begin{description}
+% \item[|color=|color] the connection is drawn in the given \LaTeX{} color
+% \item[|curve=|value] the connection is curved to the left by an amount proportional to the value given.
+% \item[{|dashed|[=dashing type]}] the connection is drawn in a dashed style. The optional \emph{dashing type} is an
+% expression of the form |{{a}{b}...}|, where each of a, b, \dots is a length (like 2pt or 3mm). The line then consists of
+% a stroke of length |a|, followed by a gap of length |b|, followed by a stroke of length ... etc.
+% \item[{|dotted|[=dashing type]}] the connection is drawn in a dotted style. If the optional dashing type is given,
+% this option behaves exactly like |dashed|.
+% \item[{|arrowfrom|[=arrow style]}] An arrow is drawn at the beginning of the line. The global arrow style can be overridden
+% by specifying an arrow style.
+% \item[{|arrowto|[=arrow style]}] An arrow is drawn at the end of the line.
+% \item[|void|] This option says that the target of the connection is not another object; instead, the connection should just point into the correct direction.
+% \end{description}
+%
+% \ifthenelse{0=1}{
+%
+\define@key{sseqstroke}{color}{\def\sseq@color{#1}}
+\define@key{sseqstroke}{curve}{\def\sseq@curve{#1}}
+\define@key{sseqstroke}{dashed}[{{2pt}{2pt}}]{\def\sseq@dashing{#1}}
+\define@key{sseqstroke}{dotted}[{{.5pt}{2pt}}]{\def\sseq@dashing{#1}}
+\define@key{sseqstroke}{arrowfrom}[\sseq@defaultarrowstyle]{\def\sseq@arrowfrom{\ssinversearrowhead[#1]}}
+\define@key{sseqstroke}{arrowto}[\sseq@defaultarrowstyle]{\def\sseq@arrowto{\ssarrowhead[#1]}}
+\define@key{sseqstroke}{void}[true]{\newif\ifKV@sseqstroke@void\csname KV@sseqstroke@void#1\endcsname}
+%
+\def\ssstroke{\@ifnextchar[\sseq@stroke{\sseq@stroke[]}}
+\def\sseq@stroke[#1]{
+ \def\sseq@dashing{}
+ \def\sseq@curve{}
+ \def\sseq@arrowfrom{}
+ \def\sseq@arrowto{}
+ \presetkeys{sseqstroke}{void=false,color=\ssconncolor}{}
+ \setkeys{sseqstroke}{#1}
+ \ifKV@sseqstroke@void % ^^A a void line
+   \directlua0{sseq_late_connection("\sseq@dashing","\sseq@curve","\sseq@color",false,true)}
+ \else
+   \directlua0{sseq_late_connection("\sseq@dashing","\sseq@curve","\sseq@color",false,false)}
+ \fi
+  \sseq@arrowfrom
+  \sseq@arrowto
+}
+% }{}
+%
+% ^^A Keep these for compatibility
+% \ifthenelse{0=1}{
+\newcommand{\sscurve}[1]{\sseq@stroke[curve=#1]}
+\newcommand{\ssdashedstroke}{\sseq@stroke[dashed]}
+\newcommand{\ssdashedcurve}[1]{\sseq@stroke[dashed,curve=#1]}
+\newcommand{\ssdottedstroke}{\sseq@stroke[dotted]}
+\newcommand{\ssdottedcurve}[1]{\sseq@stroke[dotted,curve=#1}
+% }{}
+%
+% \DescribeMacro{\ssarrowhead}
+% \DescribeMacro{\ssinversearrowhead}
+% Instead of specifying |arrowfrom| or |arrowto| in |ssstroke|, you can issue these commands afterwards to typeset an arrow head onto the beginning resp. end of the connection most recently typeset. There is one optional parameter |[|\meta{arrow style}|]| which selects the arrow tips of style \meta{arrow style}, cf. the documentation of |\ssstroke|.
+%
+% \ifthenelse{0=1}{
+\newcommand{\ssarrowhead}[1][\sseq@defaultarrowstyle]{\directlua0{sseq_add_arrow("arrowto","#1")}}
+\newcommand{\ssinversearrowhead}[1][\sseq@defaultarrowstyle]{\directlua0{sseq_add_arrow("arrowfrom","#1")}}
+% }{}
+%
+% \DescribeMacro{\ssline}
+% A second way of producing connections is |\ssline[|\meta{options...}|]{|\meta{x}|}{|\meta{y}|}|. This command draws a connection from the most recent object (cf. |\ssname|) to an object at relative position (\meta{x},\meta{y}), and it moves that cursor to that new position. If |\ssline| is followed by a drop command, then the line is attached to this newly dropped object (note the slightly out-of-order execution!), no matter how many other objects there are at the target position. However, if it is not followed by a drop command, then there has to be one and only one object at the target position, otherwise an error message is generated. The options are exactly the same as for |\ssstroke|.
+%
+% \ifthenelse{0=1}{
+%
+\define@key{sseqline}{color}{\def\sseq@color{#1}}
+\define@key{sseqline}{curve}{\def\sseq@curve{#1}}
+\define@key{sseqline}{dashed}[{{2pt}{2pt}}]{\def\sseq@dashing{#1}}
+\define@key{sseqline}{dotted}[{{.5pt}{2pt}}]{\def\sseq@dashing{#1}}
+\define@key{sseqline}{arrowfrom}[\sseq@defaultarrowstyle]{\def\sseq@arrowfrom{\ssinversearrowhead[#1]}}
+\define@key{sseqline}{arrowto}[\sseq@defaultarrowstyle]{\def\sseq@arrowto{\ssarrowhead[#1]}}
+\define@key{sseqline}{void}[true]{\newif\ifKV@sseqline@void\csname KV@sseqline@void#1\endcsname}
+%
+\def\ssline{\@ifnextchar[\sseq@line{\sseq@line[]}}
+\def\sseq@line[#1]#2#3{
+ \def\sseq@dashing{}
+ \def\sseq@curve{}
+ \edef\sseq@arrowfrom{}
+ \edef\sseq@arrowto{}
+ \presetkeys{sseqline}{void=false,color=\ssconncolor}{}
+ \setkeys{sseqline}{#1}
+ \ifKV@sseqline@void % ^^A a void line
+   \directlua0{sseq_assert_source(); sseq_finish_pos(); sseq_move(#2,#3); sseq_late_connection("\sseq@dashing","\sseq@curve","\sseq@color",false,true)}
+ \else
+   \directlua0{sseq_open_connection("\sseq@dashing","\sseq@curve","\sseq@color",false,false); sseqposx = sseqposx+#2; sseqposy = sseqposy+#3}
+ \fi
+ \sseq@arrowfrom
+ \sseq@arrowto
+}
+\newcommand{\sscurvedline}[3]{\ssline[curve=#3]{#1}{#2}}
+\newcommand{\ssdashedline}[2]{\ssline[dashed]{#1}{#2}}
+\newcommand{\sscurveddashedline}[3]{\ssline[curve=#3,dashed]{#1}{#2}}
+% }{}
+%
+% \DescribeMacro{\ssarrow}
+% |\ssarrow[|\meta{options...}|]{|\meta x|}{|\meta y|}| is an abbreviation for\\
+% |\ssline[|\meta{options...}|,arrowto]{|\meta x|}{|\meta y|}|
+%
+% \ifthenelse{0=1}{
+\newcommand{\ssarrow}[3][]{
+  \ssline[arrowto,#1]{#2}{#3}
+}
+\newcommand{\sscurvedarrow}[3]{\ssline[arrowto,curve=#3]{#1}{#2}}
+\newcommand{\ssdashedarrow}[2]{\ssline[arrowto,dashed]{#1}{#2}}
+\newcommand{\sscurveddashedarrow}[3]{\ssline[arrowto,dashed,curve=#3]{#1}{#2}}
+%
+%
+\def\ssvoidline{\@ifnextchar[\sseq@voidline{\sseq@voidline[]}}
+\def\sseq@voidline[#1]#2#3{
+ \def\sseq@dashing{}
+ \def\sseq@curve{}
+ \edef\sseq@arrowfrom{}
+ \edef\sseq@arrowto{}
+ \presetkeys{sseqline}{color=\ssconncolor}{}
+ \setkeys{sseqline}{#1}
+  \directlua0{sseq_void_line("\sseq@dashing","\sseq@curve","\sseq@color",#2,#3)}
+ \sseq@arrowfrom
+ \sseq@arrowto
+}
+
+\newcommand{\ssvoidarrow}[2]{\ssvoidline{#1}{#2}\ssarrowhead}
+\newcommand{\ssinversevoidarrow}[2]{\ssvoidline{#1}{#2}\ssinversearrowhead}
+
+% }{}
+%
+% \DescribeMacro{\ssbullstring}
+% |\ssbullstring{x}{y}{n}| is a shortcut for |\ssdrop{\bullet}| followed by $n-1$ copies of |\ssline{x}{y} \ssdrop{\bullet}|.
+% \iffalse
+\newcommand{\ssbullstring}[3]{
+\directlua0{sseq_bullstring(#1,#2,#3,[[\ssplacecolor]])}
+}
+% \fi
+%
+% \DescribeMacro{\ssinfbullstring}
+% |\ssinfbullstring{x}{y}{n}| is a shortcut for |\ssdrop{\bullet}| followed by $n-1$ copies of |\ssline{x}{y} \ssdrop{\bullet}|, followed by |\ssarrow[void]{x}{y}|. The cursor finishes on the last bullet.
+%
+% \iffalse
+\newcommand{\ssinfbullstring}[3]{
+\ssbullstring{#1}{#2}{#3}
+\ssvoidarrow{#1}{#2}
+}
+% \fi
+%
+% \DescribeMacro{\ssgrayout}
+% (new in |luasseq|) This command, which has as only optional argument a color, can be given at any point in the |sseq| code and changes the color of the most recent object (cf. |\ssname|) to the color given (gray by default), along with all lines connected to this object. Any line drawn to that object after issuing |ssgrayout| will not be affected. This is used for typesetting differentials in spectral sequences.  
+%
+% \iffalse
+\newcommand{\ssgrayout}[1][gray]{\directlua0{sseq_grayout("#1")}}
+% \fi
+%
+% \section{Examples}
+%
+%
+% \newtheorem{ex}{Example}
+%
+%\begin{ex}
+%The following code generates a $5 \times 5$ grid with labels between $-2$ and $2$. The size of every square is $(.8cm)^2$, and labels are written on every square. The grid is chess-style. A bullet is drawn at coordinate (0,0).
+%
+%\noindent
+%\begin{minipage}{\textwidth/2}
+%\begin{verbatim}
+%\begin{sseq}[grid=chess,labelstep=1,
+%  entrysize=.8cm]{-2...2}{-2...2}
+%\ssdrop{\bullet}
+%\end{sseq}
+%\end{verbatim}
+%\end{minipage}
+%\begin{minipage}{\textwidth/2}
+%\def\sseqgridstyle{\ssgridchess}
+%\begin{sseq}[grid=chess,labelstep=1,entrysize=.8cm]{-2...2}{-2...2}
+%\ssdropbull
+%\end{sseq}
+%\end{minipage}
+%\end{ex}
+%
+%
+%\begin{ex}
+%This example demonstrates how to move the cursor and drop objects and labels. Note how the last bullet, which is dropped at position (8,4), is outside the grid and thus clipped. The grid style is the default (|crossword|). \bigskip
+%
+%\noindent
+%\begin{minipage}{\textwidth/2}
+%\begin{verbatim}
+%\begin{sseq}{0...6}{0...6}
+%\ssdrop{\bullet}
+%\ssdroplabel[U]{(0,0)}
+%\ssmove 2 1
+%\ssdrop{\clubsuit}
+%\ssdropextension
+%\ssdropextension
+%\ssdropextension
+%\ssdroplabel[RU]{(2,1)}
+%\ssmove 0 4
+%\ssdropcircled{8}
+%\ssmoveto 5 4
+%\ssdropboxed{\spadesuit}
+%\ssdroplabel[R]{(5,4)}
+%\ssmove 3 0
+%\ssdrop{\bullet}
+%\end{sseq}
+%\end{verbatim}
+%\end{minipage}
+%\begin{minipage}{\textwidth/2}
+%\begin{sseq}{0...6}{0...6}
+%\ssdrop{\bullet}
+%\ssdroplabel[U]{(0,0)}
+%\ssmove 2 1
+%\ssdrop{\clubsuit}
+%\ssdropextension
+%\ssdropextension
+%\ssdropextension
+%\ssdroplabel[RU]{(2,1)}
+%\ssmove 0 4
+%\ssdropcircled{8}
+%\ssmoveto 5 4
+%\ssdropboxed{\spadesuit}
+%\ssdroplabel[R]{(5,4)}
+%\ssmove 3 0
+%\ssdrop{\bullet}
+%\end{sseq}
+%\end{minipage}
+%\end{ex}
+% 
+%\begin{ex}
+%This example illustrates the different ways of drawing connections. 
+%\bigskip
+%
+%\noindent
+%\begin{minipage}{.6\textwidth}
+%\begin{verbatim}
+%\begin{sseq}[grid=go]{0...9}{0...6}
+%\ssdrop{\bullet}
+%\ssmove 4 4
+%\ssdrop{\bullet} \ssstroke
+%\ssstroke[curve=-.5]
+%\ssstroke[curve=.1,dashed] \ssarrowhead
+%\ssmove 4 0 \ssdropcircled{T}
+%\ssstroke
+%\ssmoveto 0 6
+%\ssdrop{\bullet} 
+%\ssline {1} {-1} \ssdrop{\bullet}
+%\ssline[curve=.2] 7 {-1}
+%\end{sseq}
+%\end{verbatim}
+%\end{minipage}
+%\begin{minipage}{.4\textwidth}
+%\begin{sseq}[grid=go]{0...9}{0...6}
+%\ssdrop{\bullet}
+%\ssmove 4 4
+%\ssdrop{\bullet} \ssstroke
+%\ssstroke[curve=-.5]
+%\ssstroke[curve=.1,dashed] \ssarrowhead
+%\ssmove 4 0 \ssdropcircled{T}
+%\ssstroke
+%\ssmoveto 0 6
+%\ssdrop{\bullet} 
+%\ssline {1} {-1}  \ssdrop{\bullet}
+%\ssline[curve=.2] 7 {-1}
+%\end{sseq}
+%\end{minipage}
+%\end{ex}
+%
+%\begin{ex}
+%This sample code shows how to use names for objects dropped in spectral sequence; this is particularly useful when more than one item is dropped at one position. It also demonstrates void arrows, which do not need a target.
+%\bigskip
+%
+%\noindent
+%\begin{minipage}{\textwidth*2/3}
+%\begin{verbatim}
+%\begin{sseq}[grid=dots]{0...4}{0...4}
+%\ssdrop{\bullet} \ssname{a} \ssvoidarrow 0 1
+%\ssdrop{\bullet} \ssname{b} \ssvoidarrow 0 1
+%\ssdrop{\bullet} \ssname{c} \ssvoidarrow 0 1
+%\ssdropextension \ssname{d}
+%\ssmove 4 4
+%\ssdrop{\bullet} \ssname{e}
+%\ssdrop{\bullet} \ssname{f}
+%\ssgoto a \ssgoto f \ssstroke
+%\ssgoto e \ssstroke
+%\ssgoto d \sscurve{.2}
+%\ssline 4 0 \ssdrop{\bullet}
+%\end{sseq}
+%\end{verbatim}
+%\end{minipage}
+%\begin{minipage}{\textwidth/3}
+%
+%\begin{sseq}[grid=dots]{0...4}{0...4}
+%\ssdrop{\bullet} \ssname{a}\ssvoidarrow 0 1
+%\ssdrop{\bullet} \ssname{b}\ssvoidarrow 0 1
+%\ssdrop{\bullet} \ssname{c}\ssvoidarrow 0 1
+%\ssdropextension \ssname{d}
+%\ssmove 4 4
+%\ssdrop{\bullet} \ssname{e}
+%\ssdrop{\bullet} \ssname{f}
+%\ssgoto a \ssgoto f \ssstroke
+%\ssgoto e \ssstroke
+%\ssgoto d \sscurve{.2}
+%\ssline 4 0 \ssdrop{\bullet}
+%\end{sseq}
+%\end{minipage}
+%\end{ex}
+%
+%\begin{ex}
+% This final example shows how to take advantage of loops, prefices, and |\ssgrayout|
+%
+%\noindent
+%\begin{minipage}[t]{\textwidth*1/3}
+%\begin{verbatim}
+%\newcount\cnti
+%\def\drawstring#1#2{
+% \ifnum#2=1
+%  \ssdrop{\bullet}
+%  \ssname{#1}
+% \else
+%  \ssdrop{\bullet}
+%  \ssname{#1}
+%  \ssline 1 0
+%  \ssprefix{i}
+%  \cnti=#2
+%  \advance \cnti by -1
+%  \drawstring{#1}
+%   {\the\cnti}
+% \fi
+%}
+%\end{verbatim}
+%\end{minipage}
+%\begin{minipage}[t]{\textwidth*1/3}
+%\begin{verbatim}
+%\def\drawlines#1#2#3{
+% \ifnum#3>0
+%  \cnti=#3
+%  \ssgoto{#1} \ssgoto{#2}
+%  \ssstroke \ssarrowhead
+%  \ssprefix{i}
+%  \advance \cnti by -1
+%  \drawlines{#1}{#2}
+%   {\the\cnti}
+% \fi
+%}
+%\end{verbatim}
+%\end{minipage}
+%\begin{minipage}[t]{\textwidth*1/3}
+%\begin{verbatim}
+%\begin{sseq}[grid=none]
+%    {0...8}{0...3}
+%\ssmoveto 0 3
+%\drawstring{a}{8}
+%\ssmoveto 0 3
+%\ssresetprefix
+%\drawstring{b}{8}
+%\ssmoveto 0 0
+%\ssresetprefix
+%\drawstring{c}{8}
+%\ssresetprefix
+%\drawlines{c}{a}{8}
+%\ssresetprefix
+%\drawlines{b}{i i c}{6}
+%\ssresetprefix
+%\ssgoto{c}
+%\ssgrayout[red]
+%\ssgoto{c i i i i}
+%\ssgrayout[green]
+%\end{sseq}
+%\end{verbatim}
+%\end{minipage}
+%
+% \bigskip
+%
+% The result is shown in the following chart:
+%\newcount\cnti
+%\def\drawstring#1#2{
+% \ifnum#2=1
+%  \ssdrop{\bullet} \ssname{#1}
+% \else
+%  \ssdrop{\bullet} \ssname{#1}
+%  \ssline 1 0
+%  \ssprefix{i}
+%  \cnti=#2
+%  \advance \cnti by -1
+%  \drawstring{#1}
+%   {\the\cnti}
+% \fi
+%}
+%\def\drawlines#1#2#3{
+% \ifnum#3>0
+%  \cnti=#3
+%  \ssgoto{#1} \ssgoto{#2}
+%  \ssstroke \ssarrowhead
+%  \ssprefix{i}
+%  \advance \cnti by -1
+%  \drawlines{#1}{#2}
+%   {\the\cnti}
+% \fi
+%}
+%\begin{tabular}{l}
+%\begin{sseq}[grid=none]{0...8}{0...3}
+%\ssmoveto 0 3
+%\drawstring{a}{8}
+%\ssmoveto 0 3
+%\ssresetprefix
+%\drawstring{b}{8}
+%\ssmoveto 0 0
+%\ssresetprefix
+%\drawstring{c}{8}
+%\ssresetprefix
+%\drawlines{c}{a}{8}
+%\ssresetprefix
+%\drawlines{b}{i i c}{6}
+%\ssresetprefix
+%\ssgoto{c} \ssgrayout[red]
+%\ssgoto{c i i i i} \ssgrayout[green]
+%\end{sseq}
+%\end{tabular}
+%\end{ex}
+%
+%\section{Final remarks}
+%
+% This package has been extremely helpful for my own mathematical work, and it most likely carries the characteristics of a tool initially developed for my own purposes only. Before any published version, there was a version of |sseq| which was much less powerful; and what is worse, this version is not fully upward compatible with the previous one. (Every object that was dropped was forgotten right afterwards; thus connections could not properly connect objects but were always drawn from the center of the box corresponding to a coordinate to the center of the box corresponding to the target coordinate, resulting in fairly ugly pictures.) The published version 1.0 of |sseq| used xy-Pic and had most of the functionality of the current package, but was extremely slow and a memory hog. Version 2.0 of |sseq| was recoded using the graphics package pgf, improving the typesetting greatly. The current version 2.1 of luasseq migrated most of the \TeX code to Lua, which greatly improved typesetting speed and memory requirements, while enabling new features such as |\ssgrayout|, more flexible labelling and packing algorithms, and, again, type quality.
+%
+% Many things remain to be desired:
+%
+% \begin{itemize}
+% \item While objects are placed next to each other, no attempt is made not to make connections overlap
+% \item Labelling lines between objects is not supported.
+% \item Have some features that make repetitions of sseq code redundant (which occurs for example when an $E^r$ term of a spectral sequence has a polynomial generator).
+% \end{itemize}
+%
+% Given time and leisure, I might or might not implement one or more of these improvements and make them available; of course, I would be even more happy if somebody else did it. (Needless to say, I would request that I be informed of and sent the enhancements.) I do guarantee that all further versions of |luasseq| that might or might not be written by me will be compatible with the documented code written for this version.
+%
+% \endinput
+%
+%
+%
+% ^^A options that can be passed to sseq
+%
+\define@key{sseq}{grid}{
+  \directlua0{sseqgriddrawer = sseq_grid_#1}
+}
+%
+\define@key{sseq}{entrysize}{
+  \sseq@dimen=#1
+  \directlua0{sseqentrysize=\number\sseq@dimen} % In LUA, it's all in scaled points.
+}
+
+\define@key{sseq}{labels}{
+  \setkeys{sseq}{xlabels=#1,ylabels=#1}
+}
+\define@key{sseq}{xlabels}{
+  \def\temp{#1}
+  \def\temptwo{none}
+  \ifx\temp\temptwo
+    \directlua0{sseqxlabels = sseq_parse_label_list("")}
+  \else
+    \def\temptwo{numbers}
+    \ifx\temp\temptwo
+      \directlua0{sseqxlabels = sseq_parse_label_list("&n")}
+    \else
+      \directlua0{sseqxlabels = sseq_parse_label_list([[#1]])}
+    \fi
+  \fi
+}
+\define@key{sseq}{ylabels}{
+  \def\temp{#1}
+  \def\temptwo{none}
+  \ifx\temp\temptwo
+    \directlua0{sseqylabels = sseq_parse_label_list("")}
+  \else
+    \def\temptwo{numbers}
+    \ifx\temp\temptwo
+      \directlua0{sseqylabels = sseq_parse_label_list("&n")}
+     \else
+       \directlua0{sseqylabels = sseq_parse_label_list([[#1]])}
+      \fi
+  \fi
+}
+
+\define@key{sseq}{xlabelstep}{
+\directlua0{sseqxstep=#1}
+}
+\define@key{sseq}{ylabelstep}{
+\directlua0{sseqystep=#1}
+}
+
+\define@key{sseq}{labelstep}{\setkeys{sseq}{xlabelstep=#1}\setkeys{sseq}{ylabelstep=#1}}
+
+\define@key{sseq}{gapsize}{\setkeys{sseq}{xgapsize=#1}\setkeys{sseq}{ygapsize=#1}}
+\define@key{sseq}{xgapsize}{
+\sseq@dimen=#1
+\directlua0{sseqxgap=\number\sseq@dimen}
+}
+\define@key{sseq}{ygapsize}{
+\sseq@dimen=#1
+\directlua0{sseqygap=\number\sseq@dimen}
+}
+\define@key{sseq}{leak}{\setkeys{sseq}{xleak=#1}\setkeys{sseq}{yleak=#1}}
+\define@key{sseq}{xleak}{
+\sseq@dimen=#1
+\directlua0{sseqxleak=\number\sseq@dimen}
+}
+\define@key{sseq}{yleak}{
+\sseq@dimen=#1
+\directlua0{sseqyleak=\number\sseq@dimen}
+}
+
+\define@key{sseq}{gridstroke}{
+\sseq@dimen=#1
+\directlua0{sseqgridstrokethickness=\number\sseq@dimen}
+}
+
+\define@key{sseq}{arrows}{
+\def\sseq@defaultarrowstyle{#1}
+\directlua0{sseqdefaultarrowstyle="#1"}
+}
+
+\define@key{sseq}{packing}{
+\directlua0{sseqpacking = sseq_pack_#1}
+}
+%
+% ^^A Defaults
+%
+\def\sseq@defaultarrowstyle{to}
+
+\directlua0{sseq_set_defaults()}
+
+\newenvironment{sseq}[3][]{%
+\begingroup
+%
+\directlua0{sseq_init()}
+%
+% ^^A Start the PGF environment
+\begin{pgfpicture}
+%
+% ^^A Initialize some local counters and dimensions
+%
+%
+% ^^A Parse arguments
+%
+%
+\setkeys{sseq}{#1}
+%
+%
+%
+\directlua0{sseq_setup_ranges("#2","#3",\the\sseqxstart,\the\sseqystart)}
+%
+%
+\directlua0{sseq_drawgrid()}
+%
+\directlua0{sseq_drawlabels()}
+%
+% ^^A Move to turtle to (0,0)
+\directlua0{sseqboxno = \the\sseqbox} % ^^A Needed to measure the size of entries
+}
+%
+%
+% ^^A PART FOR \end{sseq}
+%
+{
+\relax
+\ssmoveto 0 0
+\directlua0{sseq_position_objects(); sseq_dump_code()}
+\end{pgfpicture}
+\endgroup
+}
+%
+% \Finale

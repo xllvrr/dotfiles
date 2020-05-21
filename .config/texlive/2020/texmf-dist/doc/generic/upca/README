@@ -1,0 +1,15 @@
+In this directory you can find macro for printing UPC-A barcodes. All necessary macros are defined in file upca.tex. File test-upca.tex contains test of macros and demonstration of usage in plain.
+
+
+Macro works in plain and LaTeX and other standard macro packages.
+
+Files:
+upca.tex - definition of macros
+test-upca.tex .... test and demonstration of usage
+
+
+Jiri Mrkus (Ji\v{r}\'{i} Mrkus)
+Faculty of Informatics
+Masaryk University
+Czech Republic
+e-mail: mrkus@mail.muni.cz

@@ -1,0 +1,2605 @@
+\documentclass[12pt]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fourier}
+\usepackage[scaled]{helvet}
+\usepackage[scaled]{luximono}
+\usepackage{makeidx}
+\usepackage{longtable}
+\usepackage{multicol}
+\usepackage{pst-node}
+\usepackage{fancyvrb-ex}
+\usepackage{geometry}
+\usepackage{xlop}
+\usepackage[frenchb]{babel}
+\usepackage[autolanguage]{numprint}
+\usepackage{dcolumn}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\fvset{label=source}% français
+
+\fvset{xrightmargin=5cm,frame=single,fontsize=\small}
+\geometry{a4paper,left=4cm,right=4cm,top=3cm,bottom=3cm,nohead}
+
+\let\SBSori\SideBySideExample
+\def\SideBySideExample{%
+  \par\bigbreak\SBSori
+}
+\let\endSBSori\endSideBySideExample
+\def\endSideBySideExample{%
+  \endSBSori
+  \par\bigskip\noindent}
+
+\newenvironment{syntaxBNF}{%
+  \catcode`\_=12
+  \def\*##1*{$\langle$##1$\rangle$}%
+  \def\alt{\unskip~$|$~\ignorespaces}%
+  \def\sameline{\multicolumn{1}{c}{} & \null\quad}%
+  \ttfamily
+  \begin{center}\begin{tabular}{r@{\quad:=\quad}l}}
+{\end{tabular}\end{center}}
+
+\setlongtables
+\newcommand\package[1]{\textsf{#1}}
+\newcommand\file[1]{\texttt{#1}}
+
+\newcommand\macro[1]{\texttt{$\backslash$#1}\index{#1@\texttt{\boi {#1}}}}
+\newcommand\parameter[1]{\texttt{#1}\index{#1@\texttt{#1}}%
+  \index{parametre@paramètre!\texttt{#1}}}
+
+\newcommand\bull{\vrule width3pt height4pt depth-1pt}
+
+\newcounter{stuff}
+\makeindex
+
+\begin{document}
+\begin{titlepage}
+  \null\par\vfill
+  \begin{center}
+    \begin{minipage}{0.75\linewidth}
+      \hrule width\linewidth height2pt depth0pt
+      \hrule width0pt height3pt depth0pt
+      \hrule width\linewidth height1pt depth0pt
+      \hrule width0pt height18pt depth0pt
+      \begin{center}
+        \Huge\bfseries XLOP v \fileversion\par\vskip18pt
+        Manuel de l'utilisateur
+      \end{center}
+      \hrule width0pt height6pt depth0pt
+      \hrule width\linewidth height1pt depth0pt
+      \hrule width0pt height3pt depth0pt
+      \hrule width\linewidth height2pt depth0pt
+    \end{minipage}
+  \end{center}
+  \vfill
+  \begin{center}
+    Jean-Côme Charpentier\\
+    \today
+  \end{center}
+  \vfill\null\par
+\end{titlepage}
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\chapter{Présentation}
+\label{chap:Présentation}
+L'extension \package{xlop} a été développée pour permettre de réaliser
+automatiquement des calculs arithmétiques sur des nombres de taille
+quelconque et d'afficher les résultats sous forme posée ou en
+ligne. Voici un premier exemple permettant de donner un aperçu de la
+syntaxe de base :
+\begin{SideBySideExample}
+  \opadd{45,05}{78,4}
+\end{SideBySideExample}
+Ce premier exemple appelle quelques commentaires qui permettront de
+donner une idée sur la façon de manipuler l'extension.
+
+L'addition est posée \og comme à l'école \fg{} : il s'agit de la
+présentation par défaut. On a un alignement sur la virgule des
+opérandes et du résultat, le symbole opératoire placé à gauche est
+centrée verticalement entre les deux opérandes et le séparateur
+décimal est un point malgré le fait d'avoir indiquer les opérandes
+avec une virgule dans l'appel de la macro. Enfin, on notera la
+présence d'une retenue au dessus de la première opérande.
+
+Mis à part l'alignement sur la virgule qui est obligatoire pour
+l'addition posée, toutes les autres caractéristiques décrites
+ci-dessus sont paramétrables. Certaines macros de l'extension et, en
+tout cas, toutes les macros affichant les opérations arithmétiques
+admettent un argument optionnel qui permettra de contrôler la
+présentation. Pour cela, on utilisera une syntaxe \og à la keyval
+\fg{} : on spécifie une suite de modifications de paramètres par une
+liste d'affectations séparées par des virgules. Une affectation a
+une des deux syntaxes possibles ci-dessous :
+\begin{verbatim}
+  <paramètres>=<valeur>
+  <paramètre>
+\end{verbatim}
+la seconde possibilité étant en fait un raccourci pour :
+\begin{verbatim}
+  <paramètre>=true
+\end{verbatim}
+Dans cette liste d'affectation, on peut faire suivre les virgules par
+un ou plusieurs espaces mais il ne faut pas mettre d'espace de part et
+d'autre du signe égal ou avant la virgule : un paramètre ou une valeur
+pouvant (potentiellement) comporter le caractère espace.
+
+Ainsi, si l'on veut un séparateur décimal qui soit une virgule, un
+symbole opératoire placé en face de la seconde opérande et en
+supprimant la présence des retenues, il suffit d'indiquer :
+\begin{SideBySideExample}
+  \opadd[decimalsepsymbol={,},
+         voperator=bottom,
+         carryadd=false]{45.05}{78.4}
+\end{SideBySideExample}
+On notera la petite astuce consistant à mettre la virgule entre
+accolades dans la définition du symbole du séparateur décimal. En
+effet, la syntaxe :
+\begin{Verbatim}[xrightmargin=0pt]
+  \opadd[decimalsepsymbol=,,voperator=bottom,
+         carryadd=false]{45.05}{78.4}
+\end{Verbatim}
+est fautive : \package{xlop} ne comprenant plus trop bien ce qu'est
+cette \og liste \fg{} !
+
+Un autre point important quoique moins visible, est que les chiffres
+sont disposés à des emplacements très précis. Chaque chiffre est placé
+dans une boîte de largeur et de hauteur fixes (paramétrables), le
+séparateur décimal est, par défaut, placé dans une boîte de largeur
+nulle et toutes les lignes sont régulièrement espacées qu'il y ait ou
+non un trait horizontal. Cela permet d'obtenir des alignements
+rigoureux et permet également de placer ce que l'on veut à
+l'emplacement que l'on veut.
+\begin{SideBySideExample}
+  \psset{xunit=\opcolumnwidth,
+         yunit=\oplineheight}
+  \opadd{45.05}{78.4}
+  \oplput(1.5,3){retenue}
+  \psline{->}(1,3.15)(-3.25,3.15)
+\end{SideBySideExample}
+Cet exemple a été réalisé en utilisant l'extension
+\package{pstricks}\index{pstricks@\package{pstricks}}
+
+Nous avons dit précédemment que \package{xlop} était capable de
+manipuler des nombres de taille quelconque. Nous reviendrons plus en
+détail sur cette possibilité et nous nous contenterons ici de ne donner
+qu'un exemple de ce que cela peut offrir. Ne regardez pas trop le
+code, les explications seront données plus loin dans ce manuel, pour
+l'instant, admirez seulement le résultat !
+\begin{CenterExample}[xrightmargin=0pt]
+  \opdiv[style=text,period]{1}{49}
+\end{CenterExample}
+
+L'extension \package{xlop} offre quelques autres fonctionnalités. Il
+est ainsi possible de manipuler les nombres par l'intermédiaire de
+variables, ces variables pouvant être créées par une assignation
+simple ou bien comme résultat d'un calcul. On peut également manipuler
+les chiffres de façon individuelle :
+\begin{SideBySideExample}
+  \opadd*{45.05}{78.4}{r}%
+  Le premier chiffre apr\`es la
+  virgule de $45.05+78.4$ est un
+  \opgetdecimaldigit{r}{1}{d}%
+  $\opprint{d}$.
+\end{SideBySideExample}
+effectuer des tests :
+\begin{SideBySideExample}
+  \opadd*{45.05}{78.4}{r}%
+  La somme $45.05+78.4$ est
+  \opcmp{r}{100}%
+  \ifopgt strictement sup\'erieure
+  \else\ifoplt strictement inf\'erieure
+  \else \'egale
+  \fi\fi
+  \`a $100$.
+\end{SideBySideExample}
+avoir accès à quelques opérations ou fonctions :
+\begin{SideBySideExample}
+  Le pgcd de $182$ et $442$ est
+  \opgcd{182}{442}{d}$\opprint{d}$
+\end{SideBySideExample}
+pouvoir réaliser des calculs complexes sous forme infixe :
+\begin{SideBySideExample}
+  \opexpr{(2+3^2)/(gcd(22,33))}{r}%
+  $$\frac{2+3^2}{\gcd(22,33)} =
+    \opprint{r}$$
+\end{SideBySideExample}
+
+\chapter{Instruction \package{xlop}}
+\`A quelques exceptions près qui seront étudiées en temps voulu, les
+macros de \package{xlop} peuvent éventuellement avoir un argument
+optionnel entre crochets pour modifier localement la valeur des
+paramètres de fonctionnement, les autres arguments (qui sont
+obligatoires) étant presque toujours des nombres. Les deux sections de
+ce chapitre décrivent en détail ce qu'est un nombre pour
+\package{xlop} et comment se servir des paramètres.
+
+\section{Au début était le nombre}
+\label{sec:Au début etait le nombre}
+\subsection{Taille}
+\label{subsec:Taille}
+Avant de voir la syntaxe générale d'un nombre, nous allons nous
+pencher sur la particularité de \package{xlop} qui est de pouvoir
+manipuler des nombres de taille quelconque.
+
+\index{nombre!taille}Pour être tout à fait précis, la taille théorique
+maximum d'un nombre est de $2^{31}-1$ chiffres\index{nombre!limite}.
+En pratique, cette limite ne pourra pas être atteinte pour deux
+raisons essentielles. La première est qu'une multiplication avec deux
+opérandes ayant $2^{25}$ chiffres demanderait plus de $7\,000$ années
+de calcul sur l'ordinateur de l'auteur ! La seconde est beaucoup plus
+restrictive car elle est liée aux limites de taille des piles de
+\TeX{}. Voici un tableau indiquant une compilation sous \TeX{} avec
+une multiplication de deux opérandes de même taille sur une machine
+Linux, pentium~II~600 et 256~Mo de RAM :
+\begin{center}
+  \begin{tabular}{|l|*{6}{c|}}
+    \hline
+    nombre de chiffres & 100 & 200 & 300 & 400 & 425 & 450 \\\hline
+    temps de compilation (s) & 2 & 8 & 18 & 32 & 36 & crash \\\hline
+  \end{tabular}
+\end{center}
+Le \og crash \fg{} indiqué dans le tableau est dû au débordement de la
+table de hachage (hash table).  \index{hash table}%
+\index{depassement de capacite@dépassement de capacité}%
+Sous \LaTeX{}, la limite avant crash sera plus réduite. D'autre part,
+ces tests ont été effectués sur un fichier minimum : avec un document
+source classique, cette limite sera un peu plus basse. Une autre
+limite qui risque d'être atteinte relativement rapidement est la
+taille du spouleur (spool size).  \index{spool size}%
+Pour composer ce document qui contient un grand nombre d'appel aux
+macros de \package{xlop}, l'auteur a augmenté la taille du spouleur
+de~$125\,000$ à~$250\,000$ en éditant la ligne \verb+pool_size+ du
+fichier \file{texmf.cnf}. De même, la table de hachage a dû être
+augmentée en stipulant la valeur \texttt{1000} au niveau de la ligne
+\verb+hash_extra+ du fichier \file{texmf.cnf}.
+
+\subsection{Syntaxe}
+\label{subsec:Syntaxe}
+Nous allons présenter cette syntaxe avec la grammaire BNF mais des
+explications plus humaines suivront :
+\begin{syntaxBNF}
+  \*nombre* & \{\*signe*\}\*nombre_positif* \alt \*nom* \\
+  \*signe* & + \alt - \\
+  \*nombre_positif* & \*entier* \alt \*sep*\*entier* \alt \\
+  \sameline \*entier*\*sep* \alt \*entier*\*sep*\*entier* \\
+  \*sep* & . \alt , \\
+  \*entier* & \*chiffre*\{\*chiffre*\} \\
+  \*nom* & \*début*\{caractère\} \\
+  \*début* & caractère \textnormal{autre que } \*signe*\textnormal{,}
+  \*sep* \\
+  \sameline \textnormal{et} \*chiffre*
+\end{syntaxBNF}
+\index{syntaxe BNF}\index{BNF}\index{grammaire BNF}
+
+Le symbole \texttt{caractère} désigne presque n'importe quel caractère
+accepté par \TeX{}. Les seules exceptions sont les caractères \verb+%+,
+et \verb+#+ qui sont totalement interdits. En fait, les caractères
+actifs risquent de poser des problèmes. Par exemple, la définition de
+\verb+~+ sous \LaTeX{} empêche ce caractère de pouvoir faire partie
+d'un nom. D'autre part, le caractère \verb+\ +conserve sont rôle de
+caractère d'échappement, c'est-à-dire que le nom sera celui obtenu
+après développement de la macro introduite. Il n'y a aucune autre
+contrainte comme le montre le code suivant :
+\begin{SideBySideExample}
+  \newcommand\prefix{a/b}
+  \opadd*{2}{2}{a/b_{^c}!&$}
+  \opprint{\prefix_{^c}!&$}
+\end{SideBySideExample}
+\index{nom de nombre}%
+On notera que \verb+a/b_{^c}!&$+ et \verb+\prefix_{^c}!&$+
+représentent très exactement le même nom, si \verb+\prefix+ a la
+définition adéquate évidemment. Cette possibilité d'obtenir un nom en
+utilisant des macros peut sembler inutile mais il n'en est rien. On
+peut ainsi réaliser des boucles\index{boucle} avec des noms tels que
+\verb+r1+, \verb+r2+, \ldots, \verb+r<n>+ en utilisant le code
+\verb+r\the\cpt+ comme nom où \verb+cpt+ est un compteur au sens
+\TeX{}. Le mécanisme des compteurs avec \LaTeX{} donne un code un peu
+plus long avec \verb+r\number\value{cpt}+ où \verb+cpt+ est maintenant
+un compteur au sens \LaTeX. Nous verrons un exemple d'utilisation de
+cette forme à la section~\ref{sec:Creation d'operations complexes}
+page~\pageref{sec:Creation d'operations complexes}.
+
+\index{nombre!valide}En pratique, que signifient toutes ces règles ?
+Elles indiquent d'abord qu'un nombre écrit sous forme décimale peut
+être précédé par n'importe quelle séquence de signes plus et moins.
+Évidemment, le nombre sera négatif lorsqu'il y aura un nombre impair
+de signes moins.  Ensuite, un nombre ne peut comporter qu'un seul
+séparateur décimal qui peut être le point ou la virgule, celui-ci
+pouvant être placé n'importe où dans le nombre. Enfin, l'écriture d'un
+nombre s'effectue obligatoirement en base~10.  Attention : ces règles
+signifient également que \verb+-a+ n'est pas valide.
+
+L'extension utilise quelques noms de façon interne et il est plus
+prudent de ne pas commencer un nom de variable par le caractère
+\texttt{@}.
+
+\section{Paramètres de \package{xlop}}
+\label{sec:Parametres de xlop}
+\index{parametre@paramètre!syntaxe|(}
+Les affectations de paramètres restent locales à la macro lorsqu'elles
+sont indiquées au niveau de son argument optionnel. Pour rendre de
+telles affectations globales, il faut utiliser la macro
+\macro{opset}. Par exemple
+\begin{Verbatim}[xrightmargin=0pt]
+  \opset{decimalsepsymbol={,}}
+\end{Verbatim}
+fera que le symbole du séparateur décimal sera la virgule pour tout le
+reste du document, ou, du moins, jusqu'à une prochaine redéfinition
+par la macro \verb+\opset+. Dans ce manuel, ce sera le cas à partir de
+maintenant.\opset{decimalsepsymbol={,}}
+
+\subsection{Symboles}
+\label{subsecSymboles}
+Le paramètre \parameter{afterperiodsymbol} indique le symbole qui suit
+l'écriture d'un quotient en ligne lors d'une division avec recherche
+de période\index{division!période}. Sa valeur par défaut est
+\verb+$\ldots$+
+
+Le paramètre \parameter{equalsymbol} indique le symbole utilisé pour
+l'égalité.  Sa valeur par défaut est \verb+$=$+. En réalité, le
+paramètre est défini avec :
+\begin{Verbatim}[xrightmargin=0pt]
+  \opset{equalsymbol={$=$}}
+\end{Verbatim}
+c'est-à-dire avec des accolades pour protéger le signe égal. Sans les
+accolades, il y aurait une erreur à la compilation. On doit procéder
+de cette façon lorsque la valeur comporte le signe égal ou une
+virgule\index{parametre@paramètre!avec \og = \fg{} ou \og ,\fg}
+
+Le paramètre \parameter{approxsymbol} indique le symbole utilisé pour
+les approximations. Sa valeur par défaut est \verb+$\approx$+.
+
+Le paramètre \parameter{decimalsepsymbol} indique le symbole utilisé
+pour le séparateur décimal. Sa valeur par défaut est le point.
+
+Les paramètres \parameter{addsymbol}, \parameter{subsymbol},
+\parameter{mulsymbol} et \parameter{divsymbol} indiquent les symboles
+utilisés pour les quatre opérations arithmétiques. Les valeurs par
+défaut sont respectivement \verb!$+$!, \verb!$-$!, \verb!$\times$! et
+\verb!$\div$!.
+
+\subsection{Présentation générale}
+\label{subsec:Presentation generale}
+Le paramètre \parameter{voperation} indique la façon dont une
+opération posée sera placée par rapport à la ligne de base. Les
+valeurs possibles sont \verb+top+, \verb+center+ et \verb+bottom+
+(valeur par défaut).
+\begin{SideBySideExample}
+  top\quad
+  \opadd[voperation=top]{45}{172}\par
+  center\quad
+  \opadd[voperation=center]{45}{172}\par
+  bottom\quad
+  \opadd[voperation=bottom]{45}{172}
+\end{SideBySideExample}
+
+Le paramètre \parameter{voperator} indique comment sera placé le
+symbole opératoire par rapport aux opérandes. Les valeurs possibles
+sont \verb+top+, \verb+center+ (valeur par défaut) et \verb+bottom+.
+\begin{SideBySideExample}
+  top\quad
+  \opadd[voperator=top]{45}{172}\par
+  center\quad
+  \opadd[voperator=center]{45}{172}\par
+  bottom\quad
+  \opadd[voperator=bottom]{45}{172}
+\end{SideBySideExample}
+
+Le paramètre \parameter{deletezero} indique si certains nombres d'une
+opération doivent être affichés avec ou sans les zéros non
+significatifs. Le rôle exact de ce paramètre varie en fonction de
+l'opération et nous y reviendrons lors de la présentation des
+différentes opérations.
+
+Le paramètre \parameter{style} indique si l'opération doit être posée
+(avec la valeur \verb+display+ qui est la valeur par défaut) ou bien
+être affichée en ligne (valeur \verb+text+). On reviendra sur ce
+paramètre lors de la présentation de la division car les possibilités
+sont alors un peu plus nombreuses.
+\begin{SideBySideExample}
+  \opadd[style=text]{45}{172}
+\end{SideBySideExample}
+Dans les opérations en ligne, \package{xlop} fait attention à ne pas
+composer la formule en mode mathématique de façon directe. Cela permet
+de spécifier ce que l'on veut comme dans l'exemple qui suit et c'est
+également pour cela qu'il faut indiquer les valeurs classiques des
+symboles entre délimiteurs mathématiques.
+\begin{SideBySideExample}
+  \opadd[addsymbol=plus,
+         equalsymbol=\'egal,
+         style=text]{42}{172}
+\end{SideBySideExample}
+Cependant, \package{xlop} introduit exactement les mêmes pénalités de
+coupures et exactement les mêmes espacements que pour une formule
+mathématique.
+
+Le paramètre \parameter{parenthesisnegative} indique comment composer
+les nombres négatifs dans les opérations en ligne. Les valeurs
+possibles sont :
+\begin{itemize}
+\item \texttt{none} qui compose les nombres négatifs sans parenthèse ;
+\item \texttt{all} qui compose les nombres négatifs en les plaçant
+  entre parenthèses ;
+\item \texttt{last} qui compose les nombres négatifs en les plaçant
+  entre parenthèses s'il ne s'agit pas de la première opérande.
+\end{itemize}
+\begin{SideBySideExample}
+  \opadd[style=text,
+         parenthesisnegative=none]
+         {-12}{-23}\par
+  \opadd[style=text,
+         parenthesisnegative=all]
+         {-12}{-23}\par
+  \opadd[style=text,
+         parenthesisnegative=last]
+         {-12}{-23}
+\end{SideBySideExample}
+
+\subsection{Dimensions}
+\label{subsec:Dimensions}
+Dans les opérations posées, les chiffres sont placés dans des boîtes
+de dimensions fixées. La largeur est donnée par le paramètre
+\parameter{columnwidth} et la hauteur par le paramètre
+\parameter{lineheight}. La valeur par défaut du paramètre
+\texttt{lineheight} est \verb+\baselineskip+ ce qui fait que les
+lignes des opérations seront espacées, par défaut, comme les lignes
+d'un paragraphe. La valeur par défaut de \texttt{columnwidth} est de
+\texttt{2ex} car la largeur \og normale \fg{} des chiffres aurait
+donné des résultats peu lisibles.
+\begin{SideBySideExample}
+  \opadd[columnwidth=0.5em]
+        {45.89}{127.5}
+\end{SideBySideExample}
+Ce piètre résultat est dû en partie au fait que la virgule est placé
+dans une boîte dont la largeur est contrôlée par le paramètre
+\parameter{decimalsepwidth} dont la valeur par défaut est nulle. Un
+essai d'amélioration peut être effectué en donnant à ce paramètre la
+largeur \og{} normale \fg d'une virgule.
+\begin{SideBySideExample}
+  \opadd[columnwidth=0.5em,
+         decimalsepwidth=0.27778em]
+        {45.89}{127.5}
+\end{SideBySideExample}
+C'est meilleur mais le fait de donner une largeur non nulle à la boîte
+contenant le séparateur décimal risque de poser des difficultés si
+l'on veut placer des éléments externes : cela va à l'encontre de
+l'idée de placer les chiffres dans une grille fixe. Ceci est donc à
+éviter en temps normal.
+
+Les deux paramètres \parameter{columnwidth} et \parameter{lineheight}
+correspondent aux deux seules dimensions que l'extension rend
+publiques, à savoir respectivement
+\verb+\opcolumnwidth+\index{opcolumnwidth@\texttt{$\backslash$opcolumnwidth}}
+et
+\verb+\oplineheight+\index{oplineheight@\texttt{$\backslash$oplineheight}}.
+Il est cependant dangereux de vouloir modifier ces dimensions de façon
+directe puisque une modification par voie normale n'a pas pour seule
+conséquence d'obtenir une nouvelle valeur pour ces
+dimensions. L'extension \package{xlop} a rendu ces dimensions
+publiques uniquement pour pouvoir les lire, pas pour les modifier.
+
+Les deux paramètres suivants permettent de spécifier les largeurs des
+traits horizontaux et verticaux tracés par \package{xlop}. Il s'agit
+des deux paramètres \parameter{hrulewidth} et \parameter{vrulewidth}
+dont la valeur par défaut est \texttt{0.4pt}.
+
+Ces traits sont composés sans perturber la grille, c'est-à-dire sans
+ajouter d'espace vertical. Ainsi, avec des valeurs importantes pour
+l'épaisseur, les traits risquent de déborder au niveau des opérandes.
+\begin{SideBySideExample}
+  \opadd[hrulewidth=8pt]{42}{172}
+\end{SideBySideExample}
+
+Il existe également un paramètre permettant de contrôler le décalage
+horizontal du séparateur décimal. Il s'agit de
+\parameter{decimalsepoffset} dont la valeur par défaut est égale
+à~\texttt{-0.35}. Cette valeur par défaut indique une longueur en
+prenant \verb+\opcolumnwidth+ comme unité. Un exemple d'utilisation de
+ce paramètre sera donné à la section~\ref{sec:Division}
+page~\pageref{sec:Division}.
+
+\subsection{Styles des chiffres}
+\label{subsec:Styles des chiffres}
+L'extension \package{xlop} distingue cinq types de nombres et y
+associe cinq paramètres de style :
+\begin{itemize}
+\item les opérandes avec \parameter{operandstyle} ;
+\item le résultat avec \parameter{resultstyle} ;
+\item les restes avec \parameter{remainderstyle} ;
+\item les résultats intermédiaires avec \parameter{intermediarystyle}
+  ;
+\item les retenues avec \parameter{carrystyle}.
+\end{itemize}
+\begin{SideBySideExample}
+  \opadd[operandstyle=\blue,
+         resultstyle=\red,
+         carrystyle=\scriptsize\green]
+         {45.89}{127.5}
+\end{SideBySideExample}
+Rappelons que dans ce manuel, nous utilisons l'extension
+\package{pstricks}\index{pstricks}.
+
+\index{parametre@paramètre!indexé|(}%
+En réalité, la gestion de ces styles est encore plus puissante car on
+peut distinguer les différents nombres d'une même classe. Dans une
+même opération, on a plusieurs opérandes et, éventuellement plusieurs
+restes et plusieurs nombres intermédiaires. On accède alors au style
+de ces nombres individuels en indexant le paramètre de style
+correspondant.
+\begin{SideBySideExample}
+  \opadd[operandstyle=\blue,
+         operandstyle.1=\lightgray,
+         resultstyle=\red,
+         carrystyle=\scriptsize\green]
+         {45.89}{127.5}  
+\end{SideBySideExample}
+Sur cet exemple, on a indiqué que la première opérande devait être
+composée avec le style \verb+\lightgray+ et comme rien n'était indiqué
+pour la seconde opérande, celle-ci a repris le style de base de sa
+classe (donc a été composée avec le style \verb+\blue+).
+
+Ce mécanisme va encore plus loin car on peut indicer à deux niveaux
+les styles des classes opérande, reste et nombre intermédiaire et à un
+niveau les styles des classes résultat et retenue pour accéder au
+style de chacun des chiffres de ces nombres. Afin de rendre les
+indexations plus facile à gérer, un index positif indiquera le rang
+d'un chiffre de la partie entière (numérotée de droite à gauche,
+l'index~1 correspondant au chiffre des unités) et un index négatif
+indiquera le rang d'un chiffre de la partie décimale (numérotée de
+gauche à droite, l'index $-1$ correspondant au chiffre des dixièmes).
+\begin{SideBySideExample}
+  \opadd[operandstyle.1.1=\white,
+         operandstyle.1.-2=\white,
+         operandstyle.2.3=\white,
+         resultstyle.2=\white,
+         deletezero=false]
+         {045.89}{127.50}
+\end{SideBySideExample}
+On peut également utiliser une macro à un paramètre comme style.
+\begin{SideBySideExample}
+  \newcommand\hole[1]{$\bullet$}
+  \opadd[operandstyle.1.1=\hole,
+         operandstyle.1.-2=\hole,
+         operandstyle.2.3=\hole,
+         resultstyle.2=\hole]
+         {45.89}{127.5}
+\end{SideBySideExample}
+\index{operation@opération!à trou}%
+Lorsque le style est une macro, le chiffre constitue le dernier
+argument de cette macro. Voici un exemple plus compliqué et utilisant
+l'extension \package{pst-node} de la suite \package{pstricks} :
+\begin{SideBySideExample}
+  \newcommand\OPoval[3]{%
+    \dimen1=#2\opcolumnwidth
+    \ovalnode{#1}
+      {\kern\dimen1 #3\kern\dimen1}}
+  \opadd[voperation=top,
+    operandstyle.1.1=\OPoval{A}{0},
+    operandstyle.2.2=\OPoval{C}{0.8}]
+    {45}{172}\qquad
+  \begin{minipage}[t]{2cm}
+    \pnode(0,0.2em){B}\ chiffre
+    \ncarc{->}{A}{B}\par
+    \pnode(0,0.2em){D}\ nombre
+    \ncarc{<-}{D}{C}
+  \end{minipage}
+\end{SideBySideExample}
+
+Comme les chiffres, le séparateur décimal tient compte du style d'un
+nombre. Pour accéder au style du séparateur décimal de façon
+individuelle, il faut employer l'indice \texttt{d} au lieu des indices
+numériques des chiffres.
+\begin{SideBySideExample}
+  \newcommand\hole[1]{\texttt{\_}}
+  \opmul[intermediarystyle=\hole,
+    resultstyle=\hole,
+    resultstyle.d=\white]{2.46}{35.7}
+\end{SideBySideExample}
+\index{parametre@paramètre!indexé|)}%
+\index{parametre@paramètre!syntaxe|)}
+
+\chapter{Opérations arithmétiques}
+\label{chap:Opérations arithmétiques}
+\section{Addition}
+\label{sec:Addition}
+L'addition est gérée par la macro \macro{opadd}. L'addition,
+lorsqu'elle est posée, n'affiche que des nombres positifs. Cela va
+avoir comme conséquence d'afficher une soustraction lorsqu'une des
+opérandes est négative.%
+\index{nombre!négatifs dans une opération posée}
+\begin{SideBySideExample}
+  \opadd{-245}{72}
+\end{SideBySideExample}
+De façon générale, le principe est de poser l'opération qui permet de
+retrouver le résultat comme on le ferait à la main. En revanche,
+l'affichage en ligne donnera toujours une addition puisqu'on peut
+maintenant écrire des nombres négatifs.
+\begin{SideBySideExample}
+  \opadd[style=text]{-245}{72}
+\end{SideBySideExample}
+ Outre les paramètres généraux décrits à la
+ section~\ref{sec:Parametres de xlop}, la macro \verb+\opadd+ est
+ sensible aux paramètres \texttt{carryadd}, \texttt{lastcarry} et
+ \texttt{deletezero}.
+
+Le paramètre \parameter{carryadd} est un paramètre
+booléen\index{parametre@paramètre!booléen} c'est-à-dire n'acceptant
+que les valeurs \texttt{true} et \texttt{false}. Comme il d'usage,
+l'omission du signe égal et de la partie droite de l'affectation
+équivaut à \texttt{=true}. Ce paramètre indique si les retenues
+doivent être ou non affichées. Sa valeur par défaut est
+\texttt{true}.
+
+Le paramètre \parameter{lastcarry} est également un paramètre
+booléen. Il indique si une retenue sans chiffre correspondant au
+niveau des deux opérandes doit être ou non affichée. Sa valeur par
+défaut est \texttt{false}. On fera attention au rôle exact de ce
+paramètre. Ainsi, si la seconde opérande dans l'exemple qui suit avait
+été~15307, la dernière retenue aurait été affichée quelle que soit la
+valeur du paramètre \texttt{lastcarry} puisqu'il y aurait eu un
+chiffre correspondant au niveau de la seconde opérande.
+\begin{SideBySideExample}
+  \opadd{4825}{5307}
+\end{SideBySideExample}
+\begin{SideBySideExample}
+  \opadd[carryadd=false]{4825}{5307}
+\end{SideBySideExample}
+\begin{SideBySideExample}
+  \opadd[lastcarry]{4825}{5307}
+\end{SideBySideExample}
+
+Le paramètre \parameter{deletezero} est également un paramètre booléen
+et son rôle et d'indiquer si les zéros non significatifs doivent être
+supprimés ou non. Sa valeur par défaut est \texttt{true}. Si ce
+paramètre vaut \texttt{false}, les opérandes et le résultats auront le
+même nombre de chiffres, \package{xlop} ajoutant des zéros non
+significatifs pour y parvenir. Les zéros non significatifs des
+opérandes ne sont pas supprimés également.
+\begin{SideBySideExample}
+  \opadd{012.3427}{5.2773}\par
+  \opadd[deletezero=false]
+    {012.3427}{5.2773}
+\end{SideBySideExample}
+
+Ce paramètre a exactement le même rôle dans l'affichage en ligne que
+dans l'affichage posé.
+\begin{SideBySideExample}
+  \opadd[style=text]{02.8}{1.2}\par
+  \opadd[style=text,
+         deletezero=false]{02.8}{1.2}
+\end{SideBySideExample}
+
+La version 0.27 de xlop a introduit la macro \macro{opmanyyadd} qui
+permet de poser des additions avec plus de deux opérandes. Cette macro
+a quelques limitations:
+\begin{itemize}
+\item toutes les opérandes doivent être positives ;
+\item certains paramètres ne sont plus utilisés, par
+  exemple \parameter{style} ;
+\item les retenues ne sont pas affichées.
+\end{itemize}
+En revanche, le paramètre \parameter{vmanyoperator} permet de
+contrôler finement le placement des signes d'opération.
+
+Voici un premier exemple pour montrer la syntaxe de base. Les
+opérandes doivent être placées entre accolades et leur nombre n'est
+pas limité.
+\begin{SideBySideExample}
+  \opmanyadd{123.4}{3.1416}
+            {2.71828}{0.001}
+\end{SideBySideExample}
+La macro \macro{opmanyadd} accepte les paramètres de style pour les
+opérandes et le résultat. En ce qui concerne le style pour les
+opérandes, le premier index indique la place de l'opérande (du haut
+vers le bas) et la deuxième le chiffre de l'opérande. Par exemple :
+\begin{SideBySideExample}
+  \newcommand\R{\color{red}}
+  \opmanyadd[operandstyle.2.3=\R,
+             operandstyle.3.3=\R,
+             resultstyle.3=\R,
+             resultstyle.4=\R]
+             {12.6}{853.3}{158.1}
+\end{SideBySideExample}
+Cet exemple montre que les zéros non significatifs ne sont pas
+affichés. Ils peuvent l'être en utilisant le
+paramètre \parameter{deletezero} avec se valeur false :
+\begin{SideBySideExample}
+  \opmanyadd[deletezero=false]
+            {12.6}{853.3}{158.1}
+\end{SideBySideExample}
+
+La macro \macro{opmanyadd} utilise également le
+paramètre \parameter{voperation} comme le fait \macro{opadd}.
+
+Il existe un paramètre spécifique à la macro \macro{opmanyadd} : le
+paramètre \parameter{vmanyoperator}. Ce paramètre permet d'afficher
+l'opérateur plus de six façons différentes.
+\begin{CenterExample}
+  \opmanyadd{1}{12}{123}{1234}\quad
+  \opmanyadd[vmanyoperator=center]
+            {1}{12}{123}{1234}\quad
+  \opmanyadd[vmanyoperator=top]
+            {1}{12}{123}{1234}\quad
+  \opmanyadd[vmanyoperator=bottom]
+            {1}{12}{123}{1234}
+\end{CenterExample}
+On peut voir que la valeur par défaut est center. Les valeurs avec une
+première lettre minuscule affichent autant d'opérateurs qu'il y a
+d'opérandes moins une. Les mêmes valeurs avec la premiyère lettre en
+capitale affichent un unique signe opératoire:
+\begin{CenterExample}
+  \opmanyadd[vmanyoperator=Center]
+            {1}{12}{123}{1234}\quad
+  \opmanyadd[vmanyoperator=Top]
+            {1}{12}{123}{1234}\quad
+  \opmanyadd[vmanyoperator=Bottom]
+            {1}{12}{123}{1234}
+\end{CenterExample}
+
+\section{Soustraction}
+\label{sec:soustraction}
+La soustraction est gérée par la macro \macro{opsub}. La soustraction,
+lorsqu'elle est posée, n'affiche que des nombres positifs.  Par
+conséquence cette macro va afficher une addition lorsqu'une des
+opérandes est négative.
+\begin{SideBySideExample}
+  \opsub{-245}{72}
+\end{SideBySideExample}
+De façon générale, le principe est de poser l'opération qui permet de
+retrouver le résultat comme on le ferait à la main. En revanche,
+l'affichage en ligne donnera toujours une soustraction puisqu'on peut
+maintenant écrire des nombres négatifs.
+\begin{SideBySideExample}
+  \opsub[style=text]{-245}{72}
+\end{SideBySideExample}
+Ce principe s'applique également lorsque la première opérande est
+inférieure à la seconde (cas positif) où on aura une inversion des
+opérandes.
+\begin{SideBySideExample}
+  \opsub{1.2}{2.45}
+\end{SideBySideExample}
+Bien entendu, l'opération en ligne donnera le résultat exact.
+\begin{SideBySideExample}
+  \opsub[style=text]{1.2}{2.45}
+\end{SideBySideExample}
+
+
+Outre les paramètres généraux vus à la section~\ref{sec:Parametres de
+  xlop}, \verb+\opsub+ est sensible à \texttt{carrysub},
+\texttt{lastcarry}, \texttt{offsetcarry}, \texttt{deletezero} et
+\texttt{behaviorsub}.
+
+Le paramètre \parameter{carrysub} est un paramètre booléen
+qui indique si les retenues doivent être ou non présentes. Sa valeur
+par défaut est \texttt{false} (rappelons que le paramètre
+\texttt{carryadd} avait une valeur par défaut égale à \texttt{true}).
+\begin{SideBySideExample}
+  \opsub[carrysub]{1234}{567}
+\end{SideBySideExample}
+
+Dans l'exemple précédent, nous pouvons voir qu'il manque en fait une
+retenue au niveau du dernier chiffre de 1234, cette façon de faire
+étant assez courante. Néanmoins, on peut contrôler l'affichage de
+cette dernière retenue avec le paramètre \parameter{lastcarry}. Ce
+paramètre n'a pas tout à fait le même rôle que pour l'addition puisque
+la dernière retenue ne sera pas affichée dans le cas où la seconde
+opérande n'a pas de chiffre correspondant (alors que pour l'addition,
+il fallait que les deux opérandes n'aient pas de chiffres
+correspondant).
+\begin{SideBySideExample}
+  \opsub[carrysub,lastcarry]{1234}{567}
+\end{SideBySideExample}
+On peut noter dans ce dernier cas qu'il est sans doute préférable de
+mettre le paramètre \parameter{deletezero} à \texttt{false} pour
+obtenir une présentation plus correcte.
+\begin{SideBySideExample}
+  \opsub[carrysub,
+         lastcarry,
+         deletezero=false]{1234}{567}
+\end{SideBySideExample}
+
+L'affichage des retenues au niveau des soustractions peut sembler un
+peu trop compact. On peut élargir la boîte des chiffres avec le
+paramètre \parameter{opcolumnwidth} mais également indiquer le
+décalage des retenues avec le paramètre \parameter{offsetcarry}. La
+valeur par défaut de ce paramètre est \texttt{-0.35}.
+\begin{SideBySideExample}
+  \opsub[carrysub,
+         lastcarry,
+         deletezero=false]{12.34}{5.67}  
+
+  \bigskip
+  \opsub[carrysub,
+         lastcarry,
+         columnwidth=2.5ex,
+         offsetcarry=-0.4,
+         decimalsepoffset=-3pt,
+         deletezero=false]{12.34}{5.67}  
+\end{SideBySideExample}
+
+Il peut arriver qu'une soustraction de deux nombres positifs, le
+premier étant inférieur au second, soit le signe d'une erreur de
+l'utilisateur. Dans ce cas, et uniquement dans ce cas, le paramètre
+\parameter{behaviorsub} permet d'obtenir un rappel à l'ordre. Les
+trois valeurs possibles de ce paramètre sont \texttt{silent} qui est
+la valeur par défaut et qui donne le résultat, \texttt{warning} qui
+donne également le résultat mais affiche le message d'avertissement :
+\begin{Verbatim}[xrightmargin=0pt,frame=none]
+  xlop warning.  Substraction with first operand less than second one
+      See documentation for further information.
+\end{Verbatim}
+et enfin \texttt{error} qui affichera le message d'erreur :
+\begin{Verbatim}[xrightmargin=0pt,frame=none]
+  xlop error.  See documentation for further information.
+                   Type  H <return>  for immediate help.
+  ! Substraction with first operand less than second one.
+\end{Verbatim}
+et l'opération ne sera pas effectuée.
+
+\section{Multiplication}
+\label{sec:Multiplication}
+La multiplication est gérée par la macro \macro{opmul}.
+Nous présenterons les paramètres \texttt{hfactor},
+\texttt{displayintermediary}, \texttt{shiftintermediarysymbol},
+\texttt{displayshiftintermediary} et finalement \texttt{deletezero},
+les autres paramètres ayant été vus à la section~\ref{sec:Parametres
+  de xlop}.
+
+Le paramètre \parameter{shiftintermediarysymbol} indique quel symbole
+sera utilisé (sa valeur par défaut est \verb+$\cdot$+) pour visualiser
+les décalages des nombres intermédiaires. Le paramètre
+\parameter{displayshiftintermediary} peut prendre les valeurs
+\texttt{shift} (valeur par défaut) qui ne montre ce symbole que
+lorsque le décalage est supérieur à un rang, \texttt{all} qui indique
+que ce symbole de décalage sera systématiquement affiché et
+\texttt{none} qui indique que ce symbole ne sera jamais affiché.
+\begin{CenterExample}[xrightmargin=0pt]
+  \opmul[displayshiftintermediary=shift]{453}{1001205}\qquad
+  \opmul[displayshiftintermediary=all]{453}{1001205}\qquad
+  \opmul[displayshiftintermediary=none]{453}{1001205}
+\end{CenterExample}
+
+En réalité, le non affichage des nombres intermédiaires nuls est dû à
+la valeur par défaut \texttt{none} du paramètre
+\parameter{displayintermediary}. La valeur \texttt{all} va afficher
+tous les nombres intermédiaires.
+\begin{SideBySideExample}
+  \opmul[displayintermediary=all]
+        {453}{1001205}
+\end{SideBySideExample}
+On notera que les nombres intermédiaires nuls sont affichés avec
+autant de chiffres que le premier facteur.
+
+Le paramètre \parameter{displayintermediary} admet la valeur
+\texttt{nonzero} qui a le même rôle que la valeur \texttt{none} sauf
+dans le cas où le second facteur ne comporte qu'un seul chiffre.
+\begin{CenterExample}[xrightmargin=0pt]
+  \opmul{3.14159}{4}\qquad
+  \opmul[displayintermediary=nonzero]{3.14159}{4}
+\end{CenterExample}
+
+Enfin, le paramètre \parameter{displayintermediary} admet la valeur
+\texttt{None} qui n'affichera aucun résultat intermédiaire dans tous
+les cas.
+\begin{CenterExample}[xrightmargin=0pt]
+  \opmul[displayintermediary=None]{453}{1001205}
+\end{CenterExample}
+
+Le paramètre \parameter{hfactor} permet d'indiquer comment doit se
+faire l'alignement des opérandes. La valeur par défaut \texttt{right}
+donne une composition au fer à droite tandis que la valeur
+\texttt{decimal} donne un alignement au niveau de la virgule.
+\begin{CenterExample}[xrightmargin=0pt]
+  \opmul{3.1416}{12.8}\qquad\opmul[hfactor=decimal]{3.1416}{12.8}
+\end{CenterExample}
+
+Pour la multiplication posée, le paramètre \parameter{deletezero} ne
+concerne que les opérandes, le résultat gardant ses éventuels zéros
+non significatifs puisque ceux-ci sont nécessaires pour effectuer
+correctement le décalage de la virgule lorsqu'on travaille \og à la
+main \fg{}.
+\begin{CenterExample}[xrightmargin=0pt]
+  \opmul[deletezero=false]{01.44}{25}\qquad
+  \opmul{01.44}{25}
+\end{CenterExample}
+En revanche, dans la multiplication en ligne, ce paramètre retrouve
+son comportement normal.
+\begin{CenterExample}[xrightmargin=0pt]
+  \opmul[deletezero=false,style=text]{01.44}{25}\qquad
+  \opmul[style=text]{01.44}{25}
+\end{CenterExample}
+
+\section{Division}
+\label{sec:Division}
+L'extension gère la division \og classique \fg{} avec la macro
+\macro{opdiv} et la division euclidienne avec la macro
+\macro{opidiv}. En raison de sa complexité, la division est l'opération
+qui prend en compte le plus de paramètres.
+
+\subsection{Contrôle de l'arrêt}
+\label{subsec:Controle de l'arret}
+Dans ce qui suivra, le terme d'\emph{étape} indique l'ensemble des
+calculs permettant d'obtenir un chiffre au niveau du quotient. Ce
+nombre d'étapes est contrôlé en partie par les paramètres
+\parameter{maxdivstep}, \parameter{safedivstep} et \parameter{period}.
+En partie seulement car une division classique s'arrêtera
+automatiquement lors de l'obtention d'un reste nul, quelles que que
+soient les valeurs de ces trois paramètres et une division euclidienne
+s'arrêtera sur un quotient entier, sans tenir compte de ces trois
+paramètres.
+\begin{SideBySideExample}
+  \opdiv{25}{7}
+\end{SideBySideExample}
+\begin{SideBySideExample}
+  \opidiv{25}{7}
+\end{SideBySideExample}
+Le premier exemple s'arrête en raison de la valeur de
+\parameter{maxdivstep} qui est égale, par défaut, à~10. On prendra
+garde à ce que le nombre maximum d'étapes peut entraîner des résultats
+aberrants lorsqu'il est trop faible.
+\begin{SideBySideExample}
+  \opdiv[maxdivstep=2]{1248}{3}
+\end{SideBySideExample}
+Le résultat précédent est clairement faux mais \package{xlop} a fait
+ce qu'on lui a demandé, en l'occurrence avoir deux chiffres (maximum)
+au quotient.
+
+L'affichage en ligne va également différer selon que la division s'est
+arrêtée avec un reste final nul ou non ou selon qu'il s'agit d'une
+division classique ou euclidienne.
+\begin{SideBySideExample}
+  \opdiv[style=text]{3.14}{2}\par
+  \opdiv[style=text]{3.14}{3}\par
+  \opidiv[style=text]{314}{2}\par
+  \opidiv[style=text]{314}{3}
+\end{SideBySideExample}
+On notera l'emploi de \parameter{equalsymbol} ou
+\parameter{approxsymbol} selon le cas ainsi que l'affichage avec une
+troncature et non un arrondi. Nous verrons comment obtenir un arrondi
+à la section~\ref{sec:Operations evoluees}
+
+L'affichage en ligne de \verb+\opdiv+ tient compte de
+\parameter{maxdivstep}. Cela signifie que l'on peut obtenir des
+résultats vraiment faux avec des valeurs trop faible de ce paramètre
+et, contrairement à l'affichage posé, l'affichage en ligne ne
+permettra pas de comprendre ce qu'il s'est passé.
+\begin{SideBySideExample}
+  \opdiv[maxdivstep=2,style=text]
+        {1248}{3}
+\end{SideBySideExample}
+Si en plus, le dernier reste calculé est nul, on atteint un summum :
+\begin{SideBySideExample}
+  \opdiv[maxdivstep=1,style=text]
+        {1208}{3}
+\end{SideBySideExample}
+puisqu'il n'y a même plus d'approximation !
+
+Une division non euclidienne peut également s'arrêter sur la détection
+de la survenue d'une période. Pour cela, il suffit de donner la valeur
+\texttt{true} au paramètre \parameter{period}\index{division!période}.
+\begin{SideBySideExample}
+  \opdiv[period]{100}{3}
+\end{SideBySideExample}
+
+Pour ne pas avoir à effectuer des comparaisons de chaque reste avec
+tous les restes précédents, \package{xlop} calcule dès le départ la
+longueur de la période ce qui permet de n'effectuer qu'une seule
+comparaison à chaque étape et donc d'accélérer notablement les
+calculs\footnote{Je remercie à cette occasion Olivier Viennet pour ses
+  précisions mathématiques qui ont permis d'implanter correctement ces
+  calculs.}. Malheureusement, ces calculs se font avec des nombres
+directement accessibles à \TeX{} ce qui a pour conséquence de ne pas
+pouvoir utiliser d'opérandes dont la valeur absolue excède
+$\left\lfloor\frac{2^{31}-1}{10}\right\rfloor = 214748364$.
+
+Pour ne pas entraîner des calculs trop long, \package{xlop} ne
+dépassera pas la valeur du paramètre \parameter{safedivstep} dans les
+divisions avec détection de période. Sa valeur par défaut est égale
+à~50. Cependant, \package{xlop} signalera le problème. Par exemple si
+on demande un tel calcul avec le code :
+\begin{Verbatim}[xrightmargin=0pt,frame=none]
+  \opdiv[period]{1}{289}
+\end{Verbatim}
+on obtiendra le message d'avertissement :
+\begin{Verbatim}[xrightmargin=0pt,frame=none]
+  xlop warning.  Period of division is too big (272 > safedivstep).
+      Division will stop before reach it.
+      See documentation for further information.
+\end{Verbatim}
+qui indique que la période de cette division est de~272 et qu'elle ne
+sera donc pas atteinte à cause de la valeur de \texttt{safedivstep}.
+
+L'affichage en ligne d'une telle division  présente quelque
+particularités.
+\begin{SideBySideExample}
+  \opdiv[period,style=text]{150}{7}
+\end{SideBySideExample}
+On obtient donc une égalité au lieu d'une approximation, la présence
+d'un trait sous la période et des points de suspension à la suite de
+la période. Tous ces éléments peuvent être configurés. Le symbole
+d'égalité est donné par le paramètre \parameter{equalsymbol} (valeur
+par défaut \verb+{$=$}+), la largeur du trait par le paramètre
+\parameter{hrulewidth} (valeur par défaut \texttt{0.4pt}), sa position
+verticale par le paramètre \parameter{vruleperiod} (valeur par défaut
+\texttt{-0.2}) qui indique un décalage vertical en prenant
+\verb+\oplineheight+ comme unité et les points de suspension sont
+donnés par le paramètre \parameter{afterperiodsymbol} (valeur par
+défaut \verb+$\ldots$+).
+\begin{SideBySideExample}
+  \opdiv[period,style=text,
+         equalsymbol=$\approx$,
+         hrulewidth=0.2pt,
+         vruleperiod=0.7,
+         afterperiodsymbol=]
+        {150}{7}
+\end{SideBySideExample}
+
+\subsection{Éléments supplémentaires}
+\label{subsec:Elements supplementaires}
+Les divisions posées peuvent comporter les soustractions successives
+permettant le calcul des restes. Pour \package{xlop}, les nombres qui
+sont soustraits sont des nombres intermédiaires donc les différentes
+façons de représenter les soustractions utiliserons le paramètre
+\parameter{displayintermediary} déjà vu pour la multiplication. La
+valeur \texttt{none} (défaut) n'affichera aucune soustraction ainsi
+que la valeur \texttt{None}, la valeur \texttt{all} affichera toutes
+les soustractions et la valeur \texttt{nonzero} affichera les
+soustractions avec un nombre non nul.
+\begin{CenterExample}[xrightmargin=0pt]
+  \opdiv[displayintermediary=none,voperation=top]
+        {251}{25}\quad
+  \opdiv[displayintermediary=nonzero,voperation=top]
+        {251}{25}\quad
+  \opdiv[displayintermediary=all,voperation=top]
+        {251}{25}
+\end{CenterExample}
+
+Lorsqu'on pose une division, on peut dessiner un \og pont \fg{}
+au-dessus de la partie du dividende qui sera prise en compte pour la
+première étape du calcul. L'extension \package{xlop} permet d'afficher
+ce symbole grâce au paramètre booléen \parameter{dividendbridge}
+(valeur par défaut \texttt{false}).
+\begin{SideBySideExample}
+  \opdiv[dividendbridge]{1254}{30}
+\end{SideBySideExample}
+
+\subsection{Nombres non entiers et négatifs}
+\label{subsec:Nombres non entiers et negatifs}
+La présentation d'opérandes non entières est gérée par le paramètre
+\parameter{shiftdecimalsep}. Sa valeur par défaut est \texttt{both} et
+indique que le séparateur décimal sera décalé pour obtenir un diviseur
+et un dividende entiers. La valeur \texttt{divisor} indique qu'il y
+aura le décalage nécessaire pour obtenir un diviseur entier et la
+valeur \texttt{none} indique qu'il n'y aura aucun décalage.
+\begin{CenterExample}[xrightmargin=0pt]
+  \opdiv[shiftdecimalsep=both]{3.456}{25.6}\quad
+  \opdiv[shiftdecimalsep=divisor]{3.456}{25.6}\quad
+  \opdiv[shiftdecimalsep=none]{3.456}{25.6}
+\end{CenterExample}
+
+Un symbole indiqué par le paramètre \parameter{strikedecimalsepsymbol}
+est réservé pour montrer l'ancien emplacement de la virgule lorsqu'on
+effectue un décalage. La valeur par défaut de ce paramètre est vide ce
+qui fait que l'on ne voyait rien sur les exemples précédents.
+\begin{CenterExample}[xrightmargin=0pt]
+  \opset{strikedecimalsepsymbol={\rlap{,}\rule[-1pt]{3pt}{0.4pt}}}
+  \opdiv[shiftdecimalsep=both]{3.456}{25.6}\quad
+  \opdiv[shiftdecimalsep=divisor]{3.456}{25.6}\quad
+  \opdiv[shiftdecimalsep=none]{3.456}{25.6}
+\end{CenterExample}
+
+La présence d'un symbole non vide pour le séparateur décimal barré
+peut laisser les zéros non significatifs au niveau des opérandes.
+\begin{SideBySideExample}
+  \opdiv[shiftdecimalsep=divisor,
+         strikedecimalsepsymbol=%
+           \hspace{-3pt}\tiny$\times$]
+        {0.03456}{2.56}
+\end{SideBySideExample}
+
+Comme nous l'avons déjà vu, la macro \macro{opidiv} donne un quotient
+entier, cela même si les opérandes sont non entières. Il est un peu
+bizarre de vouloir réaliser une division euclidienne sur des nombres
+non entiers et la macro \macro{opidiv} sera assez stricte sur sa
+présentation. Les paramètres \parameter{maxdivstep},
+\parameter{safedivstep} et \parameter{period} seront sans effet ainsi
+que le paramètre \parameter{shiftdecimalsep}, les deux opérandes étant
+rendues entières.
+\begin{SideBySideExample}
+  \opidiv[strikedecimalsepsymbol=%
+          \hspace{-3pt}\tiny$\times$]
+          {34.57}{7}
+\end{SideBySideExample}
+
+Lorsque les opérandes sont négatives, l'affichage en ligne de
+\macro{opidiv} différera des données obtenues avec l'affichage
+posée. Le reste sera nécessairement un nombre compris entre zéro
+(inclus) et la valeur absolue du diviseur (exclu).
+\begin{SideBySideExample}
+  \opdiv[style=text]{124}{7}\par
+  \opidiv[style=text]{124}{7}\par
+  \opidiv[style=text]{124}{-7}\par
+  \opidiv[style=text]{-124}{7}\par
+  \opidiv[style=text]{-124}{-7}
+\end{SideBySideExample}
+
+Cette condition sur le reste reste valable même avec un diviseur non
+entier.
+\begin{SideBySideExample}
+  \opidiv[style=text]{1.24}{0.7}\par
+  \opidiv[style=text]{1.24}{-0.7}\par
+  \opidiv[style=text]{-1.24}{0.7}\par
+  \opidiv[style=text]{-1.24}{-0.7}
+\end{SideBySideExample}
+
+\chapter{Autres commandes}
+\label{chap:Autres commandes}
+\section{Macros étoilées}
+\label{sec:Macros etoilees}
+Les cinq macros vues au chapitre précédent ont une version
+étoilée. Ces macros étoilées réalisent le calcul mais ne procèdent à
+aucun affichage, le résultat étant stocké dans une variable donnée en
+dernier argument.
+
+Comme ces commandes n'affichent rien, les paramètres ne seront pas
+acceptés pour les macros \macro{opadd*}, \macro{opsub*},
+\macro{opmul*} et \macro{opidiv*}. En revanche, les paramètres
+\parameter{maxdivestep}, \parameter{safedivstep} et \parameter{period}
+influencent les calculs et la macro \macro{opdiv*} acceptera donc un
+argument optionnel pour pouvoir en tenir compte.
+\begin{SideBySideExample}
+  \opmul*{2}{2}{a}%
+  \opmul*{a}{a}{a}\opmul*{a}{a}{a}%
+  \opadd[style=text]{a}{1}
+\end{SideBySideExample}
+Pour les macros \macro{opdiv} et \macro{opidiv}, il y aura deux
+arguments supplémentaires pour pouvoir recevoir le quotient et le
+reste final.
+\begin{SideBySideExample}
+  \opdiv*[maxdivstep=1]{-88}{16}{q}{r}%
+  \opmul*{q}{16}{bq}%
+  \opmul[style=text]{16}{q}\par
+  \opadd[style=text]{bq}{r}
+\end{SideBySideExample}
+
+\section{Entrées-sorties}
+\label{sec:Entree-sorties}
+La macro \macro{opcopy} recopie son premier argument dans son deuxième
+argument. Le premier argument est donc un nombre écrit sous forme
+décimale ou via une variable alors que le second sera considérée comme
+un nom de variable.
+
+La macro \macro{opprint} affiche son argument. L'exemple qui suit
+utilise le compteur \macro{time} qui indique le nombre de minutes
+écoulés depuis  minuit.
+\begin{SideBySideExample}
+  \opidiv*{\the\time}{60}{h}{m}%
+  Il est \opprint{h}~heures et
+  \opprint{m}~minutes
+\end{SideBySideExample}
+On verra à la section~\ref{sec:Comparaisons} comment améliorer cet
+affichage avec des tests.
+
+La macro \macro{opdisplay} affiche également un nombre mais en
+écrivant chaque chiffre dans une boîte de largeur donnée par
+\parameter{columnwidth} et de hauteur donnée par
+\parameter{lineheight}. Le style est spécifié par le premier argument
+et cette macro accepte un argument optionnel pour permettre de donner
+un style particulier aux chiffres individuels.
+\begin{SideBySideExample}
+  \opdisplay[resultstyle.1=\bfseries,
+             resultstyle.-2=\bfseries]
+            {resultstyle}{129.192}
+\end{SideBySideExample}
+
+Les macros \macro{oplput} et \macro{oprput} permettent de placer un
+objet à un emplacement déterminé. La syntaxe de ces commandes ne
+suit pas celle des autres macros de \package{xlop} puisque
+l'emplacement est indiqué sous forme de coordonnées entre
+parenthèses. Les coordonnées utilisent \macro{opcolumnwidth} et
+\macro{oplineheight} comme unités ce qui permet à l'utilisateur de
+construire lui-même ses propres \og opérations \fg.
+\begin{SideBySideExample}
+  \psset{xunit=\opcolumnwidth,
+    yunit=\oplineheight}%
+  \psgrid[subgriddiv=1,gridlabels=7pt,
+          griddots=5](0,1)(10,-2)
+  \oplput(2,0){Bonjour}
+  \oprput(8,-1){le monde}
+  $\bullet$
+\end{SideBySideExample}
+Sur l'exemple ci-dessus, on peut voir que ces deux macros ne modifient
+pas le point de référence. Elles prennent même la précaution d'inhiber
+l'espace automatique qui les suit pour qu'il ne soit pas nécessaire de
+mettre un \verb+%+ en fin de ligne.
+
+Les macros \macro{ophline} et \macro{opvline} complète les deux
+précédentes pour donner à l'utilisateur les outils lui permettant de
+construire ses propres opérations. La macro \macro{ophline} permet de
+placer un trait horizontal dont la longueur est donné par le paramètre
+qui suit les coordonnées. La macro \macro{opvline} fait de même avec
+les traits verticaux. On rappelle que les paramètres
+\parameter{hrulewidth} et \parameter{vrulewidth} indiquent les
+épaisseurs respectives de ces types de traits.
+\begin{CenterExample}[xrightmargin=0pt]
+  \par\vspace{2\oplineheight}
+  \oplput(1,2){O}\oplput(2,2){N}\oplput(3,2){E}
+  \oplput(0,1.5){$+$}
+  \oplput(1,1){O}\oplput(2,1){N}\oplput(3,1){E}
+  \ophline(0,0.8){4}
+  \oplput(1,0){T}\oplput(2,0){W}\oplput(3,0){O}
+\end{CenterExample}
+
+La macro \macro{opexport}\refstepcounter{stuff}\label{macro-opexport}
+permet d'exporter un nombre dans une macro. Il s'agit d'un ajout de la
+version 0.23 qui est très utile pour faire dialoguer \package{xlop}
+avec le monde extérieur. Le premier argument est un nombre au sens
+\package{xlop}, c'est-à-dire soit un nombre écrit directement avec des
+chiffres, soit un nom de variable. Le nombre sera écrit sous une forme
+directement compréhensible par \TeX{} dans le deuxième argument qui
+doit donc être un nom de macro. On notera cependant que le séparateur
+décimal sera celui désigné par \parameter{decimalsepsymbol} débarrassé
+de ses éventuelles accolades.
+\begin{SideBySideExample}
+  \opmul*{5}{3.141592654}{C}
+  \opexport{C}{\fivepi}
+  \texttt{\meaning\fivepi}
+\end{SideBySideExample}
+
+On peut se servir de cette macro, par exemple, pour afficher des
+nombres calculés par \package{xlop} dans un tableau avec un alignement
+décimal ou encore pour initialiser un compteur ou une longueur (ne pas
+oublier l'unité dans ce dernier cas).
+
+\section{Chiffres d'un nombre}
+\label{sec:Chiffres d'un nombre}
+Les macros \macro{opwidth}, \macro{opintegerwidth} et
+\macro{opdecimalwidth} indiquent respectivement le nombre de chiffres
+du nombre dans sa totalité, de sa partie entière et de sa partie
+décimale. Le premier argument est le nombre sur lequel s'effectue le
+comptage et le second argument indique la variable où sera stocké le
+résultat.
+\begin{SideBySideExample}
+  \opcopy{123456.1234}{a}%
+  \opwidth{a}{na}%
+  \opintegerwidth{a}{ia}%
+  \opdecimalwidth{a}{da}%
+  \opprint{a} s'\'ecrit avec \opprint{na}
+  chiffres (\opprint{ia} en partie
+  enti\`ere et \opprint{da} en partie
+  d\'ecimale).
+\end{SideBySideExample}
+
+La macro \macro{opunzero} permet de supprimer les zéros non
+significatifs\index{zeros non significatifs@zéros non significatifs}
+du nombre passé en argument.
+\begin{SideBySideExample}
+  \opcopy{00150.00250}{a}%
+  Avant : \opprint{a}\par
+  \opunzero{a}%
+  Apr\`es : \opprint{a}
+\end{SideBySideExample}
+
+Les macros \macro{integer} et \macro{opdecimal} donnent respectivement
+la partie entière et la partie décimale d'un nombre.
+\index{nombre!partie entière}\index{partie entière}%
+\index{nombre!partie décimale}\index{partie décimale}%
+Le premier argument est le nombre à traiter et le second est la
+variable qui contiendra le résultat.
+\begin{SideBySideExample}
+  \opcopy{-37.69911}{a}%
+  \opinteger{a}{ia}%
+  \opdecimal{a}{da}%
+  Partie enti\`ere : \opprint{ia}\par
+  Partie d\'ecimale : \opprint{da}
+\end{SideBySideExample}
+
+Six macros servent à écrire ou lire un chiffre d'un nombre. On peut
+lire ou écrire un chiffre selon son rang dans le nombre, dans sa
+partie entière ou dans sa partie décimale. Les chiffres pour le nombre
+dans sa totalité ou pour sa partie entière sont numérotés de droite à
+gauche et, pour sa partie décimale de gauche à droite. Ainsi, avec le
+nombre 1234,56789, le deuxième chiffre est 8, le deuxième chiffre de
+sa partie entière est 3 et le deuxième chiffre de sa partie décimale
+est 6. Il est alors facile de deviner le rôle respectif des six macros
+:
+\begin{itemize}
+\item \parameter{opgetdigit} ;
+\item \parameter{opsetdigit} ;
+\item \parameter{opgetintegerdigit} ;
+\item \parameter{opsetintegerdigit} ;
+\item \parameter{opgetdecimaldigit} ;
+\item \parameter{opsetdecimaldigit} ;
+\end{itemize}
+La syntaxe est la même pour ces six macros. Le premier argument est le
+nombre sur lequel doit porter la lecture ou l'écriture, le deuxième
+argument est l'index donnant la position du chiffre et le troisième
+argument est le nom de la variable qui contiendra le chiffre lu ou
+bien le chiffre qui devra être écrit. Si l'index est en dehors du
+nombre, les macros de lecture donneront \texttt{0} comme résultat et
+les macros d'écriture étendront le nombre pour pouvoir atteindre cet
+index en créant des zéros dans les nouvelles positions.
+
+\section{Comparaisons}
+\label{sec:Comparaisons}
+Lorsqu'on désire concevoir des macros évoluées, il est très souvent
+utile de pouvoir réaliser des tests. Pour cela, \package{xlop} met à
+disposition la macro \macro{opcmp} dont les deux arguments sont des
+nombres et qui mettra à jour les tests \macro{ifopgt}, \macro{ifopge},
+\macro{ifople}, \macro{ifoplt}, \macro{ifopeq} et \macro{ifopneq} pour
+respectivement indiquer que la première opérande est strictement
+supérieure, supérieure, inférieure, strictement inférieure, égale ou
+différente de la seconde opérande.
+
+Pour des raisons techniques, \package{xlop} donne des définitions
+globales aux six tests précédents. Ceux-ci ne seront donc pas protégés
+par les groupes. Comme ces tests sont utilisés par un grand nombre de
+macros de \package{xlop}, une conséquence pratique est qu'il faut
+\emph{toujours} réaliser les tests \verb+\ifop...+ immédiatement
+après le \macro{opcmp}, ou, du moins, avant toute autre utilisation de
+macros de \package{xlop} sous peine de bogues éventuels difficiles à
+comprendre !
+
+On va reprendre la macro d'affichage de l'heure donnée à la
+section~\ref{sec:Entree-sorties} mais en vérifiant si l'argument est
+compris entre~0 (inclus) et~1440 (exclu) puis en réalisant les tests
+nécessaires pour voir si \og heure \fg{} doit être ou non au pluriel
+ainsi que \og minute \fg{}.
+
+\begin{CenterExample}[xrightmargin=0pt]
+  \newcommand\heure[1]{%
+    \opcmp{#1}{0}\ifopge
+    \opcmp{#1}{1440}\ifoplt
+      \opidiv*{#1}{60}{h}{m}%
+      \opprint{h} heure%
+      \opcmp{h}{1}\ifopgt
+        s%
+      \fi
+      \opcmp{m}{0}\ifopneq
+        \space\opprint{m} minute%
+        \opcmp{m}{1}\ifopgt
+          s%
+        \fi
+      \fi
+    \fi\fi
+  }
+  \heure{60} -- \heure{1080} -- \heure{1081} -- \heure{1082}
+\end{CenterExample}
+
+\section{Opérations évoluées}
+\label{sec:Operations evoluees}
+Les macros qui nous restent à voir proviennent soit de commandes
+utilisées de façon interne et qu'il aurait été dommage de ne pas
+rendre publiques, soit de demandes d'utilisateurs.
+
+Les macros utilisées de façon interne sont \macro{opgcd}\index{pgcd}
+qui donne le pgcd de deux nombres et
+\macro{opdivperiod}\index{division!période} qui donne la longueur de
+la période d'un quotient de deux nombres. Pour des raisons
+d'efficacité, ces macros n'utilisent pas les nombres de \package{xlop}
+mais des nombres directement accessibles à \TeX{}. Cela a pour
+conséquence que les nombres passés en paramètres dans les deux
+premiers arguments ne devront pas dépasser la valeur
+\texttt{2147483647} pour \macro{opgcd} et \texttt{214748364} pour
+\macro{opdivperiod}. Un message d'avertissement rappellera à l'ordre
+en cas de dépassement. Le résultat sera stocké dans la variable
+indiqué en troisième paramètre.
+
+Il y aura également quelques vérifications sur les deux premiers
+paramètres. Un pgcd ne peut pas avoir d'argument nul et le calcul de
+la longueur d'une période ne pourra pas se faire avec un quotient
+nul. D'autre part, si un nombre non entier est passé en paramètre,
+seule la partie entière sera prise en compte.
+\begin{SideBySideExample}
+  \opcopy{5376}{a}%
+  \opcopy{2304}{b}%
+  \opgcd{a}{b}{gcd(ab)}%
+  \newcommand\pgcd{%
+    \mathop{\mathrm{pgcd}}}%
+  $\pgcd(\opprint{a},\opprint{b}) =
+    \opprint{gcd(ab)}$
+\end{SideBySideExample}
+Si vous voulez vous amuser à trouver de grandes périodes de divisions,
+sans entrer dans les détails mathématiques, les carrés de nombres
+premiers sont de bons candidats. Par exemple, avec $257^2=66049$ on
+trouve :
+\begin{SideBySideExample}
+  \opdivperiod{1}{66049}{p}%
+  $\frac{1}{66049}$ a une p\'eriode
+  de longueur $\opprint{p}$.
+\end{SideBySideExample}
+
+Les macros \macro{opcastingoutnines}\index{preuve!par neuf} et
+\macro{opcastingoutelevens}\index{preuve!par onze} vont permettre de
+composer des preuves par neuf et par onze.  L'extension \package{xlop}
+ne propose pas directement ces compositions puisqu'elles nécessitent
+des traits en diagonal et donc le recours à d'autres extensions. En
+réalité, la macro \macro{opcastingoutnines} va faire la somme modulo~9
+des chiffres du premier argument et stockera le résultat dans le
+second argument tandis que la macro \macro{opcastingoutelevens} fera
+la somme des chiffres de rangs impairs, la somme des chiffres de rangs
+pairs puis la différence modulo~11 de ces deux sommes.
+\begin{SideBySideExample}
+  \newcommand\castingoutnines[3]{%
+    \opcastingoutnines{#1}{cna}%
+    \opcastingoutnines{#2}{cnb}%
+    \opmul*{cna}{cnb}{cna*cnb}
+    \opcastingoutnines{cna*cnb}{cna*cnb}%
+    \opcastingoutnines{#3}{cn(a*b)}%
+    \begin{pspicture}(-3.5ex,-3.5ex)%
+                     (3.5ex,3.5ex)
+      \psline(-3.5ex,-3.5ex)(3.5ex,3.5ex)
+      \psline(-3.5ex,3.5ex)(3.5ex,-3.5ex)
+      \rput(-2.75ex,0){\opprint{cna}}
+      \rput(2.75ex,0){\opprint{cnb}}
+      \rput(0,2.75ex){\opprint{cna*cnb}}
+      \rput(0,-2.75ex){\opprint{cn(a*b)}}
+    \end{pspicture}
+  }
+  \castingoutnines{157}{317}{49669}
+\end{SideBySideExample}
+Incidemment, cet exemple montre que $157\times317\neq49669$ ! La
+réponse correcte est \opmul[style=text]{157}{317}.
+
+Les deux macros suivantes sont très simples. Il s'agit de
+\macro{opneg} qui calcul l'opposé de son premier argument et le
+sauvegarde dans la variable indiquée par le second argument et de
+\macro{opabs} qui réalise la même chose mais avec la valeur absolue.
+
+La macro \macro{oppower} calcule des puissances entières. Cette macro
+demande trois paramètres, le troisième paramètre étant la variable
+recevant le résultat du premier paramètre à la puissance le deuxième
+paramètre. Le deuxième paramètre doit être un nombre entier. Lorsque
+le premier argument est nul, si le deuxième paramètre est nul, le
+résultat sera~1, s'il est strictement positif, le résultat sera nul et
+s'il est strictement négatif il y aura une erreur et aucun résultat ne
+sera fourni. Il n'y a aucune limitation sur le premier paramètre ce
+qui peut entraîner quelques problèmes. Par exemple :
+\begin{CenterExample}[xrightmargin=0pt]
+  \opcopy{0.8}{a}\opcopy{-17}{n}%
+  \oppower{a}{n}{r}%
+  $\opprint{a}^{\opprint{n}} = \opprint{r}$
+\end{CenterExample}
+Avec $0{,}7$ au lieu de $0{,}8$, le problème aurait été encore pire :
+\begin{CenterExample}[xrightmargin=0pt]
+  \opcopy{0.7}{a}\opcopy{-8}{n}%
+  \oppower{a}{n}{r}%
+  \opdecimalwidth{r}{dr}
+  $\opprint{a}^{\opprint{n}}$ a \opprint{dr} chiffres apr\`es la
+  virgule.
+\end{CenterExample}
+Cela est dû au fait que lorsque l'exposant est négatif,
+\package{xlop} calcule \emph{d'abord} l'inverse du nombre pour
+\emph{ensuite} calculer la puissance avec l'opposé de l'exposant. Si
+on avait laissé $-17$ au lieu de $-8$ dans l'exemple précédent, les
+capacités de \TeX{} auraient été dépassées.
+
+Les trois macros qui suivent permettent de contrôler la précision des
+nombres manipulés. Elles permettent de construire un nombre en donnant
+une valeur approchée par défaut, par excès ou un arrondi d'un nombre
+donné en précisant le rang où devra se faire l'arrondi. Ces macros
+sont respectivement \macro{opfloor}, \macro{opceil} et
+\macro{opround}. Elles demandent trois paramètres qui seront dans
+l'ordre le nombre de départ, le rang de l'arrondi et le nom de la
+variable qui contiendra le résultat.
+
+Le rang est indiqué par une valeur entière donnant le nombre de
+chiffres après la virgule qui doivent être présents. Si le rang est
+négatif, l'arrondi se fera avant la virgule. Si le rang positif
+indique plus de chiffres que la partie décimale n'en a, des zéros
+seront ajoutés. Si le rang négatif indique plus de chiffres que la
+partie entière n'en a, l'arrondi restera bloqué pour donner au moins
+le premier chiffre du nombre.
+
+Voici un tableau récapitulatif pour mieux comprendre le fonctionnement
+de ces trois macros.
+\begin{center}
+  \opcopy{3838.3838}{a}
+  \begin{tabular}{|r|l|l|l|}
+    \hline
+    \multicolumn{4}{|c|}{\textbf{\texttt{\textbackslash
+          op\ldots{}\{3838.3838\}\{n\}\{r\}}}}\\\hline
+    \multicolumn{1}{|c|}{\textbf{\texttt{n}}} &
+    \multicolumn{1}{c|}{\textbf{\texttt{floor}}} &
+    \multicolumn{1}{c|}{\textbf{\texttt{ceil}}} &
+    \multicolumn{1}{c|}{\textbf{\texttt{round}}} \\\hline
+    \opcopy{6}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{4}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{3}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{0}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{-1}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{-2}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{-6}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\\hline
+  \end{tabular}
+  \opcopy{-3838.3838}{a}
+  \begin{tabular}{|r|l|l|l|}
+    \hline
+    \multicolumn{4}{|c|}{\textbf{\texttt{\textbackslash
+          op\ldots{}\{-3838.3838\}\{n\}\{r\}}}}\\\hline
+    \multicolumn{1}{|c|}{\textbf{\texttt{n}}} &
+    \multicolumn{1}{c|}{\textbf{\texttt{floor}}} &
+    \multicolumn{1}{c|}{\textbf{\texttt{ceil}}} &
+    \multicolumn{1}{c|}{\textbf{\texttt{round}}} \\\hline
+    \opcopy{6}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{4}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{3}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{0}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{-1}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{-2}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\
+    \opcopy{-6}{n}$\opprint{n}$ &
+    \opfloor{a}{n}{r}$\opprint{r}$ &
+    \opceil{a}{n}{r}$\opprint{r}$ &
+    \opround{a}{n}{r}$\opprint{r}$ \\\hline
+  \end{tabular}
+\end{center}
+
+\index{racine carrée}
+Avec la version~0.26, \package{xlop} propose l'opération de racine
+carrée \macro{opsqrt}. Cette macro n'a pas la même syntaxe que les
+autres macros arithmétiques puisqu'il n'y a pas de forme étoilée. En
+réalité, il y a bien une façon d'afficher l'opération d'extraction de
+racine carrée mais elle n'est pas franchement courante. Je suis
+relativement âgé et mon grand-père me racontait qu'il l'avait vue
+lorsqu'il était à l'école. Ainsi, il y a une macro \macro{opgfsqrt} où
+le \og gf \fg{} est pour \og grandfather \fg{} (grand-père).
+
+Voyons la première macro : celle qui calcule la racine carrée et qui
+stocke le résultat dans une variable \package{xlop}:
+\begin{SideBySideExample}
+  \opsqrt{2}{sqrt2}
+  $\sqrt{2}\approx\opprint{sqrt2}$
+\end{SideBySideExample}
+Cette macro partage le paramètre \parameter{maxdivstep} avec les
+macros de division. Par exemple:
+\begin{SideBySideExample}
+  \opsqrt[maxdivstep=15]{2}{sqrt2}
+  $\sqrt{2}\approx\opprint{sqrt2}$
+\end{SideBySideExample}
+
+Pour la présentation à la \og grand-père \fg{}, je n'ai vraiment pas
+le courage d'expliquer tout le processus. Il se base sur l'eidentioté
+remarquable $(a+b)^2=a^2+2ab+b^2$. Merci à Jean-Michel Sarlat d'avoir
+pris le temps de m'expliquer cette méthode afin que je puisse la coder
+dans \package{xlop}.
+
+Voici un exemple avec le calcul de la racine carrée de 15 :
+\begin{CenterExample}
+  \opgfsqrt[maxdivstep=5]{15}
+\end{CenterExample}
+Cette méthode est horrible, autant pour un humain que pour
+l'ordinateur. Par exemple, l'opération réellement effectuée par
+\package{xlop} se fonde sur la méthode de Héron.
+
+\index{expression complexe|(}
+La dernière macro qui nous reste à voir est \macro{opexpr} qui permet
+de réaliser le calcul d'une expression complexe. Cette macro demande
+deux paramètres : le premier est l'expression à calculer donnée sous
+forme infixe (la forme habituelle pour un humain) et le second est le
+nom de la variable qui contiendra le résultat.
+
+Initialement, la formule devait être donnée sous forme polonaise
+inverse (la notation des calculatrices HP ou du langage PostScript par
+exemple) mais un travail commun avec Christophe Jorssen a finalement
+abouti à la possibilité de donner l'expression sous une forme plus
+agréable pour l'utilisateur.
+
+Les formules acceptent les opérateurs arithmétiques habituels
+\texttt{+}, \texttt{-}, \texttt{*} et \texttt{/} ainsi que l'opérateur
+\texttt{:} pour la division euclidienne et \verb+^+ pour
+l'exponentiation. L'opérateur \texttt{-} a les deux rôles d'opérateur
+binaire de la soustraction et d'opérateur unaire pour l'opposé.
+L'opérateur \texttt{+} a également les deux rôles d'opérateur binaire
+de l'addition et d'opérateur unaire ne faisant \ldots{} rien ! Les
+opérandes sont écrites sous forme décimale ou par l'intermédiaire de
+nom de variable cependant, la macro \macro{opexpr} va introduire une
+petite restriction sur les noms de variables puisque ceux-ci devront
+être différents des noms de fonctions reconnus par cette macro. Les
+fonctions accessibles sont :
+\begin{itemize}
+\item \texttt{abs(a)} ;
+\item \texttt{ceil(a,i)} ;
+\item \texttt{decimal(a)} ;
+\item \texttt{floor(a,i)} ;
+\item \texttt{gcd(a,b)} ;
+\item \texttt{integer(a)} ;
+\item \texttt{mod(a,b)} qui donne le résultat de \texttt{a} modulo
+  \texttt{b} ;
+\item \texttt{rest(a,b)} qui donne le reste de la division de
+  \texttt{a} par \texttt{b} (la différence entre reste et modulo est
+  la différence qui existe entre division non euclidienne et division
+  euclidienne) ;
+\item \texttt{round(a,i)}.
+\end{itemize}
+où les fonctions non décrites ci-dessus font appel aux macros
+correspondantes (la fonction \texttt{xxx} faisant appel à la macro
+\verb+\opxxx+). Pour les fonctions \texttt{ceil}, \texttt{floor} et
+\texttt{round}, le nombre \texttt{i} indique le rang sur lequel doit
+se faire l'arrondi.
+
+La macro \macro{opexpr} accepte un argument optionnel car elle peut
+réaliser des divisions et que ces divisions doivent pouvoir être
+contrôlées \emph{via} les paramètres \parameter{maxdivstep},
+\parameter{safedivstep} et \parameter{period}.
+Notre premier exemple est assez basique :
+\begin{CenterExample}[xrightmargin=0pt]
+  \opexpr{3--gcd(15*17,25*27)*2}{r}%
+  $3--\gcd(15\times17,25\times27)\times2 = \opprint{r}$
+\end{CenterExample}
+
+Voici un autre exemple montrant que des données peuvent provenir d'une
+macro :
+\begin{CenterExample}[xrightmargin=0pt]
+  \newcommand\try{2}%
+  \opexpr{\try+1/
+    (\try+1/
+      (\try+1/
+        (\try+1/
+          (\try+1/
+            (\try)))))}{r}
+  La fraction continue de base $u_n=2$ vaut \opprint{r} au rang~5.
+\end{CenterExample}
+\index{expression complexe|)}
+
+\appendix
+\chapter{Aide-mémoire}
+\label{chap:Aide-mémoire}
+\section{Temps de compilation}
+\label{sec:Temps de compilation}
+Les temps de compilation ont été mesurés sur une machine à processeur
+Pentium~II~600\,MHz ayant 256\,Mo de RAM et tournant sous Linux
+(Debian woody)\footnote{En réalité, ces mesures ont été effectuées en
+  2004 lors de la sortie de la version 0.2. L'auteur étant fainéant,
+  il n'a pas repris ces tests avec son matériel actuel (bien plus
+  performant) !}. Le principe a été de faire un fichier TeX{} minimum
+dont le schéma général est donné par :
+\begin{verbatim}
+  \input xlop
+  \count255=0
+  \loop
+  \ifnum\count255<1000
+    <opération à tester>
+   \advance\count255 by1
+  \repeat
+  \bye
+\end{verbatim}
+Le temps de compilation avec \verb+<opération à tester>+ vide a été
+soustrait des autres tests et seul le temps utilisateur a été pris en
+compte. Les résultats sont donnés en millisecondes et sont évidemment
+à prendre avec beaucoup de précautions.
+
+\index{compilation (temps de)|(}\index{temps de calcul|(}%
+Le tableau suivant donne le temps de compilation des opérations en
+millisecondes. Les opérandes utilisées l'ont été avec une écriture
+sous forme de chiffres mais des essais avec des opérandes sous forme
+de noms de variable ont montré que les différences étaient vraiment
+minimes.
+
+La première ligne indique le nombre de chiffres des deux
+opérandes. Ces nombres ont été construits de la façons suivantes :
+\begin{itemize}
+\item $\mathrm{A} = 1$ et $\mathrm{B} = 9$ pour un chiffre ;
+\item $\mathrm{A} = 12$ et $\mathrm{B} = 98$ pour deux chiffres ;
+\item $\mathrm{A} = 123$ et $\mathrm{B} = 987$ pour trois chiffres ;
+\item $\mathrm{A} = 12345$ et $\mathrm{B} = 98765$ pour cinq chiffres ;
+\item $\mathrm{A} = 1234567890$ et $\mathrm{B} = 9876543210$ pour dix
+  chiffres ;
+\item $\mathrm{A} = 12345678901234567890$ et $\mathrm{B} =
+  98765432109876543210$ pour vingt chiffres ;
+\end{itemize}
+Voici les résultats, quelques commentaires suivront :
+
+\bigskip\noindent\hbox to\linewidth{\hss
+  \begin{tabular}{|r|*{6}{l|}}
+    \cline{2-7}
+    \multicolumn{1}{l|}{} &
+    \multicolumn{1}{c|}{1} &
+    \multicolumn{1}{c|}{2} &
+    \multicolumn{1}{c|}{3} &
+    \multicolumn{1}{c|}{5} &
+    \multicolumn{1}{c|}{10} &
+    \multicolumn{1}{c|}{20} \\\hline
+    \verb+\opadd*{A}{B}{r}+ &
+    1.1 & 1.4 & 1.6 & 2.1 & 3.3 & 5.8 \\\cline{2-7}
+    \verb+\opadd*{B}{A}{r}+ &
+    1.1 & 1.4 & 1.6 & 2.1 & 3.3 & 5.8 \\\hline
+    \verb+\opsub*{A}{B}{r}+ &
+    1.7 & 2.1 & 2.4 & 3.0 & 4.8 & 8.3 \\\cline{2-7}
+    \verb+\opsub*{B}{A}{r}+ &
+    1.5 & 1.7 & 2.0 & 2.6 & 4.0 & 7.0 \\\hline
+    \verb+\opmul*{A}{B}{r}+ &
+    4.6 & 6.3 & 8.2 & 12.8 & 29.9 & 87.0 \\\cline{2-7}
+    \verb+\opmul*{B}{A}{r}+ &
+    5.0 & 6.6 & 8.5 & 13.2 & 30.3 & 87.8 \\\hline
+    \verb+\opdiv*{A}{B}{q}{r}+ &
+    46.4 & 53.8 & 53.8 & 64.3 & 85.8 & 124.7 \\\cline{2-7}
+    \verb+\opdiv*{B}{A}{q}{r}+ &
+    12.4 & 48.9 & 55.7 & 58.6 & 72.8 & 111.0 \\\hline
+    \verb+\opdiv*[maxdivstep=5]{A}{B}{q}{r}+ &
+    26.8 & 30.0 & 32.6 & 37.6 & 49.5 & 73.5 \\\cline{2-7}
+    \verb+\opdiv*[maxdivstep=5]{B}{A}{q}{r}+ &
+    12.4 & 29.1 & 32.6 & 35.2 & 43.3 & 67.9 \\\hline
+    \verb+\opidiv*{A}{B}{q}{r}+ &
+    10.8 & 12.2 & 13.5 & 16.0 & 22.3 & 35.5 \\\cline{2-7}
+    \verb+\opidiv*{B}{A}{q}{r}+ &
+    11.6 & 13.0 & 14.2 & 16.6 & 23.0 & 36.7 \\\hline
+    \verb+\opidiv*{A}{2}{q}{r}+ &
+    10.7 & 12.0 & 15.3 & 22.3 & 42.9 & 83.0 \\\hline
+  \end{tabular}
+  \hss
+}
+\par\bigskip
+Il est normal que l'inversion des opérandes n'ait aucune influence
+pour l'addition. Il peut alors sembler anormal qu'elle en ait une pour
+la soustraction mais en fait, avoir une seconde opérande supérieure à
+la première va entraîner quelques instructions supplémentaires (double
+inversion, gestion plus longue du signe du résultat).
+
+Il est normal que le temps de la division soit supérieur à celui de la
+multiplication. Il peut alors sembler anormal que la division ait
+l'air de \og rattraper \fg{} son retard. En fait, une multiplication
+voit sa complexité fortement augmenter avec la taille des opérandes
+mais la division normale est bloquée par le paramètre
+\parameter{maxdivstep}. On le voit bien sur l'exemple où on limite ce
+maximum à 5~étapes.
+
+Quelques résultats semblent bizarres. Ainsi,
+\verb+\opdiv*{9}{1}{q}{r}+ est anormalement rapide : cela est dû
+au fait d'avoir un quotient à un seul chiffre. Plus bizarre encore,
+\verb+\opdiv*{123}{987}{q}{r}+ est plutôt rapide. Ici,
+l'explication est plus subtile : cela est dû à la présence de nombreux
+zéros au quotient.
+
+Avec des opérandes de taille comparable, la division euclidienne est
+très rapide par rapport à la division non euclidienne. Cela est dû au
+fait que le quotient n'aura que peu de chiffres (un seul avec tous les
+nombres \texttt{A} et \texttt{B}). La dernière ligne du tableau est
+plus représentative des temps de compilation que l'on peut obtenir
+avec cette opération.
+
+Toutes ces remarques sont faites pour bien insister sur la difficulté
+à évaluer un temps de compilation a priori : il dépend de trop de
+paramètres. Cela dit, le tableau permet d'avoir quand même une idée de
+ce à quoi il faut s'attendre.
+\index{compilation (temps de)|)}\index{temps de calcul|)}
+
+\clearpage
+\section{Liste des macros}
+\label{sec:Liste des macros}
+\noindent\index{macros!table des|(}%
+\begin{longtable}{|l|p{6.3cm}|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Macro}} &
+  \multicolumn{1}{c|}{\textbf{Description}} \\\hline\hline
+  \endfirsthead
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Macro}} &
+  \multicolumn{1}{c|}{\textbf{Description}} \\\hline\hline
+  \endhead
+  \hline
+  \multicolumn{2}{|c|}{$\ldots$ à suivre $\ldots$}\\
+  \hline
+  \endfoot
+  \hline
+  \endlastfoot
+  \verb+\opabs{n}{N}+ &
+  \verb+N+ reçoit la valeur absolue de \verb+n+. \\\hline
+  \verb+\opadd[P]{n1}{n2}+ &
+  Affiche le résultat de l'opération \verb-n1+n2-. \\\hline
+  \verb+\opadd*{n1}{n2}{N}+ &
+  Calcule \verb-n1+n2- et place le résultat dans
+  \verb+N+. \\\hline
+  \verb+\opcastingoutelevens{n}{N}+ &
+  Calcule la différence (modulo 11) de la somme des chiffres de rang
+  impair et de la somme des chiffres de rang pair de \verb+n+ et
+  place le résultat dans \verb+N+. \\\hline
+  \verb+\opcastingoutnines{n}{N}+. &
+  Calcule la somme modulo 9 des chiffres de \verb+n+ et place le
+  résultat dans \verb+N+. \\\hline
+  \verb+\opceil{n}{T}{N}+ &
+  Place dans \verb+N+ la valeur approchée par excès de
+  \verb+n+ au rang \verb+T+. \\\hline
+  \verb+\opcmp{n1}{n2}+ &
+  Compare les nombres \verb+n1+ et \verb+n2+ et réalise la
+  mise à jour correspondante des tests \verb+\ifopeq+,
+  \verb+\ifopneq+, \verb+\ifopgt+, \verb+\ifopge+,
+  \verb+\ifople+ et \verb+\ifoplt+. \\\hline
+  \verb+\opcopy{n}{N}+ &
+  Copie le nombre \verb+n+ dans \verb+N+. \\\hline
+  \verb+\opdecimal{n}{N}+ &
+  Copie la partie décimale (nombre entier positif) de \verb+n+
+  dans \verb+N+. \\\hline
+  \verb+\opdecimalwidth{n}{N}+ &
+  Le nombre \verb+N+ reçoit la largeur de la partie décimale du
+  nombre \verb+n+. \\\hline
+  \verb+\opdisplay[P]{S}{n}+ &
+  Affiche le nombre \verb+n+ avec le style \verb+S+ en
+  plaçant chaque chiffre dans une boîte de largeur
+  \verb+\opcolumnwidth+ et de hauteur
+  \verb+\oplineheight+. \\\hline
+  \verb+\opdiv[P]{n1}{n2}+ &
+  Affiche le résultat de l'opération n1/n2. \\\hline
+  \verb+\opdiv*[P]{n1}{n2}{N1}{N2}+ &
+  Calcule \verb+n1/n2+, place le quotient dans \verb+N1+ et
+  le reste dans \verb+N2+. \\\hline
+  \verb+\opdivperiod{T1}{T2}{N}+ &
+  Calcule la longueur de la période de la division de \verb+T1+
+  par \verb+T2+ et place le résultat dans \verb+N+. \\\hline
+  \verb+\opexport[P]{n}\cmd+ &
+  Copie le nombre \verb+n+ dans la macro \verb+\cmd+. \\\hline
+  \verb+\opexpr[P]{F}{N}+ &
+  Évalue la formule \texttt{F} est place le résultat final dans le
+  nombre \texttt{N}. \\\hline
+  \verb+\opfloor{n}{T}{N}+ &
+  Place dans \verb+N+ la valeur approchée par défaut de
+  \verb+n+ au rang \verb+T+. \\\hline
+  \verb+\opgcd{T1}{T2}{N}+ &
+  Calcule le pgcd de \verb+T1+ et \verb+T2+ et place le
+  résultat dans \verb+N+. \\\hline
+  \verb+\opgetdecimaldigit{n}{T}{N}+ &
+  Construit le nombre \verb+N+ avec le seul chiffre situé en
+  \verb+T+ième position de la partie décimale du nombre
+  \verb+n+. \\\hline
+  \verb+\opgetdigit{n}{T}{N}+ &
+  Construit le nombre \verb+N+ avec le seul chiffre situé en
+  \verb+T+ième position du nombre \verb+n+. \\\hline
+  \verb+\opgetintegerdigit{n}{T}{N}+ &
+  Construit le nombre \verb+N+ avec le seul chiffre situé en
+  \verb+T+ième position de la partie entière du nombre
+  \verb+n+. \\\hline
+  \verb+\opgfsqrt{n}+ &
+  Affiche la façon ancienne d'afficher le calcul de la racine
+  carrée de \verb+n+. \\\hline
+  \verb+\ophline(T1,T2){T3}+ &
+  Trace un trait horizontal de longueur \verb+T3+, d'épaisseur
+  \verb+hrulewidth+ et débutant en \verb+(T1,T2)+ par
+  rapport au point de référence. \\\hline
+  \verb+\opidiv[P]{n1}{n2}+ &
+  Affiche le résultat de l'opération \verb+n1/n2+ (division
+  euclidienne,   c'est-à-dire avec un quotient entier). \\\hline
+  \verb+\opidiv*{n1}{n2}{N1}{N2}+ &
+  Calcule \verb+n1/n2+ (division euclidienne), place le quotient
+  (entier) dans \verb+N1+ et le reste (compris entre 0 inclus et
+  \verb+|n2|+ exclu) dans \verb+N2+. \\\hline
+  \verb+\opinteger{n}{N}+ &
+  Copie la partie entière (nombre entier positif) de \verb+n+
+  dans \verb+N+. \\\hline
+  \verb+\opintegerwidth{n}{N}+ &
+  Le nombre \verb+N+ reçoit la longueur de la partie entière du
+  nombre \verb+n+. \\\hline
+  \verb+\oplput(T1,T2){<objet>}+ &
+  Place \verb+<objet>+ à droite du point situé en
+  \verb+(T1,T2)+ par rapport au point de référence. \\\hline
+  \verb+\opmanyadd[P]{n1}...{np}+ &
+  Affiche le résultat de l'opération
+  $\mathrm{n1}+\cdots+\mathrm{np}$. \\\hline
+  \verb+\opmul[P]{n1}{n2}+ &
+  Affiche le résultat de l'opération \verb+n1*n2+. \\\hline
+  \verb+\opmul*{n1}{n2}{N}+ &
+  Calcule \verb+n1*n2+ et place le résultat dans
+  \verb+N+. \\\hline
+  \verb+\opneg{n}{N}+ &
+  Le nombre \verb+N+ reçoit l'opposé de \verb+n+. \\\hline
+  \verb+\oppower{n}{T}{N}+ &
+  Calcule \verb+n+ à la puissance \verb+T+ et place le
+  résultat dans \verb+N+. \\\hline
+  \verb+\opprint{n}+ &
+  Affiche le nombre \verb+n+ de façon directe. \\\hline
+  \verb+\opround{n}{T}{N}+ &
+  Place dans \verb+N+ la valeur arrondie de \verb+n+ au rang
+  \verb+T+. \\\hline
+  \verb+\oprput(T1,T2){<objet>}+ &
+  Place \verb+<objet>+ à gauche du point situé en
+  \verb+(T1,T2)+ par rapport au point de référence. \\\hline
+  \verb+\opset{L}+ &
+  Effectue une affectation globale des paramètres de \package{xlop}
+  désignés dans la liste \verb+L+. \\\hline
+  \verb+\opsetdecimaldigit{n}{T}{N}+ &
+  Modifie le \verb+T+ième chiffre de la partie décimale de
+  \verb+N+ pour qu'il soit égal à \verb+n+. \\\hline
+  \verb+\opsetdigit{n}{T}{N}+ &
+  Modifie le \verb+T+ième chiffre de \verb+N+ pour qu'il
+  soit égal à \verb+n+. \\\hline
+  \verb+\opsetintegerdigit{n}{T}{N}+ &
+  Modifie le \verb+T+ième chiffre de la partie entière de
+  \verb+N+ pour qu'il soit égal à \verb+n+. \\\hline
+  \verb+\opsqrt{n}{N}+ &
+  Mémorise la racine carrée de \verb+n+ dans \verb+N+. \\\hline
+  \verb+\opsub[P]{n1}{n2}+ &
+  Affiche le résultat de l'opération n1-n2. \\\hline
+  \verb+\opsub*{n1}{n2}{N}+ &
+  Calcule n1-n2 et place le résultat dans N. \\\hline
+  \verb+\opunzero{N}+ &
+  Supprime les zéros non significatifs du nombre \verb+N+. \\\hline
+  \verb+\opvline(T1,T2){T3}+ &
+  Trace un trait vertical de longueur \verb+T3+, d'épaisseur
+  \verb+hrulewidth+ et débutant en \verb+(T1,T2)+ par
+  rapport au point de référence. \\\hline
+  \verb+\opwidth{n}{N}+ &
+  Le nombre \verb+N+ reçoit le nombre de chiffres du nombre
+  \verb+n+. \\\hline
+\end{longtable}\index{macros!table des|)}
+
+Dans ce tableau, les paramètres :
+\begin{itemize}
+\item \texttt{n} et \texttt{ni} (où \texttt{i} représente un indice)
+  indiquent que le paramètre doit être un nombre donné sous forme
+  décimale ou sous forme d'un nom de variable ;
+\item \texttt{N} et \texttt{Ni} (où \texttt{i} représente un indice)
+  indiquent que le paramètre doit être un nombre donné sous forme d'un
+  nom de variable ;
+\item \texttt{[P]} indique que la macro accepte un paramètre optionnel
+  permettant de modifier les paramètres de \package{xlop} ;
+\item \texttt{T} et \texttt{Ti} (où \texttt{i} représente un indice)
+  indiquent que le paramètre doit être un nombre donné sous forme
+  décimale ou sous forme d'un nom de variable mais ne devant pas
+  excéder la taille des nombres directement acceptables par \TeX{}
+  ($-2147483648 \le \mathtt{T} \le 2147483647$ en l'occurrence).
+\end{itemize}
+
+\newpage
+\section{Liste des paramètres}
+\label{sec:Liste des parametres}
+\index{parametres@paramètres!table des|(}%
+\begingroup
+\advance\hoffset by-1.75cm \advance\linewidth by1.75cm
+\begin{longtable}{|l|l|p{7cm}|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Paramètre}} &
+  \multicolumn{1}{c|}{\textbf{Défaut}} &
+  \multicolumn{1}{c|}{\textbf{Signification}} \\\hline\hline
+  \endfirsthead
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Paramètre}} &
+  \multicolumn{1}{c|}{\textbf{Défaut}} &
+  \multicolumn{1}{c|}{\textbf{Signification}} \\\hline\hline
+  \endhead
+  \hline
+  \multicolumn{3}{|c|}{$\ldots$ à suivre $\ldots$}\\
+  \hline
+  \endfoot
+  \hline
+  \endlastfoot
+  \verb+afterperiodsymbol+ &
+  \verb+$\ldots$+ &
+  Symbole utilisé à la suite de la période d'une division. \\\hline
+  \verb+approxsymbol+ &
+  \verb+$\approx$+ &
+  Symbole utilisé comme relation d'égalité approximative dans les
+  opérations en ligne. \\\hline
+  \verb+equalsymbol+ &
+  \verb+{$=$}+ &
+  Symbole utilisé comme relation d'égalité dans les opérations en
+  ligne. \\\hline
+  \verb+addsymbol+ &
+  \verb-$+$- &
+  Symbole utilisé comme opérateur d'addition. \\\hline
+  \verb+subsymbol+ &
+  \verb+$-$+ &
+  Symbole utilisé comme opérateur de soustraction. \\\hline
+  \verb+mulsymbol+ &
+  \verb+$\times$+ &
+  Symbole utilisé comme opérateur de  multiplication. \\\hline
+  \verb+divsymbol+ &
+  \verb+$\div$+ &
+  Symbole utilisé comme opérateur de division pour les opérations en
+  ligne. \\\hline
+  \verb+decimalsepsymbol+ &
+  \verb+.+ &
+  Symbole utilisé comme séparateur décimal. \\\hline
+  \verb+strikedecimalsepsymbol+ &
+  &
+  Symbole utilisé pour un séparateur décimal déplacé au niveau du
+  dividende et du diviseur dans les divisions posées. \\\hline
+  \verb+shiftintermediarysymbol+ &
+  \verb+$\cdot$+ &
+  Symbole utilisé pour montrer les décalages des nombres
+  intermédiaires dans les multiplications posées. \\\hline
+  \verb+displayshiftintermediary+ &
+  \verb+shift+ &
+  Indique que le caractère de décalage dans les multiplications sera
+  affiché uniquement pour le décalage supplémentaire (valeur
+  \verb+shift+), pour tous les décalages (valeur \verb+all+)
+  ou jamais (valeur \verb+none+). \\\hline
+  \verb+vmanyoperator+ &
+  \verb+center+ &
+  Positionnement vertical des opérateurs. La valeur \verb+top+ place
+  les opérateurs en face des opérandes, de la première opérande
+  jusqu'à l'avant-dernière. La valeur \verb+center+ place les
+  opérateurs entre les opérandes. La valeur \verb+bottom+ place les
+  opérateurs en face des opérandes, de la deuxième opérande jusqu'à la
+  dernière. La valeur \verb+Top+ place un unique opérateur au niveau
+  de la première opérande. La valeur \verb+\center+ place un unique
+  opérateur au milieu vertical des opérandes. La valeur
+  \verb+Bottom+ place un unique opérateur au niveau de la dernière
+  opérande. \\\hline
+  \verb+voperation+ &
+  \verb+bottom+ &
+  Type d'alignement vertical d'une opération posée. La
+  valeur \verb+bottom+ indique que le bas de l'opération sera
+  au niveau de la ligne de base. La valeur \verb+top+ indique
+  que la première ligne de l'opération sera sur la ligne de base. La
+  valeur \verb+center+ indique que l'opération sera centrée
+  verticalement sur la ligne de base. \\\hline
+  \verb+voperator+ &
+  \verb+center+ &
+  Positionnement vertical de l'opérateur dans les
+  opérations posées. La valeur \verb+top+ place l'opérateur au
+  niveau de la première opérande. La valeur \verb+bottom+ place
+  l'opérateur au niveau de la seconde opérande. La valeur
+  \verb+center+ place l'opérateur entre les deux
+  opérandes. \\\hline
+  \verb+hfactor+ &
+  \verb+decimal+ &
+  Type d'alignement des opérandes dans les
+  multiplications posées. La valeur \verb+decimal+ indique un
+  alignement sur la virgule. La valeur \verb+right+ indique une
+  composition au fer à droite. \\\hline
+  \verb+vruleperiod+ &
+  \verb+-0.2+ &
+  Position verticale du trait indiquant la période du quotient
+  dans les divisions en ligne. \\\hline
+  \verb+dividendbridge+ &
+  \verb+false+ &
+  Indique si le \og pont \fg{} au-dessus du dividende est présent ou
+  non. \\\hline
+  \verb+shiftdecimalsep+ &
+  \verb+both+ &
+  Indique la façon dont se fait le décalage de virgule au niveau des
+  opérandes d'une division posée. La valeur \verb+both+ indique
+  que le décalage doit rendre le diviseur et le dividende
+  entiers. La valeur \verb+divisor+ indique que le décalage
+  doit rendre le diviseur entier. La valeur \verb+none+ indique
+  qu'il n'y aura aucun décalage. \\\hline
+  \verb+maxdivstep+ &
+  \verb+10+ &
+  Nombre d'étapes maximum d'une division. \\\hline
+  \verb+safedivstep+ &
+  \verb+50+ &
+  Nombre d'étapes maximum d'une division lors d'un arrêt sur
+  période. \\\hline
+  \verb+period+ &
+  \verb+false+ &
+  Indique si la division doit s'arrêter sur une détection de période
+  ou non. \\\hline
+  \verb+deletezero+ &
+  \verb+true+ &
+  Indique si on affiche (\verb+false+) ou on supprime
+  (\verb+true+) les zéros non significatifs. \\\hline
+  \verb+carryadd+ &
+  \verb+true+ &
+  Indique si les retenues doivent être affichées pour les additions
+  posées. \\\hline
+  \verb+carrysub+ &
+  \verb+false+ &
+  Indique si les retenues doivent être affichées pour les
+  soustractions posées. \\\hline
+  \verb+offsetcarry+ &
+  \verb+-0.35+ &
+  Décalage horizontal pour les retenues dans les
+  soustractions posées. \\\hline
+  \verb+style+ &
+  \verb+display+ &
+  Indique si l'opération doit être en ligne (\verb+text+) ou
+  posée (\verb+display+). \\\hline
+  \verb+displayintermediary+ &
+  \verb+nonzero+ &
+  Indique si les résultats intermédiaires doivent être affichés
+  (\verb+all+) ou seulement les non nuls (\verb+nonzero+) ou
+  aucun (valeur \verb+none+) dans les multiplications et les
+  divisions. \\\hline
+  \verb+lastcarry+ &
+  \verb+false+ &
+  Indique si la retenue au niveau d'une absence de chiffre devra
+  être affichée ou non. \\\hline
+  \verb+parenthesisnegative+ &
+  \verb+none+ &
+  Comportement à adopter pour l'affichage des nombres
+  négatifs dans les opérations en lignes. La valeur \verb+none+
+  les affiche sans parenthèse, \verb+all+ les mettra
+  systématiquement les nombres négatifs entre parenthèses et
+  \verb+last+ les mettra entre parenthèses
+  sauf pour la première valeur d'une expression. \\\hline
+  \verb+columnwidth+ &
+  \verb+2ex+ &
+  Largeur des boîtes contenant un chiffre. \\\hline
+  \verb+lineheight+ &
+  \verb+\baselineskip+ &
+  Hauteur des boîtes contenant un chiffre. \\\hline
+  \verb+decimalsepwidth+ &
+  \verb+0pt+ &
+  Largeur de la boîte contenant le séparateur décimal. \\\hline
+  \verb+decimalsepoffset+ &
+  \verb+0pt+ &
+  Décalage horizontal du séparateur décimal. \\\hline
+  \verb+hrulewidth+ &
+  \verb+0.4pt+ &
+  Épaisseur des lignes horizontales. \\\hline
+  \verb+vrulewidth+ &
+  \verb+0.4pt+ &
+  Épaisseur des lignes verticales. \\\hline
+  \verb+behaviorsub+ &
+  \verb+silent+ &
+  Comportement de \package{xlop} face à une
+  soustraction \og impossible \fg{}, c'est-à-dire une soustraction
+  ayant ses deux opérandes positives avec une seconde opérande
+  strictement supérieure à la première. La valeur \verb+silent+
+  effectuera l'opération en permutant les opérandes de façon
+  silencieuse. La valeur \verb+warning+ fera de même mais en
+  émettant un message d'avertissement. Enfin, la valeur
+  \verb+error+ affichera un message d'erreur et l'opération ne
+  sera pas effectuée. \\\hline
+  \verb+country+ &
+  \verb+french+ &
+  Indique le comportement des opérations posées en fonction du
+  pays. L'extension prévoit pour l'instant \verb+french+,
+  \verb+american+ et \verb+russian+ mais les différentes
+  façons de présenter les opérations ne sont pas implantées dans la
+  version 0.2. \\\hline
+  \verb+operandstyle+ &
+  &
+  Style utilisé pour les opérandes. \\\hline
+  \verb+resultstyle+ &
+  &
+  Style utilisé pour les résultats. \\\hline
+  \verb+remainderstyle+ &
+  &
+  Style utilisé pour les restes. \\\hline
+  \verb+intermediarystyle+ &
+  &
+  Style utilisé pour les résultats intermédiaires (nombres
+  intermédiaires dans une multiplication et nombres à soustraire
+  dans une division où apparaissent les soustractions
+  successives). \\\hline
+  \verb+carrystyle+ &
+  \verb+\scriptsize+ &
+  Style utilisé pour les retenues. La valeur par défaut lorsqu'on ne
+  compile pas sous \LaTeX{} est \verb+\sevenrm+. \\\hline
+\end{longtable}\index{parametres@paramètres!table des|)}
+\newpage\endgroup
+
+\chapter{Trucs et astuces}
+\label{chap:Trucs et astuces}
+\section{Comparaison avec \package{calc} et \package{xfp}}
+On pourrait croire que \package{xlop} puisse remplacer avantageusement
+des extensions telles que
+\package{calc}\index{extension!calc}\index{calc} et
+\package{xfp}\index{extension!xfp}\index{xfp}. En réalité, c'est un
+peu plus compliqué que cela. Bien sûr, \package{xlop} permet des
+calculs complexes et sur des nombres comportant un nombre arbitraire
+de chiffres mais, contrairement à \package{calc}, il ne permet pas de
+gérer directement les unités. La comparaison avec \package{xfp} est un
+peu plus réaliste mais il ne faut pas perdre de vue que \package{xlop}
+peut devenir gourmand en mémoire et en temps de calcul. En réalité,
+\package{xfp} est bien plus efficace que \package{xlop} en ce qui
+concerne les calculs purs.
+
+Si vous voulez vraiment réaliser des calculs sur des
+longueurs\index{longueur}, vous pouvez toujours utiliser le fait
+qu'une affectation d'un registre de longueur à un compteur donnera un
+nombre correspondant à cette longueur avec l'unité \texttt{sp}.
+\begin{CenterExample}[xrightmargin=0pt]
+  \newcommand\getsize[2]{%
+    \dimen0=#1\relax
+    \count255=\dimen0
+    \opcopy{\the\count255}{#2}}
+  \getsize{1pt}{r}$1\,\mathrm{pt}=\opprint{r}\,\mathrm{sp}$\quad
+  \getsize{1pc}{r}$1\,\mathrm{pc}=\opprint{r}\,\mathrm{sp}$\quad
+  \getsize{1in}{r}$1\,\mathrm{in}=\opprint{r}\,\mathrm{sp}$\quad
+  \getsize{1bp}{r}$1\,\mathrm{bp}=\opprint{r}\,\mathrm{sp}$\quad
+  \getsize{1cm}{r}$1\,\mathrm{cm}=\opprint{r}\,\mathrm{sp}$\quad
+  \getsize{1mm}{r}$1\,\mathrm{mm}=\opprint{r}\,\mathrm{sp}$\quad
+  \getsize{1dd}{r}$1\,\mathrm{dd}=\opprint{r}\,\mathrm{sp}$\quad
+  \getsize{1cc}{r}$1\,\mathrm{cc}=\opprint{r}\,\mathrm{sp}$\quad
+  \getsize{1sp}{r}$1\,\mathrm{sp}=\opprint{r}\,\mathrm{sp}$\quad
+\end{CenterExample}
+N'oubliez cependant pas que le but principal de \package{xlop} est
+d'\emph{afficher} automatiquement les opérations.
+
+Muni de la macro \macro{getsize}, il est possible de réaliser des
+calculs sur des longueurs.
+\newcommand\getsize[2]{%
+  \dimen0=#1\relax
+  \count255=\dimen0
+  \opcopy{\the\count255}{#2}
+}\par\vspace{-\baselineskip}\noindent
+\vbox to0cm{\parindent=0pt\vbox to2.5cm{\vss
+  \getsize{1cm}{u}%
+  \getsize{\textwidth}{w}%
+  \getsize{\textheight}{h}%
+  \opexpr{w*h/u^2}{S}%
+  \opround{S}{2}{S}%
+  \begin{minipage}{4.3cm}
+    La surface d'empagement est de
+  \opprint{S}\,$\mathrm{cm}^2$
+  \end{minipage}}}
+\begin{Verbatim}[xleftmargin=5cm,xrightmargin=0pt]
+  \getsize{1cm}{u}%
+  \getsize{\textwidth}{w}%
+  \getsize{\textheight}{h}%
+  \opexpr{w*h/u^2}{S}%
+  \opround{S}{2}{S}%
+  La surface d'empagement est de
+  \opprint{S}\,$\mathrm{cm}^2$
+\end{Verbatim}
+
+\section{Création d'opérations complexes}
+\label{sec:Creation d'operations complexes}
+L'utilisation des macros de \package{xlop} associées au mécanisme de
+boucle de \TeX{} permet de créer des opérations à volonté. Nous ne
+donnerons que deux exemples. Le premier est la décomposition d'un
+nombre en facteurs premiers, le second est un calcul général de
+fraction continue.\index{nombre!premier}\index{boucle|(}%
+\index{decomposition@décomposition en nombres premiers}
+\begin{Verbatim}[xrightmargin=0pt]
+  \newcount\primeindex
+  \newcount\tryindex
+  \newif\ifprime
+  \newif\ifagain
+  \newcommand\getprime[1]{%
+    \opcopy{2}{P0}%
+    \opcopy{3}{P1}%
+    \opcopy{5}{try}
+    \primeindex=2
+    \loop
+      \ifnum\primeindex<#1\relax
+      \testprimality
+      \ifprime
+        \opcopy{try}{P\the\primeindex}%
+        \advance\primeindex by1
+      \fi
+      \opadd*{try}{2}{try}%
+      \ifnum\primeindex<#1\relax
+        \testprimality
+        \ifprime
+          \opcopy{try}{P\the\primeindex}%
+          \advance\primeindex by1
+        \fi
+        \opadd*{try}{4}{try}%
+      \fi
+    \repeat
+  }
+  \newcommand\testprimality{%
+    \begingroup
+      \againtrue
+      \global\primetrue
+      \tryindex=0
+      \loop
+        \opidiv*{try}{P\the\tryindex}{q}{r}%
+        \opcmp{r}{0}%
+        \ifopeq \global\primefalse \againfalse \fi
+        \opcmp{q}{P\the\tryindex}%
+        \ifoplt \againfalse \fi
+        \advance\tryindex by1
+      \ifagain
+      \repeat
+    \endgroup
+  }
+\end{Verbatim}
+\newcount\primeindex
+\newcount\tryindex
+\newif\ifprime
+\newif\ifagain
+\newcommand\getprime[1]{%
+  \opcopy{2}{P0}%
+  \opcopy{3}{P1}%
+  \opcopy{5}{try}
+  \primeindex=2
+  \loop
+  \ifnum\primeindex<#1\relax
+    \testprimality
+    \ifprime
+      \opcopy{try}{P\the\primeindex}%
+      \advance\primeindex by1
+    \fi
+    \opadd*{try}{2}{try}%
+    \ifnum\primeindex<#1\relax
+      \testprimality
+      \ifprime
+        \opcopy{try}{P\the\primeindex}%
+        \advance\primeindex by1
+      \fi
+      \opadd*{try}{4}{try}%
+    \fi
+  \repeat
+}
+\newcommand\testprimality{%
+  \begingroup
+    \againtrue
+    \global\primetrue
+    \tryindex=0
+    \loop
+      \opidiv*{try}{P\the\tryindex}{q}{r}%
+      \opcmp{r}{0}%
+      \ifopeq \global\primefalse \againfalse \fi
+      \opcmp{q}{P\the\tryindex}%
+      \ifoplt \againfalse \fi
+      \advance\tryindex by1
+    \ifagain
+    \repeat
+  \endgroup
+}
+
+Avec ce code, on dispose d'un moyen de créer une liste de nombres
+premiers (en l'occurrence les 20~premiers).
+\begin{SideBySideExample}
+  \getprime{20}%
+  \opprint{P0}, \opprint{P1}, \ldots,
+  \opprint{P9}, \ldots \opprint{P19}.
+\end{SideBySideExample}
+
+On notera toutefois que ce code est très mauvais, il est excessivement
+lent et n'apporte rien par rapport à une approche directe avec des
+nombres manipulés par les opérations natives de \TeX{}. Ce n'est
+qu'un exemple pédagogique. On notera également l'astuce permettant
+d'emboîter deux boucles avec la macro \verb+\testprimality+
+entièrement mise dans un groupe : s'il est nécessaire de rendre les
+affectations \verb+\primetrue+ et \verb+\primefalse+ globales, les
+opérations de \package{xlop} rendent leurs résultats globaux
+directement.\index{affectation globale}%
+
+Une fois que vous avez votre \og table \fg{} de nombres premiers, vous
+pouvez vous en servir pour décomposer un nombre en facteurs
+premiers.
+\begin{CenterExample}[xrightmargin=0pt]
+  \newcommand\primedecomp[2][nil]{%
+    \begingroup
+      \opset{#1}%
+      \opcopy{#2}{NbtoDecompose}%
+      \opabs{NbtoDecompose}{NbtoDecompose}%
+      \opinteger{NbtoDecompose}{NbtoDecompose}%
+      \opcmp{NbtoDecompose}{0}%
+      \ifopeq
+        Je refuse de d\'ecomposer z\'ero.
+      \else
+        \setbox1=\hbox{\opdisplay{operandstyle.1}%
+            {NbtoDecompose}}%
+        {\setbox2=\box2{}}%
+        \count255=1
+        \primeindex=0
+        \loop
+        \opcmp{NbtoDecompose}{1}\ifopneq
+          \opidiv*{NbtoDecompose}{P\the\primeindex}{q}{r}%
+          \opcmp{0}{r}\ifopeq
+            \ifvoid2
+              \setbox2=\hbox{%
+                \opdisplay{intermediarystyle.\the\count255}%
+                  {P\the\primeindex}}%
+            \else
+              \setbox2=\vtop{%
+                \hbox{\box2}
+                \hbox{%
+                  \opdisplay{intermediarystyle.\the\count255}%
+                    {P\the\primeindex}}}
+            \fi
+            \opcopy{q}{NbtoDecompose}%
+            \advance\count255 by1
+            \setbox1=\vtop{%
+              \hbox{\box1}
+              \hbox{%
+                \opdisplay{operandstyle.\the\count255}%
+                  {NbtoDecompose}}
+            }%
+          \else
+            \advance\primeindex by1
+          \fi
+        \repeat
+        \hbox{\box1
+          \kern0.5\opcolumnwidth
+          \opvline(0,0.75){\the\count255.25}
+          \kern0.5\opcolumnwidth
+          \box2}%
+      \fi
+    \endgroup
+  }
+
+  \getprime{20}%
+  \primedecomp[operandstyle.2=\red,
+               intermediarystyle.2=\red]{252}
+\end{CenterExample}
+Dans ce code, on notera l'emploi d'un groupe entourant l'ensemble de
+la macro pour protéger les modifications de paramètres de
+\package{xlop}.\index{parametre@paramètre!modifications locales}
+\`A ce propos, on notera également qu'un paramètre vide n'est pas
+accepté. C'est tout à fait volontaire, l'auteur de l'extension pensant
+qu'un utilisateur tapant des crochets sans rien mettre à l'intérieur
+est sans doute en train de commettre une erreur. Pour pallier à cette
+impossibilité de transmettre un paramètre vide
+\index{parametre@paramètre!vide}%
+il existe le paramètre particulier \parameter{nil} qui a exactement ce
+rôle.
+\index{boucle|)}
+
+On notera enfin l'astuce \verb+{\setbox2=\box2}+ qui permet
+d'obtenir un registre de boîte vide et les manipulations finales
+permettant de représenter la barre verticale de façon lisible.
+
+Le second exemple permet de calculer une fraction continue du type :
+\def\dfrac#1#2{\frac{\displaystyle #1}{\displaystyle #2}}
+\[a_0+\dfrac{1}{a_1+\dfrac{1}{a_2+\dfrac{1}{a_3+\cdots}}}\]
+en donnant la suite $a_0,a_1,a_2,a_3,\ldots$ à la macro. L'exemple
+donne les fractions correspondant au nombre d'or et aux racines
+carrées de~2 et~3.
+\makeatletter
+\begin{CenterExample}[xrightmargin=0pt]
+  \begingroup
+  \catcode`\:=12
+  \long\gdef\continuedfraction#1#2{%
+    \let\@mirror\relax
+    \@for\op@Nb:=#1\do
+    {%
+      \ifx\@mirror\relax
+        \edef\@mirror{\op@Nb}%
+      \else
+        \edef\@mirror{\op@Nb,\@mirror}%
+      \fi
+    }%
+    \let\Op@result\relax
+    \@for\op@Nb:=\@mirror\do
+    {%
+      \ifx\Op@result\relax
+        \opcopy{\op@Nb}{result}%
+      \else
+        \opexpr{\op@Nb+1/result}{result}%
+      \fi
+    }%
+    \opcopy{result}{#2}%
+  }
+  \endgroup
+  \continuedfraction{1,1,1,1,1,1,1,1,1,1,1,1}{r}\opprint{r}\quad
+  \continuedfraction{1,2,2,2,2,2,2,2,2,2,2,2}{r}\opprint{r}\quad
+  \continuedfraction{1,1,2,1,2,1,2,1,2,1,2,1}{r}\opprint{r}
+\end{CenterExample}
+\makeatother
+Une fois n'est pas coutume, nous avons fait appel à des commandes
+\LaTeX{} pour effectuer une boucle. Ce manuel étant composé en
+français, le caractère \og \texttt{\string:} \fg{} est actif ce qui
+empêche la macro \verb+\@for+ de fonctionner correctement d'où le
+groupe où ce caractère reçoit un code de catégorie adéquat.
+
+\section{Accès direct aux nombres}
+\label{sec:Acces direct aux nombres}
+Lorsqu'on récupère un nombre dans une variable, on peut le traiter de
+multiples façons à l'aide des macros de \package{xlop}. Toutefois,
+dans certaines situations, on peut souhaiter construire ses propres
+macros ou utiliser des macros externes en passant un tel nombre en
+paramètre.
+
+Passer directement \verb+\opprint{var}+ est inopérant car cette macro
+est suffisamment complexe pour induire des effets de bord dans ce
+genre de situations. Il devient alors nécessaire d'accéder directement
+à ce nombre. Lorsqu'un nombre est mémorisé dans une variable
+\verb+var+, \package{xlop} crée une macro
+\texttt{$\backslash$Op@var}\index{Opvar@\texttt{\boi {Op\at var}}}
+qui contient
+ce nombre. On notera le \og O \fg{} majuscule et le \og p \fg{}
+minuscule. L'arrobas est là pour rendre cette définition privée
+c'est-à-dire qu'il faut faire un effort pour y accéder avec
+l'utilisation des macros \macro{makeatletter} et \macro{makeatother}
+de \LaTeX{} ou bien en indiquant un code de catégorie égal à~11
+(lettre) pour ce caractère lorsqu'on travaille sous \TeX{}.
+\begin{SideBySideExample}
+  \opcopy{1234}{a}\opcopy{56}{b}%
+  \opmul*{a}{b}{r}%
+  \makeatletter
+  $\nombre{\Op@a} \times 
+   \nombre{\Op@b} = \nombre{\Op@r}$
+  \makeatother
+\end{SideBySideExample}
+
+On notera que cette façon de faire ne fonctionne plus forcément
+lorsque le séparateur décimal est entre accolade car la macro
+\verb+\opprint{var}+ contiendra ces accolades. Dans ce cas, le plus
+simple est de passer par la macro \macro{opexport} décrite à la
+page~\pageref{macro-opexport}.
+
+\chapter{Versions futures}
+\label{chap:Versions futures}
+L'extension \package{xlop} en est à sa version~\fileversion{} qui
+n'est qu'une version déboguée de la version~0.2 qui est elle même
+essentiellement une version corrigée de la version~0.1 (première
+version publique). La prochaine version sera la~0.3 dont la version
+\og stable \fg{} sera alors la version~0.4.
+
+L'ensemble des spécificités de la version 0.3 n'est pas totalement
+arrêté mais il y a déjà plusieurs points prévus :
+\begin{itemize}
+\item gestion internationale des opérations posées ;
+\item opérations en base 2 à 36 ;
+\item ajout de fonctions de haut niveau avec les racines
+  (\macro{oproot} pour les racines quelconques et \macro{opsqrt} pour
+  la racine carrée), exponentielle, logarithme, fonctions
+  trigonométriques (directes, inverses, hyperboliques) en passant par
+  l'extension \package{xfp} qui est une version déboguée (par
+  l'auteur) de l'extension \package{fp} ;
+\item ajout d'une macro permettant de réaliser une écriture formatée,
+  c'est-à-dire une écriture d'un nombre où les longueurs des parties
+  entière et décimale seront indiquées (si ces longueurs ne sont pas
+  celles du nombre, il y aura un débordement ou un remplissage) ;
+  cette macro existait dans la version~0.1 et permettait
+  essentiellement d'afficher des nombres avec un alignement sur la
+  virgule, au fer à droite ou au fer à gauche ;
+\item ajout d'un paramètre permettant l'écriture scientifique ou
+  ingénieur ;
+\item possibilité d'écrire un nombre sur plusieurs lignes et/ou en
+  utilisant un séparateur des milliers ;
+\item retenues dans les multiplications ;
+\item rendre publics les restes successives d'une division ;
+\item les valeurs négatives de \parameter{maxdivstep} et
+  \parameter{safedivstep} réaliseront un comptage sur les chiffres
+  décimaux du quotient ;
+\item manuel en anglais.
+\end{itemize}
+
+Pour toute demande ou rapport de bogue, l'auteur vous sera
+éternellement reconnaissant de le contacter à l'adresse :
+\begin{verbatim}
+    Jean-Come.Charpentier@wanadoo.fr
+\end{verbatim}
+en plaçant le mot \og \texttt{xlop} \fg{} dans le sujet du message.
+
+Il serait souhaitable d'avoir un manuel du hacker qui expliquerait en
+détail le code source. Cet outil pourrait être tout à fait bénéfique
+pour que chacun puisse apporter plus facilement des améliorations au
+code. Malheureusement, le code actuel fait plus de~\nombre{4000}
+lignes et le travail nécessaire risque d'être trop important.
+Éventuellement, il pourra y avoir un manuel du hacker expliquant les
+spécifications générales du code sans entrer dans trop de détails
+techniques.
+
+%\printindex
+\chapter{Index}
+\label{chap:index}
+\begin{multicols}{2}
+\makeatletter
+\parindent \z@\relax
+\parskip \z@ \@plus.3\p@\relax
+\let\item\@idxitem
+\makeatother
+\renewenvironment{theindex}{}{}%
+\input\jobname.ind
+\end{multicols}
+\end{document}

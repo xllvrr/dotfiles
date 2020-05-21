@@ -1,0 +1,17 @@
+name jmn
+category Package
+revision 45751
+shortdesc special fonts for ConTeXt
+containersize 40048
+containerchecksum 2e250c3f115911c56f9b8d46d358fdef289c624a5b24c9b4213bbf7818bf42c7b778df55d4bf181bce115b388915cedc90ef7cfa99ee6ad8dd621e7853fc7c29
+runfiles size=22
+ texmf-dist/fonts/afm/jmn/hans/hans-sh.afm
+ texmf-dist/fonts/afm/jmn/hans/hans.afm
+ texmf-dist/fonts/enc/dvips/jmn/hans.enc
+ texmf-dist/fonts/map/dvips/jmn/hans.map
+ texmf-dist/fonts/tfm/jmn/hans/hans-sh.tfm
+ texmf-dist/fonts/tfm/jmn/hans/hans.tfm
+ texmf-dist/fonts/type1/jmn/hans/hans-sh.pfb
+ texmf-dist/fonts/type1/jmn/hans/hans-sh.pfm
+ texmf-dist/fonts/type1/jmn/hans/hans.pfb
+ texmf-dist/fonts/type1/jmn/hans/hans.pfm

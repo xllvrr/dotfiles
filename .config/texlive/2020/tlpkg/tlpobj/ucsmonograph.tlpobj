@@ -1,0 +1,30 @@
+name ucsmonograph
+category Package
+revision 52698
+shortdesc Typesetting academic documents from the University of Caxias do Sul
+longdesc This is a LaTeX class for typesetting academic documents
+longdesc according to the ABNT (Brazilian Technical Standards
+longdesc Association) standards and the UCS (University of Caxias do
+longdesc Sul) specifications.
+containersize 4664
+containerchecksum e4375327eabb390842ae833bceea1a554fd833b656e0ede5d56b1bd48a070dc0b89eb878db0c77e92865760755c006fffab8a1d0627f0acb6cc1485aa9a13c6f
+doccontainersize 427212
+doccontainerchecksum 00cfc843b8377d9390806d72a78c5c7d219adc0312a7472ad764bb777200265b6f2d6757f98c44ebdc671671df38e920fe488a2cdea0dab0a3953856b5233b57
+docfiles size=107
+ texmf-dist/doc/latex/ucsmonograph/README.md details="Readme"
+ texmf-dist/doc/latex/ucsmonograph/ucsmonograph.pdf details="Package documentation" language="pt-br"
+srccontainersize 15348
+srccontainerchecksum 900c1f53d5f78fcd7e2fbab9a83130ff0d7233a4fc3a547fdecbb6c7ac35a7c3a32a10f74b00f959c8cc4afae98f97532f3baffe1db433053497db80ab74a852
+srcfiles size=16
+ texmf-dist/source/latex/ucsmonograph/ucsmonograph.dtx
+ texmf-dist/source/latex/ucsmonograph/ucsmonograph.ins
+runfiles size=4
+ texmf-dist/tex/latex/ucsmonograph/ucsmonograph.cls
+catalogue-also abntex2
+catalogue-contact-bugs https://github.com/HenriqueBaron/ucsmonograph/issues
+catalogue-contact-repository https://github.com/HenriqueBaron/ucsmonograph
+catalogue-contact-support https://tex.stackexchange.com/users/153467/henrique-baron
+catalogue-ctan /macros/latex/contrib/ucsmonograph
+catalogue-license lppl1.3c
+catalogue-topics class dissertation portuguese-br
+catalogue-version 1.3.0

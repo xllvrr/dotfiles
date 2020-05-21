@@ -1,0 +1,25 @@
+name icsv
+category Package
+revision 15878
+shortdesc Class for typesetting articles for the ICSV conference
+longdesc This is an ad-hoc class for typesetting articles for the ICSV
+longdesc conference, based on the earler active-conf by the same author.
+containersize 3596
+containerchecksum e865708ef636c7c917cc9a870eaba4b8c0249acba01bd2cd3fbfc9d95672405db133bbf0faf9f2d299bc4024118b80b4354ecb8216427507f66817cac085e01b
+doccontainersize 209444
+doccontainerchecksum dd06bf5d8a087bcb20c63a61cb9867bda3df35e8adf30a3d4ca69ab149772d46e3b83f168a8fc1c597aa2536a14b98561f42226a59b6663f58de4e338f9b4e82
+docfiles size=58
+ texmf-dist/doc/latex/icsv/README
+ texmf-dist/doc/latex/icsv/icsv-example.tex
+ texmf-dist/doc/latex/icsv/icsv.pdf details="Package documentation"
+srccontainersize 10304
+srccontainerchecksum 9ee3fecec68c7719a39d83860e8efaca3f5daafd82b9ed06af9ac38ffa3659d03f7ecec5407d568ec5f071c22c0cb33166449b64757be7b740943472d9ca1941
+srcfiles size=10
+ texmf-dist/source/latex/icsv/icsv.dtx
+ texmf-dist/source/latex/icsv/icsv.ins
+runfiles size=3
+ texmf-dist/tex/latex/icsv/icsv.cls
+catalogue-ctan /macros/latex/contrib/conferences/icsv
+catalogue-license lppl
+catalogue-topics confproc
+catalogue-version 0.2

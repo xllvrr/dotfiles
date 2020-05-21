@@ -1,0 +1,154 @@
+% cnv-word.tex --- an example of the usage of cnv.tex: word to word converting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% April 2005                                                 Petr Olsak
+
+\input cnv
+
+% This file is a complex example of the usage of cnv.tex macro.
+% The macros presented here give the possibility to declare word to word
+% conversion a of given string. Each occurence of declared words will be
+% converted to the declared outputs.
+
+% Double percent: "%%" is a prefix of technical comments. 
+% Please, read the "user" comments (prefixed by one "%") first.
+
+%% \wtest is an internal macro which tests if the given {pattern} matches
+%% the begin of the input stream. If it is true then other \wtests
+%% are ignored and a given {output} is stored to \cnvout. The input
+%% stream is reduced by the pattern. Else input stream is restored 
+%% and the next \wtest is run. We suppose the following parameters:
+%% \wtest{pattern}{output}\wtest{pattern}{output}...\endwtest{letter}input stream\END
+
+%% The main idea of \wtest is to declare the macro \trywtest by:
+%% \def\trywtest #1pattern#2\end and run it by:
+%% \trywtest input-stream\END pattern\end. If #1 is empty then pattern
+%% matches.
+
+\gdef\wtest #1#2#3\endwtest#4#5\END {\def\wout{#2}\def\otherwtests{#3}%
+   \def\inputstream{#5}%
+   \def\trywtest ##1#1##2\end {\def\tmp{##1}%
+       \def\tmpa{#1}\ifx\tmpa\empty \def\tmp{}\fi % empty pattern
+       \ifx\tmp\empty % found!
+          \def\next{\cnvstoree{\expandafter \cnvout \wout}%
+                    \expandafter \cnvcontinue \inputstream\END}%
+       \else          % not found!
+          \def\next{\expandafter\otherwtests\expandafter\endwtest
+                    \expandafter{\expandafter#4\expandafter}% 
+                    \inputstream \END}%
+       \fi \next}
+   \def\cnvcontinue #1{\cnvnext}%
+   \expandafter\trywtest \inputstream \END#1\end
+}
+
+%% \stringdef {<letter><pattern>}  {<output>}
+%% adds to the internal cnv macro \E:<letter>:<table> the next part of
+%% the type "\wtest{pattern}{output}" The \E:<letter>:<table> looks like:
+%% \cnvexec \wtest{pattern1}{output1}\wtest{pattern2}{output2}...\endwtest{<letter>}
+%% The new "\wtest{pattern}{output}" is added at the end of \wtests
+%% string before \endwtest{letter}.
+
+\def\wstringdef #1#2 #3{%
+   \expandafter\ifx \csname E:\string#1:\cnvtable\endcsname \relax
+      \def\tmp{}%
+   \else
+      \expandafter\expandafter\expandafter 
+      \wstoretmp \csname E:\string#1:\cnvtable\endcsname
+   \fi
+   \expandafter \def
+   \csname E:\string#1:\cnvtable \expandafter\endcsname \expandafter 
+       {\expandafter \cnvexec \tmp \wtest{#2}{#3}\endwtest{#1}}
+}
+\def\wstoretmp \cnvexec #1\endwtest#2{\def\tmp{#1}}
+\def\stringdef #1#2{\wstringdef #1 {#2}}
+
+%% If all wtests fail then \endwtest{<letter>} is processed. It adds
+%% the <letter> itself to the \cnvout. 
+
+\def\endwtest#1{\def\tmp{#1}%
+   \ifx\tmp\inSPACE \cnvstoree{\expandafter \cnvout \space}%
+   \else \cnvstore{\cnvout #1}
+   \fi\cnvnext}
+\def\inSPACE{\SPACE}
+
+%% The \wconvert{<input token list>} does the main conversion. It runs
+%% \cnvin twice (with different tables). First conversion converts the
+%% spaces to \SPACE tokens and braces to \BGROUP and \EGROUP tokens. The
+%% reason is that now we can read \SPACE and converted braces to #1 parameter
+%% without changes. This is needed in \wtest macro. No matter that
+%% \SPACE is undefined. We never process it by normal \TeX{} expansion.
+
+%% The second conversion (with table 2) does the real word to word conversion and 
+%% returns the \SPACE \BGROUP and \EGROUP to the desired output. 
+
+\def\wconvert #1{%
+   \def\cnvtable{1}\cnvin{#1}
+   \def\cnvtable{2}%
+   \expandafter \cnvin \expandafter {\cnvout \END}}
+
+%% Table 1: only converts spaces and braces
+
+\def\cnvtable{1}
+\findef { } {\SPACE}
+
+%% Table 2: the \END mark is ignored and \SPACE is converted back to space
+
+\def\cnvtable{2}
+\findef \END    {}
+\findef \SPACE  { }
+
+%% We have to keep the \BGROUP and \EGROUP unchanged. Unfortunately,
+%% the declaration:
+%%
+%% \let\findefmethod=\edef
+%% \findef \BGROUP {{\iffalse}\fi}
+%% \findef \EGROUP {\iffalse{\fi}}
+%%
+%% does not work because the cnv macro fails: the \output macro needs
+%% to be balanced text everytime during conversion process. It means 
+%% that there is impossible to return the input tokens of catcode 1
+%% and 2 to their original maening. We can return them to their original 
+%% meaning only if the \cnvout can be normally expanded. In such a case,
+%% we can write after \wconvert is done:
+%%
+%% \bgroup \def\BGROUP {{\iffalse}\fi} \def\EGROUP {\iffalse{\fi}}
+%%         \xdef \cnvout{\cnvout} \egroup 
+
+% Users can declare the "word to word" conversion here. Each string declared at
+% the left hand side will be converted to the output at the right hand side.
+% If there are more left side strings with the same initial letter then
+% the table is read in this order during the conversion. It means
+% that the last declaration in the following example is irrelevant:
+% if the string begins by "th" then the result of conversion is "TH"
+% and the last declaration of "the" is ignored.
+
+\stringdef  {input}      {output}
+\stringdef  {this}       {THIS}
+\stringdef  {test}       {TEST}
+\stringdef  {th}         {TH}
+\stringdef  {the}        {THE}
+
+% Now, we can try this declaration.
+
+\wconvert {this is a test of the motherboard input}
+\message  {"\cnvout"}
+
+% The result is: "THIS is a TEST of THe moTHerboard output".
+
+% Users have to use the \SPACE or \BGROUP or \EGROUP instead of real tokens
+% of catcode 10, 1 and 2 at the left hand side of the declaration:
+
+\stringdef {\SPACE the}  { !THE!}
+
+\wconvert {this is a test of the motherboard input}
+\message  {output: "\meaning\cnvout"}
+
+\end
+
+
+
+
+
+
+
+
+

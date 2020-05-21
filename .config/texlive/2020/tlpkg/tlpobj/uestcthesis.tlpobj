@@ -1,0 +1,57 @@
+name uestcthesis
+category Package
+revision 36371
+shortdesc Thesis class for UESTC
+longdesc The class is for typesetting a thesis at the University of
+longdesc Electronic Science and Technology of China.
+containersize 17228
+containerchecksum aaeb270174e260230d527379ef0a7581ec9f78387aae8505ed5e88a04586dfbb1d90cb923181f34e92d5100bcece0da66e17452218f0c83bbb12b38cc517f3b5
+doccontainersize 4250444
+doccontainerchecksum e68e86bb446c1e79111948b004ece03e2110166d01966d562b1bac6c932385aeaa682f04262eccd822e01b93c66c77be53c947c1dbdbf5ce129a74efdacf5df6
+docfiles size=1191
+ texmf-dist/doc/latex/uestcthesis/README details="Readme (in English and Chinese)"
+ texmf-dist/doc/latex/uestcthesis/doc/chapters/DuplicateMe.tex
+ texmf-dist/doc/latex/uestcthesis/doc/chapters/Matrix.java.tex
+ texmf-dist/doc/latex/uestcthesis/doc/chapters/Place_has_TrainDAO.java.tex
+ texmf-dist/doc/latex/uestcthesis/doc/chapters/implementation.tex
+ texmf-dist/doc/latex/uestcthesis/doc/chapters/math.tex
+ texmf-dist/doc/latex/uestcthesis/doc/chapters/test.c.tex
+ texmf-dist/doc/latex/uestcthesis/doc/chapters/tuition.tex
+ texmf-dist/doc/latex/uestcthesis/doc/contents/Cabstract.tex
+ texmf-dist/doc/latex/uestcthesis/doc/contents/Eabstract.tex
+ texmf-dist/doc/latex/uestcthesis/doc/contents/acknowledgements.tex
+ texmf-dist/doc/latex/uestcthesis/doc/contents/appendix.tex
+ texmf-dist/doc/latex/uestcthesis/doc/contents/cv.tex
+ texmf-dist/doc/latex/uestcthesis/doc/contents/original.tex
+ texmf-dist/doc/latex/uestcthesis/doc/contents/publications.bib
+ texmf-dist/doc/latex/uestcthesis/doc/contents/reference.bib
+ texmf-dist/doc/latex/uestcthesis/doc/contents/translation.tex
+ texmf-dist/doc/latex/uestcthesis/doc/pics/Chrysanthemum.jpg
+ texmf-dist/doc/latex/uestcthesis/doc/pics/Penguins.jpg
+ texmf-dist/doc/latex/uestcthesis/doc/pics/Tulips.jpg
+ texmf-dist/doc/latex/uestcthesis/doc/pics/apk.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/excel.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/fisher1.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/fisher2.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/flow1.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/flow3.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/flow4.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/flow5-1.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/flow5-2.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/flow5-3.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/highlight1.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/highlight2.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/system.png
+ texmf-dist/doc/latex/uestcthesis/doc/pics/winedt.png
+ texmf-dist/doc/latex/uestcthesis/doc/uestcthesis-doc.pdf details="Package documentation (Chinese)" language="zh"
+ texmf-dist/doc/latex/uestcthesis/doc/uestcthesis-doc.tex
+ texmf-dist/doc/latex/uestcthesis/source/uestcthesis.dtx
+ texmf-dist/doc/latex/uestcthesis/source/uestcthesis.ins
+runfiles size=31
+ texmf-dist/bibtex/bst/uestcthesis/uestcthesis.bst
+ texmf-dist/tex/latex/uestcthesis/uestcthesis.cls
+catalogue-contact-repository https://github.com/shifujun/UESTCthesis
+catalogue-ctan /macros/latex/contrib/uestcthesis
+catalogue-license lppl1.3
+catalogue-topics dissertation chinese
+catalogue-version 1.1.0

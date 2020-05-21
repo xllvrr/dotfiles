@@ -1,0 +1,21 @@
+\input fontinst.sty
+
+\recordtransforms{v1913test.recs}
+
+\transformfont{padr8r}{\reencodefont{8r}{\fromafm{padr8a}}}
+\transformfont{padr8r-ys}{\yscalefont{\div{397000}{663}}{\frommtx{padr8r}}}
+\reglyphfonts
+   \renameglyph{oneoldstyle}{one}
+   \reglyphfont{padr8r-ys2}{padr8r-ys}
+\endreglyphfonts
+
+\installfonts
+   \installfamily{T1}{pad}{}
+   \installfamily{8r}{pad}{}
+   \installfont{padr9d}{padr8r,padr8r-ys2,padr8x,latin}{t1j}{T1}{pad}{m}{n}{}
+   \installrawfont{padr8r2}{padr8r-ys}{8r}{8r}{pad}{m}{n}{}
+\endinstallfonts
+
+\endrecordtransforms
+
+\bye

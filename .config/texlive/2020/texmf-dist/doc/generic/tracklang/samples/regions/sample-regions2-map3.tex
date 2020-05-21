@@ -1,0 +1,23 @@
+% arara: pdflatex
+\documentclass[ngermanDE,USenglish]{article}
+
+\usepackage[main=ngerman]{babel}
+\usepackage{regions2}
+
+\newcommand{\test}[1]{%
+ \section{#1}
+ \selectlanguage{#1}%
+ \SetCurrentTrackedDialect{#1}%
+ Language: \CurrentTrackedLanguageTag.
+
+ \unitname: \weightunit, \lengthunit, \currencyunit.
+}
+
+
+
+\begin{document}
+\test{USenglish}
+
+\test{ngerman}
+
+\end{document}

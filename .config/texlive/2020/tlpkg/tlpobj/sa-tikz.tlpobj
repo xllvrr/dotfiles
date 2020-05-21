@@ -1,0 +1,22 @@
+name sa-tikz
+category Package
+revision 32815
+shortdesc TikZ library to draw switching architectures
+longdesc The package provides a library that offers an easy way to draw
+longdesc switching architectures and to customize their aspect.
+containersize 5480
+containerchecksum e30f8b6dd6f082bd127077fc5040ffef53e2c2fe43afd023bf0fa9dd8094769e2d40734dcf412d477989b746e1e5141cc42cc082e9f5b26e5986cc91f8336ec1
+doccontainersize 891020
+doccontainerchecksum d6586a6196fa9ec8c70ff6410873604d987394ff09e93462548baa202f22bda479fb4f76f66fb710b8daeb7b34e455225c997f07cc9360a09c5cbc4c45697a5e
+docfiles size=244
+ texmf-dist/doc/latex/sa-tikz/README details="Readme"
+ texmf-dist/doc/latex/sa-tikz/pgfmanual-en-macros.tex
+ texmf-dist/doc/latex/sa-tikz/sa-tikz-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/sa-tikz/sa-tikz-doc.tex
+runfiles size=26
+ texmf-dist/tex/latex/sa-tikz/sa-tikz.sty
+ texmf-dist/tex/latex/sa-tikz/tikzlibraryswitching-architectures.code.tex
+catalogue-ctan /graphics/pgf/contrib/sa-tikz
+catalogue-license lppl1.3
+catalogue-topics graphics-use comp-net
+catalogue-version 0.7a

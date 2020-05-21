@@ -1,0 +1,382 @@
+% unicode-licr_symbolaccents: Greek Unicode to LICR mappings
+% ==========================================================
+%
+% :Copyright: © 2014 Günter Milde
+% :Licence:   This work may be distributed and/or modified under the
+%             conditions of the `LaTeX Project Public License`_, either
+%             version 1.3 of this license or any later version.
+% :Abstract:  Data file with a mapping between Unicode points and a LICR
+%             representation using the short "symbol" macros for accents.
+%             (requires "textalpha", unsafe to use in the "tabbing" environment).
+
+% Greek and Coptic
+% ~~~~~~~~~~~~~~~~
+% ::
+
+% NR greek-fontenc Name              %   Babel name, PU name (if different)
+
+0374 \textdexiakeraia                % ʹ \anwtonos, \textnumeralsigngreek
+0375 \textaristerikeraia             % ͵ \katwtonos, \textnumeralsignlowergreek
+
+037A \textcompwordmark\ypogegrammeni % ͺ \textsubiota\empty
+
+037E \texterotimatiko                % ; \textquestion
+
+0384 \'{}                            % ΄
+0385 \"'{}                           % ΅ \textdialytikatonos
+0386 \'\textAlpha                    % Ά
+0387 \textanoteleia                  % · \anoteleia
+0388 \'\textEpsilon                  % Έ
+0389 \'\textEta                      % Ή
+038A \'\textIota                     % Ί
+038C \'\textOmicron                  % Ό
+038E \'\textUpsilon                  % Ύ
+038F \'\textOmega                    % Ώ
+0390 \'"\textiota                    % ΐ
+0391 \textAlpha                      % Α
+0392 \textBeta                       % Β
+0393 \textGamma                      % Γ
+0394 \textDelta                      % Δ
+0395 \textEpsilon                    % Ε
+0396 \textZeta                       % Ζ
+0397 \textEta                        % Η
+0398 \textTheta                      % Θ
+0399 \textIota                       % Ι
+039A \textKappa                      % Κ
+039B \textLambda                     % Λ
+039C \textMu                         % Μ
+039D \textNu                         % Ν
+039E \textXi                         % Ξ
+039F \textOmicron                    % Ο
+03A0 \textPi                         % Π
+03A1 \textRho                        % Ρ
+03A3 \textSigma                      % Σ
+03A4 \textTau                        % Τ
+03A5 \textUpsilon                    % Υ
+03A6 \textPhi                        % Φ
+03A7 \textChi                        % Χ
+03A8 \textPsi                        % Ψ
+03A9 \textOmega                      % Ω
+
+03AA \"\textIota                     % Ϊ
+03AB \"\textUpsilon                  % Ϋ
+03AC \'\textalpha                    % ά
+03AD \'\textepsilon                  % έ
+03AE \'\texteta                      % ή
+03AF \'\textiota                     % ί
+03B0 \"'\textupsilon                 % ΰ
+
+03B1 \textalpha                      % α
+03B2 \textbeta                       % β
+03B3 \textgamma                      % γ
+03B4 \textdelta                      % δ
+03B5 \textepsilon                    % ε
+03B6 \textzeta                       % ζ
+03B7 \texteta                        % η
+03B8 \texttheta                      % θ
+03B9 \textiota                       % ι
+03BA \textkappa                      % κ
+03BB \textlambda                     % λ
+03BC \textmu                         % μ \textmugreek
+03BD \textnu                         % ν
+03BE \textxi                         % ξ
+03BF \textomicron                    % ο
+03C0 \textpi                         % π
+03C1 \textrho                        % ρ
+03C2 \textvarsigma                   % ς
+03C3 \textsigma                      % σ
+03C4 \texttau                        % τ
+03C5 \textupsilon                    % υ
+03C6 \textphi                        % φ
+03C7 \textchi                        % χ
+03C8 \textpsi                        % ψ
+03C9 \textomega                      % ω
+
+03CA \"\textiota                     % ϊ
+03CB \"\textupsilon                  % ϋ
+03CC \'\textomicron                  % ό
+03CD \'\textupsilon                  % ύ
+03CE \'\textomega                    % ώ
+
+03D8 \textQoppa                      % Ϙ
+03D9 \textqoppa                      % ϙ
+03DA \textStigma                     % Ϛ \Stigma
+03DB \textstigma                     % ϛ \stigma
+03DC \textDigamma                    % Ϝ \Digamma
+03DD \textdigamma                    % ϝ \ddigamma
+%03DE GREEK LETTER KOPPA             % Ϟ \textKoppagreek
+03DF \textkoppa                      % ϟ \koppa, \textqoppa [sic!]
+03E0 \textSampi                      % Ϡ \Sampi
+03E1 \textsampi                      % ϡ \sampi
+
+% Greek Extended
+% ~~~~~~~~~~~~~~
+% ::
+
+1F00 \>\textalpha                     % ἀ
+1F01 \<\textalpha                     % ἁ
+1F02 \>`\textalpha                    % ἂ
+1F03 \<`\textalpha                    % ἃ
+1F04 \>'\textalpha                    % ἄ
+1F05 \<'\textalpha                    % ἅ
+1F06 \~>\textalpha                    % ἆ
+1F07 \~<\textalpha                    % ἇ
+1F08 \>\textAlpha                     % Ἀ
+1F09 \<\textAlpha                     % Ἁ
+1F0A \>`\textAlpha                    % Ἂ
+1F0B \<`\textAlpha                    % Ἃ
+1F0C \>'\textAlpha                    % Ἄ
+1F0D \<'\textAlpha                    % Ἅ
+1F0E \~>\textAlpha                    % Ἆ
+1F0F \~<\textAlpha                    % Ἇ
+1F10 \>\textepsilon                   % ἐ
+1F11 \<\textepsilon                   % ἑ
+1F12 \>`\textepsilon                  % ἒ
+1F13 \<`\textepsilon                  % ἓ
+1F14 \>'\textepsilon                  % ἔ
+1F15 \<'\textepsilon                  % ἕ
+1F18 \>\textEpsilon                   % Ἐ
+1F19 \<\textEpsilon                   % Ἑ
+1F1A \>`\textEpsilon                  % Ἒ
+1F1B \<`\textEpsilon                  % Ἓ
+1F1C \>'\textEpsilon                  % Ἔ
+1F1D \<'\textEpsilon                  % Ἕ
+1F20 \>\texteta                       % ἠ
+1F21 \<\texteta                       % ἡ
+1F22 \>`\texteta                      % ἢ
+1F23 \<`\texteta                      % ἣ
+1F24 \>'\texteta                      % ἤ
+1F25 \<'\texteta                      % ἥ
+1F26 \~>\texteta                      % ἦ
+1F27 \~<\texteta                      % ἧ
+1F28 \>\textEta                       % Ἠ
+1F29 \<\textEta                       % Ἡ
+1F2A \>`\textEta                      % Ἢ
+1F2B \<`\textEta                      % Ἣ
+1F2C \>'\textEta                      % Ἤ
+1F2D \<'\textEta                      % Ἥ
+1F2E \~>\textEta                      % Ἦ
+1F2F \~<\textEta                      % Ἧ
+1F30 \>\textiota                      % ἰ
+1F31 \<\textiota                      % ἱ
+1F32 \>`\textiota                     % ἲ
+1F33 \<`\textiota                     % ἳ
+1F34 \>'\textiota                     % ἴ
+1F35 \<'\textiota                     % ἵ
+1F36 \~>\textiota                     % ἶ
+1F37 \~<\textiota                     % ἷ
+1F38 \>\textIota                      % Ἰ
+1F39 \<\textIota                      % Ἱ
+1F3A \>`\textIota                     % Ἲ
+1F3B \<`\textIota                     % Ἳ
+1F3C \>'\textIota                     % Ἴ
+1F3D \<'\textIota                     % Ἵ
+1F3E \~>\textIota                     % Ἶ
+1F3F \~<\textIota                     % Ἷ
+1F40 \>\textomicron                   % ὀ
+1F41 \<\textomicron                   % ὁ
+1F42 \>`\textomicron                  % ὂ
+1F43 \<`\textomicron                  % ὃ
+1F44 \>'\textomicron                  % ὄ
+1F45 \<'\textomicron                  % ὅ
+1F48 \>\textOmicron                   % Ὀ
+1F49 \<\textOmicron                   % Ὁ
+1F4A \>`\textOmicron                  % Ὂ
+1F4B \<`\textOmicron                  % Ὃ
+1F4C \>'\textOmicron                  % Ὄ
+1F4D \<'\textOmicron                  % Ὅ
+
+1F50 \>\textupsilon                   % ὐ
+1F51 \<\textupsilon                   % ὑ
+1F52 \>`\textupsilon                  % ὒ
+1F53 \<`\textupsilon                  % ὓ
+1F54 \>'\textupsilon                  % ὔ
+1F55 \<'\textupsilon                  % ὕ
+1F56 \~>\textupsilon                  % ὖ
+1F57 \~<\textupsilon                  % ὗ
+1F59 \<\textUpsilon                   % Ὑ
+1F5B \<`\textUpsilon                  % Ὓ
+1F5D \<'\textUpsilon                  % Ὕ
+1F5F \~<\textUpsilon                  % Ὗ
+1F60 \>\textomega                     % ὠ
+1F61 \<\textomega                     % ὡ
+1F62 \>`\textomega                    % ὢ
+1F63 \<`\textomega                    % ὣ
+1F64 \>'\textomega                    % ὤ
+1F65 \<'\textomega                    % ὥ
+1F66 \~>\textomega                    % ὦ
+1F67 \~<\textomega                    % ὧ
+1F68 \>\textOmega                     % Ὠ
+1F69 \<\textOmega                     % Ὡ
+1F6A \>`\textOmega                    % Ὢ
+1F6B \<`\textOmega                    % Ὣ
+1F6C \>'\textOmega                    % Ὤ
+1F6D \<'\textOmega                    % Ὥ
+1F6E \~>\textOmega                    % Ὦ
+1F6F \~<\textOmega                    % Ὧ
+1F70 \`\textalpha                     % ὰ
+1F71 \'\textalpha                     % ά
+1F72 \`\textepsilon                   % ὲ
+1F73 \'\textepsilon                   % έ
+1F74 \`\texteta                       % ὴ
+1F75 \'\texteta                       % ή
+1F76 \`\textiota                      % ὶ
+1F77 \'\textiota                      % ί
+1F78 \`\textomicron                   % ὸ
+1F79 \'\textomicron                   % ό
+1F7A \`\textupsilon                   % ὺ
+1F7B \'\textupsilon                   % ύ
+1F7C \`\textomega                     % ὼ
+1F7D \'\textomega                     % ώ
+
+1F80 \>\textalpha\ypogegrammeni       % ᾀ
+1F81 \<\textalpha\ypogegrammeni       % ᾁ
+1F82 \>`\textalpha\ypogegrammeni      % ᾂ
+1F83 \<`\textalpha\ypogegrammeni      % ᾃ
+1F84 \>'\textalpha\ypogegrammeni      % ᾄ
+1F85 \<'\textalpha\ypogegrammeni      % ᾅ
+1F86 \~>\textalpha\ypogegrammeni      % ᾆ
+1F87 \~<\textalpha\ypogegrammeni      % ᾇ
+1F88 \>\textAlpha\prosgegrammeni      % ᾈ
+1F89 \<\textAlpha\prosgegrammeni      % ᾉ
+1F8A \>`\textAlpha\prosgegrammeni     % ᾊ
+1F8B \<`\textAlpha\prosgegrammeni     % ᾋ
+1F8C \>'\textAlpha\prosgegrammeni     % ᾌ
+1F8D \<'\textAlpha\prosgegrammeni     % ᾍ
+1F8E \~>\textAlpha\prosgegrammeni     % ᾎ
+1F8F \~<\textAlpha\prosgegrammeni     % ᾏ
+1F90 \>\texteta\ypogegrammeni         % ᾐ
+1F91 \<\texteta\ypogegrammeni         % ᾑ
+1F92 \>`\texteta\ypogegrammeni        % ᾒ
+1F93 \<`\texteta\ypogegrammeni        % ᾓ
+1F94 \>'\texteta\ypogegrammeni        % ᾔ
+1F95 \<'\texteta\ypogegrammeni        % ᾕ
+1F96 \~>\texteta\ypogegrammeni        % ᾖ
+1F97 \~<\texteta\ypogegrammeni        % ᾗ
+1F98 \>\textEta\prosgegrammeni        % ᾘ
+1F99 \<\textEta\prosgegrammeni        % ᾙ
+1F9A \>`\textEta\prosgegrammeni       % ᾚ
+1F9B \<`\textEta\prosgegrammeni       % ᾛ
+1F9C \>'\textEta\prosgegrammeni       % ᾜ
+1F9D \<'\textEta\prosgegrammeni       % ᾝ
+1F9E \~>\textEta\prosgegrammeni       % ᾞ
+1F9F \~<\textEta\prosgegrammeni       % ᾟ
+1FA0 \>\textomega\ypogegrammeni       % ᾠ
+1FA1 \<\textomega\ypogegrammeni       % ᾡ
+1FA2 \>`\textomega\ypogegrammeni      % ᾢ
+1FA3 \<`\textomega\ypogegrammeni      % ᾣ
+1FA4 \>'\textomega\ypogegrammeni      % ᾤ
+1FA5 \<'\textomega\ypogegrammeni      % ᾥ
+1FA6 \~>\textomega\ypogegrammeni      % ᾦ
+1FA7 \~<\textomega\ypogegrammeni      % ᾧ
+1FA8 \>\textOmega\prosgegrammeni      % ᾨ
+1FA9 \<\textOmega\prosgegrammeni      % ᾩ
+1FAA \>`\textOmega\prosgegrammeni     % ᾪ
+1FAB \<`\textOmega\prosgegrammeni     % ᾫ
+1FAC \>'\textOmega\prosgegrammeni     % ᾬ
+1FAD \<'\textOmega\prosgegrammeni     % ᾭ
+1FAE \~>\textOmega\prosgegrammeni     % ᾮ
+1FAF \~<\textOmega\prosgegrammeni     % ᾯ
+1FB0 \u\textalpha                     % ᾰ
+1FB1 \=\textalpha                     % ᾱ
+1FB2 \`\textalpha\ypogegrammeni       % ᾲ
+1FB3 \textalpha\ypogegrammeni         % ᾳ
+1FB4 \'\textalpha\ypogegrammeni       % ᾴ
+1FB6 \~\textalpha                     % ᾶ
+1FB7 \~\textalpha\ypogegrammeni       % ᾷ
+1FB8 \u\textAlpha                     % Ᾰ
+1FB9 \=\textAlpha                     % Ᾱ
+1FBA \`\textAlpha                     % Ὰ
+1FBB \'\textAlpha                     % Ά
+1FBC \textAlpha\prosgegrammeni        % ᾼ
+1FBD \>{}                             % ᾽
+1FBE \textcompwordmark\prosgegrammeni % ι
+1FBF \>{}                             % ᾿
+1FC0 \~{}                             % ῀
+1FC1 \"\~{}                           % ῁
+1FC2 \`\texteta\ypogegrammeni         % ῂ
+1FC3 \texteta\ypogegrammeni           % ῃ
+1FC4 \'\texteta\ypogegrammeni         % ῄ
+1FC6 \~\texteta                       % ῆ
+1FC7 \~\texteta\ypogegrammeni         % ῇ
+1FC8 \`\textEpsilon                   % Ὲ
+1FC9 \'\textEpsilon                   % Έ
+1FCA \`\textEta                       % Ὴ
+1FCB \'\textEta                       % Ή
+1FCC \textEta\prosgegrammeni          % ῌ
+1FCD \>`{}                            % ῍
+1FCE \>'{}                            % ῎
+1FCF \~>{}                            % ῏
+1FD0 \u\textiota                      % ῐ
+1FD1 \=\textiota                      % ῑ
+1FD2 \`"\textiota                     % ῒ
+1FD3 \'"\textiota                     % ΐ
+1FD6 \~\textiota                      % ῖ
+1FD7 \~"\textiota                     % ῗ
+1FD8 \u\textIota                      % Ῐ
+1FD9 \=\textIota                      % Ῑ
+1FDA \`\textIota                      % Ὶ
+1FDB \'\textIota                      % Ί
+1FDD \<`{}                            % ῝
+1FDE \<'{}                            % ῞
+1FDF \~<{}                            % ῟
+1FE0 \u\textupsilon                   % ῠ
+1FE1 \=\textupsilon                   % ῡ
+1FE2 \`"\textupsilon                  % ῢ
+1FE3 \'"\textupsilon                  % ΰ
+1FE4 \>\textrho                       % ῤ
+1FE5 \<\textrho                       % ῥ
+1FE6 \~\textupsilon                   % ῦ
+1FE7 \~"\textupsilon                  % ῧ
+1FE8 \u\textUpsilon                   % Ῠ
+1FE9 \=\textUpsilon                   % Ῡ
+1FEA \`\textUpsilon                   % Ὺ
+1FEB \'\textUpsilon                   % Ύ
+1FEC \<\textRho                       % Ῥ
+1FED \`"{}                            % ῭
+1FEE \'"{}                            % ΅
+1FEF \`{}                             % `
+1FF2 \`\textomega\ypogegrammeni       % ῲ
+1FF3 \textomega\ypogegrammeni         % ῳ
+1FF4 \'\textomega\ypogegrammeni       % ῴ
+1FF6 \~\textomega                     % ῶ
+1FF7 \~\textomega\ypogegrammeni       % ῷ
+1FF8 \`\textOmicron                   % Ὸ
+1FF9 \'\textOmicron                   % Ό
+1FFA \`\textOmega                     % Ὼ
+1FFB \'\textOmega                     % Ώ
+1FFC \textOmega\prosgegrammeni        % ῼ
+1FFD \'{}                             % ´
+1FFE \<{}                             % ῾
+
+% General Punctuation
+% ~~~~~~~~~~~~~~~~~~~
+% ::
+
+2013 \textendash                      % –
+2014 \textemdash                      % —
+2018 \textquoteleft                   % ‘
+2019 \textquoteright                  % ’
+2030 \textperthousand                 % ‰
+20AC \texteuro                        % €
+
+% Letterlike Symbols
+% ~~~~~~~~~~~~~~~~~~
+% ::
+
+2126 \textohm                         % Ω OHM SIGN
+
+% Ancient Greek Numbers
+% ~~~~~~~~~~~~~~~~~~~~~
+% TODO: map other chars to corresponding Greek letters?
+% See also the grnumalt_ package::
+
+10144 \textpentedeka    % GREEK ACROPHONIC ATTIC FIFTY
+10145 \textpentehekaton % GREEK ACROPHONIC ATTIC FIVE HUNDRED
+10146 \textpenteqilioi  % GREEK ACROPHONIC ATTIC FIVE THOUSAND
+10147 \textpentemuria   % GREEK ACROPHONIC ATTIC FIFTY THOUSAND
+
+% .. _LaTeX Project Public License: http://www.latex-project.org/lppl.txt
+% .. _greek-inputenc: http://www.ctan.org/pkg/greek-inputenc
+% .. _greek-fontenc: http://www.ctan.org/pkg/greek-fontenc
+% .. _grnumalt: http://www.ctan.org/pkg/grnumalt

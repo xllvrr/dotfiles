@@ -1,0 +1,38 @@
+name thucoursework
+category Package
+revision 53891
+shortdesc Coursework template for Tsinghua University
+longdesc A LaTeX package for students of Tsinghua University to write
+longdesc coursework more efficiently. It can also be used by students
+longdesc from other universities. Note that the package itself does not
+longdesc import the ctex package; to use it with Chinese writing, see
+longdesc example file ithw.tex for details.
+containersize 2188
+containerchecksum 8329369e1850003a66a386a82746c36e62d43ae752844434c83e88a56c7914a5919c137899562b566863e05b15f272dde691cc0dcbbe64df863ec68e59fedc64
+doccontainersize 487516
+doccontainerchecksum bd28776cba58bcceaf668ede00c2c07eaca6b522a6bf59058c74554f6f17d5be1e66124a612bbe72929c90850359cf5fa632a2ad664e4d20d041671fcf8cca03
+docfiles size=154
+ texmf-dist/doc/latex/thucoursework/README.md details="Readme"
+ texmf-dist/doc/latex/thucoursework/dtx-style.sty
+ texmf-dist/doc/latex/thucoursework/iihw.pdf details="Example of use (English)"
+ texmf-dist/doc/latex/thucoursework/iihw.tex
+ texmf-dist/doc/latex/thucoursework/ithw.pdf details="Example of use (Chinese)" language="zh"
+ texmf-dist/doc/latex/thucoursework/ithw.tex
+ texmf-dist/doc/latex/thucoursework/matlabscript.m
+ texmf-dist/doc/latex/thucoursework/pdf_normal.eps
+ texmf-dist/doc/latex/thucoursework/pdf_normal.pdf
+ texmf-dist/doc/latex/thucoursework/thucoursework.pdf details="Package documentation" language="zh"
+srccontainersize 9200
+srccontainerchecksum 8720d8a0bd4d9031431658f81d8b46dd074dd42cde74a3b03cf23a7cee8b245d281fae1a7a5062e79efd4f5388056c411922a85961bd6c4df0fd5a02545c0829
+srcfiles size=7
+ texmf-dist/source/latex/thucoursework/Makefile
+ texmf-dist/source/latex/thucoursework/thucoursework.dtx
+runfiles size=2
+ texmf-dist/tex/latex/thucoursework/iidef.sty
+catalogue-contact-bugs https://github.com/zhaofeng-shu33/THU-coursework-template/issues
+catalogue-contact-development https://github.com/zhaofeng-shu33
+catalogue-contact-repository https://github.com/zhaofeng-shu33/THU-coursework-template
+catalogue-ctan /macros/latex/contrib/thucoursework
+catalogue-license lppl1.3
+catalogue-topics doc-templ chinese
+catalogue-version 2.5.1

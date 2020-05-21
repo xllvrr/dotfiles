@@ -1,0 +1,38 @@
+name grant
+category Package
+revision 41905
+shortdesc Classes for formatting federal grant proposals
+longdesc LaTeX classes for formatting federal grant proposals: grant:
+longdesc Base class for formatting grant proposals grant-arl: Army
+longdesc Research Laboratory grant-darpa: Defense Advanced Research
+longdesc Projects Agency grant-doe: Department of Energy grant-nih:
+longdesc National Institutes of Health grant-nrl: Naval Research
+longdesc Laboratory grant-nsf: National Science Foundation grant-onr:
+longdesc Office of Naval Research
+containersize 4260
+containerchecksum 849bb84949f2fc2f766556988eba540ed1a63ffe1d3a16279295cfcc772ab027dc1e9e5d55a9bf834c24e97a0bcdb04bdbfa653c71f99cf55ec3e18a83015a40
+doccontainersize 110264
+doccontainerchecksum bfadcd59264fe3d3a6914267cc9d26c5bd6f7aa2061160a6547b04f448daed041d2c15633a61a246ea7808b778ff32679249f4c68e15b84e8502a454a4cec1dc
+docfiles size=32
+ texmf-dist/doc/latex/grant/LICENSE
+ texmf-dist/doc/latex/grant/README.md details="Package README"
+ texmf-dist/doc/latex/grant/VERSION
+ texmf-dist/doc/latex/grant/grant.pdf details="User manual"
+srccontainersize 5312
+srccontainerchecksum 183057279f539234df3f3354e0aa569679ec5a265a515dbac71aaf9cdb430d17804c001772a6ae69d7918f248d3d641c1f04740c5e9bc578dd65607cd3e4313a
+srcfiles size=7
+ texmf-dist/source/latex/grant/grant.dtx
+ texmf-dist/source/latex/grant/grant.ins
+runfiles size=10
+ texmf-dist/tex/latex/grant/grant-arl.cls
+ texmf-dist/tex/latex/grant/grant-darpa.cls
+ texmf-dist/tex/latex/grant/grant-doe.cls
+ texmf-dist/tex/latex/grant/grant-nih.cls
+ texmf-dist/tex/latex/grant/grant-nrl.cls
+ texmf-dist/tex/latex/grant/grant-nsf.cls
+ texmf-dist/tex/latex/grant/grant-onr.cls
+ texmf-dist/tex/latex/grant/grant.cls
+catalogue-ctan /macros/latex/contrib/grant
+catalogue-license mit
+catalogue-topics class proposal
+catalogue-version 0.0.3

@@ -1,0 +1,68 @@
+%% Start of file README 
+%% This README is part of the AASTEX 6.3 distribution. 
+%% Copyright (C) 2019 American Astronomical Society 
+%% This work may be distributed and/or modified under the 
+%% conditions of the LATEX Project Public License, either version 1.3 
+%% of this license or (at your option) any later version. 
+%% The latest version of this license is in 
+%% http://www.latex-project.org/lppl.txt 
+%% and version 1.3 or later is part of all distributions of LATEX 
+%% version 2003/12/01 or later. 
+%% This work has the LPPL maintenance status "maintained". 
+%% The Current Maintainer of this work is the American Astronomical Society. 
+%% %% This work consists of all files listed in the document README.
+
+Last updated August 7, 2019. 
+
+Thank you for your interest in the AASTEX package for manuscript preparation. This directory contains all the files in the distribution. They are described briefly below. Following the file descriptions are short installation instructions, the generic recipe for printing the user guide and sample, and information about contacting us regarding the distribution.
+
+MANIFEST
+
+aastex63.cls The most recent AASTEX class file (V6.3) 
+aasjournal.bst BIBTEX .bst file optimized for AAS Journal publishing
+
+aassymbols.tex Tables of AASTEX and AMS symbols commands 
+aassymbols.pdf PDF of the symbols tables
+
+natbib.tex Information regarding using natbib with AASTEX
+natbib.pdf PDF of the natbib article
+
+sample63.tex Sample paper with "typical" content and markup 
+sample63.pdf Sample paper PDF file
+sample63.bib Sample paper BIBTEX .bib file
+
+cost.pdf Figure 1 in sample63.tex
+V2491_Cyg.pdf Figure 2a in sample63.tex
+HV_Cet.pdf  Figure 2b in sample63.tex
+LMC_2009.pdf Figure 2c in sample63.tex
+RS_Oph.pdf Figure 2d in sample63.tex
+U_Sco.pdf Figure 2e in sample63.tex
+KT_Eri.pdf Figures 2f and 3 in sample63.tex
+f4.pdf Figure 4 in sample63.tex
+f5.pdf Figure 5 in sample63.tex
+
+interactive.tar.gz A .tar.gz package containing all the interactive figure files associated with Figure 5 in sample63.tex
+
+orcid-ID.png PNG file use to produced the ORCID icon in \author
+
+Please see the AASTEX Web site for further documentation
+
+https://journals.aas.org/aastex-package-for-manuscript-preparation/
+
+for additional installation notes or contact the help desk at aastex-help@aas.org for assistance.
+
+ADMINISTRATIVE DETAILS
+
+AASTEX was designed and written by Chris Biemesderfer in 1988. Substantial revisions were made by Lee Brotzman and Pierre Landau when the package was updated to v4.0. AASTEX was rewritten as a LATEX class by Arthur Ogawa for the v5.0 release. It was updated to v5.2 by SR Nova Private Ltd. Amy Hendrickson (TEXnology Inc.) wrote the v6.0 release which itself was primarily based on the emulateapj classfile created by Maxim Markevitch and Alexey Vikhlinin. Amy Hendrickson also created versions v6.1 - v6.3. Over the years the documentation has benefited from revisions by Jeannette Barnes, Sara Zimmerman, Greg Schwarz, Gus Meunch, Amy Henderickson, and Butler Burton.
+
+Comments, suggestions, complaints, and pleas for help can be sent electronically to aastex-help@aas.org.
+
+AASTEX Web site: https://journals.aas.org/aastex-package-for-manuscript-preparation/
+
+CB, 20 May 1999 Rev. 
+SZ, 2 Nov 2000 Rev. 
+SZ, 14 Dec 2004 Rev. 
+SZ, 22 Jun 2005 Rev. 
+GJS, 02 Mar 2016 Rev. 
+GJS, 08 Jan 2018 Rev.
+GJS, 07 Aug 2019 Rev.

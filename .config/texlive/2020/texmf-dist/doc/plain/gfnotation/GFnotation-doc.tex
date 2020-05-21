@@ -1,0 +1,1186 @@
+% This file is part of the CTAN package named gfnotation.
+%
+%   This is the users guide to the TeX macros ``GFnotation.tex''.
+%   GFnotation.tex: typeset G. Frege's notation of the Begriffsschrift or
+%                   the Grundgesetze der Arithmetik in plain TeX
+%
+%   Copyright (C) 2015  Udo Wermuth (author)
+%
+%   This program is free software: you can redistribute it and/or modify
+%   it under the terms of the GNU General Public License as published by
+%   the Free Software Foundation, either version 3 of the License, or
+%   (at your option) any later version.
+%
+%   This program is distributed in the hope that it will be useful,
+%   but WITHOUT ANY WARRANTY; without even the implied warranty of
+%   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%   GNU General Public License for more details.
+%
+%   You should have received a copy of the GNU General Public License
+%   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+% %%%
+% %%% GFnotation
+% %%%
+\input amssym.def
+\catcode`\ß=11
+\let\nosubst=f
+\let\showrotation=t \input rotate
+\let\fgefontsknown=t
+\input GFnotation
+\gfbslognotationtrue
+\gfbszeigestatstrue
+% %%%
+% %%% verbatim macros (from manmac.tex)
+% %%%
+\newskip\ttglue {\tt\global\ttglue=0.5em plus 0.25em minus 0.15em }
+\def\ttverbatim{\begingroup \frenchspacing
+  \catcode`\\=12 \catcode`\{=12 \catcode`\}=12 \catcode`\$=12 \catcode`\&=12
+  \catcode`\#=12 \catcode`\%=12 \catcode`\~=12 \catcode`\_=12 \catcode`\^=12
+  \obeyspaces \obeylines \tt}
+\def\verbatimspace{\ifvmode\indent\fi\space}
+{\obeyspaces \gdef\makespaceverbspace{\def {\verbatimspace}}}
+\outer\def\verbatim{$$\ifdim\parskip>0pt
+    \abovedisplayskip=\parskip \abovedisplayshortskip=\parskip
+    \belowdisplayskip=\parskip \belowdisplayshortskip=\parskip
+  \else
+    \abovedisplayskip=3pt \abovedisplayshortskip=3pt
+    \belowdisplayskip=3pt \belowdisplayshortskip=3pt
+  \fi
+  \let\par=\endgraf \ttverbatim \makespaceverbspace \parskip=0pt
+  \catcode`\§=0 \advance\leftskip by 10pt \ttfinish}
+{\catcode`\§=0 §catcode`§\=12 % § is temporary escape character
+  §obeylines % end of line is active
+  §gdef§ttfinish#1^^M#2\endverbatim{§vbox{#2}§endgroup$$}}
+\catcode`\¤=\active
+{\obeylines \gdef¤{\ttverbatim \spaceskip\ttglue \let^^M=\  \let¤=\endgroup}}
+% %%%
+% %%% Examples
+% %%%
+\def\Econt{\goodbreak\bgroup
+  \parskip=0pt \leftskip=3\parindent \rightskip=\leftskip \parindent=0pt }
+\def\Epause{\par\egroup}
+\def\Example#1{\bigskip\Econt\noindent{\bf Example #1.}\ }
+\def\Eend#1{\ifnum#1>0 \vskip-\baselineskip\fi
+  \hfill\vrule height 7pt depth 1pt width 3pt \Epause\bigskip}
+% %%%
+% %%% hyphenation exceptions
+% %%%
+\hyphenation{Gottlob Frege Begriffs-schrift Grund-gesetze}
+% %%%
+% %%% other
+% %%%
+\def\\{\par\vskip0pt plus.3\vsize\penalty-253\vskip0pt plus-.3\vsize\relax}
+\def\AmSTeX{$\cal A\kern-.1667em\lower.5ex\hbox{$\cal M$}\kern-.075em S$-\TeX}
+\def\La{L\kern-3pt \raise.42ex\hbox{$\scriptstyle A$}}
+\def\LaTeX{\La\kern-.15em\TeX}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parskip=0.25\baselineskip
+\settabs 6 \columns
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\font\titlefont=cmssdc10 at 36pt
+\font\subtitlefont=cmssdc10 at 17pt
+%
+\centerline{\titlefont Users Guide}
+\bigskip
+\centerline{\subtitlefont GFnotation.tex (version 2.9, 29.03.2015)}
+
+% %%%%%%%%%%%
+\beginsection 1. Description
+
+This package implements macros to typeset formulas and inferences in
+Gottlob Frege's notation in the style of his ``Begriffsschrift, eine der
+arithmetischen nachgebildete Formelsprache des reinen Denkens'' (see
+[1]) or in the style of his main work ``Grundgesetze der Arithmetik''
+(see [2]). Here is an example of a single
+formula: \frege|{..\gA.{*.a.{f(\da)}}}. And this is a complete
+inference:
+\nlp4\*_[-\*-:-\ce{$\gA$}
+\nlp4\*___\*_'-\ce{$\gB$}
+\nlp4\*_[-\*---\ce{$\gB$}
+\nlp4\*---\*---\*---
+\nlp4\*_[-\*---\ce{$\gA$} .
+
+The package has two input formats, the so-called ``symbolic
+representation'' and the ``short form.''  The short form outputs the
+formulas either in the style of Frege's {\it Begriffsschrift\/} or in
+the style that is used in his {\it Grundgesetze}.  The above formulas
+are in the style of the {\it Begriffsschrift\/}; here is the first one
+in the style of the {\it Grundgesetze\/}:
+\toggleGGstyle\frege|{..\gA.{*.a.{f(\da)}}}.\toggleGGstyle
+
+{\it Note\/}: This users guide shows how to work with the package.
+It does not explain the constructions and symbols in Frege's
+notation.
+
+
+% %%%%%%%%%%%
+\beginsection 2. Elements of Frege's notation
+
+{\bf a) Letters.}\ Frege used lowercase roman letters, $a$, $b$,
+$c$, \dots, uppercase Greek letters $\gA$, $\gB$, $\gG$, \dots,
+lowercase Greek letters $\ka$, $\kb$, $\kg$, \dots, and Fraktur
+letters $\da$, $\de$, $\dF$, \dots\thinspace.
+
+\noindent
+{\bf b) Formulas (Begriffsschrift).}\
+The following notation is used by Frege to build formulas:
+\smallskip
+\+&{\it Content stroke\/}: \*---\ze{$\gA$}.
+ &&{\it Judgment\/}: \*[--\ze{$\gA$}.\cr
+\smallskip
+\+&{\it Negation\/}: \*-~-\ze{$\gA$}.
+ &&{\it Affirmation\/}: \*-+-\ze{$\gA$}.\cr
+ \smallskip
+\+&{\it Condition\/}: \frege .{..\gB.\gA}.
+ &&{\it Generality\/}: \frege .{*.a.{\gF(\da)}}.\cr
+\+&{\it Condition stroke\/}: \*_!_.
+ &&{\it Definition\/}: \*"3- $((\gA)\equiv\gB)$.\cr
+\smallskip
+\+&{\it Substitution\/}: $a$\*_|_$f(a)$.\cr
+
+\noindent
+{\bf c) Inferences (Begriffsschrift).}\
+For inferences two types of lines are used:
+\smallskip
+\+&{\it Single line\/}: \*---\*---.
+ &&{\it Double lines\/}: \*===\*===.\cr
+\smallskip
+\+&{\it Separator between inference chains\/}:\cr
+\decollator4
+
+\noindent
+{\bf d) Terminal symbols (Begriffsschrift).}\
+Four special constructions appear in the {\it Begriffsschrift\/}:
+\smallskip
+\+&$\gfvererbe\kd\ka{{x(\ka)}}{{f(\kd,\ka)}}$, \quad$\gffolgt\kg\kb{f(x_\kg,y_\kb)}$,
+\quad$\gfgehoertan\kg\kb{f(x_\kg,z_\kb)}$, \quad$\gfeindeutig\kd\ke{f(\kd,\ke)}$.\cr
+
+\toggleGGstyle
+\gfbskeinekompaktehoehlungtrue
+\noindent
+{\bf e) Formulas (Grundgesetze).}\
+The following notation is used by Frege to build formulas:
+\smallskip
+\+&{\it Content stroke\/}: \frege.{=.\gA}.
+ &&{\it Judgment\/}: \frege|{=.\gA}.\cr
+\smallskip
+\+&{\it Negation\/}: \frege.{=-\gA}.
+ &&{\it Affirmation\/}: \frege.{=+\gA}.\cr
+ \smallskip
+\+&{\it Condition\/}: \frege .{..\gB.\gA}.
+ &&{\it Generality\/}: \frege .{*.a.{\gF(\da)}}.\cr
+\+&{\it Condition stroke\/}: \*_!_.
+ &&{\it Definition\/}: \*"39 $\gA=\gB$.\cr
+
+\noindent
+{\bf f) Inferences (Grundgesetze).}\
+For inferences eight types are used:
+\smallskip
+\+&{\it Single line\/}: \*?--\*?--.
+ &&{\it Double lines\/}: \*?==\*?==.\cr
+\smallskip
+\+&{\it Dashed line\/}: \*?-_\*?-_.
+ &&{\it Dashed double lines\/}: \*?=_\*?=_.\cr
+\smallskip
+\+&{\it Single/double line\/}: \*?=*\*?=*.
+ &&{\it Dot/dashed line\/}: \*?.-\*?.-.\cr
+\smallskip
+\+&{\it Contraposition\/}: \*?>x.
+ &&{\it Quantification\/}: \*?>u.\cr
+\smallskip
+\+&{\it Separator\/}: \gfggtrenner.\cr
+
+\noindent
+{\bf g) Special symbols (Grundgesetze).}\
+Several special characters appear in the {\it Grundgesetze\/}:
+\smallskip
+\+&{\it symbols\/}: $\Gbf$ \G0 \G1 $\Guu$\cr
+\smallskip
+\+&{\it unary operators\/}: \G! $\kasl$ \GI\ $\G>$ \G- \G~ $\G*$
+                            $\G6$ $\Gf$ $\Gp$ $\GUorg$ $\Gnorg$
+&&&{\it last two from the fge fonts\/}: $\GU$ $\Gn$\cr
+\smallskip                            
+\+&{\it binary operators\/}: $\G^$ $\G_$ $\G;$ $\Gfm$ $\Gsm$
+                             $\G<$ $\Gmf$ $\Gl$
+&&&{\it rotated\/}: $\Gy$ $\Ge$ $\Gc$ $\GF$ $\Gss$\cr
+\toggleGGstyle
+
+
+% %%%%%%%%%%%
+\beginsection 3. How to load the package
+
+The package requires characters that come with \AmSTeX\ (see [3]);
+the following statement must be given before the package is loaded:
+¤\input amssym.def¤.  Then the package is loaded with the statement
+¤\input GFnotation¤.
+
+The package has two styles: the one that is used in the {\it
+Begriffsschrift\/} and the one that is used in the {\it Grundgesetze}.
+If you want to work with the style of the {\it Grundgesetze\/} several
+external flags are available.
+
+First, if only inferences without substitutions are needed the line
+¤\let\nosubst=t¤ should be entered before ¤GFnotation¤ is loaded. This
+avoids typesetting errors and saves some \TeX\ registers.  Second, the
+flag ¤\let\showrotation=t¤ can be set to output some terminal symbols
+of the {\it Grundgesetze\/} rotated. Then ¤\input rotate¤ (see [4])
+must be stated too.  Otherwise the symbols are not shown as rotated
+symbols (some DVI screen drivers can't do PS-rotation). The affected
+symbols are shown in Section~2g.  Third, the flag
+¤\let\fgefontsknown=t¤ can be set to indicate that the fge-fonts by
+J.~J.~Green (see~[5]) are available. Then some symbols of these fonts
+are used in the output. The affected symbols are shown in Section~2g.
+
+After the package has been loaded two flags can be set (independent of the
+style).
+\item{1.}¤\gfbslognotationtrue¤ writes all formulas, which are given in the
+short form, in their symbolic representation into the log file of the
+\TeX\ run.
+\item{2.}¤\gfbszeigestatstrue¤ writes a \TeX\ message for each formula in
+short form if its number of lines is a new maximum.
+
+By default the package activates the style that is used in the {\it
+Begriffsschrift}. To switch to the style of the {\it Grundgesetze\/}
+the global acting command ¤\toggleGGstyle¤ shall be given.
+
+Therefore a typical start is coded in the following way if the style
+of the {\it Begriffschrift\/} is required:
+\verbatim
+\input amssym.def
+\input GFnotation
+\gfbslognotationtrue % log short form formulas in symbolic representation
+\gfbszeigestatstrue  % inform about maximum number of lines of short form formulas
+\endverbatim
+
+Otherwise, the style of the {\it Grundgesetze\/} is started with
+\verbatim
+\input amssym.def
+%%% external flags:
+\let\nosubst=t       % substitutions aren't needed
+\let\showrotation=t \input rotate % activate this line if PS-rotation works
+%\let\fgefontsknown=t % activate this line if the fge-fonts are available
+\input GFnotation
+%%% internal flags:
+\gfbslognotationtrue % log short form formulas in symbolic representation
+\gfbszeigestatstrue  % inform about maximum number of lines of short form formulas
+%%% define the style of the output:
+\toggleGGstyle       % use the style of the Grundgesetze
+\endverbatim
+
+
+% %%%%%%%%%%%
+\beginsection 4. Shortcuts for letters
+
+The characters that Frege used (except the roman letters) are coded
+with two letter shortcuts.  The first letter indicates how the second
+letter is output.  Uppercase Greek letters are introduced by `g',
+lowercase Greek letters by `k', and the Fraktur letters by `d':
+¤$\gA$¤ outputs~$\gA$, ¤$\ka$¤ outputs~$\ka$, and ¤$\da$¤
+outputs~$\da$.
+
+Here is the list of the uppercase Greek letters; the coding follows~[6].
+\smallskip
+\+&¤$\gA$¤: $\gA$&  ¤$\gB$¤: $\gB$&  ¤$\gG$¤: $\gG$&  ¤$\gD$¤: $\gD$&  ¤$\gE$¤: $\gE$\cr
+\+&¤$\gZ$¤: $\gZ$&  ¤$\gH$¤: $\gH$&  ¤$\gJ$¤: $\gJ$&  ¤$\gI$¤: $\gI$&  ¤$\gK$¤: $\gK$\cr
+\+&¤$\gL$¤: $\gL$&  ¤$\gM$¤: $\gM$&  ¤$\gN$¤: $\gN$&  ¤$\gX$¤: $\gX$&  ¤$\gO$¤: $\gO$\cr
+\+&¤$\gP$¤: $\gP$&  ¤$\gR$¤: $\gR$&  ¤$\gS$¤: $\gS$&  ¤$\gT$¤: $\gT$&  ¤$\gU$¤: $\gU$\cr
+\+&¤$\gF$¤: $\gF$&  ¤$\gQ$¤: $\gQ$&  ¤$\gY$¤: $\gY$&  ¤$\gW$¤: $\gW$\cr
+
+For the Fraktur letters only a subset of the alphabets is provided;
+these are the letters that appear in the {\it Begriffsschrift\/} or in
+part~1 of Vol.~1 of the {\it Grundgesetze\/}:
+\smallskip
+\+&¤$\da$¤: $\da$&  ¤$\dc$¤: $\dc$&  ¤$\dd$¤: $\dd$&  ¤$\de$¤: $\de$&  ¤$\df$¤: $\df$\cr
+\+&¤$\dg$¤: $\dg$&  ¤$\dm$¤: $\dm$&  ¤$\dn$¤: $\dn$&  ¤$\ddo$¤: $\ddo$&¤$\ddp$¤: $\ddp$\cr
+\+&¤$\dq$¤: $\dq$&  ¤$\dr$¤: $\dr$&  ¤$\dt$¤: $\dt$&  ¤$\du$¤: $\du$&  ¤$\dF$¤: $\dF$\cr
+
+{\it Note\/}: Commands like ¤\dp¤ or ¤\do¤ shouldn't change their
+plain \TeX\ meaning. Therefore the commands for the letters `o' and
+`p' are build with two `d's.
+
+\begingroup\def\ds{{\frak s}} % keep this definition local
+You can add more letters using a simple
+¤\def¤. For example, to add $\ds$ declare ¤\def\ds{{\frak s}}¤.
+\endgroup
+
+
+% %%%%%%%%%%%
+\beginsection 5. Input of formulas using the
+                 ``symbolic representation'' (Begriffsschrift)
+
+This input format gives complete control over the output of the
+formulas.  But it requires some amount of typing.  All formulas are
+built from symbols and three of them are grouped into the argument of
+a control symbol.  The control symbol is the ¤\*¤.  (The original
+meaning as discretionary multiplication is kept in the new control
+word ¤\discretionarytimes¤.)
+
+In total there are 35 symbols. In the following list the parentheses
+contain the sequence ¤\*"#"¤ if symbol `{\tt\#}' is explained.  The
+first collection lists the important symbols that are used for
+hand-coding the formulas in Frege's notation.
+\smallskip
+% 11 symbols
+\item{\tt\char95 }(\*"_") is the empty space;
+\item{\tt-}(\*"-") is a horizontal line for the content stroke and the inference rule;
+\item{\tt\~}(\*"~") is a horizontal line with centered negation;
+\item{\tt+}(\*"+") is a horizontal line with two centered negation indicators (affirmation);
+\item{\tt:}(\*":") is the then-part of the condition;
+\item{\tt'}(\*"'") is the if-part of the condition;
+\item{\tt!}(\*"!") is a vertical line for the condition stroke;
+\item{\tt[}(\*"[") is a vertical line placed left and starts a horizontal line;
+\item{\tt|}(\*"|") is the vertical line for the substitution;
+\item{\tt3}(\*"3") are two vertical lines used for {\it definitions\/};
+\item{\tt=}(\*"=") are two horizontal lines.
+
+\smallskip\noindent
+The following symbols extend the basic list and can be used to
+fine-tune the output.
+\smallskip
+% 8 symbols (sum=19)
+\item{\tt"}(\*""") is a skip, that is, no output at all;
+\item{\tt(}(\*"(") negation but the indication of negation is moved to the left;
+\item{\tt)}(\*")") negation with the indicator moved to the right;
+\item{\tt<}(\*"<") negation: the indicator is placed at the left end;
+\item{\tt>}(\*">") negation: the indicator is placed at the right end;
+\item{\tt\^{}}(\*"^") affirmation with indicators moved to the left;
+\item{\tt/}(\*"/") affirmation with indicators moved to the right;
+\item{\tt]}(\*"]") is a vertical line placed right, that is, only the judgment stroke is printed.
+
+For the generality a letter must be given. Therefore the parentheses
+contain the sequence ¤\*#a.¤ (¤\*@a"¤ for {\tt @}). Instead of the
+letter `a' any other letter can be used that is available in the
+Fraktur font (see Section~4).  A triple for the generality must be
+started with one of the following symbols {\tt.,`;@}.  If it is not
+the {\tt @} then the symbol after the letter must be one of
+{\tt.,`;}\thinspace.
+\smallskip
+% 5 symbols (sum=24)
+\item{\tt.}(\*.a.) is a short vertical line;
+\item{\tt,}(\*,a.) is a short vertical line with a centered negation indicator;
+\item{\tt`}(\*`a.) represents negation but the indicator is moved to the left;
+\item{\tt;}(\*;a.) is a short vertical line with affirmation;
+\item{\tt @}(\*@a") signals (without any output) that a letter for the generality follows.
+
+{\it Note\/}: The letter `{\tt\ss}' is special. It uses the content of
+the token register ¤\dsz¤. For example, with the default ¤\dsz={\xi}¤
+¤\*.¤{\tt\ss}¤.¤ outputs \*.ß.. Of course, {\tt\ss} must be a letter
+so for plain \TeX\ the command ¤\catcode`\¤{\tt\ss}¤=11¤ must be
+entered before ¤\input GFnotation¤ is done.
+
+\Example1
+The formula \
+\vtop{%
+  \hbox{\strut\*[-:\*--- $\gA$}
+  \hbox{\strut\*__'\*.a. $f(\da)$}}
+of Section~1 can be coded in the following way:
+\verbatim
+\vtop{%
+  \hbox{\strut\*[-:\*--- $\gA$}
+  \hbox{\strut\*__'\*.a. $f(\da)$}}
+\endverbatim\Eend1
+
+The last list contains symbols that are used by the short form. The
+symbols do not try to have a mnemonic representation for their
+output. Most of these symbols can ``change'' and stand for one of two
+symbols from the above lists.
+\smallskip
+% 11 symbols (sum=35)
+\item{\tt0}negation either moved to the left or the right: {\tt0=()}
+\item{\tt1}affirmation: {\tt1=\^{}/}
+\item{\tt2}again affirmation: {\tt2=\^{}+}
+\item{\tt4}not required content strokes: {\tt4=-"}
+\item{\tt5}not required empty space: {\tt5=\char95"}
+\item{\tt6}judgment strokes: {\tt6=[]}
+\item{\tt7}negated generality: {\tt7=`,}
+\item{\tt8}again negation: {\tt8=<\~{}}
+\item{\tt9}represents a content stroke that has only one third of its usual length;
+\item{\tt*}is a skip whose length is multiplied by $5/3$ to get back into alignment after a {\tt9}; 
+\item{\tt\$} is used only with a generality and represents either a short content stroke or an empty space.
+
+
+% %%%%%%%%%%%
+\beginsection 6. Input for inference chains in the
+                 ``symbolic representation'' (Begriffsschrift)
+
+In order to typeset complete inferences several formulas must be
+positioned in a chain and the rule for the inference has to be entered.
+The construction of Example~1 with ¤\vtop¤, ¤\hbox¤, and ¤\strut¤ is
+shortened to a single command ¤\nlp¤. The terminal symbols become
+an argument of a second command ¤\ce¤.
+\smallskip
+\item{1.}¤\nlp<n>¤ starts a new line and sets the following text {\tt<n>} units to the right;
+\item{2.}¤\ce{<s>}¤ outputs the string {\tt<s>} with some spacing at the end of a line.
+
+\Example2
+This is the implementation of the inference in Section~1, that is
+\nlp4\*_[-\*-:-\ce{$\gA$}
+\nlp4\*___\*_'-\ce{$\gB$}
+\nlp4\*_[-\*---\ce{$\gB$}
+\nlp4\*---\*---\*---
+\nlp4\*_[-\*---\ce{$\gA$}\qquad:
+\smallskip
+\verbatim
+\nlp4\*_[-\*-:-\ce{$\gA$}
+\nlp4\*___\*_'-\ce{$\gB$}
+\nlp4\*_[-\*---\ce{$\gB$}
+\nlp4\*---\*---\*---
+\nlp4\*_[-\*---\ce{$\gA$} .
+\endverbatim\Eend1
+
+\noindent
+For complete inferences with substitutions more commands are
+required:
+\smallskip
+\item{3.}¤\ci{<s>}¤ is like ¤\ce¤ but must be used in the line and spaces that follow are ignored;
+\item{4.}¤\nlpc<n>{<s>}¤ acts like ¤\nlp<n>¤ and sets the string {\tt<s>} to the left in the white space;
+\item{5.}¤\fono{<m>}¤ outputs {\tt<m>} as the number of the formula at the right end of the previous line;
+\item{6.}¤\rep<n><f>¤ repeats the ¤\*¤-formula {\tt<f>} {\tt<n>} times;
+\item{7.}¤\bcc<n>/<p><m>:<c><f>\ecc¤ typesets an inference rule.
+{\tt<n>} is the position to the right, {\tt<m>} is a formula number used in the inference,
+and {\tt<f>} is the rule itself. The parameter {\tt<p>} is either `l', 'm', or `r' to
+position the formula number to the left, in the middle, or to the right.
+And {\tt<c>} is either `.'\ or `:'\ to output one or two colons after the formula number.
+
+\Example3
+The following code
+\Epause
+\verbatim
+     \nlp4\ci{\hss\thinspace58\hss}\rep3\*___\*_[-\*-:-\*---\*-:-\ce{$f(b)$}        
+\nlpc4{$f(A)$}\*_|_\*-:-\ci{$f(A)$}\rep2\*___\*_!_\*___\*_'-\ce{$g(b)$}        
+         \nlp4\*_|_\*_'-\ci{$g(A)$}\rep2\*___\*_'-\*.a.\*-:-\ce{$f(\da)$}      
+   \nlpc4{$c$}\*_|_\ci{$b$}        \rep3\*___\*___\*___\*_'-\ce{$g(\da)$}      
+        \bcc4/m30:.\rep3\*___\null      \rep6\*---\ecc
+   \nlpc4{$a$}\*_|_\ci{$f(b)$}     \rep2\*___\*_[-\*-:-\*-:-\*,a.\*-:-\ce{$f(\da)$} 
+   \nlpc4{$c$}\*_|_\ci{$g(b)$}     \rep2\*___\*___\*_!_\*_!_\*___\*_'-\ce{$g(\da)$} 
+   \nlpc4{$b$}\*_|_\*.a.\*-:-\ci{$f(\da)$}   \*___\*_!_\*_'-\*---\*--(\ce{$f(b)$}   
+         \nlp4\*_|_\*___\*_'-\ci{$g(\da)$}   \*___\*_'-\*---\*---\*---\ce{$g(b)$}   
+\fono{59}
+\endverbatim\Econt
+
+outputs formula~59 of the {\it Begriffsschrift}:
+\smallskip
+     \nlp4\ci{\hss\thinspace58\hss}\rep3\*___\*_[-\*-:-\*---\*-:-\ce{$f(b)$}        
+\nlpc4{$f(A)$}\*_|_\*-:-\ci{$f(A)$}\rep2\*___\*_!_\*___\*_'-\ce{$g(b)$}        
+         \nlp4\*_|_\*_'-\ci{$g(A)$}\rep2\*___\*_'-\*.a.\*-:-\ce{$f(\da)$}      
+   \nlpc4{$c$}\*_|_\ci{$b$}        \rep3\*___\*___\*___\*_'-\ce{$g(\da)$}      
+        \bcc4/m30:.\rep3\*___\null      \rep6\*---\ecc
+   \nlpc4{$a$}\*_|_\ci{$f(b)$}     \rep2\*___\*_[-\*-:-\*-:-\*,a.\*-:-\ce{$f(\da)$} 
+   \nlpc4{$c$}\*_|_\ci{$g(b)$}     \rep2\*___\*___\*_!_\*_!_\*___\*_'-\ce{$g(\da)$} 
+   \nlpc4{$b$}\*_|_\*.a.\*-:-\ci{$f(\da)$}   \*___\*_!_\*_'-\*---\*--(\ce{$f(b)$}   
+         \nlp4\*_|_\*___\*_'-\ci{$g(\da)$}   \*___\*_'-\*---\*---\*---\ce{$g(b)$}   
+\fono{59}\Eend0
+
+\noindent
+One more command is required for collections of inferences:
+\item{8.}¤\decollator<l>¤ outputs a thick line of width ¤0.<l>\hsize¤. The line is
+centered. It is preceded and followed by vertical space.
+
+\Example4
+Here are some inferences of the {\it Begriffsschrift\/}:
+\outof p3,0"1"with\thatis
+\formula p9|{..{..a.b}.a}
+\followswith p3"8"a.p8s5
+\substituting p3 d:a \whichgives
+\formula p9|{..{..a.a}.b}
+\named "26"
+\decollator4
+\outof p3,0"26"with b:{..{..a.b}.a} \thatis
+\formula p8|{..{=.{..a.a}}.{..{..a.b}.a}}
+\followswith p3"1"a:p8s5
+\formula p8|{=.{=.{..a.a}}}
+\named "27"
+
+The command ¤\decollator4¤ appears after formula~26.
+\Eend0
+
+
+% %%%%%%%%%%%
+\beginsection 7. Input of formulas using the ``short form'' 
+
+This input format reduces the amount of typing compared to the
+symbolic representation.  It follows given rules and produces as an
+intermediate step the code of the symbolic representation.
+
+The input is recursively entered using four constructions:
+\smallskip
+\item{1.}{\tt=<}sign{\tt>\char"7B<}formula{\tt>\char"7D} to add a
+signed content stroke in front of a formula;
+\item{2.}{\tt<}sign{\tt><}sign{\tt>\char"7B<}formula{\tt>\char"7D<}%
+                          sign{\tt>\char"7B<}formula{\tt>\char"7D}
+to build a signed condition from two signed formulas;
+\item{3.}{\tt*<}sign{\tt><}character{\tt><}sign{\tt>\char"7B<}%
+                           formula{\tt>\char"7D} to add a signed
+concavity in front of a signed formula;
+\item{4.}{\tt!\char92<}nameofdef{\tt><}arguments{\tt>} to insert a
+previously defined subformula.
+
+\noindent
+Here {\tt<}formula{\tt>} is either a valid formula constructed with
+the four rules or a terminal string (both are typeset in math mode)
+and {\tt<}sign{\tt>} is one of the following symbols:
+\item{\tt.} represents no sign;
+\item{\tt-} represents the negation;
+\item{\tt+} represents the affirmation.
+
+In rule~4 {\tt<}nameofdef{\tt>} is together with the preceding
+backslash a defined control word that has at most three arguments
+given in {\tt<}arguments{\tt>}.  The control word must define a part
+of a formula.  This rule implements {\sl macro expansion\/} to avoid
+retyping of often used parts in formulas.
+
+Most formulas are created by rules~2 and~3; rule~1 is only needed to
+type a single line.
+
+{\it Important note\/}: The braces around {\tt<}formula{\tt>} can be
+omitted if the formula is a terminal string that consists of a single
+token. Double curly braces are required around terminal strings that
+have more than five tokens.  But single braces must always be used for
+formulas in rules 1--3, which are not terminal strings.  (In Example~5
+below case~i shows that a single token needs no braces.  The cases ii
+and~iii show the use of single and double curly braces.)
+
+Formulas that are created by the above rules must be given to the
+following commands:
+\smallskip
+\item{1.}¤\frege<j>{<f>}¤ where {\tt<f>} is a formula created by the above
+stated rules and {\tt<j>} is either `{\tt.}'\ or `{\tt|}'.
+\item{2.}¤\formula p<n><j>{<f>}¤ adds a position parameter {\tt<p>} to
+move the formula {\tt<n>} units to the right.
+
+\noindent
+The formula {\tt<f>} is output as a judgment if {\tt<j>} equals
+{\tt|}.  The command ¤\frege¤ shall be used in running text,
+¤\formula¤ in vertical mode. But ¤\frege¤ doesn't start a paragraph;
+use ¤\indent¤ (or ¤\noindent¤) if ¤\frege¤ is the first item
+in a paragraph.
+
+\Example5
+\def\0#1{*.a.{#1(\da)}}
+Here are a few examples for all four rules:
+\smallskip
+\advance\leftskip by 20pt
+\item{i)}¤\frege|{=-\gA}¤ outputs \frege|{=-\gA}.
+\item{ii)}¤\frege.{-.\gA-{{g(\ka,\kb)}}}¤ outputs \frege.{-.\gA-{{g(\ka,\kb)}}}.
+\item{iii)}¤\frege.{*-a+{f(\da)}}¤ outputs \frege.{*-a+{f(\da)}}.
+\item{iv)}¤\def\0#1{*.a.{#1(\da)}}¤ together with ¤\frege|{-.\gA-{!\0f}}¤
+outputs \frege|{-.\gA-{!\0f}}.
+\smallskip
+\advance\leftskip by -20pt
+The output of iv) is nearly the formula of Section~1 (\frege|{..\gA.{!\0f}});
+it can be coded (without ¤\0¤) as ¤\frege|{..\gA.{*.a.{f(\da)}}}¤.
+\Eend0
+
+Of course, a formula in Frege's notation that has several lines is not
+easy to read in a sequential form. The periods and braces do not help
+to make the structure of that formula easy to recognize.
+I suggest to copy a Frege formula from left to right and from bottom
+to top and to use more than one line for the sequential coding.
+
+\Example6
+This example shows how to construct in a structured manner the short
+form of a given formula, which is written in Frege's notation.
+The formula is \frege|{.-{..\gA.\gB}.{*.a.{..\gG-\gD}}}.
+
+Step~1: The formula is a judgment and starts at the left with a
+condition, whose upper line contains a negation indicator.
+So the coding starts with
+\verbatim
+\frege|{.-{}.{}}
+\endverbatim
+
+Or write it in two lines to make the structure visible:
+\verbatim
+\frege|{.-{}
+         .{}}
+\endverbatim
+
+Step~2: The bottom part starts with a concavity, so the input becomes
+\verbatim
+\frege|{.-{}
+         .{*.a.{}}}
+\endverbatim
+
+Step~3: A simple condition comes after the concavity
+\verbatim
+\frege|{.-{}
+         .{*.a.{..\gG-\gD}}}
+\endverbatim
+
+And the final step is to add the condition in the upper part:
+\verbatim
+\frege|{.-{..\gA.\gB}
+         .{*.a.{..\gG-\gD}}}
+\endverbatim
+\medskip
+{\it Note\/}: The input
+\verbatim
+\frege|{..{-.\gA.\gB}
+         .{*.a.{..\gG-\gD}}}
+\endverbatim
+outputs
+\frege|{..{-.\gA.\gB}
+         .{*.a.{..\gG-\gD}}},
+which looks very similar to the given formula but, of course,
+the negation indicator in the upper part has moved a little bit
+to the right.
+\Eend0
+
+
+% %%%%%%%%%%%
+\beginsection 8. Inferences of the Begriffsschrift in the ``short form'' 
+
+Five commands are available to typeset inferences with the short form:
+\smallskip
+\item{1.}¤\outof p<n>,<o>"<m>"with<r>\thatis¤ starts the inference chain.
+The parameter {\tt<n>} is the number of units the output is moved to
+the right, {\tt<m>} is a number of a formula, {\tt<o>} is an offset to
+position the number {\tt<m>} {\tt<o>} lines lower, and {\tt<r>} is
+either empty or a space separated list of pairs {\tt v:F} to indicate
+the substitution of {\tt v} by the formula {\tt F}.
+\item{2.}¤\use p<n>"<m>"¤ is a shortcut of ¤\outof¤ if the parameters {\tt<o>}
+and {\tt<r>} are not needed; {\tt<o>} is set 0 and {\tt<r>} is empty.
+\item{3.}¤\followswith p<n>"<m>"a<c>p<N>s<l>¤ draws the inference rule and
+can be expressed in the ¤\bcc¤ macro of Section~6, no~7, as
+¤\bcc{<n>}/m{<m>}:<c>\rep(<N>-<n>)\*___\rep{<l>}\*---\ecc¤.
+\item{4.}¤\substituting p<n> <r>\whichgives¤ has the usual position parameter
+{\tt<n>} and a list of substitutions {\tt<r>} in the above described form {\tt
+v:F}.
+\item{5.}¤\named "<m>"¤ outputs the number {\tt<m>} as the number of the
+previous formula.
+
+An inference chain is typically typed with the sequence:
+\verbatim
+\outof ... with ... \thatis
+\formula ...
+\followswith ...
+\substituting ... \whichgives
+\formula ...
+\named ...
+\endverbatim
+
+\noindent
+or if no substitution in the first formula is required, the ¤\outof¤ line
+is replaced by the simpler ¤\use¤.
+
+\Example7
+The formula of Example~3
+\smallskip
+\outof p4,0"58"with f(A):{..{f(A)}.{g(A)}}
+                       c:b
+\thatis
+\formula p8|{..{..{f(b)}.{g(b)}}
+              .{*.a.{..{f(\da)}.{g(\da)}}}}
+\followswith p4"30"a.p8s6
+\substituting p4 a:{f(b)}
+                 c:{g(b)}
+                 b:{*.a.{..{f(\da)}.{g(\da)}}}
+\whichgives
+\formula p8|{..{..{*-a.{..{f(\da)}.{g(\da)}}}
+                 -{f(b)}}
+              .{g(b)}}
+\named "59"
+
+\bigskip
+has this coding:
+\verbatim
+\outof p4,0"58"with f(A):{..{f(A)}.{g(A)}}
+                       c:b
+\thatis
+\formula p8|{..{..{f(b)}.{g(b)}}
+              .{*.a.{..{f(\da)}.{g(\da)}}}}
+\followswith p4"30"a.p8s6
+\substituting p4 a:{f(b)}
+                 c:{g(b)}
+                 b:{*.a.{..{f(\da)}.{g(\da)}}}
+\whichgives
+\formula p8|{..{..{*-a.{..{f(\da)}.{g(\da)}}}
+                 -{f(b)}}
+              .{g(b)}}
+\named "59"
+\endverbatim\Eend1
+
+
+% %%%%%%%%%%%
+\beginsection 9. Terminal symbols of the Begriffsschrift
+
+In part~3 of the {\it Begriffsschrift\/} four symbols are
+defined. They are available as \TeX\ commands. The commands get more
+flexibility than the {\it Begriffsschrift\/} requires as all possible
+content can be addressed by parameters.
+
+\item{1.}¤\gfvererbe¤ with four parameters:
+¤$\gfvererbe\kd\ka{x(\ka)}{f(\kd,\ka)}$¤ outputs
+$\gfvererbe\kd\ka{x(\ka)}{f(\kd,\ka)}$.
+\item{2.}¤\gffolgt¤ with three parameters:
+¤$\gffolgt\kg\kb{f(x_\kg,y_\kb)}$¤ outputs $\gffolgt\kg\kb{f(x_\kg,y_\kb)}$.
+\item{3.}¤\gfgehoertan¤ with three parameters:
+¤$\gfgehoertan\kg\kb{f(x_\kg,z_\kb)}$¤ outputs
+$\gfgehoertan\kg\kb{f(x_\kg,z_\kb)}$.
+\item{4.}¤\gfeindeutig¤ with three parameters:
+¤$\gfeindeutig\kd\ke{f(\kd,\ke)}$¤ outputs $\gfeindeutig\kd\ke{f(\kd,\ke)}$.
+
+\noindent
+I use shortcuts for these special terminal symbols and reduce the
+number of parameters to the amount that is used in the text;
+see Example~11 below.
+
+
+% %%%%%%%%%%%
+\beginsection 10. Output style of the Grundgesetze
+
+\toggleGGstyle
+Frege made changes to the notation in his main work. A command and
+several flags are defined to switch from the style of the {\it
+Begriffsschrift\/} to the style of the {\it Grundgesetze}.
+\smallskip
+\item{1.}¤\toggleGGstyle¤ switches the styles; the default is the style of
+the {\it Begriffsschrift}. Several of the changes are global so even
+if the switch is made inside a group it shall be called a second time
+to switch it back. This happens when it is called for the first time:
+\itemitem{a)}¤\gfbsuseGGstyletrue¤ is set. Together with a call to
+¤\gfbsneuestriche¤ the thickness of the lines is changed.
+\itemitem{b)}¤\gfbskompakttrue¤ is set. This reduces the width of the formulas
+that are input with the short form.
+\itemitem{c)}¤\gfggschlussweisetrue¤ is set. This activates more symbols
+to express the eight inferences of the {\it Grundgesetze\/} (see Section~12).
+\itemitem{d)}¤\gfbsfonoohnepunkttrue¤ is set. No period after the number of
+a formula is set in ¤\fono¤ or ¤\named¤.
+\itemitem{e)}¤\gfbsnegdirekttrue¤ is set. The negation indicator touches
+the content stroke.
+\item{2.}The flags can be set individually, for example, to get a compact output
+but keep the line thicknesses etc.\ of the {\it Begriffsschrift}.
+\item{3.}To control the compact output of the generality when the flag
+¤\gfbskompakttrue¤ is set more flags are available. Examples are given to
+show how these flags influences the output.
+\itemitem{$\alpha$)}The output is not compact if ¤\gfbskeinekompaktehoehlungtrue¤
+is set. At the left the flag is false and at the right true; the source code
+is ¤\frege|{..{*-a.{\gY(\da)}}.{*.e.{\gF(\de)}}}¤:
+\smallskip\indent\indent
+{\gfbskompakttrue \gfbskeinekompaktehoehlungfalse
+\frege|{..{*-a.{\gY(\da)}}.{*.e.{\gF(\de)}}}
+}\quad
+{\gfbskompakttrue \gfbskeinekompaktehoehlungtrue
+\frege|{..{*-a.{\gY(\da)}}.{*.e.{\gF(\de)}}}
+}.
+\itemitem{$\beta$)}The output of the short form rule~1 (with the {\tt=}) can
+have no effect except if the flag named ¤\gfbsaussagesichtbartrue¤ is set.
+At the left the flag is false and at the right true; the line reads
+¤\frege.{=.a} vs \frege.{=.{=.a}}¤:
+{\gfbskompakttrue \gfbsaussagesichtbarfalse
+\frege.{=.a} vs \frege.{=.{=.a}}
+}\quad
+{\gfbskompakttrue \gfbsaussagesichtbartrue
+\frege.{=.a} vs \frege.{=.{=.a}}
+}
+
+{\it Note\/}: Both input forms, the symbolic representation and the
+short form, can be used with this style. But only the short form
+creates smaller formulas if ¤\gfbscompakttrue¤ is set. The width of a
+formula in symbolic representation must be changed manually if it is
+not coded with the symbols of the last list in Section~5.
+
+\Example8
+Here is the example of Sections 1 and~5; it is coded in the
+short form as ¤\frege|{..\gA.{*.a.{f(\da)}}}¤:
+\frege|{..\gA.{*.a.{f(\da)}}}.
+\Eend0
+
+
+% %%%%%%%%%%%
+\beginsection 11. Setting formulas in parentheses and brackets (Grundgesetze)
+
+In the {\it Grundgesetze\/} some formulas must be placed in
+parentheses or brackets. A few commands are provided to make this an
+easy task.
+\smallskip
+\item{1.}¤\pfrege<x><j>{<f>}¤ acts like ¤\frege<j>{<f>}¤ and adds parentheses around
+this formula. The result is stored in a box with the number {\tt<x>}. In total
+there are four boxes for this task.
+\item{2.}¤\bfrege<y><j>{<f>}¤ is like ¤\pfrege¤ but the formula is placed between
+brackets. The pool of boxes is independent from the ¤\pfrege¤ boxes and there are
+four boxes.
+\item{3.}¤\pparens<x><M>¤ places the math {\tt<M>} with parentheses in the box
+numbered {\tt<x>}. The boxes are taken from the pool that is available for
+¤\pfrege¤.
+\item{4.}¤\bparens<y><M>¤ acts like ¤\pparens¤ but it uses brackets and the
+pool of boxes of ¤\bfrege¤.
+\item{5.}¤\pfbox<x>¤ outputs box number {\tt<x>} from the ¤\pfrege¤ pool.
+\item{6.}¤\bfbox<y>¤ outputs the box {\tt<y>} from the pool used by ¤\bfrege¤.
+
+\Example9
+The following formula appears on page~115 of the {\it Grundgesetze},
+vol.~1.
+\Epause
+\smallskip
+\begingroup
+\pfrege1.{.-{\ke=c}.{\ke\G^v}}
+\pfrege2.{.-{\ke=b}.{\ke\G^u}}
+\bfrege1.{-.{\ke=n}.{{\ke\G^\kesl\pfbox1}}}
+\bfrege2.{-.{\ke=m}.{{\ke\G^\kesl\pfbox2}}}
+\bfrege3.{--{{\ke\G^(\ka\G^q)}}-{..{\ke=b}-{\ka=c}}}
+\pfrege1.{-.{\ke=n}.{{\ke\G^\kesl\pfbox1}}}
+\pfrege2.{-.{\ke=m}.{{\ke\G^\kesl\pfbox2}}}
+\pparens3{\kesl\bfbox1\G^\G>q}
+\pparens4{\bfbox1\G^\G>\kasl\kesl\bfbox3}
+
+$$\frege|{..{..{..{{\kesl\pfbox2\G^\pfbox4}}
+                 -{{b\G^\kesl\pfbox2}}}
+              -{{c\G^\kesl\pfbox1}}}
+           .{{\kesl\pfbox2\G^\pfbox3}}}
+$$
+\endgroup
+\Econt
+And here is the source:
+\verbatim
+\pfrege1.{.-{\ke=c}.{\ke\G^v}}
+\pfrege2.{.-{\ke=b}.{\ke\G^u}}
+\bfrege1.{-.{\ke=n}.{{\ke\G^\kesl\pfbox1}}}
+\bfrege2.{-.{\ke=m}.{{\ke\G^\kesl\pfbox2}}}
+\bfrege3.{--{{\ke\G^(\ka\G^q)}}-{..{\ke=b}-{\ka=c}}}
+\pfrege1.{-.{\ke=n}.{{\ke\G^\kesl\pfbox1}}}
+\pfrege2.{-.{\ke=m}.{{\ke\G^\kesl\pfbox2}}}
+\pparens3{\kesl\bfbox1\G^\G>q}
+\pparens4{\bfbox1\G^\G>\kasl\kesl\bfbox3}
+\endverbatim\smallskip\verbatim
+$$\frege|{..{..{..{{\kesl\pfbox2\G^\pfbox4}}
+                 -{{b\G^\kesl\pfbox2}}}
+              -{{c\G^\kesl\pfbox1}}}
+           .{{\kesl\pfbox2\G^\pfbox3}}}
+$$\endverbatim\Eend1
+
+
+% %%%%%%%%%%%
+\beginsection 12. Inferences of the Grundgesetze
+
+The list entry~1c of Section~10 needs some explanation as it extends
+the list of available symbols for inferences. Two of the symbols have
+no output ({\tt?}\ and {\tt>}). In the following list the text in
+parentheses contains the sequence ¤\*?#"¤ or ¤\*?>#¤ for the symbol
+`{\tt\#}'.
+\smallskip
+\item{\tt ?} (must be the first in the triple) signals that the next
+two symbols build an inference line in the style of the {\it
+Grundgesetze\/}. Such symbols use 50\% more space than ordinary symbols.
+\item{\tt -}(\*?-") is a single horizontal stroke;
+\item{\tt .}(\*?.") is a single (centered) period;
+\item{\tt =}(\*?=") is a double stroke;
+\item{\tt *}(\*?*") is a single stroke in the height of the upper line of the
+double stroke;
+\item{\tt\char95 }(\*?_") is an empty space;
+\item{\tt "}(\*?"") is a skip;
+\item{\tt >}has no output; the next symbol must be a {\sl transition-sign\/}:
+\itemitem{\tt x}(\*?>x) it must follow a {\tt >};
+\itemitem{\tt u}(\*?>u) it must follow a {\tt >}.
+
+\noindent
+Inferences of the {\it Grundgesetze\/} are separated by a new type of line:
+\item{1.}¤\separator¤ outputs a thick line with a centered dot.
+
+\Example{10}
+Here is an inference chain from the {\it Grundgesetze\/}:
+\smallskip
+\advance\rightskip by 2\rightskip
+\use p3"III"
+\formula p5|{.-{*.f.{..{\df(a)}.{\df(a)}}}-{a=a}}
+\nlp{6.5}\*?>x
+\formula p5|{..{a=a}.{*.f.{..{\df(a)}.{\df(a)}}}}
+\named "$\ka$"
+\separator
+\use p3"I"
+\formula p5|{..{f(a)}.{f(a)}}
+\nlp5\*?_"\*?>u
+\formula p5|{*.f.{..{\df(a)}.{\df(a)}}}
+\named"$\kb$"
+\bcc3/m$\ka$:.\*__"\rep3\*?--\ecc
+\formula p5|{=.{a=a}}
+\named"IIIe"
+
+\rightskip=\leftskip
+\medskip
+And this is the code:
+\verbatim
+\use p3"III"
+\formula p5|{.-{*.f.{..{\df(a)}.{\df(a)}}}-{a=a}}
+\nlp{6.5}\*?>x
+\formula p5|{..{a=a}.{*.f.{..{\df(a)}.{\df(a)}}}}
+\named "$\ka$"
+\separator
+\use p3"I"
+\formula p5|{..{f(a)}.{f(a)}}
+\nlp5\*?_"\*?>u
+\formula p5|{*.f.{..{\df(a)}.{\df(a)}}}
+\named"$\kb$"
+\bcc3/m$\ka$:.\*__"\rep3\*?--\ecc
+\formula p5|{=.{a=a}}
+\named"IIIe"
+\endverbatim\Eend1
+
+
+% %%%%%%%%%%%
+\beginsection 13. Terminal symbols of the Grundgesetze
+
+The {\it Grundgesetze\/} has not such complex constructions as the
+{\it Begriffsschrift\/} (see Section~9). But it contains a lot of
+special symbols.
+\smallskip
+\settabs 2 \columns
+\def\hsnor#1.{\hbox to 3em{\hss#1.}\ }
+\+\hsnor1.¤\G!¤: $\G!\kx$.&
+\hsnor16.¤\Gfm¤: $u\Gfm q$.\cr
+\+\hsnor2.¤\kasl¤: $\kasl\gF(\ka)$.&
+\hsnor17.¤\Gsm¤: $p\Gsm q$.\cr
+\+\hsnor3.¤\G^¤: $a\G^b$.&
+\hsnor18.¤\G<¤: $p\G<q$.\cr
+\+\hsnor4.¤\GI¤: $\GI p$.&
+\hsnor19.¤\Gy¤: $p\Gy q$.\cr
+\+\hsnor5.¤\G>¤: $\G>p$.&
+\hsnor20.¤\Ge¤: $p\Ge q$.\cr
+\+\hsnor6.¤\GU¤: $\GUorg p$ (or $\GU p$).&
+\hsnor21.¤\Gc¤: $p\Gc q$.\cr
+\+\hsnor7.¤\Gn¤: $\Gnorg u$ (or $\Gn u$).&
+\hsnor22.¤\Gmf¤: $p\Gmf q$.\cr
+\+\hsnor8.¤\G0¤: $\G0$.&
+\hsnor23.¤\G*¤: $\G*t$.\cr
+\+\hsnor9.¤\G1¤: $\G1$.&
+\hsnor24.¤\G6¤: $\G6s$.\cr
+\+\hsnor10.¤\Gbf¤ or ¤\Gff¤: $\Gbf$.&
+\hsnor25.¤\Gf¤: $\Gf s$.\cr
+\+\hsnor11.¤\G-¤: $\G-q$.&
+\hsnor26.¤\GF¤: $s\GF u$.\cr
+\+\hsnor12.¤\G~¤: $\G~q$.&
+\hsnor27.¤\Gl¤: $s\Gl u$.\cr
+\+\hsnor13.¤\G_¤: $p\G_q$.&
+\hsnor28.¤\Gp¤: $\Gp s$.\cr
+\+\hsnor14.¤\Guu¤: $\Guu$.&
+\hsnor29.¤\Gss¤ or ¤\Gsz¤: $s\Gss p$.\cr
+\+\hsnor15.¤\G;¤: $o\G;a$.\cr
+
+\noindent
+The symbols are constructed with the Computer Modern
+and \AmSTeX\ fonts.  But with the external flag ¤\fgefontsknown¤ the
+second symbol in numbers 6 and 7 is selected (see Section~3).
+
+Several symbols are rotated and this requires the package {\tt
+rotate.tex}. The output of unrotated symbols is activated by default;
+the external flag ¤\let\showrotation=t¤ must be given to activate
+rotation (see Section~3).
+\toggleGGstyle
+
+
+% %%%%%%%%%%%
+\beginsection 14. Typesetting definitions
+
+The following command is provided to typeset definitions:
+\smallskip
+\item{1.}¤\gfdefinition p<n><J> <j>{<f>}=<e>¤ outputs the formula
+¤\frege<j>{<f>}¤ in parentheses and sets it equal to the new symbol
+{\tt<e>} if the parameter {\tt<J>} is either {\tt|} to type a judgment
+or {\tt.}\ for a definition.  In the style of the {\it Grundgesetze\/}
+the parameter {\tt<J>} can also be {\tt:}. In this case write ¤<j><f>¤
+and this is interpreted as a math formula and not as a formula created
+by ¤\frege¤.  The parameter {\tt<n>} is the position parameter to move
+the output the given amount of units to the right.
+
+\noindent
+The output of a definition depends on the style.
+
+\Example{11}
+The definition in formula~69 of the {\it Begriffsschrift\/} is:
+\smallskip
+\def\1#1{{\gfvererbe\kd\ka{#1(\ka)}{f(\kd,\ka)}}}
+\gfdefinition p4. .{*.d.{..{*.a.{..{F(\da)}.{{f(\dd,\da)}}}}.{F(\dd)}}}={\1F}
+\smallskip
+In the style of the {\it Grundgesetze\/} the output is:
+\smallskip
+\toggleGGstyle
+\def\1#1{{\gfvererbe\kd\ka{#1(\ka)}{f(\kd,\ka)}}}
+\gfdefinition p4. .{*.d.{..{*.a.{..{F(\da)}
+                                  .{{f(\dd,\da)}}}}
+                          .{F(\dd)}}}={\1F}
+\toggleGGstyle
+\smallskip
+And here is the source (note that ¤\1¤ is a normal macro and needs no
+macro expansion):
+\verbatim
+\def\1#1{{\gfvererbe\kd\ka{#1(\ka)}{f(\kd,\ka)}}}
+\gfdefinition p4. .{*.d.{..{*.a.{..{F(\da)}
+                                  .{{f(\dd,\da)}}}}
+                          .{F(\dd)}}}={\1F}
+\endverbatim\Eend1
+
+\Example{12}
+Here is an example of the {\it Grundgesetze}, in which the {\tt<J>} is
+a colon.
+\smallskip
+\advance\rightskip by 2\rightskip
+\toggleGGstyle
+\gfdefinition p4: \kesl(o\G^(a\G^\ke))={o\G;a}
+\named "$\gX$"
+\toggleGGstyle
+\smallskip
+\rightskip=\leftskip
+And this is the source:
+\verbatim
+\gfdefinition p4: \kesl(o\G^(a\G^\ke))={o\G;a}
+\named "$\gX$"
+\endverbatim\Eend1
+
+
+% %%%%%%%%%%%
+\beginsection 15. Commands to improve page breaks
+
+The formulas are never broken. A page or column break must appear
+at a decollator, separator, or after an inference rule. To gain some
+space the formulas can be typeset in a smaller height and depth.
+(¤\offinterlineskip¤ should be set.)
+\smallskip
+\item{1.}¤\gfbssetzeabstand<h><d>¤ sets the height and depth between the lines to
+{\tt<h>}\thinspace pt and {\tt<d>}\thinspace pt, resp.;
+\item{2.}¤\gfbsreduziereabstandum<nn>¤ reduces the height and depth each by {\tt<nn>}\%
+({\tt<nn>} is a two-digit number);
+\item{3.}¤\gfbsabstandzuruecksetzen¤ sets height and depth to the values of ¤\strutbox¤.
+
+\Example{13}
+The right formula uses ¤\gfbsreduziereabstandum20¤:
+\smallskip
+\begingroup
+\offinterlineskip
+\setbox0=\hbox to .3\hsize{\vtop to 30pt{%
+               \nlp4\*_[-\*-:-\*---\ce{$a$}
+               \nlp4\*___\*_'-\*-:-\ce{$c$}
+               \nlp4\*___\*___\*_'-\ce{$e$}\vss}\hss}
+\setbox1=\hbox to .3\hsize{\vtop to 30pt{%
+               \nlp1\*_[-\*-:-\*---\ce{$a$}
+               \gfbsreduziereabstandum20
+               \nlp1\*___\*_'-\*-:-\ce{$c$}
+               \nlp1\*___\*___\*_'-\ce{$e$}\vss}\hss}
+\centerline{\box0 \box1 }
+\gfbsabstandzuruecksetzen
+\endgroup
+
+And this is the code:
+\verbatim
+\offinterlineskip
+\setbox0=\hbox to .3\hsize{\vtop to 30pt{%
+               \nlp4\*_[-\*-:-\*---\ce{$a$}
+               \nlp4\*___\*_'-\*-:-\ce{$c$}
+               \nlp4\*___\*___\*_'-\ce{$e$}\vss}\hss}
+\setbox1=\hbox to .3\hsize{\vtop to 30pt{%
+               \nlp1\*_[-\*-:-\*---\ce{$a$}
+               \gfbsreduziereabstandum20
+               \nlp1\*___\*_'-\*-:-\ce{$c$}
+               \nlp1\*___\*___\*_'-\ce{$e$}\vss}\hss}
+\centerline{\box0 \box1 }
+\gfbsabstandzuruecksetzen
+\endverbatim\Eend1
+
+
+% %%%%%%%%%%%
+\beginsection 16. List of parameters
+
+Nearly all aspects of the lines that build the structure of Frege's
+notation is controlled by parameters. They can be changed to fit
+better with a certain type of font. But note that a couple of tests
+have been made with these values to guarantee, for example, that the
+affirmation can be placed in front of a quantification.\\
+
+\noindent
+Here is the list of registers that make up the style of the
+{\it Begriffsschrift}.
+\item{1.}$¤\gfbsvolleeinheit¤=\rm0.57\,em$; width of one ¤\*¤ triple
+\item{2.}$¤\gfbsraise¤=\rm0.5\,ex$; height of the horizontal line
+\item{3.}$¤\gfbsneg¤=\rm0.25\,ex$; height of the negation indicator
+\item{4.}$¤\gfbsstrichdicke¤=\rm0.5\,pt$; thickness of the horizontal line
+\item{5.}$¤\gfbsurteildicke¤=\rm1\,pt$; thickness of the judgment stroke\\
+\item{6.}$¤\gfbsuht¤=\rm1.5\,ex$; height of the judgment stroke\\
+\item{7.}$¤\gfbsudp¤=\rm0.5\,ex$; depth of the judgment stroke\\
+\item{8.}$¤\gfbsersetzungdicke¤=\rm0.8\,pt$; thickness of the substitution line\\
+\item{9.}$¤\gfbsdefdicke¤=\rm0.75\,pt$; thickness of the definition strokes
+\item{10.}$¤\gfbsschlussabstand¤=\rm2.5\,pt$; distance of double lines in an inference
+\item{11.}$¤\gfbsschlussdicke¤=\rm0.8\,pt$; thickness of the second line in an inference
+\item{12.}$¤\gfbsdpabstand¤=\rm0.2\,em$; distance between colons in front of an inference
+\smallskip
+\item{13.}$¤\gfbsmaxanzahlzeilen¤=25$; the maximal amount of lines
+in a single formula of the short form (the package declares for each
+line one or two token and skip registers; two registers of each kind
+are needed if substitutions are allowed);
+\item{14.}$¤\gfbsnegpct¤=70$; when ¤\ifgfbsnegdirect¤ is set to false the negation
+indicator has only a height of this percentage so that a gap occurs.
+\smallskip
+\noindent
+And this is the list of additional dimen parameters for the style of
+the {\it Grundgesetze}.
+\item{15.}$¤\gfggstrichdicke¤=\rm0.58\,pt$; common line thickness
+\item{16.}$¤\gfggraise¤=\rm0.14\,ex$; height of horizontal line
+\item{17.}$¤\gfggneg¤=\rm0.47\,ex$; height of negation indicator
+\item{18.}$¤\gfgguht¤=\rm1.4\,ex$; height of the judgment stroke
+\item{19.}$¤\gfggudp¤=\rm0.9\,ex$; depth of the judgment stroke
+\item{20.}$¤\gfggdpabstand¤=\rm0.06\,em$; distance between colons in front of an inference
+
+
+% %%%%%%%%%%%
+\beginsection 17. Related work
+
+Other people have worked on the problem to typeset Frege's notation
+in \TeX\ too. J.~Parsons has developed a package {\it begriff.sty\/}
+for \LaTeX\ (see [7]). Later the package was improved by
+Q.~Pamp~([8]). A team that translated the {\it Grundgesetze\/} created
+its own package from {\it begriff.sty\/} and called it {\it
+grundgesetze.sty\/} (see [9]). It uses the fonts [5] that J.~J.~Green
+has developed for the special terminal symbols in the {\it
+Grundgesetze}.
+
+
+% %%%%%%%%%%%
+\beginsection 18. References
+
+\raggedright\frenchspacing
+\item{[1]}Gottlob Frege,
+   {\sl Begriffsschrift, eine der arithmetischen nachgebildete Formelsprache
+   des reinen\hfil\break Denkens\/}
+   (Halle an der Saale: Louis Nebert, 1879)
+\item{}``Begriffsschrift, a formula language, modeled upon that of arthmetic, for
+   pure thought,'' in: Jean van Heijenoort (ed.),
+   {\sl From Frege to G\"odel: A Sourcebook in Mathematical Logic,
+   1879--1931\/},\hfil\break(Cambridge, MA: Harvard University Press, 1967), 1--82;
+   translation by S. Bauer-Mengelberg    
+
+\item{[2]}Gottlob Frege,
+   {\sl Grundgesetze der Arithmetik --- begriffsschriftlich abgeleitet\/}
+   (Jena: Hermann Pohle, Volume 1 1893, Volume 2 1903)
+\item{}{\sl Basic Laws of Arithmetic\/} (Oxford: Oxford Univ. Press, 2013);
+   translation by Philip A. Ebert, Marcus Rossberg, Crispin Wright
+   
+\item{[3]}American Mathematical Society, {\tt amstex},
+   ¤http://www.ams.org/publications/authors/tex/tex¤ or
+   ¤http://www.ctan.org/tex-archive/macros/amstex¤
+   (accessed: 2014-11-29)
+
+\item{[4]}{\tt rotate},
+   ¤http://www.ctan.org/tex-archive/macros/plain/contrib/misc¤
+   (accessed: 2014-11-29)
+
+\item{[5]}J. J. Green, {\tt fge},
+   ¤http://www.ctan.org/tex-archive/fonts/fge¤
+   (accessed: 2014-11-29)
+
+\item{[6]}Silvio Levy, ``Using Greek fonts with \TeX,''
+   TUGboat {\bf 9,1} (1988), 20--24
+
+\item{[7]}Josh Parsons, {\tt begriff.sty},
+   ¤http://www.ctan.org/tex-archive/macros/latex/contrib/begriff¤
+   (accessed: 2014-11-29)
+
+\item{[8]}Quirin Pamp, {\tt frege.sty},
+   ¤http://www.ctan.org/tex-archive/macros/latex/contrib/frege¤
+   (accessed: 2014-11-29)
+
+\item{[9]}Marcus Rossberg, {\tt grundgesetze.sty},
+   ¤http://www.ctan.org/tex-archive/macros/latex/contrib/¤\hfil\break¤grundgesetze¤
+   (accessed: 2014-11-29)
+
+\bye
+% Local Variables:
+% coding: iso-latin-9-unix
+% End:

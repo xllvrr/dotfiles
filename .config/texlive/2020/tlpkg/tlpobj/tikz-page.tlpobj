@@ -1,0 +1,27 @@
+name tikz-page
+category Package
+revision 42039
+shortdesc Small macro to help building nice and complex layout materials
+longdesc The package provides a small macro to help building nice and
+longdesc complex layout materials.
+containersize 3600
+containerchecksum be0e43fc329a014b11fce907c6b073f5f4be64b4da4b184705aff2c08d82c1e644056491d01d59ef0ef8a22b4b4c3f22b9012953e00802a9b697a10f0a2f4920
+doccontainersize 564660
+doccontainerchecksum 896da337485c89508e7cb2adf377090b768beded3360a730a5a9c2400db73866b01e0091aaaaf8ce25b7444bf5c5a243f5eeff444d4588a4f8f8b5ac8aa9cdc9
+docfiles size=142
+ texmf-dist/doc/latex/tikz-page/Makefile
+ texmf-dist/doc/latex/tikz-page/README
+ texmf-dist/doc/latex/tikz-page/README.md details="Readme"
+ texmf-dist/doc/latex/tikz-page/example.png
+ texmf-dist/doc/latex/tikz-page/tikz-page.pdf details="Package documentation"
+srccontainersize 6820
+srccontainerchecksum 34741f8aec629a8d7929372f1fc5b51ffcef4d95fb95c039c9ba96e4fe05db366c09c88b6987b57ae0573ed067947e2a375f0bea96a74653133abba850453593
+srcfiles size=8
+ texmf-dist/source/latex/tikz-page/tikz-page.dtx
+runfiles size=4
+ texmf-dist/tex/latex/tikz-page/tikz-page.sty
+catalogue-contact-repository https://github.com/renard/tikz-page/
+catalogue-ctan /graphics/pgf/contrib/tikz-page
+catalogue-license lppl1.3
+catalogue-topics pgf-tikz
+catalogue-version 1.0

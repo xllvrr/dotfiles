@@ -1,0 +1,482 @@
+%
+%
+% HOW TO DO A TALK IN TeX
+%
+% Author: Matthias Meister
+% Version 2.2.1, February 2019
+%
+% This file is part of a work distributed under the LaTeX Project Public License
+%
+
+\input present 		   % Load presentation specific macros
+\input present-transitions % Load macros for transitions.
+
+\setcolour\textcolour
+\setbgcolour\backgroundcolour
+\overfullrule=0pt
+%\WideAspect
+\vskip20mm plus 5mm minus 5mm
+\line{\pagelink{NextPage}{\hfil\titlefont How To Do A Talk In \TeX\hfil}}
+\vskip 5mm plus 2mm minus 1mm
+\line{\hfil\font\subtitlefont=cmssbx10 at 15pt\subtitlefont One Of Many Solutions\hfil}
+\vskip 5mm plus 2mm minus 1mm
+\line{\hfil\linkbarfont Version 2.2.1\hfil}
+\vskip 20mm plus 2mm minus 1mm
+\line{\hfil\normalfont Matthias Meister\hfil}\target{title}
+\vskip 5mm plus 2mm minus 1mm
+\line{\hfil\normalfont February 2019\hfil}
+\NewSlide
+\pageno=1% Don't want to count the titlepage
+\normalfont
+\def\LinkBar{} 	% LinkBar is left part of the footline, and currently is empty
+%%
+%%
+%%
+\SlideTitle{\hfill Motivation}%
+\SlideFoot 	% "Activates" the footline, titlepage had an empty footline
+\vglue7mm
+\leftskip5mm
+\item{$\bullet$}Make it possible to prepare presentations in \TeX
+\vskip3mm
+\item{$\bullet$}Without having to learn lots of extra syntax
+\vskip3mm
+\item{$\bullet$}By using simple macros that can easily be adapted to one's needs, maybe for each presentation prepared
+\vskip3mm
+\item{$\bullet$}Without restricting the possibilities that \TeX\ offers
+\NewSlide
+\SlideTitle{\hfil Requirements}
+\font\cdfo=cmtt12
+\def\codecolour{1.0 0.0 1.0}
+\def\cf{\setcolour\codecolour\cdfo}
+\leftskip0pt
+You need the program {\cf pdftex}, which probably is included in your \TeX-distribution.
+\vskip3mm
+You need the file {\cf present.tex}, which is to be {\cf\char'134input} at the beginning of your source code.
+The file can for example be obtained from \weblink{http://www.ctan.org}{ctan.org}.
+\vskip3mm
+You furthermore need a pdf-viewer with fullscreen display capabilities, e.g. {\cf xpdf}.
+\vskip5pt
+\att{Warning: Some pdf-viewers do not handle links in a document properly.}
+%%
+%%
+%%
+\NewSlide
+\SlideTitle{\hfil Basic Examples}
+You can type text as usual, inline equations $a^2+b^2=c^2$, displayed equations
+$$
+\exp(z)=\sum_{n=0}^\infty {z^n\over n!}=\lim_{n\to\infty}\Big(1+{z\over n}\Big)^n
+$$
+and tables
+\vskip0.5\baselineskip
+\moveright2cm\vbox{\offinterlineskip
+\halign{\vrule width 0pt height12pt depth3pt\kern5pt # &\vrule\hfil\kern5pt #\kern5pt\hfil 
+&\vrule\hfil\kern5pt #\kern5pt\hfil\cr
+& $x$ & $\Delta x$\cr
+\noalign{\hrule}
+A & 1.03 & 0.07 \cr
+\noalign{\hrule}
+B & 2.05 & 0.06 \cr
+}}\vskip5pt
+So you probably can use \TeX\ in the ordinary fashion; just run {\cf pdftex} on your source instead of {\cf tex}.
+\NewSlide
+You can include images easily:\vskip20pt plus 3pt minus 10pt
+\hbox{\image[width3cm]{Stern.png}\hskip5mm plus 2mm minus 2mm A pixel image (png)}
+\vskip10pt\hrule
+\hbox{A vector image (pdf)\hskip5mm plus 2mm minus 2mm\image[width3cm]{Sagnac.pdf}}
+\NewSlide
+%%%
+%%%
+%%%
+\SlideTitle{\hfil Ordinary stuff}
+You type text, equations, and so on as usual in \TeX. Keep in mind, though, that the effective paper size is 
+rather small (12cm wide, 9cm high in standard configuration).
+\vskip10pt plus 5pt minus 10pt
+The paper size is small, because you rely on the fullscreen mode of your pdf-viewer to blow the slide up to full 
+screen size, thus also automatically enlarging the fonts.
+\vskip10pt plus 5pt minus 10pt
+Your macros should work (unless there is a collision of names), because what you are doing is creating an ordinary
+pdf-file with {\cf pdftex}, for viewing it with a pdf-viewer.
+\vskip10pt plus 5pt minus 10pt
+You start a new slide with {\cf\char'134 NewSlide}. If you use {\cf\char'134 NewFrame}, it has almost the same effect, only
+the slide number doesn't get increased.
+\NewSlide
+%%%
+%%%
+%%%
+\SlideTitle{\hfil Fonts}
+{\cf present.tex} defines the following fonts:\vskip5pt
+{\openup2pt
+\halign{#\hfil\kern5pt&#\hfil\kern5pt&#\hfil\cr
+Font Command & Purpose & Default Value\cr
+{\cf\char'134 titlefont} & presentation title & {\cf cmssbx10 at 20pt}\cr
+{\cf\char'134 slidetitlefont} & title of a slide & {\cf cmssbx10}\cr
+{\cf\char'134 normalfont} & ordinary text & {\cf cmss12}\cr
+{\cf\char'134 linkbarfont} & text in {\cf\char'134 LinkBar} & {\cf cmss8}\cr
+{\cf\char'134 it} & italic text & {\cf cmti12}\cr
+{\cf\char'134 rm} & roman text in math & {\cf cmr}\cr
+}}
+\vskip10pt
+Of course you can define further font commands or redefine the existing ones.
+The default fonts are used in this presentation, so you see what they look like.
+\NewSlide
+%%%
+%%%
+%%%
+\SlideTitle{\hfil Colours}
+Colours are defined as control sequences, e.g.
+\vskip5pt
+{\cf\char'134def\char'134mycolour\char'173}{\it R G B\/}{\cf\char'175}
+\vskip5pt
+where {\it R G B} are the red, green, and blue values of the colour defined, with
+$0\leq R, G, B\leq 1$.
+\vskip5pt
+Colours are used in these ways:
+\vskip5pt
+{\cf\char'134setcolour\char'134mycolour} 
+
+to set the colour of following text, grouping is respected
+\vskip5pt
+{\cf\char'134coloured\char'134mycolour\char'173}{\it Stuff\/}{\cf\char'175} 
+
+to set {\it Stuff} in colour {\cf\char'134mycolour}
+\vskip5pt
+{\cf\char'134setbgcolour\char'134mycolour}
+
+to set the colour of the background
+\NewSlide
+%%%
+%%%
+%%%
+The following colours are
+defined in {\cf present.tex}:
+\vskip5pt
+{\cf \char'134backgroundcolour}, for the slide background 
+\vskip5pt
+{\cf \char'134textcolour}, for the text, and
+\vskip5pt
+{\cf \char'134attentioncolour}, an \att{attention} colour. 
+
+You draw attention to \att{Stuff} by saying
+{\cf\char'134att\char'173}{\it Stuff\/}{\cf\char'175}.
+\vskip5pt
+If a predefined colour is redefined, {\cf\char'134setcolour}
+must also be used for the change to take effect for text. 
+\NewSlide
+%%%
+%%%
+%%%
+\SlideTitle{\hfil Paper Size}
+The paper size is determined by the dimensions 
+\vskip3pt {\cf\char'134 pdfpagewidth} and
+{\cf\char'134 pdfpageheight}. 
+\vskip10pt
+If you say {\cf\char'134 StandardAspect}, you get a page 120mm wide and 90mm high.
+\vskip10pt
+If you say {\cf\char'134 WideAspect}, you get a page 144mm wide and 90mm high.
+\NewSlide
+%%%
+%%%
+%%%
+\SlideTitle{\vbox to 0pt{\kern-5mm\image[width10mm]{Stern.png}\vss}\hfil Images}
+Images can be included with
+\vskip5pt
+{\cf\char'134 image[}{\it dimensions}{\cf]\char'173}{\it filename}{\cf\char'175}
+\vskip5pt
+where {\it dimensions} are {\cf height}, {\cf depth}, and {\cf width}, familiar from \TeX.
+\vskip5pt
+\hbox{%
+\image[width3mm]{Stern.png}
+\image[width6mm]{Stern.png}
+\image[width9mm]{Stern.png}
+\image[height9mm]{Stern.png}
+\image[height3mm depth6mm]{Stern.png}
+\image[height9mm width4mm]{Stern.png}
+\image[width5mm]{Sagnac.pdf}\image[width10mm height4mm]{Sagnac.pdf}
+\image[width15mm depth 5mm]{Sagnac.pdf}
+}
+\vskip5pt
+If only {\cf width} is given, the image is scaled with the aspect ratio preserved.\target{Images}
+
+Image files need to be in a format that can be handled by the pdf-viewer and by {\cf pdftex}.
+E.g. pdf, png, jpg should work.
+\NewSlide
+%%%
+%%%
+%%%
+\SlideTitle{\hfil Slide Structure}
+Each slide has a headline, a body, and a footline.
+\vskip5pt
+The headline holds the slide title, which is set by 
+\vskip5pt
+{\cf\char'134 SlideTitle\char'173}{\it TITLE\/}{\cf\char'175}
+\vskip5pt
+The footline is defined by 
+{\cf\char'134 SlideFoot}, of which several versions are contained in {\cf present.tex}. Uncomment the one you want,
+or define further ones.
+\vskip5pt
+The version used here shows the number of the current slide and the total number of slides in the centre (the latter is
+provided by the {\cf\char'134 LP} macro), and the {\cf\char'134 PageBar} on the right.
+\vskip5pt
+The {\cf\char'134 PageBar}-symbols \PageBar move to the previous or following page, or move back and forth in the 
+page history.
+\NewSlide
+%%%
+%%%
+%%%
+The page history is relevant if cross-references are used in the presentation. These will be discussed later.
+\vskip5pt
+\phantom{With cross-references or links, also the {\cf\char'134 LinkBar} can be useful. In the {\cf\char'134 SlideFoot}-version
+used, it is shown on the left side of the footline, but currently is defined to be empty.}
+\vskip5pt
+\phantom{The {\cf\char'134 LinkBar} is intended to hold links to various places in the presentation you might want to jump to.}
+\vskip5pt
+\phantom{This slide has been shown incrementally by a copy-paste procedure when writing the source (have a look at it). 
+It is straightforward, very flexible, one might occasionally lose track, and it may be tedious to introduce
+changes later. A further possibility is shown on the next slides.}
+\NewFrame
+The page history is relevant if cross-references are used in the presentation. These will be discussed later.
+\vskip5pt
+With cross-references or links, also the {\cf\char'134 LinkBar} can be useful. In the {\cf\char'134 SlideFoot}-version
+used, it is shown on the left side of the footline, but currently is defined to be empty.
+\vskip5pt
+\phantom{The {\cf\char'134 LinkBar} is intended to hold links to various places in the presentation you might want to jump to.}
+\vskip5pt
+\phantom{This slide has been shown incrementally by a copy-paste procedure when writing the source (have a look at it). 
+It is straightforward, very flexible, one might occasionally lose track, and it may be tedious to introduce
+changes later. A further possibility is shown on the next slides.}
+\NewFrame
+The page history is relevant if cross-references are used in the presentation. These will be discussed later.
+\vskip5pt
+With cross-references or links, also the {\cf\char'134 LinkBar} can be useful. In the {\cf\char'134 SlideFoot}-version
+used, it is shown on the left side of the footline, but currently is defined to be empty.
+\vskip5pt
+The {\cf\char'134 LinkBar} is intended to hold links to various places in the presentation you might want to jump to.
+\vskip5pt
+\phantom{This slide has been shown incrementally by a copy-paste procedure when writing the source (have a look at it). 
+It is straightforward, very flexible, one might occasionally lose track, and it may be tedious to introduce
+changes later. A further possibility is shown on the next slides.}
+\NewFrame
+The page history is relevant if cross-references are used in the presentation. These will be discussed later.
+\vskip5pt
+With cross-references or links, also the {\cf\char'134 LinkBar} can be useful. In the {\cf\char'134 SlideFoot}-version
+used, it is shown on the left side of the footline, but currently is defined to be empty.
+\vskip5pt
+The {\cf\char'134 LinkBar} is intended to hold links to various places in the presentation you might want to jump to.
+\vskip5pt
+This slide has been shown incrementally by a copy-paste procedure when writing the source (have a look at it). 
+It is straightforward, very flexible, one might occasionally lose track, and it may be tedious to introduce
+changes later. A further possibility is shown on the next slides.
+\NewSlide
+\def\hl{\setcolour\attentioncolour}
+%%%
+%%%
+%%%
+\Frames5{%
+\SlideTitle{\hfill {\onframe1\hl Slides} {\onframe2\hl Step} {\onframe3\hl by} {\onframe4\hl Step}}
+A slide can be shown incrementally using
+\vskip1pt
+\beforeframe2\hide{\afterframe1\cf
+\char'134 NewSlide\par
+\char'134 Frames\char'173}{\it num}{\afterframe1\cf\char'175\char'173}%
+{\it CONTENT}
+{\afterframe1\cf\char'175\char'134 endFrames\par
+\char'134NewSlide}
+\vskip1pt
+\beforeframe3\hide By the above, the {\it CONTENT} of the slide, enclosed between 
+{\afterframe2\cf\char'134begingroup} \dots{\afterframe2\cf\char'134endgroup}, 
+is repeated {\it num} times, with a 
+{\afterframe2\cf\char'134NewFrame} between subsequent repetitions. 
+\vskip1pt
+\beforeframe4\hide Due to this grouping, definitions are local to the body of a frame.
+{\afterframe3\cf\char'134global} is used in the replacement texts of {\afterframe3\cf\char'134SlideTitle} 
+and {\afterframe3\cf\char'134SlideFoot} to allow frame-dependent changes here, too.  
+\vskip1pt
+\beforeframe5\hide  
+{\onframe5\cf\char'134hide}, defined as {\onframe5\cf\char'134setcolour\char'134backgroundcolour}, can be used
+to hide parts of the slide on a monochromatic background.}
+\endFrames
+%%%
+%%%
+%%%
+\NewSlide
+\Frames5{%
+Incremental showing or modification of content is achieved by
+\vskip1pt
+\beforeframe2\hide{\afterframe1\cf\char'134 onframe\char'173}{\it fn}{\afterframe1\cf\char'175\char'173}{\it arg}%
+{\afterframe1\cf\char'175}\par
+which evaluates to {\it arg} on frame number {\it fn} and to {\afterframe1\cf\char'134relax} otherwise (frames are counted from 1).
+\vskip1pt
+\beforeframe3\hide{\afterframe2\cf\char'134 afterframe\char'173}{\it fn}{\afterframe2\cf\char'175\char'173}%
+{\it arg}{\afterframe2\cf\char'175}\par
+which evaluates to {\it arg} after frame {\it fn} and to {\afterframe2\cf\char'134relax} before and on frame {\it fn}.
+\vskip1pt
+\beforeframe4\hide{\afterframe3\cf\char'134 beforeframe\char'173}{\it fn}{\afterframe3\cf\char'175\char'173}{\it arg}%
+{\afterframe3\cf\char'175}\par
+which evaluates to {\it arg} before frame {\it fn} and to {\afterframe3\cf\char'134relax} on and after frame {\it fn}.
+\vskip1pt
+\beforeframe5\hide If {\it arg} is a single token, no braces are necessary. The same applies if {\it fn} or {\it num}
+is a single digit number.}%
+\endFrames
+\NewSlide
+%%%
+%%%
+%%%
+\SlideTitle{\hfil Links}
+{\cf\char'134 target\char'173}{\it NAME\/}{\cf\char'175} creates a target named {\it NAME} for a link at the position in 
+the presentation where it is used.
+\vskip5pt
+{\cf\char'134 link\char'173}{\it NAME\/}{\cf\char'175\char'173}{\it Stuff\/}{\cf\char'175}
+turns {\it Stuff} into a link to the target named {\it NAME}.
+\vskip5pt
+{\cf\char'134 weblink\char'173}{\it URI\/}{\cf\char'175\char'173}{\it Stuff\/}{\cf\char'175}
+makes {\it Stuff} a link to the specified {\it URI}.
+\vskip5pt
+{\cf\char'134 filelink\char'173}{\it file}{\cf\char'175\char'173}{\it filedest}{\cf\char'175\char'173}{\it Stuff\/}{\cf\char'175}
+makes {\it Stuff} a link to destination {\it filedest} in {\it file}.
+
+{\it filedest} for example can be {\cf [}{\it page} {\cf/Fit]}, with {\it page} the page number (starting at 0).
+\vskip10pt
+A further possibility can be found \link{Further}{here (click)}.
+\def\LinkBar{%
+\link{Images}{\linkbarfont Images}
+\link{Further}{\linkbarfont Area}
+\link{title}{\linkbarfont Title}
+}
+\NewSlide
+%%%
+%%%
+%%%
+{\cf\char'134 linkarea\char'173}{\it dest}{\cf\char'175\char'173}{\it rect}{\cf\char'175\char'173}{\it border}{\cf
+\char'175\char'173}{\it colour}{\cf\char'175}\target{Further}
+\vskip5pt
+Creates a rectangular area which is a link to target {\it dest}; {\it rect} consists of 
+four space-separated numbers for lower left and upper right corner, {\it border} is the border width, and {\it colour} is the 
+border colour, specified as three space-separated values for red, green, and blue, all between 0 and 1.
+\vskip5pt
+\linkarea{title}{150 30 180 60}{2}{0.8 0 0}
+\image[width 2cm]{Stern.png}
+\vskip5pt
+Notice also that {\cf\char'134 LinkBar} has been redefined (on the previous slide already)
+\linkarea{Images}{10 100 50 120}{2}{0.8 0 1}
+\NewSlide
+%%%
+%%%
+%%%
+\SlideTitle{\hfill Transition Effects}
+\UseTrans
+\SetTrans{Fade}
+\SetDuration{2}
+\def\satt{\setcolour\attentioncolour}
+\def\sumcol{0 0 0}
+\def\sscol{\setcolour\sumcol}
+\Frames{6}{%
+Transition effects for a presentation 
+can be provided by the macros in {\cf present-transitions.tex}
+to be {\cf\char'134input} after {\cf present.tex}. 
+
+\beforeframe2\hide
+Transitions are activated with {\afterframe1\cf\char'134UseTrans} and deactivated with
+{\afterframe1\cf\char'134NoTrans}.
+
+\beforeframe3\hide
+The type of a transition effect is selected with {\afterframe2\cf\char'134SetTrans\char'173}{\it TYPE\/}{\afterframe2\cf\char'175},
+the duration of a transition effect 
+with {\afterframe2\cf\char'134SetDuration\char'173}{\it num}{\afterframe2\cf\char'175}.
+
+\beforeframe4\hide
+Possible values for {\it TYPE} are {\afterframe3\cf Split},
+{\afterframe3\cf Blinds},
+{\afterframe3\cf Box},
+{\afterframe3\cf Wipe},
+{\afterframe3\cf Dissolve},
+{\afterframe3\cf Glitter},
+{\afterframe3\cf R},
+{\afterframe3\cf Fly},
+{\afterframe3\cf Push},
+{\afterframe3\cf Cover},
+{\afterframe3\cf Uncover},
+{\afterframe3\cf Fade}.
+See the PDF Reference for details.
+\beforeframe5\hide
+{\it num} specifies the duration of the transition effect in seconds.
+
+\beforeframe6\hide{\afterframe5\satt Only 
+some transition effects may be supported by your pdf-viewer}.}%
+\endFrames
+\NewSlide
+\SetTrans{Push}
+\Frames{15}{%
+Compare
+$$
+\Gamma^{{\onframe3\satt a}}_{{\onframe4\satt b}{\onframe5\satt c}}=
+{\textstyle{1\over2}}
+g^{{\onframe3\satt a}{\afterframe1\sscol u}}
+\Big(\partial_{\onframe4\satt b}
+g_{{\afterframe1\sscol u}{\onframe5\satt c}}
++\partial_{\onframe5\satt c}g_{{\onframe4\satt b}{\afterframe1\sscol u}}
+-\partial_{\afterframe1\sscol u}g_{{\onframe4\satt b}{\onframe5\satt c}}\Big)
+$$
+\beforeframe6\hide
+\onframe{5}\NoTrans
+with
+$$
+\Gamma^{{\onframe{8}\satt a}}_{{\onframe{9}\satt b}{\onframe{10}\satt c}}=
+{\textstyle{1\over2}}
+g^{{\onframe{8}\satt a}{\afterframe6\sscol u}}
+\Big(\partial_{\onframe{9}\satt b}
+g_{{\afterframe6\sscol u}{\onframe{10}\satt c}}
++\partial_{\onframe{10}\satt c}g_{{\onframe{9}\satt b}{\afterframe6\sscol u}}
+-\partial_{\afterframe6\sscol u}g_{{\onframe{9}\satt b}{\onframe{10}\satt c}}\Big)
+$$
+\onframe{11}\UseTrans
+\beforeframe{11}\hide\onframe{11}{\SetTrans{Dissolve}}%
+Are transition effects an advantage didactically?
+\vskip5pt
+\beforeframe{12}\hide\onframe{12}{\SetTrans{Fade}}
+Sometimes {\afterframe{12}\satt\onframe{12}\hide transition} effects may be {\afterframe{12}\satt\onframe{12}\hide helpful}.
+\vskip3pt
+Sometimes they {\beforeframe{14}\hide\afterframe{13}\satt distract}
+the {\beforeframe{14}\hide\afterframe{13}\satt audience} 
+from the {\beforeframe{14}\hide\afterframe{13}\satt content} of the slide.
+\vskip3pt
+\onframe{14}{\SetTrans{Dissolve}\SetDuration{5}}
+\beforeframe{15}\hide Use links or {\onframe{15}\cf \char'134PageBar}-symbols for navigation in order to
+see transition effects.
+}\endFrames
+\NewSlide
+\NoTrans
+%%%
+%%%
+%%%
+\SlideTitle{\hfil Background Images}
+\SetBackground{background.png}
+You can set images for the background with 
+\vskip5pt
+{\cf\char'134 SetBackground\char'173}{\it filename}{\cf\char'175}
+\vskip5pt
+where
+{\it filename} is the name of the image file.
+\vskip5pt
+The background image is unset (i.e. the background colour  will show again) with {\cf\char'134 UnsetBackground}.
+\vskip5pt
+The background image is scaled to width and height of the slide. It should have an appropriate aspect ratio.
+\vskip5pt
+\att{As you see some combinations of text colour and background image can cause visibility problems.}
+\NewSlide
+\UnsetBackground
+%%%
+%%%
+%%%
+\SlideTitle{\hfil Concluding Remarks}
+PDF provides the possibility to include movies, and to launch applications (which could be a movie player) via clickable
+elements. The usability for a presentation depends on how to manage the player together with a fullscreen display of the
+slides. Movie support is not officially included in {\cf present.tex}.
+\vskip5pt
+If you prepare a pdf-image for a presentation which is to be shown on some different computer, it would be best to
+embed fonts used in the image into the image file. For example, if you have a file {\cf image.eps}, you need to
+convert it to pdf, in order to use it with {\cf pdftex}. You can embed the fonts by
+\vskip5pt
+{\cf  ps2pdf -dEPSCrop=true -dPDFA image.eps} 
+\vskip5pt
+A look at {\cf present.tex} is recommended.
+\bye

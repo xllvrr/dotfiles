@@ -1,0 +1,49 @@
+\section{Bewertung}
+\label{modul:bewertung}
+Das Modul \module{Bewertung} ergänzt das Modul \module{Aufgaben} um die Möglichkeiten eines Erwartungshorizonts und der Berechnung der Notenverteilung. Die Punkteangaben beim Erwartungshorizont werden auch als Punkte für die Aufgaben herangezogen und müssen so nicht doppelt angegeben werden.
+
+\achtung{Soll in einem Dokument ein Erwartungshorizont gesetzt werden, müssen \uline{alle} Aufgaben Erwartungen enthalten!}
+
+\subsection{Paketoptionen}
+\begin{options}
+    \opt{erwartungshorizontAnzeigen} hängt den Erwartungshorizont im gewählten Stil automatisch an das Dokument an, setzt vorher die Seitennummerierung und die Dokumentbezeichnung in der Kopfzeile zurück.
+
+    Unter dem Erwartungshorizont wird automatische eine Notenverteilung gesetzt.
+
+    \achtung{Diese Option ist nur für eigenständige Dokumente, \zB\space mit der Dokumentenklasse \cls{scrartcl} gedacht. Sie greift tief in den Übersetzungsprozess ein und ist geeignet Fehler im Zusammenspiel mit anderen Paketen zu provozieren.}
+
+    \keychoice{erwartungshorizontStil}{einzeltabellen,simpel,standard}
+        \Default{standard} legt den Stil des Erwartungshorizonts fest.
+        Bisher gibt es drei verschiedene Stile:
+        \begin{description}
+            \item[\keyis-{erwartungshorizontStil}{einzel}\space] setzt für jede Aufgabe eine eigene Überschrift und darunter eine Tabelle mit den einzelnen Erwartungen. Unter die Erwartungen aller Aufgaben wird mit \cs{punktuebersicht} eine Übersicht über die erreichten Punkte gesetzt.
+
+                \includepdfpage[page=3, scale=0.3, trim={3cm, 12.5cm, 3cm, 1.5cm}, clip] {minimal-kl-et}
+
+            \item[\keyis-{erwartungshorizontStil}{simpel}\space] setzt einen Bewertungsbogen ohne Punkte mit drei Smiley-Feldern zum Ankreuzen. Die Notenverteilung wird hier ebenfalls nicht gesetzt.
+
+                \includepdfpage[page=3, scale=0.3, trim={3cm, 22cm, 3cm, 1.5cm}, clip]{minimal-ka}
+
+            \item[\keyis-{erwartungshorizontStil}{standard}\space] setzt einen klassischen Erwartungshorizont in einer zusammenhängenden Tabelle. Die Umgebung ist \env{longtable}, die Tabelle bricht also bei längeren Erwartungshorizonten auf die nächste Seite um.
+
+                \includepdfpage[page=3, scale=0.3, trim={3cm, 18cm, 3cm, 1.5cm}, clip]{minimal-kl}
+        \end{description}
+
+    \opt{kmkPunkte} schaltet alle benotungsrelevanten Funktionen vom normalen Notensystem (\textit{ungenügend} bis \textit{sehr gut}) auf KMK-Notenpunkte ($0$ bis $15$) um.
+
+    \keyval{notenschema}{15=.95,\dots} gibt ein Notenschema für die Berechnung der Notenverteilung an. Es muss eine Liste mit der Zuordnung von Notenpunkten zu Prozentwerten übergeben werden. Die Prozentwerte geben dabei jeweils die untere Grenze für die jeweilige Note an.
+
+    Das Standardnotenschema ist \texttt{15 = .95, 14 = .9, 13 = .85, 12 = .8, 11 = .75, 10 = .7, 9 = .65, 8 = .6, 7 = .55, 6 = .5, 5 = .45, 4 = .39, 3 = .33, 2 = .27, 1 = .2}
+\end{options}
+
+\subsubsection{Umgebungen}
+\begin{environments}
+    \environment{erwartungen} erlaubt es, zu einzelnen Aufgaben Erwartungen anzugeben. Die einzelnen Erwartungen werden dabei mit dem Makro \cs{erwartung} angegeben.
+\end{environments}
+
+\subsubsection{Befehle}
+\begin{commands}
+    \command{erwartung}[\marg{Erwartung}\marg{Punkte}\oarg{Zusatzpunkte}] definiert eine einzelne Erwartung innerhalb der Umgebung \env{erwartungen}. Der Parameter kann beliebigen \LaTeX-Code enthalten bis auf Verbatim-Elemente. Des weiteren werden die Punkte für diese Erwartung als Parameter erwartet. Als optionalen Parameter können Zusatzpunkte angegeben werden.
+    \command{erwartungshorizont} setzt den Erwartungshorizont im gewählten Stil, falls die automatische Erzeugung über die Paketoption \option{erwartungshorizontAnzeigen} nicht genutzt wird.
+    \command{notenverteilung} setzt die Notenverteilung, falls die automatische Erzeugung über den Erwartungshorizont nicht genutzt wird. Die Verteilung wird über die Gesamtpunkte aller Aufgaben unter Berücksichtigung des gewählten Notenschemas ermittelt.
+\end{commands}

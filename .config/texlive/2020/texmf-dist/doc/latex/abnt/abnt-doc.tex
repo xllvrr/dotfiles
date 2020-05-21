@@ -1,0 +1,207 @@
+\documentclass{ltxdoc}
+\usepackage[svgnames,dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\setmainfont{Warnock Pro}
+\setsansfont{Cronos Pro}
+\usepackage[scale=.8]{FiraMono}
+\usepackage{polyglossia}
+\setmainlanguage{brazil}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,skins,xparse,breakable}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes,snakes}
+
+\newtcblisting[auto counter,list inside=codigo,number within=chapter]{codigo}[2][]{%
+	%title={Exemplo~\thetcbcounter:~#2},
+	%list entry={\protect\numberline{\thetcbcounter}#2},
+	title={#2},
+	center,
+	colback=green!20,
+	colbacktitle=green!50,
+	colframe=green,
+	listing only,
+	fonttitle=\bfseries\sffamily\large,coltitle=black,titlerule=0pt,enhanced,drop fuzzy shadow,breakable,#1%halign title=center
+}
+
+
+
+\title{\tikz \node[inner sep=0pt,remember picture,overlay] at (0,1){\includegraphics[height=3cm,width=0.4\textwidth,keepaspectratio]{icone}};\\O pacote <<\texttt{abnt}>>}
+\author{Youssef Cherem}
+\date{2020}
+
+\begin{document}
+\frenchspacing 
+
+\begin{center}
+	\tikz\node[diamond,shape aspect=1.2,%draw=green,ultra thick,
+	remember picture,overlay,%minimum size=0.6\textwidth,
+	left color=SpringGreen,shading angle=45,align=center] at (0,0){\includegraphics[height=3cm,width=0.4\textwidth,keepaspectratio]{icone}\\{\Large O pacote <<\texttt{abnt}>>}\\[10pt]\large Youssef Cherem\\[6pt]2019};
+\end{center}
+
+\vspace{4cm}
+
+%\maketitle
+
+%\BgThispage
+
+%\tcblistof[\section*]{codigo}{Lista de Códigos}
+O pacote \tcboxverb[blank,fuzzy halo=.5mm with green]{abnt}  é uma interpretação suficiente, mas não exaustiva, das normas da ABNT. É uma implementação concisa das normas, proporcionando \textit{facilidade} e \textit{flexibilidade} ao usuário. O uso deste pacote não dispensa conhecimento básico de \LaTeX, e não há qualquer garantia de que será aceito pela sua instituição sem nenhuma modificação. Seu objetivo é reduzir ao mínimo a interferência de comandos alheios às classes comuns.
+Sugere-se seu emprego com a classe \tcboxverb[blank,fuzzy halo=.5mm with teal]{book}  ou com a classe \tcboxverb[blank,fuzzy halo=.5mm with red]{scrbook}.
+
+Comandos para elementos na capa e folha de rosto:
+
+\begin{codigo}{}
+\orientador{}   \orientadora{} \coorientador{}   \coorientadora{}
+
+\tipotrabalho{}  \local{}   \instituicao{}  \capa  \folhaderosto
+\end{codigo}
+
+Para mudar as fontes dos elementos:
+
+\begin{codigo}{}
+\titlefont{}  \authorfont{}  \localfont{}  \datefont{}
+\end{codigo}
+
+Para elementos pré-textuais (sem números de página) e textuais (com números de página):
+
+\begin{codigo}{}
+\pretextual              \textual
+\end{codigo}
+
+Esses comandos não são obrigatórios nem aplicados por padrão. O usuário pode redefinir o cabeçalho como quiser, usando os comandos do pacote \tcboxverb[blank,fuzzy halo=.5mm with green]{scrlayer-scrpage}.
+
+Também são disponibilizados ambientes e listas para quadros e mapas, além das usuais figuras e tabelas. Assim, podem ser inseridas listas de “quadros” e “mapas”:
+
+\begin{codigo}{}
+\listofquadros
+\listofmapas
+\end{codigo}
+
+ Esses ambientes são usados da mesma forma que uma figura:
+
+\begin{codigo}{}
+\begin{quadro} ... \end{quadro}
+
+\begin{mapa} ... \end{mapa}
+\end{codigo}
+
+Para fazer citações, use o ambiente \texttt{citacao}:
+
+\begin{codigo}{}
+\begin{citacao} ... \end{citacao}
+\end{codigo}
+
+Se o usuário quiser criar outras listas e ambientes, basta seguir o exemplo abaixo:
+
+\begin{codigo}{Criando novos ambientes}
+\DeclareFloatingEnvironment[fileext=loe,listname={Lista de esculturas},%
+within=none]{escultura}
+\DeclareCaptionListFormat{listaescultura}{\esculturaname\ #1#2\hfill--\hfill}
+\captionsetup[escultura]{listformat=listaescultura}
+\makeatletter
+\renewcommand*{\l@escultura}{\@dottedtocline{1}{1.5em}{6.5em}}
+\makeatother
+
+\end{codigo}
+
+Aqui, definimos um novo ambiente “escultura”, com um arquivo de lista de extensão \texttt{loe} e nome “Lista de Figuras”, cujo contador não recomeça em todos os capítulos (\texttt{within=none}). \verb|\l@escultura| serve para redefinir os espaços na lista. Para alternativas de formatação, referir-se à documentação dos pacotes \texttt{newfloat} e \texttt{caption}. 
+
+Uma alternativa simplificada para essas definições está disponível ao utilizar uma das classes \tcboxverb[blank,fuzzy halo=.5mm with red]{KOMA-Script} (\texttt{scrbook}, \texttt{scrartcl} e \texttt{scrreport}):
+
+\begin{codigo}{}
+\DeclareNewTOC[%
+type=exercicio,%
+types=exercicios,%
+float,% define a floating environment
+floattype=4,%
+name=Exercício,%
+%counterwithin=chapter,
+listname={Lista de Exercícios},
+%tocentryindent=0pt,% <- added
+tocentrydynnumwidth,% <- added
+tocentrynumsep=0pt% <- added
+]{loe}
+\setuptoc{loe}{chapteratlist}
+
+\BeforeStartingTOC[loe]{\def\autodot{\hfill~--~\hfill}}
+\end{codigo}
+
+
+Todos os outros comandos são os usuais das classes padrão. Recomenda-se o uso do pacote \texttt{biblatex-abnt} para as normas de citação e referências bibliográficas segundo a ABNT. 
+
+  
+ \begin{codigo}{Exemplo com a classe scrbook}
+ \documentclass[footsepline=true,headsepline=true]{scrbook}
+ \usepackage{abnt}
+ \usepackage{xcolor,xcolor-material}
+ \usepackage[sfdefault,lf]{FiraSans}
+ 
+ %se quiser linha no rodapé
+ \ModifyLayer[addvoffset=-.8ex]{scrheadings.foot.above.line}
+ \ModifyLayer[addvoffset=-.8ex]{plain.scrheadings.foot.above.line}
+ 
+%\pagestyle{scrheadings}
+%\clearscrheadfoot
+%\ihead{\headmark}
+%\ohead{\pagemark}
+% pretextual já faz isso. 
+ 
+\setkomafont{footsepline}{\color{orange}}
+\setkomafont{headsepline}{\color{teal!50!yellow}}
+\setkomafont{pagenumber}{\normalfont\bfseries\sffamily\color{red}}
+ 
+%\renewcommand*{\chapterpagestyle}{scrheadings} %não necessário - já implementado
+ 
+%todos esses elementos iguais 
+\RedeclareSectionCommands
+[beforeskip=\baselineskip, afterskip=\baselineskip,font=\normalsize\bfseries]
+{part,chapter,
+section,subsection,subsubsection}
+
+ 
+\setkomafont{chapter}{\color{orange}} \setkomafont{section}{\color{teal}}
+\setkomafont{subsection}{\color{green!50!black}}
+ 
+ %\setkomafont{disposition}{\normalsize} % não funciona, redefinição com 
+ %\RedeclareSectionCommand ou \RedeclareSectionCommands
+ 
+ \KOMAoptions{headsepline=2pt:\textwidth,footsepline=2pt:\textwidth}
+ 
+%medidas
+\DeclareNewLayer[
+ background,
+ %outermargin,
+ %topmargin,
+ contents=\layercontentsmeasure
+ ]{measurelayer}
+\AddLayersToPageStyle{@everystyle@}{measurelayer}
+\usepackage{showframe}
+ 
+\begin{document}
+
+\pretextual
+
+\textual
+
+\chapter{Capítulo}
+\section{Seção}
+\subsection{Subseção}
+
+\chapter{Capítulo}
+\section{Seção}
+\subsection{Subseção}
+\newpage
+\subsection{title}
+\end{document}
+
+\end{codigo}
+
+ 
+\begin{tcolorbox}[center,width=.8\textwidth]
+\centering 
+\includegraphics[width=\linewidth]{koma}
+\end{tcolorbox}
+
+
+\end{document}

@@ -1,0 +1,43 @@
+% arara: pdftex
+
+\input tracklang
+
+\TrackLangFromEnv % lookup LC_ALL or LANG
+Environment query results:
+language: \TrackLangEnvLang, 
+territory: \TrackLangEnvTerritory,
+codeset: \TrackLangEnvCodeSet,
+modifier: \TrackLangEnvModifier.
+
+\TrackPredefinedDialect{british}
+\TrackPredefinedDialect{american}
+\TrackPredefinedDialect{canadian}
+\TrackPredefinedDialect{canadien}
+\TrackPredefinedDialect{belgique}
+
+\TrackLocale{de-NA@new}
+
+\TrackLocale{manx}
+
+Dialect Regions:
+
+\ForEachTrackedDialect{\ThisDialect}{\ThisDialect:
+ \TrackedIsoCodeFromLanguage{\TwoLetterIsoCountryCode}{\ThisDialect}%
+ \IfHasTrackedDialectModifier\ThisDialect
+ { (\GetTrackedDialectModifier\ThisDialect)}%
+ {}.
+}
+
+Language Codes:
+
+\ForEachTrackedLanguage{\ThisLanguage}{\ThisLanguage:
+ \TrackedIsoCodeFromLanguage{\TwoLetterIsoLanguageCode}{\ThisLanguage}. }
+
+\ForEachTrackedDialect{\ThisDialect}
+{%
+  \IfTrackedLanguageFileExists{\ThisDialect}{animals-}{.ldf}%
+  {Found ``animals-\CurrentTrackedTag.ldf''\par}%
+  {No file found for dialect ``\ThisDialect''\par}
+}
+
+\bye

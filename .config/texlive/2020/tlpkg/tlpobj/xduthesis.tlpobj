@@ -1,0 +1,53 @@
+name xduthesis
+category Package
+revision 39694
+shortdesc XeLaTeX template for writing Xidian University Thesis
+longdesc This is a XeLaTeX template for writing theses to apply academic
+longdesc degrees in Xidian University. The template is designed
+longdesc according to the official requirements on typesetting theses.
+longdesc The template currently supports all levels of degrees from
+longdesc bachelor to doctor, including both academic master and
+longdesc professional master. But it is not guaranteed that you will
+longdesc pass the typesetting check and obtain your degree by using this
+longdesc template.
+containersize 113404
+containerchecksum 4a92d52c7ca60232849b02bd7d688f12230f858bb7559287610a4d33699158fcb3d5270a22b3abc99d89a684b81e2124602486c16f22fb434e98b54f715f592a
+doccontainersize 693300
+doccontainerchecksum 44ec843c2a6b7827c783c076e8f02dfb697f1bf021b54be238049068f466d9969d2e0bb9efdba37623b44a564985af4256eed2b82ef35d8f7ec9798ce84abc0d
+docfiles size=195
+ texmf-dist/doc/latex/xduthesis/README.md details="Readme"
+ texmf-dist/doc/latex/xduthesis/examples/abstract.tex
+ texmf-dist/doc/latex/xduthesis/examples/achievements.tex
+ texmf-dist/doc/latex/xduthesis/examples/acknowledgments.tex
+ texmf-dist/doc/latex/xduthesis/examples/appendix01.tex
+ texmf-dist/doc/latex/xduthesis/examples/biography.tex
+ texmf-dist/doc/latex/xduthesis/examples/ch01-intro.tex
+ texmf-dist/doc/latex/xduthesis/examples/ch02-options.tex
+ texmf-dist/doc/latex/xduthesis/examples/ch03-frontmatter.tex
+ texmf-dist/doc/latex/xduthesis/examples/ch04-mainmatter.tex
+ texmf-dist/doc/latex/xduthesis/examples/ch05-backmatter.tex
+ texmf-dist/doc/latex/xduthesis/examples/ch06-bibliography.tex
+ texmf-dist/doc/latex/xduthesis/examples/ch07-conclusions.tex
+ texmf-dist/doc/latex/xduthesis/examples/photo.png
+ texmf-dist/doc/latex/xduthesis/examples/refs.bib
+ texmf-dist/doc/latex/xduthesis/examples/thesis-bachelor.tex
+ texmf-dist/doc/latex/xduthesis/examples/thesis-doctor.pdf
+ texmf-dist/doc/latex/xduthesis/examples/thesis-doctor.tex
+ texmf-dist/doc/latex/xduthesis/examples/thesis-master.tex
+ texmf-dist/doc/latex/xduthesis/examples/thesis-masterpro.tex
+ texmf-dist/doc/latex/xduthesis/xduthesis.pdf details="Package documentation"
+srccontainersize 15976
+srccontainerchecksum 12a273267d7e4e82256f4aa76db77673eea0d1816691a179b8ac2af8732ef958a7142a95cd7ba8ee83cdbe2166975dfa12d3fff14607cb1fd27f48c989a5a7ba
+srcfiles size=15
+ texmf-dist/source/latex/xduthesis/xduthesis.dtx
+ texmf-dist/source/latex/xduthesis/xduthesis.ins
+runfiles size=257
+ texmf-dist/tex/latex/xduthesis/xdubadge-gr.eps
+ texmf-dist/tex/latex/xduthesis/xdubadge.eps
+ texmf-dist/tex/latex/xduthesis/xdulogo.eps
+ texmf-dist/tex/latex/xduthesis/xduthesis.cfg
+ texmf-dist/tex/latex/xduthesis/xduthesis.cls
+catalogue-ctan /macros/latex/contrib/xduthesis
+catalogue-license lppl1.3
+catalogue-topics proposal
+catalogue-version 1.00

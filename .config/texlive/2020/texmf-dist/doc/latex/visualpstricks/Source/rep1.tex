@@ -1,0 +1,130 @@
+
+\psset{fillcolor=yellow,fillstyle=solid,linecolor=red,unit=1cm}
+
+
+
+
+\begin{tabular}{|c|c|}\hline 
+\begin{pspicture}(-.5,-.5)(6,3)
+%\psframe[fillstyle=none](-.5,-.5)(6,3) 
+ \multirput(.5,0)(.5,.25){10}{A}
+ \end{pspicture}
+& 
+\begin{pspicture}(-.5,-.5)(6,3)
+%\psframe[fillstyle=none](-.5,-.5)(6,3) 
+ \multirput*(.5,0)(.5,.25){10}{A}
+ \end{pspicture}
+\\ \hline  
+\BSS{multirput}( \rnode{A}{0.5,0})( \rnode{B}{0.5,0.25})\AC{ \rnode{C}{10}}\AC{A}
+&  
+\textbf{\BS{multirput}}{\red *}(0.5,0)(0.5,0.25)\AC{10}\AC{A}
+\\ \hline 
+& \\
+ \rnode{AA}{\TFRGB{origine}{origin}} \hspace{1cm}  \rnode{BB}{\TFRGB{décalage}{shift}} \hspace{1cm}\rnode{CC}{10 \TFRGB{fois}{times}}
+ & 
+ \\ \hline 
+\end{tabular}
+ \ncline[linecolor=blue]{A}{AA}  \ncline[linecolor=blue]{B}{BB}  \ncline[linecolor=blue]{C}{CC}
+\bigskip
+
+
+\begin{tabular}{|c|c|}\hline 
+\begin{pspicture}(-.5,-.5)(6,3)
+%\psframe[fillstyle=none](-.5,-.5)(6,3) 
+ \multirput{45}(.5,0)(.5,.25){10}{A}
+ \end{pspicture}
+& 
+\begin{pspicture}(-.5,-.5)(6,3)
+%\psframe[fillstyle=none](-.5,-.5)(6,3) 
+ \multirput*{45}(.5,0)(.5,.25){10}{A}
+ \end{pspicture}
+\\ \hline  
+\BSS{multirput}\AC{{\red 45}}(0.5,0)(0.5,0.25)\AC{10}\AC{A}
+&  
+\textbf{\BS{multirput}}*\AC{{\red 45}}(0.5,0)(0.5,0.25)\AC{10}\AC{A}
+\\ \hline 
+\end{tabular} 
+
+
+\subsection[multips]{multips \cite{pst-user} }
+
+
+\begin{tabular}{|c|c|}
+\hline  
+\begin{pspicture}(-.5,-.5)(6,3)
+%\psframe[fillstyle=none](-.5,-.5)(6,3)
+\multips(.5,0)(.5,.25){10}{\psframe(1,.5) }
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(6,3)
+%\psframe[fillstyle=none](-.5,-.5)(6,3)  
+\multips(.5,0)(.5;15){10}{\psframe(1,.5) }
+\end{pspicture}
+\\ \hline 
+\BS{multips}(\rnode{A}{0.5,0})(\rnode{B}{0.5,0.25})\AC{\rnode{C}{10}}\AC{\BS{psframe}(1,.5) }
+ &  
+\BS{multips}(\rnode{D}{0.5;0})(\rnode{E}{0.5;15})\AC{10}\AC{\BS{psframe}(1,.5) }  
+ \\ \hline 
+& \\
+ \rnode{AA}{\TFRGB{origine}{origin}} \hspace{1cm}  \rnode{BB}{\TFRGB{décalage}{shift}} \hspace{1cm}\rnode{CC}{10 \TFRGB{fois}{times}}
+ &  \rnode{DD}{\TFRGB{coordonnées polaires}{polar coordinates}}
+ \\ \hline 
+\end{tabular}  
+\ncline[linecolor=blue]{A}{AA}  \ncline[linecolor=blue]{B}{BB}  \ncline[linecolor=blue]{C}{CC} 
+ \ncline[linecolor=blue]{D}{DD}  \ncline[linecolor=blue]{E}{DD} 
+
+\bigskip
+\begin{tabular}{|c|c|}
+\hline  
+\begin{pspicture}(-.5,-.5)(6,4)
+%\psframe[fillstyle=none](-.5,-.5)(6,4)
+\multips{45}(.5,0)(.5,.25){10}{\psframe(1,.5) }
+\end{pspicture}
+&
+\begin{pspicture}(-.5,-.5)(6,4)
+%\psframe[fillstyle=none](-.5,-.5)(6,4)  
+\multips{45}(.5,0)(.5;15){10}{\psframe(1,.5)}
+\end{pspicture}
+\\ \hline 
+\BS{multips}\AC{{\red 45}}(.5,0)(.5,.25)\AC{10}\AC{\BS{psframe}(1,.5)}
+ &  
+\BS{multips}\AC{{\red 45}}(.5;0)(.5;15)\AC{10}\AC{\BS{psframe}(1,.5)}  
+ \\ \hline 
+\end{tabular}  
+%======================================================================
+
+\subsection[rmultiput]{rmultiput \cite{pstricks-add} }
+
+%Répétitions à pas variables
+
+\psset{fillcolor=yellow,fillstyle=solid,linecolor=red}
+
+
+%\TFRGB{syntaxe}{syntax} :
+
+% \BSS{rmultiput}*[Options] \AC{objet à répéter }(1° position)(2° position). . . (n position )
+
+
+%
+%\vspace{1cm}
+%Exemple :
+
+\begin{tabular}{|c|c|}
+\hline  
+\begin{pspicture}(-1,-2)(7,2)
+%\psframe[fillstyle=none](-1,-2)(7,2)
+\rmultiput{\DFR }(0,0)(2,1)(4,0)(6,-1)
+\end{pspicture}
+&  
+\begin{pspicture}(-1,-2)(7,2)
+%\psframe[fillstyle=none](-1,-2)(7,2)
+\rmultiput*[rot=45] {\DFR }(0,0)(2,1)(4,0)(6,-1)
+\end{pspicture}
+\\ 
+\hline 
+\BSS{rmultiput}\AC{\BS{DFR}}(0,0)(2,1)(4,0)(6,-1) \BSI{rmultiput}{pstricks-add} & 
+\BS{rmultiput}*[{\red rot=45}]\AC{\BS{DFR}}(0,0)(2,1)(4,0)(6,-1) \\ 
+\hline 
+\end{tabular} 
+
+

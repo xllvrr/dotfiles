@@ -1,0 +1,26 @@
+name tikzducks
+category Package
+revision 54837
+shortdesc A little fun package for using rubber ducks in TikZ
+longdesc The package is a LaTeX package for ducks to be used in TikZ
+longdesc pictures. This project is a continuation of an answer at
+longdesc StackExchange How we can draw a duck?
+containersize 17528
+containerchecksum 97827a10412d0c03511af83a706b1895b89799275031fe7ad218f120e8d6494bbaf6c41c5bf16c24663a8c742d6e46a93a236f4007b3b865555d84bfed383760
+doccontainersize 445640
+doccontainerchecksum 5432be7937078ebbf324d877cfd1c9a5a803391341b669cddff58c8efa1c0477c5ac3c5559fb05b6543082c6728e73007434b13d81478b3e7df27c3c5f32f8c9
+docfiles size=119
+ texmf-dist/doc/latex/tikzducks/README.md details="Readme"
+ texmf-dist/doc/latex/tikzducks/tikzducks-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/tikzducks/tikzducks-doc.tex
+runfiles size=26
+ texmf-dist/tex/latex/tikzducks/tikzducks.sty
+ texmf-dist/tex/latex/tikzducks/tikzlibraryducks.code.tex
+catalogue-also tikzlings tikzmarmots
+catalogue-contact-bugs https://github.com/samcarter/tikzducks/issues
+catalogue-contact-repository https://github.com/samcarter/tikzducks
+catalogue-contact-support https://github.com/samcarter/tikzducks/issues
+catalogue-ctan /graphics/pgf/contrib/tikzducks
+catalogue-license lppl1.3c
+catalogue-topics amusements graphics pgf-tikz
+catalogue-version 1.4

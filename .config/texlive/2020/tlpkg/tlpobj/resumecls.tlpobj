@@ -1,0 +1,36 @@
+name resumecls
+category Package
+revision 54815
+shortdesc Typeset a resume both in English and Chinese
+longdesc A LaTeX document class to typeset a resume or CV both in
+longdesc English and Chinese with more ease and flexibility.
+containersize 1636
+containerchecksum 1ee39179bba50d32bd3d6d9a00dc9f77a9a2b1822e13958b15804307e36ca208eed327f4f8ac144418e2ccde8d9e248dcf4c72bd137bf440f956d60d0bb11634
+doccontainersize 157668
+doccontainerchecksum 23a3484a598f3b18763443fd4131a2e0278f17788aac6b640b00f0935c43ee7c3da5850892b525eb6bdbb9fb01d543f7a22b93cd5ffc64290ca0fa4f41a31354
+docfiles size=48
+ texmf-dist/doc/xelatex/resumecls/README.md details="Readme"
+ texmf-dist/doc/xelatex/resumecls/example/Makefile
+ texmf-dist/doc/xelatex/resumecls/example/README.md details="Readme"
+ texmf-dist/doc/xelatex/resumecls/example/resume-common.tex
+ texmf-dist/doc/xelatex/resumecls/example/resume-en.pdf
+ texmf-dist/doc/xelatex/resumecls/example/resume-en.tex
+ texmf-dist/doc/xelatex/resumecls/example/resume-zh.pdf
+ texmf-dist/doc/xelatex/resumecls/example/resume-zh.tex
+ texmf-dist/doc/xelatex/resumecls/example/resume.bib
+ texmf-dist/doc/xelatex/resumecls/resumecls.pdf details="Package listing"
+srccontainersize 4692
+srccontainerchecksum a2c0f2062f30675fd4c336f618e7f25e1abb2737aa98f5bcb499c5941ad4615246046f9b8a5aaa57d94ed3b40906a73985c2045f8e571c2d86cc0e7dd2c243da
+srcfiles size=5
+ texmf-dist/source/xelatex/resumecls/Makefile
+ texmf-dist/source/xelatex/resumecls/resumecls.dtx
+ texmf-dist/source/xelatex/resumecls/resumecls.ins
+runfiles size=1
+ texmf-dist/tex/xelatex/resumecls/resumecls.cls
+catalogue-contact-announce https://github.com/huxuan/resumecls/releases
+catalogue-contact-bugs https://github.com/huxuan/resumecls/issues
+catalogue-contact-home https://github.com/huxuan/resumecls
+catalogue-ctan /macros/xetex/latex/resumecls
+catalogue-license lppl1.3
+catalogue-topics cv chinese class
+catalogue-version 0.4.1

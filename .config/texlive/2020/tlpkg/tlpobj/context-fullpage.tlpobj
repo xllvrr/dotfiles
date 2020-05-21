@@ -1,0 +1,22 @@
+name context-fullpage
+category ConTeXt
+revision 47085
+shortdesc Overfull pages with ConTeXt
+longdesc The (ConTeXt) module copies the functionality of the fullpage,
+longdesc and adds a styling parameter, given in the \usemodule command
+depend context
+containersize 2996
+containerchecksum 280a16b47e04f3099a2f960435bf1c22ec623553303e339df4d06135b768cee6565e20a0c4e0c080d8c6f621a32d862ba6203daacdbf9ecd03b62829dd0014fd
+doccontainersize 82144
+doccontainerchecksum 1d4ff98bae26e0d6ec1ce1ca58fac82f8592158f8635eeac737546873f1f468b2ad7a82b9f8956b770fdc0c01443a9327c509265cdecb90d83dca15462cfa23b
+docfiles size=41
+ texmf-dist/doc/context/third/fullpage/README details="README"
+ texmf-dist/doc/context/third/fullpage/VERSION
+ texmf-dist/doc/context/third/fullpage/fullpage-doc.pdf details="Package documentation"
+runfiles size=7
+ texmf-dist/tex/context/interface/third/t-fullpage.xml
+ texmf-dist/tex/context/third/fullpage/t-fullpage.mkii
+ texmf-dist/tex/context/third/fullpage/t-fullpage.mkiv
+catalogue-ctan /macros/context/contrib/context-fullpage
+catalogue-license gpl
+catalogue-topics geometry

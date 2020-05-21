@@ -1,0 +1,33 @@
+name tikz-feynman
+category Package
+revision 39582
+shortdesc Feynman diagrams with TikZ
+longdesc This is a LaTeX package allowing Feynman diagrams to be easily
+longdesc generated within LaTeX with minimal user instructions and
+longdesc without the need of external programs. It builds upon the TikZ
+longdesc package and leverages the graph placement algorithms from TikZ
+longdesc in order to automate the placement of many vertices.
+longdesc tikz-feynman allows fine-tuned placement of vertices so that
+longdesc even complex diagrams can still be generated with ease.
+containersize 15444
+containerchecksum 1a1ebc5d2f2eca4e5dd16ce744774add9b8f5b4c3124dee46f0366f43a59b188b0873939d2b68ff0d679f3e52f1a6bc387ab81c363912024efd0eb4110e2ba27
+doccontainersize 322304
+doccontainerchecksum b3e90aa1d8476aed01faef977b75f4e3450cab121d457eca0bb254075c1e2ed58fe15196ab0d923906dcf6af4f78bc76d6053343f6444c8294bf7d5bbceb3cd1
+docfiles size=104
+ texmf-dist/doc/latex/tikz-feynman/LICENSE
+ texmf-dist/doc/latex/tikz-feynman/README.md details="Readme"
+ texmf-dist/doc/latex/tikz-feynman/references.bib
+ texmf-dist/doc/latex/tikz-feynman/tikz-feynman.pdf details="Package documentation"
+ texmf-dist/doc/latex/tikz-feynman/tikz-feynman.tex
+runfiles size=28
+ texmf-dist/tex/latex/tikz-feynman/tikz-feynman.sty
+ texmf-dist/tex/latex/tikz-feynman/tikzfeynman.keys.code.tex
+ texmf-dist/tex/latex/tikz-feynman/tikzfeynman.patch.3.0.0.lua
+ texmf-dist/tex/latex/tikz-feynman/tikzfeynman.patch.3.0.1.lua
+ texmf-dist/tex/latex/tikz-feynman/tikzlibraryfeynman.code.tex
+catalogue-also tikz-feynhand
+catalogue-contact-home http://www.jpellis.me/projects/tikz-feynman
+catalogue-ctan /graphics/pgf/contrib/tikz-feynman
+catalogue-license lppl1.3
+catalogue-topics physics pgf-tikz use-luatex
+catalogue-version 1.1.0

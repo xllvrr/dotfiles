@@ -1,0 +1,27 @@
+name dithesis
+category Package
+revision 34295
+shortdesc A class for undergraduate theses at the University of Athens
+longdesc The class conforms to the requirements of the Department of
+longdesc Informatics and Telecommunications at the University of Athens
+longdesc regarding the preparation of undergraduate theses, as of Sep 1,
+longdesc 2011. The class is designed for use with XeLaTeX; by default
+longdesc (on a Windows platform), the font Arial is used, but provision
+longdesc is made for use under Linux (with a different sans-serif font).
+containersize 5580
+containerchecksum b11165408ccd30427390e9f409e8f561122d1a2dbe821ce90687df9feb2faef692d8ccd75fd8372b975a06e3f11bca0ba6e873d59b30aabfa95015ca35e557a8
+doccontainersize 184556
+doccontainerchecksum 25058b262f803fbbf3c41fa62ae8983ade351fc7bb65be7d886a4300390f836ef5d1240e59571839b407afa2ddb363e6c31e76e36c160ed3fe0c6d0e0ef71fbf
+docfiles size=78
+ texmf-dist/doc/latex/dithesis/README details="Readme"
+ texmf-dist/doc/latex/dithesis/athena.jpg
+ texmf-dist/doc/latex/dithesis/sample.pdf details="Package sample, serving as documentation"
+ texmf-dist/doc/latex/dithesis/sample.tex
+ texmf-dist/doc/latex/dithesis/sampleNoArial.pdf
+ texmf-dist/doc/latex/dithesis/sampleNoArial.tex
+runfiles size=5
+ texmf-dist/tex/latex/dithesis/dithesis.cls
+catalogue-ctan /macros/latex/contrib/dithesis
+catalogue-license lppl
+catalogue-topics dissertation greek
+catalogue-version 0.2

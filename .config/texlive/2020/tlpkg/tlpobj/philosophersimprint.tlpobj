@@ -1,0 +1,38 @@
+name philosophersimprint
+category Package
+revision 41788
+shortdesc Typesetting articles for "Philosophers' Imprint"
+longdesc In its mission statement we read "Philosophers' Imprint is a
+longdesc refereed series of original papers in philosophy, edited by
+longdesc philosophy faculty at the University of Michigan, with the
+longdesc advice of an international Board of Editors, and published on
+longdesc the World Wide Web by the University of Michigan Digital
+longdesc Library. The mission of the Imprint is to promote a future in
+longdesc which funds currently spent on journal subscriptions are
+longdesc redirected to the dissemination of scholarship for free, via
+longdesc the Internet". The class helps authors to typeset their own
+longdesc articles in "Web-ready" format. No assumption is made about the
+longdesc fonts available to the author: the class itself is restricted
+longdesc to freely available and freely distributed fonts, only.
+containersize 4616
+containerchecksum 05f9639dbc34d0fd653f2609c581df2e50825cd61af7eaca55f03fddee2b0bf1c0c6bb3258fe10265cdadf0d8371d351aa143327a07f3739defb4ca3ca9b4f16
+doccontainersize 448944
+doccontainerchecksum 45bf6648cf92ee58d35847845094614884ad300d5ae745a57bc036d72bf7a1cf8dc7596daab8c606266c717b0114727072298f91b61e92c40dd180bfeb678a3b
+docfiles size=117
+ texmf-dist/doc/latex/philosophersimprint/Makefile
+ texmf-dist/doc/latex/philosophersimprint/README details="Readme"
+ texmf-dist/doc/latex/philosophersimprint/philosophersimprint.bib
+ texmf-dist/doc/latex/philosophersimprint/philosophersimprint.pdf details="Package documentation"
+ texmf-dist/doc/latex/philosophersimprint/sample.pdf details="Sample of usage"
+ texmf-dist/doc/latex/philosophersimprint/sample.tex
+srccontainersize 12816
+srccontainerchecksum 9522941d5b9fdeb2eec1f3f91bdb6649da45ba930ccf11599e532352170279f67e40779b9af5d46a4dece5b14ca2ef421280ea31eec24b686db6a9a4f2709a93
+srcfiles size=13
+ texmf-dist/source/latex/philosophersimprint/philosophersimprint.dtx
+ texmf-dist/source/latex/philosophersimprint/philosophersimprint.ins
+runfiles size=4
+ texmf-dist/tex/latex/philosophersimprint/philosophersimprint.cls
+catalogue-ctan /macros/latex/contrib/philosophersimprint
+catalogue-license lppl
+catalogue-topics journalpub
+catalogue-version 1.4

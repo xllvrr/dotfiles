@@ -1,0 +1,8 @@
+name mkpic.x86_64-linux
+category Package
+revision 33688
+shortdesc x86_64-linux files of mkpic
+containersize 336
+containerchecksum a0e7c0cc7f8ec5f579d7195b772f416650b65792450e0f04e466d3abfad62801201de49c2b557e98eac1f51627366b92d303e2eea8426f10a76fa989226cedcb
+binfiles arch=x86_64-linux size=1
+ bin/x86_64-linux/mkpic

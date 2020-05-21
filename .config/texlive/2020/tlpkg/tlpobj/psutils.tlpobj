@@ -1,0 +1,46 @@
+name psutils
+category TLCore
+revision 52851
+shortdesc PostScript utilities
+longdesc A bundle of utilities for manipulating PostScript documents,
+longdesc including page selection and rearrangement, resizing the page,
+longdesc arrangement into signatures for booklet printing, and page
+longdesc merging for n-up printing. Utilities include psbook, psselect,
+longdesc pstops, psnup, psresize, epsffit.
+depend psutils.ARCH
+containersize 5388
+containerchecksum 737cbffd48eec8244b11d6715a41feea6ed25cd6e53326dcbec0a5fe60881c5376dba508d70345db30a3c3515b24d3995f133b92015d2e943accea1093ea7c1c
+doccontainersize 135820
+doccontainerchecksum 68505dab374e4e4ffd9da0ce6e6ee41008ebc0e2eaac1cd89ba7746b6882ba7bf6fb93143b4dd5a3a8fada821104ab8ca66fea5ffe313173631f98b221fdc62c
+docfiles size=60
+ texmf-dist/doc/man/man1/epsffit.1
+ texmf-dist/doc/man/man1/epsffit.man1.pdf
+ texmf-dist/doc/man/man1/extractres.1
+ texmf-dist/doc/man/man1/extractres.man1.pdf
+ texmf-dist/doc/man/man1/includeres.1
+ texmf-dist/doc/man/man1/includeres.man1.pdf
+ texmf-dist/doc/man/man1/psbook.1
+ texmf-dist/doc/man/man1/psbook.man1.pdf
+ texmf-dist/doc/man/man1/psjoin.1
+ texmf-dist/doc/man/man1/psjoin.man1.pdf
+ texmf-dist/doc/man/man1/psnup.1
+ texmf-dist/doc/man/man1/psnup.man1.pdf
+ texmf-dist/doc/man/man1/psresize.1
+ texmf-dist/doc/man/man1/psresize.man1.pdf
+ texmf-dist/doc/man/man1/psselect.1
+ texmf-dist/doc/man/man1/psselect.man1.pdf
+ texmf-dist/doc/man/man1/pstops.1
+ texmf-dist/doc/man/man1/pstops.man1.pdf
+ texmf-dist/doc/man/man1/psutils.1
+ texmf-dist/doc/man/man1/psutils.man1.pdf
+runfiles size=7
+ texmf-dist/dvips/getafm/getafm.ps
+ texmf-dist/psutils/paper.cfg
+ texmf-dist/scripts/psutils/extractres.pl
+ texmf-dist/scripts/psutils/includeres.pl
+ texmf-dist/scripts/psutils/psjoin.pl
+catalogue-also pssplit
+catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
+catalogue-license other-free
+catalogue-topics ps-manip
+catalogue-version p17

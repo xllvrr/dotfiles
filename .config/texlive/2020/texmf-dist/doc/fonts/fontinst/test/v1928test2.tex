@@ -1,0 +1,32 @@
+\documentclass{article}
+
+
+
+
+\def\FontWithCMap#1#2#3{%
+   \font#1=#2\relax
+   \immediate\pdfobj stream file {#3}%
+   \pdffontattr#1{/ToUnicode \the\pdflastobj\space 0 R}%
+}
+\def\AddCMapToFont#1#2{%
+   \immediate\pdfobj stream file {#2}%
+   \pdffontattr#1{/ToUnicode \the\pdflastobj\space 0 R}%
+}
+
+
+\begin{document}
+
+
+\FontWithCMap\test{cmr12}{ot1.cmap}
+\test abcdef ghijkl mnopqr stuvwx yz fi fl ffi ffl 
+
+
+\begin{math}
+  a
+  \AddCMapToFont{\textfont2}{oms.cmap}
+  \mathcal{A} - \mathcal{B} + \mathcal{C} * \mathcal{D} \cdot 
+  \mathcal{E} \bullet \mathcal{F} \spadesuit
+\end{math}
+
+
+\end{document}

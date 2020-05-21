@@ -1,0 +1,37 @@
+00readme: this file
+
+kluwer.cls is the Kluwer class file for journal submissions.
+
+klunamed.bst is the Kluwer bibliography style for named references.
+klunum.bst is a bibliography style for numbered references.
+
+klucite.sty, to be used in conjuction with klunum.bst, collapses
+bibliographic citations such as [3,4,5] to [3--5]. Optional.
+
+klups.sty attempts to select Times for text and MathTime for math
+instead of Computer Modern. Not required for journal submissions.
+
+kluwsrc.zip/kluwsrc.tgz contains the documented LaTeX sources of
+kluwer.cls. These are NOT needed for journal submissions.
+
+usrman.tex, mouse.eps: sources for user manual. If compilation
+fails, please print the PostScript version, usrman.ps, or download a
+pdf version usrman.pdf from our website (www.wkap.nl, Author
+Services, Journal Stylefiles/Templates).
+
+sampkluw.tex is a sample journal submission.
+
+sampopen.tex is an example of an elaborate opening environment.
+
+Principal changes in this version:
+
+- various bug fixes
+- now compatible with the array- and dcolumn packages
+- most components of the Kluwer package are now physically included
+  in kluwer.cls and no longer need to be loaded from separate files.
+
+-------------------------------------------------------------------
+Siep Kroonenberg                                    texhelp@wkap.nl
+Kluwer Academic Publishers                          -- Pre Press --
+Achterom 119, 3311 KB Dordrecht, The Netherlands
+-------------------------------------------------------------------

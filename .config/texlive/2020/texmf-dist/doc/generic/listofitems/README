@@ -1,0 +1,30 @@
+___________________________________
+
+                 The
+             listofitems
+               package
+               
+                v1.63
+
+             21/08/2019
+___________________________________
+
+Authors   : Christian Tellechea, Steven B. Segletes
+Maintainer: Christian Tellechea
+E-mail    : unbonpetit@netc.fr (CT)
+            steven.b.segletes.civ@mail.mil (SBS)
+            Comments, bug reports and suggestions are welcome.
+Licence   : Released under the LaTeX Project Public License v1.3c or
+            later, see http://www.latex-project.org/lppl.txt
+
+----------------------------------------------------------------------
+
+Cette extension permet de capturer tous les \'el\'ements d'une liste
+dont le s\'eparateur a \'et\'e choisi par l'utilisateur et d'acc\'eder
+\`a tout \'el\'ement par une syntaxe simple.
+
+----------------------------------------------------------------------
+
+This package allows one to capture all the items of a list, for which
+the parsing character has been selected by the user, and to access any
+of these items with a simple syntax.

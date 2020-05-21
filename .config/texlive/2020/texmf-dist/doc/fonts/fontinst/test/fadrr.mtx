@@ -1,0 +1,51 @@
+% Filename: fadrr.mtx
+% Created by: tclsh pstofont Knuth:MPtoType1:Test:fadrr
+% Created using: pstofont::write_MTX Knuth:MPtoType1:Test:fadrr.mtx
+% 
+% This file contains the metric information about the font
+% AGaramondAdditions-Regular, in a format used by fontinst.
+
+\relax
+\documentclass[twocolumn]{article}
+\usepackage{fontdoc}
+\begin{document}
+\title{The \textit{AGaramondAdditions-Regular} font metrics}
+\date{2002-08-05 13.22.05}
+\maketitle
+
+\begin{abstract}
+  The AGaramond Additions family of fonts is free software;
+  you can redistribute it and/or modify it under the terms
+  of the Design Science License.
+  As a special exception, permission is granted to include
+  this font program in a Postscript, PDF, or similar file
+  that consists of a document that contains text to be 
+  displayed or printed using this font, regardless of the 
+  conditions or license applying to the document itself.
+\end{abstract}
+
+\metrics
+\needsfontinstversion{1.333}
+\setcommand\storemapdata#1#2#3{}
+\setcommand\setglyphbb#1#2#3#4#5{}
+\storemapdata{fadrr}{\fromafm{fadrr}{AGaramondAdditions-Regular}}{}
+\setint{ascender}{715}
+\setint{capheight}{660}
+\setint{descender_neg}{-258}
+\setint{xheight}{397}
+\setint{maxheight}{664}
+\setint{maxdepth}{4}
+\setint{italicslant}{0}
+\setnotglyph{.notdef}{fadrr}{10pt}{-1}{400}{0}{0}{0}
+\setglyphbb{.notdef}{0}{0}{0}{0}
+\setrawglyph{Gamma}{fadrr}{10pt}{71}{538}{660}{0}{0}
+\setglyphbb{Gamma}{40}{-4}{493}{664}
+\setrawglyph{I}{fadrr}{10pt}{73}{338}{660}{0}{0}
+\setglyphbb{I}{41}{-4}{297}{664}
+\setrawglyph{Pi}{fadrr}{10pt}{80}{806}{660}{0}{0}
+\setglyphbb{Pi}{40}{-4}{766}{664}
+\setrawglyph{uni0428}{fadrr}{10pt}{87}{962}{660}{0}{0}
+\setglyphbb{uni0428}{40}{-4}{922}{664}
+
+\endmetrics
+\end{document}

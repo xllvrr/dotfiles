@@ -1,0 +1,24 @@
+name IEEEconf
+category Package
+revision 15878
+shortdesc Macros for IEEE conference proceedings
+longdesc The IEEEconf class implements the formatting dictated by the
+longdesc IEEE Computer Society Press for conference proceedings.
+containersize 2544
+containerchecksum bd35025cabe78886f78333cb4ff186d0363480ea0c1f825456e9b6debc08c0a2dbfc7c703fc9caebaf2a20c47925141cb090d50146f054a76e1aecd861408517
+doccontainersize 177424
+doccontainerchecksum 0316a52d380555afb04358cadd56e6fabe23293bd3b6dd0f0d4e4df9db75e26708dfc7df4c280a8a9759e4c8518050805f197357b2efa43664a984f56dfabb05
+docfiles size=53
+ texmf-dist/doc/latex/IEEEconf/IEEEconf.pdf details="Package documentation"
+ texmf-dist/doc/latex/IEEEconf/README details="Readme"
+srccontainersize 12540
+srccontainerchecksum 18d0204a051b8c1d0ea034b7c3357228b0dd2f40d44ffc059ee270fc22f284a833eec72527874be0c1414e01ca91f403726c801f75e2f6cd2d0a2b097db5c53a
+srcfiles size=11
+ texmf-dist/source/latex/IEEEconf/IEEEconf.dtx
+ texmf-dist/source/latex/IEEEconf/IEEEconf.ins
+runfiles size=2
+ texmf-dist/tex/latex/IEEEconf/IEEEconf.cls
+catalogue-ctan /macros/latex/contrib/IEEEconf
+catalogue-license lppl
+catalogue-topics confproc class
+catalogue-version 1.4

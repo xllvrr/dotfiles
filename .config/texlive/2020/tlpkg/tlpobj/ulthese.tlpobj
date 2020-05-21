@@ -1,0 +1,51 @@
+name ulthese
+category Package
+revision 52972
+shortdesc Thesis class and templates for Universite Laval
+longdesc The package provides a class based on memoir to prepare theses
+longdesc and memoirs compliant with the presentation rules set forth by
+longdesc the Faculty of Graduate Studies of Universite Laval, Quebec,
+longdesc Canada. The class also comes with an extensive set of templates
+longdesc for the various types of theses and memoirs offered at Laval.
+longdesc Please note that the documentation for the class and the
+longdesc comments in the templates are all written in French, the
+longdesc language of the target audience.
+containersize 59892
+containerchecksum c2a3d8a837ecda20bf50c496b8506e6c7dc7d6308fa058e51f4b1dba858d76c391ab3b9faaff9cbbb39fea3696fc5a1c7daf9417f3c18b3eaef9fc7eb5383195
+doccontainersize 257936
+doccontainerchecksum adffed362b6ebe3bab7aa04563ca0de114917199893dd310578d372f6e4e67b84bae7e50658ebfd7bde270d4c3158ef9dda57c0c6855787fa3cde0102ef4153a
+docfiles size=87
+ texmf-dist/doc/latex/ulthese/README.md details="Readme (in French)" language="fr"
+ texmf-dist/doc/latex/ulthese/abstract.tex
+ texmf-dist/doc/latex/ulthese/annexe.tex
+ texmf-dist/doc/latex/ulthese/avantpropos.tex
+ texmf-dist/doc/latex/ulthese/chapitre1-articles.tex
+ texmf-dist/doc/latex/ulthese/chapitre1.tex
+ texmf-dist/doc/latex/ulthese/chapitre2-articles.tex
+ texmf-dist/doc/latex/ulthese/chapitre2.tex
+ texmf-dist/doc/latex/ulthese/conclusion.tex
+ texmf-dist/doc/latex/ulthese/gabarit-doctorat-articles.tex
+ texmf-dist/doc/latex/ulthese/gabarit-doctorat-cotutelle.tex
+ texmf-dist/doc/latex/ulthese/gabarit-doctorat.tex
+ texmf-dist/doc/latex/ulthese/gabarit-maitrise-articles.tex
+ texmf-dist/doc/latex/ulthese/gabarit-maitrise-bidiplomation.tex
+ texmf-dist/doc/latex/ulthese/gabarit-maitrise.tex
+ texmf-dist/doc/latex/ulthese/introduction.tex
+ texmf-dist/doc/latex/ulthese/remerciements.tex
+ texmf-dist/doc/latex/ulthese/resume.tex
+ texmf-dist/doc/latex/ulthese/ulthese.pdf details="Package documentation" language="fr"
+srccontainersize 27052
+srccontainerchecksum 652cd812d9916f855ceb5983b1cfecfa9a7fd724939933ef0159c6ee4dd9199e9923cd09511598b30c8f5355845fb3764363e110bd69d02df4f62c6f69ebbc99
+srcfiles size=28
+ texmf-dist/source/latex/ulthese/ulthese.dtx
+ texmf-dist/source/latex/ulthese/ulthese.ins
+runfiles size=47
+ texmf-dist/tex/latex/ulthese/ul_p.eps
+ texmf-dist/tex/latex/ulthese/ul_p.pdf
+ texmf-dist/tex/latex/ulthese/ulthese.cls
+catalogue-also memoir babel
+catalogue-contact-repository https://gitlab.com/vigou3/ulthese
+catalogue-ctan /macros/latex/contrib/ulthese
+catalogue-license lppl1.3c
+catalogue-topics dissertation class french
+catalogue-version 5.3

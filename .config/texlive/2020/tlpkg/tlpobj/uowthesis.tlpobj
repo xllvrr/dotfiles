@@ -1,0 +1,26 @@
+name uowthesis
+category Package
+revision 19700
+shortdesc Document class for dissertations at the University of Wollongong
+longdesc A document class for higher degree research theses in
+longdesc compliance with the specifications of University of Wollongong
+longdesc (UoW) theses in the "Guidelines for Preparation and Submission
+longdesc of Higher Degree Research Theses" (March 2006), by the Research
+longdesc Student Centre, Research & Innovation Division, UoW.
+containersize 44552
+containerchecksum 060684c777f377fcc98b371123cfcd9717a113deb0f7fbd99cdf6cec65e66b77fc44d50a3475c8b1e8071eec80c2e6b1c20437a4432d6d5fba208fe3f06fe127
+doccontainersize 93176
+doccontainerchecksum 00386265fd93cc89146fba04eff87b55fc250e3429ca5d769f006ee1e8c581fdd96702830a90ca4eeedd35e0d90305b5ce19dea6f16ef5600479d1fc1ab2e35b
+docfiles size=32
+ texmf-dist/doc/latex/uowthesis/README details="Readme"
+ texmf-dist/doc/latex/uowthesis/myThesisBib.bib
+ texmf-dist/doc/latex/uowthesis/mythesis.pdf details="Demonstration document"
+ texmf-dist/doc/latex/uowthesis/mythesis.tex
+runfiles size=865
+ texmf-dist/tex/latex/uowthesis/UoWlogo.eps
+ texmf-dist/tex/latex/uowthesis/UoWlogo.png
+ texmf-dist/tex/latex/uowthesis/UoWthesis.cls
+catalogue-ctan /macros/latex/contrib/uowthesis
+catalogue-license lppl1.3
+catalogue-topics dissertation
+catalogue-version 1.0a

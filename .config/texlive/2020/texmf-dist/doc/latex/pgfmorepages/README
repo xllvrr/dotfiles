@@ -1,0 +1,14 @@
+----------------------------------------------------------------
+pgfmorepages --- LaTeX functions for manipulating multiple pages
+E-mail: loopspace@mathforge.org
+Released jointly under the LaTeX Project Public License v1.3c (or
+later) and under the GNU Public License.
+
+See http://www.latex-project.org/lppl.txt
+and https://www.gnu.org/licenses/gpl.html
+----------------------------------------------------------------
+
+This package replaces and extends the pgfpages sub-package of the PGF
+system.  It provides the capability to arrange multiple "logical"
+pages on multiple "physical" pages, for example as for arranging pages
+to make booklets.

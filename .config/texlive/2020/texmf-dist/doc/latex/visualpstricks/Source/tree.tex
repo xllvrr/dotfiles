@@ -1,0 +1,617 @@
+\label{pst-tree}
+
+\subsection{structure}
+
+
+
+%-----------------------------------------------------------------------
+\SbSSCT{les noeuds}{The nodes}
+
+\begin{tabular}{|c|c|}
+%\hline \multicolumn{2}{|c|}{ Sans contenu} \\ 
+\hline  \textbf{ \TFRGB{sans astérisque}{without asterisk}} & \textbf{\TFRGB{avec astérisque}{with asterisk}} \\
+\hline \pstree{\Tp}{\Tp \Tp \Tp \Tp} & \pstree{\Tp*}{\Tp* \Tp* \Tp* \Tp*} \\ 
+\hline \multicolumn{2}{|c|}{ \BS{pstree}\AC{\BSS{Tp}*}\AC{\BS{}Tp* \BS{}Tp* \BS{}Tp* \BS{}Tp*} } \\
+\hline \pstree{\Tc{3pt}}{\Tc{3pt} \Tc{3pt} \Tc{3pt} \Tc{3pt}} & \pstree{\Tc*{3pt}}{\Tc*{3pt} \Tc*{3pt} \Tc*{3pt} \Tc*{3pt}} \\ 
+\hline \multicolumn{2}{|c|}{ \BS{pstree}\AC{\BSS{Tc}*}\AC{\BS{}Tc* \BS{}Tc* \BS{}Tc* \BS{Tc}=*} } \\ 
+\hline \pstree{\TC}{\TC \TC \TC \TC} & \pstree{\TC*}{\TC* \TC* \TC* \TC*} \\ 
+\hline \multicolumn{2}{|c|}{ \BS{}pstree\AC{\BSS{TC}*}\AC{\BS{}TC* \BS{}TC* \BS{}TC* \BS{}TC*}  \BSI{TC}{pst-tree} } \\ 
+\hline \pstree{\Tf}{\Tf \Tf \Tf \Tf} & \pstree{\Tf*}{\Tf* \Tf* \Tf* \Tf*} \\ 
+\hline \multicolumn{2}{|c|}{ \BS{}pstree\AC{\BSS{Tf}*}\AC{\BS{}Tf* \BS{}Tf* \BS{}Tf* \BS{}Tf*}  \BSI{TC}{pst-tree}} \\ 
+\hline \pstree{\Tdot}{\Tdot \Tdot \Tdot \Tdot} & \pstree{\Tdot*}{\Tdot* \Tdot* \Tdot* \Tdot*} \\
+\hline \multicolumn{2}{|c|}{ \BS{}pstree\AC{\BSS{Tdot}*}\AC{\BS{}Tdot* \BS{}Tdot* \BS{}Tdot* \BS{}Tdot*}  \BSI{Tdot}{pst-tree} } \\ 
+\hline 
+\end{tabular}
+
+
+\begin{tabular}{|c|c|}
+\hline  \textbf{ \TFRGB{sans astérisque}{without asterisk}} & \textbf{\TFRGB{avec astérisque}{with asterisk}}\\
+\hline \pstree{\Tr{A1}}{\Tr{B1} \Tr{B2} \Tr{B3} \Tr{B4}} & \pstree{\Tr*{A1}}{\Tr*{B1} \Tr*{B2} \Tr*{B3} \Tr*{B4}} \\
+\hline \multicolumn{2}{|c|}{ \BS{pstree}\AC{\BSS{Tr}\AC{A1}}\AC{\BS{Tr}\AC{B1} \BS{Tr}\AC{B2} \BS{Tr}\AC{B3} \BS{Tr}\AC{B4}}  \BSI{Tr}{pst-tree}  } \\ 
+ 
+\hline \pstree{\TR{A1}}{\TR{B1} \TR{B2} \TR{B3} \TR{B4}} & \pstree{\TR*{A1}}{\TR*{B1} \TR*{B2} \TR*{B3} \TR*{B4}} \\ 
+\hline \multicolumn{2}{|c|}{ \BS{pstree}\AC{\BSS{TR}\AC{A1}}\AC{\BS{TR}\AC{B1} \BS{TR}\AC{B2} \BS{TR}\AC{B3} \BS{TR}\AC{B4}}  \BSI{TR}{pst-tree}  }\\
+
+\hline \pstree{\Tcircle{A1}}{\Tcircle{B1} \Tcircle{B2} \Tcircle{B3} \Tcircle{B4}} & \pstree{\Tcircle*{A1}}{\Tcircle*{B1} \Tcircle*{B2} \Tcircle*{B3} \Tcircle*{B4}} \\
+\hline 
+\multicolumn{2}{|c|}{ \BS{}pstree \AC{\BSS{Tcircle}\AC{A1}}\AC{\BS{Tcircle}\AC{B1} \BS{Tcircle}\AC{B2} \BS{Tcircle}\AC{B3} \BS{Tcircle}\AC{B4} }  \BSI{Tcircle}{pst-tree}  }\\
+ 
+
+\hline \pstree{\TCircle{A1}}{\TCircle{B1} \TCircle{B2} \TCircle{B3} \TCircle{B4}} & \pstree{\TCircle*{A1}}{\TCircle*{B1} \TCircle*{B2} \TCircle*{B3} \TCircle*{B4}} \\
+\hline 
+\multicolumn{2}{|c|}{ \BS{}pstree \AC{\BSS{TCircle}\AC{A1}}\AC{\BS{TCircle}\AC{B1} \BS{TCircle}\AC{B2} \BS{TCircle}\AC{B3} \BS{TCircle}\AC{B4} }  \BSI{TCircle}{pst-tree}  }\\
+ 
+\hline \pstree{\Toval{A1}}{\Toval{B1} \Toval{B2} \Toval{B3} \Toval{B4}} & \pstree{\Toval*{A1}}{\Toval*{B1} \Toval*{B2} \Toval*{B3} \Toval*{B4}} \\
+\hline 
+\multicolumn{2}{|c|}{ \BS{}pstree \AC{\BSS{Toval}\AC{A1}}\AC{\BS{Toval}\AC{B1} \BS{Toval}\AC{B2} \BS{Toval}\AC{B3} \BS{Toval}\AC{B4} }  \BSI{Toval}{pst-tree}  }\\
+
+
+\hline \pstree{\Tdia{A1}}{\Tdia{B1} \Tdia{B2} \Tdia{B3} \Tdia{B4}} & \pstree{\Tdia*{A1}}{\Tdia*{B1} \Tdia*{B2} \Tdia*{B3} \Tdia*{B4}} \\
+\hline 
+\multicolumn{2}{|c|}{ \BS{}pstree \AC{\BSS{Tdia}\AC{A1}}\AC{\BS{Tdia}\AC{B1} \BS{Tdia}\AC{B2} \BS{Tdia}\AC{B3} \BS{Tdia}\AC{B4} }  \BSI{Tdia}{pst-tree} }\\
+
+\hline \pstree{\Ttri{A1}}{\Ttri{B1} \Ttri{B2} \Ttri{B3} \Ttri{B4}} & \pstree{\Ttri*{A1}}{\Ttri*{B1} \Ttri*{B2} \Ttri*{B3} \Ttri*{B4}} \\
+\hline 
+\multicolumn{2}{|c|}{ \BS{}pstree \AC{\BSS{Ttri}\AC{A1}}\AC{\BS{Ttri}\AC{B1} \BS{Ttri}\AC{B2} \BS{Ttri}\AC{B3} \BS{Ttri}\AC{B4} }  \BSI{Ttri}{pst-tree}  }\\
+\hline 
+\end{tabular}
+
+
+\begin{tabular}{|c|c|}
+\hline  
+\pstree{\Toval{A1}}{
+\pstree{\Tfan}{\Toval{B1}}
+\pstree{\Tfan[fansize=.5]}{\Toval{B2}}
+\pstree{\Tfan}{\Toval{B3} \Toval{B4} }}
+&   
+\parbox[t]{8cm}{  
+\BS{pstree}\AC{\BS{Toval}\AC{A1}}\AC{\%  \\
+\BS{pstree}\AC{\BSS{Tfan}}\AC{\BS{Toval}\AC{B1}}  \BSI{Tfan}{pst-tree}  \\
+\BS{pstree}\AC{\textbf{\BS{Tfan}[\RDD{fansize}=.5]}}\AC{\BS{Toval}\AC{B2}} \RDI{fansize}{pst-tree} \\
+\BS{pstree}\AC{\textbf{\BS{Tfan}}}\AC{\BS{Toval}\AC{B3} \BS{Toval}\AC{B4} } \\
+} 
+
+\bigskip
+{\blue \dft{} :   fansize= 1cm }\\
+}
+\\ \hline 
+\end{tabular} 
+
+%---------------------------------------------------
+\subsection{Orientation}
+
+
+\begin{tabular}{|c|c|c|c|}
+\hline \multicolumn{4}{|c|}{  \BS{pstree}[\RDD{treemode}=R]\AC{\BS{Toval}\AC{A1}}\AC{\BS{Toval}\AC{B1} \BS{Toval}\AC{B2}}  \RDI{treemode}{pst-tree}  } \\
+\hline 
+ \pstree[treemode=R]{\Toval{A1}}{\Toval{B1} \Toval{B2}}
+&  
+ \pstree[treemode=D]{\Toval{A1}}{\Toval{B1} \Toval{B2} }
+&  
+\pstree[treemode=L]{\Toval{A1}}{\Toval{B1} \Toval{B2}}
+&
+\pstree[treemode=U]{\Toval{A1}}{\Toval{B1} \Toval{B2} }
+\\ 
+\hline treemode=R  & treemode=D & treemode=L & treemode=U \\ 
+\hline 
+\end{tabular} 
+
+\bigskip
+ \begin{tabular}{|c|c|}
+\hline \multicolumn{2}{|c|}{\BS{pstree}[\RDD{treeflip}=true]\AC{ \BS{Toval}\AC{A1}} \{\BS{Toval}\AC{B1}  \RDI{treeflip}{pst-tree}  } \\
+\multicolumn{2}{|c|}{  \BS{pstree}[treemode=R]\AC{\BS{Toval}\AC{B2}}\AC{\BS{Toval}\AC{C1}}\} } \\ 
+\hline 
+ \pstree[treeflip=true]{\Toval{A1}}{\Toval{B1} \pstree[treemode=R]{\Toval{B2}}{\Toval{C1}}}
+ &  
+ \pstree[treeflip=false]{\Toval{A1}}{\Toval{B1} \pstree[treemode=R]{\Toval{B2}}{\Toval{C1}}}
+ \\ 
+ \hline treeflip=true & treeflip=false {\blue (\dft)}\\ 
+ \hline 
+ \end{tabular} 
+ 
+ %----------------------------------------------------------------------
+\SbSSCT{Distance entre 2 noeuds de même niveau}{Distance between two nodes on the same level}
+
+ 
+\begin{tabular}{|c|c|}    \hline 
+\multicolumn{2}{|c|}{  \BS{pstree}[\RDD{treefit}=tight] \AC{ \BS{Toval}\AC{A1}} \{ \BS{Toval}\AC{B1} \RDI{treefit}{pst-tree}  }\\  
+\multicolumn{2}{|c|}{  \BS{pstree}\AC{ \BS{Toval}\AC{B2}} \AC{ \BS{Toval}\AC{C1} \BS{Toval}\AC{C2} }\} } \\
+\hline  
+\pstree[treefit=tight]{\Toval{A1}} {\Toval{B1} \pstree{\Toval{B2}}{\Toval{C1} \Toval{C2}}}
+&  
+\pstree[treefit=loose]{\Toval{A1}}{\Toval{B1} \pstree{\Toval{B2}}{\Toval{C1} \Toval{C2}}}
+\\ 
+\hline {\red  treefit=tight} {\blue (\dft)} & {\red treefit=loose }  \\ 
+\hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|}
+\hline 
+\multicolumn{2}{|c|}{  \BS{pstree}[\RDD{treesep}=0cm]\AC{\BS{Toval}\AC{A1}}\AC{\BS{Toval}\AC{B1} \BS{Toval}\AC{B2}} \RDI{treesep}{pst-tree}  } \\ 
+\hline  
+\pstree[treesep=0cm]{\Toval{A1}}{\Toval{B1} \Toval{B2}}
+&  
+\pstree[treesep=2cm]{\Toval{A1}}{\Toval{B1} \Toval{B2}}
+\\ 
+\hline  {\red treesep}=0cm & {\red treesep}=2cm {\blue (\dft: treesep=0.75cm) }  \\ 
+\hline 
+\end{tabular} 
+
+\bigskip
+\begin{tabular}{|c|c|}    \hline 
+\multicolumn{2}{|c|}{ \BS{pstree}[\RDD{treenodesize}=1]\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1}  \BS{Toval}\AC{B2 B2 B2} \BS{Toval}\AC{B3 B3 B3} } \RDI{treenodesize}{pst-tree}  }\\  
+\hline  
+\pstree[treenodesize=1]{\Toval{A1}} {\Toval{B1} \Toval{B2 B2 B2} \Toval{B3 B3 B3} }
+&  
+\pstree[treenodesize=-1]{\Toval{A1}} {\Toval{B1} \Toval{B2 B2 B2} \Toval{B3 B3 B3} }
+\\  \hline 
+{\red treenodesize=1}
+&
+{\red treenodesize=-1}
+ \\ \hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|}    \hline 
+\multicolumn{2}{|c|}{ \BS{pstree}\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1} \BSS{tspace}\AC{-1cm} \BS{Toval}\AC{B2} \BS{Toval}\AC{B3} }  \BSI{Tspace}{pst-tree}  }\\  
+\hline  
+\pstree{\Toval{A1}} {\Toval{B1} \tspace{-1cm} \Toval{B2} \Toval{B3} }
+&  
+\pstree{\Toval{A1}}{\Toval{B1}\tspace{1cm} \Toval{B2} \Toval{B3} }
+ \\ \hline 
+{\red  \BS{tspace}\AC{-1cm}}
+&
+{\red  \BS{tspace}\AC{1cm}}
+ \\ \hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|} \hline 
+\parbox[c]{4cm}{ 
+\pstree[levelsep=1cm]{\Toval{A1}}{\Toval{B1} 
+\pstree{\Toval{B2}}{\pstree[thistreefit=loose]{\Toval{C1}}{\red \Toval{D1} \pstree{\Toval{D2}}{\black \Toval{E1} \Toval{E2}}}\Toval{C2}}}
+}
+& 
+\parbox[l]{8cm}{ 
+\BS{pstree}[levelsep=1cm]\AC{\BS{Toval}\AC{A1}}\\
+\AC{\BS{Toval}\AC{B1} \\
+\BS{pstree}\AC{\BS{Toval}\AC{B2}}\AC{ \\
+\BS{pstree}[\RDD{thistreefit}=loose]\AC{\BS{Toval}\AC{C1}}  \RDI{thistreefit}{pst-tree}  \\
+\AC{\BS{Toval}\AC{D1} \\
+\BS{pstree}\AC{\BS{Toval}\AC{D2}}\\
+\AC{\BS{Toval}\AC{E1} \\
+\BS{Toval}\AC{E2}}}\\
+\BS{Toval}\AC{C2}}}
+} 
+\\ \hline 
+\end{tabular}
+\bigskip
+
+\begin{tabular}{|c|c|} \hline 
+\parbox[c]{4cm}{ 
+\pstree[levelsep=1cm]{\Toval{A1}}{\Toval{B1} 
+\pstree{\Toval{B2}}{ \pstree[thistreesep=0]{\Toval{C1}}{\red \Toval{D1} \pstree{\Toval{D2}}{\black \Toval{E1} \Toval{E2}}}\Toval{C2}}}
+}
+& 
+\parbox[l]{8cm}{ 
+\BS{pstree}[levelsep=1cm]\AC{\BS{Toval}\AC{A1}}\\
+\AC{\BS{Toval}\AC{B1} \\
+\BS{pstree}\AC{\BS{Toval}\AC{B2}}\AC{ \\
+\BS{pstree}[\RDD{thistreesep}=0]\AC{\BS{Toval}\AC{C1}} \RDI{thistreesep}{pst-tree}  \\
+\AC{\BS{Toval}\AC{D1} \\
+\BS{pstree}\AC{\BS{Toval}\AC{D2}}\\
+\AC{\BS{Toval}\AC{E1} \\
+\BS{Toval}\AC{E2}}}\\
+\BS{Toval}\AC{C2}}}
+} 
+\\ \hline 
+\end{tabular}
+
+
+
+%--------------------------------------------------------------------------
+\SbSSCT{Distance entre noeuds successifs}{Distance between successive nodes}
+
+
+\begin{tabular}{|c|c|c|c|}
+\hline 
+ \multicolumn{4}{|c|}{\BS{pstree}[\RDD{levelsep}=1cm] \AC{\BS{Toval}\AC{A1}} \AC{ \BS{Toval}\AC{B1} \BS{pstree}\AC{\BS{Toval}\AC{B2}} \AC{\BS{Toval}\AC{C1} \BS{Toval}\AC{C2}} } \RDI{levelsep}{pst-tree}  }\\  
+\hline  
+\pstree[levelsep=1cm]{\Toval{A1}} {\Toval{B1} \pstree{\Toval{B2}}{\Toval{C1} \Toval{C2}}}
+& 
+\pstree[levelsep=*1cm]{\Toval{A1}} {\Toval{B1} \pstree{\Toval{B2}}{\Toval{C1} \Toval{C2}}}
+& 
+\pstree[levelsep=.5cm]{\Toval{A1}}{\Toval{B1} \pstree{\Toval{B2}}{\Toval{C1} \Toval{C2}}}
+& 
+\pstree[levelsep=*.5cm]{\Toval{A1}}{\Toval{B1} \pstree{\Toval{B2}}{\Toval{C1} \Toval{C2}}}
+\\ \hline 
+\hline levelsep=1cm & levelsep=*1cm & levelsep=.5cm   &  levelsep=*.5cm   \\ \hline 
+ \multicolumn{4}{|c|}{ \blue (\dft : 2cm)}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|} \hline 
+\parbox[c]{4cm}{ 
+\pstree[levelsep=1cm]{\Toval{A1}}{\Toval{B1} 
+\pstree{\Toval{B2}}{\pstree[levelsep=.5cm]{\Toval{C1}}{\red \Toval{D1} \pstree{\Toval{D2}}{\Toval{E1} \Toval{E2}}}\Toval{C2}}}
+}
+& 
+\parbox[l]{8cm}{ 
+\BS{pstree}[levelsep=1cm]\AC{\BS{Toval}\AC{A1}}\\
+\AC{\BS{Toval}\AC{B1} \\
+\BS{pstree}\AC{\BS{Toval}\AC{B2}}\AC{ \\
+\BS{pstree}[ \RDD{levelsep}=0.5cm]\AC{\BS{Toval}\AC{C1}}  \RDI{levelsep}{pst-tree} \\
+\AC{\BS{Toval}\AC{D1} \\
+\BS{pstree}\AC{\BS{Toval}\AC{D2}}\\
+\AC{\BS{Toval}\AC{E1} \\
+\BS{Toval}\AC{E2}}}\\
+\BS{Toval}\AC{C2}}}
+ 
+} 
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline 
+\parbox[c]{4cm}{ 
+\pstree[levelsep=1cm]{\Toval{A1}}{\Toval{B1} 
+\pstree{\Toval{B2}}{\pstree[thislevelsep=.5cm]{\Toval{C1}}{\red  \Toval{D1} \pstree{\Toval{D2}}{\black \Toval{E1} \Toval{E2}}}\Toval{C2}}}
+}
+& 
+\parbox[l]{8cm}{ 
+\BS{pstree}[levelsep=1cm]\AC{\BS{Toval}\AC{A1}}\\
+\AC{\BS{Toval}\AC{B1} \\
+\BS{pstree}\AC{\BS{Toval}\AC{B2}}\AC{ \\
+\BS{pstree}[\RDD{thislevelsep}=0.5cm]\AC{\BS{Toval}\AC{C1}}  \RDI{thislevelsep}{pst-tree}  \\
+\AC{\BS{Toval}\AC{D1} \\
+\BS{pstree}\AC{\BS{Toval}\AC{D2}}\\
+\AC{\BS{Toval}\AC{E1} \\
+\BS{Toval}\AC{E2}}}\\
+\BS{Toval}\AC{C2}}}
+ 
+} 
+\\ \hline 
+\end{tabular} 
+%---------------------------------------------------------------------------------------------
+\SbSSCT{Liaison des noeuds}{Connecting the nodes}
+
+
+
+\bigskip
+  \begin{tabular}{|c|c|l|}
+  \hline 
+  \parbox[l]{3.5cm}{ 
+  \renewcommand{\psedge}{\ncdiag[angle=-90, armA=0, angleB=90,armB=1cm]}
+  \pstree{\Toval{A1}} {\Toval{B1} \pstree{\Toval{B2}}{\Toval{C1} \Toval{C2}}}
+  }
+  &
+    \parbox[l]{3.5cm}{   
+  \def\psedge{\nccurve[angleA=-90,angleB=90, nodesepB=3pt]}
+  
+  \pstree{\Toval{A1}} {\Toval{B1} \pstree{\Toval{B2}}{\Toval{C1} \Toval{C2}}}
+  }
+  &
+\parbox[l]{6cm}{
+\emph {\TFRGB{Redéfinition du type de liaison  2 possibilités}{the 2 ways to set the  connection  type} :}
+\bigskip
+
+  \BSS{renewcommand}\AC{\BSS{psedge}} \AC{\BS{ncdiag}[angle=-90,armA=0,angleB=90,armB=1cm]}
+
+\bigskip
+  \BSS{def}\BSS{psedge}\AC{\BS{nccurve}[angleA=-90 ,angleB=90,nodesepB=3pt]}
+}
+  \\   \hline 
+ \multicolumn{3}|c|{ {\blue  \dft : \BS{ncline}} \hspace{1cm} \TFRGB{Autres possibilités voir}{other connection see} page \pageref{node} } \\
+% \multicolumn{3}{|c|}{ Autres possibilités voir page \pageref{node}} \\
+  \hline 
+  \end{tabular} 
+
+\bigskip
+\begin{tabular}{|c|c|}
+\hline  
+\pstree{\Toval{A1}} {\Toval[edge={\ncdiag[angleA=-90,angleB=90,armA=0,armB=1cm]}]{B1} \Toval[edge={\nccurve[angleA=-90,angleB=90]}]{B2}}
+&  
+ \parbox[t]{12cm}{ 
+\smallskip
+\BS{pstree}\AC{\BS{Toval}\AC{A1}} \\
+\AC{\BS{Toval}[\RDD{edge}=\AC{\BS{ncdiag}[angleA=-90,angleB=90,armA=0,armB=1cm]}]\AC{B1}  \RDI{edge}{pst-tree}  \\ 
+\BS{Toval}[{\red edge}=\AC{\BS{nccurve}[angleA=-90,angleB=90]}]\AC{B2}}
+}
+\\ 
+\hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|}
+\hline  
+\pstree{\Toval{A1}} {\Toval[name=A]{B1} \Toval[name=B]{B2}}
+\ncline[linestyle=dashed,linecolor=red]{A}{B}
+& 
+ \parbox[t]{12cm}{ 
+\smallskip
+\BS{pstree}\AC{\BS{Toval}\AC{A1}} \\
+\AC{\BS{Toval}[\RDD{name}=A]\AC{B1}\BS{Toval[{\red name}=B]\AC{B2}}}  \RDI{name}{pst-tree} \\
+\smallskip
+\BS{ncline}[linestyle=dashed,linecolor=red]\AC{A}\AC{B} \\
+}
+\\ 
+\hline 
+\end{tabular} 
+
+
+\SbSSCT{Etiquettes}{Labels}
+\SbSbSSCT{Etiquettes sur les liaisons}{Labels on the connection}
+
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\multicolumn{4}{|c|}{ \BS{pstree}\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1} {\red  \BS{tlput}\AC{\BS{}red l}}  \BS{Toval}\AC{B2}  } }\\  
+\hline  
+\pstree{\Toval{A1}} {\Toval{B1} \tlput{\red l} \Toval{B2}} 
+& 
+\pstree{\Toval{A1}} {\Toval{B1} \trput{\red r} \Toval{B2}} 
+&  
+\pstree{\Toval{A1}} {\Toval{B1} \taput{\red a} \Toval{B2}}
+& 
+\pstree{\Toval{A1}} {\Toval{B1} \tbput{\red b} \Toval{B2}}
+ \\ 
+   \hline \BSS{tlput}\AC{\BS{}red l}  \BSI{tlput}{pst-tree} & \BSS{trput}\AC{\BS{}red r}  \BSI{trput}{pst-tree}  & \BSS{taput}\AC{\BS{}red a}  \BSI{taput}{pst-tree}  &  \BSS{tbput}\AC{\BS{}red a}  \BSI{tbput}{pst-tree} \\ 
+   \hline 
+   \end{tabular} 
+
+\bigskip
+\begin{tabular}{|c|c|c|c|}
+\hline 
+ \multicolumn{4}{|c|}{ \BS{pstree}[{\red treemode=L}]\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1} {\red  \BS{tlput}\AC{\BS{}red l}}  \BS{Toval}\AC{B2}  } }\\  
+ \hline  
+\pstree[treemode=L]{\Toval{A1}} {\Toval{B1} \tlput{\red l} \Toval{B2}}
+&  
+\pstree[treemode=L]{\Toval{A1}} {\Toval{B1} \trput{\red r} \Toval{B2}}
+&  
+\pstree[treemode=L]{\Toval{A1}} {\Toval{B1} \taput{\red a} \Toval{B2}}
+&  
+\pstree[treemode=L]{\Toval{A1}} {\Toval{B1} \tbput{\red b} \Toval{B2}}
+\\ 
+   \hline \BS{tlput}\AC{\BS{}red l} & \BS{trput}\AC{\BS{}red r}  & \BS{taput}\AC{\BS{}red a}  &  \BS{taput}\AC{\BS{}red a} \\ 
+\hline 
+\end{tabular} 
+\bigskip
+
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\multicolumn{4}{|c|}{\BS{}psset\AC{tpos=.75}  \BS{pstree}\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1} {\red  \BS{tlput}\AC{\BS{}red X}}  \BS{Toval}\AC{B2}  } }\\  
+\hline 
+\psset{tpos=0} 
+\pstree{\Toval{A1}} {\Toval{B1} \tlput{\red X} \Toval{B2}} 
+&
+\psset{tpos=.75} 
+\pstree{\Toval{A1}} {\Toval{B1} \tlput{\red X} \Toval{B2}} 
+& 
+\psset{tpos=1} 
+\pstree{\Toval{A1}} {\Toval{B1} \tlput{\red X} \Toval{B2}}
+& 
+\pstree{\Toval{A1}} {\Toval{B1} \tlput{\red X} \Toval{B2}}
+ \\ 
+   \hline tpos=0 & tpos=.75 & tpos=1 & {\blue \dft }\\ 
+   \hline 
+   \end{tabular} 
+
+%------------------------------------------------------------------------------------------------
+\SbSbSSCT{Etiquettes sur les noeuds}{Labels on the nodes}
+
+\begin{tabular}{|c|c|c|c|}
+\hline  
+ \multicolumn{4}{|c|}{ \BS{pstree}\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1}  $\sim$[\RDD{tnpos}=l]\AC{\BS{}red l}}  \BS{Toval}\AC{B2}   \RDI{tnpos}{pst-tree} } \\  
+ \hline  
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=l]{\red l} \Toval{B2}} 
+& 
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=r]{\red r} \Toval{B2}} 
+&  
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=a]{\red a} \Toval{B2}}
+& 
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b]{\red b}\Toval{B2}}
+ \\ 
+\hline tnpos=l & tnpos=r & tnpos=a & tnpos=b \\ 
+\hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|c|c|}
+\hline 
+ \multicolumn{4}{|c|}{ \BS{pstree}[{\red treemode=L}]\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1} { $\sim$[{\red tnpos}=l]\AC{\BS{}red l}}  \BS{Toval}\AC{B2}  } }\\  
+ \hline   
+\pstree[treemode=L]{\Toval{A1}} {\Toval{B1} ~[tnpos=l]{\red l} \Toval{B2}}
+&  
+\pstree[treemode=L]{\Toval{A1}} {\Toval{B1}~[tnpos=r]{\red r} \Toval{B2}}
+&  
+\pstree[treemode=L]{\Toval{A1}} {\Toval{B1} ~[tnpos=a]{\red a} \Toval{B2}}
+&  
+\pstree[treemode=L]{\Toval{A1}} {\Toval{B1} ~[tnpos=b]{\red b} \Toval{B2}}
+\\ 
+\hline tnpos=l & tnpos=r & tnpos=a & tnpos=b \\ 
+\hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|c|c|}
+\hline  
+ \multicolumn{4}{|c|}{ \BS{pstree}\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1} {$\sim$[tnpos=b,\RDD{tnsep}=1cm]\AC{\BS{}red  1cm}}  \BS{Toval}\AC{B2}  }  \RDI{tnsep}{pst-tree} }\\  
+ \hline  
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b,tnsep=1cm]{\red 1cm} \Toval{B2}} 
+& 
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b,tnsep=-1cm]{\red -1cm} \Toval{B2}} 
+&  
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b,tnsep=0cm]{\red 0cm} \Toval{B2}}
+& 
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b]{\blue\dft}\Toval{B2}}
+ \\ 
+\hline tnsep=1cm & tnsep=-1cm & tnsep=0cm & {\blue\dft }\\ 
+\hline 
+\end{tabular}
+
+
+\bigskip
+\begin{tabular}{|c|c|c|c|}
+\hline  
+ \multicolumn{4}{|c|}{ \BS{pstree}\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1} {$\sim$[tnpos=b,\RDD{tnheight}=1cm]\AC{\BS{}red l}}  \BS{Toval}\AC{B2}  }  \RDI{tnheight}{pst-tree}  }\\  
+ \hline  
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b,tnheight=1cm]{\red 1cm} \Toval{B2}} 
+& 
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b,tnheight=-1cm]{\red -1cm} \Toval{B2}} 
+&  
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b,tnheight=0cm]{\red 0cm} \Toval{B2}}
+& 
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b]{\blue \dft}\Toval{B2}}
+ \\ 
+\hline tnheight=1cm & tnheight=-1cm & tnheight=0cm & {\blue \dft } \\ 
+\hline 
+\end{tabular}
+\bigskip
+
+\begin{tabular}{|c|c|c|c|}
+\hline  
+ \multicolumn{4}{|c|}{ \BS{pstree}\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1} {$\sim$[tnpos=b,\RDD{tnyref}=1cm]\AC{\BS{}red l}}  \BS{Toval}\AC{B2}  }  \RDI{tnyref}{pst-tree}  }\\  
+ \hline  
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b,tnyref=1cm]{\red 1cm} \Toval{B2}} 
+& 
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b,tnyref=-1cm]{\red -1cm} \Toval{B2}} 
+&  
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b,tnyref=0cm]{\red 0cm} \Toval{B2}}
+& 
+\pstree{\Toval{A1}} {\Toval{B1}~[tnpos=b]{\blue \dft}\Toval{B2}}
+ \\ 
+\hline tnyref=1cm &tnyref=-1cm & tnyref=0cm & {\blue \dft }\\ 
+\hline 
+\end{tabular}
+
+
+%------------------------------------------------------------------------------
+\newpage
+\SbSSCT{Showbbox}{Showbbox}
+
+\begin{tabular}{|c|c|}
+\hline 
+ \multicolumn{2}{|l|}{   \BS{psset}\AC{\RDD{showbbox}=true}     }\\ 
+  \multicolumn{2}{|l|}{ \BS{pstree}\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1}  \BS{Toval}\AC{B2}}    \RDI{showbbox}{pst-tree}  }\\  
+\hline 
+&\\  
+\psset{showbbox=true}
+\pstree[treemode=L]{\Toval{A1}} {\Toval{B1}  \Toval{B2}}
+&  
+\psset{showbbox=false}
+\pstree[treemode=L]{\Toval{A1}} {\Toval{B1} \Toval{B2}}
+\\ 
+&\\
+\hline showbbox=true & showbbox=false \\ 
+\hline 
+\end{tabular} 
+
+ 
+ \bigskip
+ \begin{tabular}{|c|c|c|c|}
+ \hline  
+ \multicolumn{4}{|c|}{   \BS{psset}\AC{showbbox=true}   \BS{pstree}[bbl=1cm]\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1}  \BS{Toval}\AC{B2}}    }\\  
+
+ \psset{showbbox=true}
+ \pstree[bbl=1cm]{\Toval{A1}} {\Toval{B1}  \Toval{B2}} 
+ &  
+ \psset{showbbox=true}
+  \pstree[bbr=1cm]{\Toval{A1}} {\Toval{B1}  \Toval{B2}}  
+ & 
+ \psset{showbbox=true} 
+ \pstree[bbh=1cm]{\Toval{A1}} {\Toval{B1}  \Toval{B2}}
+ &
+ \psset{showbbox=true}  
+  \pstree[bbd=1cm]{\Toval{A1}} {\Toval{B1}  \Toval{B2}}
+ \\ 
+\RDD{bbl}=1cm \RDI{bbl}{pst-tree} &
+ \RDD{bbr}=1cm  \RDI{bbr}{pst-tree}& 
+ \RDD{bbh}=1cm  \RDI{bbh}{pst-tree}& 
+ \RDD{bbd}=1cm  \RDI{bbd}{pst-tree}\\ 
+ \hline 
+ \end{tabular} 
+
+   \bigskip 
+ 
+  \begin{tabular}{|cccc|}
+  \hline 
+  \multicolumn{4}{|c|}{   \BS{psset}\AC{showbbox=true}   \BS{pstree}[\RDD{xbbl}=1cm]\AC{\BS{Toval}\AC{A1}} \AC{\BS{Toval}\AC{B1}  \BS{Toval}\AC{B2}}   \RDI{xbbl}{pst-tree}  }\\  
+
+  &&&\\ 
+  \psset{showbbox=true}
+  \pstree[xbbl=1cm]{\Toval{A1}} {\Toval{B1}  \Toval{B2}} 
+  &  
+  \psset{showbbox=true}
+   \pstree[xbbr=1cm]{\Toval{A1}} {\Toval{B1}  \Toval{B2}}  
+  & 
+  \psset{showbbox=true} 
+  \pstree[xbbh=1cm]{\Toval{A1}} {\Toval{B1}  \Toval{B2}}
+  & 
+  \psset{showbbox=true} 
+   \pstree[xbbd=1cm]{\Toval{A1}} {\Toval{B1}  \Toval{B2}}
+  \\ 
+
+ \RDD{xbbl}=1cm  \RDI{xbbl}{pst-tree}& 
+ \RDD{xbbr}=1cm  \RDI{xbbr}{pst-tree}& 
+ \RDD{xbbh}=1cm   \RDI{xbbh}{pst-tree}& 
+ \RDD{xbbd}=1cm   \RDI{xbbd}{pst-tree}\\ 
+\hline 
+\end{tabular}  
+
+\bigskip
+\begin{tabular}{|c|c|c|}
+\hline  
+\pstree{\Tc{3pt}~[tnpos=a,tndepth=0pt,radius=4pt]{root}}{%
+\TC*~[tnpos=l,tndepth=0pt]{$h$}
+\TC*~[tnpos=r,tndepth=0pt]{$i$}}
+&  
+\pstree{\Tc{3pt}~[tnpos=a,tndepth=1cm,radius=4pt]{root}}{%
+\TC*~[tnpos=l,tndepth=1cm]{$h$}
+\TC*~[tnpos=r,tndepth=1cm]{$i$}}
+&  
+\pstree{\Tc{3pt}~[tnpos=a,tndepth=-1cm,radius=4pt]{root}}{%
+\TC*~[tnpos=l,tndepth=-1cm]{$h$}
+\TC*~[tnpos=r,tndepth=-1cm]{$i$}}
+\\ 
+\hline \RDD{tndepth}=0pt  \RDI{tndepth}{pst-tree} & \RDD{tndepth}=1cm  \RDI{tndepth}{pst-tree} &  
+\RDD{tndepth}=-1cm  \RDI{tndepth}{pst-tree}\\ 
+\hline 
+\end{tabular} 
+
+%----------------------------------------------------------
+\SbSSCT{skiplevel}{skiplevel}
+\begin{tabular}{|c|c|} \hline 
+\parbox[l]{6cm}{ 
+\pstree[levelsep=1cm,treesep=0cm]{\Toval{A1}}{%
+\skiplevel{\Toval{\red B1}}
+\pstree{\Toval{B2}}{%
+\Toval{C1}
+\skiplevels{2}
+\pstree{\Toval{\red C2}}{\Toval{D1} \Toval{D2}}
+\Toval{\red C3}
+\endskiplevels
+\pstree{\Toval{C4}}{\Toval{E1} \Toval{E2}}}}
+}
+
+& 
+\parbox[l]{8cm}{ 
+\BS{pstree}[levelsep=1cm,treesep=0cm]\AC{\BS{Toval}\AC{A1}}\AC{\% \\
+\\
+\BSS{skiplevel} \AC{\BS{Toval}{\red \AC{\BS{}red  B1}} }  \BSI{skiplevel}{pst-tree} \\
+ 
+\BS{pstree}\AC{\BS{Toval}\AC{B2}}\AC{\% \\
+\BS{Toval}\AC{C1} \\
+\\
+\BSS{skiplevels}\AC{2} \BSI{skiplevels}{pst-tree}\\
+\BS{pstree}\AC{\BS{Toval}{\red \AC{\BS{}red C2}}}\AC{\BS{Toval}\AC{D1} \BS{Toval}\AC{D2}} \\
+\BS{Toval}{\red \AC{\BS{}red C3}} \\
+\BSS{endskiplevels} \BSI{endskiplevel}{pst-tree} \\
+\\
+\BS{pstree}\AC{\BS{Toval}\AC{C4}}\AC{\BS{Toval}\AC{E1} \BS{Toval}\AC{E2}}}} \\
+} 
+\\ \hline 
+\end{tabular}
+

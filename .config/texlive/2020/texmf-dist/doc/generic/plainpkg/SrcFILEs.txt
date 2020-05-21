@@ -1,0 +1,9 @@
+
+     *File List*
+    plainpkg.tex  2012/09/19  v0.4a  plain package management
+plainpkg-doc.tex  2012/09/19   --    documenting plainpkg.tex
+     ***********
+
+ List made at 2012/09/19, 18:35
+ from script file srcfiles.tex
+

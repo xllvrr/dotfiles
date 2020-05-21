@@ -1,0 +1,47 @@
+name combinedgraphics
+category Package
+revision 27198
+shortdesc Include graphic (EPS or PDF)/LaTeX combinations
+longdesc This package provides a macro (\includecombinedgraphics) for
+longdesc the inclusion of combined EPS/LaTeX and PDF/LaTeX graphics (an
+longdesc export format of Gnuplot, Xfig, and maybe other programs).
+longdesc Instead of including the graphics with a simple \input, the
+longdesc \includecombinedgraphics macro has some comforts: changing the
+longdesc font and color of the text of the LaTeX part; rescaling the
+longdesc graphics without affecting the font of the LaTeX part;
+longdesc automatic inclusion of the vector graphics part, as far as
+longdesc LaTeX part does not do it (e.g., for files exported from
+longdesc Gnuplot before version 4.2); and rescaling and rotating of
+longdesc complete graphics (similar to \includegraphics from the
+longdesc graphicx package).
+containersize 3532
+containerchecksum 22d36d3a44fbbe5f11522f28e716be862d354998750492d014d86037a24407a748248571e50dc99a6fe5518d8ecbf61ca657407194a43b75510b613438fa4b65
+doccontainersize 429112
+doccontainerchecksum 4802871f57bbc131c850f89eef43778ed25a9abb0a850dac0e91e762b7a321567348f147ae02847cad4c226f9acf2bce921f9745832d1dc298d751b8123741b4
+docfiles size=138
+ texmf-dist/doc/latex/combinedgraphics/COPYING
+ texmf-dist/doc/latex/combinedgraphics/Makefile
+ texmf-dist/doc/latex/combinedgraphics/README details="Readme"
+ texmf-dist/doc/latex/combinedgraphics/combinedgraphics.pdf details="Package documentation"
+ texmf-dist/doc/latex/combinedgraphics/test/Makefile
+ texmf-dist/doc/latex/combinedgraphics/test/combinedgraphics_test.pdf
+ texmf-dist/doc/latex/combinedgraphics/test/combinedgraphics_test.tex
+ texmf-dist/doc/latex/combinedgraphics/test/gnuplot42.eps
+ texmf-dist/doc/latex/combinedgraphics/test/gnuplot42.pdf
+ texmf-dist/doc/latex/combinedgraphics/test/gnuplot42.plt
+ texmf-dist/doc/latex/combinedgraphics/test/gnuplot42.tex
+ texmf-dist/doc/latex/combinedgraphics/test/xfig325.eps
+ texmf-dist/doc/latex/combinedgraphics/test/xfig325.fig
+ texmf-dist/doc/latex/combinedgraphics/test/xfig325.pdf
+ texmf-dist/doc/latex/combinedgraphics/test/xfig325.tex
+srccontainersize 9428
+srccontainerchecksum 248524984e09cfe3a2a6bafdb0011d3470035243807635dff3ee6e6bd5c7d2ecb0483e7ce069a76f1589dc5bc2da4aab2ef94ce9ef587915a03d285bd95965ad
+srcfiles size=10
+ texmf-dist/source/latex/combinedgraphics/combinedgraphics.dtx
+ texmf-dist/source/latex/combinedgraphics/combinedgraphics.ins
+runfiles size=4
+ texmf-dist/tex/latex/combinedgraphics/combinedgraphics.sty
+catalogue-ctan /macros/latex/contrib/combinedgraphics
+catalogue-license gpl
+catalogue-topics graphics-supp
+catalogue-version 0.2.2

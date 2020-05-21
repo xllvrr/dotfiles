@@ -1,0 +1,28 @@
+name pgfgantt
+category Package
+revision 52662
+shortdesc Draw Gantt charts with TikZ
+longdesc The package provides an environment for drawing Gantt charts
+longdesc that contain various elements (titles, bars, milestones, groups
+longdesc and links). Several keys customize the appearance of the chart
+longdesc elements.
+depend pgf
+containersize 7928
+containerchecksum 0269703fc00f10981d5ce8958159a24814b9f410c1b00516608c039b1ea8a3381392bf1d89e98f3011d42210047bf2e1fec2f103467087f9172e143d9ab6fcf1
+doccontainersize 929720
+doccontainerchecksum 4890ae174c92db8df7befcef30d03724ae52fa4b26ac796d247a703794ce745ee892f0d2ab8a4f62e96a5e5f792791a6f7e8b9e71f1c0f11b68e8cbcf5165472
+docfiles size=231
+ texmf-dist/doc/latex/pgfgantt/README details="Readme"
+ texmf-dist/doc/latex/pgfgantt/pgfgantt.pdf details="Package documentation"
+srccontainersize 37128
+srccontainerchecksum 668987bd37aebd38697c02bc39d85371c7d40613aba13c0f3b62ece8145608057cf3f76cda03de6df25f7ba820359ff2ba1c340aa1b9ebff94bbd42aed39e401
+srcfiles size=52
+ texmf-dist/source/latex/pgfgantt/pgfgantt.dtx
+ texmf-dist/source/latex/pgfgantt/pgfgantt.ins
+runfiles size=12
+ texmf-dist/tex/latex/pgfgantt/pgfgantt.sty
+catalogue-also pst-gantt
+catalogue-ctan /graphics/pgf/contrib/pgfgantt
+catalogue-license lppl1.3
+catalogue-topics diagram gantt
+catalogue-version 5.0

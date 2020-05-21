@@ -1,0 +1,530 @@
+%--------:| ----------------------------------------------------------------
+%schemata:| Generic package to aid construction of topical categories
+%  Author:| Charles P. Schaum
+%  E-mail:| charles dot schaum@comcast.net
+% License:| Released under the LaTeX Project Public License 1.3c or later
+%     See:| http://www.latex-project.org/lppl.txt
+%
+% This is an example file used with the schemata package.
+% See README and schemata.pdf for copyright info.
+%---------------------------------------------------------------------------
+\def\nameofplain{plain}
+\def\nameofeplain{eplain}
+\def\nameoflatex{LaTeX2e}
+\def\nameoflollipop{Lollipop}
+%
+% To use Plain TeX, do something like the following, substituting
+% tex, xetex, luatex, etc.:
+% 
+%      pdftex schematest
+%
+% To use Eplain, do something like the following:
+% 
+%      touch test.tex
+%      pdftex test <<< "\\input eplain \\input schematest"
+%
+% To use lollipop, do something like the following:
+% 
+%      lollipop schematest
+%
+% To use LaTeX, do something like the following, substituting
+% latex, xelatex, lualatex, etc.:
+% 
+%      pdflatex schematest
+%
+\ifx\fmtname\nameoflatex
+  \documentclass[10pt]{article}
+  %\usepackage[utf8]{inputenc} %Not needed for newer versions
+  \usepackage[T1]{fontenc}
+  \usepackage[polutonikogreek,american]{babel}
+  \newcommand{\gk}[1]{\foreignlanguage{polutonikogreek}{#1}}
+  \usepackage{schemata}
+  \begin{document}
+\else
+  \ifx\fmtname\nameoflollipop
+    \input schemata.sty
+    \font\scshape=cmcsc10
+    \def\textsc#1{\bgroup\scshape #1\egroup}
+    \def\gk#1{\bgroup\it #1\egroup}
+    \Start
+  \else
+    \input schemata.sty
+    \font\scshape=cmcsc10
+    \def\textsc#1{\bgroup\scshape #1\egroup}
+    \def\gk#1{\bgroup\it #1\egroup}
+  \fi
+\fi
+$$
+\Schema{-1ex}{8.7ex}
+{
+  \schemabox{Subjectum theo-\\
+  logi\ae{} est Notitia\\
+  Dei. Considerat\\
+  ergo, Dei, vel}
+}
+{
+\schema
+  {
+    \schemabox{\textsc{Essentiam},}
+  }
+  {
+    \schemabox{Unitate natur\ae{}.\\
+    Trinitate personarum.\\
+    Operibus ad intra.}
+  }\smallskip
+  \schema
+  {
+    \schemabox{\textsc{Voluntatem},\\
+    manifestatam in\\
+    operibus ad extra;\\
+    ut in}
+  }
+  {
+    \schemabox{Creatione.\\
+    Sustentatione natur\ae{} %
+    laps\ae{}.\\
+    Reparatione.\\
+    Conversione.\\
+    Justificatione.\\
+    Sanctificatione \&\\
+    Glorificatione ejusdem.}
+  }
+}
+$$
+
+$$
+\Schema{-25ex}{20.6ex}
+{
+  \schemabox{Subjectum \&\\
+  summa univer-\\
+  s\ae{} Scriptur\ae{},\\
+  est \textsc{Cognitio}\\
+  vel}
+}
+{
+  \Schema{-6.4ex}{8.5ex}
+  {
+    \schemabox{\textsc{Dei}, qua-\\lis sit, aut}
+  }
+  {
+    \schema
+    {\schemabox{\textsc{Per se}:\\ scilicet.}}
+    {
+      \schemabox{Unus in essentia.}\smallskip
+      \schemabox{Trinus in personis.}
+    }\smallskip
+    \schema
+    {\schemabox{Ad hominem\\ quem vel}}
+    {
+      \schemabox{Accusat \& terret, \textsc{Per Legem},\\
+      Consolatur \& erigit, \textsc{Per Evangelium}.\\
+      Salvat, \textsc{Per Christum}.\\
+      Renovat, \textsc{Per Spiritum Sanctum}.\\
+      Sanctificat, \textsc{Per Verbum} \& \textsc{Sacramenta}.\\
+      Castigat, tentat \& exercet, \textsc{Per Crucem}.\\
+      Glorificat \textsc{Per Resurrectionem Carnis}\\
+      \textsc{\quad Ad Vitam \AE{}ternam}.}
+    }\medskip
+  }
+  \Schema{-13.4ex}{17.4ex}
+  {
+    \schemabox{\textsc{Hominis},\\ qualis sit}
+  }
+  {
+    \Schema{-4.4ex}{5ex}
+    {\schemabox{\textsc{Per se}:}}
+    {
+      \schemabox{Ante lapsum.}\smallskip
+      \schema
+      {\schemabox{Post lapsum:}}
+      {
+        \schemabox{Ante Regenerationem \&\\
+        Renovationem S. Sancti.}\medskip
+        \schemabox{Post Regenerationem \&\\
+        Renovationem S. Sancti.}\smallskip
+      }\smallskip
+    }
+    \Schema{4.2ex}{14.4ex}
+    {\schemabox{Ad}}
+    {
+      \schema
+      {\schemabox{\textsc{Deum},}}
+      {
+        \schemabox{P\oe{}nitentia agens, agnitis peccatis \&\\
+        ira Dei cognita \textsc{Ex Lege}.\\
+        Erigens se \textsc{Voce Evangelii}.\\
+        Credens \textsc{In Christum Salvatorem}.\\
+        Non repugnans \textsc{Spiritui Sancto} impellenti.\\
+        Audiens \textsc{Verbum}: \& utens \textsc{Sacramentis}.\\
+        Patienter \& constanter sufferens \textsc{Crucem}.\\
+        Sperans \& expectans glorificationem\\
+        \textsc{\quad In Resurrectione Carnis}\\
+        \textsc{\quad Ad Vitam \AE{}ternam}.}
+      }\smallskip
+      \schema
+        {\schemabox{seipsum ratione}}
+        {\schemabox{Anim\ae{}\\ vel\\ Corporis}}\smallskip
+      \Schema{2ex}{5.1ex}
+      {\schemabox{Proximum,}}
+      {
+        \schema
+        {\schemabox{Amicum ra-\\ tione vel}}
+        {
+          \schemabox{Religionis.\\
+          Politic\ae{} \& \OE{}conomic\ae{}.\\
+          Cognationis.\\
+          Agnationis.}
+        }\smallskip
+        \schemabox{Inimicum.}
+      }
+    }
+  }
+}
+$$
+
+\eject
+
+\bgroup
+
+\ifx\fmtname\nameofeplain
+\verbatim \DoParens |endverbatim
+\fi
+\DoParens%
+\vfil
+$$
+\Schema{-26ex}{21.5ex}
+{
+  \schemabox{Sacr\ae{}\\ litter\ae{}\\ loquuntur,\\ de}
+}
+{
+  \schema
+  {
+    \schemabox{\textsc{Deo}}
+  }
+  {
+    \schemabox{Uno, in Trinitate.}\smallskip\schemabox{Trino, in unitate.}
+  }
+  \Schema{-16.5ex}{23.4ex}
+  {
+    \vskip30ex
+    \schemabox{\textsc{Dei}\\ \textsc{Operibus}}
+  }
+  {
+    \schema
+    {
+      \schemabox{\textsc{Intra},\\ qu\ae{} sunt\\ divisa, ut}
+    }
+    {
+      \schemabox{\textsc{Patris}, ab \ae{}terno gignere.\\ \textsc{Filii}, ab \ae{}terno genitum esse.\\ \textsc{Spiritus Sancti}, ab utroque\\ ab \ae{}terno procedete.}
+    }
+    \medskip
+    \Schema{-2ex}{21ex}
+    {
+      \schemabox{\textsc{Extra},\\ qu\ae{} sunt\\ indivisa;\\ tervata\\ tamen\\ cujusque\\ person\ae{}\\ divinitatis\\ sua pro-\\prietate}
+    }
+    {
+      \Schema{-0.8ex}{6.4ex}
+      {
+        \schemabox{Creatione\\ natur\ae{}}
+      }
+      {
+        \schema
+        {
+          \schemabox{Brute ut}
+        }
+        {
+          \schemabox{C\oe{}li} \smallskip \schemabox{Elementorum} \smallskip \schemabox{Mundi}
+        }
+        \smallskip
+        \schema
+        {
+          \schemabox{\ifx\fmtname\nameoflatex\gk{logik~hs}\else\gk{logik\=es}\fi, ut}
+        }
+        {
+          \schemabox{Angelorum.} \smallskip \schemabox{Hominum: Ad\ae{},\\ Ev\ae{} \& procreatorum\\ exipsis.}
+        }
+      }
+      \schema
+      {
+        \schemabox{Sustenatione\\ natur\ae{} laps\ae{},}
+      }
+      {
+        \schemabox{Angelorum malorum,} \smallskip \schemabox{Hominum: Ad\ae{}, Ev\ae{}\\ \& procreatorum exipsis.}
+      }
+      \Schema{2.6ex}{8.8ex}
+      {
+        \schemabox{Beneficiis\\ erga Ecc-\\ lesiam: ea\\ versantur\\ aut circa}
+      }
+      {
+        \Schema{2.2ex}{7ex}
+        {
+          \schemabox{Res, ut}
+        }
+        {
+          \schema
+          {
+            \schemabox{Verbum}
+          }
+          {
+            \schemabox{Legis} \smallskip \schemabox{Evangelii} \smallskip \schemabox{Sacramentorum}
+          }
+          \smallskip
+          \schema
+          {
+            \schemabox{Signa vel Veteris\\ vel Novi Testa-\\ mentum ut sunt:}
+          }
+          {
+            \schemabox{Ceremoni\ae{}} \smallskip \schemabox{Miracula}
+          }
+        }
+        \smallskip
+        \Schema{1ex}{5ex}
+        {
+          \schemabox{Personas}
+        }
+        {
+          \schema
+          {
+            \schemabox{Ecclesi\ae{}}
+          }
+          {
+            \schemabox{Universalis} \smallskip \schemabox{Particularis}
+          }
+          \smallskip
+          \schemabox{Politi\ae{} ut Magistratuum}
+          \smallskip
+          \schemabox{\OE{}conomi\ae{} ut privatorum}
+        }
+      }\vskip2ex
+    }
+  }
+}
+$$
+\vfil
+
+\eject
+
+\ifx\fmtname\nameofeplain
+\verbatim \DoGroups |endverbatim
+\fi
+\DoGroups
+
+\vfil
+$$
+\Schema{-26.5ex}{21ex}
+{
+  \schemabox{Sacr\ae{}\\ litter\ae{}\\ loquuntur,\\ de}
+}
+{
+  \schema
+  {
+    \schemabox{\textsc{Deo}}
+  }
+  {
+    \schemabox{Uno, in Trinitate.}\smallskip\schemabox{Trino, in unitate.}
+  }
+  \Schema{-17ex}{23.4ex}
+  {
+    \vskip30ex
+    \schemabox{\textsc{Dei}\\ \textsc{Operibus}}
+  }
+  {
+    \schema
+    {
+      \schemabox{\textsc{Intra},\\ qu\ae{} sunt\\ divisa, ut}
+    }
+    {
+      \schemabox{\textsc{Patris}, ab \ae{}terno gignere.\\ \textsc{Filii}, ab \ae{}terno genitum esse.\\ \textsc{Spiritus Sancti}, ab utroque\\ ab \ae{}terno procedete.\strut}
+    }
+    \medskip
+    \Schema{-2ex}{21ex}
+    {
+      \schemabox{\textsc{Extra},\\ qu\ae{} sunt\\ indivisa;\\ tervata\\ tamen\\ cujusque\\ person\ae{}\\ divinitatis\\ sua pro-\\prietate}
+    }
+    {
+      \Schema{-0.8ex}{6.4ex}
+      {
+        \schemabox{Creatione\\ natur\ae{}}
+      }
+      {
+        \schema
+        {
+          \schemabox{Brute ut}
+        }
+        {
+          \schemabox{C\oe{}li} \smallskip \schemabox{Elementorum} \smallskip \schemabox{Mundi}
+        }
+        \smallskip
+        \schema
+        {
+          \schemabox{\ifx\fmtname\nameoflatex\gk{logik~hs}\else\gk{logik\=es}\fi, ut}
+        }
+        {
+          \schemabox{Angelorum.} \smallskip \schemabox{Hominum: Ad\ae{},\\ Ev\ae{} \& procreatorum\\ exipsis.\strut}
+        }
+      }
+      \schema
+      {
+        \schemabox{Sustenatione\\ natur\ae{} laps\ae{},}
+      }
+      {
+        \schemabox{Angelorum malorum,} \smallskip \schemabox{Hominum: Ad\ae{}, Ev\ae{}\\ \& procreatorum exipsis.}
+      }
+      \Schema{2.6ex}{8.8ex}
+      {
+        \schemabox{Beneficiis\\ erga Ecc-\\ lesiam: ea\\ versantur\\ aut circa}
+      }
+      {
+        \Schema{2.2ex}{7ex}
+        {
+          \schemabox{Res, ut}
+        }
+        {
+          \schema
+          {
+            \schemabox{Verbum}
+          }
+          {
+            \schemabox{Legis} \smallskip \schemabox{Evangelii} \smallskip \schemabox{Sacramentorum}
+          }
+          \smallskip
+          \schema
+          {
+            \schemabox{Signa vel Veteris\\ vel Novi Testa-\\ mentum ut sunt:}
+          }
+          {
+            \schemabox{Ceremoni\ae{}} \smallskip \schemabox{Miracula}
+          }
+        }
+        \smallskip
+        \Schema{0.6ex}{5.5ex}
+        {
+          \schemabox{Personas}
+        }
+        {
+          \schema
+          {
+            \schemabox{Ecclesi\ae{}}
+          }
+          {
+            \schemabox{Universalis} \smallskip \schemabox{Particularis}
+          }
+          \smallskip
+          \schemabox{Politi\ae{} ut Magistratuum}
+          \smallskip
+          \schemabox{\OE{}conomi\ae{} ut privatorum}
+        }
+      }\vskip2ex
+    }
+  }
+}
+$$
+\vfil
+\egroup
+
+\eject
+
+$$
+\Schema{-1.4ex}{10ex}
+{
+  \schemabox{Qu\ae{} sit\\ \textsc{Dei}, vel}
+}
+{
+  \Schema{-1ex}{5ex}
+  {
+    \schemabox{\textsc{Essentia}, in}
+  }
+  {
+    \vskip1ex\schemabox{Unitate divina,}
+    \medskip
+    \Schema{0ex}{3.4ex}
+    {
+      \schemabox{Tribus perso-\\ nis divinitatis}
+    }
+    {
+      \Schema[close]{0ex}{3.4ex}
+      {
+        \NudgeSB\schemabox{Patre,\\ Filio,\\ Spiritui Sancto}
+      }
+      {
+        \schemabox{\ifx\fmtname\nameoflatex\gk{<omoous'iois}\else\gk{homoousiois}\fi\\ \& co\ae{}ternis}
+      }
+    }
+  }
+  \medskip
+  \Schema{-0.2ex}{6.4ex}
+  {
+    \schemabox{\textsc{Voluntas},\\ revelatur in\\ actione, sive}
+  }
+  {
+    \Schema{0ex}{3.4ex}
+    {
+      \schemabox{Universali}
+    }
+    {
+      \Schema[close]{0ex}{3.4ex}
+      {
+        \schemabox{Creationis,\\Sustenationis,\\ Propagationis,}
+      }
+      {
+        \schemabox{rerum creatarum.}
+      }
+    }
+    \medskip
+    \schema
+    {
+      \schemabox{Speciali, in beneficiis\\ erga Ecclesiam, eam}
+    }
+    {
+      \schemabox{Colligendo.\\ Justificando.\\ Conservando.\\
+      Glorificando.}
+    }
+  }
+}
+$$
+
+\vfill
+% Use here in Plain TeX.
+\newbox\mybox
+$$
+\Schema{-0.2ex}{14.4ex}
+{\schemabox{\bf Curricula\\\bf Texts}}
+{
+  \DoBrackets%
+  % Doable in LaTeX, not in Plain TeX, because \outer.
+  % \newbox\mybox%
+  \setbox\mybox=\hbox{\bf III. Philosophical }%
+  \dimen0=\wd\mybox%
+  \schema
+    {\schemabox[\dimen0]{\bf I. General\\Studies}}
+    {\schemabox{1. Collected Works\\2. Encyclopedias}}
+  \smallskip
+  \schema
+    {\schemabox[\dimen0]{\bf II. Literary\\Disciplines}}
+    {\schemabox{1. Philology\\
+     2. Historical Introduction\\
+     3. Literary Theory\\
+     4. Application}}
+  \smallskip
+  \schema
+      {\schemabox[\dimen0]{\bf III. Philosophical\\Disciplines}}
+      {\schemabox{1. Source Texts\\
+       2. History of Philosophy\\
+       3. General Surveys\\
+       4. Specific Studies}}
+  \smallskip
+  \schema
+      {\schemabox[\dimen0]{\bf IV. Historical\\Disciplines}}
+      {\schemabox{1. General Surveys\\
+       2. Specialized Works}}
+}
+$$
+\ifx\fmtname\nameoflatex
+  \end{document}
+\else
+  \ifx\fmtname\nameoflollipop
+    \Stop
+  \else
+    \bye
+  \fi
+\fi

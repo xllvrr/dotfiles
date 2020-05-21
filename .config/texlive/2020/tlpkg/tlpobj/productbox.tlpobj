@@ -1,0 +1,30 @@
+name productbox
+category Package
+revision 20886
+shortdesc Typeset a three-dimensional product box
+longdesc The package enables typesetting of a three-dimensional product
+longdesc box. This product box can be rendered as it is standing on a
+longdesc surface and some light is shed onto it. Alternatively it can be
+longdesc typeset as a wireframe to be cut out and glued together. This
+longdesc will lead to a physical product box. The package requires pgf
+longdesc and TikZ.
+containersize 4944
+containerchecksum 9b243f6558dd449ddb9d9190ea53a71ed5b28d25f5fddc64eddb194144aa688e8d8e946c53f115d40813d0933b77d5d2c78023f24a1887d8eeb70e6c1ad0bc1d
+doccontainersize 378272
+doccontainerchecksum 73f8e1afbbfd9d4047120280e746ae1349225dfa84b98b288e23f477d2eb83310271610d6f4e40cdeb0d124788a97c1f8aaeb182a03cf2b1311e286f7299aa45
+docfiles size=97
+ texmf-dist/doc/latex/productbox/Makefile
+ texmf-dist/doc/latex/productbox/README details="Readme"
+ texmf-dist/doc/latex/productbox/productbox.bib
+ texmf-dist/doc/latex/productbox/productbox.pdf details="Package documentation"
+srccontainersize 15512
+srccontainerchecksum 064e591694d0c7f6c9c981ef4038175cdb1fc9a120daaf954051dc05bb6b602bc7fdbf961a25d5cc490380028564316adf5714a151e4606aca31d1f4bca09a54
+srcfiles size=21
+ texmf-dist/source/latex/productbox/productbox.dtx
+ texmf-dist/source/latex/productbox/productbox.ins
+runfiles size=7
+ texmf-dist/tex/latex/productbox/productbox.sty
+catalogue-ctan /macros/latex/contrib/gene/productbox
+catalogue-license other-free
+catalogue-topics graphics-3d
+catalogue-version 1.1

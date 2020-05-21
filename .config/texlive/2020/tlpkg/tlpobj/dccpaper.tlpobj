@@ -1,0 +1,39 @@
+name dccpaper
+category Package
+revision 54512
+shortdesc Typeset papers for the International Journal of Digital Curation
+longdesc The LaTeX class ijdc-v14 produces camera-ready papers and
+longdesc articles suitable for inclusion in the International Journal of
+longdesc Digital Curation, with applicability from volume 14 onwards; a
+longdesc legacy class ijdc-v9 is provided for papers and articles
+longdesc written for volumes 9-13. The similar idcc class can be used
+longdesc for submissions to the International Digital Curation
+longdesc Conference, beginning with the 2015 conference.
+containersize 25224
+containerchecksum 9b588aa8d8c7cabdc60eb1c617e9ad9b308abc4a2c4b9d553ce2481ebaf740cec27b1840dd44215804f75e58bc9d4c81c35e3687614c928ac37681ad1ccf2a07
+doccontainersize 308040
+doccontainerchecksum be4e3ff335c6be69e4563886b1931bbabcccd85c77bdebe22105044162afd7e6cba1f27275811fcdda599f64869ab5f1a04f7706f4ca0bcc4e588874b9b03883
+docfiles size=82
+ texmf-dist/doc/latex/dccpaper/README.md details="Readme"
+ texmf-dist/doc/latex/dccpaper/dccpaper-apacite.bib
+ texmf-dist/doc/latex/dccpaper/dccpaper-biblatex.bib
+ texmf-dist/doc/latex/dccpaper/dccpaper.pdf details="Package documentation"
+srccontainersize 27412
+srccontainerchecksum fbf2bce2b7aef944942b087df689b385e17d3653f788b86de676b1fed61f8fe66d64e865be81b1c3294ad54b13d00de39a27da04e7acaedbd4763197603c54f3
+srcfiles size=28
+ texmf-dist/source/latex/dccpaper/Makefile
+ texmf-dist/source/latex/dccpaper/dccpaper.dtx
+ texmf-dist/source/latex/dccpaper/dccpaper.ins
+runfiles size=28
+ texmf-dist/tex/latex/dccpaper/dccpaper-base.sty
+ texmf-dist/tex/latex/dccpaper/dccpaper-by.eps
+ texmf-dist/tex/latex/dccpaper/dccpaper-by.pdf
+ texmf-dist/tex/latex/dccpaper/idcc.cls
+ texmf-dist/tex/latex/dccpaper/ijdc-v14.cls
+ texmf-dist/tex/latex/dccpaper/ijdc-v9.cls
+catalogue-contact-bugs https://github.com/DigitalCurationCentre/dccpaper/issues
+catalogue-contact-repository https://github.com/DigitalCurationCentre/dccpaper
+catalogue-ctan /macros/latex/contrib/dccpaper
+catalogue-license lppl1.3c cc-by-4
+catalogue-topics journalpub confproc class
+catalogue-version 2.0

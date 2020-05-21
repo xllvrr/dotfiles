@@ -1,0 +1,35 @@
+name erdc
+category Package
+revision 15878
+shortdesc Style for Reports by US Army Corps of Engineers
+longdesc A class for typesetting Technical Information Reports of the
+longdesc Engineer Research and Development Center, US Army Corps of
+longdesc Engineers. The class was commissioned and paid for by US Army
+longdesc Corps of Engineers, Engineer Research and Development Center,
+longdesc 3909 Halls Ferry Road, Vicksburg, MS 39180-6199.
+containersize 6056
+containerchecksum 56754f7ca1872837a362b1f5cc929fe5ed8bbd59a1a45eb2fe20b071f7c44362b0d98764c6d2870d275d0f0216a9543cc1e9f671f92de1b6b02136f9076f5f95
+doccontainersize 685596
+doccontainerchecksum 3e9d2dbfb3bd877c6bd105ca8cdff87cad9cf801797cea39e760ceaa1f27ed802795d728f9bd675c6553a88e22c03a035436abb19dacd38c774b94a0e2bd1567
+docfiles size=215
+ texmf-dist/doc/latex/erdc/README
+ texmf-dist/doc/latex/erdc/erdc.bib
+ texmf-dist/doc/latex/erdc/erdc.pdf details="Package documentation"
+ texmf-dist/doc/latex/erdc/nola.eps
+ texmf-dist/doc/latex/erdc/nola.pdf
+ texmf-dist/doc/latex/erdc/red_corps_castle2.eps
+ texmf-dist/doc/latex/erdc/red_corps_castle2.pdf
+ texmf-dist/doc/latex/erdc/sample.pdf details="Sample of usage"
+ texmf-dist/doc/latex/erdc/sample.tex
+srccontainersize 16276
+srccontainerchecksum afe35b5120001d40259065ba25a9c5720f78fb1a679ed984727b89076bc265113e93184bc8ffbf998f069f85636f332ec5c93a40ba39aef4d4b7a3884da42446
+srcfiles size=17
+ texmf-dist/source/latex/erdc/Makefile
+ texmf-dist/source/latex/erdc/erdc.dtx
+ texmf-dist/source/latex/erdc/erdc.ins
+runfiles size=5
+ texmf-dist/tex/latex/erdc/erdc.cls
+catalogue-ctan /macros/latex/contrib/erdc
+catalogue-license lppl
+catalogue-topics report-like class
+catalogue-version 1.1

@@ -1,0 +1,629 @@
+\SbSSCT{Les types de  n\oe uds }{Types of nodes}
+\label{nodes}
+
+\psset{fillcolor=yellow,fillstyle=solid,linecolor=blue,unit=1cm}
+
+
+\SbSbSSCTTC{Avec coordonnées}{Avec coordonnées   \protect \footnote{fillcolor=yellow,linecolor=blue} }{ With coordinates}{With coordinates  \protect \footnote{fillcolor=yellow,linecolor=blue} }
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\dotnode(.5,0.5){A}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\fnode(.5,0.5){B}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\fnode[framesize=.5 5pt](.5,0.5){B} 
+\end{psgraph*}
+\\ \hline  
+\BSS{dotnode}(.5,0.5)\AC{A} \BSI{dotnode}{pst-node} 
+& 
+\BSS{fnode}(.5,0.5)\AC{B} \BSI{fnode}{pst-node} 
+& 
+\BSS{fnode}[\RDD{framesize}=.5 5pt](.5,0.5)\AC{B} 
+\RDI{framesize}{pst-node}
+ \\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\dotnode*(.5,0.5){A}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\fnode*(.5,0.5){B}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\fnode*[framesize=.5 5pt](.5,0.5){B} 
+\end{psgraph*}
+\\ \hline  
+\BSS{dotnode}*(.5,0.5)\AC{A} \BSI{dotnode}{pst-node} 
+& 
+\BSS{fnode}*(.5,0.5)\AC{B} \BSI{fnode}{pst-node} 
+& 
+\BSS{fnode}*[\RDD{framesize}=.5 5pt](.5,0.5)\AC{B} 
+\RDI{framesize}{pst-node} \\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\pnode(.5,0.5){A}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\cnode(.5,0.5){.2cm}{A}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\Cnode[radius=.2cm](.5,0.5){A}
+\end{psgraph*}  
+\\ \hline 
+\BSS{pnode}(.5,0.5)\AC{A} & 
+\BSS{cnode}(.5,0.5)\AC{.2cm}\AC{A} & 
+\BSS{Cnode}[radius=.2cm](.5,0.5)\AC{A} 
+\\ \hline 
+%\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+%\pnode(.5,0.5){A}
+%\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\cnode*(.5,0.5){.2cm}{A}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\Cnode*[radius=.2cm](.5,0.5){A}
+\end{psgraph*}  
+\\ \hline 
+%\BSS{pnode}*(.5,0.5)\AC{A} 
+& 
+\BSS{cnode}*(.5,0.5)\AC{.2cm}\AC{A} & 
+\BSS{Cnode}*[radius=.2cm](.5,0.5)\AC{A} 
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\psnode(.5,0.5){A}{contenu}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\cnodeput{45}(.5,0.5){M}{contenu}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\Cnodeput[radius=1cm]{45}(.5,0.5){M}{contenu}
+\end{psgraph*}
+\\ \hline 
+\BSS{psnode}(.5,0.5)\AC{A}\AC{contenu} \BSI{psnode}{pst-node}
+&
+ \BSS{cnodeput}\AC{45}(.5,0.5) \BSI{cnodeput}{pst-node}  
+& 
+\BSS{Cnodeput}[radius=1cm]  \BSI{Cnodeput}{pst-node} \\
+ & \AC{M}\AC{contenu}  & \AC{45}(2,0)\AC{M}\AC{contenu}
+\\ \hline 
+  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\psnode*(.5,0.5){A}{contenu}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\cnodeput*{45}(.5,0.5){M}{contenu}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(1,1){2cm}{2cm }
+\Cnodeput*[radius=1cm]{45}(.5,0.5){M}{contenu}
+\end{psgraph*}
+\\ \hline 
+\BSS{psnode}*(.5,0.5)\AC{A}\AC{contenu} \BSI{psnode}{pst-node}
+&
+ \BSS{cnodeput}*\AC{45}(.5,0.5) \BSI{cnodeput}{pst-node}  
+& 
+\BSS{Cnodeput}*[radius=1cm]  \BSI{Cnodeput}{pst-node} \\
+ & \AC{M}\AC{contenu}  & \AC{45}(2,0)\AC{M}\AC{contenu}
+\\ \hline 
+\end{tabular} 
+
+\vspace{1cm}
+
+\begin{tabular}{|c|}\hline  
+Texte avant \Cnodeput*[radius=1cm]{45}(0,0){M}{contenu} texte près
+\\ \hline   \\ \\
+Texte avant \BS{Cnodeput}*[radius=1cm]\AC{45}(0,0)\AC{M}\AC{contenu} texte près \\
+{\red \TFRGB{Ces n\oe uds n'ont pas de dimension}{These nodes do not have dimension} !}
+\\ \hline 
+\end{tabular} 
+
+ %-----------------------------------------------------------------
+\SbSSCT{Sans coordonnées}{Without coordinates}
+
+\begin{tabular}{|c|c|c|} \hline  
+ \rnode{A}{contenu}
+&  
+ \Rnode{B}{contenu} 
+&  
+ \rnode{C}{\psframebox{contenu}}
+\\ \hline 
+ \BSS{rnode}\AC{A}\AC{contenu} \BSI{rnode}{pst-node}
+& 
+\BSS{Rnode}\AC{B}\AC{contenu} \BSI{Rnode}{pst-node}
+& 
+\BSS{rnode}\AC{C}\AC{\BS{psframebox}\AC{contenu}} \BSI{rnode}{pst-node}      
+\\ \hline 
+
+&  
+ \Rnode*{B}{contenu} 
+&  
+ \rnode{C}{\psframebox*{contenu}}
+\\ \hline 
+
+& 
+\BSS{Rnode}*\AC{B}\AC{contenu} \BSI{Rnode}{pst-node}
+& 
+\BSS{rnode}\AC{C}\AC{\BS{}psframebox*\AC{contenu}} \BSI{rnode}{pst-node}      
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+ \trinode{A}{contenu}
+&  
+ \trinode*{B}{contenu} 
+\\ \hline 
+ \BSS{trinode}\AC{A}\AC{contenu} \BSI{trinode}{pst-node}
+& 
+\BSS{trinode}*\AC{B}\AC{contenu}       
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|}\hline  
+Texte avant \dianode{A}{contenu} texte près
+\\ \hline  
+Texte avant \BS{dianode}\AC{A}\AC{contenu} texte près
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|}\hline
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 2 , subticks=0, dx=.5,Dx=.5, dy=.5,Dy=.5 ](0,0)(0,0)(2,2){4cm}{4cm }
+\rput(1,1){\dianode{A}{contenu}}
+\end{psgraph*}
+\\ \hline  
+\BSS{rput}(1,1)\AC{\BS{dianode}\AC{A}\AC{contenu}}
+\\ \hline 
+\end{tabular} 
+
+
+%===================
+\subsubsection{Création de n\oe uds multiples}
+
+\begin{tabular}{|c|c|} 	\hline 
+	\multicolumn{2}{|c|}{\BSS{dotnodes}[dotstyle=o](1, 0.5)\AC{A}(2, 2.5)\AC{B}(3, 1.5)\AC{C}}\\ \hline 
+	\begin{psgraph}[axesstyle=none,xticksize=0 4,yticksize=0 4,subticks=0](0,0)(4,4){4cm}{4cm}  
+		\dotnodes[dotstyle=o](1, 0.5){A}(2, 2.5){B}(3, 1.5){C}
+	\end{psgraph}
+	&
+	\begin{psgraph}[axesstyle=none,xticksize=0 4,yticksize=0 4,subticks=0](0,0)(4,4){4cm}{4cm}  
+		\dotnodes[dotstyle=o](1, 0.5){A}(2, 2.5){B}(3, 1.5){C}
+	\end{psgraph} \\ 	\hline 
+	\BS{dotnodes} & \BS{dotnodes*}  \\ 
+	\hline  
+\end{tabular} 
+%%================================================
+\newpage
+\SbSSCT{Les connexions entre les n\oe uds}{Connections between nodes}
+\label{liaisons}
+
+\SbSbSSCTTC{Les types de connexions disponibles}{Les types de connexions disponibles \protect \footnote{fillcolor=white,linecolor=blue} }{Types of connections available} {Types of connections available \protect \footnote{fillcolor=white,linecolor=blue}}
+ 
+\psset{fillcolor=white,fillstyle=none,linewidth=1pt}
+\label{node}
+
+\begin{tabular}{|l|c|c|} \hline
+
+ &\textbf{ \TFRGB{sans astérisque}{without asterisk}} & \textbf{\TFRGB{avec astérisque}{with asterisk}}\\  \hline
+ \BSS{ncline}\AC{->}\AC{A}\AC{B} \BSI{ncline}{pst-node}	
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \ncline{->}{A}{B}  \end{pspicture}	
+&  \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \ncline*{->}{A}{B}  \end{pspicture}	\\ \hline
+
+ \BSS{nccurve}\AC{->}\AC{A}\AC{B} \BSI{nccurve}{pst-node}	
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \nccurve{->}{A}{B}  \end{pspicture}	
+&  \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \nccurve*{->}{A}{B}  \end{pspicture}	\\ \hline
+
+	 \BSS{ncarc}\AC{->}\AC{A}\AC{B}	\BSI{ncarc}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \ncarc{->}{A}{B} \end{pspicture} 	
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \ncarc*{->}{A}{B} \end{pspicture}  \\ \hline
+
+ \BSS{ncbar}\AC{->}\AC{A}\AC{B} \BSI{ncbar}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+ \ncbar{->}{A}{B} \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \ncbar*{->}{A}{B} \end{pspicture}  \\ \hline
+
+ \BSS{ncdiag}\AC{->}\AC{A}\AC{B} \BSI{ncdiag}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+ \ncdiag{->}{A}{B} \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \ncdiag*{->}{A}{B} \end{pspicture} \\ \hline
+
+ \BSS{ncdiagg}\AC{->}\AC{A}\AC{B} \BSI{ncdiagg}{pst-node}	
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+ \ncdiagg{->}{A}{B} \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \ncdiagg*{->}{A}{B} \end{pspicture}  \\ \hline
+
+\BSS{ncangle}\AC{->}\AC{A}\AC{B} \BSI{ncangle}{pst-node}	
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+ \ncangle{->}{A}{B} \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \ncangle*{->}{A}{B} \end{pspicture}  \\ \hline
+ 
+
+ \BSS{ncangles}\AC{->}\AC{A}\AC{B} \BSI{ncangles}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+ \ncangles{->}{A}{B} \end{pspicture} 	
+ &  \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \ncangles*{->}{A}{B} \end{pspicture}\\ \hline
+
+
+	\BSS{nccircle}\AC{->}\AC{A}\AC{.3cm} \BSI{nccircle}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+ \nccircle{->}{A}{.3cm} \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \nccircle*{->}{A}{.3cm} \end{pspicture} \\ \hline
+ 
+	 \BSS{ncbox}\AC{->}\AC{A}\AC{B} \BSI{ncbox}{pst-node}
+& boxsize 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,0){A} \dotnode[dotstyle=*](2,0){B}
+  \ncbox*{A}{B} \end{pspicture} \\ \hline 
+  
+ \BSS{ncarcbox}\AC{->}\AC{A}\AC{B} \BSI{ncarcbox}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,0){A} \dotnode[dotstyle=*](2,0){B}
+ \ncarcbox{A}{B} \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,0){A} \dotnode[dotstyle=*](2,0){B}
+  \ncarcbox*{A}{B} \end{pspicture}\\ \hline 
+ 
+	\BSS{ncloop}\AC{->}\AC{A}\AC{B} \BSI{ncloop}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,-.5){B}
+ \ncloop[loopsize=.7cm]{A}{B} \end{pspicture} 	
+ &  \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,-.5){B}
+  \ncloop*[loopsize=.7cm]{A}{B} \end{pspicture}   \\ \hline 
+
+\end{tabular} 
+
+\SbSbSSCT{Les noeuds comme des points de dessin }{Nodes as points}
+
+\psset{fillcolor=white,fillstyle=none,linewidth=1pt}
+%
+\begin{tabular}{|l|c|c|} \hline
+ & \textbf{ \TFRGB{sans astérisque}{without asterisk}} & \textbf{\TFRGB{avec astérisque}{with asterisk}}\\  \hline
+\BSS{pcline}\AC{->}(A)(B) \BSI{pcline}{pst-node}	
+&
+ \begin{pspicture}(0,-.5)(3 ,.5)
+  \dotnode[dotstyle=*](1,-.5){A} 
+  \dotnode[dotstyle=*](2,0){B} 
+  \pcline{->}(A)(B)
+  \end{pspicture}	
+& 
+ \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+\pcline*{->}(A)(B)
+\end{pspicture}
+\\ \hline
+
+  \BSS{pccurve}\AC{->}(A)(B) \BSI{pccurve}{pst-node}	
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \pccurve{->}(A)(B)  \end{pspicture}	
+&  \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \pccurve*{->}(A)(B)  \end{pspicture}	\\ \hline
+
+	 \BSS{pcarc }\AC{->}(A)(B) \BSI{pcarc}{pst-node}	
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \pcarc {->}(A)(B) \end{pspicture} 	
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \pcarc *{->}(A)(B) \end{pspicture}  \\ \hline
+
+ \BSS{pcbar}\AC{->}(A)(B) \BSI{pcbar}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+ \pcbar{->}(A)(B) \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \pcbar*{->}(A)(B) \end{pspicture}  \\ \hline
+
+ \BSS{pcdiag}\AC{->}(A)(B) \BSI{pcdiag}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+ \pcdiag{->}(A)(B) \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \ncdiag*{->}{A}{B} \end{pspicture} \\ \hline
+
+ \BSS{pcdiagg }\AC{->}(A)(B) \BSI{pcdiagg}{pst-node}	
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+ \pcdiagg {->}(A)(B) \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \pcdiagg *{->}(A)(B) \end{pspicture}  \\ \hline
+
+\BSS{pcangle}\AC{->}(A)(B)	\BSI{pcangle}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+ \pcangle{->}(A)(B) \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \pcangle*{->}(A)(B) \end{pspicture}  \\ \hline
+ 
+
+ \BSS{pcangles}\AC{->}(A)(B) \BSI{pcangles}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+ \pcangles{->}(A)(B) \end{pspicture} 	
+ &  \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \pcangles*{->}(A)(B) \end{pspicture}\\ \hline
+
+	 \BSS{pcbox}\AC{->}(A)(B) \BSI{pcbox}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,0){A} \dotnode[dotstyle=*](2,0){B}
+ \pcbox(A)(B) \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,0){A} \dotnode[dotstyle=*](2,0){B}
+  \pcbox*(A)(B) \end{pspicture} \\ \hline 
+  
+ \BSS{pcarcbox}\AC{->}(A)(B) \BSI{pcarcbox}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,0){A} \dotnode[dotstyle=*](2,0){B}
+ \pcarcbox(A)(B) \end{pspicture} 	
+ & \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,0){A} \dotnode[dotstyle=*](2,0){B}
+  \pcarcbox*(A)(B) \end{pspicture}\\ \hline 
+ 
+	\BSS{pcloop }\AC{->}(A)(B) \BSI{pcloop}{pst-node}
+& \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,-.5){B}
+ \pcloop [loopsize=.7cm](A)(B) \end{pspicture} 	
+ &  \begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,-.5){B}
+  \pcloop *[loopsize=.7cm](A)(B) \end{pspicture}   \\ \hline 
+
+\end{tabular} 
+\newpage
+%==================================================================
+\SbSbSSCT{Les options disponibles}{Options available}
+
+\psset{fillcolor=white}
+\begin{tabular}{|c| c |c|} \hline
+\multicolumn{3}{|c|}{ \BS{}ncline[nodesep=.3cm]\AC{->}\AC{A}\AC{B} } \\ \hline
+  &  &  \\
+
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,.5){B} \ncline[nodesep=.3cm]{->}{A}{B}  \end{pspicture}
+&
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,.5){B} \ncline[nodesepA=.2cm]{->}{A}{B}  \end{pspicture}	
+&
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,.5){B} \ncline[nodesepB=.4cm]{->}{A}{B}  \end{pspicture}	
+\\ \hline
+\RDD{nodesep}=0.3cm \RDI{nodesep}{pst-node} & \RDD{nodesepA}=0.2cm \RDI{nodesepA}{pst-node} & \RDD{nodesepB}=0.4cm \RDI{nodesepB}{pst-node} \\ \hline
+{\blue \dft{} : 0pt }& {\blue \dft{} : 0pt} & {\blue \dft{}: 0pt} \\  \hline
+\end{tabular}
+\bigskip
+
+%---------------------------------------------------------
+\begin{tabular}{|c| c |c|} \hline
+\multicolumn{3}{|c|}{ \BS{}ncarc[arcangle=90]\AC{->}\AC{A}\AC{B} } \\ \hline
+
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \ncarc[linestyle=dotted]{A}{B} 
+ \ncarc[arcangle=90]{->}{A}{B} 
+\end{pspicture}
+&
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \ncarc[linestyle=dotted]{A}{B}  
+\ncarc[arcangleA=90]{->}{A}{B} 
+\end{pspicture}	
+&
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \ncarc[linestyle=dotted]{A}{B}  
+\ncarc[arcangleB=90]{->}{A}{B}
+\end{pspicture}	
+\\ \hline
+\RDD{arcangle}=90 \RDI{arcangle}{pst-node}  & \RDD{arcangleA}=90 \RDI{arcangleA}{pst-node}& \RDD{arcangleB}=90 \RDI{arcangleB}{pst-node} \\ \hline
+{\blue \dft{}: 8} &{\blue \dft{}: 8} &{\blue \dft{} : 8}\\  \hline
+\multicolumn{3}{|c|}{\cyan \TFRGB{seulement pour}{only for} \BS{ncarc} ! }  \\ \hline
+
+\end{tabular}
+\bigskip
+
+%---------------------------------------------------------
+\begin{tabular}{|c| c |c|} \hline
+\multicolumn{3}{|c|}{ \BS{}ncdiag[angle=90]\AC{->}\AC{A}\AC{B} } \\ \hline
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} 
+\ncdiag[linestyle=dotted]{A}{B} 
+\ncdiag[angle=90]{->}{A}{B}  
+\end{pspicture}
+&
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} 
+\ncdiag[linestyle=dotted]{A}{B} 
+\ncdiag[angleA=15]{->}{A}{B} 
+\end{pspicture}	
+&
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} 
+\ncdiag[linestyle=dotted]{A}{B} 
+\ncdiag[angleB=180]{->}{A}{B} 
+\end{pspicture}	
+\\ \hline
+\RDD{angle}=90 \RDI{angle}{pst-node} & 
+\RDD{angleA}=15 \RDI{angleA}{pst-node} & 
+\RDD{angleB}=180 \RDI{angleB}{pst-node}\\ \hline
+{\blue \dft{}: 0} & {\blue \dft{} : 0} & {\blue \dft{} : 0}\\  \hline
+\end{tabular}
+\bigskip
+
+%---------------------------------------------------------
+\begin{tabular}{|c| c |c|} \hline
+\multicolumn{3}{|c|}{ \BS{}ncdiag[arm=1cm]\AC{->}\AC{A}\AC{B} } \\ \hline
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} 
+\ncdiag[linestyle=dotted]{A}{B}
+\ncdiag[arm=1cm]{->}{A}{B}
+\end{pspicture}
+&
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+\ncdiag[linestyle=dotted]{A}{B} 
+\ncdiag[armA=1cm]{->}{A}{B}
+\end{pspicture}	
+&
+\begin{pspicture}(0,-.5)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} 
+\ncdiag[linestyle=dotted]{A}{B}
+\ncdiag[armB=1cm]{->}{A}{B}
+\end{pspicture}	
+\\ \hline
+\RDD{arm}=1cm \RDI{arm}{pst-node} & 
+\RDD{armA}=1cm \RDI{armA}{pst-node} & 
+\RDD{armB}=1cm \RDI{armB}{pst-node}\\ \hline
+{\blue \dft{} : 10pt} & {\blue \dft{} : 10pt} & {\blue \dft{} : 10pt} \\  \hline
+\end{tabular}
+\bigskip
+
+%-------------------------------------------------------------------
+\begin{tabular}{|c|c|c|} \hline
+ \begin{pspicture}(0,-1)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \ncline[offset=5pt]{->}{A}{B}\ncline[offset=5pt]{->}{B}{A}    
+ \end{pspicture}
+&
+ \begin{pspicture}(0,-1)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \ncline[offsetA=5pt]{->}{A}{B}\ncline[linestyle=dotted]{A}{B}    
+ \end{pspicture}
+ &
+ \begin{pspicture}(0,-1)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B} \ncline[offsetB=5pt]{->}{A}{B}\ncline[linestyle=dotted]{A}{B}    
+ \end{pspicture}
+ \\  \hline	
+	
+\BS{}ncline[\RDD{offset}=5pt]\AC{->}\AC{A}\AC{B}  & \BS{}ncline[\RDD{offsetA}=5pt]\AC{->}\AC{A}\AC{B}  & \BS{}ncline[\RDD{offsetB}=5pt]\AC{->}\AC{A}\AC{B} \\
+\BS{}ncline[{\red offset}=5pt]\AC{->}\AC{B}\AC{A} & \BS{}ncline[linestyle=dotted]\AC{A}\AC{B} & \BS{}ncline[linestyle=dotted]\AC{A}\AC{B} 
+\\ \hline    
+{\blue \dft{} : 0pt }	\RDI{offset}{pst-node} & {\blue \dft{} : 0pt}	\RDI{offsetA}{pst-node} & {\blue  \dft{} : 0pt} \RDI{offsetB}{pst-node}\\ \hline
+\end{tabular}
+
+%----------------------------------------------------------------
+\bigskip
+\begin{minipage}[c]{.5\linewidth}
+\begin{tabular}{|c|} \hline
+\begin{pspicture}(0,-1)(3 ,2) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,-.5){B}
+ \ncloop[linestyle=dotted]{A}{B} 
+ \ncloop[loopsize=2cm]{A}{B} 
+ \end{pspicture} 
+ \\  \hline	
+ \BS{ncloop}[\RDD{loopsize}=2cm]\AC{A}\AC{B}  \RDI{loopsize}{pst-node} \\  \hline	
+ {\blue \dft{} : 1 cm} \\ \hline
+
+\end{tabular}
+
+\end{minipage}\hfill 
+\begin{minipage}[c]{.5\linewidth}
+\begin{tabular}{|c|} \hline	
+   \\
+
+  \begin{pspicture}(0,-1)(3 ,.5) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,0){B}
+  \ncarcbox[linestyle=dotted]{A}{B}  
+ \ncarcbox[boxsize=.2]{A}{B} 
+ \end{pspicture} 	\\  \hline
+ 
+ \BS{ncarcbox}[\RDD{boxsize}=.2]\AC{A}\AC{B} \RDI{boxsize}{pst-node} \\ \hline 
+{\blue  \dft{}: 0.4cm}	 \\ \hline
+{\cyan \TFRGB{seulement pour}{only for}   \BS{ncbox}  et  \BS{ncarcbox}  ! }\\ \hline
+\end{tabular}
+\end{minipage}
+
+%-------------------------------------------------------------------
+
+
+\bigskip
+
+\begin{tabular}{|c|c|c|}\hline	
+\begin{pspicture}(0,-1)(3 ,2) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,1.5){B} 
+\nccurve[linestyle=dotted]{A}{B}
+\nccurve[ncurv=1]{->}{A}{B} 
+\end{pspicture}
+&  
+\begin{pspicture}(0,-1)(3 ,2) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,1.5){B} 
+\nccurve[linestyle=dotted]{A}{B}
+\nccurve[ncurvA=1]{->}{A}{B}  
+
+\end{pspicture}
+&  
+\begin{pspicture}(0,-1)(3 ,2) \dotnode[dotstyle=*](1,-.5){A} \dotnode[dotstyle=*](2,1.5){B} 
+\nccurve[linestyle=dotted]{A}{B}
+\nccurve[ncurvB=1]{->}{A}{B}
+
+\end{pspicture}
+\\ 
+\hline 	\BS{}nccurve[\RDD{ncurv}=1]\AC{->}\AC{A}\AC{B}   	& 	\BS{}nccurve[\RDD{ncurvA}=1]\AC{->}\AC{A}\AC{B}  	& 	\BS{}nccurve[\RDD{ncurvB}=1]\AC{->}\AC{A}\AC{B}  \\ \hline  
+{\blue \dft{} : 0.67} \RDI{ncurv}{pst-node} & {\blue \dft{} : 0.67} \RDI{ncurvA}{pst-node} & {\blue \dft{} : 0.67 } \RDI{ncurvB}{pst-node} \\ \hline
+ 
+\multicolumn{3}{|c|}{ \cyan \TFRGB{seulement pour}{only for}   \BS{nccurve}  et  \BS{pccurve} !  } \\ 
+\hline 
+\end{tabular} 
+
+
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\bigskip
+
+
+\begin{tabular}{|c|c|}
+\hline  
+\multicolumn{2}{|c|}{ \TFRGB{personnalisation des liaisons}{personalization of the connections}} \\ \hline
+ \begin{pspicture}(0,-.5)(3 ,2.5) \dotnode[dotstyle=*](.5,0){A} \dotnode[dotstyle=*](2,2){B}
+\ncdiagg[linearc=.3cm,doubleline=true,arrowscale=2]{->}{A}{B} 
+\end{pspicture}
+&  
+ \begin{pspicture}(0,-.5)(3 ,2.5) \dotnode[dotstyle=*](.5,0){A} \dotnode[dotstyle=*](2,2){B}
+\ncbar[linestyle=dashed,linewidth=3pt,dashcolor=red]{)-[}{A}{B} 
+\end{pspicture}
+\\ \hline 
+\parbox[b]{6cm}{\BS{}ncdiagg[linearc=.3cm,doubleline=true,
+arrowscale=2]\AC{->}\AC{A}\AC{B} } &
+\parbox[b]{6cm}{\BS{}ncbar[linestyle=dashed,linewidth=3pt,
+dashcolor=red]\AC{)-[}\AC{A}\AC{B}   }\\ 
+\hline 
+\end{tabular} 
+
+
+
+
+%=======================================================================
+\SbSSCT{Les étiquettes}{Labels}
+
+
+\SbSbSSCTTC{Les étiquettes sur les n\oe uds}{Les étiquettes sur les n\oe uds \protect \footnote{fillcolor=yellow,linecolor=blue} }{Labels on the nodes}{ Labels on the nodes \protect \footnote{fillcolor=yellow,linecolor=blue}}
+
+\psset{fillcolor=yellow}
+ \begin{tabular}{|c| p{3cm}|p{8cm}|} \hline
+ \multicolumn{3}{|c|}{syntaxe :  $\backslash$nput*[paramètres]\{position=angle\}\{nom\}\{texte\}  } \\  
+\hline
+\BSS{nput} \BSI{nput}{pst-node}& \rule[-1cm]{0pt}{2cm} \cnode(1,0){.2cm}{A} \nput{0}{A}{texte} & \verb \nput{0}{A}{texte} \\ \hline
+\BS{nput}* & \rule[-1cm]{0pt}{2cm} \cnode(1,0){.2cm}{A} \nput*{0}{A}{texte} & \verb \nput*{0}{A}{texte} \\ \hline
+ position=angle & \rule[-1cm]{0pt}{2cm} \cnode(1,0){.2cm}{A} \nput*{45}{A}{à 45}\nput*{-45}{A}{à -45} & \verb \nput*{45}{A} \{à 45\}\\ \hline
+\RDD{labelsep} \RDI{labelsep}{pst-node} & \rule[-1cm]{0pt}{2cm} \cnode(1,0){.2cm}{A} \nput*[labelsep=0.5cm]{0}{A}{texte} & \verb \nput*[labelsep=0.5cm]{0}{A}{texte} \\ \hline
+
+\RDD{labelsep} \RDI{labelsep}{pst-node} & \rule[-1cm]{0pt}{2cm} \cnode(1,0){.2cm}{A} \nput*[labelsep=-0.1cm]{0}{A}{texte} & \verb \nput*[labelsep=-0.1cm]{0}{A}{texte} \\ \hline
+
+\RDD{rot} \RDI{rot}{pst-node} & \rule[-1cm]{0pt}{2cm} \cnode(1,0){.2cm}{A} \nput*[rot=45]{0}{A}{rot=45} & \verb \nput*[rot=45]{0}{A}{rot=45} \\ \hline
+\end{tabular} 
+
+ 
+\SbSbSSCT{Les étiquettes sur les connexions}{Labels on the connections} 
+
+ \psset{shortput=nab,fillcolor=yellow}
+\begin{tabular}{|p{3cm}| p{3cm}|p{8cm}|} \hline
+\rput[l](0,1){ncput} \rput[l](0,0.25){nbput} \rput[l](0,1.75){naput} 	& \begin{pspicture}(0,-1)(3 ,1) \dotnode[dotstyle=*](0,0){A} \dotnode[dotstyle=*](3,0){B} \ncline{->}{A}{B}\naput[npos=.3]{naput} \ncput{ncput} \nbput[npos=.7]{nbput} \end{pspicture}	&
+ \rput[l](0,.25){\BS{ncline}\AC{->}\AC{A}\AC{B}\BSS{nbput}[\RDD{npos}{\red =.7}]\AC{nbput} } \BSI{nbput}{pst-node} \RDI{npos}{pst-node}
+ \rput[l](0,1){\BS{ncline}\AC{->}\AC{A}\AC{B}\BSS{ncput}\AC{ncput} } \BSI{ncput}{pst-node}
+  \rput[l](0,1.75){\BS{ncline}\AC{->}\AC{A}\AC{B}\BSS{naput}[{\red npos=.3}]\AC{naput} } \BSI{naput}{pst-node}
+ \\ \hline
+
+ 
+\rput[l](0,1){ncput*} \rput[l](0,0.25){nbput*} \rput[l](0,1.75){naput*} 	& \begin{pspicture}(0,-1)(3 ,1) \dotnode[dotstyle=*](0,0){A} \dotnode[dotstyle=*](3,0){B} \ncline{->}{B}{A}\naput*[npos=.3]{naput*} \ncput*{ncput*} \nbput*[npos=.7]{nbput*} \end{pspicture}	&  \rput[l](0,.25){\BS{ncline}\AC{->}\AC{B}\AC{A}\BS{nbput}*[npos=.7]\AC{nbput} } 
+\rput[l](0,1){\BS{ncline}\AC{->}\AC{B}\AC{A}\BS{ncput}*\AC{ncput} } 
+\rput[l](0,1.75){\BS{ncline}\AC{->}\AC{B}\AC{A}\BS{naput}*[npos=.3]\AC{naput} } 
+ \\ \hline
+
+ \\ \hline
+ 
+ \rput[l](0,1.5){[\RDD{nrot}=90]} \RDI{nrot}{pst-node}	& \begin{pspicture}(0,-1.5)(3 ,1.5) \dotnode[dotstyle=*](1.5,-1.2){A} \dotnode[dotstyle=*](1.5,1.2){B} \ncline{->}{B}{A}\naput*[nrot=90]{naput*} \ncput*[nrot=90]{ncput*} \nbput*[nrot=90]{nbput*} \end{pspicture}	&
+ 
+   \rput[l](0,.5){\BS{ncline}\{->\}\{B\}\{A\}\BS{nbput}*[nrot=90]\AC{nbput} } 
+  \rput[l](0,1.5){\BS{ncline}\AC{->}\AC{B}\AC{A}\BS{naput}*[nrot=90]\AC{naput} } 
+   \rput[l](0,2.5){\BS{ncline}\AC{->}\AC{B}\AC{A}\BS{naput}*[nrot=90]\AC{naput} } 
+  \\ \hline
+
+
+
+\end{tabular} 
+
+

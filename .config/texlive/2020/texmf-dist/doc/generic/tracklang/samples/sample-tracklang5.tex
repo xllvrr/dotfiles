@@ -1,0 +1,24 @@
+% arara: pdflatex
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{ngerman}
+
+\usepackage{tracklang}
+
+\begin{document}
+
+Languages:
+\ForEachTrackedLanguage{\ThisLanguage}{\ThisLanguage\space
+(ISO \TwoLetterIsoLanguageCode: ``\TrackedIsoCodeFromLanguage{\TwoLetterIsoLanguageCode}{\ThisLanguage}''). }
+
+Dialects: \ForEachTrackedDialect{\ThisDialect}{\ThisDialect\space 
+(\IfTrackedLanguageHasIsoCode{\TwoLetterIsoCountryCode}{\ThisDialect}%
+ {ISO \TwoLetterIsoCountryCode: 
+  ``\TrackedIsoCodeFromLanguage{\TwoLetterIsoCountryCode}{\ThisDialect}''}%
+ {no specific region};
+root: \TrackedLanguageFromDialect{\ThisDialect}). }
+
+\end{document}

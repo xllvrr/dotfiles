@@ -1,0 +1,16 @@
+
+ *File List*
+langcode.sty  2012/09/20  v0.2   language adjustment (UL)
+stacklet.sty  2012/08/27  v0.3   private letters (UL)
+langcode.tex  2012/09/20   --    documenting langcode.sty
+fifinddo.sty  2012/08/27  v0.6   filtering TeX(t) files by TeX (UL)
+ makedoc.sty  2012/08/28  v0.52  TeX input from *.sty (UL)
+niceverb.sty  2012/08/28  v0.5   minimize doc markup (UL)
+ makedoc.cfg  2012/07/13   --    documentation settings
+mdoccorr.cfg  2011/12/03   --    makedoc local typographical corrections
+srcfiles.tex  2012/09/20   --    file infos -> SrcFILEs.txt
+ ***********
+
+ List made at 2012/09/20, 13:25
+ from script file srcfiles.tex
+

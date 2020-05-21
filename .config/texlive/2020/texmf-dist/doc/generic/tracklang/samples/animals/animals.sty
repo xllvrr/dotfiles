@@ -1,0 +1,32 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{animals}[2019/11/30 v1.2.1 (NLCT) Sample package to test tracklang.sty]
+
+\RequirePackage{tracklang}[2019/11/30]
+
+\DeclareOption*{%
+ \TrackIfKnownLanguage{\CurrentOption}%
+ {\PackageInfo{animals}{Tracking language `\CurrentOption'}}% successful
+ {% failed
+   \PackageError{animals}%
+   {Unknown language specification `\CurrentOption'}%
+   {You need to supply either a known dialect label or a valid language tag}%
+ }%
+}
+\ProcessOptions
+
+
+% default definitions
+\newcommand\catname{cat}
+\newcommand\dogname{dog}
+\newcommand\ladybirdname{bishy-barney-bee}
+
+\AnyTrackedLanguages
+{%
+  \ForEachTrackedDialect{\this@dialect}{%
+    \TrackLangRequireDialect{animals}{\this@dialect}%
+  }%
+}
+{% no tracked languages, default already set up
+}
+
+\endinput

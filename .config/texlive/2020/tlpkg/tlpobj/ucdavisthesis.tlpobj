@@ -1,0 +1,37 @@
+name ucdavisthesis
+category Package
+revision 40772
+shortdesc A thesis/dissertation class for University of California at Davis
+longdesc The ucdavisthesis class is a LaTeX class that allows you to
+longdesc create a dissertation or thesis conforming to UC Davis
+longdesc formatting requirements as of April 2016.
+containersize 10564
+containerchecksum ce8191ad81027361c23175194bf23284bc2e43407f0047586a4a89a2c51f9823356e2e571639a1f76f6a1f2b43c08eeb134d874c03f559897b0cf50aecfc94a9
+doccontainersize 1288712
+doccontainerchecksum 26ecd36ab09467341868d0ad7d71f39728f23688053ad4b8a89339238da5c96fcfe504d8e6403663eb6441a14333163f8998e00428609b161c3e9665a4ef0bf5
+docfiles size=501
+ texmf-dist/doc/latex/ucdavisthesis/README details="Readme"
+ texmf-dist/doc/latex/ucdavisthesis/example/ucdavisthesis_example.bib
+ texmf-dist/doc/latex/ucdavisthesis/example/ucdavisthesis_example_Chap1.tex
+ texmf-dist/doc/latex/ucdavisthesis/example/ucdavisthesis_example_Chap2.tex
+ texmf-dist/doc/latex/ucdavisthesis/example/ucdavisthesis_example_Chap3.tex
+ texmf-dist/doc/latex/ucdavisthesis/example/ucdavisthesis_example_figure.eps
+ texmf-dist/doc/latex/ucdavisthesis/example/ucdavisthesis_example_figure.pdf
+ texmf-dist/doc/latex/ucdavisthesis/example/ucdavisthesis_example_main.pdf details="Example of output"
+ texmf-dist/doc/latex/ucdavisthesis/example/ucdavisthesis_example_main.tex
+ texmf-dist/doc/latex/ucdavisthesis/ucdavisthesis.pdf details="Package documentation"
+srccontainersize 23044
+srccontainerchecksum 759eab6cc5b63ac159e481bd012ce5da4d6ba35f459928d4e578b96bac60485df32771660b4f8fce08e73303e517c37aee1a5503a96c810506bb854cf7bb050e
+srcfiles size=23
+ texmf-dist/source/latex/ucdavisthesis/ucdavisthesis.dtx
+ texmf-dist/source/latex/ucdavisthesis/ucdavisthesis.ins
+runfiles size=17
+ texmf-dist/tex/latex/ucdavisthesis/ucdavisthesis.cls
+ texmf-dist/tex/latex/ucdavisthesis/ucdthesis10.clo
+ texmf-dist/tex/latex/ucdavisthesis/ucdthesis11.clo
+ texmf-dist/tex/latex/ucdavisthesis/ucdthesis12.clo
+ texmf-dist/tex/latex/ucdavisthesis/ucdthesis13.clo
+catalogue-ctan /macros/latex/contrib/ucdavisthesis
+catalogue-license lppl1.2
+catalogue-topics dissertation
+catalogue-version 1.3

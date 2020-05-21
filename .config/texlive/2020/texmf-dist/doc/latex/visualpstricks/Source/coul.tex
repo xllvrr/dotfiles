@@ -1,0 +1,335 @@
+ 
+\TFRGB{Utilisation du module \textbf{xcolor} \label{xcolor} (chargé automatiquement avec le module pstricks)}{Utilisation of the package \textbf{xcolor} \label{xcolor} (automatically loaded with the package pstricks)}
+
+\SbSSCT{Commande newgray}{Macro newgray}
+
+\TFRGB{syntaxe : \BSS{newgray}\AC{couleur}\AC{pourcentage}  }{syntax : \BSS{newgray}\AC{color}\AC{pourcentage} }
+
+\smallskip
+%\TFRGB{exemples}{Example}: \BS{}newgray\AC{G00}\AC{0.4}
+
+\newgray{G00}{0}
+\newgray{G02}{.2}
+\newgray{G04}{0.4}
+\newgray{G06}{0.6}
+\newgray{G08}{0.8}
+\newgray{G10}{1}
+
+\psset{fillstyle=solid}
+
+\begin{tabular}{|c|c|c|c|c|c|} \hline
+\multicolumn{6}{|c|}{  \BS{newgray}\AC{G00}\AC{0}  \hspace{1cm}   \BS{psframe}[fillcolor=G00](1,1)} \\ \hline
+ \AC{0} &\AC{.2}  & \AC{.4} &   \AC{.6} &  \AC{.8} &  \AC{1}  \\ \hline
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=G00](1,1)
+\end{pspicture}
+ &  
+  \begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=G02](1,1 ) 
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=G04](1,1 ) 
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=G06](1,1 ) 
+ \end{pspicture}
+ & 
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+  \psframe[fillcolor=G08](1,1 )  
+\end{pspicture}
+  &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+  \psframe[fillcolor=G10](1,1 ) 
+\end{pspicture}
+  \\ \hline 
+
+\end{tabular} 
+
+%-------------------------------------------------------------------------
+\SbSSCT{Commande newrgbcolor}{Macro newrgbcolor}
+
+\TFRGB{syntaxe : \BSS{newrgbcolor}\AC{couleur}\AC{\% rouge \%vert \%bleu} }{syntax : \BSS{newrgbcolor}\AC{color}\AC{\%red \%green \%blue}}:
+
+
+
+\smallskip
+%exemples: \BS{}newrgbcolor\AC{C1}\AC
+
+\newrgbcolor{C1}{1 0 0}
+\newrgbcolor{C2}{0 1 0}
+\newrgbcolor{C3}{0 0 1}
+\newrgbcolor{C4}{0 0 .5}
+\newrgbcolor{C5}{.5 .5 0}
+\newrgbcolor{C6}{0 .5 .5}
+\newrgbcolor{C7}{.2 .5 .8}
+\newrgbcolor{C8}{.8 .5 .8}
+
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|} \hline
+\multicolumn{8}{|c|}{  \BS{newrgbcolor}\AC{C1}\AC{1 0 0} \hspace{1cm}   \BS{psframe}[fillcolor=C1](1,1)} \\ \hline
+
+\AC{1 0 0}  & \AC{0 1 0}  & \AC{0 0 1}  & \AC{0 0 .5} & \AC{.5 .5 0} & \AC{0 .5 .5} & \AC{.2 .5 .8}& \AC{.8 .5 .8} \\ \hline 
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C1](1,1 )
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C2](1,1 ) 
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C3](1,1 ) 
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C4](1,1 ) 
+ \end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C5](1,1 ) 
+ \end{pspicture}
+  &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+  \psframe[fillcolor=C6](1,1 )  
+  \end{pspicture}
+  &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+  \psframe[fillcolor=C7](1,1 ) 
+\end{pspicture}
+  & 
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+  \psframe[fillcolor=C8](1,1) 
+\end{pspicture}
+\\ \hline 
+\end{tabular} 
+
+%-----------------------------------------------------------------
+\SbSSCT{Commande newhsbcolor}{Macro newhsbcolor}
+
+\TFRGB{syntaxe \BSS{newhsbcolor}\AC{color}\AC{teinte saturation luminosité}}{syntax \BSS{newhsbcolor}\AC{color}\AC{hue saturation brightness}}
+
+
+\smallskip
+%exemples: \BS{}newhsbcolor\AC{C1}\AC{0 .5 .5}
+\newhsbcolor{C1}{0 .5 .5}
+\newhsbcolor{C2}{.5 .5 .5}
+\newhsbcolor{C3}{1 .5 .5}
+
+\newhsbcolor{C4}{.5 0 .5}
+\newhsbcolor{C5}{.5 1 .5}
+
+\newhsbcolor{C6}{.5 .5 0}
+\newhsbcolor{C7}{.5 .5 .8}
+\newhsbcolor{C8}{.5 .5 1}
+
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|} \hline
+\multicolumn{8}{|c|}{  \BS{newhsbcolor}\AC{C1}\AC{0 .5 .5} \hspace{1cm}   \BS{psframe}[fillcolor=C1](1,1)} \\ \hline
+\AC{0 .5 .5}  & \AC{.5 .5 .5}  & \AC{1 .5 .5}  & \AC{.5 0 .5} & \AC{.5 1 .5} & \AC{.5 .5 0} & \AC{.5 .5 .8}& \AC{.5 .5 1} \\ \hline
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C1](1,1 )
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C2](1,1 ) 
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C3](1,1) 
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C4](1,1 ) 
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C5](1,1 ) 
+\end{pspicture}
+  &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+  \psframe[fillcolor=C6](1,1 )  
+\end{pspicture}
+  &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+  \psframe[fillcolor=C7](1,1 ) 
+\end{pspicture}
+  & 
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+  \psframe[fillcolor=C8](1,1 ) 
+\end{pspicture}
+  \\ \hline 
+
+\end{tabular} 
+
+ \newhsbcolor{mycolor}{.3 .7 .9}
+ 
+ %--------------------------------------
+\SbSSCT{Commande newcmykcolor}{Macro newcmykcolor} 
+
+\TFRGB{ syntaxe \BSS{newcmykcolor}\AC{couleur}\AC{cyan magenta jaune noir} }{syntax \BSS{newcmykcolor}\AC{color}\AC{cyan magenta yellow black} }
+
+
+
+\smallskip
+%exemples: \BS{}newcmykcolor\AC{C1}\AC{1 0 0 0}
+\newcmykcolor{C1}{1 0 0 0}
+\newcmykcolor{C2}{0 1 0 0}
+\newcmykcolor{C3}{0 0 1 0}
+
+\newcmykcolor{C4}{.5 .5 0 0}
+\newcmykcolor{C5}{0 .5 .5 0}
+\newcmykcolor{C6}{.5 .5 0.5 0}
+
+\newcmykcolor{C7}{1 0 0 .2}
+\newcmykcolor{C8}{1 0 0 .8}
+
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|} \hline
+\multicolumn{8}{|c|}{ \BS{newcmykcolor}\AC{C1}\AC{1 0 0 0} \hspace{1cm}   \BS{psframe}[fillcolor=C1](1,1)} \\ \hline
+
+\AC{1 0 0 0}  & \AC{0 1 0 0}  & \AC{0 0 1 0}  & \AC{.5 .5 0 0} & \AC{0 .5 .5 0} & \AC{.5 .5 0.5 0} & \AC{1 0 0 .2}& \AC{1 0 0 .8} \\ \hline
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15) 
+\psframe[fillcolor=C1](1,1 )
+\end{pspicture}
+ &  
+ \begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C2](1,1 ) 
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C3](1,1 ) 
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C4](1,1 ) 
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C5](1,1 )  
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C6](1,1 )  
+\end{pspicture}
+ &  
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C7](1,1) 
+\end{pspicture}
+ & 
+\begin{pspicture}(-.15,-.15)(1.15 ,1.15)
+ \psframe[fillcolor=C8](1,1 ) 
+\end{pspicture}
+ \\ \hline 
+
+\end{tabular} 
+\newpage
+%----------------------------------------------------------------------------
+\SbSSCT{Tableau des couleurs}{Tables of colors}
+
+\SbSbSSCT{Commande newrgbcolor}{Macro newrgbcolor}
+
+
+\psset{boxsep = false}
+
+\TFRGB{\psframebox{\shortstack{rouge\\ vert \\ bleu  }}}{\psframebox{\shortstack{red \\ green  \\ blue  }}}\\ \\
+
+{\tiny 
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nna=0+.2}{6}{\multido{\na=0+.2}{6}{\newrgbcolor{C}{\na \space \nna \space 0} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\na \\ \nna \\ 0.0 }} }\\ \\ }
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnb=0+.2}{6}{\multido{\nb=0+.2}{6}{\newrgbcolor{C}{\nb \space \nnb \space .2} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nb \\ \nnb \\ 0.2  }} }\\ \\}
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnc=0+.2}{6}{\multido{\nc=0+.2}{6}{\newrgbcolor{C}{\nc \space \nnc \space .4} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nc \\ \nnc \\ 0.4  }} }\\ \\}
+\end{minipage}
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnd=0+.2}{6}{\multido{\nd=0+.2}{6}{\newrgbcolor{C}{\nd \space \nnd \space .6} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nd \\ \nnd \\ 0.6  }} }\\ \\}
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nne=0+.2}{6}{\multido{\ne=0+.2}{6}{\newrgbcolor{C}{\ne \space \nne \space .8} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\ne \\ \nne \\ 0.8  }} }\\ \\}
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnf=0+.2}{6}{\multido{\nf=0+.2}{6}{\newrgbcolor{C}{\nf \space \nnf \space 1} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nf \\ \nnf \\ 1.0  }} }\\ \\}
+\end{minipage}
+}
+\SbSSCT{Commande newhsbcolor}{Macro newhsbcolor}
+%\subsubsection{Commande newhsbcolor}
+
+\psset{boxsep = false}
+
+\TFRGB{\psframebox{\shortstack{teinte \\ saturation\\ luminosité}}}{\psframebox{\shortstack{hue \\ saturation\\ brightness}} } \\ \\
+  
+{\tiny
+\begin{minipage}[C]{.5\linewidth}
+\multido{\nn=0+.2}{6}{\multido{\n=0+.1}{11}{\newhsbcolor{C}{\n \space \nn \space 1} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\n \\ \nn \\ 1.0 }} }\\ \\ }
+\end{minipage}\hfill
+\begin{minipage}[C]{.5\linewidth}
+\multido{\nna=0+.2}{6}{\multido{\na=0+.1}{11}{\newhsbcolor{C}{\na \space \nna \space 0.5} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\na \\ \nna \\ 0.5 }} }\\ \\ }
+\end{minipage}}\hfill
+
+\newpage
+
+\SbSSCT{Commande newcmykcolor}{Macro newcmykcolor} 
+%\subsubsection{Commande newcmykcolor} 
+
+\psset{boxsep = false}
+
+\TFRGB{\psframebox{\shortstack{cyan\\ magenta \\  jaune }} \hspace{1cm}   \psframebox{noir=0} } {\psframebox{\shortstack{cyan\\ magenta \\  yellow }}} 
+\hspace{1cm}  
+ \TFRGB{\psframebox{noir=0}}{\psframebox{black=0} }\\ \\ 
+
+
+
+ {\tiny
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nna=0+.2}{6}{\multido{\na=0+.2}{6}{\newcmykcolor{C}{\na \space \nna \space 0\space 0} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\na \\ \nna \\ 0.0 }} }\\ \\ }
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnb=0+.2}{6}{\multido{\nb=0+.2}{6}{\newcmykcolor{C}{\nb \space \nnb \space .2\space 0} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nb \\ \nnb \\ 0.2  }} }\\ \\}
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnc=0+.2}{6}{\multido{\nc=0+.2}{6}{\newcmykcolor{C}{\nc \space \nnc \space .4\space 0} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nc \\ \nnc \\ 0.4  }} }\\ \\}
+\end{minipage}
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnd=0+.2}{6}{\multido{\nd=0+.2}{6}{\newcmykcolor{C}{\nd \space \nnd \space .6\space 0} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nd \\ \nnd \\ 0.6  }} }\\ \\}
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nne=0+.2}{6}{\multido{\ne=0+.2}{6}{\newcmykcolor{C}{\ne \space \nne \space .8\space 0} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\ne \\ \nne \\ 0.8  }} }\\ \\}
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnf=0+.2}{6}{\multido{\nf=0+.2}{6}{\newcmykcolor{C}{\nf \space \nnf \space 1\space 0} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nf \\ \nnf \\ 1.0  }} }\\ \\}
+\end{minipage}
+}
+
+\psset{boxsep = false}
+
+%\psframebox{\shortstack{cyan\\ magenta \\  jaune }}  \hspace{1cm}  \psframebox{noir=0.5}\\ \\ 
+
+\TFRGB{\psframebox{\shortstack{cyan\\ magenta \\  jaune }} \hspace{1cm}   \psframebox{noir=0} } {\psframebox{\shortstack{cyan\\ magenta \\  yellow }}} 
+\hspace{1cm}  
+ \TFRGB{\psframebox{noir=0}}{\psframebox{black=0.5} }\\ \\
+ 
+{\tiny
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nna=0+.2}{6}{\multido{\na=0+.2}{6}{\newcmykcolor{C}{\na \space \nna \space 0\space 0.5} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\na \\ \nna \\ 0.0 }} }\\ \\ }
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnb=0+.2}{6}{\multido{\nb=0+.2}{6}{\newcmykcolor{C}{\nb \space \nnb \space .2\space 0.5} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nb \\ \nnb \\ 0.2  }} }\\ \\}
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnc=0+.2}{6}{\multido{\nc=0+.2}{6}{\newcmykcolor{C}{\nc \space \nnc \space .4\space 0.5} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nc \\ \nnc \\ 0.4  }} }\\ \\}
+\end{minipage}
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnd=0+.2}{6}{\multido{\nd=0+.2}{6}{\newcmykcolor{C}{\nd \space \nnd \space .6\space 0.5} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nd \\ \nnd \\ 0.6  }} }\\ \\}
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nne=0+.2}{6}{\multido{\ne=0+.2}{6}{\newcmykcolor{C}{\ne \space \nne \space .8\space 0.5} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\ne \\ \nne \\ 0.8  }} }\\ \\}
+\end{minipage}\hfill
+\begin{minipage}[C]{.3\linewidth}
+\multido{\nnf=0+.2}{6}{\multido{\nf=0+.2}{6}{\newcmykcolor{C}{\nf \space \nnf \space 1\space 0.5} \psframebox[fillstyle=solid,fillcolor=C]{\shortstack{\nf \\ \nnf \\ 1.0  }} }\\ \\}
+\end{minipage}
+}
+\psset{boxsep = true}

@@ -1,0 +1,28 @@
+This class is designed to typeset doctoral dissertations for the Faculty of Engineering at the Universidad de los Andes, Bogota, Colombial.
+
+
+TUI 2012/07/27 v.1.9
+Copyright (c) Nicolas Vaughan <nivaca@fastmail.net>, 2010-2012
+
+This material is subject to the LaTeX Project Public License. See
+lppl.txt (english) or lppl-de.txt (german) for the details of that
+license.
+
+--------------------------------------------------------------------
+
+Installation and use:
+
+See TUIdoc.pdf
+
+--------------------------------------------------------------------
+
+For installation see INSTALL.txt (english) or INSTALLD.txt
+(german, UTF-8).
+
+--------------------------------------------------------------------
+
+This material is subject to the LaTeX Project Public License. See
+http://www.ctan.org/tex-archive/help/Catalogue/licenses.lppl.html
+for the details of that license
+
+This work has the LPPL maintenance status "author-maintained"

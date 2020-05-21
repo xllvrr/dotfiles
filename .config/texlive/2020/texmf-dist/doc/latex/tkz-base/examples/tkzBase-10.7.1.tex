@@ -1,0 +1,25 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 89 (Section 10.7.1 : Example with \tkzcname{tkzClipOutPolygon})
+
+\begin{tikzpicture}[scale=.5]
+  \tkzInit[xmin=-5,xmax=5,ymin=-5,ymax=5]
+  \pgfinterruptboundingbox
+  \tkzDefPoints{-.5/0/P1,.5/0/P2}
+  \foreach \i [count=\j from 3] in {2,...,7}{%
+      \tkzDefShiftPoint[P\i]({45*(\i-1)}:1 cm){P\j}
+  }
+  \endpgfinterruptboundingbox
+   \tkzClipOutPolygon(P1,P2,P3,P4,P5,P6,P7,P8)
+   \tkzCalcLength[cm](P1,P5)\tkzGetLength{r}
+  \begin{scope}[blend group=screen]
+     \foreach \i in {1,...,8}{%
+       \pgfmathparse{100-5*\i}
+       \tkzFillCircle[R,color=blue!%
+      \pgfmathresult](P\i,\r)
+      }
+    \end{scope}
+\end{tikzpicture}
+
+\end{document}

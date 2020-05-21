@@ -1,0 +1,33 @@
+\section{Papiertypen}
+\label{modul:papiertypen}
+Das Modul \module{Papiertypen} stellt einige Makros bereit, die
+es erlauben, Freiräume zum Bearbeiten von Aufgaben zu setzen. Hierzu
+stehen verschiedene Muster zur Auswahl. Die entsprechenden Felder werden
+dabei in der Breite jeweils auf \verbcode|\linewidth| skaliert, 
+allerdings so, dass ein vollständiges Muster entsteht. Die zur Verfügung
+stehende Breite wird also optimal genutzt.
+
+\subsection{Befehle}
+\begin{commands}
+	\command{feldLin}[\oarg{Abstand}\marg{Anzahl}]
+		setzt die angegebene Anzahl Linien mit dem angegebenen Abstand zueinander. Der Standardabstand beträgt $1cm$.
+\begin{example}
+  \feldLin[1cm]{4}
+\end{example}
+
+	\command{feldKar}[\oarg{Seitenlänge}\marg{Anzahl}]
+		setzt die angegebene Anzahl von Karo-Kästchen mit einer
+		gegebenen Seitenlänge. Der Standard für die Seitenlänge beträgt
+		$0,5cm$.
+\begin{example}
+  \feldKar[0.5cm]{5}
+\end{example}
+
+	\command{feldMil}[\marg{Anzahl}]
+		setzt die angegebene Anzahl von Kästchen im
+		Millimeterpapiermuster untereinander. Die Farbe wird von der
+		Paketoption \option{farbig} beeinflusst.
+\begin{example}
+  \feldMil{2}
+\end{example}
+\end{commands}

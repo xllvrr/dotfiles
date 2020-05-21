@@ -1,0 +1,33 @@
+name ku-template
+category Package
+revision 45935
+shortdesc Copenhagen University or faculty logo for front page
+longdesc A comprehensive package for adding University of Copenhagen or
+longdesc faculty logo to your front page. For use by student or staff at
+longdesc University of Copenhagen (Kobenhavns Universitet).
+containersize 1012
+containerchecksum 4603e59129f749b0eb065283bff9cddcafcd1096627f196749be09c19a4a79848564ee9343f14f31dddb2e37a01e222bf08531d5b3237bb906cf88efb427fdb9
+doccontainersize 226880
+doccontainerchecksum 6b8535ef84bd1ccf70d16f7098826b5acea602b22cd461df66cdda64c4afe36f9ef6c4386227c5317a31767e4694c388f7a2fd87fe8fe06697af4bf5202b29bc
+docfiles size=128
+ texmf-dist/doc/latex/ku-template/README.txt details="Readme"
+ texmf-dist/doc/latex/ku-template/images/hum-da.pdf
+ texmf-dist/doc/latex/ku-template/images/hum-en.pdf
+ texmf-dist/doc/latex/ku-template/images/jur-da.pdf
+ texmf-dist/doc/latex/ku-template/images/jur-en.pdf
+ texmf-dist/doc/latex/ku-template/images/ku-da.pdf
+ texmf-dist/doc/latex/ku-template/images/ku-en.pdf
+ texmf-dist/doc/latex/ku-template/images/sam-da.pdf
+ texmf-dist/doc/latex/ku-template/images/sam-en.pdf
+ texmf-dist/doc/latex/ku-template/images/sci-da.pdf
+ texmf-dist/doc/latex/ku-template/images/sci-en.pdf
+ texmf-dist/doc/latex/ku-template/images/sun-da.pdf
+ texmf-dist/doc/latex/ku-template/images/sun-en.pdf
+ texmf-dist/doc/latex/ku-template/images/teo-da.pdf
+ texmf-dist/doc/latex/ku-template/images/teo-en.pdf
+runfiles size=1
+ texmf-dist/tex/latex/ku-template/ku-template.sty
+catalogue-ctan /macros/latex/contrib/ku-template
+catalogue-license mit
+catalogue-topics logo
+catalogue-version 0.02

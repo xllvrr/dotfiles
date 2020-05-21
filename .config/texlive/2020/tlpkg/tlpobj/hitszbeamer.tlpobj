@@ -1,0 +1,42 @@
+name hitszbeamer
+category Package
+revision 54381
+shortdesc A beamer theme for Harbin Institute of Technology, ShenZhen
+longdesc This is a beamer theme designed for Harbin Institute of
+longdesc Technology, ShenZhen (HITSZ).
+containersize 11560
+containerchecksum a90ea22943c228d15f659bc562d79b9e50b157451ee9d06b02cbcdf5a1ef4c1eb353c756e0963d113d6258c1799ab22f71a79905387c78638c01abeb3d936e00
+doccontainersize 1073200
+doccontainerchecksum 84d8a9edf719b1af7ee9d8276d91bfb15306bc3a5632c5c0290412533a5c321c1087bb642104d47137007c9328a346f72c8ab87b9d5f8b94e3ca0b6d2fd18a70
+docfiles size=640
+ texmf-dist/doc/latex/hitszbeamer/README.md details="Readme"
+ texmf-dist/doc/latex/hitszbeamer/dtx-style.sty
+ texmf-dist/doc/latex/hitszbeamer/figures/hitlogo-mask.jpg
+ texmf-dist/doc/latex/hitszbeamer/figures/hitlogo.jpg
+ texmf-dist/doc/latex/hitszbeamer/hitszbeamer.pdf details="Package documentation" language="zh"
+ texmf-dist/doc/latex/hitszbeamer/main.pdf details="Example of use" language="zh"
+ texmf-dist/doc/latex/hitszbeamer/main.tex
+ texmf-dist/doc/latex/hitszbeamer/reference.bib
+srccontainersize 7944
+srccontainerchecksum 4e62661f3e51baede19234e9bea18065833ee07d1edb6efbd434d8cc194f04adb3ce48e74f93050a4e9fae1d4b77f5efd0346925b6ead46a344503b9af96a23b
+srcfiles size=12
+ texmf-dist/source/latex/hitszbeamer/Makefile
+ texmf-dist/source/latex/hitszbeamer/hitszbeamer.dtx
+ texmf-dist/source/latex/hitszbeamer/hitszbeamer.ins
+ texmf-dist/source/latex/hitszbeamer/makebeamer.bat
+ texmf-dist/source/latex/hitszbeamer/makeclean.bat
+ texmf-dist/source/latex/hitszbeamer/makecleanall.bat
+ texmf-dist/source/latex/hitszbeamer/makedoc.bat
+runfiles size=39
+ texmf-dist/bibtex/bst/hitszbeamer/hitszbeamer.bst
+ texmf-dist/tex/latex/hitszbeamer/beamercolorthemehitszbeamer.sty
+ texmf-dist/tex/latex/hitszbeamer/beamerinnerthemehitszbeamer.sty
+ texmf-dist/tex/latex/hitszbeamer/beamerouterthemehitszbeamer.sty
+ texmf-dist/tex/latex/hitszbeamer/beamerthemehitszbeamer.sty
+catalogue-contact-announce https://github.com/YangLaTeX/hitszbeamer/releases
+catalogue-contact-bugs https://github.com/YangLaTeX/hitszbeamer/issues
+catalogue-contact-home https://github.com/YangLaTeX/hitszbeamer
+catalogue-ctan /macros/latex/contrib/beamer-contrib/themes/hitszbeamer
+catalogue-license lppl1.3c
+catalogue-topics chinese presentation
+catalogue-version 1.0.0

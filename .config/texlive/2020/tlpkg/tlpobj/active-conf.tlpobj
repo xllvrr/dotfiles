@@ -1,0 +1,32 @@
+name active-conf
+category Package
+revision 15878
+shortdesc Class for typesetting ACTIVE conference papers
+longdesc Active-conf is a class for typesetting papers for the Active
+longdesc conference on noise and vibration control. It is initially
+longdesc intended for the 2006 conference in Adelaide, Australia. The
+longdesc class is based on article with more flexible front-matter, and
+longdesc can be customised for conferences in future years with a header
+longdesc file.
+containersize 4548
+containerchecksum afd71b77d016c6f2b36ff045176929409f1fc104d9f3530c1a70fad4fd1c71ac327a3b58dbf4a14b93cc691d88bf6b7d3add07196921876360280ee4e5915134
+doccontainersize 314788
+doccontainerchecksum e1b990ceab6820376c18068bf5ac15e984150fe7ad66929496cb77665f0ae334cb28026e0000e788f0580eab549fe2f70e802ca67d0f968961f4582290646758
+docfiles size=93
+ texmf-dist/doc/latex/active-conf/README details="Readme"
+ texmf-dist/doc/latex/active-conf/active-conf.pdf details="Class documentation"
+ texmf-dist/doc/latex/active-conf/example/active-example.ltx
+ texmf-dist/doc/latex/active-conf/example/active-header-2006.tex
+ texmf-dist/doc/latex/active-conf/example/header-logo-2006.eps
+ texmf-dist/doc/latex/active-conf/example/header-logo-2006.pdf
+srccontainersize 14728
+srccontainerchecksum 06d82683cb44e35a07e2907e00f2f80b247a3ca2cc0e9b230e7417aafc21a73c9ef788c4e88cdf7fe7f812c471c3b34273adcb4d5e272888fc481d9d18a88b68
+srcfiles size=13
+ texmf-dist/source/latex/active-conf/active-conf.dtx
+ texmf-dist/source/latex/active-conf/active-conf.ins
+runfiles size=4
+ texmf-dist/tex/latex/active-conf/active-conf.cls
+catalogue-ctan /macros/latex/contrib/conferences/active-conf
+catalogue-license lppl
+catalogue-topics confproc class
+catalogue-version 0.3a

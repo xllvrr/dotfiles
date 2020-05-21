@@ -1,0 +1,31 @@
+name tikzcodeblocks
+category Package
+revision 54758
+shortdesc Helps to draw codeblocks like scratch, NEPO and PXT in TikZ
+longdesc tikzcodeblocks is a LaTeX package for typesetting blockwise
+longdesc graphic programming languages like scratch, nepo or pxt.
+containersize 5772
+containerchecksum a19ee68d5d59d936f1882bdf1de5851b9cac48debc4754025d214cc6838173fd7090631b08dd1916043520e97cd479087ad4548c991c0631856510ee912a42dc
+doccontainersize 481372
+doccontainerchecksum b75b6ddf66fedf1d69611ca0b817ad9c5d7c0bc162cca2f04794bc3723135032908148baf4aae1b486a0b5af9bc335b9e585943a3a2fd73ae55a0702236f5142
+docfiles size=136
+ texmf-dist/doc/latex/tikzcodeblocks/README.md details="Readme"
+ texmf-dist/doc/latex/tikzcodeblocks/examples/bsp-einruecken.tikz
+ texmf-dist/doc/latex/tikzcodeblocks/examples/bsp-english.tikz
+ texmf-dist/doc/latex/tikzcodeblocks/examples/bsp-hello-world.tikz
+ texmf-dist/doc/latex/tikzcodeblocks/examples/bsp-openroberta-umgebung.tikz
+ texmf-dist/doc/latex/tikzcodeblocks/examples/bsp-openroberta-zacken.tikz
+ texmf-dist/doc/latex/tikzcodeblocks/examples/bsp-start-roberta.tikz
+ texmf-dist/doc/latex/tikzcodeblocks/examples/bsp-start.tikz
+ texmf-dist/doc/latex/tikzcodeblocks/examples/bsp-verschachtelt-zacken.tikz
+ texmf-dist/doc/latex/tikzcodeblocks/examples/bsp-verzweigung.tikz
+ texmf-dist/doc/latex/tikzcodeblocks/examples/smarthome.tikz
+ texmf-dist/doc/latex/tikzcodeblocks/tikzcodeblocks-documentation.pdf details="Package documentation" language="de"
+ texmf-dist/doc/latex/tikzcodeblocks/tikzcodeblocks-documentation.tex
+runfiles size=7
+ texmf-dist/tex/latex/tikzcodeblocks/tikzcodeblocks.sty
+catalogue-also scratch
+catalogue-ctan /graphics/pgf/contrib/tikzcodeblocks
+catalogue-license lppl1.3c
+catalogue-topics pgf-tikz
+catalogue-version 0.13

@@ -1,0 +1,50 @@
+\section{Using  an orthogonal coordinate system}  
+\subsection{Coordinate system with \tkzcname{tkzRep}}   
+\hypertarget{rep}{}
+\begin{NewMacroBox}{tkzRep}{\oarg{local options}}% 
+\begin{tabular}{lll}%
+options & default & definition  \\
+\midrule
+\TOline{line width}{|0.8pt|}{line width defines the width of the line }   
+\TOline{xlabel}{|$\vec{\imath}$|}{label for the abscissa axis}  
+\TOline{ylabel}{|$\vec{\jmath}$|}{label for the ordinate axis}  
+\TOline{posxlabel }{|below=2pt|} {Label position}
+\TOline{posylabel }{|left=2pt|} {Label position }
+\TOline{xnorm}{|1|} {norm of the x-vector}  
+\TOline{ynorm}{|1|}{vector norm in y}
+\TOline{color}{|black|}{line colour}
+\TOline{colorlabel}{|black|}{label color }
+\end{tabular}
+\end{NewMacroBox}
+
+\subsubsection{Some modifiable styles }
+ \begin{tkzltxexample}[small]
+ \tikzset{xlabel style/.style                =   {below      =   3 pt,
+                                                 inner sep   =   1pt,
+                                                 outer sep   =   0pt}}                                       
+ \tikzset{ylabel style/.style                =   {left       =   3 pt,
+                                                 inner sep   =   1pt,
+                                                 outer sep   =   0pt}}
+ \tikzset{xaxe style/.style                  =   {>          =   latex,  ->}}  
+ \tikzset{yaxe style/.style                  =   {>          =   latex,  ->}}
+ \end{tkzltxexample}
+ 
+\subsubsection{Example of use }
+\begin{tkzexample}[small]
+\begin{tikzpicture}
+  \tikzset{xaxe style/.style={-}}
+  \tikzset{yaxe style/.style={-}} 
+  \tkzInit[xmax=4,ymax=4]
+  \tkzGrid    
+  \tkzDrawX
+  \tkzDrawY  
+  \tkzRep[color=red,ynorm=2]
+\end{tikzpicture}
+\end{tkzexample}
+
+
+
+\vspace{12pt}   
+For those who use \tkzname{french} with \tkzname{babel}, in case of problems with version 3 of pgf, just load the \tkzname{babel} library. \TIKZ\ was indeed sometimes allergic to the active characters.
+
+\endinput

@@ -1,0 +1,74 @@
+name tuda-ci
+category Package
+revision 54878
+shortdesc LaTeX templates of Technische Universitat Darmstadt
+longdesc The TUDa-CI-Bundle provides a possibility to use the Corporate
+longdesc Design of TU Darmstadt in LaTeX. It contains documentclasses as
+longdesc well as some helper packages and config files together with
+longdesc some templates for user documentation, which currently are only
+longdesc available in German.
+containersize 36216
+containerchecksum ab129317c8315f630ca4ec13118c4c91651161f3b88c9bbadbce32053d0636d487ad274005f831e5dc1d778bc4859e480388ea99094cf039cf565ff21f3beebd
+doccontainersize 1510292
+doccontainerchecksum 6ae76a7ae7774456b548f54719a46c7b19e129b316b89915dc54496651b3cce7b9243f9a985d2252a6c2021f04c5c73b4c299eaf685a0e651d36734778516300
+docfiles size=1781
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaAnnouncement.pdf
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaAnnouncement.tex
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaBeamer.pdf details="Example presentation" language="de"
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaBeamer.tex
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaBibliography.bib
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaExercise.pdf
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaExercise.tex
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaFromaddress.lco
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaLeaflet.pdf
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaLeaflet.tex
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaLetter.pdf details="Example letter" language="de"
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaLetter.tex
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaPhD.pdf details="Example PhD thesis" language="de"
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaPhD.tex
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaPoster.pdf details="Example announcement poster" language="de"
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaPoster.tex
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaPub.pdf details="Package documentation" language="de"
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaPub.tex
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaReport.pdf
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaReport.tex
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaSciPoster.pdf details="Example scientific poster" language="de"
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaSciPoster.tex
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaThesis.pdf details="Example bachelor's thesis" language="de"
+ texmf-dist/doc/latex/tuda-ci/DEMO-TUDaThesis.tex
+ texmf-dist/doc/latex/tuda-ci/README.md details="Readme"
+runfiles size=68
+ texmf-dist/tex/latex/tuda-ci/beamercolorthemeTUDa.sty
+ texmf-dist/tex/latex/tuda-ci/beamerfontthemeTUDa.sty
+ texmf-dist/tex/latex/tuda-ci/beamerinnerthemeTUDa.sty
+ texmf-dist/tex/latex/tuda-ci/beamerouterthemeTUDa.sty
+ texmf-dist/tex/latex/tuda-ci/beamerthemeTUDa.sty
+ texmf-dist/tex/latex/tuda-ci/tuda-a0paper.clo
+ texmf-dist/tex/latex/tuda-ci/tuda-a1paper.clo
+ texmf-dist/tex/latex/tuda-ci/tuda-a2paper.clo
+ texmf-dist/tex/latex/tuda-ci/tuda-a3paper.clo
+ texmf-dist/tex/latex/tuda-ci/tuda-a4paper.clo
+ texmf-dist/tex/latex/tuda-ci/tuda-a5paper.clo
+ texmf-dist/tex/latex/tuda-ci/tuda-pgfplots.sty
+ texmf-dist/tex/latex/tuda-ci/tudabeamer.cls
+ texmf-dist/tex/latex/tuda-ci/tudacolors.def
+ texmf-dist/tex/latex/tuda-ci/tudacolors.sty
+ texmf-dist/tex/latex/tuda-ci/tudaexercise.cls
+ texmf-dist/tex/latex/tuda-ci/tudafonts.sty
+ texmf-dist/tex/latex/tuda-ci/tudaleaflet.cls
+ texmf-dist/tex/latex/tuda-ci/tudaletter.cls
+ texmf-dist/tex/latex/tuda-ci/tudalettersize10pt.clo
+ texmf-dist/tex/latex/tuda-ci/tudaposter.cls
+ texmf-dist/tex/latex/tuda-ci/tudapub.cls
+ texmf-dist/tex/latex/tuda-ci/tudarules.sty
+ texmf-dist/tex/latex/tuda-ci/tudasciposter.cls
+ texmf-dist/tex/latex/tuda-ci/tudasize9pt.clo
+ texmf-dist/tex/latex/tuda-ci/tudathesis.cfg
+catalogue-also ifmslide
+catalogue-contact-bugs https://github.com/tudace/tuda_latex_templates/issues
+catalogue-contact-home https://www.ce.tu-darmstadt.de/ce/latex_tuda/index.de.jsp
+catalogue-contact-repository https://github.com/tudace/tuda_latex_templates
+catalogue-ctan /macros/latex/contrib/tuda-ci
+catalogue-license lppl1.3c
+catalogue-topics class letter dissertation presentation poster
+catalogue-version 2.10

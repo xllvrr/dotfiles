@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+<title>Filenames for TeX fonts</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Filenames for TeX fonts">
+<meta name="generator" content="makeinfo 4.6">
+<!--
+This document is in the public domain and may be used freely.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+Node:&nbsp;<a name="Long%20naming%20scheme">Long naming scheme</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Name-mapping-file.html#Name%20mapping%20file">Name mapping file</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Long-names.html#Long%20names">Long names</a>
+<hr><br>
+</div>
+
+<h3 class="section">A naming scheme for long names</h3>
+
+<p>Once we allow ourselves long names, we can construct a naming scheme
+to handle arbitrary fonts without much difficulty.  Here is one
+proposal, based on the X Window System font naming conventions.
+
+<pre class="example">     <var>supplier</var>-<var>family</var>-<var>weight</var>-<var>variants</var>-<var>width</var>-<var>encoding</var>--<var>size</var>
+     </pre>
+
+   <p><var>supplier</var> is the usual <code>Adobe</code>, <code>Autologic</code>, etc., as
+well as <code>unknown</code> or <code>bizarre</code>--this last meaning the rest of
+the name is nonstandard.  If the <var>supplier</var> is missing, i.e., the
+name starts with a <code>-</code>, "public domain" is assumed.  For fonts
+made by individuals, the initials of the designer would probably make a
+good <var>supplier</var>.
+
+   <p><var>family</var> is <code>ComputerModern</code> or <code>Times</code> or whatever.
+
+   <p>Everything else is optional.  The <code>--</code> before the <var>size</var> lets
+one specify a name with, say, a weight and variants, but then skip the
+<var>width</var> and <var>encoding</var>, but still be able to
+give a size.
+
+   <p><var>weight</var> and <var>width</var> are as described earlier.
+
+   <p>If there is more than one variant, they are separated with some
+character other than <code>-</code>, say <code>=</code>:
+<pre class="example">     B+H-Lucida-Bold-Sans=Typewriter--10
+     </pre>
+
+   <p><var>encoding</var> is what Metafont calls the
+<code>font_coding_scheme</code>--the layout of the characters in the font. 
+For example, <code>Cork</code> or <code>ISOLatin1</code> or <code>AdobeAlternate</code>.
+
+   <p>Names are case-sensitive, for consistency with the rest of TeX and
+with PostScript, etc.  Spaces cannot be used in the name, to make it
+easier for TeX to parse.  Likewise, characters with default category
+codes other than 11 (letter) or 12 (other) should not be used.
+
+   <p>Another possibility is to forget all the above, and simply use the
+vendor's name (perhaps prefixed by the vendor):
+<code>Times-Roman</code>.
+
+   </body></html>
+

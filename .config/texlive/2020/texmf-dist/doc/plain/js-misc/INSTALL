@@ -1,0 +1,65 @@
+$Id: INSTALL,v 1.1 1995/03/16 01:18:22 schrod Exp $
+------------------------------------------------------------
+
+These instructions are written for the installation of this package on
+a TDS-compliant TeX system. (TDS is the forthcoming standard for TeX
+installations, refer to ftp.th-darmstadt.de:/pub/tex/TDS-compliant/draft/
+for more information.) If you don't have such a system, you have to
+figure out your directory names yourself.
+
+If you're on a Unix system and want to use make for installation, read
+further. Otherwise skip forward to ``MANUAL INSTALLATION''.
+
+
+------------------------------------------------------------
+INSTALLATION BY MAKE:
+
+Edit the Makefile and adapt the values of the following variables to
+your system. Sorry, but the values are not collected at the top of the
+Makefile, use your editor to locate them. (The Makefile is generated
+by Imake, I don't touch it... :-)
+
+    MAKEDIR	[Default: mkdir -p]
+		A command to create a directory, including all
+		non-existent intermediate ones.
+
+    DESTDIR	[Default is empty]
+		This is a prefix that's prepended in front of all
+		destination directories, in case your installation
+		structure is somewhere else than your run-time
+		location.
+
+    INSTALL	[Default depends on the machine I generated the distribution]
+		A BSD install program.
+		If you have a System V Unix, and you have X11, you can
+		use a script named bsdinst.sh or bsdinst or
+		install.sh that's located your X11 bin directory.
+		If you don't have a BSD install program, you must use
+		the manual installation, described below.
+
+    TEXMF	[Default: /usr/local/lib/texmf]
+		The root of your (TDS) TeX tree.
+
+Now, type "make install" and everything should be OK.
+
+
+
+------------------------------------------------------------
+MANUAL INSTALLATION:
+
+
+The Imakefile features definitions that look like
+InstallTeX<category>(<package>,<files>).
+
+Copy all <files> to a directory that is appropriate for this
+<category> and this <package>. (The <category> `Generic' denotes macro
+files that can be used with many TeX formats, including plain TeX,
+LaTeX, and AmS-TeX.)
+    The TDS directory names are $TEXMF/tex/<category>/<package>/,
+where $TEXMF is your TDS root directory and <category> is
+all-lowercase.
+
+
+------------------------------------------------------------
+# LocalWords:  tex MAKEDIR DESTDIR bsdinst sh usr lib texmf Imakefile AmS
+# LocalWords:  InstallTeX

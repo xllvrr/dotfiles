@@ -1,0 +1,55 @@
+name aiaa
+category Package
+revision 15878
+shortdesc Typeset AIAA conference papers
+longdesc A bundle of LaTeX/BibTeX files and sample documents to aid
+longdesc those producing papers and journal articles according to the
+longdesc guidelines of the American Institute of Aeronautics and
+longdesc Astronautics (AIAA).
+containersize 8780
+containerchecksum 9a5c04cc0b24e2b11e4b6953ceed9e506ad9f44922b3407c3aed1f5fd1fda1e86b1a5d6613a059065c1026f69830a8f5af0ed21ad8e1856ab44d22985768f24a
+doccontainersize 928712
+doccontainerchecksum cd69337eb21eaeff910696f153bc97fca94afa0b147e3360477f72c5d90afa5d54d375b5eb7801df1b988c8f11d8fd23848a07f013a4e06c28a013248e00599b
+docfiles size=453
+ texmf-dist/doc/latex/aiaa/README details="Package README"
+ texmf-dist/doc/latex/aiaa/aiaa.pdf details="Package documentation"
+ texmf-dist/doc/latex/aiaa/author_guide.pdf details="Author guide"
+ texmf-dist/doc/latex/aiaa/author_guide.tex
+ texmf-dist/doc/latex/aiaa/bibtex_database.bib
+ texmf-dist/doc/latex/aiaa/figure_magnet.eps
+ texmf-dist/doc/latex/aiaa/figure_magnet.pdf
+ texmf-dist/doc/latex/aiaa/pre2004/CHANGES
+ texmf-dist/doc/latex/aiaa/pre2004/MANIFEST
+ texmf-dist/doc/latex/aiaa/pre2004/README details="Package README"
+ texmf-dist/doc/latex/aiaa/pre2004/aiaa.dtx
+ texmf-dist/doc/latex/aiaa/pre2004/aiaa.ins
+ texmf-dist/doc/latex/aiaa/pre2004/aiaa.pdf details="Package documentation"
+ texmf-dist/doc/latex/aiaa/pre2004/aiaalgo.eps
+ texmf-dist/doc/latex/aiaa/pre2004/demos/paper/smpaiaa.ps
+ texmf-dist/doc/latex/aiaa/pre2004/demos/paper/smpaiaa.tex
+ texmf-dist/doc/latex/aiaa/pre2004/demos/paper/smpbtx.bib
+ texmf-dist/doc/latex/aiaa/pre2004/demos/paper/smpfig.eps
+ texmf-dist/doc/latex/aiaa/pre2004/demos/refs/tstbtx.bib
+ texmf-dist/doc/latex/aiaa/pre2004/demos/refs/tstref.tex
+ texmf-dist/doc/latex/aiaa/pre2004/demos/subfigs/smpfig.eps
+ texmf-dist/doc/latex/aiaa/pre2004/demos/subfigs/smpsubf.tex
+ texmf-dist/doc/latex/aiaa/pre2004/demos/talk/smpfig.eps
+ texmf-dist/doc/latex/aiaa/pre2004/demos/talk/smptalk.ps
+ texmf-dist/doc/latex/aiaa/pre2004/demos/talk/smptalk.sty
+ texmf-dist/doc/latex/aiaa/pre2004/demos/talk/smptalk.tex
+ texmf-dist/doc/latex/aiaa/template_advanced.pdf
+ texmf-dist/doc/latex/aiaa/template_advanced.tex
+ texmf-dist/doc/latex/aiaa/template_basic.pdf
+ texmf-dist/doc/latex/aiaa/template_basic.tex
+srccontainersize 16568
+srccontainerchecksum e9542fb3cb5a16a565bb5c349f15b453ccb4c81570425a5825f0f952816ec27edad65ee670bed9069dd0c1c8762b5becf6300ad551b15bc5adff960f73354588
+srcfiles size=16
+ texmf-dist/source/latex/aiaa/aiaa.dtx
+ texmf-dist/source/latex/aiaa/aiaa.ins
+runfiles size=10
+ texmf-dist/bibtex/bst/aiaa/aiaa.bst
+ texmf-dist/tex/latex/aiaa/aiaa-tc.cls
+catalogue-ctan /macros/latex/contrib/aiaa
+catalogue-license lppl
+catalogue-topics journalpub
+catalogue-version 3.6

@@ -1,0 +1,27 @@
+name ametsoc
+category Package
+revision 36030
+shortdesc Official American Meteorological Society LaTeX Template
+longdesc This bundle contains all the files necessary to write an
+longdesc article using LaTeX for the American Meteorological Society
+longdesc journals. The article and bibliography style files are provided
+longdesc (with documentation) and a blank template for authors to use
+longdesc when writing their article. Also available is a separate style
+longdesc package used to format a two-column, journal page layout draft
+longdesc for the author's personal use.
+containersize 16160
+containerchecksum 34d99bedd34ea4195d4b0f60560c80c7d3624c2dcb3137a559eaa1b5a16bf465c39a0c54b6a5e64d2488dd7d4c1c82636d7c3adcee3e2e687a66b51b96fe6c48
+doccontainersize 5648
+doccontainerchecksum 80b64ca57599aab07dbd0d000e67fd002a19a8d8227bf9d635bbbefe84417d1f99cd75d81ff67e0d7a7e28231ab5438b4e51e90bbb5405f566877a4ec87b8d48
+docfiles size=6
+ texmf-dist/doc/latex/ametsoc/README details="Readme"
+ texmf-dist/doc/latex/ametsoc/README.TEXLIVE
+ texmf-dist/doc/latex/ametsoc/references.bib
+ texmf-dist/doc/latex/ametsoc/template.tex
+runfiles size=18
+ texmf-dist/bibtex/bst/ametsoc/ametsoc2014.bst
+ texmf-dist/tex/latex/ametsoc/ametsoc.cls
+catalogue-ctan /macros/latex/contrib/ametsoc
+catalogue-license lppl
+catalogue-topics journalpub
+catalogue-version 4.3.2

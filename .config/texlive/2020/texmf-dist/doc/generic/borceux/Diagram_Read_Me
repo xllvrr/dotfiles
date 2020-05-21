@@ -1,0 +1,579 @@
+\documentstyle{article}
+
+\textheight520pt
+\textwidth349pt
+\footskip15pt
+
+\hoffset-35mm
+\voffset-35mm
+
+\title{User's guide for {\em Diagram 3}\thanks{With respect
+to versions 1 and 2, the shape of arrows has been improved, the variety of
+directions and arrows available has been more than doubled, all diagram arrows
+admit an optional length argument, the typing of diagrams has been shortened, error
+and help messages have been introduced. To typeset with {\em Diagram~3}, diagrams
+prepared with versions~1 or~2, read the file {\em OldDiagram} after the file {\em
+Diagram}.}}  
+\author{Francis Borceux, Louvain-la-Neuve}
+
+\font\bldfc=cmmib10
+\def\boldface#1{\mbox{\bldfc#1}}
+
+\newcommand{\XA}%
+{\truex{300}%
+\begin{picture}(0,0)%
+\put(0,0){\circle{\value{x}}}%
+\end{picture}}
+
+\newcommand{\XB}%
+{\truex{500}%
+\begin{picture}(0,0)%
+\put(0,0){\circle*{\value{x}}}%
+\end{picture}}
+
+\newcommand{\V}[3]{\cross{\XB}{\movevertex(#1,#2){\scriptstyle#3}}}
+
+\begin{document}
+
+\maketitle
+
+\section{The {\em Diagram} macros}
+
+The {\em Diagram macros} realize the construction of diagrams as
+those appearing in category theory texts. The user gives the list
+of vertices and arrows to be included, just as when composing a
+matrix, and the program takes care of computing the dimensions of
+the arrows and realizing the pagesetting. All the user has to do
+about the arrows is precising their type (monomorphism, pair of
+adjoint arrows,\ldots) and their direction (north,
+south-east,\ldots): 12 types and 32 directions are available; see
+figures~1 and~3 for exhaustive lists.
+
+A file {\em MultipleArrows} exists, producing additional
+triple, quadruple and quintuple arrows, parallel or adjoint, but
+the size of those pictures is so big that severe restrictions apply
+to them.
+
+The {\em Diagram macros} make a big use of \LaTeX\ commands and
+cannot work without \LaTeX\ being loaded.
+
+Some small implementations of \TeX, essentially those limited to
+$2^{16}$ words of memory, are unable to handle the {\em Diagram
+macros}. For those cases, two levels of restricted files have been
+created, where the restriction applies just to the number of types
+of arrows:
+\begin{itemize}
+\item {\em MicroDiagram} is only able to design plain arrows;
+\item {\em MiniDiagram} designs plain arrows, pairs of 
+plain arrows and adjoint pairs of plain arrows.
+\end{itemize}
+The restriction is even more subtle, since arrows are produced
+here in a more economical way.
+
+Big diagrams require much \TeX\ memory when typesetting; if you are
+badly limited, try to produce them as separate one-page documents. To save
+memory, you can also cancel from a file those macros you are not intending to
+use. Do not copy macros from {\em Diagram} to {\em MiniDiagram} or {\em
+MicroDiagram}\/: this would not work.
+
+The {\em Diagram macros} have been designed to give optimal results
+on printers with resolutions up to 300dpi. In the case of printers
+with higher resolutions, the parameter {\em printerresolution}
+given as a first instruction of the file {\em Diagram} must be changed
+accordingly. Notice that reducing this parameter is another way of
+saving \TeX\ memory. This parameter does not exist in the files
+{\em MicroDiagram} and {\em Minidiagram}.
+
+\section{Arrows in formulas}
+
+Arrows can be introduced in formulas, thus in a line of
+text between single dollars or in a displayed formula, between
+double dollars. While the command to be given is the same, the
+effect which is produced is different in the text and in a
+displayed formula. The variety of arrows available is described in
+figure~1.
+\begin{figure}
+\settextarrowlength{45}
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+{\bf Name}&{\bf Arrow}&{\bf Code}\\
+\hline\hline
+plain arrow&$\ar$&ar\\
+dotted arrow&$\dotar$&dotar\\
+distributor&$\dist$&dist\\
+monomorphism&$\mono$&mono\\
+epimorphism&$\epi$&epi\\
+bimorphism&$\bimo$&bimo\\
+isomorphism&$\iso$&iso\\
+equality&$\eql$&eql\\ & & \\
+pair of arrows&$\biar$&biar\\ & & \\
+adjoint arrows&$\adjar$&adjar\\ & & \\
+pair of distributors&$\bidist$&bidist\\ & & \\
+adjoint distributors&$\adjdist$&adjdist\\
+\hline
+\end{tabular}
+\hspace{5mm}
+\begin{minipage}{30mm}
+The codes {\em iso, dist, bidist, adjdist} are generic:
+the marks $\cong$, $\circ$ can be changed anywhere in the document via the
+instructions \verb+\isomark{...}+, \verb+\distmark{...}+,
+where \verb+...+ are the new marks. The default marks are \verb+\cong+ and
+\verb+\distcircle+.
+\end{minipage}
+\end{center}
+\caption{The various types of arrows.}
+\settextarrowlength{20}
+\end{figure}
+\begin{itemize}
+\item To produce a given type of formula arrow
+in the forward direction (as in figure~1), just type a {\em
+backslash} followed by the code for this type of arrow: thus
+\verb+$f \colon A \mono B$+ will produce $f \colon A \mono B$.
+\item To produce a given type of formula arrow in the ``backward'' direction, type a
+command starting with \verb+\bk+ and ending with the code for the type of
+arrow: thus \verb+$g \colon B \bkepi C$+ produces $g \colon B \bkepi C$.
+\item To give an upper name to one of the previous arrows, just use
+a first uppercase letter and give the name as an argument: thus
+\verb+$C \Dist h D$+ will produce  $C \Dist h D$. Of course, when
+the picture consists of two arrows, two names must be given, first
+the top one and next the bottom one; for example
+\verb+$D \Bkadjar ij E$+ to produce $D \Bkadjar ij E$. As usual, when
+the names are not single tokens, use curly brackets to delimit them.
+\end{itemize}
+To let you appreciate the difference between {\em textstyle} and
+{\em displaystyle}, here are the previous arrows in {\em display
+style}
+$$ A \Mono f B \Bkepi g C \Dist h D \Bkadjar ij E $$
+introduced via the commands
+\begin{verbatim}
+$$ A \Mono f B \Bkepi g C \Dist h D \Bkadjar ij E $$
+\end{verbatim}
+
+The default length of a {\em text arrow} is 20pt while the names
+are processed in {\em scriptstyle}; the default length of a {\em display
+arrow} is 30 pt and the names are processed in {\em textstyle}. The
+default lengthes can be changed at any time in the document via 
+instructions of the form
+\begin{verbatim}
+\settextarrowlength{25}
+\setdisplayarrowlength{40}
+\end{verbatim}
+where 25 and 40 express the new lengthes in points.
+
+\section{Constructing a diagram}
+
+To construct a 2-dimensional diagram, imagine a pattern of
+points,  visualized by circles and bullets as in figure~2:  
+\begin{figure}
+\begin{diagram} 
+\XB¤\XA¤\XB¤\XA¤\XB¤\XA¤\XB¤¤ 
+\XA¤\cross{\XA}{\sear}¤\cross{\XA}{\esear}¤\cross{\XA}{\eesear}¤\XA¤\XA¤\XA¤¤
+\XB¤\cross{\XA}{\ssear}¤\XB¤\cross{\XA}{\ear}¤\XB¤\cross{\XA}{\ear}¤\XB¤¤       
+\XA¤\XA¤\cross{\XA}{\sar}¤\XA¤\cross{\XA}{\sar}¤\XA¤\cross{\XA}{\sar}¤¤
+\XB¤\XA¤\XB¤\cross{\XA}{\ear}¤\XB¤\cross{\XA}{\ear}¤\XB¤¤ 
+\end{diagram} 
+\caption{Conceiving a 2-dimensional diagram.} 
+\end{figure}
+the bullets indicate the points of this pattern where vertices
+could be expected. Each vertex and each arrow is attached by its center at a
+point of the pattern. It suffices now to enumerate the items, line by line and
+column by column, like for a matrix; in particular when all actual items of a
+line have been enumerated, you can pass directly to the next line. All items are
+processed in math mode. The program will take care of choosing correctly the
+length of each arrow.
+
+A vertex is typed as any mathematical formula. The rules for typing
+an arrow are completely analogous to those of section~2:
+the various types of arrows are again those of figure~1 while
+the possible directions and their codes are given in figure~3. 
+\begin{figure}
+\begin{diagram}[60]
+\XB¤\XA¤\V{0}{10}{nwnnw}¤\XA¤\V{0}{10}{nnnw}¤\XA¤\XB¤\XA¤\V{0}{10}{nnne}¤
+\XA¤\V{0}{10}{nenne}¤\XA¤\XB¤¤
+\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤¤
+\V{-10}{0}{\makebox[0pt][r]{$\scriptstyle nwwnw$}}¤\XA¤\XB¤\XA¤
+\V{-5}{10}{\boldface{nnw}}¤\XA¤\XB¤\XA¤\V{5}{10}{\boldface{nne}}¤\XA¤\XB¤\XA¤
+\V{10}{0}{\makebox[0pt][l]{$\scriptstyle
+neene$}}¤¤
+\XA¤\XA¤\XA¤\XA¤\cross{\XA}{\nwnnwar}¤\cross{\XA}{\nnnwar}¤\XA¤\cross{\XA}{\nnnear}¤
+\cross{\XA}{\nennear}¤\XA¤\XA¤\XA¤\XA¤¤
+\V{-10}{0}{\makebox[0pt][r]{$\scriptstyle
+wwnw$}}¤\XA¤\V{-10}{10}{\boldface{wnw}}¤\cross{\XA}{\nwwnwar}¤
+\V{-5}{10}{\boldface{nw}}¤\cross{\XA}{\bold\nnwar}¤\V{0}{10}{\boldface{n}}¤
+\cross{\XA}{\bold\nnear}¤\V{5}{10}{\boldface{ne}}¤\cross{\XA}{\neenear}¤
+\V{10}{10}{\boldface{ene}}¤\XA¤\V{10}{0}{\makebox[0pt][l]{$\scriptstyle
+eene$}}¤¤
+\XA¤\XA¤\XA¤\cross{\XA}{\wwnwar}¤\cross{\XA}{\bold\wnwar}¤\cross{\XA}{\bold\nwar}¤
+\cross{\XA}{\bold\nar}¤\cross{\XA}{\bold\near}¤\cross{\XA}{\bold\enear}¤
+\cross{\XA}{\eenear}¤\XA¤\XA¤\XA¤¤
+\XB¤\XA¤\XB¤\XA¤\V{-10}{0}{\boldface{w}}¤\cross{\XA}{\bold\war}¤\XB¤
+\cross{\XA}{\bold\ear}¤\V{10}{0}{\boldface{e}}¤\XA¤\XB¤\XA¤\XB¤¤
+\XA¤\XA¤\XA¤\cross{\XA}{\wwswar}¤\cross{\XA}{\bold\wswar}¤\cross{\XA}{\bold\swar}¤
+\cross{\XA}{\bold\sar}¤\cross{\XA}{\bold\sear}¤\cross{\XA}{\bold\esear}¤
+\cross{\XA}{\eesear}¤\XA¤\XA¤\XA¤¤
+\V{-10}{0}{\makebox[0pt][r]{$\scriptstyle
+wwsw$}}¤\XA¤\V{-10}{-10}{\boldface{wsw}}¤\cross{\XA}{\swwswar}¤
+\V{-5}{-10}{\boldface{sw}}¤\cross{\XA}{\bold\sswar}¤\V{0}{-10}{\boldface{s}}¤
+\cross{\XA}{\bold\ssear}¤\V{5}{-10}{\boldface{se}}¤\cross{\XA}{\seesear}¤
+\V{10}{-10}{\boldface{ese}}¤\XA¤\V{10}{0}{\makebox[0pt][l]{$\scriptstyle
+eese$}}¤¤
+\XA¤\XA¤\XA¤\XA¤\cross{\XA}{\swsswar}¤\cross{\XA}{\ssswar}¤\XA¤\cross{\XA}{\sssear}¤
+\cross{\XA}{\sessear}¤\XA¤\XA¤\XA¤\XA¤¤
+\V{-10}{0}{\makebox[0pt][r]{$\scriptstyle
+swwsw$}}¤\XA¤\XB¤\XA¤\V{-5}{-10}{\boldface{ssw}}¤\XA¤\XB¤\XA¤
+\V{5}{-10}{\boldface{sse}}¤\XA¤\XB¤\XA¤
+\V{10}{0}{\makebox[0pt][l]{$\scriptstyle seese$}}¤¤
+\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤¤
+\XB¤\XA¤\V{0}{-10}{swssw}¤\XA¤\V{0}{-10}{sssw}¤\XA¤\XB¤\XA¤\V{0}{-10}{ssse}¤
+\XA¤\V{0}{-10}{sesse}¤\XA¤\XB¤¤
+\end{diagram} 
+\caption{The 32 directions for {\em Diagram} arrows.}
+\end{figure} 
+Taking some
+liberty with geography and trigonometry, the 32 directions considered
+by the {\em Diagram macros} are named after those of the compass card.
+\begin{itemize}
+\item To produce a type of arrow in a given direction, type a {\em
+backslash} followed by the code of the direction and the code of
+the arrow. For example \verb+\nemono+ draws a north-east
+monomorphism.
+\item To give an upper name to a diagram arrow, use a first upper case
+letter and give the name as an argument. For example 
+\verb+\Ssedist f+ draws a south-sout-east distributor with upper
+name $f$. Of course, when the picture consists in two arrows,
+two names must be given: first the upper one and next the lower one.
+In the case of vertical arrows, read {\em left} instead of {\em
+upper}.
+\item The procedure for giving a lower name is analogous, but uses
+a last uppercase letter. Thus \verb+\wbimO f+ produces a west
+bimorphism with lower name $f$. In the case of vertical arrows,
+read {\em right} instead of {\em lower}. For two-arrow pictures,
+both naming procedures are equivalent.
+\end{itemize}
+All 12 types of arrows exist in all 16 principal directions printed in bold
+in figure~3; just plain arrows are provided in the 16 other
+directions. 
+
+It remains to explain the syntax\footnote{This syntax uses the character \S. If
+this is a problem for you, just replace \S\ by any character you are unlikely to
+use in a digram, for example ?; you can safely make this change globally and
+automatically in the file {\em Diagram}.} for typing diagrams. This is just
+\begingroup%
+\catcode`\¤=\active\def¤{{\S}}%       
+\begin{verbatim}
+\begin{diagram}
+...¤...¤...¤¤
+...¤...¤...¤...¤¤
+...¤...¤...¤...¤¤
+\end{diagram}
+\end{verbatim}%
+\endgroup%
+\noindent where \verb+...+ denote the various items of the diagram. So a
+single \S\ is the delimiter between two items of a same line, while
+a double \S\S\ indicate the end of a line. Typing the double \S\S\ at the end of the last line is
+compulsory and nothing should stand between this double \S\S\ and the
+\verb+\end{diagram}+ instruction (well, there is a single exception to this rule,
+explained in section~6). Do not forget a blank space to indicate an empty item,
+since two consecutive \S\S\ would be interpreted as an {\em end of line} symbol; of
+course several blank spaces are always equivalent to a single one.
+
+So diagram~1, 
+\begin{floatingdiagram}
+A¤¤
+ ¤\Sedotar x¤\eseaR y  ¤\Eesear z¤¤
+ ¤\sseaR u  ¤A         ¤\Eepi a  ¤B         ¤\Emono b¤C         ¤¤
+ ¤          ¤\saR c    ¤         ¤\Sadjar de¤        ¤\seqL{1_C}¤¤  
+ ¤          ¤D         ¤\waR g   ¤D\oplus E ¤\eaR h  ¤C         ¤¤
+\end{floatingdiagram}
+which has the precise shape of the diagram conceived in figure~2, is produced by
+the following commands:
+\begingroup%
+\catcode`\¤=\active\def¤{{\S}}%      
+\begin{verbatim}
+\begin{diagram}
+A¤¤
+ ¤\Sedotar x¤\eseaR y  ¤\Eesear z¤¤
+ ¤\sseaR u  ¤A         ¤\Eepi a  ¤B         ¤\Emono b¤C         ¤¤
+ ¤          ¤\saR c    ¤         ¤\Sadjar de¤        ¤\seqL{1_C}¤¤  
+ ¤          ¤D         ¤\waR g   ¤D\oplus E ¤\eaR h  ¤C         ¤¤
+\end{diagram}
+\end{verbatim}%
+\endgroup%
+
+There is a second, completely analogous environment for producing
+diagrams; it has the form
+\begingroup%
+\catcode`\¤=\active\def¤{{\S}}%       
+\begin{verbatim}
+\begin{floatingdiagram}
+...¤...¤...¤¤
+...¤...¤...¤...¤¤
+...¤...¤...¤...¤¤
+\end{floatingdiagram}
+\end{verbatim}%
+\endgroup%
+\noindent As the name indicates, the diagram is then introduced as 
+a floating body and will automatically receive a numbered label
+(cf.~diagrams~1~to~3). The default is to number successively the
+diagrams through all the document. You can prefer
+a number 3.12 for, let us say,  the twelfth diagram of chapter~3
+(in a style which contains chapters!). This is forced
+by the instruction
+\begin{verbatim}
+\setdiagramcounter{chapter}
+\end{verbatim}
+where, of course, {\em chapter} can be replaced by any sectioning
+level, for example {\em part, section,\ldots} For non-English texts, you
+will also want to ``translate'' the word {\em Diagram} in the label: this
+is achieved by an instruction like
+\begin{verbatim}
+\diagramlabel{Diagramme}
+\end{verbatim}
+given anywhere in the text, but not inside a diagram.
+
+Every diagram, floating or not, can be given a caption. This is done
+by the instruction
+\begin{verbatim}
+\diagramcaption{...}
+\end{verbatim}
+which can be introduced anywhere in the diagram, but before the last two
+\S\S. In the case of a floating diagram, this caption completes the automatic
+label, as in diagram~4.
+
+\section{Changing the sizes}
+
+The step of the pattern
+underlying a diagram is 40~units, where the default value of the unit is 1pt.
+This default value can be ``scaled'' at any time in the document by giving an
+instruction like 
+\begin{verbatim}
+\setdefaultscale{75}
+\end{verbatim}
+(scaling factor of 75\%); this instruction applies to all subsequent diagrams
+and must be given outside a diagram environment.
+If you want to apply a scaling factor to just one specific diagram, give the
+scaling factor as an optional argument of the corresponding environment; thus
+type 
+\begin{verbatim}
+\begin{diagram}[125]
+........
+\end{diagram}
+\end{verbatim}
+for an enlargement of 125\%, and correspondingly for floating diagrams. The
+scaling factor given for a specific diagram overrides the {\em defaultscale}
+value just for this specific diagram. For example, diagram~1 is not scaled and
+diagram~2 is the same diagram, scaled at 75\%. Observe the precise
+effect of the scaling option: this is by no way a brute homothetic process.
+\begin{floatingdiagram}[75]
+A¤¤
+ ¤\Sedotar x¤\eseaR y  ¤\Eesear z¤¤
+ ¤\sseaR u  ¤A         ¤\Eepi a  ¤B         ¤\Emono b¤C         ¤¤
+ ¤          ¤\saR c    ¤         ¤\Sadjar de¤        ¤\seqL{1_C}¤¤  
+ ¤          ¤D         ¤\waR g   ¤D\oplus E ¤\eaR h  ¤C         ¤¤
+\end{floatingdiagram}
+
+To motivate the next features, consider the conception of a
+3-dimensional diagram, as in figure~4. Compare first the subpattern of bullets
+with that of figure~2.
+\begin{figure}
+\begin{diagram}[50]
+\XB¤\XA¤\cross{\XA}{\ear[130]}¤\XA¤\XB¤\XA¤\cross{\XA}{\ear[130]}¤\XA¤\XB¤\XA¤\XA¤¤
+\XA¤\cross{\XA}{\sear}¤\XA¤\XA¤\XA¤\cross{\XA}{\sear}¤\XA¤\XA¤\XA¤\cross{\XA}{\sear}¤\XA¤¤
+\cross{\XA}{\sar[130]}¤\XA¤\XB¤\XA¤\cross{\XA}{\cross{\ear[130]}{\sar[130]}}¤\XA 
+   ¤\XB¤\XA¤\cross{\XA}{\cross{\ear[130]}{\sar[130]}}¤\XA¤\XB¤¤ 
+\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤\XA¤¤
+\XB¤\XA¤\cross{\XA}{\cross{\ear[130]}{\sar[130]}}¤\XA¤\XB¤ 
+   ¤\cross{\XA}{\cross{\ear[130]}{\sar[130]}}¤\XA¤\XB¤\XA¤\cross{\XA}{\sar[130]}¤¤
+\XA¤\cross{\XA}{\sear}¤\XA¤\XA¤\XA¤\cross{\XA}{\sear}¤\XA¤\XA¤\XA¤\cross{\XA}{\sear}¤\XA¤¤ 
+\XA¤\XA¤\XB¤\XA¤\cross{\XA}{\ear[130]}¤\XA¤\XB¤\XA¤\cross{\XA}{\ear[130]}¤\XA¤\XB¤¤
+\end{diagram}
+\caption{Conceiving a 3-dimensional diagram}
+\end{figure}
+In this case, not only you must
+``cross'' different arrows at a same point of the pattern,
+but you must also consider arrows which cross several points
+of the pattern before reaching the objects they connect. In fact, the {\em
+Diagram macros} assume that an arrow attached at some point of the
+pattern connects the two adjacent points of the pattern, in the direction of the
+arrow. When this is not the case, it is left on you to determine the length of
+the corresponding arrow. 
+
+To impose a specific length to a diagram arrow, just give the corresponding extent as
+an optional argument\footnote{This argument should be an actual positive
+integer; anything else, including the value of a counter, could put \TeX\ in
+deep trouble. The formula arrows (section~2) do not admit this optional
+argument.}:the extent of vertical and horizontal arrows is their length; the extent
+of other arrows is the length of their horizontal projection (see \LaTeX\ manual,
+{\em Picture environment}, for further explanations). Thus \verb+\Near[60]f+ draws a
+north-east arrow of horizontal extent 60 units with upper name $f$. Here are
+the basic default extents of diagram arrows: 50 in the directions n, s, e, w;
+59 in the directions ne, nw, se, sw; 133 in the directions ene, ese, wnw,
+wsw; 67 in the directions nne, sse, nnw, ssw; 211 in the directions
+eene, eese, wwnw, wwsw; 71 in the directions nnne, ssse, nnnw,
+sssw; 215 in the direction neene, seese, nwwnw, swwsw; 143 in the
+directions nenne, sesse, nwnnw, swssw. In most circumstances, you will obtain
+the required extent by augmenting the basic default extent by 40 for
+each additional point of the formal pattern crossed by the arrow.
+
+As far as ``crossing arrows'' is concerned, the command 
+\begin{verbatim}
+\cross{item 1}{item 2}
+\end{verbatim}
+allows you to introduce at the same time {\em item~1} and {\em
+item~2} at the same point of the pattern; those two items can be
+indifferently vertices or arrows. Diagram~3,
+conceived in figure~4, must thus be typed as
+\begingroup
+\catcode`\¤=\active\def¤{{\S}}       
+\begin{verbatim}
+\begin{floatingdiagram}[50]
+A¤ ¤\ear[130]¤ ¤B¤ ¤\ear[130]¤ ¤C¤¤
+¤\sear¤ ¤ ¤ ¤\sear¤ ¤ ¤ ¤\sear ¤¤ 
+\sar[130]¤ ¤D¤ ¤\cross{\ear[130]}{\sar[130]}¤ 
+           ¤E¤ ¤\cross{\ear[130]}{\sar[130]}¤ ¤F¤¤ ¤¤
+G¤ ¤\cross{\ear[130]}{\sar[130]}¤ ¤H¤ 
+   ¤\cross{\ear[130]}{\sar[130]}¤ ¤I¤ ¤\sar[130]¤¤
+¤\sear¤ ¤ ¤ ¤\sear¤ ¤ ¤ ¤\sear¤¤ 
+¤ ¤J¤ ¤\ear[130]¤ ¤K¤ ¤\ear[130]¤ ¤L¤¤
+\end{floatingdiagram}
+\end{verbatim}
+\endgroup
+\begin{floatingdiagram}[50]
+A¤ ¤\ear[130]¤ ¤B¤ ¤\ear[130]¤ ¤C¤¤
+¤\sear¤ ¤ ¤ ¤\sear¤ ¤ ¤ ¤\sear ¤¤ 
+\sar[130]¤ ¤D¤ ¤\cross{\ear[130]}{\sar[130]}¤ 
+           ¤E¤ ¤\cross{\ear[130]}{\sar[130]}¤ ¤F¤¤ ¤¤
+G¤ ¤\cross{\ear[130]}{\sar[130]}¤ ¤H¤ 
+   ¤\cross{\ear[130]}{\sar[130]}¤ ¤I¤ ¤\sar[130]¤¤
+¤\sear¤ ¤ ¤ ¤\sear¤ ¤ ¤ ¤\sear¤¤ 
+¤ ¤J¤ ¤\ear[130]¤ ¤K¤ ¤\ear[130]¤ ¤L¤¤
+\end{floatingdiagram}
+
+Finally you can change the thickness of a diagram arrow by typing first the command
+\verb+\bold+; thus \verb+\bold\nar+ produces a bold north arrow. This
+\verb+\bold+ option will be cancelled by the next \S\ sign; you can cancel its
+effects earlier (for example during a \verb+\cross+ command) by the
+instruction \verb+\unbold+. See figure~3 for examples of bold arrows.
+
+\section{Curved arrows}
+
+The {\em Diagram macros} provide also eight curved arrows which can be used
+for connecting two rather distant points lying on a same edge of a diagram;
+the code for curved arrows is {\em curvar}.
+These arrows are presented in figure~5, scaled at 50\%, 
+\begin{figure}
+\begin{diagram}[50]
+\cdot¤\ear¤\cross{\XB}{\Necurvar{ne}}¤\ear¤\cdot¤ ¤ ¤ ¤ ¤
+\cdot¤\ear¤\cross{\XB}{\Nwcurvar{nw}}¤\ear¤\cdot¤¤
+\sar¤ ¤\sar¤ ¤\sar¤ ¤ ¤ ¤ ¤\sar¤ ¤\sar¤ ¤\sar¤¤
+\cross{\XB}{\Wncurvar{wn}}¤\ear¤\cdot¤\ear¤\cross{\XB}{\Escurvar{es}}¤ ¤ ¤ ¤ ¤
+\cross{\XB}{\Wscurvar{ws}}¤\ear¤\cdot¤\ear¤\cross{\XB}{\Encurvar{en}}¤¤
+\sar¤ ¤\sar¤ ¤\sar¤ ¤ ¤ ¤ ¤\sar¤ ¤\sar¤ ¤\sar¤¤
+\cdot¤\ear¤\cross{\XB}{\Swcurvar{sw}}¤\ear¤\cdot¤ ¤ ¤ ¤ ¤
+\cdot¤\ear¤\cross{\XB}{\Securvar{se}}¤\ear¤\cdot¤¤
+\spacing(15,0,15)
+\end{diagram}
+\caption{The eight curved arrows}
+\end{figure}
+together with the
+corresponding direction codes. The first
+letter of the direction code indicates the position of the arrow with respect to the
+diagram; the second letter indicates the global direction of the arrow. So 
+\verb+\wscurvar+ draws a curved arrow, on the west side of the diagram, oriented
+to the south. As for the other arrows, a first (or last) upper case letter allows you
+to name the curved arrows. 
+
+Curved arrows are a typical example of items which are generally introduced
+via the \verb+\cross+ command of section~4, at a formal point of the pattern
+which they share with a vertex or another arrow. In figure~5, the bullets
+indicate the formal ``center'' of the curved arrows; i.e.~the point of the
+pattern where to attach them.
+
+The default extent of curved arrows is 160 units, yielding the situation of
+figure~5. As for other diagram arrows, an arbitary extent can be imposed as a
+first optional argument (again an actual positive integer!).
+
+Curved arrows are also part of the {\em MicroDiagram} and {\em Minidiagram}
+packages.
+
+\section{Spacing adjustments}
+
+The {\em Diagram macros} determine the dimensions of a diagram by counting the
+number of rows and columns in the formal pattern. When the actual dimensions
+are rather different from those estimated in this way, for example when you
+introduce curved arrows along a diagram, a spacing correction can be needed.
+This is realized via the command \verb+\spacing(t,l,b)+
+which must imperatively be given between the \S\S\ of the last line and the
+instruction \verb+\end{diagram}+ (or \verb+\end{floatingdiagram}+). This 
+command\footnote{Do not
+abbreviate that command, this would put \TeX\ in deep trouble.}
+adds $t$ points space at the top of the diagram, $l$ points space at the left and
+$b$ points space at the bottom. $t$, $l$, $b$ should be positive or negative
+integers.
+\begingroup%
+\catcode`\¤=\active\def¤{{\S}}%       
+\begin{verbatim}
+\begin{diagram}[80]
+\diagramcaption{What a nice diagram!}
+...¤...¤...¤¤
+...¤...¤...¤...¤¤
+...¤...¤...¤...¤¤
+\spacing(10,-15,10)
+\end{diagram}
+\end{verbatim}%
+\endgroup%
+
+When using the \verb+\cross+ command, it can also happen that an arrow
+collides with the name of another arrow. To take care of this and other
+unusual situations, commands exist to move elements of a diagram without
+disturbing the general construction.
+\begin{itemize}
+\item \verb+\movename(n,m){f}+ moves the name $f$ of an arrow $n$ points right
+and $m$ points up.
+\item \verb+\movearrow(n,m){\arrow}+ moves the arrow \verb+\arrow+ (and its
+name when there is one) $n$ points right and $m$ points up.
+\item \verb+\movevertex(n,m){XXX}+ moves the vertex $XXX$ $n$ points right and
+$m$ points up.
+\item \verb+\movevertexleft{XXX}+ moves a too long vertex $XXX$ 
+positioned on the left edge of a diagram,
+so that the next horizontal arrow keeps maximal length.
+\item \verb+\movevertexright{XXX}+ moves a too long vertex $XXX$
+positioned on the right edge of a diagram,
+so that the previous horizontal arrow keeps a maximal length.
+\end{itemize}
+
+For example, diagram~4 
+\begin{floatingdiagram}
+(A\oplus B)\otimes(C\oplus D) ¤ \Ear f¤ X\oplus V ¤¤
+\Sar g¤ ¤ \saR h¤¤
+Y\oplus W ¤ \eaR i¤ (E\oplus F)\otimes(G\oplus H) ¤¤ 
+\movevertexleft{(A\oplus B)\otimes(C\oplus D)} ¤ \Ear f¤ X\oplus V ¤¤
+\Sar g¤ ¤ \saR h¤¤
+Y\oplus W ¤ \eaR i¤ \movevertexright{(E\oplus F)\otimes(G\oplus H)} 
+\diagramcaption{Automatic and manual adjustments} ¤¤
+\end{floatingdiagram}
+has been obtained by just typing
+\begingroup
+\catcode`\¤=\active\def¤{{\S}}       
+\begin{verbatim}
+\begin{floatingdiagram}
+(A\oplus B)\otimes(C\oplus D)¤\Ear f¤X\oplus V¤¤
+\Sar g¤ ¤ \saR h¤¤
+Y\oplus W¤\eaR i¤(E\oplus F)\otimes(G\oplus H)¤¤ 
+\movevertexleft{(A\oplus B)\otimes(C\oplus D)}¤\Ear f¤ X\oplus V¤¤
+\Sar g¤ ¤\saR h¤¤
+Y\oplus W¤\eaR i¤\movevertexright{(E\oplus F)\otimes(G\oplus H)} 
+\diagramcaption{Automatic and manual adjustments}¤¤
+\end{floatingdiagram}
+\end{verbatim}
+\endgroup
+The upper square is thus produced automatically by the {\em Diagram macros},
+while the lower square has been adjusted by the user. Make your choice.
+\vfill
+
+\mbox{}\hfill{\footnotesize Une version fran\c caise de ce mode d'emploi est
+\'egalement disponible.}
+
+
+\end{document}

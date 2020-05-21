@@ -1,0 +1,34 @@
+name t1utils
+category TLCore
+revision 52851
+shortdesc Simple Type 1 font manipulation programs
+longdesc A collection of simple programs for manipulating Adobe Type 1
+longdesc fonts, comprising: - t1ascii: convert PFB (binary) to PFA
+longdesc (ascii) fonts; - t1binary: convert PFA to PFB fonts; -
+longdesc t1disasm: convert PFA or PFB fonts to human-readable and
+longdesc -editable format; - t1asm: reassemble such editable formats to
+longdesc a font; - t1unmac: extract font resources from a Macintosh font
+longdesc file; and - t1mac: generate a Macintosh font from a Type 1
+longdesc font.
+depend t1utils.ARCH
+containersize 620
+containerchecksum 834a966269f1871227b9918a513e154d4bfdc4d1a80deaba5f5bf22136bc8af10a7224f5b6f753f074208881de970076c1214199ee5210c5014366d4f6549796
+doccontainersize 94352
+doccontainerchecksum 096f8fc612ef1793c4807fdc134b3d75650f98a79b49ddbdf11c346b175ec76a900b68189f7e6ba02dd1579396503faed58398da8dfb42d70a7d69dbe24f5f5a
+docfiles size=38
+ texmf-dist/doc/man/man1/t1ascii.1
+ texmf-dist/doc/man/man1/t1ascii.man1.pdf
+ texmf-dist/doc/man/man1/t1asm.1
+ texmf-dist/doc/man/man1/t1asm.man1.pdf
+ texmf-dist/doc/man/man1/t1binary.1
+ texmf-dist/doc/man/man1/t1binary.man1.pdf
+ texmf-dist/doc/man/man1/t1disasm.1
+ texmf-dist/doc/man/man1/t1disasm.man1.pdf
+ texmf-dist/doc/man/man1/t1mac.1
+ texmf-dist/doc/man/man1/t1mac.man1.pdf
+ texmf-dist/doc/man/man1/t1unmac.1
+ texmf-dist/doc/man/man1/t1unmac.man1.pdf
+catalogue-contact-home http://www.lcdf.org/~eddietwo/type/#t1utils
+catalogue-ctan /fonts/utilities/t1utils
+catalogue-license pd
+catalogue-topics ps-manip

@@ -1,0 +1,25 @@
+name epspdfconversion
+category Package
+revision 18703
+shortdesc On-the-fly conversion of EPS to PDF
+longdesc The package calls the epstopdf package to convert EPS graphics
+longdesc to PDF, on the fly. It servs as a vehicle for passing
+longdesc conversion options (such as grayscale, prepress or pdfversion)
+longdesc to the epspdf converter.
+containersize 3692
+containerchecksum a1f328125f82f33bcc881adacec981f4ce8aefd4cbbe160de66397ed3b1d4c2ed980f5e1c17c63b75973e3c253d76afc2f1227272ab7f0236e47e8e48f0f015c
+doccontainersize 417580
+doccontainerchecksum dc09e2ef835a85bbfc7c399b7c7323d64c312b04143e8070fc403fbd484bd893be1e4b532580efea93baffe64625c33004405eb0ed9bf6295646cfc260d72c40
+docfiles size=119
+ texmf-dist/doc/latex/epspdfconversion/README details="Readme"
+ texmf-dist/doc/latex/epspdfconversion/epspdfconversion.pdf details="Package documentation"
+ texmf-dist/doc/latex/epspdfconversion/example/epspdfconversion_docu.tex
+ texmf-dist/doc/latex/epspdfconversion/example/image.eps
+ texmf-dist/doc/latex/epspdfconversion/example/image2.eps
+ texmf-dist/doc/latex/epspdfconversion/example/optionstable.tex
+runfiles size=3
+ texmf-dist/tex/latex/epspdfconversion/epspdfconversion.sty
+catalogue-ctan /macros/latex/contrib/epspdfconversion
+catalogue-license lppl
+catalogue-topics graphics-epspdf callback
+catalogue-version 0.61

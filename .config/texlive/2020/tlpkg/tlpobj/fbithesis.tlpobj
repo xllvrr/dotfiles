@@ -1,0 +1,35 @@
+name fbithesis
+category Package
+revision 21340
+shortdesc Computer Science thesis class for University of Dortmund
+longdesc At the department of computer science at the University of
+longdesc Dortmund there are cardboard cover pages for research or
+longdesc internal reports like master/phd-theses. The main function of
+longdesc this LaTeX2e document-class is a replacement for the \maketitle
+longdesc command to typeset a title page that is adjusted to these cover
+longdesc pages.
+containersize 6152
+containerchecksum 3e593e312ac8efbbdd294e6a00ec020678dcb12259ae778ddaed4d43a800aa19ba16f8eb15b5122ab22f44c5e23c77e4fe733c7772929ef55589d387985db694
+doccontainersize 790224
+doccontainerchecksum 92d0ae3382aa71260f6ed204f6bce1bcbac26985f41789e00c5d3186dcd448bd169b7641fa40d34cf87c556ca10573b0d8cd4235aaea8a0d1533dc40c71b3779
+docfiles size=201
+ texmf-dist/doc/latex/fbithesis/README details="Readme"
+ texmf-dist/doc/latex/fbithesis/distribution.key
+ texmf-dist/doc/latex/fbithesis/example.pdf
+ texmf-dist/doc/latex/fbithesis/example.tex
+ texmf-dist/doc/latex/fbithesis/exampleaux.tex
+ texmf-dist/doc/latex/fbithesis/fbithesis.dtx.asc
+ texmf-dist/doc/latex/fbithesis/fbithesis.pdf details="Package documentation"
+srccontainersize 41564
+srccontainerchecksum a931b41de1feb5b0a78bc40c20bafebeb529a8a8b351344020032641ecf9673168328dc271228130ff22ea17190cf021b1dbe01635d7cf77984f69861c84c02d
+srcfiles size=53
+ texmf-dist/source/latex/fbithesis/fbithesis.drv
+ texmf-dist/source/latex/fbithesis/fbithesis.dtx
+ texmf-dist/source/latex/fbithesis/fbithesis.ins
+runfiles size=7
+ texmf-dist/tex/latex/fbithesis/fbithesis.cfg
+ texmf-dist/tex/latex/fbithesis/fbithesis.cls
+catalogue-ctan /macros/latex/contrib/fbithesis
+catalogue-license other-free
+catalogue-topics dissertation
+catalogue-version 1.2m

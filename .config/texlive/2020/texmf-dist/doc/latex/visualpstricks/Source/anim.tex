@@ -1,0 +1,272 @@
+\label{anim}
+\SbSSCT{Animation à partir de fichiers d'image }{Animation from picture files}
+
+%\begin{verbatim}\animategraphics[<options>]{<frame rate>}{<file basename>}{<first>}{<last>} \end{verbatim}
+
+
+\begin{tabular}{|c|c|} \hline 
+\TFRGB{première image}{first frame} & \TFRGB{second et dernière image}{second and last frame}
+\\ \hline
+\includegraphics{XXX1.ps}
+&  
+\includegraphics{XXX2.ps}
+\\ 
+\hline \BS{includegraphics}\AC{XXX1.ps} &  \BS{includegraphics}\AC{XXX2.ps}\\ 
+\hline 
+\end{tabular} 
+
+
+
+%
+\begin{minipage}{7cm}
+\animategraphics[controls,loop,autoplay]{4}{XXX}{1}{2}  
+\end{minipage}\hfill
+\begin{minipage}{7cm}
+\begin{tabular}{|l@{:}l|}
+\hline \BSS{animategraphics} &  \\ 
+\hline [ controls, & \TFRGB{boutons de contrôle}{Inserts control buttons} \\ 
+\hline loop &  \TFRGB{en boucle}{animation restarts automatically}\\ 
+\hline autoplay ] & \TFRGB{auto demarrage}{Start animation automatically } \\ 
+\hline \AC{4} &  \TFRGB{4 fois par seconde}{4 frame per second}\\ 
+\hline \AC{XXX} & \TFRGB{base du nom fichier}{file base name} \\ 
+\hline \AC{1} & \TFRGB{numero de debut}{number of the first frame} \\ 
+\hline \AC{2} & \TFRGB{numeo de fin}{number of the last frame} \\ 
+\hline 
+\end{tabular} 
+
+\end{minipage}
+
+%--------------------------------------------------------------
+\subsection{Animateinline}
+
+
+\begin{minipage}{7cm}
+\begin{center}
+\begin{animateinline}[ controls,loop,autoplay]{5}%
+\begin{pspicture}(6,6)
+\psdiamond*[gangle=45](3,3)(2,.5)
+\psdiamond*[gangle=135](3,3)(2,.5)
+\end{pspicture}
+\newframe%
+\begin{pspicture}(6,6)
+\psdiamond*[gangle=0](3,3)(2,.5)
+\psdiamond*[gangle=90](3,3)(2,.5)
+\end{pspicture}
+\end{animateinline}% 
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}{7cm}
+\BSS{begin\AC{animateinline}}[controls,loop,autoplay]\AC{5} \\
+
+\emph{\% \TFRGB{première image}{first frame }}\\
+\BS{begin}\AC{pspicture}(6,6) \\
+\BS{psdiamond*}[gangle=45](3,3)(2,.5) \\
+\BS{psdiamond*}[gangle=135](3,3)(2,.5) \\
+\BS{end}\AC{pspicture} \\
+
+\emph{\% \TFRGB{deuxième}{second frame }}\\
+\BSS{newframe} \\
+\BS{begin}\AC{pspicture}(6,6) \\
+\BS{psdiamond*}[gangle=0](3,3)(2,.5) \\
+\BS{psdiamond*}[gangle=90](3,3)(2,.5) \\
+\BS{end}\AC{pspicture} \\
+\\
+\BSS{end\AC{animateinline}} \\
+\end{minipage}
+%
+%%------------------------------------------------------------------------
+%\newpage
+\subsection{Multiframe}
+
+\begin{minipage}{7cm}
+\begin{center}
+\begin{animateinline}[poster=first, controls, palindrome,autoplay]{12}%
+\multiframe{29}{iAngle=80+10,Rdim=2.0+-0.2}{\begin{pspicture}(6,6)
+ \psdiamond*[gangle=\iAngle](3,3)(\Rdim,.5)
+ \rput(1,1){\iAngle}
+ \rput(5,1){\Rdim}
+\end{pspicture} }%
+\end{animateinline}%
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}{7cm}
+
+\BS{begin}\AC{animateinline}[poster=first,controls, palindrome]\AC{12} \\
+\BSS{multiframe}\AC{29}\AC{{\red iAngle}=80+10, {\red Rdim}=2.0+-0.2}\AC{ \\
+\BS{begin}\AC{pspicture}(6,6) \\
+\BS{psdiamond*}[gangle={\red \BS{iAngle}}](3,3)({\red \BS{Rdim}},.5)\\
+\BS{rput}(1,1)\AC{{\red \BS{iAngle}}} \\
+\BS{rput}(5,1)\AC{{\red \BS{Rdim}}} \\
+\BS{end}\AC{pspicture} } \\
+\BS{end}\AC{animateinline}%
+
+
+\end{minipage}
+\bigskip
+
+\TFRGB{L'initiale de la variable définit son type}{The first  letter of the variable name determines his type }
+
+\begin{tabular}{|c|l|}
+\hline  entier &  initiale : i ou I \\ 
+\hline  réelles &  initiale : n, N, r ou R \\ 
+\hline  longueurs & initiale : d ou D \\ 
+\hline 
+\end{tabular} 
+%%---------------------------------------------------------------------------------
+\newpage
+\subsection{Timeline}
+
+\begin{minipage}{6.5cm}
+\begin{animateinline}[controls,autoplay,timeline=xxx.txt]{5}%
+\begin{pspicture}(6,6)
+\pscircle[fillcolor=yellow,fillstyle=solid](3,3){2.5}
+\end{pspicture} 
+\newframe%
+\begin{pspicture}(6,6)
+\pscircle[linecolor=red,fillcolor=green,fillstyle=solid](3,3){2.5}
+\end{pspicture} 
+\newframe
+\multiframe{10}{iAngle=60+10}{\begin{pspicture}(6,6)
+\psdiamond*[gangle=\iAngle](3,3)(2,.5)
+\end{pspicture} }%
+\end{animateinline}%
+
+\end{minipage}\hfill
+\begin{minipage}{8cm}
+
+\BS{begin}\AC{animateinline}
+
+[controls,autoplay,\RDD{timeline}=xxx.txt]\AC{5} \\
+
+\emph{\% \TFRGB{1 image de fond}{}first background image (image \No 0)} \\
+\BS{begin}\AC{pspicture}(6,6) \\
+\BS{pscircle}[fillcolor=yellow,fillstyle=solid](3,3)\AC{2.5} \\
+\BS{end}\AC{pspicture}  \\
+
+\textbf{\BS{newframe}} \emph{\%  \TFRGB{2 page de fond}{second background image } (image \No 1)} \\
+\BS{begin}\AC{pspicture}(6,6) \\ 
+\BS{pscircle}[linecolor=red,fillcolor=green,fillstyle=solid](3,3)\AC{2.5} \\
+\BS{end}\AC{pspicture} \\
+
+\textbf{\BS{newframe}} \emph{\% \TFRGB{animation}{animation frames} (images \No 2 - 11) } \\
+\BS{multiframe}\AC{10}\AC{iAngle=60+10}\AC{ \\
+\BS{begin}\AC{pspicture}(6,6) \\
+\BS{psdiamond*}[gangle=\BS{iAngle}](3,3)(2,.5) \\
+\BS{end}\AC{pspicture}  } \\
+\BS{end}\AC{animateinline} \\
+\end{minipage}
+
+\bigskip
+\SbSbSSCT{Création du fichier pour timeline}{ Creation of the file for timeline}
+
+\TFRGB{Pour créer le fichier xxx.txt , en insérant le code suivant avant}{to create the file xxx.txt, insert the following code before } \BS{begin\AC{document}}
+\bigskip
+
+\begin{minipage}{7cm}
+\BSS{begin\AC{filecontents}}\AC{xxx.txt} \\
+::\Rnode{A}{0x0,8} \\
+::2 \\
+::7 \\
+::3 \\
+::6 \\
+::\Rnode{B}{c,1x3,5} \\ 
+::4 \\
+::11 \\
+::5 \\
+::7 \\
+::9 \\
+\BSS{end\AC{filecontents}}
+\end{minipage}\hfill
+\begin{minipage}{7cm}
+\rnode{AA}{0x0 : image \No 0 \TFRGB{sert de fond tout le temps}{= background image for all frame}} \\
+
+ \vspace{.5cm}
+\Rnode{BB}{c : \TFRGB{efface les images précédentes}{clear the background image} } \\
+
+ \vspace{.5cm}
+\Rnode{CC}{1x3 : image \No 1  \TFRGB{sert de fond 3 fois}{= background image for 3  frames}} \\
+
+ \vspace{.5cm}
+ \TFRGB{Ordre de passage des images}{ Order of frames} : 8,2,7,3,6,5,4,11,5,7,9
+\end{minipage}
+ \ncline[linecolor=blue]{A}{AA}  \ncline[linecolor=blue]{B}{BB}  \ncline[linecolor=blue]{B}{CC}
+ 
+\SbSbSSCT{option pour le fichier xxx.txt}{option for the file xxx.txt}
+ 
+\begin{tabular}{|c|l|}  \hline  
+* : : 3
+&
+\TFRGB{pause à l'image}{pause at frame } \No 3    
+\\   \hline  
+: 10 : 3
+&  
+\TFRGB{vitesse 10 par seconde à l'image}{10 frames per second at frame} \No  3
+\\   \hline  
+: : 3 : code 
+&  
+\TFRGB{code java possible à l'image}{java code at frame} \No  3
+\\   \hline 
+ \end{tabular}  
+ 
+\newpage
+\SbSSCT{Animation d'un graphe}{Graph animation}
+\readdata{\dat}{mesdata.dat}
+
+\begin{animateinline}[poster=last,controls]{5}%
+\multiframe{70}{ifin=10+10}{
+\begin{psgraph}[axesstyle=frame,xticksize=0 4cm,yticksize=0 9cm,subticks=0,Dx=100,Dy=.02](0,0)(750,.12){9cm}{4cm} 
+\listplot[xEnd=\ifin,linecolor=blue,linewidth=5pt]{\dat}
+\end{psgraph} }%
+\end{animateinline}
+
+\bigskip
+\noindent
+
+\BS{readdata}\AC{\BS{dat}}\AC{mesdata.dat} \\
+\BS{begin}\AC{animateinline}[poster=last,controls]\AC{5} \\
+\BS{multiframe}\AC{70}\AC{{\red ifin}=10+10}\AC{ \\
+\BS{begin}\AC{psgraph}[axesstyle=frame,xticksize=0 4cm,yticksize=0 9cm,subticks=0,Dx=100,Dy=.02](0,0)(750,.12)\AC{9cm}\AC{4cm} \\
+\BS{listplot}[xEnd={\red \BS{ifin}},linecolor=blue,linewidth=5pt]\AC{\BS{dat}} \\
+\BS{end}\AC{psgraph} } \\
+\BS{end}\AC{animateinline}
+
+
+
+
+
+
+
+
+%
+%\newpage
+%\subsection{Command options}
+%
+%
+%\begin{tabular}{|c|c|} \hline  
+%poster[=first | none | last] &   \\  \hline  
+%every=<num>					& Build animation from every <num>th frame only \\
+% autopause 					& \TFRGB{animation en pause à la fermeture de la page}{Pause animation when the page is closed }  \\  \hline  
+% autoplay 					&  Start animation after the page has opened.\\  \hline  
+% autoresume 				&  Resume previously paused animation \\  \hline  
+% loop 						&  The animation restarts immediately after reaching the end. \\  \hline  
+% palindrome 				&  The animation continuously plays forwards and backwards. \\  \hline  
+% step 						&  Step through the animation one frame at a time per mouse-click. \\  \hline  
+% width=<width> 				&  \TFRGB{redimensionne la largeur }{Resize the width of the animation widget} \\  \hline  
+% height=<height> 			&  \TFRGB{redimensionne la hauteur}{Resize the height of the animation widget} \\  \hline  
+% depth=<depth> 				&  Resize the animation widget \\  \hline  
+% scale=<factor> 			&  Scales the animation widget \\  \hline  
+% bb=<llx> <lly> <urx> <ury> &   \\  \hline  
+% viewport=<llx> <lly> <urx> <ury> &   \\  \hline  
+% trim=<left> <bottom> <right> <top> &   \\  \hline  
+% controls 					&  Inserts control buttons \\  \hline  
+% buttonsize=<size> 			&  Changes the control button \\  \hline  
+% buttonbg=<colour> 			&  strokes on transparent background \\  \hline  
+% buttonfg=<colour> 			& specifies the stroke colour  \\  \hline  
+% draft 						& animation is not embedded.Instead, a box with the exact
+% dimensions  \\  \hline  
+% final 						&   \\  \hline  
+% useocg 					&  alternative animation method based on Optional Content Groups \\  \hline  
+% measure 					&  Measures the frame rate during one cycle of the animation. \\  \hline  
+%\end{tabular}
+
+

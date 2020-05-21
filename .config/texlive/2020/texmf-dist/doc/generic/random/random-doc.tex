@@ -1,0 +1,74 @@
+% plain TeX
+
+\def\cmd#1{\leavevmode\hbox{\tt\string#1}}
+\edef\{{\string{}
+\edef\}{\string}}
+
+\noindent{\bf RANDOM.TEX }\qquad\qquad  ver 0.2 \qquad\qquad  (Donald Arseneau)
+
+\bigskip
+
+\noindent Generating ``random'' numbers in \TeX. 
+
+\medskip
+
+  {\tt \string\setrannum \thinspace\{$\langle \it counter\rangle$\}\thinspace\{$\langle\it minimum\rangle$\}\thinspace\{$\langle\it maximum\rangle$\}}
+
+  {\tt \string\setrandimen \thinspace\{$\langle \hbox{\it dimen-register}\rangle$\}\thinspace\{$\langle\it minimum\rangle$\}\thinspace\{$\langle\it maximum\rangle$\}}
+
+\medskip
+\noindent This software is released to the public domain.
+\bigskip
+\noindent Random integers are generated in the range 1 to 2147483646 by the
+macro \cmd\nextrandom.  The result is returned in the counter \cmd\randomi.
+Do not change \cmd\randomi\ except, perhaps, to initialize it at some
+random (or specific) value.  If you do not initialize it, it will be initialized
+using the time and date.  (This is a sparse initialization, giving
+fewer than a million different starting values, but you should use
+other sources of numbers if they are available---just remember that
+most of the numbers available to \TeX\ are not at all random.)
+
+The \cmd\nextrandom\ command is not very useful by itself, unless you
+have exactly 2147483646 things to choose from.  Much more useful
+is the \cmd\setrannum\ command which sets a given counter to a random
+value within a specified range.  There are three parameters:
+\medskip
+{\tt \string\setrannum \thinspace\{$\langle \it counter\rangle$\}\thinspace\{$\langle\it minimum\rangle$\}\thinspace\{$\langle\it maximum\rangle$\}}
+\medskip
+\noindent For example, to simulate a die-roll:
+\medskip
+{\tt \string\setrannum\{\string\die\}\{1\}\{6\} \string\ifcase\string\die...}
+\medskip
+
+If you need random numbers that are not integers, you will have to
+use dimen registers instead with \cmd\setrandimen.  For example, to set a random
+page width between 3 and 6.5 inches:
+\medskip
+\cmd\setrandimen \cmd\hsize{\tt\{3in\}\{6.5in\}}
+\medskip\noindent
+The ``\cmd\pointless'' macro
+will remove the ``{\tt pt}'' that \TeX\ gives so you can use the dimensions
+as pure ``real'' numbers.  In that case, specify the range in {\tt pt} units.
+For example,
+\medskip
+   {\tt\string\setrandimen\string\answer\{2.71828pt\}\{3.14159pt\}}
+   \hfill\break\indent
+   {\tt The answer is \string\pointless\string\answer.}
+\medskip
+
+The random number generator is the one by Lewis, Goodman, and Miller
+(1969) and used as ``ran0'' in ``Numerical Recipies'' using Schrage's
+method for avoiding overflows.  The multiplier is 16807 ($7^5$), the
+added constant is 0, and the modulus is 2147483647 ($2^{31}-1$).
+
+See CACM, Vol.~36, no. 7, (July 1993), p.~109.  The original authors 
+Park and Miller have since concluded that a better multiplier is 48271,
+rather than their original 16807.
+
+The range of integers generated is $1 - 2147483646$.  A smaller range would
+reduce the complexity of the macros a bit, but not much---most of the
+code deals with initialization and type-conversion.  On the other hand,
+the large range may be wasted due to the sparse seed initialization.
+
+
+\bye

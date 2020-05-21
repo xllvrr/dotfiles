@@ -1,0 +1,88 @@
+
+ 
+
+
+\psset{fillcolor=yellow,fillstyle=solid,linecolor=blue,unit=1cm}
+
+
+%
+%\begin{tabular}{ll}
+% \BSS{psforeach}				&   \\ 
+%\AC{variable} 						& \% nom de la variable \\
+%\AC{liste des valeurs} 				& \% liste des valeurs de la variable\\
+%\AC{action} 						& \% qui utilise les valeurs de la variable \\
+%\end{tabular}
+%
+%\bigskip
+%\emph{Exemple: liste de valeurs}
+
+\begin{tabular}{|l|} \hline  
+%\begin{pspicture}[0,-.5](11,0.5)
+
+\psforeach{\nA}{0, 1, 1.5, 3, 5,10}{\psdot[dotscale=2](\nA,0)}
+
+%\end{pspicture}
+\\
+\\ \hline  
+\BSS{psforeach}\Rnode{A}{\AC{{\red \BS{nA}}}}\Rnode{B}{\AC{0, 1, 1.5, 3, 5,10}}\Rnode{C}{\AC{\BS{}psdot[dotscale=2]({\red \BS{nA}},0)}}  \hspace{1cm}
+\\
+\\
+ \hspace{1cm}  \Rnode{AA}{variable}  \hspace{1cm} \Rnode{BB}{\TFRGB{liste des valeurs}{list of values}} \hspace{1cm}  \Rnode{CC}{action}
+\\ \hline 
+\end{tabular} 
+ \ncline[linecolor=blue]{A}{AA}  \ncline[linecolor=blue]{B}{BB}  \ncline[linecolor=blue]{C}{CC}
+ 
+ 
+%\begin{tabular}{ll}
+%$\backslash$psforeach\AC{$\backslash$nA}\AC{0, 1, 1.5, 3, 5,10}	& \% variable $\backslash$nA et ses 6 valeurs  \\  
+%\AC{$\backslash$psdot[dotscale=2]($\backslash$nA,0)}			& \% un point à chaque abscisse $\backslash$nA  \\ \
+%\end{tabular}
+%
+%\smallskip 
+%
+%\psforeach{\nA}{0, 1, 1.5, 3, 5,10}{\psdot[dotscale=2](\nA,0)}
+
+\bigskip
+
+%\emph{Exemple: }
+
+\begin{tabular}{|l|} \hline
+
+ \multicolumn{1}{|c|}{ \TFRGB{liste de valeurs avec pas régulier}{list of values at a regular step}  } \\  \hline  
+\psforeach{\nA}{0, 1,..,10}{\psdot[dotscale=2](\nA,0)}
+\\
+\\  \hline  
+ \hspace{1cm}  \BS{psforeach}\AC{\BS{nA}}\AC{{\red 0, 1,..,10}}\AC{\BS{psdot}[dotscale=2](\BS{nA},0)}  \hspace{1cm} 
+\\ \hline 
+\end{tabular} 
+
+
+%\begin{tabular}{ll}
+%$\backslash$psforeach\AC{$\backslash$nA}\AC{0, 1 ,..,10}	& \% variable $\backslash$nA de 0 à 10 par pas de 1  \\  
+%\AC{$\backslash$psdot[dotscale=2]($\backslash$nA,0)}		& \% un point à chaque abscisse $\backslash$nA  \\ \
+%\end{tabular}
+% 
+%\smallskip 
+
+
+
+\bigskip
+
+
+ 
+\begin{tabular}{|l|} \hline 
+
+ \multicolumn{1}{|c|}{ \TFRGB{utilisation du numéro d'index}{use of the index number}  } \\  \hline  
+
+\psforeach{\nA}{0, 1, 1.5, 2.25, 5,10}{\rput(\nA,0){\the\psLoopIndex}}
+\\
+\\ \hline  
+\BS{psforeach}\AC{\BS{A}}\AC{0, 1, 1.5, 2.25, 5,10}\AC{\BS{rput}(\BS{nA},0)\AC{{\red\BS{the}\BS{psLoopIndex}}}}
+\\ \hline  
+\end{tabular} 
+
+%$\backslash$psforeach\AC{$\backslash$nA}\AC{0, 1, 1.5, 2.25, 5,10}\AC{$\backslash$rput($\backslash$nA,0)\AC{$\backslash$the$\backslash$psLoopIndex}}
+%\smallskip 
+%
+%\psforeach{\nA}{0, 1, 1.5, 2.25, 5,10}{\rput(\nA,0){\the\psLoopIndex}}
+

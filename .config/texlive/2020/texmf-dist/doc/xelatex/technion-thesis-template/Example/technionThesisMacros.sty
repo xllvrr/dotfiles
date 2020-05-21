@@ -1,0 +1,61 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Bmacros}[2019/1/22]
+% Written by Boaz Shuval
+% This is part of a template for writing a thesis according to the Technion specifications. 
+% Version: 1.0
+
+% Define your macros and commands here. 
+% Some useful examples are provided below. 
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\matnorm}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 
+    \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+\newcommand{\Prob}[2][]{\ifthenelse{\isempty{#1}}{\mathbb{P} \left(#2 \right)}{\mathbb{P} \left\{#2 \right\}}}
+\newcommand{\Probpi}[2]{\mathbb{P} \left(#2  \ | \ #1\right)}
+\newcommand{\Probi}[1]{\mathbb{P}(#1)} %inline version
+\newcommand{\Exp}[2][]{\mathbb{E}_{#1}\left[#2 \right]} % $\Exp{X}{Y}$
+\newcommand{\var}[1]{{\rm var} \left[#1\right]} % variance
+\newcommand{\cov}[1]{{\rm cov} \left[#1\right]} % covariance
+
+\newcommand{\bv}[1]{\mathbf{#1}} % bold vector 
+\newcommand{\bsymb}[1]{\boldsymbol{#1}} % bold vector 
+\newcommand{\trp}[1]{#1^T}
+\newcommand{\rvmat}[1]{\boldsymbol{\rv{#1}}} %random matrix
+\newcommand{\mat}[1]{\mathsf{#1}} %matrix
+\newcommand{\matel}[3][]{\ifthenelse{\isempty{#1}}{(#2)_{#3}}{\left(#3\right)_{#3}}} 
+\newcommand{\support}[2][]{\ifthenelse{\isempty{#1}}{\sigma(#2)}{\sigma\left(#2\right)}} 
+
+\newcommand{\markov}{\mathrel{\scalebox{0.75}[1.0]{$-$}}\joinrel\mathrel\circ\joinrel\mathrel{\scalebox{0.75}[1.0]{$-$}}} 
+\newcommand{\dd}{\mathop{}\!\mathrm{d}} % For dx in integrals or derivatives
+\newcommand{\kindi}[1]{\left[#1\right]}
+\newcommand{\indi}[1]{\left[\kern-0.35ex\left[ #1 \right]\kern-0.35ex\right]}
+
+\newcommand{\eqann}[2][=]{\overset{\mathclap{(\text{#2})}}{#1}} % Add (#1) over an = sign.
+\newcommand{\eqannref}[1]{$(\text{#1})$}
+\newcommand{\sol}[2][lr]{\smashoperator[#1]{#2}}
+
+\newcommand{\ns}{\mkern-1.5mu}
+
+% Some operator definitions (like sin, cos, etc.) - with trailing space
+% Hyperbolic functions
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+
+\DeclareMathOperator{\ext}{ext}
+\DeclareMathOperator{\Lev}{Lev}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\epi}{epi}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\num}{num}
+

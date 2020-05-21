@@ -1,0 +1,19 @@
+name setdeck
+category Package
+revision 40613
+shortdesc Typeset cards for Set
+longdesc The package will typeset cards for use in a game of Set.
+containersize 2528
+containerchecksum 817474bc928883f4bbe97391a477bf492a4e339879fc85d7aec3ca932f9b46c310f8fec5b732deb2196c705c2bd3a22721376ea8289a1bbdc12555447f12f757
+doccontainersize 62808
+doccontainerchecksum c27f7ab563f35293ee6019560f643d562ff2bf06747402930c767031a8dccffac0ebae9cd16b9e3009b5883f594c541ccf4c38883aa89f4256f7db83e378e1e9
+docfiles size=17
+ texmf-dist/doc/latex/setdeck/README details="Readme"
+ texmf-dist/doc/latex/setdeck/setdeck.pdf details="Package documentation"
+ texmf-dist/doc/latex/setdeck/setdeck.tex
+runfiles size=12
+ texmf-dist/tex/latex/setdeck/setdeck.sty
+catalogue-ctan /graphics/pgf/contrib/setdeck
+catalogue-license gpl3
+catalogue-topics games pgf-tikz
+catalogue-version 0.1

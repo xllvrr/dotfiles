@@ -1,0 +1,82 @@
+%%
+%% This is file `sampleNavyReport.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% navydocs.dtx  (with options: `sample')
+%% 
+%% Copyright (C) 2016 Peter Andrew Rochford.
+%% 
+%% This file is NOT the source for sampleNavyReport, because almost all comments
+%% have been stripped from it.  It is NOT the preferred form of sampleNavyReport
+%% for making modifications to it.
+%% 
+%% Therefore you can NOT redistribute and/or modify THIS file.  You can
+%% however redistribute the complete source package (Makefile, navydocs.dtx
+%% and navydocs.ins) and/or modify it under the terms of the LaTeX Project
+%% Public License, either version 1.3c of this license or (at your option)
+%% any later version. The latest version of this license can be found at:
+%% https://latex-project.org/lppl/
+%% 
+%% The navydocs package is distributed in the hope that it will be useful,
+%% but `as is', WITHOUT WARRANTY OF ANY KIND, either expressed or
+%% implied, including, but not limited to, the implied warranties of
+%% MERCHANTABILITY and FITNESS FOR A PARTICULAR PURPOSE.  See the LaTeX
+%% Project Public License for more details.
+%% 
+\documentclass[twoside]{article}
+\usepackage[margin=0.75in]{geometry} % set margins to 0.75 in
+\usepackage{lipsum} % required to produce dummy text
+\usepackage{navydocs}
+
+\setlength{\marginparwidth}{64pt}
+\setlength{\parindent}{5ex}
+\setlength{\paperwidth}{8.5in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+
+\begin{document}
+
+\NavyDivision{Navy Division, Navy Center}
+\NavyDivisionLocation{City, State Zip-Code}
+\NavyReportNumber{XXXXXXXX/XX-0123-45}
+\NavyReportDate{Month Year}
+\NavyReportType{Navy Directorate \\
+                     Research and Development Report}
+\NavyReportTitle{Mathematical Model Version 2:\\
+                       A Long Detailed Title \\
+                       Spanning Multiple Lines (if desired)}
+\NavyAuthor{Author Name}
+
+\NavyMarginTitle{
+    \NavyReportNumber{} Mathematical Model Version 2: \\
+    \hphantom{\NavyReportNumber{}} A Long Detailed Title Spanning Multiple Lines (if desired)
+}
+
+\NavyFormID{NDW-DTRC 5602/51 (Rev. 7-93)}
+
+\NavyTitlePage
+
+\pagenumbering{roman}
+
+\MakeCarderockDivPage
+
+\tableofcontents
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Introduction}
+
+\lipsum[1]
+
+\section{Conclusion}
+
+\lipsum[2]
+
+\end{document}
+\endinput
+%%
+%% End of file `sampleNavyReport.tex'.

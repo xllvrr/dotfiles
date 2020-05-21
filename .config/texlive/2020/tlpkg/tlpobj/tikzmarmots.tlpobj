@@ -1,0 +1,28 @@
+name tikzmarmots
+category Package
+revision 54080
+shortdesc Drawing little marmots in TikZ
+longdesc This is a LaTeX package for marmots to be used in TikZ
+longdesc pictures. These little figures are constructed in such a way
+longdesc that they may even "borrow" some garments and other attributes
+longdesc from the TikZducks.
+containersize 2460
+containerchecksum c2ca7c1f66d070e1249b2ed9e88cadd482353140bc3add0146d7f67ffdd8c08cc3eb4b9c59f8e2d822000554a8bcf1e0f064c96ac0e002a6c80655c5eb909f81
+doccontainersize 230968
+doccontainerchecksum 03a4494458d7f053547952945e9ecf1c500dd3fafc665852498de05f38234c45f0972971e8278d279d36c81f2b920152f10ad1bda2c5b24e5957ad0846e77d9c
+docfiles size=65
+ texmf-dist/doc/latex/tikzmarmots/LICENSE.txt
+ texmf-dist/doc/latex/tikzmarmots/README.md details="Readme"
+ texmf-dist/doc/latex/tikzmarmots/tikzmarmots-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/tikzmarmots/tikzmarmots-doc.tex
+runfiles size=3
+ texmf-dist/tex/latex/tikzmarmots/tikzlibrarymarmots.code.tex
+ texmf-dist/tex/latex/tikzmarmots/tikzmarmots.sty
+catalogue-also tikzducks tikzlings
+catalogue-contact-bugs https://github.com/samcarter/tikzmarmots/issues
+catalogue-contact-repository https://github.com/samcarter/tikzmarmots
+catalogue-contact-support https://github.com/samcarter/tikzmarmots/issues
+catalogue-ctan /graphics/pgf/contrib/tikzmarmots
+catalogue-license lppl1.3c
+catalogue-topics amusements graphics pgf-tikz
+catalogue-version 1.0

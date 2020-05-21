@@ -1,0 +1,23 @@
+name pgfkeyx
+category Package
+revision 26093
+shortdesc Extended and more robust version of pgfkeys
+longdesc The package extends and improves the robustness of the pgfkeys
+longdesc package. In particular, it can deal with active comma, equality
+longdesc sign, and slash in key parsing. The difficulty with active
+longdesc characters has long been a problem with the pgfkeys package.
+longdesc The package also introduces handlers beyond those that pgfkeys
+longdesc can offer.
+containersize 7088
+containerchecksum c2adb44ef34930aef1d78aed2025a2dc17c69ed641b59af29bcb93c9c9532785090f30834d52c415116ab4a9477d83e5a46d1509e6bd41f47fd4e37cc8ff2933
+doccontainersize 1412
+doccontainerchecksum 2a596ee81d2af4992dc23d6f28f788ef1d3e9a528992f01b7113de726898ae3007b685c4c447d2fcad640403d1bdd8a0eb07299ac9ea81f41c4158eb21b8e9e2
+docfiles size=2
+ texmf-dist/doc/latex/pgfkeyx/README details="Readme"
+ texmf-dist/doc/latex/pgfkeyx/pgfkeyx-test1.tex
+runfiles size=8
+ texmf-dist/tex/latex/pgfkeyx/pgfkeyx.sty
+catalogue-ctan /macros/latex/contrib/pgfkeyx
+catalogue-license lppl1.3
+catalogue-topics keyval
+catalogue-version 0.0.1

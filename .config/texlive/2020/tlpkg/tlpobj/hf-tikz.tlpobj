@@ -1,0 +1,24 @@
+name hf-tikz
+category Package
+revision 34733
+shortdesc A simple way to highlight formulas and formula parts
+longdesc The package provides a way to highlight formulas and formula
+longdesc parts in both documents and presentations, us TikZ.
+containersize 3276
+containerchecksum 47ca98b066829e6ea2009c4beb92db2c7671642c495f1011df9be00d546f3613b7853aba5db88e3805441eab66c873e15b60f5ef75cf21e906f80b5f11aa30a7
+doccontainersize 123256
+doccontainerchecksum 234a8ccdd9cd921368f700fdcca818d0c76265371ac89e09c1a54454fa3e00f0f28fdc7f962c227f9bb69d851585f2c65e20b4a4093aacc3ad0aa84d1abc7f87
+docfiles size=32
+ texmf-dist/doc/latex/hf-tikz/README details="Readme"
+ texmf-dist/doc/latex/hf-tikz/hf-tikz.pdf details="Package documentation"
+srccontainersize 9924
+srccontainerchecksum 74fd110da2d0d248d70811db52f220012c0a41cecfaf702765cf8bdeae98d9e1a96c6087770de4fcc1ec249901ccc79837ed4e89b4527dd3f746ecf503c201ea
+srcfiles size=12
+ texmf-dist/source/latex/hf-tikz/hf-tikz.dtx
+ texmf-dist/source/latex/hf-tikz/hf-tikz.ins
+runfiles size=4
+ texmf-dist/tex/latex/hf-tikz/hf-tikz.sty
+catalogue-ctan /graphics/pgf/contrib/hf-tikz
+catalogue-license lppl1.3
+catalogue-topics decoration maths presentation
+catalogue-version 0.3a

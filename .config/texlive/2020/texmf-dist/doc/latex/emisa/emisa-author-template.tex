@@ -1,0 +1,69 @@
+%%
+%% This is file `emisa-author-template.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% emisa.dtx  (with options: `template,article')
+%% 
+%% This is a template for a document to be used with emisa.cls.
+%% Just copy (not move) this file to your work space, and rename and use
+%% it as you see fit.
+%% ------------------------------------------------------------------------
+%% 
+\documentclass[american]{emisa}
+%% You can use the following additional class options:
+%% referee, review -- Use for submission to peer-review process.
+%% draft -- mark overfull lines
+%% british, UKenglish -- British English hyphenation and quotation marks
+%% american, USenglish -- American English hyphenation and quotation marks
+%% The following package imports are recommended, but not obligatory;
+%% you might want take a look into their respective manuals if you
+%% don't know what they do.
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{algorithmic,algorithm}
+%% Additional package imports go here:
+%% \usepackage{}
+%% Here, the normal text begins.
+\begin{document}
+\begin{article}{%
+%% Please declare the title elements of your article here.  Unused
+%% elements can either be deleted or commented out, or else just let
+%% empty.  In either case they are not typeset.
+%% If the option referee or review is given, all author tags, address,
+%% e-mail and acknowledgements will be likewise omitted.
+  \title[Insert shorttitle for page headline]{Enter full title here}
+  \subtitle{Enter subtitle here, or leave empty}
+  \author*{FirstName LastName of corresponding author}{email@address.org}
+  \address{Enter affiliation of first (corresponding) author here.  Note that only the starred version of author* accepts a second argument requiring an email address for the corresponding author.}
+  %% Author with a different address
+  \author{FirstName LastName}
+  \address{Enter affiliation of second and further authors here. Add further authors following this scheme.}
+  %% Author with an already used address
+  \author{FirstName LastName}
+  \address[Letter of already used address]{}
+  %% Enter abstract, keywords, acknowledgements, authornotes
+  \abstract{Enter abstract here}
+  \keywords{Enter at a minimum three keywords here. Keyword1 \and Keyword2 \and Keyword3}
+  \acknowledgements{Enter acknowledgements here.}
+  \authornote{If your submission is based on a prior publication and revises / extends this work, enter a corresponding note here (This work is based on ...) but DO NOT cite the prior work during the reviewing process. INSTEAD provide full citations of all prior publications to the editors during the submission process (use the text field in the online submission system).}
+  %% Please declare here the bibliography data base(s) you want to use
+  %% in this article (make sure to add the file extension, e.g. .bib):
+  \bibliography{}
+  %% Take note of the following closing bracket!
+  }
+%% Please insert your article text here.
+\section{Introduction}
+\subsection{The research problem}
+%% Remember to provide a unique label for each section, table, figure, listing and algorithm for referencing purposes.
+%%
+%% This directive typesets the bibliography.  To achieve this, one has
+%% to run the biber program on the corresponding auxiliary file
+%% generated in the previous LaTeX run; you can just use the job name
+%% (the name of this file without ".tex")", e.g.: biber emisa-author-template
+\printbibliography
+\end{article}
+\end{document}
+\endinput
+%%
+%% End of file `emisa-author-template.tex'.

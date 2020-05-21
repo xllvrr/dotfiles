@@ -1,0 +1,26 @@
+The table-fct Package.
+Version 1.1
+Date: 2016/08/15
+Author: Sidi Mohamed LAKHDAR
+E-mail: 14.lakhdar@gmail.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+License:
+This material is subject to the LaTeX Project Public License (version 1.3). 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Provided Files:
+ * README
+ * table-fct-doc.pdf
+ * table-fct.sty
+ * table-fct-examples.pdf
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+This first version of the table-fct package allows to draw variations table 
+of a function and convexity table of its curve.
+
+Cette première version permet de dresser le tableau de variations d'une 
+fonction et le tableau de convexité de sa courbe.

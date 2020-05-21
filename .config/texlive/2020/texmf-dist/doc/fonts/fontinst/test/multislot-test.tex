@@ -1,0 +1,16 @@
+\input fontinst.sty
+\input multislot.sty
+
+\mathchardef\apa=0
+\catcode`\_=11
+\add_to\pre_second_etx_pass_hook{\mathchardef\apa=1}
+\catcode`\_=\underscorecatcode
+
+\transformfont{ptmr8r}{\reencodefont{8r}{\fromafm{ptmr8a}}}
+
+\installfonts
+   \installfamily{XX}{ptm}{}
+   \installfont{ptmr5z}{ptmr8r,psyr,latin}{multislot} {XX}{ptm}{m}{n}{}
+\endinstallfonts
+
+\bye

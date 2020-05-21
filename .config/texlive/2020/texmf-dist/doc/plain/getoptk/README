@@ -1,0 +1,10 @@
+THE PLAIN TeX GETOPTK PACKAGE
+(c) 2011 Michael Le Barbier Gruenewald
+
+The GETOPTK package eases the definition of macros accepting
+optional arguments in the same style as \hrule or \hbox.
+It is meant to be used with plain TeX.
+
+See guide.pdf for a quick guide.
+
+See COPYING and COPYING-FR for licence agreement.

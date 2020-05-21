@@ -1,0 +1,35 @@
+\part{Fächer}
+	\label{sec:faecher}
+	
+	\section{Nutzung der Fachmodule}
+	
+	Die fachspezifischen Funktionen und Vorgaben sind in sogenannte
+	Fachmodule aufgeteilt, die über Paketoptionen flexibel geladen
+	werden können.
+	
+	\begin{options}
+		\keyval-{fach}{Fach}
+			Mit der Paketoption \option{fach} kann das Fach für das
+			Dokument festgelegt werden. Es werden dann alle
+			fachspezifischen Funktionen und Vorgaben für das Fach
+			geladen. 
+			
+			Mit der Angabe von \keyis-{fach}{ohne} kann auf die Angabe
+			eines Faches verzichtet werden, etwa für die Einbindung in
+			Dokumentationen \etc.
+			
+			Wird ein Fach angegeben, zu dem kein Fachmodul existiert,
+			so wird dieses nur als Bezeichner verwendet.
+		\keyval{weitereFaecher}{Fach 1,Fach 2,\dots}
+			Für fächerübergreifenden Unterricht können weitere
+			Fachmodule geladen werden, indem eine kommaseparierte
+			Liste von Fachmodulen angegeben wird.
+			
+			Hierbei wird auf das Laden möglicher
+			\enquote{Standalone-Abschnitte} der Fachmodule verzichtet, 
+			\vgl\space\prettyref{sec:devmodule:fachmodul}
+	\end{options}
+	
+\input{fachInformatik}
+\input{fachPhysik}
+\input{fachGeschichte}

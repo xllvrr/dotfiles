@@ -1,0 +1,97 @@
+
+\psset{fillcolor=yellow,fillstyle=solid,linecolor=blue}
+
+
+\TFRGB{utilisation du module}{Package} \og \textbf{pst-fr3d} \fg{} \label{pst-fr3d}
+
+\TFRGB{syntaxe : \BSS{PstFrameBoxThreeD}[paramètres]\AC{Contenu}}{syntax :\BSS{PstFrameBoxThreeD}[paramèters]\AC{Content}}  \BSI{PstFrameBoxThreeD}{pst-fr3d} 
+
+\SbSSCT{Sans options}{Without option}
+
+
+\begin{tabular}{|c|c|}
+\hline  
+\PstFrameBoxThreeD{Button}
+&  
+\PstFrameBoxThreeD{\shortstack{Un!\\Deux!\\Trois!}}
+\\ \hline 
+
+\BS{PstFrameBoxThreeD}\AC{Button}
+ &
+ \BS{PstFrameBoxThreeD}\AC{\BS{shortstack}\AC{Un!\BS{}\BS{}Deux!\BS{}\BS{}Trois!}}
+\\ \hline
+
+\PstFrameBoxThreeD{\DFR}
+& 
+\PstFrameBoxThreeD{$\dfrac{1}{\sqrt{3}}$} 
+\\ \hline
+  
+\BS{PstFrameBoxThreeD}\AC{\BS{}DFR}
+&  
+\BS{PstFrameBoxThreeD}\AC{\$\BS{dfrac}\AC{1}\AC{\BS{sqrt}\AC{3}}\$}
+\\ \hline 
+\end{tabular} 
+
+
+\SbSSCT{Dimensionnement}{Sizing}
+
+\begin{tabular}{|l|c|c|c|} \hline
+\RDD{doublesep} \rule[-.5cm]{0pt}{1.2cm} \RDI{doublesep}{pst-fr3d} &
+\PstFrameBoxThreeD[doublesep=0]{doublesep=0} &
+\PstFrameBoxThreeD[doublesep=0.2]{doublesep=0.2}&
+\PstFrameBoxThreeD[doublesep=0.4]{doublesep=0.4}\\ \hline
+\RDD{framesep} \rule[-.5cm]{0pt}{1.2cm} \RDI{framesep}{pst-fr3d}  &
+\PstFrameBoxThreeD[framesep=0]{framesep=0}&
+\PstFrameBoxThreeD[framesep=0.3]{framesep=0.3}&
+\PstFrameBoxThreeD[framesep=0.5]{framesep=0.5}\\ \hline
+\RDD{linewidth}\rule[-.5cm]{0pt}{1.2cm} \RDI{linewidth}{pst-fr3d} &
+\PstFrameBoxThreeD[linewidth=0]{linewidth=0}&
+\PstFrameBoxThreeD[linewidth=0.1]{linewidth=0.1}&
+\PstFrameBoxThreeD[linewidth=0.2]{linewidth=0.2}\\ \hline
+\RDD{framearc} \rule[-.5cm]{0pt}{1.2cm} \RDI{framearc}{pst-fr3d}  &
+ \PstFrameBoxThreeD[framearc=0.3]{framearc=0.3}&
+ \PstFrameBoxThreeD[framearc=0.6]{framearc=0.6}&
+ \PstFrameBoxThreeD[framearc=1]{framearc=1}\\ \hline
+\end{tabular}
+
+
+
+\subsection{Aspect}
+\psset{doublesep=0.1}
+
+\begin{tabular}{|l|c|c|c|c|} \hline
+\multicolumn{5}{|c|}{\BS{}PstFrameBoxThreeD[{\red FrameBoxThreeDColorHSB =0 0.3 1}]\AC{0 0.3 1} } \\ \hline 
+\RDD{FrameBoxThreeDColorHSB} \rule[-.5cm]{0pt}{1.2cm} \RDI{FrameBoxThreeDColorHSB}{pst-fr3d} &
+\PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0 0.3 1]{0 0.3 1}&
+\PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.3 0.3 1]{0.3 0.3 1}&
+\PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.6 0.3 1]{0.6 0.3 1}&
+\PstFrameBoxThreeD[FrameBoxThreeDColorHSB =1 0.3 1]{1 0.3 1}\\\hline 
+\RDD{FrameBoxThreeDOn}=true/false \rule[-.5cm]{0pt}{1.2cm} \RDI{FrameBoxThreeDOn}{pst-fr3d} &
+\PstFrameBoxThreeD[FrameBoxThreeDOn =true]{true}&
+\PstFrameBoxThreeD[ FrameBoxThreeDOn =false]{false}&
+\PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.6 0.6 0.8, FrameBoxThreeDOn =true]{true}&
+ \PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.6 0.6 0.8, FrameBoxThreeDOn =false]{false}\\\hline 
+\psset{linewidth=0.2} 
+\RDD{FrameBoxThreeDOpposite}=true/false \RDI{FrameBoxThreeDOpposite}{pst-fr3d}  \rule[-.5cm]{0pt}{1.2cm}&
+\PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.3 0.3 0.8, FrameBoxThreeDOn =false]{=false}&
+\PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.3 0.3 0.8, FrameBoxThreeDOpposite =true]{=true}&
+\PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.6 0.6 0.8, FrameBoxThreeDOn =false, FrameBoxThreeDBrightnessDistance =0.5]{=false}&
+\PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.6 0.6 0.8, FrameBoxThreeDOpposite =true, FrameBoxThreeDBrightnessDistance =0.5]{=true}\\ \hline 
+
+\end{tabular}
+\psset{doublesep=0.2}
+
+
+
+\begin{tabular}{|l|c|c|c|c|c|} \hline
+\RDD{FrameBoxThreeDBrightnessDistance} \RDI{FrameBoxThreeDBrightnessDistance}{pst-fr3d}  \rule[-.5cm]{0pt}{1.2cm}&
+
+\PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.6 0.3 0.5, FrameBoxThreeDBrightnessDistance =-0.5]{-0.5}&
+ \PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.6 0.3 0.5, FrameBoxThreeDBrightnessDistance =-0.2]{-0.2}&
+\PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.6 0.3 0.5,FrameBoxThreeDBrightnessDistance =0]{0}&
+ \PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.6 0.3 0.5, FrameBoxThreeDBrightnessDistance =0.3]{d\'efaut}&
+ \PstFrameBoxThreeD[FrameBoxThreeDColorHSB =0.6 0.3 0.5, FrameBoxThreeDBrightnessDistance =0.5]{0.5}\\
+ & mini & & nul & défaut & maxi\\ \hline
+\end{tabular}
+
+\psset{doublesep=1.25\pslinewidth}

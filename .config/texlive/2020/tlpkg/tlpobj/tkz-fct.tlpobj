@@ -1,0 +1,43 @@
+name tkz-fct
+category Package
+revision 55031
+shortdesc Tools for drawing graphs of functions
+longdesc The tkz-fct package is designed to give math teachers (and
+longdesc students) easy access to programming graphs of functions with
+longdesc TikZ and gnuplot.
+containersize 4948
+containerchecksum 6defbc1265838eacb6612f87d969590db6cb2eb0a1c9316c1f52e700c7b7e576f971080538982d7adccb12af6ce7392cb6d6da13a9d3e537e5af8fc2dc290a89
+doccontainersize 748476
+doccontainerchecksum 1cbfeac7939ba45c6111cc7cb9aeea195690cdfea8c75e488a9dac6a49b2968d21d0eff74e03fec3229afdcec92fe2841a8dbb866314187ef98a317f07e9f346
+docfiles size=216
+ texmf-dist/doc/latex/tkz-fct/README.md details="Readme"
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-VDW.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-area.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-asymptote.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-bac.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-compilation.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-example.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-faq.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-fonctions.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-fppgf.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-installation.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-interpolation.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-label.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-liste.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-main.pdf details="Package documentation" language="fr"
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-main.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-param.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-point.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-polar.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-riemann.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-symbol.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-tangent.tex
+ texmf-dist/doc/latex/tkz-fct/TKZdoc-fct-why.tex
+runfiles size=7
+ texmf-dist/tex/latex/tkz-fct/tkz-fct.sty
+catalogue-also pgf
+catalogue-contact-home http://altermundus.fr
+catalogue-ctan /macros/latex/contrib/tkz/tkz-fct
+catalogue-license lppl1.3
+catalogue-topics graphics graphics-plot pgf-tikz
+catalogue-version 1.3c

@@ -1,0 +1,50 @@
+name genealogytree
+category Package
+revision 50872
+shortdesc Pedigree and genealogical tree diagrams
+longdesc Pedigree and genealogical tree diagrams are proven tools to
+longdesc visualize genetic and relational connections between
+longdesc individuals. The naming ("tree") derives from historical family
+longdesc diagrams. However, even the smallest family entity consisting
+longdesc of two parents and several children is hardly a 'mathematical'
+longdesc tree -- it is a more general graph. The package provides a set
+longdesc of tools to typeset genealogical trees (i.e., to typeset a set
+longdesc of special graphs for the description of family-like
+longdesc structures). The package uses an autolayout algorithm which can
+longdesc be customized, e.g., to prioritize certain paths.
+containersize 28208
+containerchecksum 295a763f682dc1acb025856df4de0474d3893d87cf0e530a2b3f72ef7a37dae87d34c97abbf40898f920f188f7cfb7366b654004b7c577b409ff14caf25c1072
+doccontainersize 3735452
+doccontainerchecksum 9ef261874b54e2d5d092b2f362ba0e5ed6b1932f433290ebe6fda61cb87aaa3b6ba09708df31d6b10c1263288fb62ef79878ff0dbfbe104d83d3b4559292b6f5
+docfiles size=1820
+ texmf-dist/doc/latex/genealogytree/README details="Readme"
+ texmf-dist/doc/latex/genealogytree/genealogytree-example-1.pdf details="Example 1"
+ texmf-dist/doc/latex/genealogytree/genealogytree-example-2.pdf details="Example 2"
+ texmf-dist/doc/latex/genealogytree/genealogytree-example-3.pdf details="Example 3"
+ texmf-dist/doc/latex/genealogytree/genealogytree-languages.pdf
+ texmf-dist/doc/latex/genealogytree/genealogytree.doc.sources.zip
+ texmf-dist/doc/latex/genealogytree/genealogytree.pdf details="Package documentation"
+runfiles size=57
+ texmf-dist/tex/latex/genealogytree/genealogytree.sty
+ texmf-dist/tex/latex/genealogytree/gtrcore.contour.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrcore.drawing.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrcore.node.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrcore.options.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrcore.parser.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrcore.processing.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrcore.symbols.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrlang.danish.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrlang.dutch.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrlang.english.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrlang.french.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrlang.german.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrlang.italian.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrlang.spanish.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrlang.swedish.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrlib.debug.code.tex
+ texmf-dist/tex/latex/genealogytree/gtrlib.templates.code.tex
+catalogue-also pst-pdgr
+catalogue-ctan /macros/latex/contrib/genealogytree
+catalogue-license lppl1.3
+catalogue-topics genealogy pgf-tikz humanities
+catalogue-version 1.32

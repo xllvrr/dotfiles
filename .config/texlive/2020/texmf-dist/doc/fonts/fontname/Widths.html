@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+<title>Filenames for TeX fonts</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Filenames for TeX fonts">
+<meta name="generator" content="makeinfo 4.6">
+<!--
+This document is in the public domain and may be used freely.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+Node:&nbsp;<a name="Widths">Widths</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Variants.html#Variants">Variants</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Filenames-for-fonts.html#Filenames%20for%20fonts">Filenames for fonts</a>
+<hr><br>
+</div>
+
+<h3 class="section">Widths</h3>
+
+<p>The <dfn>width</dfn> of a font specifies the compression or expansion of the
+font.  Arranged from narrowest to widest (more or less):
+
+<pre class="display">     ultra compressed, extra condensed, compressed, condensed, narrow
+     regular
+     extended, expanded, wide
+     </pre>
+
+   <p>Expansion or compression of fonts is sometimes done automatically (as by
+the PostScript <code>scale</code> operator), and sometimes done by humans.  In
+the latter case, the human will also presumably choose a font name which
+includes `Extended' or `Expanded' or `Condensed' or `Narrow' or whatever
+according to their own preferences; the abbreviation can follow along. 
+When creating a new synthetically expanded or compressed font for use
+with TeX, e.g., with Afm2tfm or <code>fontinst</code>, use <code>n</code> and
+<code>e</code>.
+
+   <p>Here is the table, from the file <code>width.map</code>.  It is organized
+alphabetically by abbreviation.  Each line consists of an abbreviation
+and any parts of a PostScript <code>FontName</code> which use that
+abbreviation.
+
+<pre class="example">
+
+     c Condensed Cond
+     e Expanded
+     n Narrow
+     o UltraCondensed
+     p Compressed Compact
+     q ExtraCompressed ExtraCondensed
+     r Normal Medium Regular (usually omitted)
+     t Thin
+     u UltraCompressed
+     v ExtraExpanded more than <tt>Expanded</tt>, less than <tt>Wide</tt>
+     w Wide
+     x Extended Elongated
+     </pre>
+
+   </body></html>
+

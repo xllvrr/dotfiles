@@ -1,0 +1,6 @@
+powerdot-BerlinFU.sty
+
+v.0.02a 2019-11-25	- removed example images from CTAN (copyright problems)
+v.0.02  2009-07-27	- added environtment box,
+	                  added macro \pd@shorttitle
+v 0.01  2009-05-21 	- first CTAN version

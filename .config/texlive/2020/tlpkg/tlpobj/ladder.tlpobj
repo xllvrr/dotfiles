@@ -1,0 +1,23 @@
+name ladder
+category Package
+revision 44394
+shortdesc Draw simple ladder diagrams using TikZ
+longdesc This package permits the creation of simple ladder diagrams
+longdesc within LaTeX documents. Required packages are tikz, ifthen, and
+longdesc calc.
+containersize 1412
+containerchecksum bbe2f94442a4f308a416e9d849f9e4b8af12387e59e73931b563d5daaee312dbdf82a99f5122de897cb069a54f3bc13619e719ed717b38db4aebcac72c2c4f93
+doccontainersize 214124
+doccontainerchecksum 1cf2a2a2267e819c9ee723af9cf51d711f778c3583c859eb01f2b2faebfd0f7a6fc4f4ab6caa83a9df6a797175ec27d29f0debbeaeb39387954070623ab60b29
+docfiles size=55
+ texmf-dist/doc/latex/ladder/README.md details="Readme"
+ texmf-dist/doc/latex/ladder/ladder.pdf details="Package documentation"
+ texmf-dist/doc/latex/ladder/ladder.tex
+runfiles size=2
+ texmf-dist/tex/latex/ladder/ladder.sty
+catalogue-contact-bugs https://github.com/AurelienC/tex-ladder/issues
+catalogue-contact-development https://github.com/AurelienC/tex-ladder/graphs/contributors
+catalogue-contact-repository https://github.com/AurelienC/tex-ladder
+catalogue-ctan /graphics/pgf/contrib/ladder
+catalogue-license mit
+catalogue-topics pgf-tikz diagram-circ

@@ -1,0 +1,50 @@
+\documentclass[hyperref,publist,addack,firstparindent]{technionThesis}
+% OPTIONS: 
+% hyperref          Add hyperlinks
+% publist           Add a list of publications in the front pages (update list in thesissetup.sty)
+% addack            Add an acknowledgments page (only for final version!)
+% advisement        Use `advisement' instead of `supervision' in front pages 
+% spacepar          Add a blank line between paragraphs
+% firstparindent    Indent the first paragraph of a chapter/section
+% libertine         Use libertine as the main document font rather than computer modern roman
+
+% Define your own data in the following file
+\usepackage{technionThesisSetup}
+
+% Use the following file to define your own macros
+\usepackage{technionThesisMacros} 
+
+% For generating dummy text. Remove from your version.
+\usepackage{lipsum}
+
+
+\begin{document}
+% FRONT PAGES:
+\makeTitleEnglish
+
+\chapter{Abstract}
+\input{abstract} \clearpage
+\input{abbrev}   \cleardoublepage
+
+% Each of the following should begin with \chapter{...}. 
+\include{introduction}
+\include{chapfirst}
+\include{chapsecond}
+% Add more chapters as required. 
+% In a thesis, there must be a discussion/conclusions section
+\include{discussion}
+% An appendix must appear AFTER the discussion. 
+\begin{appendices} % Set appendix numbering
+    \include{appendix}
+\end{appendices}
+
+
+% Setup the bibliography
+\bstctlcite{BIBctrl}
+\bibliographystyle{IEEEtranS} 
+\bibliography{mybib.bib} 
+\clearpage
+
+% HEBREW SECTION
+\makeTitleHebrew
+\end{document}

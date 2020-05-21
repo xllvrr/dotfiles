@@ -1,0 +1,239 @@
+\section{Bounding box management}
+The initial bounding box after using the macro \tkzcname{tkzInit} is defined by the rectangle based on the points $(0,0)$ and $(10,10)$. The \tkzcname{tkzInit} macro allows this initial bounding box to be modified using the arguments (\tkzname{xmin}, \tkzname{xmax}, \tkzname{ymin}, and \tkzname{ymax}). Of course any external trace modifies the bounding box. \TIKZ\ maintains that bounding box. It is possible to influence this behavior either directly with commands or options in \TIKZ\ such as a command like \tkzcname{useasboundingbox} or the option \tkzname{use as bounding box}. A possible consequence is to reserve a box for a figure but the figure may overflow the box and spread over the main text.
+The following command \tkzcname{pgfresetboundingbox} clears a bounding box and establishes a new one.
+
+%Enfin Il est parfois utile de contenir une figure dans une b
+%current bounding box or current path bounding box remember picture et overlay
+
+%<--------------------------------------------------------------------------->
+%              tkzShowBB
+%<--------------------------------------------------------------------------->
+\subsection{tkzShowBB}
+The simplest macro. 
+\begin{NewMacroBox}{tkzShowBB}{\oarg{local options}}% 
+This macro displays the bounding box. A rectangular frame surrounds the bounding box. This macro accepts \TIKZ\ options.
+\end{NewMacroBox} 
+
+
+\subsubsection{Example with \tkzcname{tkzShowBB}}
+\begin{tkzexample}[latex=8cm,small]
+\begin{tikzpicture}[scale=.5]
+  \tkzInit[ymax=5,xmax=8]
+  \tkzGrid  
+  \tkzDefPoint(3,0){A}
+   \begin{scope}
+    \tkzClipBB
+    \tkzDrawCircle[R](A,5 cm)
+     \tkzShowBB
+   \end{scope}
+\tkzDrawCircle[R,red](A,4 cm)
+\end{tikzpicture}
+\end{tkzexample}
+%<--------------------------------------------------------------------------->
+%         tkzClipBB
+%<--------------------------------------------------------------------------->
+\subsection{tkzClipBB}
+\begin{NewMacroBox}{tkzClipBB}{}%
+The idea is to limit future constructions to the current bounding box.
+\end{NewMacroBox} 
+
+\subsubsection{Example with \tkzcname{tkzClipBB} and the bisectors}
+
+\begin{tkzexample}[latex=6cm,small]
+  \begin{tikzpicture}
+  \tkzInit[xmin=-3,xmax=6, ymin=-1,ymax=6]
+  \tkzDefPoint(0,0){O}\tkzDefPoint(3,1){I}
+  \tkzDefPoint(1,4){J}
+  \tkzDefLine[bisector](I,O,J) \tkzGetPoint{i}
+  \tkzDefLine[bisector out](I,O,J) \tkzGetPoint{j}
+  \tkzDrawPoints(O,I,J,i,j) 
+  \tkzClipBB
+  \tkzDrawLines[add = 1 and 2,color=red](O,I O,J)
+  \tkzDrawLines[add = 1 and 2,color=blue](O,i O,j)
+  \tkzShowBB
+  \end{tikzpicture}
+\end{tkzexample}
+
+
+%<--------------------------------------------------------------------------->
+%                 tkzSetBB
+%<--------------------------------------------------------------------------->
+\subsection{tkzSetBB}
+\begin{NewMacroBox}{tkzSetBB}{\parg{$x_A~;~y_A$} \parg{$x_B~;~y_B$} or {\parg{$A$} \parg{$B$}}}%
+This macro defines the rectangle with coordinates $(x_A~;~y_A$) and $(x_B~;~y_B)$ as the new bounding box.   
+\end{NewMacroBox} 
+
+\subsubsection{Example with \tkzcname{tkzShowBB}}
+\begin{tkzexample}[latex=8cm,small]
+above\\
+left
+\begin{tikzpicture}
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(3,3){B}
+  \tkzDefPoint(1,1){C}
+  \tkzSetBB(A)(2,2)
+  \tkzDrawSegment(A,B)
+  \tkzDrawPoints(A,C)
+  \tkzShowBB
+\end{tikzpicture}right
+\end{tkzexample}
+%<--------------------------------------------------------------------------->
+%              tkzSaveBB
+%<--------------------------------------------------------------------------->
+\subsection{tkzSaveBB}{}
+\begin{NewMacroBox}{tkzSaveBB}{}%
+This macro saves the bounding box, i.e. it stores the coordinates of two points that define a rectangle.
+\end{NewMacroBox} 
+
+\begin{tkzexample}[latex=7cm,small]
+A figure above the text.
+\begin{tikzpicture}
+ \begin{scope}
+   \tkzSetBB(0,0)(6,2) \tkzShowBB[fill=blue!20]
+   \tkzSaveBB
+ \end{scope}
+  \tkzDefPoint(3,3){A}\tkzShowBB
+  \tkzDrawCircle[R,fill=yellow,opacity=.2](A,2cm)
+  \tkzRestoreBB
+\end{tikzpicture}
+\end{tkzexample}
+
+
+
+
+%<--------------------------------------------------------------------------->
+%              tkzRestoreBB
+%<--------------------------------------------------------------------------->
+\subsection{tkzRestoreBB}
+\begin{NewMacroBox}{tkzRestoreBB}{} 
+This macro retrieves the bounding box backup. As you can see, the figure overflows the box. The bounding box has been reduced.
+\end{NewMacroBox} 
+\subsubsection{Example of the use of \tkzcname{tkzRestoreBB}}
+\begin{tkzexample}[latex=8cm,small]
+   \vspace{ 2cm}
+Start\\  
+\begin{tikzpicture}
+ \tkzDefPoint(-2,-2){A}
+ \tkzDefPoint(2,1){B} 
+ \tkzDefPoint(0,0){O}
+ \tkzSaveBB
+ \tkzShowBB[red,line width=1pt]        
+ \tkzRestoreBB
+ \tkzDrawCircle(O,B)
+ \tkzClipBB
+ \tkzFillCircle[gray!20](O,B)
+\end{tikzpicture}
+End
+\end{tkzexample}
+
+
+%<--------------------------------------------------------------------------->
+%                    tkzClip
+%<--------------------------------------------------------------------------->
+\subsection{tkzClip}
+\begin{NewMacroBox}{tkzClip}{\oarg{local options}}
+The role of this macro is to make invisible what is outside the rectangle defined by (xmin~;~ymin) and (xmax~;~ymax). 
+
+\medskip
+\begin{tabular}{lll}  
+\hline
+options  & default & definition             \\       
+\midrule   
+\TOline{space} {1} {added value on the right, left, bottom and top of the background}            
+\bottomrule    
+\end{tabular}
+
+\medskip 
+
+The role of the \tkzname{space} option is to enlarge the visible part of the drawing. This part becomes the rectangle defined by (xmin-space~;~ymin-space) and (xmax+space~;~ymax+space).  \tkzname{space} can be negative!  The unit is cm and should not be specified.  
+\end{NewMacroBox} 
+
+\subsubsection{First example with \tkzcname{tkzClip}} \hypertarget{clip}{}   
+
+\begin{tkzexample}[latex=8cm,small]
+\begin{tikzpicture}
+ \tkzInit[xmax=3, ymax=3]
+ \tkzGrid  
+ \tkzAxeXY 
+ \draw[red] (-1,-1)--(5,5);
+\end{tikzpicture}
+\end{tkzexample} 
+
+\subsubsection{Second example with \tkzcname{tkzClip}} 
+\begin{tkzexample}[latex=8cm,small]
+\begin{tikzpicture}
+ \tkzInit[xmax=3, ymax=3]
+ \tkzGrid  
+ \tkzAxeXY 
+ \tkzClip
+ \draw[red] (-1,-1)--(5,5);
+\end{tikzpicture}
+\end{tkzexample} 
+%<--------------------------------------------------------------------------->
+It is possible to add a bit of space \tkzcname{tkzClip[space]}.  
+
+\subsubsection{\tkzcname{tkzClip} and l'option \tkzname{space}} 
+The dimensions to define the clipped rectangle are \tkzname{xmin-1}, \tkzname{ymin-1}, \tkzname{xmax+1} and \tkzname{ymax+1}.
+
+\begin{tkzexample}[latex=8cm,small]
+\begin{tikzpicture}
+ \tkzInit[xmax=3, ymax=3]
+ \tkzGrid  \tkzAxeXY 
+ \tkzClip[space=-0.5]
+ \draw[red] (-0.5,-0.5)--(3.5,3.5);
+\end{tikzpicture}
+\end{tkzexample} 
+
+\subsection{Reverse clip: tkzreverseclip}
+The next example uses 
+
+\begin{tkzltxexample}[]
+   \def\tkzClipOutPolygon(#1,#2){\clip[tkzreserveclip] (#1)
+                 \foreach \pt in {#2}{--(\pt)}--cycle;
+              }
+    \tikzset{tkzreverseclip/.style={insert path={%
+        (\tkz@xa,\tkz@ya) rectangle (\tkz@xb,\tkz@yb)}}}          
+ \end{tkzltxexample}
+
+\subsubsection{Example with \tkzcname{tkzClipOutPolygon}}
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=.5]
+  \tkzInit[xmin=-5,xmax=5,ymin=-5,ymax=5]
+  \pgfinterruptboundingbox
+  \tkzDefPoints{-.5/0/P1,.5/0/P2}
+  \foreach \i [count=\j from 3] in {2,...,7}{%
+      \tkzDefShiftPoint[P\i]({45*(\i-1)}:1 cm){P\j} 
+  }
+  \endpgfinterruptboundingbox
+   \tkzClipOutPolygon(P1,P2,P3,P4,P5,P6,P7,P8)
+   \tkzCalcLength[cm](P1,P5)\tkzGetLength{r}
+  \begin{scope}[blend group=screen]
+     \foreach \i in {1,...,8}{%
+       \pgfmathparse{100-5*\i}
+       \tkzFillCircle[R,color=blue!%
+      \pgfmathresult](P\i,\r)
+      }
+    \end{scope}
+\end{tikzpicture} 
+\end{tkzexample}
+ 
+
+\subsection{Options from \TIKZ: trim left or right}
+See the \tkzimp{pgfmanual}
+
+\subsection{\TIKZ\ Controls \tkzcname{pgfinterruptboundingbox} and \tkzcname{endpgfinterruptboundingbox}}
+This command temporarily interrupts the calculation of the box and configures a new box.
+
+\begin{tkzexample}[latex=8cm,small]
+\begin{tikzpicture}
+\tkzDefPoint(0,5){A}\tkzDefPoint(5,4){B}
+\tkzDefPoint(0,0){C}\tkzDefPoint(5,1){D}
+\pgfinterruptboundingbox
+   \tkzInterLL(A,B)(C,D)\tkzGetPoint{I}
+\endpgfinterruptboundingbox
+\tkzClipBB
+   \tkzDrawCircle(I,B)
+\tkzDrawSegments(A,B C,D A,C)
+\end{tikzpicture}
+\end{tkzexample} 
+\endinput

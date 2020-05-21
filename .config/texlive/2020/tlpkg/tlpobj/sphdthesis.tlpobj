@@ -1,0 +1,38 @@
+name sphdthesis
+category Package
+revision 34374
+shortdesc LaTeX template for writing PhD Thesis
+longdesc The package provides a LaTeX document class for writing a PhD
+longdesc thesis. The author developed it while writing his PhD thesis in
+longdesc School of Computing (SoC), National University of Singapore
+longdesc (NUS). By default, the class adheres to the NUS Guidelines on
+longdesc Format of Research Thesis Submitted For Examination. However,
+longdesc the class for conformation to a different guideline should not
+longdesc be difficult.
+containersize 6208
+containerchecksum 44c467fc1de689bc198acfa224aa1109c47bcdfce8b161673752f73d59877465b0c4b87f1fcd4a8f589a78fb05ef5efd42edaff2fbfe7910a1ab7b409d9a7e5f
+doccontainersize 550152
+doccontainerchecksum cfcd8c02c68a990cda426d737914d195c78d98e0b8c9765128aa8319d47d27163e7d072ea50d312a394b85e8ac1e580dcbd204fcf6b670b4dc519d1f09ce8d72
+docfiles size=167
+ texmf-dist/doc/latex/sphdthesis/LICENSE
+ texmf-dist/doc/latex/sphdthesis/README details="Readme"
+ texmf-dist/doc/latex/sphdthesis/SPhdThesis.pdf details="Package documentation"
+ texmf-dist/doc/latex/sphdthesis/SPhdThesis.tex
+ texmf-dist/doc/latex/sphdthesis/example/SPhdThesis.cls
+ texmf-dist/doc/latex/sphdthesis/example/abstract.tex
+ texmf-dist/doc/latex/sphdthesis/example/acknowledgments.tex
+ texmf-dist/doc/latex/sphdthesis/example/algorithm.tex
+ texmf-dist/doc/latex/sphdthesis/example/biblio.bib
+ texmf-dist/doc/latex/sphdthesis/example/border.pdf
+ texmf-dist/doc/latex/sphdthesis/example/chapter1.tex
+ texmf-dist/doc/latex/sphdthesis/example/figure.tex
+ texmf-dist/doc/latex/sphdthesis/example/table.tex
+ texmf-dist/doc/latex/sphdthesis/example/thesis.pdf
+ texmf-dist/doc/latex/sphdthesis/example/thesis.tex
+runfiles size=5
+ texmf-dist/tex/latex/sphdthesis/SPhdThesis.cls
+catalogue-contact-repository https://github.com/saurabhg17/SPhdThesis/archive/master.zip
+catalogue-ctan /macros/latex/contrib/sphdthesis
+catalogue-license pd
+catalogue-topics dissertation
+catalogue-version 1.0

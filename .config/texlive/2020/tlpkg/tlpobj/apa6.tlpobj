@@ -1,0 +1,46 @@
+name apa6
+category Package
+revision 53406
+shortdesc Format documents in APA style (6th edition)
+longdesc The class formats documents in APA style (6th Edition). It
+longdesc provides a full set of facilities in three different output
+longdesc modes (journal-like appearance, double-spaced manuscript,
+longdesc LaTeX-like document), in contrast to the earlier apa6e, which
+longdesc only formats double-spaced manuscripts in APA style. The class
+longdesc can mask author identity for copies for use in masked peer
+longdesc review. The class is a development of the apa class (which is
+longdesc no longer maintained).
+containersize 13760
+containerchecksum 76a307c077ebec0ef984e9296018e1b91a51e95db8d1955924a373e82feb5152ce453d1388e706e6b0ca46f3dcc71a8981bf68848a2022cd19e179fc9ecc0bee
+doccontainersize 565092
+doccontainerchecksum 841821dbf4f8efa07a96dc37d26e21348ef5e1c486ffabbedfe973833d2328b8c5fb32196ae2e0323683d1d20b635242c371262df92ccc0c4bbe126c89263dfe
+docfiles size=163
+ texmf-dist/doc/latex/apa6/README details="Readme"
+ texmf-dist/doc/latex/apa6/apa6.pdf details="Package documentation"
+ texmf-dist/doc/latex/apa6/pseudoTeX/TeX2WordForapa6.bas
+ texmf-dist/doc/latex/apa6/pseudoTeX/apa6.ptex
+ texmf-dist/doc/latex/apa6/samples/Figure1.pdf
+ texmf-dist/doc/latex/apa6/samples/bibliography.bib
+ texmf-dist/doc/latex/apa6/samples/longsample.tex
+ texmf-dist/doc/latex/apa6/samples/shortsample.tex
+srccontainersize 37360
+srccontainerchecksum b7571a14e100e65748c31ae49ca070c42b3c6d868885f2ee487c76561858aa19744b890eb7bac075c43208ee8d6dd91ef327f8afff2758a1be6c79d23d50f717
+srcfiles size=44
+ texmf-dist/source/latex/apa6/apa6.dtx
+ texmf-dist/source/latex/apa6/apa6.ins
+runfiles size=27
+ texmf-dist/tex/latex/apa6/apa6.cls
+ texmf-dist/tex/latex/apa6/config/APAamerican.txt
+ texmf-dist/tex/latex/apa6/config/APAbritish.txt
+ texmf-dist/tex/latex/apa6/config/APAczech.txt
+ texmf-dist/tex/latex/apa6/config/APAdutch.txt
+ texmf-dist/tex/latex/apa6/config/APAendfloat.cfg
+ texmf-dist/tex/latex/apa6/config/APAenglish.txt
+ texmf-dist/tex/latex/apa6/config/APAgerman.txt
+ texmf-dist/tex/latex/apa6/config/APAgreek.txt
+ texmf-dist/tex/latex/apa6/config/APAngerman.txt
+ texmf-dist/tex/latex/apa6/config/APAturkish.txt
+catalogue-ctan /macros/latex/contrib/apa6
+catalogue-license lppl1.3c
+catalogue-topics class apa psychology journalpub
+catalogue-version 2.34

@@ -1,0 +1,39 @@
+name expkv-cs
+category Package
+revision 54939
+shortdesc Define expandable key=val macros using expkv
+longdesc This package is a frontend to define expandable macros with
+longdesc key=val arguments. It provides four syntaxes, each of which
+longdesc will define <cs> to take a single key=val argument:
+longdesc ekvcSplit<cs>{<key>=<initial>, ...}{<definition>}
+longdesc ekvcSplitAndForward<cs><cs2>{<key>=<initial>, ...}
+longdesc ekvcHash<cs>{<key>=<initial>, ...}{<definition>}
+longdesc ekvcHashAndForward<cs><cs2>{<key>=<initial>, ...} Additional
+longdesc keys for each <cs> might be defined using
+longdesc ekvcSecondaryKeys<cs>{<prefix> <key>=<definition>, ...}
+longdesc expkv-cs is generic code and only requires expkv for its
+longdesc parsing. A LaTeX package expkv-cs.sty is included to play
+longdesc nicely on LaTeX's package loading system, but that package is
+longdesc not needed and does not provide more functionality than the
+longdesc generic code in expkv-cs.tex. Note: In this context, "cs"
+longdesc stands for "control sequence" (i.e.: macro).
+containersize 3584
+containerchecksum 490081d1a9ac75322218eefda917d566f8d0412e2e058f9dfa0b299b833f5af302be6a017360a16b4baab3d40b0508fc8b2e2be2502ee9f70254cc7e9e74c8a8
+doccontainersize 308552
+doccontainerchecksum 96331c4eb399602f6bafe6c0cdd466d146ccf50d3e9668a0cdd593c3fe2d68069204809af40f3ff19c07fd50cdd155ecc8594b33119a4d4a9f4fc74d1ef2fb8f
+docfiles size=78
+ texmf-dist/doc/latex/expkv-cs/README.md details="Readme"
+ texmf-dist/doc/latex/expkv-cs/expkv-cs.pdf details="Package documentation"
+srccontainersize 14292
+srccontainerchecksum c75bc071356d7891476d68bcc6dc9e4426e4f4e2c93cc7361ef606e1627fa41b810fac97ad3cc1392793bf823493ed9f0766819aa58e61c024d6e70daa5602ae
+srcfiles size=14
+ texmf-dist/source/latex/expkv-cs/expkv-cs.dtx
+runfiles size=6
+ texmf-dist/tex/generic/expkv-cs/expkv-cs.tex
+ texmf-dist/tex/latex/expkv-cs/expkv-cs.sty
+catalogue-also expkv expkv-def
+catalogue-contact-repository https://github.com/Skillmon/tex_expkv-cs
+catalogue-ctan /macros/generic/expkv-cs
+catalogue-license lppl1.3c
+catalogue-topics keyval macro-supp
+catalogue-version 0.3

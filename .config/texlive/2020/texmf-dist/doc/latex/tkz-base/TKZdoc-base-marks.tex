@@ -1,0 +1,179 @@
+\section{Marks or symbols}
+
+I distinguished between the points used in Euclidean geometry and the "marks or symbols" that can be found in statistics.
+
+To position the symbol, we use the macro \tkzcname{tkzDefPoint} to correctly define a point, then the macro \tkzcname{tkzDrawMark} to draw the symbol.
+
+It is common to have to draw a scatter plot, so I created a macro that allows you to define several points quickly.
+
+A "mark" symbol can be scaled, which is sometimes useful, but, on the other hand, if you change the abscissa and ordinates differently then the "marks" are distorted.
+
+Reminder: it was already possible to create a cloud of points with the macro \tkzcname{tkzDefPoints}, but this requires to give a reference (a name) to each point, which is sometimes tedious. The macro \tkzcname{tkzSetOfPoints} allows to define points \tkzname{tkzPt1}, \tkzname{tkzPt2}, etc.
+
+This is frequently referred to as the "scatter plot". The difference from the macro \tkzcname{tkzDefPoints} is that the reference to the points is given by a prefix (default |tkzPt|) and the point number. 
+
+The points are not drawn.
+
+\subsection{\tkzcname{tkzDrawSetOfPoints}} 
+
+\begin{NewMacroBox}{tkzDrawSetOfPoints}{\oarg{local options}}%
+Allows you to place symbols on the points defined by \tkzcname{tkzDefSetOfPoints}.
+
+\medskip
+\begin{tabular}{lll}%
+options             & default & definition   \\ 
+\midrule
+\TOline{prefix} {tkzPt} {point name prefix}
+\end{tabular}
+\end{NewMacroBox}
+
+\subsubsection{Drawing of a scatter plot with \tkzcname{tkzDrawSetOfPoints}} 
+\begin{tkzexample}[latex=6cm,small] 
+\begin{tikzpicture}[scale=0.75]
+\tkzInit[xmax=6,ymin=1000,ymax=5000,ystep=1000]
+\tkzDrawX[label=$m$,below=10pt]
+\tkzDrawY[label=$R(m)$,above=10pt] 
+\tkzLabelX[font=\scriptsize]
+\tkzLabelY[font=\scriptsize]
+\tkzDefSetOfPoints[show]{1/2000,2/3000,4/2500,5/4200}
+\tkzDrawSetOfPoints[mark=ball,mark size=3pt]  
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsection{\tkzcname{tkzJoinSetOfPoints}} 
+\begin{NewMacroBox}{tkzJoinSetOfPoints}{\oarg{local options}}%
+Allows the symbols to be joined by line segments. Of course, it is possible to use all the options of \TIKZ.
+
+\medskip
+\begin{tabular}{lll}%
+options             & default & definition   \\ 
+\midrule
+\TOline{prefix} {tkzPt} {point name prefix}
+\end{tabular}
+\end{NewMacroBox} 
+
+\subsubsection{Link the points of a scatter plot with \tkzcname{tkzJoinSetOfPoints}} 
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=1]
+\tkzInit[xmax=5,ymin=1000,ymax=6000,ystep=1000]
+\tkzDrawX[label=$m$,below=13pt]
+\tkzDrawY[label=$R(m)$] 
+\tkzLabelX[font=\scriptsize]
+\tkzLabelY[font=\scriptsize]
+\tkzDefSetOfPoints{%
+   1/2000,2/3000,4/2500,5/4200}
+\tkzJoinSetOfPoints[%
+      thick, color=brown]
+\tkzDrawSetOfPoints[%
+      mark=ball, mark size=3pt]  
+\end{tikzpicture} 
+\end{tkzexample}
+
+\subsubsection{Using the points of a scatter plot} 
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=.5]
+\tkzInit[xmax=5,ymin=1000,
+         ymax=6000,ystep=1000]
+\tkzGrid[color=orange!30]
+\tkzDrawX[label=$m$,below=13pt]
+\tkzDrawY[label=$R(m)$] 
+\tkzLabelX[font=\scriptsize]
+\tkzLabelY[font=\scriptsize] 
+\tkzDefSetOfPoints[prefix=P]{%
+   1/2000,2/3000,3/2000,4/2500,5/4200} 
+\tkzDrawPolySeg[%
+     color=brown!50,
+     line width=2pt](P1,P2,P3,P4,P5) 
+\end{tikzpicture} 
+\end{tkzexample}
+ 
+% \subsection{Mark option \tkzname{mark} et \tkzname{size}}   
+\subsection{\tkzcname{tkzSetUpMark}}
+\begin{NewMacroBox}{tkzSetUpMark}{\oarg{local options}}%
+\begin{tabular}{lll}%
+options &  default & example                 \\ 
+\midrule
+\TOline{mark}{no default}{\tkzcname{tkzSetUpMark[mark=heart]}}
+\end{tabular}
+\end{NewMacroBox} 
+
+\subsubsection{Two scatter plots} 
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}
+\tkzInit[xmax=5.5,ymin=1000,%
+         ymax=6000,ystep=2000]
+\tkzGrid[color=orange!30]
+\tkzDrawX[label=$m$,below=13pt]
+\tkzDrawY[above left,label=$R(m)$] 
+\tkzLabelX[below right,font=\scriptsize]
+\tkzLabelY[font=\scriptsize]
+\tkzDefSetOfPoints{1/2000,2/3000,3/2000,
+    4/2500,5/4200} 
+\tkzDefSetOfPoints[prefix=P]{1/3200,2/4100,
+    3/3300,4/3300,5/5000}  
+\tkzSetUpMark[mark=heart,color=black,
+   fill=red!30,size=4pt]
+\tkzJoinSetOfPoints[thick,color=blue,double]
+\tkzDrawSetOfPoints
+\tkzJoinSetOfPoints[prefix=P,thick,color=orange]
+\tkzDrawSetOfPoints[prefix=P,mark=square*,
+     mark size=4pt,
+     mark options={color=blue,fill=blue!40}]  
+\tkzText[draw,color = red,
+        fill  = orange!20](3,5800)%
+        {Revenue by month}
+  \end{tikzpicture}  
+\end{tkzexample}
+
+\subsection{\tkzcname{tkzDrawMark}} 
+\begin{NewMacroBox}{tkzDrawMark}{\oarg{local options}\parg{point}}%
+Place a symbol. More efficient than the next to place a single symbol.
+
+\medskip
+\begin{tabular}{lll}%
+options             & default & definition   \\ 
+\midrule
+\TOline{prefix} {tkzPt} {point name prefix}
+\end{tabular}
+\end{NewMacroBox} 
+
+\subsubsection{Ball; use of \tkzcname{tkzDrawMarks}}
+\begin{tkzexample}[latex=7cm,small]
+  \begin{tikzpicture}
+  \tkzInit[xmax=3,ymax=1]
+  \tkzAxeXY 
+  \tkzDrawMark[mark=ball](1,.5)
+  \end{tikzpicture}
+\end{tkzexample}
+
+\subsection{\tkzcname{tkzDrawMarks}} 
+\begin{NewMacroBox}{tkzDrawMarks}{\oarg{local options}\parg{list of points}}%
+Allows you to place a series of marks.
+
+\medskip
+\begin{tabular}{lll}%
+options             & default & definition   \\ 
+\midrule
+\TOline{prefix} {tkzPt} {point name prefix}
+\end{tabular}
+\end{NewMacroBox}   
+
+\subsubsection{Mark and plot; use of \tkzcname{tkzDrawMarks}}
+\begin{tkzexample}[latex=7cm,small]
+  \begin{tikzpicture}
+  \tkzInit[xmax=6,ymin=1000,
+          ymax=5000,ystep=1000]
+  \tkzAxeXY 
+  \tkzDefSetOfPoints[prefix=P]{%
+        1/2000, 
+        2/3000,
+        4/2500, 
+        5/4200} 
+  \tkzDrawSegments[color=brown!50]%
+(P1,P2 P2,P3 P3,P4)  
+  \tkzDrawMarks[mark=ball](P1,P2,P3,P4)
+  \end{tikzpicture}
+\end{tkzexample}
+ 
+ 
+\endinput

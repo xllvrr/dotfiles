@@ -1,0 +1,26 @@
+name ascelike
+category Package
+revision 29129
+shortdesc Bibliography style for the ASCE
+longdesc A document class and bibliographic style that prepares
+longdesc documents in the style required by the American Society of
+longdesc Civil Engineers (ASCE). These are unofficial files, not
+longdesc sanctioned by that organization, and the files specifically
+longdesc give this caveat. Also included is a short
+longdesc documentation/example of how to use the class.
+containersize 13296
+containerchecksum d8c9d69ac49e632b7b303c0fcff53762f6d40a490aa1655f58525e192481b65b50912867b1cb16c9aba1d93483a6a2bd31e586683819a7f2b3db7439d46deadc
+doccontainersize 111104
+doccontainerchecksum 0283fa497b53dc3a0d60960bd45945dd9b363c53a563139e911b8bb017a6f0ea7f46a95811812a679fe1ac5327c52e73f4aba35d26160041c61a1cb5597c880d
+docfiles size=40
+ texmf-dist/doc/latex/ascelike/README details="Readme"
+ texmf-dist/doc/latex/ascelike/ascexmpl.bib
+ texmf-dist/doc/latex/ascelike/ascexmpl.pdf details="Example output"
+ texmf-dist/doc/latex/ascelike/ascexmpl.tex
+runfiles size=16
+ texmf-dist/bibtex/bst/ascelike/ascelike.bst
+ texmf-dist/tex/latex/ascelike/ascelike.cls
+catalogue-ctan /macros/latex/contrib/ascelike
+catalogue-license lppl
+catalogue-topics confproc journalpub class
+catalogue-version 2.3

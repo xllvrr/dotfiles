@@ -1,0 +1,21 @@
+This package is written to make it possible to write cable and lace
+charts for knitting patterns using plain TeX or LaTeX. It provides fonts
+of appropriate symbols and macros for their use.
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either
+version 1.3 of this license or (at your option) any
+later version.
+The latest version of the license is in
+   http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of
+LaTeX version 2003/06/01 or later.
+
+As per the LPPL, no restrictions are placed on running this package. In
+particular, no restrictions are placed by the package author on selling
+or distributing patterns typeset using this package. Not all LaTeX
+packages may be used in commercial products; if you use other packages
+to produce a PDF or paper document, you must check their documentation
+to see if you are allowed to sell the result.
+
+For more information, see the documentation file knitting-doc.pdf.

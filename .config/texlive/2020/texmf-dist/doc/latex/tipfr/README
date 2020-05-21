@@ -1,0 +1,22 @@
+************* Fichier README pour tipfr.sty **********************
+
+Objectif
+-----
+Cette extension utilise TikZ pour dessiner des touches de
+calculatrice, des item de menus, le contenu d'écrans graphiques ainsi que une calculatrice en grand ou petit format.
+
+Licence
+-------
+This program can be redistributed and/or modified under the terms
+of the LaTeX Project Public License Distributed from CTAN archives
+in directory macros/latex/base/lppl.txt.
+
+Documentation
+-------------
+La documentation de l'extension se trouve dans le répertoire /doc/.
+
+Merci d'utiliser tipfr.sty.
+
+Philippe De Sousa
+Evry (91), France
+philou.desousa@gmail.com

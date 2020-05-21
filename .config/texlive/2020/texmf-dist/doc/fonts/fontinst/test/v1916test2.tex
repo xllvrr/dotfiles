@@ -1,0 +1,27 @@
+%&Plain
+\input fontinst.sty
+
+% %1 \ifareglyphs
+% 
+% \setrawglyph{f}{xfont}{10pt}{102}{375}{750}{375}{50}
+% \setrawglyph{g}{xfont}{10pt}{102}{375}{750}{375}{50}
+% \setrawglyph{h}{xfont}{10pt}{102}{375}{750}{375}{50}
+% 
+% \ifareglyphs{}\then True \else False \fi
+% \ifareglyphs{a}\then True \else False \fi
+% \ifareglyphs{f}\then True \else False \fi
+% \ifareglyphs{f,a}\then True \else False \fi
+% \ifareglyphs{a,f}\then True \else False \fi
+% \ifareglyphs{f,g}\then True \else False \fi
+% \ifareglyphs{f,g,a}\then True \else False \fi
+
+%2 \setfontdimen
+\generalpltomtx{ecrm1000}{ecrm1000}{pl}{t1draft}
+\generalpltomtx{ecss1000}{ecss1000}{pl}{t1draft}
+\transformfont{ecdh-shrunk}{%
+   \yscalefont{500}{\fromplgivenetx{ecdh1000}{t1draft}}%
+}
+
+\bye
+
+

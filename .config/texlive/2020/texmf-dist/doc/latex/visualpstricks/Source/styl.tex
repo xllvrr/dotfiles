@@ -1,0 +1,40 @@
+
+\TFRGB{syntaxe : \BSS{newpsstyle}\AC{nom}\AC{paramètres}}{syntax : \BSS{newpsstyle}\AC{name}\AC{parameters}}
+\bigskip
+
+
+\TFRGB{Exemple}{Example} :
+
+ \emph{\TFRGB{Définition du nouveau style}{Definition of the new style}} :
+
+\textbf{\BS{}newpsstyle}\AC{{\red mafleche}}\AC{arrowsize=4pt 6,arrowlength=2,doubleline=true,linewidth=1pt}
+
+\newpsstyle{mafleche}{arrowsize=4pt 6,arrowlength=2,doubleline=true,linewidth=1pt} 
+%
+\bigskip
+
+ \emph{\TFRGB{Utilisation  du nouveau style}{Using the new style} }:
+%
+\BS{}psline[{\red style=mafleche}]\AC{->}(0,0)(3,0) \hspace{1cm} 
+\begin{pspicture}(4,.5)
+\psline[style=mafleche]{->}(0,0)(4,0)
+\end{pspicture}
+
+\bigskip
+
+\bigskip
+\textbf{\TFRGB{Ajout ou modification d'un paramètre du style}{Adding or changing a parameter style \cite{pst-news08}}}
+
+\bigskip
+\addtopsstyle{mafleche}{linecolor=red}
+\BSS{addtopsstyle}\AC{mafleche}\AC{linecolor=red}
+\begin{pspicture}(4,.5)
+\psline[style=mafleche]{->}(0,0)(4,0)
+\end{pspicture}
+
+\bigskip
+\addtopsstyle{mafleche}{linestyle=dashed}
+\BS{}addtopsstyle\AC{mafleche}\AC{linestyle=dashed}
+\begin{pspicture}(4,.5)
+\psline[style=mafleche]{->}(0,0)(4,0)
+\end{pspicture}

@@ -1,0 +1,1271 @@
+% This is the source of the documentation for the librarian package.
+% Proper compilation requires: luatex (v.0.51 or later), a recent
+% version of luaotfload, not to mention the Adobe Garamond Pro font,
+% which however might be replaced by URW's Garamond. The required format 
+% is plain TeX in its modified luatex version.
+% Three compilations are needed to get examples right.
+%
+% Author: Paul Isambert.
+% E-mail: zappathustra AT free DOT fr
+% Comments and suggestions are welcome.
+% Date: April 2010.
+
+
+%%%%%%%%%%%%%%%%%
+%%%%% FONTS %%%%%
+%%%%%%%%%%%%%%%%%
+
+\input luaotfload.sty
+\pdfadjustspacing=2
+\directlua{%
+% From otfl-font-dum.lua
+  local byte = string.byte
+  fonts.expansions.setups['threepercent'] = {
+
+    stretch = 3, shrink = 3, step = .5, factor = 1,
+
+    [byte('A')] = 0.5, [byte('B')] = 0.7, [byte('C')] = 0.7, [byte('D')] = 0.5, [byte('E')] = 0.7,
+    [byte('F')] = 0.7, [byte('G')] = 0.5, [byte('H')] = 0.7, [byte('K')] = 0.7, [byte('M')] = 0.7,
+    [byte('N')] = 0.7, [byte('O')] = 0.5, [byte('P')] = 0.7, [byte('Q')] = 0.5, [byte('R')] = 0.7,
+    [byte('S')] = 0.7, [byte('U')] = 0.7, [byte('W')] = 0.7, [byte('Z')] = 0.7,
+    [byte('a')] = 0.7, [byte('b')] = 0.7, [byte('c')] = 0.7, [byte('d')] = 0.7, [byte('e')] = 0.7,
+    [byte('g')] = 0.7, [byte('h')] = 0.7, [byte('k')] = 0.7, [byte('m')] = 0.7, [byte('n')] = 0.7,
+    [byte('o')] = 0.7, [byte('p')] = 0.7, [byte('q')] = 0.7, [byte('s')] = 0.7, [byte('u')] = 0.7,
+    [byte('w')] = 0.7, [byte('z')] = 0.7, [byte('2')] = 0.7, [byte('3')] = 0.7, [byte('6')] = 0.7,
+    [byte('8')] = 0.7, [byte('9')] = 0.7,
+    }
+  	}
+
+\def\currentstyle{rm}
+\def\currentweight{rg}
+\def\currentcase{lc}
+\def\makecurrentfont{%
+  \csname\currentfont @\currentstyle @\currentweight @\currentcase\endcsname
+  }
+
+\def\fontfeatures{+trep;+onum;+tlig;+liga;expansion=threepercent}
+\def\mainfont{%
+    \def\currentfont{Garamond}%
+    \csname\currentfont @\currentstyle @\currentweight @\currentcase\endcsname
+  }
+\expandafter\font\csname Garamond@rm@rg@lc\endcsname="AGaramondPro-Regular.otf:\fontfeatures" at 10pt
+\expandafter\font\csname Garamond@rm@bf@lc\endcsname="AGaramondPro-Bold.otf:\fontfeatures" at 10pt
+\expandafter\font\csname Garamond@rm@rg@sc\endcsname="AGaramondPro-Regular.otf:+smcp;\fontfeatures" at 10pt
+\expandafter\font\csname Garamond@rm@bf@sc\endcsname="AGaramondPro-Bold.otf:+smcp;\fontfeatures" at 10pt
+\expandafter\font\csname Garamond@it@rg@lc\endcsname="AGaramondPro-Italic.otf:\fontfeatures" at 10pt
+\expandafter\font\csname Garamond@it@bf@lc\endcsname="AGaramondPro-BoldItalic.otf:\fontfeatures" at 10pt
+\expandafter\font\csname Garamond@it@rg@sc\endcsname="AGaramondPro-Italic.otf:+smcp;\fontfeatures" at 10pt
+\expandafter\font\csname Garamond@it@bf@sc\endcsname="AGaramondPro-BoldItalic.otf:+smcp;\fontfeatures" at 10pt
+\mainfont
+
+\font\titlefont="AGaramondPro-Italic.otf:\fontfeatures" at 20pt
+
+\def\codefont{%
+    \def\currentfont{Inconsolata}%
+    \csname\currentfont @\currentstyle @\currentweight @\currentcase\endcsname
+  }
+\expandafter\font\csname Inconsolata@rm@rg@lc\endcsname="Inconsolata.Otf:\fontfeatures;-trep" at 8.5pt
+\expandafter\font\csname Inconsolata@rm@bf@lc\endcsname="Inconsolata.Otf:\fontfeatures;-trep" at 8.5pt
+%\expandafter\font\csname Inconsolata@rm@rg@sc\endcsname="Inconsolata.Otf:+smcp;\fontfeatures;-trep" at 8.5pt
+%\expandafter\font\csname Inconsolata@rm@bf@sc\endcsname="Inconsolata.Otf:+smcp;\fontfeatures;-trep" at 8.5pt
+\expandafter\font\csname Inconsolata@it@rg@lc\endcsname="Inconsolata.Otf:slant=.2;\fontfeatures;-trep" at 8.5pt
+\expandafter\font\csname Inconsolata@it@bf@lc\endcsname="Inconsolata.Otf:slant=.2;\fontfeatures;-trep" at 8.5pt
+%\expandafter\font\csname Inconsolata@it@rg@sc\endcsname="Inconsolata.Otf:slant=.2;+smcp;\fontfeatures;-trep" at 8.5pt
+%\expandafter\font\csname Inconsolata@it@bf@sc\endcsname="Inconsolata.Otf:slant=.2;+smcp;\fontfeatures;-trep" at 8.5pt
+
+\def\it{%
+  \def\currentstyle{it}%
+  \makecurrentfont
+  }
+\def\bf{%
+  \def\currentweight{bf}%
+  \makecurrentfont
+  }  
+\def\sc{%
+  \def\currentcase{sc}%
+  \makecurrentfont
+  }
+\def\rm{%
+  \def\currentstyle{rm}%
+  \makecurrentfont
+  }
+\def\textit#1{{\it#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% PAGE LAYOUT %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\baselineskip=12pt
+\topskip=\baselineskip
+\vsize=41\baselineskip
+\hsize=21pc
+\parfillskip=.5\hsize plus 1fil minus .4\hsize
+\pdfpagewidth=3\hsize
+\pdfpageheight=\pdfpagewidth
+\pdfhorigin=\dimexpr((\pdfpagewidth-2\hsize-1em)/2)
+\pdfvorigin=\pdfhorigin
+\parskip0pt \parindent0pt
+\frenchspacing
+
+\newbox\leftside
+\newif\ifleftside \leftsidetrue
+\output{%
+  \ifleftside
+    \global\setbox\leftside=\box255
+    \global\leftsidefalse
+  \else
+    \global\leftsidetrue
+    \shipout\hbox{%
+        \box\leftside\kern1em\box255 
+      }%
+    \advancepageno
+  \fi
+  }
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%% SECTIONS %%%%%
+%%%%%%%%%%%%%%%%%%%%
+
+\def\title#1{%
+  \hbox to \hsize{%
+    \vbox to 2\baselineskip{%
+      \vfill
+      \hbox{\titlefont\inred{#1}}%
+      \vfill
+      }%
+    \hfil
+    \vbox{%
+      \setbox0=\hbox{\texttt{zappathustra@free.fr}}%
+      \hbox to\wd0{\hfil\textit{Paul Isambert}}%
+      \box0}%
+    }%
+  }
+\newcount\sectioncount
+\def\onelineskip{\vskip\baselineskip}
+\def\makebookmarks{%
+  \def\lib{librarian}%
+  \def\TeX{TeX}}%
+\def\section#1{%
+  \onelineskip
+  \advance\sectioncount1
+  \subsectioncount=0
+  \expandafter\gdef\csname\the\sectioncount sub\endcsname{0}%
+  \xdef\makebookmarks{%
+    \unexpanded\expandafter{\makebookmarks
+    \pdfoutline goto name}{section\the\sectioncount}%
+                count -\unexpanded\expandafter{\csname\the\sectioncount sub\endcsname{#1}}%
+    }%
+  \pdfdest name{section\the\sectioncount} xyz\penalty10000
+  \noindent
+    {%
+    \parfillskip0pt plus 1fil
+    \hfil\inred{\sc#1}\par}\penalty10000
+  \everypar\expandafter{%
+    \expandafter\parindent\the\parindent
+    \everypar={}}%
+  \parindent=0pt
+  }
+\newcount\subsectioncount
+\newif\iflefttitle
+\def\subsection#1{%
+  \advance\subsectioncount1
+  \expandafter\xdef\csname\the\sectioncount sub\endcsname{%
+    \the\numexpr(1+\csname\the\sectioncount sub\endcsname)}%
+  \xdef\makebookmarks{%
+    \unexpanded\expandafter{\makebookmarks
+    \pdfoutline goto name}{section\the\sectioncount.\the\subsectioncount}%
+                \unexpanded{{#1}}%
+    }%
+  \onelineskip
+  \pdfdest name{section\the\sectioncount.\the\subsectioncount} xyz\penalty10000
+  \noindent
+  {%
+  \penalty0
+  \ifdim\pagetotal<\dimexpr(\pagegoal-\baselineskip)\relax
+    \ifleftside \lefttitletrue
+    \else \lefttitlefalse \fi
+  \else
+    \ifleftside \lefttitlefalse
+    \else \lefttitletrue \fi 
+  \fi
+  \iflefttitle
+    \parfillskip0pt plus 1fil
+    \inred{\hbox to0pt{\hss\char"E09D\kern1em}\textit{#1}}
+  \else
+    \parfillskip0pt
+    \inred{\textit{#1}\hfill\hbox to0pt{\kern1em \char"E09D\hss}}
+  \fi
+  \par\penalty10000
+  }%
+  }
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%% VERBATIM %%%%%
+%%%%%%%%%%%%%%%%%%%%
+
+\def\do#1{\catcode`#1=12}
+\def\verbatim{%
+  \bgroup
+  \parfillskip0pt plus 1fill
+  \onelineskip
+  \obeylines \dospecials
+  \def\par{\leavevmode\endgraf}%
+  \parindent=0pt
+  \codefont \getcode
+  }%
+\bgroup
+\catcode`\|=0
+\catcode`\\=12
+|long|gdef|getcode#1\endverbatim{#1|egroup|onelineskip}%
+|egroup
+\newbox\cmdbox
+\def\command#1{%
+  \bgroup
+    \codefont
+    \string#1%
+  \egroup
+  }
+\def\cmd#1{%
+  \inred{\command{#1}}%
+  }
+\def\tcmd#1{%
+  \command{#1}%
+  }
+\def\cmddef{%
+  \onelineskip\subcmddef
+  }
+\def\subcmddef#1{%
+  \noindent{\bf\cmd{#1}\parfillskip0pt plus 1fil \par}%
+  \penalty10000\noindent\ignorespaces
+  }
+\def\arg#1{%
+  \bgroup
+  \codefont
+    \textit{\lower.08em\hbox{\char"003C}#1\lower.08em\hbox{\char"003E}}%
+  \egroup
+  }
+\def\marg#1{%
+  \char"007B\arg{#1}\char"007D
+  }
+\def\targ#1{%
+  \texttt{\char"007B #1\char"007D}%
+  }
+\def\field#1{\texttt{\inred{#1}}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% SOME MACROS %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\texttt#1{{\codefont#1}}
+\def\inred{\incolor{.7 0 .1}}
+\long\def\incolor#1#2{%
+  \pdfliteral{#1 rg}%
+  #2%
+  \pdfliteral{0 0 0 rg}%
+  }
+\def\lib{\textit{librarian}}
+\def\LaTeX{La\TeX} \def\ConTeXt{Con\TeX t}
+\long\def\citation#1\endcitation{%
+  \onelineskip
+  \bgroup
+    \advance\leftskip2em \rightskip\leftskip
+    \incolor{.1 0 .5}{#1}\par
+  \egroup
+  \onelineskip
+}
+
+
+\pdfinfo{%
+  /Title (librarian-doc.pdf)
+  /Author (Paul Isambert)
+  }
+\pdfcatalog{%
+  /PageMode /UseOutlines
+  }
+
+\input librarian
+\title{Librarian}
+
+\section{Introduction}
+
+\textit{Librarian} is a set of macros that handles bibliographic
+references without Bib\TeX. It reads bibliographic files, extracts
+information about entries, and sorts lists of entries according to
+that informa\-tion and the user's specifications. \TeX\ code can then
+be written to typeset citations and bibliographies or more generally
+to write the equivalent of \texttt{bst} files, and absolutely
+no knowledge of the Bib\TeX\ language is needed, nor is Bib\TeX\ itself.
+
+The package is low-level in the sense that it doesn't do much more
+than what's said above and offers little syntactic sugar to typeset
+bibliographies. It is meant to make as few meaningful decisions as
+possible, where `meaningful decisions' means operations that influence
+the output or what the user can do. The way \lib\ extracts information
+is immaterial (barring efficiency, of course) to the typesetting of
+a bibliography, which depends strictly on the user's knowledge in
+\TeX\ programming. On the contrary, predefined styles, for instance,
+would be easier indeed but also more limited.
+
+Besides, \lib\ is format-independent, relying on plain \TeX's usual
+allocation macros only (which are similar in other formats, as far
+as I can tell). Thus, a well-written bibliographic style should 
+work equally well in all formats; by `well written' I mean that it does
+not use any format-specific commands, and at worst defines aliases
+to those commands at the beginning of the file.
+
+The first part of this document is a reference manual where \lib\
+is explained thoroughly. The second part spells out a pair of
+examples of bibliographic styles; the second example gives details
+on the important parts of the file \texttt{authoryear.tex}, which
+is distributed with the package and can be used as is.
+
+
+
+
+
+\section{Reference manual}
+
+\subsection{How to load \lib}
+
+In plain, the package is loaded in the good old way:
+
+\verbatim
+\input librarian
+\endverbatim
+
+\noindent In La\TeX\ you must use the associated style file:
+
+\verbatim
+\usepackage{librarian}
+\endverbatim
+
+\noindent And in Con\TeX t you must load \lib\ with the
+third-party file:
+
+\verbatim
+\usemodule[librarian]
+\endverbatim
+
+\subsection{Commands}
+
+\cmddef{\Cite\marg{entry key}\marg{list}\marg{code1}\marg{code2}}
+This adds  \arg{entry key} to \arg{list} (if the latter doesn't exist,
+it is created on the fly), unless it has already been added previously. If \arg{entry key}
+has already been read in the bibliography (most likely in a previous
+compilation), \cmd\EntryKey\ is set to \arg{entry key} and \arg{code1} is
+executed. Otherwise, \lib\ will read the bibliographic files to retrieve information
+about \arg{entrykey}, and for the moment \arg{code2} is executed (without
+redefining \tcmd\EntryKey). With complex bibliographic styles, this command is
+better embedded in macros.
+
+\cmddef{\BibFile\marg{list of files}}
+The \arg{list of files} is a comma-sepa\-rated list of bibliographic
+files in which \lib\ will dig information about the requested entries.
+The \texttt{.bib} extension is implicit, but you can give another
+one, as in \tcmd{\BibFiles\targ{mybib,myotherbib.tex}}. The information
+is passed to the next compilation thanks to an external file called
+\texttt{\arg{jobname}.lbr} (the culprit to delete if things seem wrong to you).
+If there remains no requested entry then the
+files aren't read. \tcmd\BibFile\ can occur several times in a document,
+but on each call, only those entries that have been \tcmd\Cite'd before
+will be searched for in the bibliographic files, because calls
+to \tcmd\Cite\ aren't passed from one compilation to the next. Most
+complex bibliographic styles generally require three compilations to
+get everything right.
+
+%%%% Pour la page suivante:
+\advance\vsize-\baselineskip
+%%%% Clumsy but I had no time to implement
+%%%% my own widow-killer here...
+
+\cmddef{\SortingOrder\marg{list of fields}\marg{name parts}}
+This sets the order in which lists will be sorted. The fields in
+\arg{list of fields} are the ones you find in Bib\TeX\ entries,
+plus the ones \lib\ adds to entries (like \texttt{name}), and they should
+be separated by commas. Any field can be prefixed with `\texttt{-}',
+which indicates that when it comes to this field entries will be
+sorted in reverse order. The sorting works as follows: when comparing
+two entries, \lib\ compares their values for the first field; if they
+are the same, it tries the second field, and so on. If \arg{list of fields}
+is exhausted, the entries are sorted according to the order of citation
+in the document relative to the list that's being scanned (i.e. the value
+of \tcmd\EntryNumber). The \arg{name parts}
+are concatenated letters, with `\texttt{f}' denoting first name, `\texttt{l}'
+denoting last name, `\texttt{v}' referring to the von part and `\texttt{j}'
+referring to the junior part; it sets how names are compared, and although
+there seems to be only two meaningful orders (\texttt{vlfj} and \texttt{lfvj}),
+differing in how the von part is taken into account, you can do whatever you
+want. Thus, \tcmd{\SortingOrder\targ{name,year,title}\targ{vlfj}} sorts entries in
+the `author year' style, with titles differentiating entries by the same
+author(s) written the same year, and with the von part taking precedence in
+the last name. Instead, \tcmd{\SortingOrder\targ{name,-year}\targ{lfvj}} 
+will produce a bibliography sorted by names, with most recent references first,
+and similar references sorted according to their order in the document, while
+the von part doesn't matter in last names (and thus Ludwig van Beethoven is
+sorted before Franz Schubert). In any case, \arg{name parts} have nothing
+to do with how names are typeset in the bibliography. (In these examples,
+\texttt{name} is used instead of \texttt{author} or \texttt{editor} on purpose.
+See below about the \texttt{name} field.) By default, \lib\ doesn't sort entries.
+
+\cmddef{\SortList\marg{list}}
+This sorts \arg{list} according to the latest value of \tcmd\SortingOrder.
+Thus different lists can be sorted with different orders. If \tcmd\SortList\
+is called before \tcmd\BibFile, then new entries will be sorted on the
+next compilation only. From one compilation to the next, \lib\ retains
+the previous sorted entries and sorts only new entries, and entries that
+are equal according to \tcmd\SortingOrder\ (because their relative order
+may have changed). This saves time (especially in Lua\TeX\ where the many
+calls to \tcmd\directlua\ are quite time-consuming). However, if the value
+of \tcmd\SortingOrder\ when \tcmd\SortList\ is called has changed from the
+previous compilation, all entries are sorted again.
+
+\cmddef{\ReadList\marg{list}}
+This loops over entries in \arg{list}, and for each it stores its key
+in \cmd\EntryKey\ and calls \cmd\MakeReference, which by default does nothing,
+and should be redefined to typeset the entry. For each entry you can use
+the \cmd\ifequalentry\ conditional, which is true if the current entry
+is part of a set of entries that are equal with regard to \tcmd\SortingOrder\
+and are thus distinguished by citation order only, and false otherwise.
+If the list is unsorted (i.e. \tcmd\SortingOrder\ is empty), then \tcmd\ifequalentry\
+is always false, even though all entries are equal.
+
+
+
+\cmddef{\SortDef\marg{command}\marg{definition}}
+This defines \arg{command} as \arg{defi\-nition} at sorting time.
+Indeed, macros shouldn't hinder sorting. However, \tcmd\TeX\ won't
+be read as `TeX' and \textit{\TeX book} won't be sorted after
+\textit{Tao Te Ching} but rather after \textit{Typographic Investigations},
+because macros separate letters. So
+\tcmd{\SortDef\tcmd\TeX\targ{tex}} is the proper way to get good sorting
+(everything is sorted in lowercase, so no need to use `\texttt{TeX}').
+\tcmd\SortDef\ can't define with parameter text, but a macro can
+be defined to another one taking arguments, although it is generally
+unnecessary: all braces are removed at sorting time. It is probably
+very important to redefine accents (\lib\ doesn't), e.g. \tcmd{\SortDef\string\'\targ{}}
+is vital if you want to see B\char"00E9 zier between Bernoulli and Boole.
+
+\cmddef{\WriteInfo\marg{arg}}
+\subcmddef{\WriteImmediateInfo\marg{arg}}
+Since \lib\ reads and rewrites an external file on each compilation,
+you can use it too. This writes \arg{arg} to that file, so that it is
+made available for the next compilation; \arg{arg} is expanded as in
+any \tcmd\write\ statement. \tcmd\WriteInfo\ writes at output time,
+whereas \tcmd\WriteImmediateInfo\ writes immediately.
+
+\cmddef\Preamble
+This holds everything that has been encountered in \texttt{@preamble}
+entries when reading bibliographies. It isn't passed from one compilation
+to the next.
+
+%%%% Pour la page suivante:
+\advance\vsize\baselineskip
+\cmddef{\CreateField\marg{field}}
+If a field is unknown to \lib\ (there is no restriction in bibliographic entries),
+\lib\ complains when asked to retrieve it with the commands below. This command
+just enables it to work with unknown fields. By default, \lib\ knows the common
+Bib\TeX\ fields and its own, of course.
+
+\cmddef{\AbbreviateFirstname}
+This turns first names into initials, e.g. \textit{John} into \textit{J.} and
+\textit{Jean-Luc} into \textit{J.-L.} In order to get \textit{Ch.} from
+\textit{Charles}, the name in the bibliographic file should be
+`\texttt{\char`\{Ch\char`\}arles}', which is already the case for Bib\TeX.
+Note that \lib\ sorts full names  and thus \textit{J(ohn) Doe} and \textit{J(ack) Doe}
+are different in this respect, even though they'll be indistinguishable in your
+bibliography.
+
+
+
+
+
+
+\onelineskip
+The following macros all come in pairs made of \tcmd\Command\ and \tcmd\CommandFor,
+where \tcmd\Command\ is \tcmd\CommandFor\ with \arg{entry key} set to \tcmd\EntryKey.
+All along, I refer to bibliographic entries, naturally, and \textit{field\/} and \textit{value\/}
+are to be understood in that context (see the next two sections for details).
+
+\cmddef{\RetrieveField\marg{field}}
+\subcmddef{\RetrieveFieldFor\marg{field}\marg{entry key}}
+This produces the value of \arg{field} for \arg{entry key}. The command
+uses \tcmd\lowercase, so you should use it with care, and basically avoid it
+unless for typesetting fields. The following command should be preferred
+if anything must be manipulated.
+
+\cmddef{\RetrieveFieldIn\marg{field}\marg{command}}
+\subcmddef{\RetrieveFieldInFor\marg{field}\marg{entry key}\marg{command}}
+This one defines \arg{command} as the value of \arg{field} for \arg{entry key}.
+If \arg{field} doesn't exist in \arg{entry key}, or else if \arg{entry key}
+doesn't exist, then \arg{command} is defined as an empty command and
+is equivalent to \tcmd\empty\ if the latter is defined as
+\tcmd\def\tcmd\empty\texttt{\char`\{\char`\}}. Quite convenient for testing.
+
+\cmddef{\EntryNumber\marg{list}}
+\subcmddef{\EntryNumberFor\marg{entry key}\marg{list}}
+This returns \textit{n} if \arg{entry key} is the \textit{n}th entry
+in \arg{list}, i.e. if it is the \textit{n}th entry to be cited for the
+first time in \arg{list}.
+
+\cmddef{\EntryNumberIn\marg{list}\marg{command}}
+\subcmddef{\EntryNumberInFor\marg{entry key}\marg{list}\marg{command}}
+This defines \arg{command} as \textit{n}, where \textit{n} is defined
+as above. (Beware that \arg{command} is a macro whose expansion produces
+a number, not an integer denotation.) This is safer than the previous command
+for the same reason as with \tcmd\RetrieveFieldFor, and is emptily defined
+under the same circumstances.
+
+\cmddef{\ReadName\marg{code}}
+\subcmddef{\ReadNameFor\marg{entry key}\marg{code}}
+For each person in the \texttt{name} field  for \arg{entry key}, this stores the first name
+in \cmd\Firstname\ (abbreviated if \tcmd\AbbreviateFirstname\ was called),
+the last name in \cmd\Lastname, the von part in
+\cmd\Von\ and the junior part in \cmd\Junior. There is also a 
+number \cmd\NameCount, which holds the place of the person in the
+\texttt{name} field (i.e. the first author has \tcmd\NameCount\texttt{=1}).
+Finally, \arg{code} is called with those values. There are aliases
+\cmd\ReadNames\ and \cmd\ReadNamesFor. \cmd\ReadAuthor, \cmd\ReadAuthorFor,
+\cmd\ReadEditor\ and \cmd\ReadEditorFor, and the versions with plural as well,
+are defined equivalently for the \texttt{author} and
+\texttt{editor} fields respectively. You can still use \tcmd{\RetrieveField
+\targ{author}}, for instance, but those fields aren't designed
+for typesetting in their basic form, hence this command.
+
+\cmddef{\TypesetField\marg{field}\marg{command}\marg{code}}
+\subcmddef{\TypesetFieldFor\marg{field}\marg{entry key}\marg{command}\marg{code}}
+If \arg{field} isn't empty in \arg{entry key}, \arg{command} is
+executed with the value of \arg{field} as its argument. So
+\arg{command} should be a macro that takes one (and only one) argument.
+If \arg{field} is empty, \arg{code} is executed instead.
+
+
+
+
+
+
+
+
+\subsection{Fields}
+Beside the fields that are found in bibliographic entries, \lib\ adds
+some of its own, which can be convenient for dealing with references.
+Here they are.
+
+The \field{entrytype} field contains the type of the entry as recorded
+in \texttt{bib} files at the beginning of each entry after the
+\texttt{@} sign. Thus
+
+\verbatim
+@Book{Coover2002,
+  ...
+}
+\endverbatim
+
+\noindent has `\texttt{book}' as the value for \texttt{entrytype}. Note
+that lowercase is always used, whatever the actual case in the \texttt{bib} file.
+The number of authors in the \texttt{author} field is the value of the \field{authornumber}
+field, each author being distinguished from the next by the customary `\texttt{and}'.
+An equivalent field, \field{editornumber}, does the same for \texttt{editor}.
+Most importantly, the \field{name} field holds the same value as \texttt{author}
+if there is such a field in the entry, or the value of \texttt{editor}
+it it exists and there is no \texttt{author}. Thus edited books can be
+cited along with normal books. That's why \texttt{name} appeared in
+\tcmd\SortingOrder\ above: if it had been \texttt{author}, then collective
+works wouldn't have been sorted correctly. Along with \texttt{name},
+\field{namenumber} holds the value either of \texttt{authornumber} or
+of \texttt{editornumber}, according to the same rule. Finally, \field{nametype}
+takes one out of two values: \texttt{author} or \texttt{editor}. It
+takes the former if the \texttt{name} field is set to the value of the \texttt{author}
+field, and the latter if it is set to the value of the \texttt{editor} field.
+Thus, when referencing collective works in a bibliography, you can add
+`(ed.)' for instance after the value of \texttt{name} if \texttt{nametype}
+is \texttt{editor}.
+
+
+
+
+\subsection{A crash course in bibliographic entries (and how \lib\ reads them)}
+This section is not necessary to the understanding of \lib\ but it can be
+useful if in trouble. Suppose you have the following entry:
+
+\verbatim
+@Book{Coover2002,
+  author = {Coover, Robert},
+  title = {The Adventures of Lucky Pierre},
+  subtitle = {Director's Cut},
+  publisher = "Grove Press",
+  Address = {New York},
+  year = 2002,
+}
+\endverbatim
+
+\noindent Then \lib\ stores all the fields for the `\texttt{coover2002}' entry key.
+This key is in lowercase, and thus you can't distinguish two entries by case only
+(this is how Bib\TeX\ works). This doesn't mean that you can't use
+\tcmd{\Cite\targ{Coover2002}\targ{list}}: \lib\ does the necessary conversion.
+The \texttt{entrytype} field is set to `\texttt{book}', in lowercase once again, and
+this time you must be careful: `\texttt{book}' is a value, and since you'll probably
+test it to know how the reference should be typeset in the bibliography, you
+shouldn't compare it to, say, `\texttt{Book}', of course. And to finish with
+lowercase, `\texttt{New York}' is the value of the \texttt{address} field,
+not \texttt{Address}, but once again \lib\ does the conversion so you can call
+\tcmd{\RetrieveField\targ{Address}\targ{cooVEr2002}}. Finally, the \texttt{subtitle}
+field is no customary field, but you can use it. Up to there, \lib\ works
+exactly like Bib\TeX.
+
+But there are differences too. For one thing, \lib\ has no restriction on the type
+of the entry, so you could have:
+
+\verbatim
+@novel{Coover2002,
+  author = {Coover, Robert},
+  title = {The Adventures of Lucky Pierre},
+  subtitle = {Director's Cut},
+  publisher = "Grove Press",
+  Address = {New York},
+  year = 2002,
+}
+\endverbatim
+
+\noindent That's perfectly fine with \lib, although not with Bib\TeX.
+There are no restrictions on fields either, and unlike Bib\TeX\ fields
+aren't labelled as required or optional or ignored; in a bibliographic
+style you can issue an error message if a field is missing, but \lib\
+won't do it for you. And there are
+annoying differences too. They occur in the way \lib\ reads the values of
+fields. Here's how it works: if the first character (disregarding space) after
+the `\texttt{=}' sign is a~\texttt{\string{}, then everything up to the next
+balanced~\texttt{\string}} is taken as the value, and everything up to the comma
+is discarded. (The last value of the entry may have no comma, but \lib\ adds one
+before reading the entry.) If the first character is a~\texttt{\string"}, then
+everything up to the next~\texttt{\string"}, with balanced braces, is taken
+as the value, and everything up to the comma is discarded once again. Finally,
+if the first character is none of the above, then \lib\ takes everything up
+to the next comma as the value (while balancing braces, of course). The latter
+case differs from Bib\TeX. Normally, only numerical values (like the value of
+\texttt{year} in our example) can be given as such, unless strings are used.
+But \lib\ is totally unable to understand strings. The following
+
+\verbatim
+@string{ny = "New York"}
+@Book{Coover2002,
+  author = {Coover, Robert},
+  title = {The Adventures of Lucky Pierre},
+  subtitle = {Director's Cut},
+  publisher = "Grove Press",
+  Address = ny,
+  year = 2002,
+}
+\endverbatim
+
+\noindent would yield `\texttt{New York}' as the value of \texttt{address} in
+Bib\TeX, whereas with \lib\ it gives `\texttt{ny}' (and the \texttt{@string}
+entry is simply ignored). In a situation as simple as the present one, you can
+make do with macros in you document, i.e. a macro which when fed with `\texttt{ny}'
+returns `\texttt{New York}' (problems arise if `\texttt{ny}' is the \textit{real}
+value of a field, though), but it becomes more serious when you concatenate strings
+with the \texttt{\string#} operator. No way to hide the truth: \lib\ will get
+everything wrong. So if you're heavy on strings, better stick to Bib\TeX.
+
+
+
+
+
+
+\section{Examples}
+Although \lib\ doesn't use many commands, it might be hard to understand them
+from scratch. This section details a pair of example styles so you can get
+familiar with how things work. The first example is stripped to the minimum
+just to learn the basic use of \lib's macros.
+The second example is an \textit{Author~(Year)} style
+with some refinements, dealing in particular with entries that have the same
+author and the same year and should thus be distinguished by a suffix, and it
+also shows how to handle cross-references. This style is thoroughly defined
+in the file \texttt{authoryear.tex}, distributed with \lib.
+
+Remember, though, that what you can do in \lib\ is what you can do in \TeX.
+There's nothing arcane in \lib, and what you can achieve depends really
+on your skill in \TeX. So don't feel limited; for instance, suppose you
+want to make a list of your publications like:
+
+\citation
+{\it2010}\par
+`My fascinating paper', {\it Journal of Science}, volume 55 (22), 210--224.\par
+{\it The book I finally wrote}, Good Publishing House: City\-ville.\par
+{\it2009}\par
+`A talk on something', presented at...
+\endcitation
+
+\noindent That is, you want the year to be set above the entries, not
+repeated each time: then, for each entry, retrieve its \texttt{year}
+in a macro, and on the next one, compare with the current year. If it
+has changed, print the new value. (Of course entries should be sorted
+by date, otherwise it doesn't make sense.)
+
+Another example: \lib\ doesn't abbreviate journal titles. But if you think
+in \TeX, it is easily solved: just create a function from a journal title
+to its abbreviation (if any), and call it on the value of the \texttt{journal}
+field... and so on and so forth...
+
+
+
+\subsection{A simple unsorted list with numerical references, which gets sorted later}
+Our first example simply doesn't sort entries, and they are cited with
+the number they get when they appear. To make things a little funnier,
+though, we'll have a case of multiple bibliographies, e.g. one bibliography
+per chapter. In each chapter we set \tcmd\currentchapter, and \tcmd\cite\
+is as follows:
+
+\verbatim
+\def\cite#1{%
+  \Cite{#1}{\currentchapter}%
+       {[\EntryNumber{\currentchapter}]}{[??]}%
+  }
+...  
+\def\currentchapter{chapter1}
+\endverbatim
+
+\noindent And at the end of the chapter we'll have:
+
+\verbatim
+\ReadList{\currentchapter}
+\endverbatim
+
+\noindent whereas the \tcmd\BibFile\ command will appear
+at the end of the book. What \tcmd\cite\ does is: store
+the entry in the list associated with the chapter, print
+`[??]' if there's no information associated with that entry (probably
+because it hasn't been read in the bibliographic file yet) and
+`[n]' instead, where \textit{n} is its number in that list, e.g.
+`[3]' if that's the third entry in that chapter.
+
+When \tcmd\ReadList\ is called, we need to have \tcmd\MakeReference\
+ready, so here it is:
+
+\verbatim
+\def\empty{}
+\def\MakeReference{%
+  \par \noindent
+  \llap{[\EntryNumber{\currentchapter}]~}%
+  \RetrieveFieldIn{namenumber}\tempcount
+  \ifx\tempcount\empty
+    \def\tempcount{0}%
+  \fi
+  \ReadName\makerefname.
+  \RetrieveField{title}.
+  \RetrieveField{year}.\par
+  }
+\endverbatim
+
+This produces `[n]' in the left margin (with plain \TeX's \tcmd\llap\
+macro), and prints the name, the title, the year, separated by dots
+and a space. To put it simply, that's an utterly boring citation style,
+which doesn't take the entry type into account. The thing about \tcmd\tempcount\
+is: we'll need it in \tcmd\ReadName\ with \tcmd\makerefname\ to check
+whether we're at the last author. So we need it as a number; however,
+on the first compilation, since \tcmd\BibFile\ appears after \tcmd\ReadList,
+entries have no \texttt{namenumber} field, and thus \tcmd\tempcount\ is
+empty... which is a very bad idea in an \tcmd\ifnum\ test. In that case
+we set it to 0. Now here how names are typeset: 
+
+\verbatim
+\def\space{ }
+\def\makerefname{%
+  \ifnum\NameCount>1
+    \ifnum\NameCount=\tempcount\relax \space and \else , \fi
+  \fi
+  \Firstname
+  \unless\ifx\Von\empty \Von\space \fi
+  \space\Lastname
+  \unless\ifx\Junior\empty , \Junior \fi
+  }
+\endverbatim
+
+\noindent We check for the existence of the von and junior parts and
+put them conditionally. Names are separated by a comma except the last
+one which takes `and' instead. Note the crucial \tcmd\relax\ after
+\tcmd\tempcount: the latter is a macro expanding to a number, and it
+would gobble the next \tcmd\space\ if \tcmd\relax\ wasn't there.
+I could have swapped \tcmd\NameCount\ and \tcmd\tempcount, since the
+former is a real integer denotation, but we would have missed this
+fascinating conversation.
+
+Now we're done with that style. Suppose however we want sorted entries.
+For instance:
+
+\verbatim
+\SortingOrder{name,year,title}{lfvj}
+\endverbatim
+
+Now, citing entries with the citation number isn't very convenient.
+Instead, we want a number associated with the entry in the sorted
+list. We need a new count, and on each chapter it should be reset to
+0. For instance:
+
+\verbatim
+\newcount\entrycount
+...
+\def\currentchapter{chapter24}
+\entrycount=0
+\endverbatim
+
+\noindent Next, we redefine \tcmd\cite\ as follows:
+
+\verbatim
+\def\cite#1{%
+  \Cite{#1}{\currentchapter}%
+  {[\csname\EntryKey @\currentchapter\endcsname]}%
+  {[??]}%
+  }
+\endverbatim
+
+\noindent Now \tcmd\cite\ calls a command associated with the key
+(note that \tcmd\EntryKey\ is useless, we could have used \texttt{\#1}
+directly) and the chapter, which holds the number we want. The latter
+was set in \tcmd\MakeCitation, redefined as:
+
+\verbatim
+\def\MakeReference{%
+  \par \noindent
+  \advance\entrycount1
+  \WriteImmediateInfo{%
+    \noexpand\expandafter\def
+      \noexpand\csname\EntryKey @\currentchapter
+      \noexpand\endcsname{\the\entrycount}%
+    }%
+  \llap{[\the\entrycount]~}%
+% ... same as before
+  }
+\endverbatim
+
+\noindent This means: on each entry, advance \tcmd\entrycount\ and
+store its value as the expansion of the command seen above, thanks
+to \tcmd\WriteImmediateInfo. The rather clumsy code in the latter
+just means that the following will be written to the external file:
+
+\verbatim
+\expandafter\def\csname coover2002@chapter24\endcsname{13}
+\endverbatim
+
+And of course, it is the value of \tcmd\entrycount\ that we put into the left margin.
+Note that this style takes three compilations to get everything right:
+in the first one, a new entry can't be sorted, because \tcmd\SortList\
+appears before \tcmd\BibFile. In the second compilation, the entry is
+sorted and its number is written to the external file. In the last one,
+that number is read and used when the entry is cited. Here's the style
+it produces:
+
+
+%\input unsorted
+%\Cite{Wallace2004}{\currentchapter}{}{} \Cite{Wallace1996}{\currentchapter}{}{}
+%\citation
+%Wallace's last book \cite{Wallace2004} was published eight years after his cult
+%novel \cite{Wallace1996}.\par
+%...\par
+%\SortList{\currentchapter}
+%\ReadList{\currentchapter}
+%\endcitation
+
+\Cite{Wallace2004}{empty}{}{} \Cite{Wallace1996}{empty}{}{}
+\citation
+Wallace's last book [2] was published eight years after his cult
+novel [1].\par
+...\par
+\quitvmode\llap{[1]~}David Foster Wallace. \RetrieveFieldFor{title}{Wallace1996}. \RetrieveFieldFor{year}{Wallace1996}.\par
+\quitvmode\llap{[2]~}David Foster Wallace. \RetrieveFieldFor{title}{Wallace2004}. \RetrieveFieldFor{year}{Wallace2004}.\par
+\endcitation
+
+
+
+
+
+\subsection{An Author (Year) style, with similar entries and cross-references}
+The basic idea here is to have a command \tcmd{\cite\targ{entry key}}
+that produces an \textit{Author~(Year)} citation in the main document
+(rather \textit{Name~(Year)}, but whatever). References are thus sorted
+according to names and then year, and if two entries are equal with
+regard to these fields, they should be sorted according to their relative
+order of appearance in the document and distinguished with a suffixes,
+e.g. `Wallace~(2003a)' and `Wallace~(2003b)'. To do so we'll use \tcmd\ifequalentry\
+and \tcmd\WriteImmediateInfo.
+
+However, such a simple \tcmd\cite\ is definitely not very fun. So let's
+make it harder: it will take any number of entry keys and separate them
+with commas (e.g. `Wallace~(1996), Coover~(2002)') unless the \texttt{name}
+field is identical, in which case it won't be repeated and the year
+will be put between the same parentheses as the previous entry
+(e.g. `Wallace~(1996, 2003)'). So \tcmd\cite\ actually calls a
+recursive macro (\tcmd\readcite) on its argument. Here's how it goes.
+(Since \lib\ requires e\TeX, we can use it too; if you don't know anything
+about it, the only important thing is that you can prefix a conditional
+with \tcmd\unless\ to reverse its evaluation; i.e.
+\tcmd{\unless\tcmd\ifwhatever\ A\tcmd\else\ B\tcmd\fi} is the same as
+\tcmd{\ifwhatever\ B\tcmd\else\ A\tcmd\fi}. It's useful to write
+\tcmd{\unless\tcmd\ifwhatever} instead of \tcmd{\ifwhatever\tcmd\else}
+when you're interested in the false condition only.)
+
+\verbatim
+\def\terminator{\terminator} \def\empty{}
+\def\cite#1{%
+  \def\prevauthor{}%
+  \readcite#1,\terminator,%
+  }
+\def\readcite#1,{%
+  \def\temp{#1}%
+  \ifx\temp\terminator
+    )%
+    \let\tail\relax
+  \else
+    \let\tail\readcite
+    \unless\ifx\temp\empty
+      \Cite{#1}{main}\makecitation{}%
+    \fi
+  \fi\tail
+  }
+\endverbatim
+
+\noindent Since we don't know what the next entry will be, if any,
+the final parenthesis is typeset when \tcmd\readcite\ meets the
+terminator. (We take care of empty entries in case one writes
+`\tcmd{\cite\targ{entry1,entry2,}}' by mistake, which becomes
+`\texttt{entry1,entry2,,\string\terminator,}' for \tcmd\readcite.)
+Note that in \texttt{authoryear.tex}, `(' and `)' are actually
+replaced by macros (\tcmd\leftcitemark\ and \tcmd\rightcitemark)
+that are defined as parentheses; it simply makes the switch to
+another style easier.
+
+All entries are added to the \texttt{main} list, and at the end
+of the document we'll have to write:
+
+\verbatim
+% Perhaps some \SortDef's?
+\BibFile{myfiles}
+\SortingOrder{name,year}{lfvj}
+\SortList{main}
+\ReadList{main}
+\endverbatim
+
+But back to citation. \tcmd\readcite\ calls \tcmd\makecitation\
+in case there are fields for the entry. Here it is. If the current
+author is the same as in the previous entry (recorded in
+\tcmd\prevauthor), then we just add a command and a space
+to the previous date:
+
+\verbatim
+\def\makecitation{%
+  \RetrieveFieldIn{name}\temp
+  \ifx\temp\prevauthor ,
+\endverbatim
+
+\noindent On the other hand, if authors differ (unless the previous
+one is empty, which means we're on the first citation), we close
+the parenthesis (always added by the next entry to the previous
+one, remember?), adds a comma and a space to separate entries,
+and typeset the name with \tcmd\ReadName\ (which will make
+use of \tcmd\tempcount). We also typeset an opening parenthesis
+preceded by a hard space to welcome the upcoming year.
+
+\verbatim
+  \else
+    \unless\ifx\prevauthor\empty ),\fi
+    \RetrieveFieldIn{namenumber}\tempcount
+    \ReadName\makecitename~(%
+  \fi
+\endverbatim
+
+\noindent And in any case we set \tcmd\prevauthor\ to the
+current value of \texttt{name}, typeset the year and
+add the suffix associated with that entry if it exists
+(it is created when we use \tcmd\ReadList), somehow like
+the entry number in the previous example.
+
+\verbatim
+  \RetrieveFieldIn{name}\prevauthor
+  \RetrieveField{year}\csname\EntryKey @suffix\endcsname
+  }
+\endverbatim
+
+Now here's how names are typeset: they are separated by
+commas, except the last one which is separated by \textit{and}
+(e.g. `Jackson, Jameson and Johnson~(1980)'). Besides, if there
+are more than 3 authors, only the first one is typeset,
+followed by \textit{et alii}. The number 3 is of course
+totally arbitrary. Finally, each name is typeset as
+\texttt{\string\Von\string~\string\Lastname} with the \tcmd\Von\
+part optional, of course (maybe that makes too many hard
+spaces, though). Remember that \tcmd\tempcount\ holds the value of
+the \texttt{namenumber} field and that \tcmd\NameCount\ is
+the place of the author under investigation in the entire field.
+Hence, if they are more authors than allowed:
+
+\verbatim
+\chardef\namelimit=3
+\def\makecitename{%
+  \ifnum\tempcount>\namelimit
+    \ifnum\NameCount=1
+      \unless\ifx\Von\empty \Von~\fi
+      \Lastname\space {\italics{et alii}}%
+    \fi
+\endverbatim
+
+\noindent Otherwise we typeset all names preceded by
+different markers: nothing for the first author, \textit{and}
+for the last one, and commas in between.
+
+\verbatim
+  \else
+    \unless\ifnum\NameCount=1
+      \ifnum\NameCount=\tempcount\relax \space and 
+      \else , \fi
+    \fi
+    \unless\ifx\Von\empty \Von~\fi
+    \Lastname
+  \fi
+  }
+\endverbatim
+
+\noindent And we're done with the \tcmd\cite\ command. We could
+add variation, e.g. \tcmd\citeauthor\ to typeset the \texttt{name}
+field, \tcmd\citeyear\ for the date, remove parentheses when needed,
+etc., but basically we've done the hardest part. The \tcmd\makecitename\
+macro shown here is slightly simpler than the real one in
+\texttt{authoryear.tex}. The latter first checks whether \tcmd\Lastname\
+is `\texttt{others}', in which case it typesets the \textit{et alii}
+phrase (a basic feature of Bib\TeX).
+
+Now we have to define \tcmd\MakeCitation. It begins with \tcmd\ReadName\
+called with \tcmd\makerefname\ as in the previous example. Even though
+\tcmd\makrefname\ is slightly different (the first author is typeset
+as \textit{von Last, Jr, First} whereas the other authors remain in the
+\textit{First von Last, Jr} style), I won't show it here,
+because there's nothing much to learn.
+
+\verbatim
+\def\MakeReference{%
+  \par\noindent
+  \RetrieveFieldIn{namenumber}\tempcount
+  \ReadName\makerefname
+\endverbatim
+
+\noindent In \tcmd\MakeReference\ still, we add a usual marker for collective
+works (\tcmd\editor\ is simply defined as `\texttt{editor}' elsewhere).
+
+\verbatim
+  \RetrieveFieldIn{nametype}\temp
+  \ifx\temp\editor
+    \RetrieveFieldIn{namenumber}\temp
+    \ifnum\temp>1 \space (eds.)\else \space (ed.)\fi
+  \fi
+\endverbatim
+
+\noindent Then we typeset the date between parentheses with a suffix,
+which will be set by \tcmd\comparentries\ (and actually probably empty).
+This suffix is meant to distinguish entries that are equal according to
+\tcmd\SortingOrder.
+
+\verbatim
+  \space (\RetrieveField{year}%
+          \csname\EntryKey @suffix\endcsname)
+  \compareentries
+\endverbatim
+
+\noindent Typesetting the rest of the entry depends on the entry type,
+which is fed to \tcmd\typesetref. At the end of the entry we call
+\tcmd\conditionalstop, a stop that appears if and only if there was no
+stop before (see \texttt{authoryear.tex} for details).
+
+
+\verbatim
+  \RetrieveFieldIn{entrytype}\temp
+  \typesetref\temp \conditionalstop
+  }
+\endverbatim
+
+The \tcmd\comparentries\ macro tests whether we are in equal entries
+relative to sorting and if so gives them a suffix.
+
+\verbatim
+\newcount\sameentrycount
+\def\compareentries{%
+  \ifequalentry
+    \advance\sameentrycount1
+    \WriteImmediateInfo{%
+      \noexpand\expandafter\def
+        \noexpand\csname\EntryKey @suffix\noexpand\endcsname
+        {\toletter}}%
+  \else \sameentrycount=0 \fi
+  }
+\endverbatim
+
+\noindent The \tcmd\toletter\ macro turns \tcmd\sameentrycount\
+into a letter and is quite uninteresting, so it isn't shown here.
+Note that this version of \tcmd\compareentries\ works because 
+the first argument of \tcmd\SortOrder\ is set to `\texttt{name,year}',
+and hence two references written the same year by the same author
+are equal according to \lib, which can set the \tcmd\ifequelentry\
+conditional to the requested value. However, if \tcmd\SortOrder\
+was `\texttt{name,year,title}', then not only would the same two 
+entries be sorted according to their titles,
+but most importantly they wouldn't be equal at all as far as \lib\
+is concerned (unless they have identical titles, of course),
+although in this bibliographic style they should be
+seen as such. In that case, \tcmd\compareentries\ should be more
+refined and store each entry's \texttt{name} and \texttt{year} fields
+in a macro to be compared to the next one.
+
+But we were calling \tcmd\typesetref\ on the \texttt{entrytype} field.
+It launches a macro which typesets the rest of the entry according
+to its type, and \tcmd\createtype\ is meant to define such a macro:
+
+\verbatim
+\def\typesetref#1{%
+  \ifcsname#1@entrytype\endcsname
+    \csname#1@entrytype\endcsname
+  \else
+    \errmessage{Unknown entry type: `#1'}%
+  \fi
+  }
+\def\createtype#1{%
+  \expandafter\def\csname#1@entrytype\endcsname
+  }
+\endverbatim
+
+Before creating entries, here are some useful macros to be used with
+\tcmd\TypesetField. Indeed, to typeset references properly, punctuation
+should be added if and only if the corresponding field exists.
+
+\verbatim
+\def\booktitle#1{\setbooktitle{\RetrieveField{#1}}}
+\def\setbooktitle#1{\italics{#1}}
+\def\articletitle#1{\setarticletitle{\RetrieveField{#1}}}
+\def\setarticletitle#1{`#1'}
+\def\addcomma#1{, #1}
+\def\addjournal#1{\addcomma{{\setbooktitle{#1}}}}
+\def\addcolon#1{: #1}
+\def\addpar#1{(#1)}
+\def\addbook#1{, in \setbooktitle{#1}}
+\def\addeditor#1{%
+  \RetrieveFieldIn{editornumber}\tempcount
+  , edited by \ReadEditor\makeedname}
+\endverbatim
+
+\noindent The \tcmd\italics\ macro in \tcmd\setbooktitle\ should
+be set to whatever you use to typeset italics. Now, we can create
+entries:
+
+\verbatim
+\createtype{book}{%
+  \booktitle{title}%
+  \TypesetField{publisher}\addcomma{}%
+  \TypesetField{address}\addcolon{}%
+  }
+\createtype{article}{%
+  \articletitle{title}%
+  \TypesetField{journal}\addjournal{}%
+  \TypesetField{volume}\addcomma{}%
+  \TypesetField{number}\addpar{}%
+  \TypesetField{pages}\addcomma{}%
+  }
+\createtype{incollection}{%
+  \articletitle{title}%
+  \TypesetField{crossref}\crossref{%
+    \TypesetField{booktitle}\addbook{}%
+    \TypesetField{editor}\addeditor{}%
+    \TypesetField{pages}\addcomma{}%
+    \TypesetField{publisher}\addcomma{}%
+    \TypesetField{address}\addcolon{}%  
+    }%
+  }
+\endverbatim
+
+\noindent ... and many more! That's the basic job of a bibliographic
+style. Note that we make good use of \tcmd\TypesetField, but not with
+the \texttt{title} field, because it is very unlikely to be missing.
+Now, give a look at the \texttt{incollection} entry; once the title
+is typeset, it reads as follows: call the \tcmd\crossref\ macro on the
+value of the \texttt{crossref} field if it has any, otherwise, typeset
+the information about the book. And \tcmd\crossref\ is:
+
+\verbatim
+\def\crossref#1{%
+  , in \cite{#1}%
+  \WriteImmediateInfo{\noexpand\Cite{#1}{main}{}{}}%
+  }
+\endverbatim
+
+\noindent Since the value of the \texttt{crossref} field is an entry key,
+we simply \tcmd\cite\ that entry. However, this is not enough; \tcmd\SortList\
+can deal with entries if and only if they are cited before it is called; on the
+other hand, \tcmd\ReadList, where the cross-reference happens, must appear after
+\tcmd\SortList. That's why we pass a \tcmd\Cite\ command to the next compilation;
+note that the third argument does nothing.
+
+Thus, supposing the reference `\texttt{Gaddis1994}' has a \texttt{crossref} field to `\texttt{Gass2000}',
+\tcmd{\cite\targ{Gaddis1994}} in a document will produce the following in the
+bibliography:
+
+\input authoryear
+\Cite{Gaddis1994}{main}{}{}
+\citation
+\SortList{main}
+\ReadList{main}
+\endcitation
+
+What if we don't want to see the `\texttt{Gass2000}' reference in the bibliography
+and instead want something like this:
+
+\citation
+\def\EntryKey{gaddis1994}
+\RetrieveFieldIn{namenumber}\tempcount
+\ReadName\makerefname~(\RetrieveField{year})
+`\RetrieveField{title}', in
+\def\EntryKey{gass2000}
+\RetrieveFieldIn{namenumber}\tempcount
+\booktitle{title}, edited by \ReadName\makeedname, 
+\RetrieveField{publisher}: \RetrieveField{address},
+\RetrieveField{year}.
+\endcitation
+
+\noindent Then \tcmd\crossref\ should be something like this:
+
+\verbatim
+\def\crossref#1{%
+  \bgroup
+    \lowercase{\def\EntryKey{#1}}%
+    \TypesetField{title}\addbook{}%
+    \TypesetField{editor}\addeditor{}%
+    \TypesetField{pages}\addcomma{}%
+    \TypesetField{publisher}\addcomma{}%
+    \TypesetField{address}\addcolon{}% 
+    \TypesetField{year}\addcomma{}%
+  \egroup
+  \WriteImmediateInfo{\noexpand\Cite{#1}{crossref}{}{}}%
+  }
+\endverbatim
+
+\noindent That is: we apply the same macros to a different entry
+by redefining \tcmd\EntryKey\ temporarily (hence the group). Note
+that this redefinition must happen in \tcmd\lowercase, because there
+we're away from \lib's handling of entry keys. Note also that we
+still \tcmd\Cite\ the entry in the external file, because the citation
+is necessary to retrieve fields in the bibliographic files; however
+the entry is added to a secondary list `\texttt{crossref}' that we'll never
+sort nor read.
+
+\vskip 0pt plus 1filll
+\parfillskip0pt
+\noindent\hfill {\it Typeset with Lua\TeX\ v.0.6}\par
+\noindent\hfill {\it in Garamond Pro (Robert Slimbach)}\par
+\noindent\hfill {\it and Inconsolata (Raph Levien)}\par
+
+\makebookmarks
+
+\BibFile{librarian}
+\bye

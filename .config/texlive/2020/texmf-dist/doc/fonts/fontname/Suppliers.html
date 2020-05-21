@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+<title>Filenames for TeX fonts</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Filenames for TeX fonts">
+<meta name="generator" content="makeinfo 4.6">
+<!--
+This document is in the public domain and may be used freely.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+Node:&nbsp;<a name="Suppliers">Suppliers</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Typefaces.html#Typefaces">Typefaces</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Filenames-for-fonts.html#Filenames%20for%20fonts">Filenames for fonts</a>
+<hr><br>
+</div>
+
+<h3 class="section">Suppliers</h3>
+
+<p>The <dfn>supplier</dfn> is the source of a font, typically a (digital) type
+foundry.
+
+   <p>You should use the supplier letter which matches the supplier you
+obtained the font from, not the original source; for example, Avant
+Garde was designed by Herb Lubalin for ITC, but Adobe also sells it. 
+The name of the font that you get from Adobe should start with <code>p</code>. 
+This is because font resellers typically make modifications to the
+original design.
+
+   <p>Notes on specific suppliers:
+
+     <dl>
+<dt><code>f</code>
+     <dd>For fonts that are distributed without any specific attribution to the
+creator, by individuals, or by small foundries.  (Unfortunately, we
+don't have enough characters to assign one to every font
+supplier in the world.)
+
+     <br><dt><code>r</code>
+     <dd>obsolete; specifies raw fonts, in the old distribution of Dvips.  New
+fonts should never use <code>r</code>. (The right thing to do is specify the
+correct encoding, variant, or whatever the font's characteristics
+actually are.)
+
+     <br><dt><code>z</code>
+     <dd>for fonts that just don't fit well into the naming scheme.  The <code>z</code>
+should be followed by the real supplier letter. 
+</dl>
+
+   <p>Here is the table from the file <code>supplier.map</code>.  It is organized
+alphabetically by abbreviation.  Each line consists of an abbreviation,
+directory name, and comment.
+
+<pre class="example">
+
+     0 fontfont      FontFont
+     5 softmake      Softmaker
+     9 unknown
+     a autologi      Autologic
+     b bitstrea      Bitstream
+     c cg            Compugraphic
+     d dtc           Digital Typeface Corporation
+     e apple         Apple
+     f public        small foundries
+     g gnu           Free Software Foundation
+     h bh            Bigelow &amp; Holmes
+     i itc           International Typeface Corporation
+     j microsft      Microsoft
+     k softkey       SoftKey
+     l linotype      Linotype
+     m monotype      Monotype
+     n ibm           IBM
+     o corel         Corel
+     p adobe         Adobe (<code>p</code> for PostScript)
+     r -             raw (for [obsolete] use with virtual fonts)
+     s sun           Storm Type
+     t paragrap      ParaGraph
+     u urw           URW
+     w wolfram       Wolfram
+     z -             bizarre (fontname is nonstandard)
+     - autofont	Eddie Kohler's <tt>autofont</tt> program
+     - jknappen      Joerg Knappen
+     - mnm           Hong Feng, free software in China
+     - yandy         Y&amp;Y
+     </pre>
+
+   </body></html>
+

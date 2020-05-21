@@ -1,0 +1,24 @@
+name ijsra
+category Package
+revision 44886
+shortdesc LaTeX document class for the International Journal of Student Research in Archaeology
+longdesc This is a document class called ijsra which is used for the
+longdesc International Journal of Student Research in Archaeology.
+containersize 315516
+containerchecksum 9d5db4217675af4577fbf9b7e8a5dc4a42f447e7af60a818d740327326d478afa9071be37c80315b0822fec48d1fefe4e3d6a8dfddb6f34fbc11cd81a5d05a12
+doccontainersize 392404
+doccontainerchecksum a3424b8ed16d1881c5a2c4d80a42277a1c0e3a62484a0d5ee6a18a9ed9fd39fe0de241fefbc723960bfee331908bb5c95a0b1b95ecf5e06d6425ac8e6c2dc342
+docfiles size=101
+ texmf-dist/doc/latex/ijsra/README.md details="Readme"
+ texmf-dist/doc/latex/ijsra/ijsra.pdf details="Package documentation"
+ texmf-dist/doc/latex/ijsra/ijsra.tex
+runfiles size=86
+ texmf-dist/tex/latex/ijsra/ijsra.cls
+ texmf-dist/tex/latex/ijsra/ijsra_logo.png
+catalogue-also biblatex-ijsra
+catalogue-contact-bugs https://github.com/LukasCBossert/documentclass-ijsra/issues
+catalogue-contact-repository https://github.com/LukasCBossert/documentclass-ijsra
+catalogue-ctan /macros/latex/contrib/ijsra
+catalogue-license lppl1.3
+catalogue-topics journalpub
+catalogue-version 1.1

@@ -1,0 +1,941 @@
+% We start by making some default catcode assignments, in case we are 
+% using ini\TeX{}.
+%    \begin{macrocode}
+%<*pkg>
+\catcode`\{=1
+\catcode`\}=2
+\catcode`\#=6
+\catcode`\^=7
+%</pkg>
+%    \end{macrocode}
+%
+% \package{fontinst} uses some unusual, but convenient, settings of 
+% |\catcode|. |@| and |_| are made letters, |~| is made a space, and 
+% space and newline are ignored. Before setting those however, we save 
+% the current values of the catcodes, so that they can be restored at 
+% the end of \texttt{fontinst.sty}.
+%
+%    \begin{macrocode}
+%<*pkg>
+\edef\spacecatcode{\the\catcode`\ }
+\edef\nlcatcode{\the\catcode`\^^M}
+\edef\atcatcode{\the\catcode`\@}
+\edef\underscorecatcode{\the\catcode`\_}
+\edef\tildecatcode{\the\catcode`\~}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\catcode`\ =9
+\catcode`\^^M=9
+\catcode`\@=11
+\catcode`\_=11
+\catcode`\~=10
+%</pkg>
+%    \end{macrocode}
+%
+
+
+\newlinechar=`\^^J
+
+% \begin{macro}{\a_read}
+% \begin{macro}{\b_read}
+% \begin{macro}{\a_filelineno}
+% \begin{macro}{\b_filelineno}
+%   These control sequences are used for keeping track of the ``physical'' 
+%   side of the two input files. |\a_read| and |\b_read| are the stream 
+%   numbers. |\a_filelineno| and |\b_filelineno| are the respective 
+%   line numbers of the lines most recently read from these files.
+%    \begin{macrocode}
+\newread\a_read
+\newread\b_read 
+\newcount\a_filelineno
+\newcount\b_filelineno
+%    \end{macrocode}
+% \end{macro}\end{macro}\end{macro}\end{macro}
+% 
+% \begin{macro}{\a_lineno}
+% \begin{macro}{\b_lineno}
+% \begin{macro}{\a_bufbase}
+% \begin{macro}{\b_bufbase}
+% \begin{macro}{\a_bufmid}
+% \begin{macro}{\b_bufmid}
+% \begin{macro}{\a_buftop}
+% \begin{macro}{\b_buftop}
+%   These count registers are used for managing the buffert of lines 
+%   that are read from the input files when a match between lines is 
+%   being looked for. This buffert consists of lines which are saved in 
+%   the macros
+%   \begin{quote}
+%     |\|\meta{letter}|_saved-|\meta{ofs}
+%   \end{quote}
+%   where \meta{letter} is |a| or |b| and \meta{ofs} is an integer, 
+%   being the index into the buffert. |\a_bufbase| and |\b_bufbase| 
+%   contain the \meta{ofs} of the first line currently in the buffert, 
+%   whereas |\a_buftop| and |\b_buftop| contain the \meta{ofs} of the 
+%   last such line. |\a_bufmid| and |\b_bufmid| hold the buffert 
+%   positions of the lines which are currently considered the next by 
+%   |\get_next_line|. If \(\mathtt{buftop}<\mathtt{bufmid}\) then the 
+%   buffert is empty. |\a_lineno| and |\b_lineno| are the respective 
+%   line numbers of the |\a_bufbase| and |\b_bufbase| lines.
+%   
+%   All these registers should be set globally.
+%    \begin{macrocode}
+\newcount\a_lineno   \newcount\b_lineno
+\newcount\a_bufbase  \newcount\b_bufbase
+\newcount\a_bufmid   \newcount\b_bufmid
+\newcount\a_buftop   \newcount\b_buftop
+%    \end{macrocode}
+% \end{macro}\end{macro}\end{macro}\end{macro}\end{macro}\end{macro}
+% \end{macro}\end{macro}
+
+
+% \begin{macro}{\get_next_line}
+%   The |\get_next_line| macro is called as
+%   \begin{quote}
+%     |\get_next_line|\marg{letter}
+%   \end{quote}
+%   where \meta{letter} is |a| or |b|. This sets the 
+%   |\|\meta{letter}|_line| macro to the next line of that file and 
+%   updates the value of |\|\meta{letter}|_lineno|.
+%   
+%   The ``next line'' is normally read from input stream 
+%   |\|\meta{letter}|_read|, but if a line mismatch recently occured 
+%   then it might happen that the next line has already been read from 
+%   the file, and in that case it is taken from one of the 
+%   |\|\meta{letter}|_saved-|\meta{ofs} macros.
+%    \begin{macrocode}
+\def\get_next_line#1{
+   \ifnum \csname#1_buftop\endcsname<\csname#1_bufmid\endcsname
+      \ifeof \csname#1_read\endcsname
+         \x_cs\let{#1_line}\end_of_file_line
+      \else
+         \read\csname#1_read\endcsname t\x_cs{o}{#1_line}
+         \global\advance \csname#1_filelineno\endcsname \@ne
+      \fi
+   \else
+      \expandafter\let \csname#1_line\expandafter\endcsname
+         \csname#1_saved-\the\csname#1_bufmid\endcsname\endcsname
+   \fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\end_of_file_line}
+%   This macro expands to the text \verb*|(ENDOFFILE) | with the 
+%   catcodes it would have if read from an input file. It is used as an 
+%   end-of-file marker.
+%    \begin{macrocode}
+\begingroup
+   \catcode`\(=13
+   \catcode`\)=13
+   \gdef\end_of_file_line{(ENDOFFILE)~}
+\endgroup
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\the_line}
+%   The |\the_line| macro is called as
+%   \begin{quote}
+%     |\the_line|\marg{letter}\marg{ofs}
+%   \end{quote}
+%   where \meta{letter} is |a| or |b|, and \meta{ofs} is a \TeX\ number. 
+%   It expands to the control sequence |\|\meta{letter}|_saved-|^^A
+%   \meta{ofs}.
+%    \begin{macrocode}
+\def\the_line#1#2{\csname#1_saved-\number#2\endcsname}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\initialise_search}
+%   The |\initialise_search| macro sets everything up for a search for 
+%   a match between lines.
+%   
+%    \begin{macrocode}
+\def\initialise_search{
+   \global\a_bufbase=\a_bufmid
+   \global\b_bufbase=\b_bufmid
+   \add_to_buffert{a}
+   \add_to_buffert{b}
+   \global\advance \a_bufmid \@ne
+   \global\advance \b_bufmid \@ne
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\add_to_buffert}
+%   The |\add_to_buffert| macro is called as
+%   \begin{quote}
+%     |\add_to_buffert|\marg{letter}
+%   \end{quote}
+%   It adds the line returned by |\get_next_line| to the corresponding 
+%   buffert (if it wasn't already there) and updates the counters for 
+%   that buffert. After this, the line following the line being put into 
+%   the buffert will be the line that |\get_next_line| returns.
+%    \begin{macrocode}
+\def\add_to_buffert#1{
+   \ifnum \csname#1_buftop\endcsname<\csname#1_bufmid\endcsname
+      \expandafter\let 
+         \csname#1_saved-\the\csname#1_bufmid\endcsname
+            \expandafter\endcsname
+         \csname#1_line\endcsname
+      \global\advance \csname#1_buftop\endcsname \@ne
+   \fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+
+
+\newcount\first_integer
+\newcount\second_integer
+
+% \begin{macro}{\match_lines}
+%   The |\match_lines| macro tests if two lines can be considered the 
+%   same (up to metrics changes, which need not be small). It is called as
+%   \begin{quote}
+%     |\match_lines|\marg{line a}\marg{line b}
+%   \end{quote}
+%   \meta{line a} and \meta{line b} may be any amount of text which 
+%   eventually expands to the lines in question. |\match_lines| returns 
+%   its answer by setting the |_a_| switch to |false| (if the lines 
+%   match) or |true| (if the lines don't match).
+%   
+%   |\match_lines| also causes the |\first_dimen| and |\second_dimen| 
+%   registers, as well as the |_histogram_dimen_| switch to be updated, 
+%   so it can be immediately followed by a test of the metrics.
+%    \begin{macrocode}
+\def\match_lines#1#2{
+   \first_integer=\z@
+   \second_integer=\z@
+   \first_dimen=\z@
+   \second_dimen=\z@
+   \x_cs\let{string-+}\empty_command
+   \x_cs\let{string--}\empty_command
+%    \end{macrocode}
+%    \begin{macrocode}
+   \def\sign{+}
+   #1\line_stop
+   \def\sign{-}
+   #2\line_stop
+%    \end{macrocode}
+%    \begin{macrocode}
+   \_a_false
+   \expandafter\ifx \csname cmd-+ \expandafter\endcsname
+      \csname cmd--\endcsname
+   \else  \_a_true  \fi
+   \ifnum \first_integer=\z@ \else  \_a_true  \fi
+   \ifnum \second_integer=\z@ \else  \_a_true  \fi
+   \expandafter\ifx \csname string-+ \expandafter\endcsname
+      \csname string--\endcsname
+   \else  \_a_true  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\try_matching}
+% \begin{macro}{\a_bufP}
+% \begin{macro}{\b_bufP}
+%   The |\try_matching| descends through the buffert until the |_a_| 
+%   switch gets |false| or it has tried the bottommost lines in the 
+%   buffert. Since |\body| is already defined by the |\loop| in 
+%   |\process_lines|, |\try_matching| uses an explicit end recursion to 
+%   make the loop.
+%    \begin{macrocode}
+\newcount\a_bufP
+\newcount\b_bufP
+\def\try_matching{
+   \global\advance \a_bufP \m@ne
+   \global\advance \b_bufP \m@ne
+%    % Begin debug
+%    \wlog{a_bufbase:~\the\a_bufbase\space\space\space
+%          b_bufbase:~\the\b_bufbase}
+%    \wlog{a_bufmid:~\the\a_bufmid\space\space\space
+%          b_bufmid:~\the\b_bufmid}
+%    \wlog{a_buftop:~\the\a_buftop\space\space\space
+%          b_buftop:~\the\b_buftop}
+%    \wlog{a_bufP:~\the\a_bufP\space\space\space
+%          b_bufP:~\the\b_bufP}
+%    \begingroup
+%       \def\do_left_paren{(}\def\do_right_paren{)}
+%       \wlog{a_line:~\a_line}
+%       \wlog{b_buf_line:~\the_line{b}{\b_bufP}}
+%       \wlog{b_line:~\b_line}
+%       \wlog{a_buf_line:~\the_line{a}{\a_bufP}^^J}
+%    \endgroup
+%    % End debug
+   \match_lines{\a_line}{\the_line{b}{\b_bufP}}
+   \if_a_
+      \match_lines{\the_line{a}{\a_bufP}}{\b_line}
+      \if_a_ \else
+         \global\a_bufmid=\a_bufP
+      \fi
+   \else
+      \global\b_bufmid=\b_bufP
+   \fi
+   \ifnum \a_bufP>\a_bufbase \if_a_
+      \expandafter\expandafter\expandafter\try_matching
+   \fi \fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\report_mismatch}
+%   The |\report_mismatch| macro does precisely what it says. It also increases 
+%   the \texttt{bufbase} and \texttt{lineno} registers to point at the 
+%   matching lines.
+%    \begin{macrocode}
+\def\report_mismatch{
+   \begingroup
+      \def\do_left_paren{(}
+      \def\do_right_paren{)}
+      \wlog{Mismatch~in~first~file~(at~\the\a_lineno):}
+      \loop
+         \wlog{\the_line{a}{\a_bufbase}}
+      \ifnum \a_bufbase<\a_bufmid
+         \global\advance \a_bufbase \@ne
+         \global\advance \a_lineno \@ne
+      \repeat
+      \wlog{Match~found~at~line~\the\a_lineno.}
+      \wlog{Mismatch~in~second~file~(at~\the\b_lineno):}
+      \loop
+         \wlog{\the_line{b}{\b_bufbase}}
+      \ifnum \b_bufbase<\b_bufmid
+         \global\advance \b_bufbase \@ne
+         \global\advance \b_lineno \@ne
+      \repeat
+      \wlog{Match~found~at~line~\the\b_lineno.}
+   \endgroup
+   \glyphified_location
+   \ifnum 4>\compared_status
+      \global\chardef\compared_status=4
+   \fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+\def\glyphified_location{
+   \ifx \encoding_name\empty_command
+      \ifnum \m@ne<\last_character
+         \wlog{This~is~related~to~slot~\the\last_character.^^J}
+      \else
+         \wlog{This~is~in~the~header.^^J}
+      \fi
+   \else
+      \if_undefined{name-\encoding_name-\the\last_character}\then
+         \ifnum \last_character=\m@ne
+            \wlog{This~is~in~the~header.^^J}
+         \else
+            \wlog{This~is~related~to~slot~\the\last_character\space
+               (unencoded).^^J}
+         \fi
+      \else
+         \wlog{This~is~related~to~the~glyph~
+            \csname name-\encoding_name-\the\last_character\endcsname
+            .^^J}
+      \fi
+   \fi
+}
+% \begin{macro}{\compared_status}
+%   |\compared_status| is a \meta{chardef token} which stores the 
+%   current status of the comparision, according to the following table
+%   \begin{enumerate}
+%     \item[0] The property lists are equal---there may be checksum 
+%       differences, but nothing else.
+%     \item[1] The property lists are almost equal---there are 
+%       differences in the metrics, but these are within the |\tolerance| 
+%       level.
+%     \item[2] The property lists are essentially equal---there are 
+%       differences in the metrics, but these are within the |\tolerance| 
+%       level, with the exception of some \texttt{CHARHT}, 
+%       \texttt{CHARDP}, and \texttt{CHARIC} values.
+%     \item[3] The property lists have metric differences---there are 
+%       metric differences not with category 2.
+%     \item[4] The property lists are not completely matched.
+%   \end{enumerate}
+% \end{macro}
+
+% \begin{macro}{\step_linenos}
+%   The |\step_linenos| macro increments the |_lineno| line numbers. If 
+%   the current line was fetched from the buffert, then it also 
+%   increments the |_bufmid| and |_bufbase| registers, and checks 
+%   whether the buffert ended (in which case it is normalized to its 
+%   starting position, to conserve hash table space).
+%    \begin{macrocode}
+\def\step_linenos{
+   \global\advance \a_lineno \@ne
+   \ifnum \a_bufmid=\a_buftop
+      \global\a_bufbase=\z@
+      \global\a_bufmid=\z@
+      \global\a_buftop=\m@ne
+   \else\ifnum \a_bufmid<\a_buftop
+      \global\advance \a_bufmid \@ne
+      \global\advance \a_bufbase \@ne
+   \fi\fi
+   \global\advance \b_lineno \@ne
+   \ifnum \b_bufmid=\b_buftop
+      \global\b_bufbase=\z@
+      \global\b_bufmid=\z@
+      \global\b_buftop=\m@ne
+   \else\ifnum \b_bufmid<\b_buftop
+      \global\advance \b_bufmid \@ne
+      \global\advance \b_bufbase \@ne
+   \fi\fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+
+\newdimen\first_dimen
+\newdimen\second_dimen
+\newcount\ht_hist_i
+\newcount\ht_hist_ii
+\newcount\ht_hist_iii
+\newcount\ht_hist_iv
+\newcount\dp_hist_i
+\newcount\dp_hist_ii
+\newcount\dp_hist_iii
+\newcount\dp_hist_iv
+\newcount\ic_hist_i
+\newcount\ic_hist_ii
+\newcount\ic_hist_iii
+\newcount\ic_hist_iv
+
+% \begin{macro}{\clear_histograms}
+%   This macro clears all the histograms.
+%    \begin{macrocode}
+\def\clear_histograms{
+   \global\ht_hist_i=\z@
+   \global\ht_hist_ii=\z@
+   \global\ht_hist_iii=\z@
+   \global\ht_hist_iv=\z@
+   \global\dp_hist_i=\z@
+   \global\dp_hist_ii=\z@
+   \global\dp_hist_iii=\z@
+   \global\dp_hist_iv=\z@
+   \global\ic_hist_i=\z@
+   \global\ic_hist_ii=\z@
+   \global\ic_hist_iii=\z@
+   \global\ic_hist_iv=\z@
+}
+%    \enc{macrocode}
+% \end{macro}
+
+% \begin{macro}{\present_histograms}
+%   This macro writes the histogram data to the log file.
+%    \begin{macrocode}
+\def\present_histograms{
+   \wlog{\string\tolerance*~\space CHARHT~\space CHARDP~\space CHARIC}
+   \wlog{~\space\space 1--~\space\space 10\hist_to_eight{ht}{i}
+      \hist_to_eight{dp}{i}\hist_to_eight{ic}{i}}
+   \wlog{~\space 10--~\space 100\hist_to_eight{ht}{ii}
+      \hist_to_eight{dp}{ii}\hist_to_eight{ic}{ii}}
+   \wlog{~100--~1000\hist_to_eight{ht}{iii}\hist_to_eight{dp}{iii}
+      \hist_to_eight{ic}{iii}}
+   \wlog{1000--10000\hist_to_eight{ht}{iv}\hist_to_eight{dp}{iv}
+      \hist_to_eight{ic}{iv}}
+}
+\def\hist_to_eight#1#2{\x_cs\hist_to_eight_i{#1_hist_#2}}
+\def\hist_to_eight_i#1{
+   \ifnum #1<\@M
+      \four_spaces
+      \ifnum #1<\one_hundred
+         \space\space
+         \ifnum 10>#1 ~\fi
+      \else \ifnum #1<\one_thousand \space\fi \fi
+   \else
+      \ifnum 1000000>#1
+         \space\space
+         \ifnum 100000>#1 ~\fi
+      \else \ifnum 1000000>#1 ~\fi \fi
+   \fi
+   \the#1
+}
+%    \end{macrocode}
+% \end{macro}
+
+
+% \begin{macro}{\metric_statistics}
+% \begin{macro}{\metric_origin}
+%   The |\metric_statistics| macro takes care of comparing the metrics 
+%   by inspecting the values of |\first_dimen| and |\second_dimen|. It 
+%   has four classes of differences, which are represented by 
+%   |\compared_status| values 0--3: no difference, tolerable (almost no)
+%   difference, histogrammed (essentially no) difference, and 
+%   non-tolerable difference. If a non-tolerable difference is found, 
+%   then the current lines are written to the log file. Histogrammed 
+%   differences causes the corresponding 
+%   |\|\meta{type}|_hist_|\meta{group} register to be incremented, and 
+%   tolerable differences only affect the value of |\compared_status|.
+%   
+%   The |\metric_origin| macro contains the \meta{type} of the metric 
+%   data. It is usually empty, but PL properties with metrics that have 
+%   histograms set it so that the correct histogram is updated.
+%   
+%    \begin{macrocode}
+\def\metric_statistics{
+   \_a_false
+   %
+   \ifdim \first_dimen<\z@ \first_dimen=-\first_dimen \fi
+   \ifdim \first_dimen=\z@
+   \else\ifdim \first_dimen<\tolerance
+      \ifnum 1>\compared_status
+         \global\chardef\compared_status=1
+      \fi
+   \else\ifx \metric_origin\empty_command
+      \_a_true
+   \else
+      \a_count=\@ne
+      \def\a_macro{10}
+      \loop\ifdim \a_macro\tolerance<\first_dimen
+         \edef\a_macro{\a_macro 0}
+         \advance \a_count \@ne
+      \repeat
+      \if_undefined{\metric_origin _hist_ \romannumeral\a_count}\then
+         \_a_true
+      \else
+         \global\advance \csname \metric_origin _hist_ 
+            \romannumeral\a_count \endcsname \@ne
+         \ifnum 2>\compared_status
+            \global\chardef\compared_status=2
+         \fi
+      \fi
+   \fi\fi\fi
+   %
+   \ifdim \second_dimen<\z@ \second_dimen=-\second_dimen \fi
+   \ifdim \second_dimen=\z@
+   \else\ifdim \second_dimen<\tolerance
+      \ifnum 1>\compared_status
+         \global\chardef\compared_status=1
+      \fi
+   \else\ifx \metric_origin\empty_command
+      \_a_true
+   \else
+      \a_count=\@ne
+      \def\a_macro{10}
+      \loop\ifdim \a_macro\tolerance<\second_dimen
+         \edef\a_macro{\a_macro 0}
+         \advance \a_count \@ne
+      \repeat
+      \if_undefined{\metric_origin _hist_ \romannumeral\a_count}\then
+         \_a_true
+      \else
+         \global\advance \csname \metric_origin _hist_ 
+            \romannumeral\a_count \endcsname \@ne
+         \ifnum 2>\compared_status
+            \global\chardef\compared_status=2
+         \fi
+      \fi
+   \fi\fi\fi
+   %
+   \if_a_
+      \ifnum 3>\compared_status
+         \global\chardef\compared_status=3
+      \fi
+      \begingroup
+         \def\do_left_paren{(}
+         \def\do_right_paren{)}
+         \wlog{Metric~differences~at~lines~\the\a_lineno\space
+            and~\the\b_lineno\space respectively:}
+         \wlog{\a_line}
+         \wlog{\b_line}
+      \endgroup
+      \glyphified_location
+   \fi
+}
+%    \end{macrocode}
+% \end{macro}\end{macro}
+
+  
+
+
+\newif\if_b_
+
+% \begin{macro}{\process_lines}
+%   The |\process_lines| macro is the cheif executive in the comparision. 
+%   Its normal mode of operation is to retrive the next two lines from 
+%   the input files, match them, and update the metric differences 
+%   statistics. If the lines do not match, however, it starts building a 
+%   buffert of lines in which it searches for two matching lines. When 
+%   these two lines are found the mismatching portions of the files are 
+%   written to the log file, and the metric difference statistics are 
+%   updated for the two lines that matched.
+%   
+%    \begin{macrocode}
+\def\process_lines{
+   \get_next_line{a}
+   \get_next_line{b}
+   \match_lines{\a_line}{\b_line}
+   \if_a_
+%    \end{macrocode}
+%   Now the process of trying to find a match begins. At each step of 
+%   the search for a match, it tries all possible matches with the 
+%   lines read so far that haven't been tried at an earlier step.
+%    \begin{macrocode}
+%       \tracingmacros=\@ne\tracingcommands=\tw@ % DEBUG
+      \initialise_search
+      \loop
+         \get_next_line{a}
+         \get_next_line{b}
+         \add_to_buffert{a}
+         \add_to_buffert{b}
+         \match_lines{\a_line}{\b_line}
+         \if_a_
+            \global\a_bufP=\a_bufmid
+            \global\b_bufP=\b_bufmid
+            \try_matching
+         \fi
+      \if_a_
+         \global\advance \a_bufmid \@ne
+         \global\advance \b_bufmid \@ne
+         \ifnum \a_bufmid>\sixt@@n 
+            \errmessage{Big~buffert.~\the\a_lineno[\the\a_filelineno]:
+              \the\b_lineno[\the\b_filelineno]}
+         \fi % DEBUG
+      \repeat
+      \report_mismatch
+%       \tracingcommands=\z@\tracingmacros=\z@ % DEBUG
+%    \end{macrocode}
+%    \begin{macrocode}
+   \fi
+   \metric_statistics
+   \step_linenos
+   \par % DEBUG
+   \if \ifx \a_line\end_of_file_line 
+      \ifx \b_line\end_of_file_line 1\else 0\fi\else 0\fi 0
+   % then
+      \expandafter\process_lines
+   \fi
+}
+%    \end{macrocode}
+% \end{macro}
+
+\def\loadencoding#1{{
+   \def\do_slot{\x_cs\xdef{name-#1-\the\slot_number}{\slot_name}}
+   \inputetx{#1}
+}}
+
+% \begin{macro}{\comparePLs}
+%   The |\comparePLs| command compares two property lists files. It is 
+%   geared against verifying that two different such files are as good 
+%   as equal, and it might take a very long time before it gives up on 
+%   trying to find any resemblance between them. It is furthermore only 
+%   meant to be used on (V)PL files generated by \package{TFtoPL} or 
+%   \package{VFtoVP}, because it assumes the property lists follow a 
+%   stricter syntax than \package{PLtoTF} and \package{VPtoVF} requires 
+%   them to. Finally it needs to be said that the comparision is rather 
+%   stupid in many respects, as it is completely line-oriented and 
+%   takes no notice of what kind of property list it is reading. This 
+%   may in some cases cause it to find ``matches'' between lines which 
+%   for syntactical reasons alone cannot match.
+%   
+%   |\comparePLs| is called as
+%   \begin{quote}
+%     |\comparePLs|\marg{first PL}\marg{second PL}\marg{encoding}
+%   \end{quote}
+%   where \meta{first PL} and \meta{second PL} are the complete names 
+%   (including extensions) of the files to compare. \meta{encoding} is 
+%   the name of the encoding to use when translating slots to glyph 
+%   names; leave it empty if you don't want to specify one. (One could 
+%   use the \texttt{CODINGSCHEME} property to determine the encoding in 
+%   that case, but this is not currently done). The slot to glyph 
+%   translation is only done to make it easier to locate the position of 
+%   some mismatch; it has not effect on the actual comparision.
+%    \begin{macrocode}
+\newcount\last_character
+\def\comparePLs#1#2#3{{
+   \def\encoding_name{#3}
+   \last_character=\m@ne
+   \openin\a_read=#1\x_relax
+   \openin\b_read=#2\x_relax
+   \immediate\write\sixt@@n{#1~and^^J #2}
+   \pl_catcodes
+   \let\do_left_paren=\do_property
+   \let\do_right_paren=\empty_command
+   \global\chardef\compared_status=\z@
+   \clear_histograms
+   \global\a_filelineno=\@ne
+   \global\b_filelineno=\@ne
+   \global\a_lineno=\@ne
+   \global\b_lineno=\@ne
+   \global\a_bufbase=\z@
+   \global\b_bufbase=\z@
+   \global\a_bufmid=\z@
+   \global\b_bufmid=\z@
+   \global\a_buftop=\m@ne
+   \global\b_buftop=\m@ne
+   \process_lines
+   \closein\a_read
+   \closein\b_read
+   \ifcase \compared_status
+      \immediate\write\sixt@@n{are~equal.^^J}
+   \or
+      \immediate\write\sixt@@n{are~almost~equal.^^J}
+   \or
+      \immediate\write\sixt@@n{are~essentially~equal.}
+   \or
+      \immediate\write\sixt@@n{have~non-tolerated~metric~differences.}
+   \or
+      \immediate\write\sixt@@n{do~not~completely~match.}
+   \else
+      \immediate\write\sixt@@n{could~not~be~matched!}
+   \fi
+   \ifnum 1<\compared_status
+      \immediate\write\sixt@@n{See~log~file~for~specification.}
+      \present_histograms
+      \immediate\write\sixt@@n{}
+   \fi
+}}
+%    \end{macrocode}
+% \end{macro}   
+
+
+\begingroup
+   \catcode`\(=13 \catcode`\)=13
+   \gdef\pl_catcodes{
+      \catcode`\(=13 \def({\do_left_paren}
+      \catcode`\)=13 \def){\do_right_paren}
+   }
+\endgroup
+
+\def\do_property#1~{
+   \x_cs\edef{cmd-\sign}{#1}
+   \let\metric_origin=\empty_command
+   \x_cs\ifx{pl-#1}\x_relax
+      \expandafter\ignore_parens
+   \else
+      \csname pl-#1 \expandafter\endcsname
+   \fi
+}
+\def\pl_def_s#1(#2){\x_cs\def{pl-#1}#2~}
+\begingroup
+   \catcode`\!=13\lccode`\!=`\)
+\lowercase{\endgroup
+   \def\pl_def_p#1(#2){\x_cs\def{pl-#1}#2!}
+}
+\def\pl_let#1#2{
+   \expandafter\let 
+      \csname pl-#1 \expandafter\endcsname \csname pl-#2 \endcsname
+}
+
+
+
+\newdimen\tolerance  \tolerance=110sp
+
+% The following is for gobbling to the next unmatched right parenthesis. 
+% The |\catcode| trick used by the PL-to-MTX converter's 
+% |\ignore_parens| cannot be used since the characters are already 
+% tokenized, but one can do something similar with an |\edef| since one 
+% does not have to worry about the PL files containing material which 
+% expands in an undesirable way.
+% 
+% The |\line_stop| is so that linebreaks in the parenthesis being 
+% gobbled will not cause total havok (although the parenthesis won't be 
+% gobbled completely). It inserts end-of-group tokens until the |\edef| 
+% is terminated, and then the |\afterassignment| token will close the 
+% group and restore the normal definition.
+
+\def\ignore_parens{
+   \begingroup
+   \def\do_left_paren{{\iffalse}\fi}
+   \def\do_right_paren{\iffalse{\fi}}
+   \def\line_stop{\do_right_paren\line_stop}
+   \afterassignment\endgroup
+   \edef\a_macro{\iffalse}\fi
+}
+\def\line_stop{\x_relax}
+%    \end{macrocode}
+%
+\begingroup
+   \catcode`\(=1
+   \catcode`\)=2
+   \gdef\pl_string{
+      \begingroup
+      \def\do_left_paren{(\iffalse)\fi}
+      \def\do_right_paren{\iffalse(\fi)}
+      \def\line_stop{\iffalse{\fi}\line_stop}
+      \afterassignment\pl_string_i
+      \edef\a_macro{\iffalse}\fi
+   }
+\endgroup
+\def\pl_string_i{
+   \expandafter\endgroup \expandafter\def 
+      \csname string-\sign \expandafter\endcsname 
+      \expandafter{\a_macro}
+}
+
+\def\pl_real#1{\sign#1\hundred_pt}
+\newdimen\hundred_pt  \hundred_pt=100pt
+
+% Convert a PL int to a \TeX{} int, assuming it's prefixed
+% by |C|, |D|, |O|, or |H|.
+%
+%    \begin{macrocode}
+\def\pl_int#1#2{
+   \sign \ifx#1C `#2
+   \else\ifx#1D #2
+   \else\ifx#1O '#2
+   \else\ifx#1H "#2
+   \else -1\errmessage{Unknown~PL~number~prefix~`#1'}
+   \fi\fi\fi\fi
+}
+%    \end{macrocode}
+
+
+%    \begin{macrocode}
+\pl_def_p{NEXTLARGER}(#1~#2){\advance \first_integer \pl_int{#1}{#2}}
+\pl_let{BOUNDARYCHAR}{NEXTLARGER}
+%    \end{macrocode}
+% 
+% 
+%    \begin{macrocode}
+\x_cs\let{pl-VTITLE}=\pl_string
+\pl_let{FONTNAME}{VTITLE}
+\pl_let{FONTAREA}{VTITLE}
+% \pl_let{CHECKSUM}{VTITLE} 
+% % Not really a string, but unsigned numbers can become too large for TeX.
+% \pl_let{FONTCHECKSUM}{CHECKSUM}
+% Commented out since checksums vary too much.
+\pl_def_p{FONTAT}(R~#1){\advance \first_dimen \pl_real{#1}}
+\pl_let{FONTDSIZE}{FONTAT}
+\pl_let{SELECTFONT}{NEXTLARGER}
+\pl_let{SETCHAR}{NEXTLARGER}
+\pl_def_p{SETRULE}(R~#1~R~#2){
+   \advance \first_dimen \pl_real{#1}
+   \advance \second_dimen \pl_real{#2}
+}
+\x_cs\let{pl-POP}\empty_command
+\pl_let{PUSH}{POP}
+\pl_let{MOVERIGHT}{FONTAT}
+\pl_let{MOVELEFT}{FONTAT}
+\pl_let{MOVEUP}{FONTAT}
+\pl_let{MOVEDOWN}{FONTAT}
+\pl_let{SPECIAL}{VTITLE}
+\pl_let{SPECIALHEX}{VTITLE}
+%    \end{macrocode}
+% 
+%
+
+\pl_let{CODINGSCHEME}{VTITLE}
+\pl_let{DESIGNSIZE}{FONTAT}
+
+\def\pl_parameter#1#2#3{
+   \advance \first_integer \pl_int{#1}{#2}
+   \advance \first_dimen \pl_real{#3}
+}
+
+\pl_def_p{PARAMETER}(#1~#2~R~#3){\pl_parameter{#1}{#2}{#3}}
+
+\pl_def_p{SLANT}(R~#1){\pl_parameter{D}{1}{#1}}
+\pl_def_p{SPACE}(R~#1){\pl_parameter{D}{2}{#1}}
+\pl_def_p{STRETCH}(R~#1){\pl_parameter{D}{3}{#1}}
+\pl_def_p{SHRINK}(R~#1){\pl_parameter{D}{4}{#1}}
+\pl_def_p{XHEIGHT}(R~#1){\pl_parameter{D}{5}{#1}}
+\pl_def_p{QUAD}(R~#1){\pl_parameter{D}{6}{#1}}
+\pl_def_p{EXTRASPACE}(R~#1){\pl_parameter{D}{7}{#1}}
+
+\pl_def_p{NUM1}(R~#1){\pl_parameter{D}{8}{#1}}
+\pl_def_p{NUM2}(R~#1){\pl_parameter{D}{9}{#1}}
+\pl_def_p{NUM3}(R~#1){\pl_parameter{D}{10}{#1}}
+\pl_def_p{DENOM1}(R~#1){\pl_parameter{D}{11}{#1}}
+\pl_def_p{DENOM2}(R~#1){\pl_parameter{D}{12}{#1}}
+\pl_def_p{SUP1}(R~#1){\pl_parameter{D}{13}{#1}}
+\pl_def_p{SUP2}(R~#1){\pl_parameter{D}{14}{#1}}
+\pl_def_p{SUP3}(R~#1){\pl_parameter{D}{15}{#1}}
+\pl_def_p{SUB1}(R~#1){\pl_parameter{D}{16}{#1}}
+\pl_def_p{SUB2}(R~#1){\pl_parameter{D}{17}{#1}}
+\pl_def_p{SUPDROP}(R~#1){\pl_parameter{D}{18}{#1}}
+\pl_def_p{SUBDROP}(R~#1){\pl_parameter{D}{19}{#1}}
+\pl_def_p{DELIM1}(R~#1){\pl_parameter{D}{20}{#1}}
+\pl_def_p{DELIM2}(R~#1){\pl_parameter{D}{21}{#1}}
+\pl_def_p{AXISHEIGHT}(R~#1){\pl_parameter{D}{22}{#1}}
+
+\pl_let{DEFAULTRULETHICKNESS}{NUM1}
+\pl_let{BIGOPSPACING1}{NUM2}
+\pl_let{BIGOPSPACING2}{NUM3}
+\pl_let{BIGOPSPACING3}{DENOM1}
+\pl_let{BIGOPSPACING4}{DENOM2}
+\pl_let{BIGOPSPACING5}{SUP1}
+
+\def\boundarychar_name{BOUNDARYCHAR}
+\pl_def_s{LABEL}(#1){
+   \def\a_macro{#1}
+   \ifx \a_macro\boundarychar_name
+      \x_cs\let{string-\sign}\a_macro
+   \else
+      \def\a_macro{\csname pl-LABEL(i\endcsname #1~}
+      \expandafter\a_macro
+   \fi
+}
+\pl_def_p{LABEL(i}(#1~#2){
+   \last_character=\first_integer
+   \advance \first_integer \pl_int{#1}{#2}
+}
+\pl_def_p{LIG}(#1~#2~#3~#4){
+   \advance \first_integer \pl_int{#1}{#2}
+   \advance \second_integer \pl_int{#3}{#4}
+}
+\pl_let{/LIG}{LIG}
+\pl_let{/LIG>}{LIG}
+\pl_let{LIG/}{LIG}
+\pl_let{LIG/>}{LIG}
+\pl_let{/LIG/}{LIG}
+\pl_let{/LIG/>}{LIG}
+\pl_let{/LIG/>>}{LIG}
+
+\pl_let{HEADER}{LIG}
+
+% \def\pl_lig#1~#2~#3~#4~#5~{
+%    \x_cs\def{string-\sign}{#1}
+% \def\LIG#1~{
+%    \if\ifx #1C 0
+%       \else\ifx #1D 0
+%       \else\ifx #1H 0
+%       \else\ifx #1O 0 \else 1\fi\fi\fi\fi 0
+%    % then
+%       \expandafter\both_of_two
+%    \else
+%       \expandafter\first_of_two
+%    \fi{\pl_lig LIG}{~}#1~
+% }
+% \def\/{\pl_lig/}
+
+\pl_let{KRN}{PARAMETER}
+\pl_let{SKIP}{NEXTLARGER}
+
+\pl_def_s{CHARACTER}(#1~#2){
+   \last_character=\first_integer
+   \advance \first_integer \pl_int{#1}{#2}
+}
+\pl_let{CHARWD}{FONTAT}
+\pl_def_p{CHARHT}(R~#1){
+   \def\metric_origin{ht}
+   \advance \first_dimen \pl_real{#1}
+}
+\pl_def_p{CHARDP}(R~#1){
+   \def\metric_origin{dp}
+   \advance \first_dimen \pl_real{#1}
+}
+\pl_def_p{CHARIC}(R~#1){
+   \def\metric_origin{ic}
+   \advance \first_dimen \pl_real{#1}
+}
+
+\pl_let{TOP}{NEXTLARGER}
+\pl_let{MID}{NEXTLARGER}
+\pl_let{BOT}{NEXTLARGER}
+\pl_let{REP}{NEXTLARGER}
+
+\pl_let{FONTDIMEN}{POP}
+\pl_let{LIGTABLE}{POP}
+\pl_let{VARCHAR}{POP}
+\pl_def_s{MAPFONT}(#1~#2){\advance \first_integer \pl_int{#1}{#2}}
+\pl_let{MAP}{POP}
+
+
+%    \begin{macrocode}
+\catcode`\@=\atcatcode
+\catcode`\^^M=\nlcatcode
+\catcode`\ =\spacecatcode
+\catcode`\~=\tildecatcode
+\catcode`\_=\underscorecatcode
+%    \end{macrocode}

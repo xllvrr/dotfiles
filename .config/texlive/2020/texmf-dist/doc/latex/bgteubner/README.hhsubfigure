@@ -1,0 +1,28 @@
+README
+------
+
+This directory contains version 2.1.4a of the hhsubfigure package.
+This is a slightly modified version of the `subfigure' package by
+Steven Douglas Cochran. The origianl package can be downloaded from
+<ftp://ftp.dante.de/tex-archive/macros/latex/contrib/subfigure/>.
+
+MANIFEST:
+---------
+Makefile           UNIX makefile to extract the subfigure package
+                       and related material.
+README             This file.
+subfigure.dtx      The documented subfigure package.
+subfigure.ins      The subfigure package installation file.
+
+For the original package `subfigure' refer to 
+<ftp://ftp.dante.de/tex-archive/macros/latex/contrib/subfigure/>.
+
+Since the hhsubfigure package is only intended to be used with 
+the bgteubner document class, the README file has been shortened.
+When Steven will have distributed the (announced) successor of the
+subfigure package, this package is likely to be deleted from CTAN.
+Thus, please don't use it without the bgteubner document class.
+
+Harald Harders
+h.harders@tu-bs.de
+2003-10-15

@@ -1,0 +1,77 @@
+LaTeX Class : jmlr bundle v1.27 (2020-03-26)
+
+Author      : Nicola L. C. Talbot
+              dickimaw-books.com/contact
+
+LICENCE
+
+This material is subject to the LaTeX Project Public License. 
+See http://www.ctan.org/license/lppl1.3 
+for the details of that license.
+
+Copyright 2006-2020 Nicola Talbot
+
+DESCRIPTION
+
+This bundle provides:
+
+   * jmlr class
+   * jmlrbook class
+   * jmlrutils package
+
+The jmlr class is a LaTeX class for articles for the Journal of
+Machine Learning Research (JMLR) or the Proceedings of Machine
+Learning Research (PMLR) formerly JMLR Workshop and Conference
+Proceedings (JMLR W&CP). It is designed as a replacement for both
+jmlr2e.sty and jmlrwcp2e.sty.
+
+The jmlrutils package is automatically loaded by the jmlr class, but
+may be used with other classes. (You may need to additionally load
+graphicx and algorithm2e, which jmlr.cls does automatically.)
+
+The jmlrbook class is a LaTeX class that can be used to combine
+articles written using the jmlr class into a book. The jmlrbook
+class uses the combine class and the hyperref package to produce
+either a colour hyperlinked book for on-line viewing or a greyscale
+nonhyperlinked book for printing. Production editors can use the
+makejmlrbookgui application
+(http://www.dickimaw-books.com/software/makejmlrbookgui/) to
+generate the proceedings. The makejmlrbook Perl script is deprecated
+and may be removed in future releases.
+
+INSTALLATION
+
+See INSTALL file for installation instructions.
+
+REQUIREMENTS
+
+jmlr class requirements:
+
+  jmlrutils
+  xcolor
+  amsmath
+  amssymb
+  natbib
+  graphicx
+  url
+  algorithm2e
+  etoolbox
+  calc
+  hyperref
+
+jmlrbook class requirements:
+
+  jmlr
+  combine
+  hyperref
+  xkeyval
+  combnat
+  setspace
+  fink
+
+RELATED SOFTWARE:
+
+http://www.dickimaw-books.com/software/makejmlrbookgui/
+
+Author's home page: http://www.dickimaw-books.com/
+

@@ -1,0 +1,30 @@
+\relax
+
+\metrics
+
+\unsetglyph{Upsilon}
+\setglyph{Upsilon}
+   \glyph{Upsilon1}{1000}
+\endsetglyph
+
+\setglyph{pi1}
+   \glyph{omega1}{1000}
+\endsetglyph
+
+\setglyph{epsilon1}
+   \glyph{epsilon}{1000}
+\endsetglyph
+
+\setglyph{rho1}
+   \glyph{rho}{1000}
+\endsetglyph
+
+\setglyph{dotlessj}
+   \moveup{\neg{\depth{j}}}
+   \glyphrule{\width{j}}{\add{\depth{j}}{\height{dotlessi}}}
+   \resetitalic{\italic{dotlessi}}
+   \moveup{\depth{j}}
+   \glyphwarning{missing glyph `dotlessj'}
+\endsetglyph
+
+\endmetrics

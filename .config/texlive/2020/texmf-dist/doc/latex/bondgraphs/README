@@ -1,0 +1,4 @@
+The bondgraphs package allows for easy and neat bondgraph drawing in LaTeX. Its core is a set of TikZ style definitions. It uses some of the last TikZ features, so a recent version of pgf is required (>=3.0). This version is shipped in most 2014 LaTeX version; you can check your version by typesetting a document that contains \pgfversion.
+This ma­te­rial is sub­ject to the LATEX Project Public Li­cense.
+
+The documentation and sty can be generated manually, by running tex on bondgraphs.ins and (pdf)latex on bondgraphs.dtx, or making use of the supplied Makefile.

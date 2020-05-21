@@ -1,6 +1,6 @@
 # path
 typeset -U PATH path
-path=("$HOME/.local/bin" "$HOME/repos/scripts" "$HOME/repos/scripts/polybar" "/usr/local/texlive/2019/bin/x86_64-linux" "$path[@]")
+path=("$HOME/.local/bin" "$HOME/repos/scripts" "$HOME/repos/scripts/polybar" "$HOME/.config/texlive/2020/bin/x86_64-linux" "$path[@]" "$HOME/.local/bin")
 export PATH
 export MANPATH="/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH"
 export INFOPATH="/usr/local/texlive/2019/texmf-dist/doc/info"
@@ -12,9 +12,10 @@ export EDITOR='nvim'
 export LANG=en_US.UTF-8
 export PAGER='less'
 export READER='zathura'
-export VISUAL='sxiv'
+export VISUAL='nvim'
 export TERMINAL='alacritty'
 export BROWSER='firefox'
+export TEXMFDIST='$HOME/.config/texlive/2020/texmf-dist'
 export R_BROWSER=BROWSER
 
 # man page colors
@@ -29,10 +30,13 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 # exa settings
 # export EXA_COLORS=""
 
+# nnn settings
+
+
 # lf icons
 export LF_ICONS="\
-di=:\
-fi=:\
+di=:\
+fi=:\
 ln=:\
 or=:\
 ex=:\

@@ -1,0 +1,7 @@
+\TrackLangProvidesResource{italian}[2016/10/06 v1.2]
+
+\providecommand*{\italiannames}{%
+  \renewcommand*{\unitname}{unit\`a di misura}%
+}
+
+\italiannames

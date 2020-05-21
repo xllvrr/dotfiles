@@ -1,0 +1,346 @@
+\psset{unit=.5cm}
+\psset{fillcolor=yellow,fillstyle=solid}
+\SbSSCT{Les axes en 3 D}{3 D axis}
+\label{3dplot}
+%\subsubsection{pstThreeDCoor}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+ \multicolumn{2}{|c|}{ \BSS{pstThreeDCoor}  \BSI{pstThreeDCoor}{pst-3dplot} } \\ \hline
+  
+
+\begin{pspicture}(-3,-2.5)(3,4.25)
+\pstThreeDCoor[drawing=true]
+\end{pspicture}
+&  
+\begin{pspicture}(-3,-2.5)(3,4.25)
+\pstThreeDCoor[drawing=false]
+\end{pspicture}
+\\ 
+\hline  \RDD{drawing}=true (\dft)  \RDI{drawing}{pst-3dplot} &  \RDD{drawing}=false\\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+
+
+\bigskip
+
+\begin{tabular}{|c|c|c|}
+\hline
+ \multicolumn{3}{|c|}{ \BS{pstThreeDCoor}[\RDD{xMax}=2,\RDD{yMax}=2,\RDD{zMax}=2] } \\ \hline
+\begin{pspicture}(-3,-2.5)(3,4.5)
+\pstThreeDCoor[xMax=2,yMax=2,zMax=2]
+\end{pspicture}
+&  
+\begin{pspicture}(-3,-2.5)(3,4.5)
+\pstThreeDCoor[xMin=-2,yMin=-2,zMin=-2]
+\end{pspicture}
+&  
+\begin{pspicture}(-3,-2.5)(3,4.5)
+\pstThreeDCoor[nameX=A,nameY=B,nameZ=C]
+\end{pspicture}
+
+\\ 
+\hline  \RDD{xMax}=2,\RDD{yMax}=2,\RDD{zMax}=2 &  \RDD{xMin}=-2,\RDD{yMin}=-2,\RDD{zMin}=-2 & \RDD{nameX}=A,\RDD{nameY}=B,\RDD{nameZ}=C  
+\\
+\RDI{xMax}{pst-3dplot} \RDI{yMax}{pst-3dplot} \RDI{zMax}{pst-3dplot} 
+&
+\RDI{xMin}{pst-3dplot} \RDI{yMin}{pst-3dplot} \RDI{zMin}{pst-3dplot}
+&
+\RDI{nameX}{pst-3dplot} \RDI{nameY}{pst-3dplot} \RDI{nameZ}{pst-3dplot}
+\\ \hline 
+{\blue \dft : xMax=yMax=zMax=4} & {\blue  \dft : xMin=yMin=zMin=-1}& \\ \hline 
+\end{tabular} 
+
+\subsubsection{Option spotX}
+\begin{center}
+\psframebox[fillstyle=none]{\BS{pstThreeDCoor}[\RDD{spotX}=60,\RDD{spotY}=60,\RDD{spotZ}=60] \RDI{nspotX}{pst-3dplot} \RDI{nspotY}{pst-3dplot} \RDI{nspotZ}{pst-3dplot}}
+
+
+\begin{animateinline}[controls,autoplay,loop]{2}%
+\multiframe{20}{iAngle=60+10}{
+\begin{pspicture}(-4,-4.5)(4,4.25)
+\psframe(-4,-4.5)(4,4.25)
+\pstThreeDCoor[linecolor=blue,linestyle=dotted]
+\pstThreeDCoor[spotX=\iAngle,spotY=\iAngle,spotZ=\iAngle]
+\rput(-.5,-4){ spotX : } \rput(1,-4){ \iAngle}
+\end{pspicture}}
+\end{animateinline} 
+\end{center}
+
+
+\newpage
+%-----------------------------------------------------------------------------------
+\SbSbSSCT{Orientation des axes }{Axis orientation}
+\begin{center}
+\psframebox[fillstyle=none]{\BS{pstThreeDCoor}[linecolor=blue,linestyle=dotted] }
+\end{center}
+
+
+\begin{minipage}{7cm}
+
+\begin{center}
+\psframebox[fillstyle=none]{\BS{pstThreeDCoor}[\RDD{Alpha}=30] \RDI{Alpha}{pst-3dplot}}
+\begin{animateinline}[controls,autoplay,loop,,palindrome]{2}%
+\multiframe{20}{iAngle=60+10}{
+\begin{pspicture}(-4,-4.5)(4,4.25)
+\psframe(-4,-4.5)(4,4.25)
+\pstThreeDCoor[linecolor=blue,linestyle=dotted]
+\pstThreeDCoor[Alpha=\iAngle]
+\rput(-.8,-4){ Alpha : } \rput(1,-4){ \iAngle}
+\end{pspicture}}
+\end{animateinline}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}{7cm}
+\begin{center}
+\psframebox[fillstyle=none]{\BS{pstThreeDCoor}[\RDD{Beta}=30] \RDI{Beta}{pst-3dplot} }
+\begin{animateinline}[controls,autoplay,loop,palindrome]{2}%
+\multiframe{20}{iAngle=60+10}{
+\begin{pspicture}(-4,-4.5)(4,4.25)
+\psframe(-4,-4.5)(4,4.25)
+\pstThreeDCoor[linecolor=blue,linestyle=dotted]
+\pstThreeDCoor[Beta=\iAngle]
+\rput(-.5,-4){ Beta : } \rput(1,-4){ \iAngle}
+\end{pspicture}}
+\end{animateinline}
+\end{center}
+\end{minipage}
+
+\bigskip
+
+\begin{tabular}{|c|c|c|}
+\hline
+ \multicolumn{3}{|c|}{ \BS{pstThreeDCoor}[linestyle=dotted,linecolor=blue] \BS{pstThreeDCoor}[\RDD{RotX}=30] \RDI{RotX}{pst-3dplot}} \\ \hline
+\begin{pspicture}(-4,-2.5)(4,5.25)
+\pstThreeDCoor[linestyle=dotted,linecolor=blue]
+\pstThreeDCoor[RotX=30]
+\end{pspicture}
+&  
+\begin{pspicture}(-4,-2.5)(4,5.25)
+\pstThreeDCoor[linestyle=dotted,linecolor=blue]
+\pstThreeDCoor[RotY=-30]
+\end{pspicture}
+&  
+\begin{pspicture}(-4,-2.5)(4,5.25)
+\pstThreeDCoor[linestyle=dotted,linecolor=blue]
+\pstThreeDCoor[RotZ=30]
+\end{pspicture}
+
+\\ 
+\hline  \RDD{RotX}=30 &  \RDD{RotY}=-30 \RDI{RotY}{pst-3dplot} & \RDD{RotZ}=30 \RDI{RotZ}{pst-3dplot} \\ \hline 
+{\blue \dft : RotX=0} & {\blue \dft : RotY=0} & {\blue \dft : RotZ=0} \\ \hline 
+\end{tabular} 
+ 
+ \bigskip
+%\subsubsection{RotAngle xRotVec}
+\psframebox[fillstyle=none]{\parbox[l]{12cm}{
+\BS{pstThreeDCoor}[\RDD{RotSequence}=quaternion,\RDD{RotAngle}=10, \RDI{RotSequence}{pst-3dplot} \RDI{RotAngle}{pst-3dplot} \\ \RDD{xRotVec}=3,\RDD{yRotVec}=0,\RDD{zRotVec}=3, \RDI{xRotVec}{pst-3dplot}  \RDI{yRotVec}{pst-3dplot} \RDI{zRotVec}{pst-3dplot}  \\
+ xMin=0,xMax=3, yMin=0,yMax=3, zMin=0,zMax=3]\\
+\\
+\BS{pstThreeDLine}[linecolor=blue, linewidth=2pt, arrows=->](0,0,0)(3,0,3)}}
+
+\begin{center}
+\begin{animateinline}[controls,autoplay,loop]{2}%
+\multiframe{10}{iA=0+10}{
+\begin{pspicture}(-3,-3)(3,3.5)
+\psframe(-3,-3)(3,3.5)
+\pstThreeDCoor[linecolor=red, RotSequence=quaternion, RotAngle=\iA, xRotVec=3,yRotVec=0,zRotVec=3,
+ xMin=0,xMax=3, yMin=0,yMax=3, zMin=0,zMax=3]
+\pstThreeDLine[linecolor=blue, linewidth=2pt, arrows=->](0,0,0)(3,0,3)
+\uput[0](-2.28,-2.5){RotAngle : \iA}
+\end{pspicture}}
+\end{animateinline}
+\end{center}
+%--------------------------------------------------------------------------
+\subsubsection{Option Ticks}
+
+\begin{tabular}{|c|c|c|}
+\hline
+ \multicolumn{3}{|c|}{ \BS{pstThreeDCoor}[\RDD{IIIDticks},\RDD{IIIDticksize}=.5pt] \RDI{IIIDticks}{pst-3dplot}  \RDI{IIIDticksize}{pst-3dplot}  \RDI{IIIDticks}{pst-3dplot} } \\ \hline
+\begin{pspicture}(-4,-2.5)(4,4.25)
+
+\pstThreeDCoor[IIIDticks,IIIDticksize=.5pt]
+\end{pspicture}
+&  
+\begin{pspicture}(-4,-2.5)(4,4.25)
+\pstThreeDCoor[IIIDticks,IIIDlabels]
+\end{pspicture}
+&  
+\begin{pspicture}(-4,-2.5)(4,4.25)
+\pstThreeDCoor[IIIDticks,IIIDlabels,Dx=.5,Dy=.5,Dz=.5]
+\end{pspicture}
+\\ 
+\hline  \RDD{IIIDticks},\RDD{IIIDticksize}= .5pt 
+\RDI{IIIDticks}{pst-3dplot} \RDI{IIIDticksize}{pst-3dplot} 
+&  
+\RDD{IIIDticks},\RDD{IIIDlabels} 
+ \RDI{IIIDlabels}{pst-3dplot}
+& 
+\RDD{Dx}=.5,\RDD{Dy}=.5,\RDD{Dz}=.5 
+ \RDI{Dx}{pst-3dplot} \RDI{Dy}{pst-3dplot} \RDI{Dz}{pst-3dplot}
+\\ \hline
+{\blue \dft : IIIDticksize=0.1} & {\blue  \dft : IIIDlabels=false}  & {\blue  \dft : Dx=Dy=Dz=1} \\ \hline 
+\end{tabular} 
+
+
+\bigskip
+
+\begin{tabular}{|c|} \hline  
+ \BS{pstThreeDCoor}[IIIDticks,IIIDlabels, yMin=-3,\RDD{IIIDOffset}=\AC{(1,-2,1)}]
+  \RDI{IIIDOffset}{pst-3dplot}
+\\ \hline  
+ \begin{pspicture}(-4,-1.25)(1,4)
+ \pstThreeDCoor[IIIDticks,IIIDlabels, yMin=-3,IIIDOffset={(1,-2,1)}]
+ \end{pspicture}
+\\ \hline 
+\end{tabular} 
+
+
+\subsubsection{Option pstThreeDPlaneGrid}
+ 
+ \begin{tabular}{|c|c|c|} \hline 
+  \multicolumn{3}{|c|}{  \BSS{pstThreeDPlaneGrid}[planeGrid=xz](0,0)(3,3) \BSI{pstThreeDPlaneGrid}{pst-3dplot} } \\ \hline
+  \begin{pspicture}(-4,-3.5)(5,5)
+  \pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+  \pstThreeDPlaneGrid[linecolor=blue](0,0)(3,3)
+  \end{pspicture}
+ &
+  \begin{pspicture}(-4,-3.5)(5,5)
+  \pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+  \pstThreeDPlaneGrid[linecolor=blue,planeGrid=xz](0,0)(3,3)
+  \end{pspicture}
+ &
+  \begin{pspicture}(-4,-3.5)(5,5)
+  \pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+ \pstThreeDPlaneGrid[linecolor=blue,planeGrid=yz](0,0)(3,3)
+  \end{pspicture}
+  \\ \hline 
+ \dft ( \RDD{planeGrid}=xy )  \RDI{planeGrid}{pst-3dplot} 
+ & \RDD{planeGrid}=xz  & \RDD{planeGrid}=yz \\ \hline 
+  
+ \end{tabular} 
+ \bigskip
+  
+  \begin{tabular}{|c|c|c|} \hline  
+  \multicolumn{2}{|c|}{  BS{pstThreeDPlaneGrid}[planeGrid=xz, \RDD{planeGridOffset}=-1](0,0)(3,3) \RDI{planeGridOffset}{pst-3dplot}} \\ \hline
+  \begin{pspicture}(-4,-3.5)(5,5)
+  \pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+  \pstThreeDPlaneGrid[linecolor=blue,planeGrid=xz,planeGridOffset=-1](0,0)(3,3)
+  \end{pspicture} 
+ &  
+  \begin{pspicture}(-4,-3.5)(5,5)
+  \pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+ \pstThreeDPlaneGrid[linecolor=blue,planeGrid=xz,planeGridOffset=1](0,0)(3,3)
+  \end{pspicture}
+ \\ \hline 
+ \RDD{planeGridOffset}=-1 & \RDD{planeGridOffset}=1 
+ \\  \hline 
+ \end{tabular} 
+ 
+ \bigskip
+ \begin{tabular}{|c|c|c|} \hline  
+ \multicolumn{3}{|c|}{  \BS{pstThreeDPlaneGrid}[planeGrid=xy,\RDD{subticks}=2](0,0)(3,3) } \\ \hline
+ \begin{pspicture}(-4,-3.5)(5,5)
+ \pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+ \pstThreeDPlaneGrid[linecolor=blue,planeGrid=xy,subticks=2](0,0)(3,3)
+ \end{pspicture} 
+ &  
+ \begin{pspicture}(-4,-3.5)(5,5)
+ \pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+ \pstThreeDPlaneGrid[linecolor=blue,planeGrid=xz,subticks=5](0,0)(3,3)
+  \end{pspicture}
+ &  
+ \begin{pspicture}(-4,-3.5)(5,5)
+ \pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+ \pstThreeDPlaneGrid[linecolor=blue,planeGrid=yz,subticks=20](0,0)(3,3)
+  \end{pspicture}
+ \\ \hline 
+ planeGrid=xy &  planeGrid=xz & planeGrid=yz \\
+ subticks=2 & subticks=5 & subticks=20 \\ 
+ \hline 
+ \end{tabular} 
+  \bigskip
+  
+ \begin{tabular}{|c|c|c|} \hline  
+ \multicolumn{3}{|c|}{  \BS{pstThreeDPlaneGrid}[planeGrid=xy,\RDD{xsubticks}=5](0,0)(3,3) } \\ \hline
+ \begin{pspicture}(-4,-3.5)(5,5)
+ \pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+ \pstThreeDPlaneGrid[linecolor=blue,planeGrid=xy,xsubticks=5](0,0)(3,3)
+ \end{pspicture} 
+ &  
+ \begin{pspicture}(-4,-3.5)(5,5)
+ \pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+ \pstThreeDPlaneGrid[linecolor=blue,planeGrid=xz,xsubticks=5](0,0)(3,3)
+  \end{pspicture}
+ &  
+ \begin{pspicture}(-4,-3.5)(5,5)
+ \pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+ \pstThreeDPlaneGrid[linecolor=blue,planeGrid=yz,xsubticks=5](0,0)(3,3)
+  \end{pspicture}
+ \\ \hline 
+ planeGrid=xy &  planeGrid=xz & planeGrid=yz \\
+\RDD{xsubticks}=5 & \RDD{xsubticks}=5 & \RDD{xsubticks}=5 \\ 
+ \hline 
+ \end{tabular} 
+ \bigskip
+
+\begin{tabular}{|c|c|c|} \hline  
+\multicolumn{3}{|c|}{  \BS{pstThreeDPlaneGrid}[planeGrid=xy,\RDD{ysubticks}=2](0,0)(3,3) } \\ \hline
+\begin{pspicture}(-4,-3.5)(5,5)
+\pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+\pstThreeDPlaneGrid[linecolor=blue,planeGrid=xy,ysubticks=5](0,0)(3,3)
+\end{pspicture} 
+&  
+\begin{pspicture}(-4,-3.5)(5,5)
+\pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+\pstThreeDPlaneGrid[linecolor=blue,planeGrid=xz,ysubticks=5](0,0)(3,3)
+ \end{pspicture}
+&  
+\begin{pspicture}(-4,-3.5)(5,5)
+\pstThreeDCoor %[xMin=0,yMin=0,zMin=0,linewidth=2pt]
+\pstThreeDPlaneGrid[linecolor=blue,planeGrid=yz,ysubticks=5](0,0)(3,3)
+\end{pspicture}
+\\ \hline 
+planeGrid=xy &  planeGrid=xz & planeGrid=yz \\
+\RDD{ysubticks}=5 & \RDD{ysubticks}=5 & \RDD{ysubticks}=5 \\ 
+\hline 
+\end{tabular} 
+
+
+%------------------------------------------------------------------
+ 
+ \subsubsection{Option coorType}
+ \begin{tabular}{|c|c|c|c|c|}
+ \hline
+  \multicolumn{3}{|c|}{ \BS{pstThreeDCoor}[\RDD{coorType}=0] } \\ \hline
+  \begin{pspicture}(-4,-2.5)(5,5)
+  \pstThreeDCoor[coorType=0]
+  \end{pspicture}
+  & 
+  \begin{pspicture}(-4,-3)(5,5)
+ \pstThreeDCoor[coorType=1]
+ \end{pspicture}
+ &  
+  \begin{pspicture}(-4,-2.5)(5,5)
+ \pstThreeDCoor[coorType=2]
+ \end{pspicture}
+ \\  \hline 
+  \RDD{coorType}=0 &  \RDD{coorType}=1 &  \RDD{coorType}=2 \\ \hline
+ \begin{pspicture}(-4,-2.5)(5,5)
+ \pstThreeDCoor[coorType=3]
+ \end{pspicture}
+ &  
+  \begin{pspicture}(-4,-2.5)(5,5)
+ \pstThreeDCoor[coorType=4]
+ \end{pspicture}
+ &
+ 
+ \\  \hline 
+ \RDD{coorType}=3 & \RDD{coorType}=4  & \\ \hline 
+ \end{tabular} 
+ 
+ 
+ 

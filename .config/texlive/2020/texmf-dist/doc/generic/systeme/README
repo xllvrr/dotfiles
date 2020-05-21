@@ -1,0 +1,27 @@
+                             L'extension
+                              systeme
+
+                                v0.34
+
+                             5 mai 2020
+
+Author    : Christian Tellechea
+Email     : unbonpetit@netc.fr     (CT)
+            Commentaires, signalements de bugs et
+            suggestions bienvenus
+Licence   : Released under the LaTeX Project Public License v1.3c or
+            later, see http://www.latex-project.org/lppl.txt
+
+----------------------------------------------------------------------
+                             R\'esum\'é
+
+Cette extension permet d'entrer un syst\`eme d'\'equations ou
+d'in\'egalit\'es lin\'éaires sous forme intuitive et d'obtenir un
+rendu o\`u les termes et les signes sont align\'es verticalement
+
+----------------------------------------------------------------------
+                             Abstract
+
+This package allows you to enter systems of linear equations or
+inequalities in a intuitive way, and produces output where the terms
+and signs are aligned vertically.

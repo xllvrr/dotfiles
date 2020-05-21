@@ -1,0 +1,1881 @@
+\label{func}
+
+%\subsection{Courbe de Bezier}
+\SbSSCT{Courbe de Bezier}{Bezier curve}
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+ \psBezier1[showpoints=true]{<->}(-2,-1)(0,2)
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+ \psBezier2[showpoints=true]{<->}(-2,-1)(0,2)(2,1)
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+ \psBezier3[showpoints=true]{<->}(-2,-1)(0,2)(2,1)(1,-1)
+\end{psgraph*}
+\\ \hline 
+ \BSS{psBezier1} &   \BSS{psBezier2} & \BSS{psBezier3}  
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+ \psBezier4[showpoints=true]{<->}(-2,-1)(0,2)(2,1)(2,-1)(0,-2)
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+ \psBezier5[showpoints=true]{<->}(-2,-1)(0,2)(2,1)(2,-1)(0,-2)(-1,-1)
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+ \psBezier6[showpoints=true]{<->}(-2,-1)(0,2)(2,1)(2,-1)(0,-2)(-1,-1)(-2,1)
+\end{psgraph*}
+\\ \hline
+ \BSS{psBezier4} &   \BSS{psBezier5} & \BSS{psBezier6} 
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+ \psBezier7[showpoints=true]{<->}(-2,-1)(0,2)(2,1)(2,-1)(0,-2)(-1,-1)(-2,1)(-1,2)
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+ \psBezier8[showpoints=true]{<->}(-2,-1)(0,2)(2,1)(2,-1)(0,-2)(-1,-1)(-2,1)(-1,2)(1,1)
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+ \psBezier9[showpoints=true]{<->}(-2,-1)(0,2)(2,1)(2,-1)(0,-2)(-1,-1)(-2,1)(-1,2)(1,1)(1,0)
+\end{psgraph*}
+\\ \hline
+ \BSS{psBezier7} &   \BSS{psBezier8} & \BSS{psBezier9} 
+ \\ \hline  
+\end{tabular} 
+
+\newpage
+%============================
+%\subsection{Polynôme de Chebyshev }
+\SbSSCT{Polynôme de Chebyshev }{Chebyshev polynomial}
+
+\subsubsection{Polynôme de première espèce}
+
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{3}{|c|}{ \BS{psplot}\AC{-1}\AC{1}\AC{1 x \BSS{ChebyshevT} }  \BSI{ChebyshevT}{pst-func} } 
+\\ \hline   
+\begin{psgraph*}[axesstyle=none,xticksize= -1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0 ](0,0)(-1.5,-1.5)(1.5,1.5){3.5cm}{3.5cm}  
+ \psplot{-1}{1}{1 x \ChebyshevT}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0](0,0)(-1.5,-1.5)(1.5,1.5){3.5cm}{3.5cm} 
+ \psplot{-1}{1}{3 x \ChebyshevT}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0](0,0)(-1.5,-1.5)(1.5,1.5){3.5cm}{3.5cm}   
+ \psplot{-1}{1}{6 x \ChebyshevT}
+\end{psgraph*}
+\\ \hline  
+1 x \BSS{ChebyshevT} & 3 x \BSS{ChebyshevT} & 6 x \BSS{ChebyshevT} \\ 
+\hline 
+\end{tabular} 
+
+\subsubsection{Polynôme de deuxième espèce }
+
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{3}{|c|}{ \BS{psplot}\AC{-1}\AC{1}\AC{1 x \BSS{ChebyshevU} }  \BSI{ChebyshevU}{pst-func} } 
+\\ \hline   
+\begin{psgraph*}[axesstyle=none,xticksize= -1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0 ](0,0)(-1.5,-1.5)(1.5,1.5){3.5cm}{3.5cm} 
+ \psplot{-1}{1}{1 x \ChebyshevU}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0](0,0)(-1.5,-1.5)(1.5,1.5){3.5cm}{3.5cm} 
+ \psplot{-1}{1}{3 x \ChebyshevU}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -1.5 1.5 ,yticksize=-1.5 1.5 , subticks=0](0,0)(-1.5,-1.5)(1.5,1.5){3.5cm}{3.5cm}  
+ \psplot{-1}{1}{6 x \ChebyshevU}
+\end{psgraph*}
+\\ \hline  
+1 x \BSS{ChebyshevU} & 3 x \BSS{ChebyshevU} & 6 x \BSS{ChebyshevU} \\ 
+\hline 
+\end{tabular}
+
+%ù+++++++++++++
+
+\newpage
+
+%\subsection{Fonction polynomiale}
+\SbSSCT{Fonction polynomiale}{Function plynomial}
+
+\begin{tabular}{|c|c|c|c|}	\hline 
+\multicolumn{4}{|c|}{ \BSS{psPolynomial}[coeff= 1 ]\AC{-2}\AC{2} \BSI{psPolynomial}{pst-func} }
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+  \psPolynomial[coeff= 1 ]{-2}{2}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+  \psPolynomial[coeff= 0 1 ]{-2}{4}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+  \psPolynomial[coeff=0 0 1 ]{-2}{4}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){2.5cm}{2.5cm } 
+  \psPolynomial[coeff=0 0 0 1 ]{-2}{4}
+\end{psgraph*}
+\\ 	\hline  
+\RDD{coeff}= 1 & \RDD{coeff}=0  1 & \RDD{coeff}=0  1 & \RDD{coeff}=0 0 01
+ \RDI{coeff}{pst-func} \\
+$f(x)=1$ & $f(x)=x$ & $f(x)=x^2$ & $f(x)=x^3 $
+\\ 	\hline 
+\end{tabular}
+
+
+ 
+ \bigskip
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 4, subticks=0](0,0)(-2,-2)(4,2){4cm}{3cm } 
+  \psPolynomial[coeff=0 0 0 1 ]{-2}{4}
+  \psPolynomial[coeff=0 0 0 1 ,linecolor=red,xShift=2 ]{-2}{4}
+\end{psgraph*}
+\\ \hline  
+\BS{psPolynomial}[coeff=0 0 0 1 ,linecolor=red,\RDD{xShift}=2 ]\AC{-2}\AC{4}
+\\ \hline 
+\end{tabular}  
+
+ \bigskip
+
+
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{ \BSS{psPolynomial}[coeff=0 0 0 0 0 1 ,linecolor=red,\RDD{Derivation}=1 ]\AC{-2}\AC{2}  \RDI{Derivation}{pst-func} } \\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){3.5cm}{3.5cm} 
+  \psPolynomial[coeff=0 0 0 0 0 1 ]{-2}{4}
+  \psPolynomial[coeff=0 0 0 0 0 1 ,linecolor=red,Derivation=1 ]{-2}{4}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){3.5cm}{3.5cm} 
+  \psPolynomial[coeff=0 0 0 0 0 1 ]{-2}{4}
+  \psPolynomial[coeff=0 0 0 0 0 1 ,linecolor=red,Derivation= 2 ]{-2}{4}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-2)(2,2){3.5cm}{3.5cm} 
+  \psPolynomial[coeff=0 0 0 0 0 1 ]{-2}{4}
+  \psPolynomial[coeff=0 0 0 0 0 1 ,linecolor=red,Derivation= 3 ]{-2}{4}
+\end{psgraph*}
+\\ \hline 
+\RDD{Derivation}= 1 & \RDD{Derivation}= 2 & \RDD{Derivation}= 3
+\\ \hline 
+\end{tabular}  
+
+
+
+\bigskip
+\begin{tabular}{|c|} \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-3 3, subticks=0](0,0)(-3,-2)(3,2){6cm}{4cm } 
+ \psPolynomial[markZeros,dotscale=3,coeff=1 1 -1 -.5 0.15]{-3}{3}%
+\end{psgraph*}
+\\ \hline
+ \BS{psPolynomial}[\RDD{markZeros},dotscale=3,coeff=1 1 -1 -.5 0.15]\AC{-3}\AC{3}%
+\\ \hline 
+\end{tabular}
+
+%----------------------
+
+\bigskip
+\begin{tabular}{|c|} \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -3 2 ,yticksize=-3 3, subticks=0](0,0)(-3,-3)(3,2){8cm}{5cm } 
+ \psPolynomial[markZeros,dotscale=2,zeroLineTo=1,coeff=1 1 -1 -.5 0.15]{-3}{3}%
+ \psPolynomial[linestyle=dotted,Derivation=1,coeff=1 1 -1 -.5 0.15]{-3}{3}% 
+\end{psgraph*}
+\\ \hline
+ \BS{psPolynomial}[markZeros,\RDD{zeroLineTo}=1,coeff=1 1 -1 -.5 0.15]\AC{-3}\AC{3} \\
+  \BS{psPolynomial}[linestyle=dotted,Derivation=1,coeff=1 1 -1 -.5 0.15]\AC{-3}\AC{3}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|} \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=-2 2, subticks=0](0,0)(-2,-1)(2,2){8cm}{4cm } 
+ \psPolynomial[coeff=1 1 -1 -.5 0.15]{-3}{3}%
+ \psPolynomial[markZeros,linestyle=dotted,Derivation=1,zeroLineTo=0,zeroLineTo=0,zeroLineStyle=solid,zeroLineColor=red,zeroLineWidth=3pt,coeff=1 1 -1 -.5 0.15]{-3}{3}% 
+\end{psgraph*}
+\\ \hline
+ \BS{psPolynomial}[coeff=1 1 -1 -.5 0.15]\AC{-3}\AC{3} \\
+  \BS{psPolynomial}[markZeros,linestyle=dotted,Derivation=1,zeroLineTo=0,\\
+ \RDD{zeroLineStyle}=solid,\RDD{zeroLineColor}=red,\RDD{zeroLineWidth}=3pt,\\
+ coeff=1 1 -1 -.5 0.15]\AC{-3}\AC{3}
+\\ \hline 
+\end{tabular}
+
+
+\bigskip
+\begin{tabular}{|c|} \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=-3 3, subticks=0](0,0)(-2,-1)(1,2){8cm}{4cm } 
+ \psPolynomial[coeff=1 1 -1 -.5 0.15]{-2}{1}%
+ \psPolynomial[markZeros,linestyle=dotted,Derivation=2,zeroLineTo=0,zeroLineStyle=solid,zeroLineColor=red,zeroLineWidth=3pt,coeff=1 1 -1 -.5 0.15]{-2}{1}% 
+\end{psgraph*}
+\\ \hline
+ \BS{psPolynomial}[coeff=1 1 -1 -.5 0.15]\AC{-3}\AC{3} \\
+  \BS{psPolynomial}[markZeros,linestyle=dotted,Derivation=2,zeroLineTo=0,\\
+\hspace{1cm} \RDD{zeroLineStyle}=solid,\RDD{zeroLineColor}=red,\RDD{zeroLineWidth}=3pt,\\
+ coeff=1 1 -1 -.5 0.15]\AC{-3}\AC{3}
+\\ \hline 
+\end{tabular}
+
+\newpage
+
+% \subsection{Polynôme de Bernstein}
+ \SbSSCT{Polynôme de Bernstein}{Bernstein polynomial}
+ 
+ 
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -.5 1.5 ,yticksize=-.5 1.5,xticksize= -.5  1.5 , dx=.5,Dx=.5, dy=.5,Dy=.5 , subticks=0] (0,0)(-.5,-.5)(1.5,1.5){3.5cm}{3.5cm }  
+\psBernstein(0,0)
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -.5 1.5 ,yticksize=-.5 1.5,xticksize= -.5  1.5 , dx=.5,Dx=.5, dy=.5,Dy=.5 , subticks=0] (0,0)(-.5,-.5)(1.5,1.5){3.5cm}{3.5cm }    
+\psBernstein(0,1)
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -.5 1.5 ,yticksize=-.5 1.5,xticksize= -.5  1.5 , dx=.5,Dx=.5, dy=.5,Dy=.5 , subticks=0] (0,0)(-.5,-.5)(1.5,1.5){3.5cm}{3.5cm }   
+\psBernstein(1,1)
+\end{psgraph*}
+\\ \hline  
+\BSS{psBernstein}(0,0) \BSI{psBernstein}{pst-func} & \BSS{psBernstein}(0,1) & \BSS{psBernstein}(1,1)
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -.5 1.5 ,yticksize=-.5 1.5,xticksize= -.5  1.5 , dx=.5,Dx=.5, dy=.5,Dy=.5 , subticks=0] (0,0)(-.5,-.5)(1.5,1.5){3.5cm}{3.5cm }    
+\psBernstein(0,2)
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -.5 1.5 ,yticksize=-.5 1.5,xticksize= -.5  1.5 , dx=.5,Dx=.5, dy=.5,Dy=.5 , subticks=0] (0,0)(-.5,-.5)(1.5,1.5){3.5cm}{3.5cm }   
+\psBernstein(1,2)
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -.5 1.5 ,yticksize=-.5 1.5,xticksize= -.5  1.5 , dx=.5,Dx=.5, dy=.5,Dy=.5 , subticks=0] (0,0)(-.5,-.5)(1.5,1.5){3.5cm}{3.5cm }    
+\psBernstein(2,2)
+\end{psgraph*}  
+\\ \hline
+\BSS{psBernstein}(0,2) & \BSS{psBernstein}(1,2) & \BSS{psBernstein}(2,2)
+\\ \hline   
+\begin{psgraph*}[axesstyle=none,xticksize= -.5 1.5 ,yticksize=-.5 1.5,xticksize= -.5  1.5 , dx=.5,Dx=.5, dy=.5,Dy=.5 , subticks=0] (0,0)(-.5,-.5)(1.5,1.5){3.5cm}{3.5cm } 
+\psBernstein(0,3) 
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -.5 1.5 ,yticksize=-.5 1.5,xticksize= -.5  1.5 , dx=.5,Dx=.5, dy=.5,Dy=.5 , subticks=0] (0,0)(-.5,-.5)(1.5,1.5){3.5cm}{3.5cm }     
+\psBernstein(1,3)
+\psBernstein[linestyle=dotted](2,3)
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -.5 1.5 ,yticksize=-.5 1.5,xticksize= -.5  1.5 , dx=.5,Dx=.5, dy=.5,Dy=.5 , subticks=0] (0,0)(-.5,-.5)(1.5,1.5){3.5cm}{3.5cm }   
+\psBernstein(3,3)
+\end{psgraph*} 
+\\ \hline 
+\BSS{psBernstein}(0,3) & \BSS{psBernstein}(1,3) & \BSS{psBernstein}(3,3)\\
+& \BSS{psBernstein}(2,3) & 
+\\ \hline
+\end{tabular}
+
+\bigskip 
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 1 , dx=.2,Dx=.2, dy=.2,Dy=.2 , subticks=0](0,0)(0,0)(1,1){12cm}{4cm }
+\psBernstein[linestyle=dotted](5,5)
+\psBernstein[linestyle=dotted](4,5)
+\psBernstein[linestyle=dotted](3,5)
+\psBernstein[linestyle=dotted](2,5)
+\psBernstein[linestyle=dotted](1,5)  
+\psBernstein[linestyle=dotted](0,5) 
+\psBernstein[envelope](0.1,5)
+\end{psgraph*}
+\\ \hline 
+\BS{psBernstein}[\RDD{envelope}](0,5) \RDI{envelope}{pst-func}  
+\\ \hline
+\end{tabular} 
+
+\newpage
+
+%\subseZeroction{Zéros d'une fonction ou  point d'intersection de deux
+fonction}
+ \SbSSCT{Zéros d'une fonction ou  point d'intersection de deux
+ fonction}{Zeros or intersections}
+ 
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 10](0,0)(0,-1)(10,2){10cm}{3cm} 
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic](0.5,5){cos(x)+.5}{A}
+% \psComment{->}(3,1)(N1){noeud N1}
+\rput[B](3,1.5){ \ovalnode{B}{n\oe ud A}}
+\ncline{->}{B}{A}
+\end{psgraph*}
+\\ \hline  
+ \BSS{psZero}[algebraic](0.5,5)\AC{cos(x)+.5}\AC{A}
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 10](0,0)(0,-1)(10,2){10cm}{3cm} 
+ \psplot[plotpoints=500,algebraic,linestyle=dotted]{0.001}{9.75}{sin(x)}
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5} 
+ \psZero[algebraic](3,5){cos(x)+.5}[sin(x)]{N1}
+% \psComment{->}(3,1)(N1){noeud N1}
+\rput[B](3,1.5){ \ovalnode{B}{n\oe ud N1}}
+\ncline{->}{B}{N1}
+\end{psgraph*}
+\\ \hline  
+ \BSS{psZero}[algebraic](0.5,5)\AC{cos(x)+.5}[sin(x)]\AC{N1}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+\multicolumn{2}{|c|}{ \BSS{psZero}[algebraic,\RDD{markZeros}](0.5,5)\AC{cos(x)+.5[sin(x)]}\AC{A} } 
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm}
+ \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)} 
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic,markZeros](0.5,5){cos(x)+.5}[sin(x)]{A}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm} 
+ \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)}
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic,markZeros,onlyNode](0.5,5){cos(x)+.5}[sin(x)]{A}
+\end{psgraph*}
+\\ \hline 
+\RDD{ markZeros} \RDI{markZeros}{pst-func} & \RDD{onlyNode}  \RDI{onlyNode}{pst-func}
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+%\multicolumn{2}{|c|}{ \BSS{psZero}[algebraic,\RDD{markZeros}](0.5,5)\AC{cos(x)+.5[sin(x)]}\AC{A} } 
+%\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm}
+ \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)} 
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic,PrintCoord](0.5,5){cos(x)+.5}[sin(x)]{A}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm} 
+ \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)}
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic,markZeros,onlyYVal](0.5,5){cos(x)+.5}[sin(x)]{A}
+\end{psgraph*}
+\\ \hline 
+\RDD{PrintCoord}  \RDI{PrintCoord}{pst-func} & \RDD{onlyYVal}  \RDI{onlyYVal}{pst-func}
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+%\multicolumn{2}{|c|}{ \BSS{psZero}[algebraic,\RDD{markZeros}](0.5,5)\AC{cos(x)+.5[sin(x)]}\AC{A} } 
+%\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm}
+ \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)} 
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic,PointName=Point,PrintCoord](0.5,5){cos(x)+.5}[sin(x)]{A}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm} 
+ \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)}
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic,markZeros,originV,PrintCoord](0.5,5){cos(x)+.5}[sin(x)]{A}
+\end{psgraph*}
+\\ \hline 
+\RDD{PointName},PrintCoord  \RDI{PointName}{pst-func} & \RDD{originV},PrintCoord  \RDI{originV}{pst-func}
+\\ \hline 
+\dft: PointName= I &
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+%\multicolumn{2}{|c|}{ \BSS{psZero}[algebraic,\RDD{markZeros}](0.5,5)\AC{cos(x)+.5[sin(x)]}\AC{A} } 
+%\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm}
+ \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)} 
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic,PrintCoord,decimals=3](0.5,5){cos(x)+.5}[sin(x)]{A}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm} 
+ \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)}
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic,markZeros,PrintCoord,ydecimals=4](0.5,5){cos(x)+.5}[sin(x)]{A}
+\end{psgraph*}
+\\ \hline 
+\RDD{decimals}=3,PrintCoord  \RDI{originV}{pst-func}& \RDD{ydecimals}=4,PrintCoord \RDI{ydecimals}{pst-func}
+%\\ \hline 
+%\dft: PointName= I &
+\\ \hline 
+\end{tabular}
+
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+%\multicolumn{2}{|c|}{ \BSS{psZero}[algebraic,\RDD{markZeros}](0.5,5)\AC{cos(x)+.5[sin(x)]}\AC{A} } 
+%\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm}
+ \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)} 
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic,PrintCoord,xShift=.5](0.5,5){cos(x)+.5}[sin(x)]{A}
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm} 
+ \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)}
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic,markZeros,PrintCoord,yShift=.5](0.5,5){cos(x)+.5}[sin(x)]{A}
+\end{psgraph*}
+\\ \hline 
+\RDD{xShift}=.5,PrintCoord  \RDI{xShift}{pst-func} & \RDD{yShift}=.5,PrintCoord  \RDI{yShift}{pst-func}
+%\\ \hline 
+%\dft: PointName= I &
+\\ \hline 
+\end{tabular} 
+
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+%\multicolumn{2}{|c|}{ \BSS{psZero}[algebraic,\RDD{markZeros}](0.5,5)\AC{cos(x)+.5[sin(x)]}\AC{A} } 
+%\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm}
+ \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)} 
+ \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+ \psZero[algebraic,PrintCoord,yShift=.5,,postString=123](0.5,5){cos(x)+.5}[sin(x)]{A}
+\end{psgraph*}
+&
+%\begin{psgraph*}[axesstyle=none,xticksize= -1 2 ,yticksize=0 4](0,0)(0,-1)(4,2){4cm}{3cm} 
+%% \psplot[plotpoints=500,algebraic,linewidth=.1pt]{0.001}{9.75}{sin(x)}
+% \psplot[plotpoints=500,algebraic,linewidth=0.8pt]{0.001}{9.75}{cos(x)+.5}
+% \psZero[xShift=-0.2,yShift=0.15,postString=1,Newton](0.5,5){ x cos }{A}
+%\end{psgraph*}
+\\ \hline 
+\RDD{postString}=123,PrintCoord  \RDI{postString}{pst-func} &
+% \RDD{yShift}=.5,PrintCoord  \RDI{yShift}{pst-func}
+%\\ \hline 
+%\dft: PointName= I &
+\\ \hline 
+\end{tabular} 
+
+\newpage
+
+%\subsection{Fonction de Fourier}
+ \SbSSCT{Fonction de Fourier}{Fourrier}
+ 
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -3 3 ,yticksize=-10 10 , subticks=0 ](0,0)(-10,-3)(10,3){10cm}{6cm } 
+ \psFourier[cosCoeff=0 1 -1 ]{-10}{10}
+\end{psgraph*}
+\\ \hline  
+\BSS{psFourier}[\RDD{cosCoeff}=0 1 -1 ]\AC{-10}\AC{10}
+\BSI{psFourier}{pst-func} \RDI{cosCoeff}{pst-func}
+\\ \hline 
+\dft : cosCoeff =0
+\\ \hline 
+
+\end{tabular}   
+
+
+\bigskip
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-5 5 , subticks=0 ](0,0)(-5,-2)(5,2){10cm}{4cm } 
+ \psFourier[sinCoeff=1 .5 .33 .25 .2 .165 .14  .125 ]{-5}{5}
+\end{psgraph*}
+\\ \hline  
+\BSS{psFourier}[\RDD{sinCoeff}=1 .5 .33 .25 .2 .165 .14  .125 ]\AC{-5}\AC{5}  \RDI{sinCoeff}{pst-func}
+\\ \hline 
+\dft : sinCoeff =1
+\\ \hline 
+\end{tabular}
+
+\newpage
+%\subsection{Fonction de Bessel}
+ \SbSSCT{Fonction de Bessel}{Bessel}
+ 
+\begin{tabular}{|c|} \hline  
+  $\displaystyle J_n(x)=\frac{1}{\pi} \int_0^\pi \cos  (x \sin t-nt)  dt$ 
+\\ \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -1.5 1.5 ,yticksize=-20 20 , subticks=0,Dx=5 ](0,0)(-20,-1.5)(20,1.5){10cm}{4cm } 
+ \psBessel{0}{-20}{20}
+\end{psgraph*}  
+\\ \hline  
+n= 0 \hspace{1cm} \BSS{psBessel}\AC{0}\AC{-20}\AC{20} 
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= -1.5 1.5 ,yticksize=-20 20 , subticks=0,Dx=5 ](0,0)(-20,-1.5)(20,1.5){10cm}{4cm } 
+ \psBessel{2}{-20}{20}
+\end{psgraph*}  
+\\ \hline  
+n= 2 \hspace{1cm} \BSS{psBessel}\AC{2}\AC{-20}\AC{20} 
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|} \hline  
+  $\displaystyle f(x)=2.5 J_0(x) +sin(t)$ 
+\\ \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -3 3 ,yticksize=-20 20 , subticks=0,Dx=5 ](0,0)(-20,-3)(20,3){10cm}{4cm } 
+ \psBessel[constI=2.5,constII={ t k  sin }]{0}{-20}{20}%
+\end{psgraph*} 
+\\ \hline 
+\BS{psBessel}[\RDD{constI}=2.5,\RDD{constII}=\AC{ t k  sin }]\AC{0}\AC{-20}\AC{20} \RDI{constI}{pst-func}  \RDI{constII}{pst-func}
+\\ \hline 
+\end{tabular} 
+
+
+\newpage
+%\subsection{Fonction de Bessel modifiée}
+\SbSSCT{Fonction de Bessel modifiée}{modified Bessel}
+
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{\BSS{psModBessel}[yMaxValue=5,\RDD{nue}=0]\AC{0}\AC{5} \BSI{psModBessel}{pst-func} \RDI{nue}{pst-func}} \\ \hline
+\begin{psgraph*}[axesstyle=none,xticksize= 0 5 ,yticksize=0 5](0,0)(0,0)(4,5){3.5cm}{5cm} 
+ \psModBessel[yMaxValue=5,nue=0]{0}{5}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 5 ,yticksize=0 5](0,0)(0,0)(4,5){3.5cm}{5cm} 
+ \psModBessel[yMaxValue=5,nue=1]{0}{5}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 5 ,yticksize=0 5](0,0)(0,0)(4,5){3.5cm}{5cm} 
+ \psModBessel[yMaxValue=5,nue=2]{0}{5}
+\end{psgraph*}
+\\ \hline 
+\RDD{nue}=0 & \RDD{nue}=1 & \RDD{nue}= 2
+\\ \hline 
+\multicolumn{3}{|c|}{\dft : nue=0} \\ \hline
+\end{tabular} 
+
+\newpage
+
+
+%\subsection{Sinus intégral}
+\SbSSCT{Sinus intégral}{Integral sinus}
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-14 14, dx=2,Dx=2](0,0)(-14,-2)(14,2){10cm}{3cm} 
+ \psSi{-14.5}{14.5}
+\end{psgraph*}
+\\ \hline  
+ \BSS{psSi}\AC{-14.5}\AC{14.5}  \BSI{psSi}{pst-func}
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -4 1 ,yticksize=-14 14, dx=2,Dx=2](0,0)(-14,-4)(14,1){10cm}{3cm} 
+ \pssi{-14.5}{14.5}
+\end{psgraph*}
+\\ \hline  
+ \BSS{pssi}\AC{-14.5}\AC{14.5}  \BSI{pssi}{pst-func}
+\\ \hline 
+\end{tabular} 
+
+%\subsection{Cosinus intégral}
+\SbSSCT{Cosinus intégral}{Integral cosinus}
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -4 1 ,yticksize=-12 12 , dx=2,Dx=2](0,0)(-12,-4)(12,1){10cm}{3cm} 
+ \psCi[plotpoints=500]{-11.5}{11.5}
+\end{psgraph*}
+\\ \hline  
+ \BSS{psCi}\AC{-11.5}\AC{11.5}  \BSI{psCi}{pst-func}
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 4 ,yticksize=-12 12 , dx=2,Dx=2](0,0)(-12,0)(12,4){10cm}{3cm} 
+ \psci[plotpoints=500]{-11.5}{11.5}
+\end{psgraph*}
+\\ \hline  
+ \BSS{psci}\AC{-11.5}\AC{11.5} \BSI{psci}{pst-func}
+\\ \hline 
+\end{tabular}
+
+\newpage
+
+%\subsection{Intégration et Convolution}
+\SbSSCT{Intégration et Convolution}{Integration and convolution }
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-6 6 , dx=2,Dx=2, dy=.5,Dy=.5](0,0)(-6,0)(6,1){10cm}{3cm} 
+ \psplot[linestyle=dotted]{-6}{6}{x 0 2 GAUSS}
+ \psCumIntegral{-6}{6}{0 2 GAUSS}
+\end{psgraph*}
+\\ \hline 
+ \BS{psplot}[linestyle=dotted]\AC{-6}\AC{6}\AC{x 0 2 GAUSS} \\
+ \BSS{psCumIntegral}\AC{-10}\AC{10}\AC{0 2 GAUSS}
+ \BSI{psCumIntegral}{pst-func} 
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-6 6 , dx=2,Dx=2, dy=.5,Dy=.5](0,0)(-6,0)(6,1){10cm}{3cm} 
+ \psplot[linestyle=dotted]{-6}{6}{x 0 2 GAUSS}
+ \psCumIntegral{0}{6}{0 2 GAUSS}
+\end{psgraph*}
+\\ \hline  
+ \BSS{psCumIntegral}\AC{0}\AC{6}\AC{0 2 GAUSS}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-6 6 , dx=2,Dx=2, dy=.5,Dy=.5](0,0)(-6,0)(6,1){10cm}{3cm}  
+ \psplot[linestyle=dotted]{-6}{6}{x 0 .5 GAUSS}
+ \psIntegral{-6}{6}(-2,4){.5 GAUSS}
+\end{psgraph*}
+\\ \hline  
+ \BSS{psIntegral}\AC{-2}\AC{4}\AC{.5 GAUSS} 
+  \BSI{psIntegral}{pst-func} 
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-6 6 , dx=2,Dx=2, dy=.5,Dy=.5](0,0)(-6,0)(6,1){10cm}{3cm}  
+ \psplot[linestyle=dotted]{-6}{6}{x 0 .5 GAUSS}
+ \psIntegral[Simpson=10]{-6}{6}(-2,4){.5 GAUSS}
+\end{psgraph*}
+\\ \hline  
+ \BS{psIntegral}[\RDD{Simpson}=10]\AC{-2}\AC{4}\AC{.5 GAUSS}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1.5 ,yticksize=-6 6 , dx=2,Dx=2, dy=.5,Dy=.5](0,0)(-6,0)(6,1.5){10cm}{3cm}
+ \psplot[linestyle=dashed]{-5}{5}{x abs 2 le {0.5}{0} ifelse}
+  \psplot[linestyle=dotted]{-5}{5}{x abs 1 le {0.75}{0} ifelse}
+ \psConv{-5}{5}(-6,6) {abs 2 le {0.5}{0} ifelse}{abs 2 le {0.75}{0} ifelse}
+\end{psgraph*}
+\\ \hline  
+ \BS{psplot}[linestyle=dashed]\AC{-5}\AC{5}\AC{x abs 2 le {0.5}{0} ifelse} \\ 
+ \BS{psplot}[linestyle=dotted]\AC{-5}\AC{5}\AC{x abs 1 le {0.75}{0} ifelse} \\
+ \BSS{psConv}\AC{-5}\AC{5}\AC(-6,6) \AC{abs 2 le {0.5}{0} ifelse}\AC{abs 2 le {0.75}{0} ifelse}
+   \BSI{psConv}{pst-func} 
+\\ \hline 
+\end{tabular}
+
+%====================
+
+
+\newpage
+
+%\subsection{Loi de Gauss}
+\SbSSCT{Loi de Gauss}{Gauss Distribution}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -5 1 ,yticksize=-12 12 , subticks=0 ](0,0)(-2,0)(2,1){6cm}{2cm } 
+ \psGauss{-2}{2}%
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -5 1 ,yticksize=-12 12 , subticks=0 ](0,0)(-2,0)(2,1){6cm}{2cm } 
+ \psGaussI{-2}{2}%
+\end{psgraph*}
+\\ \hline  
+ \BSS{psGauss}\AC{-2}\AC{2} \BSI{psGauss}{pst-func}
+&  
+ \BSS{psGaussI}\AC{-2}\AC{2} \BSI{psGaussI}{pst-func}
+\\ 
+\hline 
+\end{tabular} 
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -5 1 ,yticksize=-12 12 , subticks=0 ](0,0)(-2,0)(2,1){6cm}{2cm } 
+ \psGauss[linestyle=dotted]{-2}{2}%
+ \psGauss[mue=0.5]{-2}{2}%
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -5 1 ,yticksize=-12 12 , subticks=0 ](0,0)(-2,0)(2,1){6cm}{2cm }
+ \psGauss[linestyle=dotted]{-2}{2}% 
+ \psGauss[mue=-.5]{-2}{2}%
+\end{psgraph*}
+\\ \hline  
+ \BSS{psGauss}[\RDD{mue}=0.5]\AC{-2}\AC{2}  \RDI{mue}{pst-func}
+&  
+ \BSS{psGauss}[\RDD{mue}=0.5]\AC{-2}\AC{2}
+\\ 
+\hline 
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=-2 2 , subticks=0 ](0,0)(-2,0)(2,2){6cm}{2cm } 
+ \psGauss[linestyle=dotted]{-2}{2}%
+ \psGauss[sigma=.25]{-2}{2}%
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=-2 2 , subticks=0 ](0,0)(-2,0)(2,2){6cm}{2cm }
+ \psGauss[linestyle=dotted]{-2}{2}% 
+ \psGauss[sigma=1]{-2}{2}%
+\end{psgraph*}
+\\ \hline 
+ 
+ \BSS{psGauss}[\RDD{sigma}=0.25]\AC{-2}\AC{2} \RDI{sigma}{pst-func}
+&  
+ \BSS{psGauss}[\RDD{sigma}=1]\AC{-2}\AC{2}
+\\ \hline 
+\end{tabular}
+
+\newpage 
+
+%\subsection{Loi binomiale}
+\SbSSCT{Loi binomiale}{Binomial Distribution}
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 3 , subticks=0, dy=.2,Dy=.2](0,0)(-1,0)(3,1){3cm}{2cm }
+\psBinomial{2}{0.5}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(3,1){3cm}{2cm }
+\psBinomial{2}{0.25}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(3,1){3cm}{2cm }
+\psBinomial{2}{0.75}
+\end{psgraph*}
+\\ \hline  
+\BSS{psBinomial}\AC{2}\AC{0.5}  \BSI{psBinomial}{pst-func}
+&  
+\BSS{psBinomial}\AC{2}\AC{0.25}
+&  
+\BSS{psBinomial}\AC{2}\AC{0.75}
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){5cm}{2cm }
+\psBinomial{3}{0.5}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){5cm}{2cm }
+\psBinomial{4}{0.5}
+\end{psgraph*}
+\\ \hline  
+ 
+\BSS{psBinomial}\AC{3}\AC{0.5}
+&  
+\BSS{psBinomial}\AC{4}\AC{0.5}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){5cm}{2cm }
+\psBinomial[linestyle=dotted]{4}{0.5}
+\psBinomial{2,4}{0.5}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){5cm}{2cm }
+\psBinomial[linestyle=dotted]{4}{0.5}
+\psBinomial{1,2,4}{0.5}
+\end{psgraph*}
+\\ \hline  
+ 
+\BSS{psBinomial}\AC{2,4}\AC{0.5}
+&  
+\BSS{psBinomial}\AC{1,2,4}\AC{0.5}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){5cm}{2cm }
+\psBinomialN{3}{0.5}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){5cm}{2cm }
+\psBinomialN{4}{0.5}
+\end{psgraph*}
+\\ \hline  
+ 
+\BSS{psBinomialN}\AC{3}\AC{0.5} \BSI{psBinomialN}{pst-func}
+&  
+\BSS{psBinomialN}\AC{4}\AC{0.5}
+\\ \hline 
+\end{tabular}
+
+\newpage
+
+\subsubsection{paramètres}
+
+\begin{tabular}{|c|c|} \hline  
+  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){5cm}{2cm }
+\psBinomial[printValue]{3}{0.5}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){5cm}{2cm }
+\psBinomial[markZeros]{4}{0.5}
+\end{psgraph*}
+\\ \hline  
+ 
+\BSS{psBinomial}[\RDD{printValue}]\AC{3}\AC{0.5} \RDI{printValue}{pst-func}
+&  
+\BS{psBinomial}[\RDD{markZeros}]\AC{4}\AC{0.5}
+\RDI{markZeros}{pst-func}
+\\ \hline 
+\end{tabular}
+
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){5cm}{2cm }
+\psBinomial[fillcolor=yellow,fillstyle=solid,]{3}{0.5}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){5cm}{2cm }
+\psBinomial[barwidth=0.5]{4}{0.5} 
+\end{psgraph*}
+\\ \hline  
+ 
+\BSS{psBinomial}[fillcolor=yellow]\AC{3}\AC{0.5}
+&  
+\BS{psBinomial}[\RDD{barwidth}=0.5]\AC{4}\AC{0.5} \RDI{barwidth}{pst-func}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){5cm}{2cm }
+\psBinomial[fillstyle=vlines,markZeros]{3}{0.5}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){5cm}{2cm }
+\psBinomial[barwidth=0.5,markZeros]{4}{0.5}
+\end{psgraph*}
+\\ \hline  
+ 
+[fillstyle=vlines,,markZeros]
+&  
+[barwidth=0.5,markZeros]
+\\ \hline 
+\end{tabular}
+
+\newpage
+%\subsection{Loi de Poisson}
+\SbSSCT{Loi de Poisson}{Poisson Distribution}
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(3,1){3cm}{2cm }
+ \psPoisson{2}{1}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){3cm}{2cm }
+ \psPoisson{3}{1}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){3cm}{2cm }
+ \psPoisson{4}{1}
+\end{psgraph*}
+\\ \hline  
+\BSS{psPoisson}\AC{2}\AC{1} \BSI{psPoisson}{pst-func}  & \BSS{psPoisson}\AC{3}\AC{1}   &  \BSS{psPoisson}\AC{4}\AC{1} \\ 
+\hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){3cm}{2cm }
+ \psPoisson{4}{2}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){3cm}{2cm }
+ \psPoisson{4}{3}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){3cm}{2cm }
+ \psPoisson{4}{4}
+\end{psgraph*}
+\\ \hline  
+\BSS{psPoisson}\AC{4}\AC{2}   & \BSS{psPoisson}\AC{4}\AC{3}   &  \BSS{psPoisson}\AC{4}\AC{4} \\ 
+\hline 
+\end{tabular} 
+
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){3cm}{2cm }
+ \psPoisson[linestyle=dotted]{4}{2}
+ \psPoisson{1,4}{2}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){3cm}{2cm }
+ \psPoisson[linestyle=dotted]{4}{2}
+ \psPoisson{2,4}{2}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){3cm}{2cm }
+ \psPoisson[linestyle=dotted]{4}{2}
+ \psPoisson{3,4}{2}
+\end{psgraph*}
+\\ \hline  
+\BSS{psPoisson}\AC{1,4}\AC{2}   & \BSS{psPoisson}\AC{2,4}\AC{2}   &  \BSS{psPoisson}\AC{3,4}\AC{2} \\ 
+\hline 
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){3cm}{2cm }
+ \psPoisson[markZeros]{4}{2}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){3cm}{2cm }
+ \psPoisson[printValue]{4}{2}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-1 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(-1,0)(5,1){3cm}{2cm }
+ \psPoisson[barwidth=0.5]{4}{2}
+\end{psgraph*}
+\\ \hline  
+\BS{psPoisson}[\RDD{markZeros}]\AC{4}\AC{2}   & \BS{psPoisson}[\RDD{printValue}]\AC{4}\AC{2}   &  \BS{psPoisson}[\RDD{barwidth}=0.5]\AC{4}\AC{2} \\ 
+\hline 
+\end{tabular}
+
+\newpage
+%\subsection{Loi Gamma }
+\SbSSCT{Loi Gamma}{Gamma Distribution}
+
+\begin{center}
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3.5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3.5,1){5cm}{3cm }
+ \psGammaDist{0.1}{3}
+\end{psgraph*}
+\\ \hline  
+\BSS{psGammaDist}\AC{0.1}\AC{3}  \BSI{psGammaDist}{pst-func}
+\\ \hline 
+\end{tabular} 
+\end{center}
+
+
+
+ 
+\bigskip
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3.5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3.5,1){5cm}{3cm }
+ \psGammaDist[linestyle=dotted]{0.1}{3}
+ \psGammaDist[alpha=0.25]{0.1}{3}
+\end{psgraph*}
+
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3.5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3.5,1){5cm}{3cm }
+ \psGammaDist[linestyle=dotted]{0.1}{3}
+ \psGammaDist[alpha=0.75]{0.1}{3}
+\end{psgraph*}
+\\ \hline 
+ \BS{psGammaDist}[\RDD{alpha}=0.25]\AC{0.1}\AC{3} \RDI{alpha}{pst-func} &
+  \BS{psGammaDist}[\RDD{alpha}=0.75]\AC{0.1}\AC{3}  \\ 
+\hline 
+\end{tabular} 
+
+\bigskip
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3.5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3.5,1){5cm}{3cm }
+ \psGammaDist[linestyle=dotted]{0.1}{3}
+ \psGammaDist[beta=0.25]{0.1}{3}
+\end{psgraph*}
+
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3.5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3.5,1){5cm}{3cm }
+ \psGammaDist[linestyle=dotted]{0.1}{3}
+ \psGammaDist[beta=0.75]{0.1}{3}
+\end{psgraph*}
+\\ \hline 
+ \BS{psGammaDist}[\RDD{beta}=0.25]\AC{0.1}\AC{3} \RDI{beta}{pst-func} &
+  \BS{psGammaDist}[\RDD{beta}=0.75]\AC{0.1}\AC{3}  \\ 
+\hline 
+\end{tabular} 
+
+
+\bigskip
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3.5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3.5,1){5cm}{3cm }
+ \psGammaDist[linestyle=dotted]{0.1}{3}
+ \psGammaDist[alpha=0.25,beta=0.75]{0.1}{3}
+\end{psgraph*}
+
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3.5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3.5,1){5cm}{3cm }
+ \psGammaDist[linestyle=dotted]{0.1}{3}
+ \psGammaDist[alpha=0.75,beta=0.25]{0.1}{3}
+\end{psgraph*}
+\\ \hline 
+[alpha=0.25,beta=0.75] &
+[alpha=0.75,beta=0.25]  \\ 
+\hline 
+\end{tabular} 
+
+\newpage
+%\subsection{Loi du $\chi^2$}
+\SbSSCT{Loi du $\chi^2$}{$\chi^2$ Distribution}
+
+\begin{center}
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(5,1){10cm}{3cm }
+\psChiIIDist{0.01}{5}
+\end{psgraph*}
+\\ \hline  
+\BSS{psChiIIDist}\AC{0.01}\AC{5} \BSI{psChiIIDist}{pst-func}
+\\ \hline 
+\end{tabular} 
+\end{center}
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(5,1){10cm}{3cm }
+\psChiIIDist[linestyle=dotted]{0.01}{5}
+\psChiIIDist[nue=.5]{0.01}{5}
+\end{psgraph*}
+\\ \hline  
+\BS{psChiIIDist}[\RDD{nue}=.5]\AC{0.01}\AC{5} \RDI{nue}{pst-func}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(5,1){10cm}{3cm }
+\psChiIIDist[linestyle=dotted]{0.01}{5}
+\psChiIIDist[nue=2]{0.01}{5}
+\end{psgraph*}
+\\ \hline  
+\BS{psChiIIDist}[\RDD{nue}=2]\AC{0.01}\AC{5}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(5,1){10cm}{3cm }
+\psChiIIDist[linestyle=dotted]{0.01}{5}
+\psChiIIDist[nue=3]{0.01}{5}
+\end{psgraph*}
+\\ \hline  
+\BS{psChiIIDist}[\RDD{nue}=3]\AC{0.01}\AC{5}
+\\ \hline 
+\end{tabular}
+
+%\subsection{Loi de Student}
+\SbSSCT{Loi de Student}{Student Distribution}
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-4 4 , subticks=0, dy=.2,Dy=.2 ](0,0)(-4,0)(4,1){10cm}{3cm }
+ \psTDist{-4}{4}
+\end{psgraph*}
+\\ \hline  
+\BSS{psTDist}\AC{4}\AC{4} \BSI{psTDist}{pst-func}
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-4 4 , subticks=0, dy=.2,Dy=.2 ](0,0)(-4,0)(4,1){10cm}{3cm }
+ \psTDist[linestyle=dotted]{-4}{4}
+ \psTDist[nue=.5]{-4}{4}
+\end{psgraph*}
+\\ \hline  
+\BSS{psTDist}[\RDD{nue}=.5]\AC{4}\AC{4} \RDI{nue}{pst-func}
+\\ \hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-4 4 , subticks=0, dy=.2,Dy=.2 ](0,0)(-4,0)(4,1){10cm}{3cm }
+ \psTDist[linestyle=dotted]{-4}{4}
+ \psTDist[nue=10]{-4}{4}
+\end{psgraph*}
+\\ \hline  
+\BSS{psTDist}[\RDD{nue}=10]\AC{4}\AC{4} \\ \hline 
+\end{tabular}
+
+
+
+\newpage
+%\subsection{Loi de F}
+\SbSSCT{Loi de F}{F Distribution}
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(5,1){10cm}{3cm }
+\psFDist{0.1}{5}
+\end{psgraph*}
+\\ \hline  
+\BSS{psFDist}\AC{0.1}\AC{5} \BSI{psFDist}{pst-func}
+\\ \hline 
+\end{tabular} 
+
+
+\bigskip
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(5,1){10cm}{3cm }
+\psFDist[linestyle=dotted]{0.1}{5}
+\psFDist[nue=3]{0.01}{5}
+\end{psgraph*}
+
+\\ \hline  
+\BSS{psFDist}[\RDD{nue}=3]\AC{0.1}\AC{5} \RDI{nue}{pst-func}
+\\ \hline 
+\end{tabular}
+
+
+
+\bigskip
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(5,1){10cm}{3cm }
+\psFDist[linestyle=dotted]{0.1}{5}
+\psFDist[mue=12]{0.01}{5}
+\end{psgraph*}
+\\ \hline  
+\BSS{psFDist}[\RDD{mue}=12]\AC{0.1}\AC{5} \RDI{mue}{pst-func}
+\\ \hline 
+\end{tabular}
+
+
+
+\bigskip
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 5 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(5,1){10cm}{3cm }
+\psFDist[linestyle=dotted]{0.1}{5}
+\psFDist[nue=3,mue=12]{0.01}{5}
+\end{psgraph*}
+\\ \hline  
+\BSS{psFDist}[nue=3,mue=12]\AC{0.1}\AC{5} \RDI{mue}{pst-func}
+\\ \hline 
+\end{tabular}
+
+\newpage
+
+%\subsection{Loi de Beta}
+\SbSSCT{Loi de Beta}{Beta Distribution}
+
+\begin{center}
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 1 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(1,2){5cm}{3cm }
+ \psBetaDist{0.01}{0.99}
+\end{psgraph*}
+\\ \hline  
+\BSS{psBetaDist}\AC{0.01}\AC{0.99} \BSI{psBetaDist}{pst-func}
+\\ \hline 
+\end{tabular}
+\end{center}
+
+
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{ \BSS{psBetaDist}[alpha=0.1]\AC{0.01}\AC{0.99} }
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 1 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(1,2){3cm}{3cm }
+ \psBetaDist[alpha=0.1]{0.01}{0.99}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 1 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(1,2){3cm}{3cm }
+ \psBetaDist[alpha=.5]{0.01}{0.99}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 1 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(1,2){3cm}{3cm }
+ \psBetaDist[alpha=.9]{0.01}{0.99}
+\end{psgraph*}
+\\ \hline 
+[alpha=0.1] & [alpha=0.5] & [alpha=0.9] \\ 
+\hline 
+\multicolumn{3}{|c|}{ \dft : alpha= 1 }
+\\ \hline
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{ \BSS{psBetaDist}[beta=0.1]\AC{0.01}\AC{0.99} }
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 1 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(1,2){3cm}{3cm }
+ \psBetaDist[beta=0.1]{0.01}{0.99}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 1 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(1,2){3cm}{3cm }
+ \psBetaDist[beta=.5]{0.01}{0.99}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 1 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(1,2){3cm}{3cm }
+ \psBetaDist[beta=.9]{0.01}{0.99}
+\end{psgraph*}
+\\ \hline 
+[beta=0.1] & [beta=0.5] & [beta=0.9] \\ 
+\hline 
+\multicolumn{3}{|c|}{ \dft : beta= 1 }
+\\ \hline
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{ \BSS{psBetaDist}[beta=0.1]\AC{0.01}\AC{0.99} }
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 1 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(1,2){3cm}{3cm }
+ \psBetaDist[alpha=.1,beta=0.1]{0.01}{0.99}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 1 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(1,2){3cm}{3cm }
+ \psBetaDist[alpha=.1,beta=.5]{0.01}{0.99}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 1 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(1,2){3cm}{3cm }
+ \psBetaDist[alpha=.1,beta=.9]{0.01}{0.99}
+\end{psgraph*}
+\\ \hline 
+[alpha=.1,beta=0.1] & [alpha=.1,beta=0.5] & [alpha=.1,beta=0.9] \\ 
+\hline 
+\end{tabular}
+
+\newpage
+
+%\subsection{Loi de Cauchy}
+\SbSSCT{Loi de Cauchy}{Cauchy Distribution}
+
+\begin{center}
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){6cm}{2cm }
+\psCauchy{-3}{3}
+\end{psgraph*}
+\\ \hline  
+\BSS{psCauchy}\AC{-3}\AC{3} \BSI{psCauchy}{pst-func}
+\\ \hline 
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{ \BSS{psCauchy}[b=0.1]\AC{-3}\AC{3} }
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchy[b=0.1]{-3}{3}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchy[b=.5]{-3}{3}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchy[b=1]{-3}{3}
+\end{psgraph*}
+\\ \hline 
+[b=0.1]] & [b=0.5] & [b=1] \\ 
+\hline 
+\multicolumn{3}{|c|}{ \dft : b = 1 }
+\\ \hline
+\end{tabular}
+
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{ \BSS{psCauchy}[m=0.1]\AC{-3}\AC{3} }
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchy[m=-1]{-3}{3}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchy[m=0]{-3}{3}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchy[m=1]{-3}{3}
+\end{psgraph*}
+\\ \hline 
+[m=-1]] & [m=0] & [m=1] \\ 
+\hline 
+\multicolumn{3}{|c|}{ \dft : m = 0 }
+\\ \hline
+\end{tabular}
+
+\newpage
+
+\begin{center}
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){6cm}{2cm }
+\psCauchyI{-3}{3}
+\end{psgraph*}
+\\ \hline  
+\BSS{psCauchyI}\AC{-3}\AC{3} \BSI{psCauchyI}{pst-func}
+\\ \hline 
+\end{tabular}
+\end{center}
+
+
+
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{ \BSS{psCauchyI}[b=0.1]\AC{-3}\AC{3} }
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchyI[linestyle=dotted]{-2.5}{2.5}
+\psCauchyI[b=0.1]{-3}{3}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchyI[linestyle=dotted]{-3}{3}
+\psCauchyI[b=.5]{-3}{3}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchyI[linestyle=dotted]{-2.5}{2.5}
+\psCauchyI[b=1]{-3}{3}
+\end{psgraph*}
+\\ \hline 
+[b=0.1]] & [b=0.5] & [b=1] \\ 
+\hline 
+\multicolumn{3}{|c|}{ \dft : b = 1 }
+\\ \hline
+\end{tabular}
+
+
+\bigskip
+
+\begin{tabular}{|c|c|c|} \hline 
+\multicolumn{3}{|c|}{ \BSS{psCauchyI}[m=0.1]\AC{-3}\AC{3} }
+\\ \hline 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchyI[linestyle=dotted]{-3}{3}
+\psCauchyI[m=-1]{-3}{3}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchyI[linestyle=dotted]{-2.5}{2.5}
+\psCauchyI[m=0]{-3}{3}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=-3  3 , subticks=0, dy=.2,Dy=.2 ](0,0)(-3,0)(3,1){3cm}{3cm }
+\psCauchyI[linestyle=dotted]{-3}{3}
+\psCauchyI[m=1]{-3}{3}
+\end{psgraph*}
+\\ \hline 
+[m=-1] & [m=0] & [m=1] \\ 
+\hline 
+\multicolumn{3}{|c|}{ \dft : m = 0 }
+\\ \hline
+\end{tabular}
+
+\newpage
+
+%\subsection{Loi de Weibull}
+\SbSSCT{Loi de Weibull}{Weibull Distribution}
+
+\begin{center}
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibull{0}{3}
+\end{psgraph*}
+\\ \hline  
+\BSS{psWeibull}\AC{0}\AC{3} \BSI{psWeibull}{pst-func} 
+\\ \hline 
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibull[linestyle=dotted]{0}{3}
+\psWeibull[alpha=.5]{0}{3}
+\end{psgraph*}
+& 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibull[linestyle=dotted]{0}{3}
+\psWeibull[alpha=2]{0}{3}
+\end{psgraph*}
+ \\ \hline  
+\BS{psWeibull}[\RDD{alpha}=.5]\AC{0}\AC{3} 
+&  \BS{psWeibull}\RDD{alpha}=2]\AC{0}\AC{3} \\ 
+\hline 
+\multicolumn{2}{|c|}{ \dft : alpha=1 }
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibull[linestyle=dotted]{0}{3}
+\psWeibull[beta=.5]{0}{3}
+\end{psgraph*}
+& 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibull[linestyle=dotted]{0}{3}
+\psWeibull[beta=2]{0}{3}
+\end{psgraph*}
+ \\ \hline  
+\BS{psWeibull}[\RDD{beta}=.5]\AC{0}\AC{3} 
+&  \BS{psWeibull}\RDD{beta}=2]\AC{0}\AC{3} \\ 
+\hline 
+\multicolumn{2}{|c|}{ \dft :beta=1 }
+\\ \hline
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,2){6cm}{4cm }
+\psWeibull[linestyle=dotted]{0}{3}
+\psWeibull[alpha=2,beta=.5]{0}{3}
+\end{psgraph*}
+& 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 2 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,2){6cm}{4cm }
+\psWeibull[linestyle=dotted]{0}{3}
+\psWeibull[alpha=2,beta=2]{0}{3}
+\end{psgraph*}
+ \\ \hline  
+\BS{psWeibull}[alpha=2,beta=.5]\AC{0}\AC{3} 
+&  \BS{psWeibull}[alpha=2,beta=2]\AC{0}\AC{3} \\ 
+\hline 
+\end{tabular} 
+
+
+\newpage
+
+\begin{center}
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibullI{0}{3}
+\end{psgraph*}
+\\ \hline  
+\BSS{psWeibullI}\AC{0}\AC{3}  \BSI{psWeibullI}{pst-func}
+\\ \hline 
+\end{tabular}
+\end{center}
+
+\bigskip
+
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibullI[linestyle=dotted]{0}{3}
+\psWeibullI[alpha=.5]{0}{3}
+\end{psgraph*}
+& 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibullI[linestyle=dotted]{0}{3}
+\psWeibullI[alpha=2]{0}{3}
+\end{psgraph*}
+ \\ \hline  
+\BS{psWeibullI}[\RDD{alpha}=.5]\AC{0}\AC{3}  \RDI{alpha}{pst-func}
+&  \BS{psWeibullI}\RDD{alpha}=2]\AC{0}\AC{3} \\ 
+\hline 
+\multicolumn{2}{|c|}{ \dft : alpha=1 }
+\\ \hline
+\end{tabular} 
+
+
+\bigskip
+
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibullI[linestyle=dotted]{0}{3}
+\psWeibullI[beta=.5]{0}{3}
+\end{psgraph*}
+& 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibullI[linestyle=dotted]{0}{3}
+\psWeibullI[beta=2]{0}{3}
+\end{psgraph*}
+ \\ \hline  
+\BS{psWeibullI}[\RDD{beta}=.5]\AC{0}\AC{3} \RDI{beta}{pst-func}
+&  \BS{psWeibullI}\RDD{beta}=2]\AC{0}\AC{3} \\ 
+\hline
+\multicolumn{2}{|c|}{ \dft : beta=1 }
+\\ \hline 
+\end{tabular} 
+
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibullI[linestyle=dotted]{0}{3}
+\psWeibullI[alpha=2,beta=.5]{0}{3}
+\end{psgraph*}
+& 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1 ,yticksize=0 3 , subticks=0, dy=.2,Dy=.2 ](0,0)(0,0)(3,1){6cm}{2cm }
+\psWeibullI[linestyle=dotted]{0}{3}
+\psWeibullI[alpha=2,beta=2]{0}{3}
+\end{psgraph*}
+ \\ \hline  
+\BS{psWeibullI}[alpha=2,beta=.5]\AC{0}\AC{3} 
+&  \BS{psWeibullI}[alpha=2,beta=2]\AC{0}\AC{3} \\ 
+\hline 
+\end{tabular}
+
+\newpage
+%\subsection{Loi de Vasicek}
+\SbSSCT{Loi de Vasicek}{Vasicek Distribution}
+
+\begin{center}
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 5, dx=.2,Dx=.2 ,yticksize=0 1, subticks=0 ](0,0)(0,0)(1,5){6cm}{3cm }
+ \psVasicek{0}{0.9999}
+\end{psgraph*}
+\\ \hline  
+\BSS{psVasicek}\AC{0}\AC{3}  \BSI{psVasicek}{pst-func}
+\\ \hline 
+\end{tabular}
+\end{center}
+
+\bigskip
+
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 10, dx=.2,Dx=.2 ,yticksize=0 1, subticks=0 ](0,0)(0,0)(1,10){6cm}{3cm }
+\psVasicek[linestyle=dotted]{0}{0.9999}
+\psVasicek[pd=.1]{0}{0.9999}
+\end{psgraph*}
+& 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 5, dx=.2,Dx=.2 ,yticksize=0 1, subticks=0 ](0,0)(0,0)(1,5){6cm}{3cm }
+\psVasicek[linestyle=dotted]{0}{0.9999}
+\psVasicek[pd=.5]{0}{0.9999}
+\end{psgraph*}
+ \\ \hline  
+\BS{psVasicek}[\RDD{pd}=.1]\AC{0}\AC{3}  \RDI{pd}{pst-func}
+&  \BS{psVasicek}[\RDD{pd}=.5]\AC{0}\AC{3} \\ 
+\hline 
+\multicolumn{2}{|c|}{ \dft : pd = 0.22 }
+\\ \hline
+\end{tabular} 
+
+\bigskip
+
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 10, dx=.2,Dx=.2 ,yticksize=0 1, subticks=0 ](0,0)(0,0)(1,10){6cm}{3cm }
+\psVasicek[linestyle=dotted]{0}{0.9999}
+\psVasicek[R2=.05]{0}{0.9999}
+\end{psgraph*}
+& 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 5, dx=.2,Dx=.2 ,yticksize=0 1, subticks=0 ](0,0)(0,0)(1,5){6cm}{3cm }
+\psVasicek[linestyle=dotted]{0}{0.9999}
+\psVasicek[R2=.2]{0}{0.9999}
+\end{psgraph*}
+ \\ \hline  
+\BS{psVasicek}[\RDD{R2}=.05]\AC{0}\AC{3}  \RDI{R2}{pst-func}
+&  \BS{psVasicek}[\RDD{R2}=.2]\AC{0}\AC{3} \\ 
+\hline 
+\multicolumn{2}{|c|}{ \dft : R2 = 0.11 }
+\\ \hline
+\end{tabular}
+
+
+\bigskip
+
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 5, dx=.2,Dx=.2 ,yticksize=0 1, subticks=0 ](0,0)(0,0)(1,5){6cm}{3cm }
+\psVasicek[linestyle=dotted,pd=.5]{0}{0.9999}
+\psVasicek[pd=.5,R2=.05]{0}{0.9999}
+\end{psgraph*}
+& 
+\begin{psgraph*}[axesstyle=none,xticksize= 0 5, dx=.2,Dx=.2 ,yticksize=0 1, subticks=0 ](0,0)(0,0)(1,5){6cm}{3cm }
+\psVasicek[linestyle=dotted,pd=.5]{0}{0.9999}
+\psVasicek[pd=.5,R2=.2]{0}{0.9999}
+\end{psgraph*}
+ \\ \hline  
+\BS{psVasicek}[pd=.5,R2=.05]\AC{0}\AC{3}  \RDI{R2}{pst-func}
+&  \BS{psVasicek}[pd=.5,R2=.2]\AC{0}\AC{3} \\ 
+\hline 
+\end{tabular}
+
+\newpage
+%\subsection{Courbe de Lorenz}
+\SbSSCT{Courbe de Lorenz}{Lorenz curve}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1,dx=.2,Dx=.2 , dy=.2,Dy=.2 ,yticksize=0 1, subticks=0 ](0,0)(0,0)(1,1){5cm}{3cm }
+ \psLorenz{0.1 0.2 0.3 }
+\end{psgraph*}
+&
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1,dx=.2,Dx=.2 , dy=.2,Dy=.2 ,yticksize=0 1, subticks=0 ](0,0)(0,0)(1,1){5cm}{3cm }
+ \psLorenz*{.1 .2 .3 }
+\end{psgraph*}
+\\ \hline  
+\BSS{psLorenz}\AC{0.1 0.2 0.3} \BSI{psLorenz}{pst-func}
+&
+\BSS{psLorenz}*\AC{0.1 0.2 0.3 }
+\\ \hline 
+\end{tabular}
+
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1, dx=.2,Dx=.2 ,yticksize=0 1, subticks=0,lly=-13mm ](0,0)(0,0)(1,1){5cm}{3cm }
+ \psLorenz[linestyle=dotted]{.1 .2 .3 }
+ \psLorenz[plotstyle=bezier]{.1 .2 .3 }
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1, dx=.2,Dx=.2 ,yticksize=0 1, subticks=0,lly=-13mm ](0,0)(0,0)(1,1){5cm}{3cm }
+ \psLorenz[linestyle=dotted]{.1 .2 .3 }
+ \psLorenz[Gini]{.1 .2 .3 }
+\end{psgraph*}
+\\ \hline  
+\BS{psLorenz}[plotstyle=bezier]\AC{.1 .2 .3}  
+&
+\BS{psLorenz}[\RDD{Gini}]\AC{.1 .2 .3 }
+ \\ \hline 
+\end{tabular} 
+
+\newpage
+%\subsection{Courbe de Lamé : superellipses}
+\SbSSCT{Courbe de Lamé : superellipses}{Lame curve}
+
+
+ \begin{tabular}{|c|c|c|c|}  \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -1 1 , yticksize=-1 1, subticks=0 ](0,0)(-1,-1)(1,1){2cm}{2cm}
+\psLame{.5}
+\end{psgraph*} 
+ &  
+\begin{psgraph*}[axesstyle=none,xticksize= -1 1 , yticksize=-1 1, subticks=0 ](0,0)(-1,-1)(1,1){2cm}{2cm}
+\psLame{.75}
+\end{psgraph*} 
+ &  
+\begin{psgraph*}[axesstyle=none,xticksize= -1 1 , yticksize=-1 1, subticks=0 ](0,0)(-1,-1)(1,1){2cm}{2cm}
+\psLame{2}
+\end{psgraph*} 
+ &  
+\begin{psgraph*}[axesstyle=none,xticksize= -1 1 , yticksize=-1 1, subticks=0 ](0,0)(-1,-1)(1,1){2cm}{2cm}
+\psLame{5}
+\end{psgraph*} 
+ \\  \hline 
+ \BSS{psLame}\AC{.5} \BSI{psLame}{pst-func} &  \BSS{psLame}\AC{.75} &  \BSS{psLame}\AC{2} &   \BSS{psLame}\AC{5}\\ 
+ \hline 
+ \end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2,subticks=0 ](0,0)(-2,-2)(2,2){4cm}{4cm }
+\psLame[radiusA=2]{.5}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -2 2 ,yticksize=-2 2,subticks=0 ](0,0)(-2,-2)(2,2){4cm}{4cm }
+\psLame[radiusB=2]{.5}
+\end{psgraph*}
+\\ \hline 
+\BS{psLame}[\RDD{radiusA}=2]\AC{.5} \RDI{radiusA}{pst-func}&
+\BS{psLame}[\RDD{radiusB}=2]\AC{.5}  \RDI{radiusB}{pst-func}\\ 
+\hline 
+\end{tabular} 
+
+
+%\subsection{Fonction de Thomae}
+\SbSSCT{Fonction de Thomae}{Thomae curve}
+
+ \psset{unit=4cm}
+
+
+\begin{tabular}{|c|c|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1, dx=.2,Dx=.2, dy=.2,Dy=.2  ,yticksize=0 1, subticks=0,lly=-13mm ](0,0)(0,0)(1,1){2.5cm}{2.5cm }
+ \psThomae[dotsize=5pt](0,1){1}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1, dx=.2,Dx=.2, dy=.2,Dy=.2  ,yticksize=0 1, subticks=0,lly=-13mm ](0,0)(0,0)(1,1){2.5cm}{2.5cm }
+ \psThomae[dotsize=5pt](0,1){2}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1, dx=.2,Dx=.2, dy=.2,Dy=.2  ,yticksize=0 1, subticks=0,lly=-13mm ](0,0)(0,0)(1,1){2.5cm}{2.5cm }
+ \psThomae[dotsize=5pt](0,1){3}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1, dx=.2,Dx=.2, dy=.2,Dy=.2  ,yticksize=0 1, subticks=0,lly=-13mm ](0,0)(0,0)(1,1){2.5cm}{2.5cm }
+ \psThomae[dotsize=5pt](0,1){10}
+\end{psgraph*}
+\\ 
+\hline 
+\BSS{psThomae}(0,1)\AC{1}  \BSI{psThomae}{pst-func} & \BSS{psThomae}(0,1)\AC{2}  & \BSS{psThomae}(0,1)\AC{3} & \BSS{psThomae}(0,1)\AC{10}\\ 
+\hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1, dx=.5,Dx=.5, dy=.5,Dy=.5  ,yticksize=0 2, subticks=0 ](0,0)(0,0)(2,1){5cm}{3cm }
+ \psThomae[dotsize=5pt](0,2){10}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= 0 1, dx=.5,Dx=.5, dy=.5,Dy=.5  ,yticksize=0 2.5, subticks=0 ](0,0)(0,0)(2.5,1){7cm}{3cm }
+ \psThomae[dotsize=5pt](0.5,2.5){10}
+\end{psgraph*}
+\\ \hline 
+\BSS{psThomae}(0,2){10}(0,2)\AC{10} & \BSS{psThomae}(0,2){10}(0.5,2)\AC{10} \\ 
+\hline 
+\end{tabular}
+
+
+%\subsection{Fonction de Weierstrass}
+\SbSSCT{Fonction de Weierstrass}{Weierstrass curve}
+
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -.5  .5, dx=.5,Dx=.5, dy=.5,Dy=.5  ,yticksize=0 2, subticks=0 ](0,0)(0,-.5)(2,.5){5cm}{3cm }
+ \psWeierstrass(0,2){2}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -.5  .5, dx=.5,Dx=.5, dy=.5,Dy=.5  ,yticksize=0 2, subticks=0 ](0,0)(0,-.5)(2,.5){5cm}{3cm }
+% \psWeierstrass[linestyle=dotted](0,2){2}
+ \psWeierstrass(0,2){5}
+\end{psgraph*}
+\\ \hline  
+\BSS{psWeierstrass}(0,2)\AC{2} & \BSS{psWeierstrass}(0,2)\AC{5}  \BSI{psWeierstrass}{pst-func}\\ 
+\hline 
+\end{tabular} 
+
+\bigskip
+
+ \begin{tabular}{|c|c|} \hline  
+ \begin{psgraph*}[axesstyle=none,xticksize= 0  .5, dx=.1,Dx=.1, dy=.1,Dy=.1  ,yticksize=.5 1, subticks=0 ](0,0)(0.5,0)(1,.5){5cm}{3cm }
+  \psWeierstrass(.5,1){2}
+ \end{psgraph*}
+ &  
+ \begin{psgraph*}[axesstyle=none,xticksize= 0  .05, dx=.01,Dx=.01, dy=.01,Dy=.01  ,yticksize=.95 1, subticks=0 ](0,0)(0.95,0)(1,.05){5cm}{3cm }
+  \psWeierstrass(.95,1){2}
+ \end{psgraph*}
+
+ \\ \hline  
+ \BSS{psWeierstrass}(.5,1)\AC{2} & \BSS{psWeierstrass}(.95,1)\AC{5}  \BSI{psWeierstrass}{pst-func}\\ 
+ \hline 
+ \end{tabular} 
+ 
+ \bigskip
+ 
+\begin{tabular}{|c|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -.5  .5, dx=.5,Dx=.5, dy=.5,Dy=.5  ,yticksize=0 2, subticks=0 ](0,0)(0,-.5)(2,.5){5cm}{3cm }
+ \psWeierstrass[linestyle=dotted](0,2){2}
+ \psWeierstrass[epsilon=1.e-1](0,5){2}
+\end{psgraph*}
+&  
+\begin{psgraph*}[axesstyle=none,xticksize= -.5  .5, dx=.5,Dx=.5, dy=.5,Dy=.5  ,yticksize=0 2, subticks=0 ](0,0)(0,-.5)(2,.5){5cm}{3cm }
+ \psWeierstrass[linestyle=dotted](0,2){2}
+ \psWeierstrass[epsilon=1](0,5){2}
+\end{psgraph*}
+\\ \hline  
+ \BSS{psWeierstrass}[\RDD{epsilon}=1.e-1](0,5)\AC{2} &   \BSS{psWeierstrass}[\RDD{epsilon}=1](0,5)\AC{2}
+ \RDI{epsilon}{pst-func} \\ \hline 
+\multicolumn{2}{|c|}{ \dft : epsilon=1.e-18  } 
+\\ \hline 
+ 
+\end{tabular} 
+ 
+\newpage
+%\subsection{Fonction définie implicitement}
+\SbSSCT{Fonction définie implicitement}{implicit defined functions}
+
+\begin{tabular}{|c|} \hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -6  3 ,yticksize=-5 5, subticks=0 ](0,0)(-5,-6)(5,3){10cm}{5cm }
+ \psplotImp[linewidth=2pt](-6,-7)(4,3){4 x 3 exp y 3 exp add 4 x y mul mul sub }
+\end{psgraph*}
+\\ \hline  
+ \BSS{psplotImp}(-6,-7)(4,3)\AC{4 x 3 exp y 3 exp add 4 x y mul mul sub }
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|} \hline   
+\begin{psgraph*}[axesstyle=none,xticksize= -6  3 ,yticksize=-5 5, subticks=0 ](0,0)(-5,-6)(5,3){10cm}{5cm }
+ \psplotImp[algebraic,linewidth=2pt](-6,-7)(4,3){x^3 +y^3 -4*x*y}
+\end{psgraph*}
+\\ \hline  
+ \BSS{psplotImp}[\RDD{algebraic}](-6,-7)(4,3)\AC{x\^{}3 +y\^{}3 -4*x*y }
+\\ \hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|} \hline   
+\begin{psgraph*}[axesstyle=none,xticksize= -6  3 ,yticksize=-5 5, subticks=0 ](0,0)(-5,-6)(5,3){10cm}{5cm }
+ \psplotImp[algebraic,linewidth=2pt,stepFactor=2](-6,-7)(4,3){x^3 +y^3 -4*x*y}
+\end{psgraph*}
+\\ \hline  
+ \BSS{psplotImp}[algebraic,\RDD{stepFactor}=2](-6,-7)(4,3)\AC{x\^{}3 +y\^{}3 -4*x*y }
+\\ \hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|} \hline   
+\begin{psgraph*}[axesstyle=none,xticksize= -1  1 ,yticksize=-1 1, subticks=0 ](0,0)(-1,-1)(1,1){5cm}{5cm }
+ \psplotImp[algebraic,polarplot,linewidth=1pt](-1,-1)(1,1){ r + cos(10*phi) }
+\end{psgraph*}
+\\ \hline  
+ \BSS{psplotImp}[algebraic,\RDD{polarplot}](-1,-1)(1,1)\AC{r + cos(10*phi) }
+\\ \hline 
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{|c|} \hline   
+\begin{psgraph*}[axesstyle=none,xticksize= -1  1 ,yticksize=-1 1, subticks=0 ](0,0)(-1,-1)(1,1){5cm}{5cm }
+ \psplotImp[algebraic,polarplot,linewidth=1pt,stepFactor=1](-1,-1)(1,1){ r + cos(10*phi) }
+\end{psgraph*}
+\\ \hline  
+ \BSS{psplotImp}[algebraic,polarplot,\RDD{stepFactor}=1](-1,-1)(1,1)\AC{r + cos(10*phi) }
+\\ \hline 
+\end{tabular}
+
+\newpage
+
+%\subsection{Fonction de rotation}
+\SbSSCT{Fonction de rotation}{Rotating functions}
+
+ 
+\begin{tabular}{|c|}\hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -2  2 ,yticksize=0 5, subticks=0 ](0,0)(0,-2)(5,2){10cm}{5cm }
+ \psVolume[fillstyle=solid,fillcolor=blue!40](0,4){4}{x sqrt}
+\end{psgraph*}
+
+\\ \hline  
+ \BSS{psVolume}[fillstyle=solid,fillcolor=blue!40](0,4)\AC{4}\AC{x sqrt}  \BSI{psVolume}{pst-func}
+\\ \hline 
+\end{tabular} 
+
+\bigskip
+
+\begin{tabular}{|c|}\hline  
+\begin{psgraph*}[axesstyle=none,xticksize= -1  1 ,yticksize=0 7, subticks=0 ](0,0)(0,-1)(7,1){10cm}{5cm }
+ \psVolume[fillstyle=solid,fillcolor=yellow,algebraic](0,6.28){20}{cos(x)}
+\end{psgraph*}
+\\ \hline  
+ \BSS{psVolume}[fillstyle=solid,fillcolor=yellow,algebraic](0,6.28)\AC{20}\AC{cos(x)}
+\\ \hline 
+\end{tabular}

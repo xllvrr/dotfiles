@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 96 (Section 13.3.2 : Vertical line and value calculated by \tkzname{xfp} )
+
+\begin{tikzpicture}
+  \tkzInit[xmax=7,ymin=-1,ymax=1]
+  \foreach\v in {1,2}
+  {\tkzVLine[color=red]{\v*pi}}
+  \tkzDrawY
+  \tkzAxeX[trig=2]
+  \tkzLabelY
+\end{tikzpicture}
+
+\end{document}

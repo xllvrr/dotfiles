@@ -1,0 +1,392 @@
+% This is a demonstration file distributed with the
+% Lecturer package (see lecturer-doc.pdf).
+%
+% You can recompile the file with a basic TeX implementation,
+% using pdfTeX or LuaTeX with the plain format.
+% 
+% The reusable part ends somewhere around line 250.
+%
+% Author: Paul Isambert.
+% Date: July 2010. 
+
+\input lecturer
+
+% Uncomment these to show the grid on which the presentation is built.
+%\showgrid{1mm}
+%\showgrid[-.5cm,-.5cm]{1cm}[black]
+%\showgrid{1cm}[red][.4pt]
+
+
+\font\maintitlefont  = cmdunh10 at 23pt
+\font\slidetitlefont = cmss12   at 20pt
+\font\subtitlefont   = cmss8
+\font\titlefont      = cmss10   at 20pt
+
+\newcolor{darkred}{rgb}{.6 0 0}
+\setparameter job:
+  mode           = presentation
+  author         = "Pete Agoras"
+  title          = "The square root of 2 ain't rational"
+  date           = "Some centuries B.C\rlap." % \rlap creates protrusion
+  fullscreen     = true
+  autofullscreen = true
+  font           = \tenrm
+
+
+%
+% Slides for the main matter.
+%
+\setparameter slide:
+  everyslide    = \everyslide
+  top           = 3cm
+  topskip       = 1cm
+  left          = 3.1cm
+  right         = 5cm
+  baselineskip  = .5cm
+  areas*        = "title by author date"
+  bookmarkstyle = italic
+  font          = \tenrm
+  vpos          = top
+
+\def\everyslide{%
+  \position{top}\slidetitle
+  \position{left}{\Author\par\Date}
+  \position{menu}{\quitvmode\showbookmarks\Bookmarks}
+  \position{menu}[0pt,0pt]{\the\numexpr\slidenumber-1\relax}
+  }
+
+%
+% Left and top areas.
+% 
+\setarea{left}
+  hshift     = 0pt
+  width      = 3cm
+  right      = .1cm
+  hpos       = rf
+  bottom     = .5cm
+  vpos       = bottom
+  foreground = darkred
+  font       = \subtitlefont
+
+\setarea{top}
+  left   = 3.1cm
+  vshift = 0pt
+  height = 2cm
+  vpos   = bottom
+  font   = \titlefont
+
+\setarea{vline hline}
+  frame  = "width = .15pt, color = black"
+
+\setarea{vline}
+  hshift = 3cm
+  width  = 0pt
+
+\setarea{hline}
+  vshift = 2cm
+  height = 0pt
+
+%
+% The circle with the slide number.
+%
+\setarea{menu}
+  width height = 1cm
+  vshift* hshift* topskip = .5cm 
+  vpos = bottom
+  hpos = rr
+
+\newsymbol\Bookmarks[.35cm,padding=.1pt]
+  {pen .05,
+   move 1 -.6,
+   circle lu 1,
+   circle ur 1,
+   circle rd 1,
+   circle dl 1,
+   }
+
+%
+% The maths on the right.
+%
+\setarea{math}
+  width      = 2cm
+  hshift*    = 1.1cm
+  vshift*    = 5.35cm
+  vshift     = 5.25cm
+  topskip    = .8cm
+  foreground = white
+  background = black
+  frame      = width=.1cm,corner=round % No space => no need for quotes or braces. No readability either.
+  hpos       = rr
+
+
+%
+% The title slide.
+%
+\setslide{titleslide}
+  areas      = "title by author date"
+  bookmark   = false
+  hpos       = rr
+  everyslide = {}
+
+\setarea{title}
+  hshift*    = 1cm
+  hpos       = rr
+  vshift     = 2cm
+  height     = 1.3cm
+  topskip    = 1cm
+  background = darkred
+  foreground = white
+  frame      = "width = .5em, corner = round, color = black"
+  font       = \maintitlefont
+
+\setarea{by}
+  hshift*    = 5.8cm
+  hpos       = rr
+  vshift     = 4.5cm
+  height     = .8cm
+  topskip    = 10pt
+  top        = 3pt
+  background = black
+  foreground = white
+  frame      = "width = .5em, corner = round"
+  font       = \it
+  
+
+\setarea{author}
+  hshift*    = 5cm
+  hpos       = rr
+  vshift     = 6.3cm
+  height     = 25pt
+  topskip    = 15pt
+  top        = 4pt
+  background = black
+  foreground = white
+  frame      = "width = .5em, corner = round, color = darkred"
+  font       = \slidetitlefont
+  
+\setarea{date}
+  hshift*    = 5.5cm
+  vshift*    = 1.7cm
+  height     = .8cm
+  bottom     = .3cm
+  topskip    = 0pt
+  vpos       = bottom
+  background = white
+  foreground = black
+  frame      = "width = .5em, corner = bevel, color = darkred"
+  hpos       = rr
+
+
+%
+% For the appendices.
+% We remove the math area instead
+% of redefining \everyslide.
+%
+\setslide{appslide}
+  top   = 2.5cm
+  areas*= "math title by author date"
+
+\abovedisplayshortskip = 0cm
+\belowdisplayshortskip = 0cm
+\abovedisplayskip = 0pt
+\belowdisplayskip = 0pt
+
+%
+% Steps.
+%
+\setparameter step:
+  vskip = .5cm
+
+% With this macro, the item symbol is always on the screen
+% (since the step is "visible").
+\def\Step{%
+  \step[visible=true]\quitvmode\llap{\stepsym\kern.2cm}%
+  \step}
+
+%
+% The maths.
+%
+\setstep\emptystep
+  everyvstep everyhstep = {}
+  vskip hskip = 0pt
+
+\def\domath#1 #2 #3{%
+  \emptystep[on=#1,off=#2]
+  \domathstep{#3}%
+  }
+\def\Domath#1 #2{%
+  \emptystep[off=#1,visible=true]
+  \domathstep{#2}%
+  }
+\def\domathstep#1{%
+  \position{math}[0pt,0pt]{$#1$}%
+  }
+%  
+% Item symbols.
+%
+\newsymbol\stepsym[2mm,padding=0pt]
+  {color darkred,
+  + 1 .5, + -1 .5, fill,}
+\newsymbol\backsym[2mm,padding=0pt]
+  {color darkred, move 1 0, + -1 .5, + 1 .5, fill,}
+%
+% Navigation to the appendices.
+%
+\def\Back#1{%
+  \presentationonly{\usecolor{darkred}{\gotoB{#1}{\subtitlefont\backsym\kern.3em Back}}}%
+  }
+\def\To#1{%
+  \usecolor{darkred}{\gotoA{#1}{\subtitlefont\stepsym\kern.3em See why}}%
+  }
+%
+% And some structure.
+%
+\def\section#1{%
+  \def\sectiontitle{#1}%
+  \createbookmark[nosubmenutext,open]{.5}{#1}%
+  }
+
+% \endinput
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                             %
+% UNCOMMENT THE PREVIOUS LINE TO USE THIS FILE AS A TEMPLATE, %
+% OR REMOVE EVERYTHING BELOW.                                 %
+%                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\titleslide
+
+\position{title}\Title
+\position{by}{A Casual Talk By}
+\position{author}\Author
+\position{date}\Date
+
+\endtitleslide
+
+
+
+
+
+\section{Demonstration}
+
+
+
+\slide[A simple assumption,font=]
+
+\step[on=A]\position{math}[0cm,0cm]{}
+
+\domath A B  {{a\over b}=\sqrt2}
+\domath B C  {({a\over b})^2=2}
+\domath C D  {{a^2\over b^2}=2}
+\domath D {} {a^2=2b^2}
+
+\Step Some say the square root of 2 isn't rational.
+\step Suppose it were.
+
+\Step[A] Then we could write it as this, where $a$ and $b$ are
+integers without a common factor.
+\To{app1}
+
+\Step[B] But then we can also write this.
+\step[C] And this.
+\step[D] And finally this.
+\step Which means that $a^2$ is even.
+
+\endslide
+
+
+
+\slide[Its consequences]
+
+\step[on=A]\position{math}[0cm,0cm]{}
+
+\Domath A   {a^2=2b^2}
+\domath A B {(2k)^2=2b^2}
+\domath B C {4k^2=2b^2}
+\domath C D {2k^2=b^2}
+
+\Step[visible=true] So what?
+\step So $a$ is even. Because only even numbers produce even squares.
+\To{app2}
+
+\Step[A] Being even means being expressible in the form $2k$, where $k$ is
+any integer.
+\step[B] And $(2k)^2$ square gives $4k^2$.
+
+\Step[C] Let's simplify.
+\step Thus $b^2$ is even.
+\step And $b$ is too.
+
+\endslide
+
+
+
+\slide[The problem]
+
+\step[on=A]\position{math}[0cm,0cm]{}
+
+\domath A {} {{a\over b}\neq\sqrt2}
+
+\Step[visible=true] And but so we said $a$ and $b$ have no common factor.
+
+\Step If both are even they do have a common factor: 2.
+\step Which is absurd.
+
+\Step Thus, our basic assumption is false.
+\step[A] There are no such $a$ and $b$.
+
+\Step The square root of 2 is irrational.
+\step Too bad.
+
+\endslide
+
+
+
+
+
+\section{Appendices}
+
+
+
+\appslide[All fractions are reducible]
+
+\Step[visible=true]
+Suppose $c\over d$ is a rational number. If c and d have no common
+factor, then $a=b$ and $b=d$. If they have a common factor,
+divide both by their greatest common divisor. The result
+is $a\over b$, with no common factor.
+\kern1em\Back{app1}
+
+\endappslide
+
+
+
+\appslide[An even square has an even root]
+
+\Step[visible=true]
+An even number, by definition, is expressible
+in the form $2k$, where $k$ is any integer.
+On the other hand, an odd number is expressible by
+%
+$$2k+1$$
+%
+Thus the square of an odd number is
+%
+$$(2k+1)^2$$
+i.e. $$4k^2+4k+1$$
+i.e. $$2\times2(k^2+k)+1$$
+%
+which is of the form $2k+1$
+with $2(k^2+k)$ as $k$.
+Hence, an odd number produces an odd square,
+and thus if a square is even its root is even too.
+\kern1em\Back{app2}
+
+\endappslide
+
+
+\bye

@@ -1,0 +1,23 @@
+name autoaligne
+category Package
+revision 49092
+shortdesc Align terms and members in math expressions
+longdesc This package allows to align terms and members between lines
+longdesc containing math expressions.
+containersize 9288
+containerchecksum 10c1b6b8973bc451d38f1051715d7f6efe8acc7420b954aae657bae10254d6919fc7e3d605ebc90e525a7cfa56f082a966bad600c54e50070f1c3fae2bec38fd
+doccontainersize 355792
+doccontainerchecksum c0a1f2514d80e153b74efa94918c70cc16638d68c6b6e1ae4df8f765e13bc55218a1b7eed289f6dafba440ab7c5ef6cf1b6a728f8df161b21c9951894e83b949
+docfiles size=88
+ texmf-dist/doc/generic/autoaligne/README details="Readme"
+ texmf-dist/doc/generic/autoaligne/autoaligne-fr.pdf details="Package documentation (French)" language="fr"
+runfiles size=9
+ texmf-dist/tex/generic/autoaligne/autoaligne-fr.tex
+ texmf-dist/tex/generic/autoaligne/autoaligne.sty
+ texmf-dist/tex/generic/autoaligne/autoaligne.tex
+catalogue-contact-bugs https://framagit.org/unbonpetit/autoaligne/issues
+catalogue-contact-repository https://framagit.org/unbonpetit/autoaligne/tree/master
+catalogue-ctan /macros/generic/autoaligne
+catalogue-license lppl1.3c
+catalogue-topics maths alignment alignment-supp
+catalogue-version 1.4

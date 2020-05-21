@@ -1,0 +1,26 @@
+name prtec
+category Package
+revision 51919
+shortdesc A template for PRTEC conference papers
+longdesc This package provides a LaTeX class, a BibTeX style, and a
+longdesc LaTeX template to format conference papers for the Pacific Rim
+longdesc Thermal Engineering Conference (PRTEC). The .tex and .cls files
+longdesc are commented and should be self-explanatory. The package
+longdesc depends on newtx.
+containersize 12056
+containerchecksum 06e946526f194e36b55c91c46615c74a255411ff3de2fba005a672741830a5bfc162be122a7f03d00374917ab70dd789549a2976280db8c8106999ab7e0854e4
+doccontainersize 360784
+doccontainerchecksum fb299846eca43fb054ff441c2eed6f87382cbb58419947092d04bfa99102e3db7a8395c9b974395b579f6b5700f55c2c730c162bcd19e5246fbc64b80acf5681
+docfiles size=138
+ texmf-dist/doc/latex/prtec/PRTEC19-template.pdf details="Package documentation"
+ texmf-dist/doc/latex/prtec/PRTEC19-template.tex
+ texmf-dist/doc/latex/prtec/README.md details="Readme"
+ texmf-dist/doc/latex/prtec/prtec-sample.bib
+ texmf-dist/doc/latex/prtec/sample-figure.pdf
+runfiles size=13
+ texmf-dist/bibtex/bst/prtec/prtec.bst
+ texmf-dist/tex/latex/prtec/prtec.cls
+catalogue-ctan /macros/latex/contrib/prtec
+catalogue-license mit
+catalogue-topics class bibtex-sty confproc engineering scientific-docs
+catalogue-version 1.06

@@ -1,0 +1,64 @@
+\relax
+% v1906test.mtx
+%
+% A test of the nokerning commands and the \glyphbboxright IE.
+
+
+\metrics
+
+\for(i){0}{20}{1}
+   \setglyph{c\strint{i}}
+      \glyphrule{20}{\mul{\add{\int{i}}{1}}{20}}
+      \movert{\mul{20}{\int{i}}}
+   \endsetglyph
+\endfor(i)
+
+
+\setglyph{d}
+   \for(i){5}{10}{1}
+      \glyphpcc{c\strint{i}}{\int{i}}{\int{i}} 
+   \endfor(i)
+   \resetint{j}{\glyphbboxright}
+   \immediate\write16{\string\glyphbboxright=\strint{j}}
+   \glyph{c20}{1000}
+   \resetint{j}{\glyphbboxright}
+   \immediate\write16{\string\glyphbboxright=\strint{j}}
+\endsetglyph
+
+
+\for(i){0}{20}{1}
+   \for(j){0}{20}{1}
+      \setkern{c\strint{i}}{c\strint{j}}{\mul{\int{i}}{\int{j}}}
+   \endfor(j)
+\endfor(i)
+
+\noleftkerning{c1,c3,c5,c7,c9,c11,c13,c15,c17,c19}
+\immediate\write16{\expandafter\meaning\csname a_macro\endcsname}
+\norightkerning{c1,c3,c5,c7,c9}
+
+% \resetint{i}{0}
+% \loop
+%    \setkern{c\strint{i}}{c\strint{i}}{-50}
+%    \resetint{j}{\sub{20}{\int{i}}}
+%    \resetkern{c\strint{i}}{c\strint{j}}{-100}
+% \ifnum 20>\int{i}
+%    \resetint{i}{\add{\int{i}}{1}}
+% \repeat
+
+
+% \resetint{i}{0}
+% \loop
+%    \ifiskern{c3}{c\strint{i}}\then
+%       \resetint{T}{\kerning{c3}{c\strint{i}}}
+%       \message{c3:c\strint{i}  has kern \strint{T} units^^J}
+%    \else
+%       \message{c3:c\strint{i}  no kern^^J}
+%    \fi
+% \ifnum 20>\int{i}
+%    \resetint{i}{\add{\int{i}}{1}}
+% \repeat
+
+
+
+\endmetrics
+

@@ -1,0 +1,181 @@
+% Copyright (C)  2020 Alain Matthes
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+% This work has the LPPL maintenance status `maintained'.
+% The Current Maintainer of this work is Alain Matthes
+
+% ``TKZdoc-fct-main '' is the french  documentation of tkz-fct.    
+
+\documentclass[DIV         = 14,
+               fontsize    = 10,
+               headinclude = false,
+               index       = totoc,
+               footinclude = false,
+               twoside,
+               headings    = small
+               ]{tkz-doc}
+\usepackage{etoc}
+\gdef\tkznameofpack{tkz-fct}
+\gdef\tkzversionofpack{1.4c}
+\gdef\tkzdateofpack{2020/05/01}
+\gdef\tkznameofdoc{doc-tkz-tab}
+\gdef\tkzdateofdoc{2020/05/01}
+\gdef\tkzversionofdoc{1.4c} 
+\gdef\tkzauthorofpack{Alain Matthes}
+\gdef\tkzadressofauthor{}
+\gdef\tkznamecollection{AlterMundus} 
+\gdef\tkzurlauthor{http://altermundus.fr}
+\gdef\tkzurlauthorcom{http://altermundus.fr}  
+\gdef\tkzengine{lualatex}
+\usepackage{tkz-tab,tkz-fct,alterqcm}
+\usepackage{tkz-euclide}
+\usetikzlibrary{shapes.geometric}
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+      linkcolor=Gray,
+      citecolor=Green,
+      filecolor=Mulberry,
+      urlcolor=NavyBlue,
+      menucolor=Gray,
+      runcolor=Mulberry,
+      linkbordercolor=Gray,
+      citebordercolor=Green,
+      filebordercolor=Mulberry,
+      urlbordercolor=NavyBlue,
+      menubordercolor=Gray,
+      runbordercolor=Mulberry,
+      pdfsubject={Graph function with gnuplot},
+      pdfauthor={\tkzauthorofpack},
+      pdftitle={\tkznameofpack},
+      pdfkeywords={tikz, pgf, pdf, pdflatex, graphic, euclide,lualatex,
+      points, maths, graph, gnuplot, angle ,function},
+      pdfcreator={\tkzengine}
+}
+\usepackage{url}
+\def\UrlFont{\small\ttfamily}
+
+\usepackage{fontspec}
+\setmainfont{texgyrepagella}[
+  Extension = .otf,
+  UprightFont = *-regular ,
+  ItalicFont  = *-italic  ,
+  BoldFont    = *-bold    ,
+  BoldItalicFont = *-bolditalic ,
+]
+\setsansfont{texgyreheros}[
+  Extension = .otf,
+  UprightFont = *-regular ,
+  ItalicFont  = *-italic  ,
+  BoldFont    = *-bold    ,
+  BoldItalicFont = *-bolditalic ,
+]
+\setmonofont{lmmono10-regular.otf}[
+  Numbers={Lining,SlashedZero},
+  ItalicFont=lmmonoslant10-regular.otf,
+  BoldFont=lmmonolt10-bold.otf,
+  BoldItalicFont=lmmonolt10-boldoblique.otf,
+]
+\newfontfamily\ttcondensed{lmmonoltcond10-regular.otf}
+%% (La)TeX font-related declarations:
+\linespread{1.05}      % Pagella needs more space between lines
+\usepackage{unicode-math}
+\usepackage{fourier-otf}
+\usepackage{tkzexample}    
+\usepackage{rotating,fancyvrb} 
+\usepackage[french]{babel}
+\usepackage[autolanguage]{numprint}
+
+\usepackage{microtype}  
+\DisableLigatures{encoding = T1,
+                  family   = tt*}   
+\usepackage[parfill]{parskip} 
+\usepackage{array,multirow,multido,booktabs}
+\usepackage{shortvrb,fancyvrb} 
+\usepackage{ipa}  
+\makeatletter
+\renewcommand*\l@subsubsection{\bprot@dottedtocline{3}{3.8em}{4em}}  
+\makeatother
+\AtBeginDocument{\MakeShortVerb{\|}}
+
+\RequirePackage{makeidx} 
+%\@twocolumnfalse
+\makeindex 
+\newcommand*{\E}{\ensuremath{\mathrm{e}}}
+\colorlet{graphicbackground}{white}
+\colorlet{codebackground}{Gray!10}
+% \usepackage[saved]{tkzexample}
+% \def\tkzFileSavedPrefix{tkzFct}
+\def\blue{\color{blue}}
+\def\red{\color{red}}
+\begin{document}
+
+%<--------------------- Première page présentation  ------------------------–>
+\title{\tkznameofpack}
+\date{\today}
+\clearpage
+\thispagestyle{empty}
+\maketitle 
+
+\clearpage
+
+\nameoffile{\tkznameofpack} 
+
+\defoffile{\textbf{tkz-fct.sty  (v1.4c)} est un package pour créer à l'aide de \TIKZ,  des représentations graphiques de fonctions en 2D le plus simplement possible. Il est dépendant de \TIKZ\ et fera partie d'une série de modules ayant comme point commun, La création de dessins utiles dans l’enseignement des mathématiques. Ce sont des représentations du type scolaire qui correspondent à l’enseignement proposé dans les lycées français.}                                 
+
+\presentation
+
+\vspace*{24pt}  
+\noindent\lefthand\ Je souhaite remercier \tkzimp{Till Tantau} pour avoir créé le merveilleux outil \tkzname{\TIKZ}, ainsi que \tkzimp{Michel Bovani} pour \tkzname{fourier}, dont l'association avec \tkzname{utopia} est excellente.
+
+   
+\vspace*{12pt}
+\noindent\lefthand\ Je souhaite remercier aussi  \tkzimp{David Arnold} qui a corrigé un grand nombre d'erreurs et qui a testé de nombreux exemples, \tkzimp{Pablo González Luengo } pour son aide sur la documentation et la gestion du dépôt "GitHub", \tkzimp{Wolfgang Büchel} qui a corrigé également des erreurs et a construit de superbes scripts pour obtenir les fichiers d'exemples,  \tkzimp{John Kitzmiller}  et ses exemples, et enfin  \tkzimp{Gaétan Marris} pour ses remarques.  
+
+\vspace*{12pt}
+\noindent\lefthand\ Vous trouverez bientôt de nombreux exemples sur mon site~: 
+\href{http://altermundus.fr}{altermundus.fr}  
+
+\vfill   
+Vous pouvez envoyer vos remarques, et les rapports sur des erreurs que vous aurez constatées à l'adresse suivante~: \href{mailto:al.ma@mac.com}{\textcolor{blue}{Alain Matthes}}.
+ 
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3
+of this license or (at your option) any later version.
+%<--------------------------------------------------------------------------->
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\newpage
+
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}  
+%<---------------------------- the files ------------------------------------>
+\include{TKZdoc-fct-why}
+\include{TKZdoc-fct-compilation}
+\include{TKZdoc-fct-fonctions}
+\include{TKZdoc-fct-point}
+\include{TKZdoc-fct-label}
+\include{TKZdoc-fct-tangent}
+\include{TKZdoc-fct-area}
+\include{TKZdoc-fct-riemann}
+\include{TKZdoc-fct-asymptote}
+\include{TKZdoc-fct-param}
+\include{TKZdoc-fct-polar}
+\include{TKZdoc-fct-symbol}
+\include{TKZdoc-fct-example}
+\include{TKZdoc-fct-interpolation}
+\include{TKZdoc-fct-VDW}
+\include{TKZdoc-fct-bac}
+\include{TKZdoc-fct-fppgf}
+\include{TKZdoc-fct-faq}
+\include{TKZdoc-fct-liste}
+%<--------------------------------------------------------------------------->
+\clearpage\newpage
+\printindex
+\end{document}

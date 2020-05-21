@@ -1,0 +1,216 @@
+%%%
+%%% Sample bibliography file for PRTEC conference
+%%%
+%%% Author: John H. Lienhard, MIT, April 2019.
+%%% Version: 1.01
+%%%
+@article{author2009,
+  title = {Title of article},
+  journal = {Title of Journal},
+  year = {2009},
+  volume = {12},
+  pages = {231--251},
+  author = {A. A. Author and B. B. Author and  C. C. Author},
+  note={\textbf{\color{red}Journal paper with page numbers. <- This note means that this is an example of a journal paper. The same applies to the following lines. Please remove all these red bold-face texts in your manuscript.}},
+}
+% Journal article with page numbers
+% can add doi={},  or url={}, if desired
+
+@article{author2014,
+  title = {Title of article},
+  journal = {Title of Journal},
+  year = {2009},
+  volume = {34},
+  eid = {123456},
+  author = {A. A. Author and B. B. Author and  C. C. Author},
+  note={\textbf{\color{red}Journal paper with article number}},
+}
+%% Journal article with article number (eid)
+
+@article{author20xx,
+  title = {Title of article},
+  journal = {Title of Journal},
+  author = {A. A. Author and B. B. Author and  C. C. Author},
+  year= {2009},
+  doi = {abced/fghij/12345},
+  note={\textbf{\color{red}Journal paper published online with doi only}},
+}
+%% Journal article with doi only
+
+@article{author2013,
+  title = {Title of article},
+  journal = {Title of Journal},
+  author = {A. A. Author and B. B. Author},
+  year = {2013},
+  volume = {56},
+  url = {http://web.com},
+  urldate = {Month day, year},
+  note =  {\textbf{\color{red}Other online scholarly article}},
+}
+%% Journal article online
+
+@inbook{nield2005,
+  title = {Convection in Porous Media},
+  publisher = {Springer-Verlag},
+  year = {2005},
+  author = {D. A. Nield and A. Bejan},
+  address = {New York},
+  pages = {125--176},
+  note = {\textbf{\color{red}Book}},
+}
+%% Use "inbook{" to cite specific pages in a book; if no pages, can just use "book{"
+%% doi = {10.1115/1.4042912}, 
+%% URL = {https://doi.org/10.1115/1.4042912},
+
+@BOOK{buyevich2005,
+  title = {Heat Transfer in Dispersions},
+  publisher = {Begell House},
+  year = {2005},
+  author = {A. Buyevich and D. V. Alexandrov},
+  address = {Connecticut},
+  note = {Available at \url{http://www.edata-center.com/ebooks/b7f98f1e271b3e77a.html/} [accessed May 5, 2005] \textbf{\color{red}E-Book}},
+}
+%% ebook
+
+@BOOK{yang1992,
+  title = {Rotating Machinery},
+  publisher = {Begell House},
+  year = {1992},
+  editor = {W. Yang and J. H. Kim},
+  address = {New York},
+  note = {\textbf{\color{red}Edited book}},
+}
+%% Edited book
+
+@INCOLLECTION{nishikawa1982,
+  title = {Augmentation of Nucleate Boiling Heat Transfer by Prepared Surfaces},
+  editor = {Mizushina, T. and Yang, W. J.},
+  publisher = {Hemisphere Publishing},
+  pages = {1111--1182},
+  year = {1982},
+  booktitle = {Heat Transfer in Energy Problems},
+  author = {Nishikawa, K. and Ito, T.},
+  address = {Washington, D.C.},
+  note = {\textbf{\color{red}Chapter of Edited Book}},
+}
+%% Chapter in edited book
+%%
+% if type = is omitted, chapter = will default to "chap."
+%% doi = {10.1115/1.4042912}, 
+%% URL = {https://doi.org/10.1115/1.4042912},
+
+
+@inproceedings{ma1987,
+  author = {Ma, T. M.}, 
+  title = {Effects of Geometrical Shapes of Reentrant Grooves on Boiling Heat Transfer from Porous Surfaces},
+  booktitle = {{\upshape Heat Transfer 1986,} Proc. 8th Int. Heat Trans. Conf.},
+  year = {1987},
+  pages = {2013--2018},
+  volume = {4},
+  note = {\textbf{\color{red}Paper in conference proceedings}},
+}
+%% Article in conference proceedings
+%% Note hack in booktitle
+%% If paper is numbered without page numbers, omit pages={}, and insert number={}, or number ={Paper No.\ xxx},
+%% Can include doi or url if desired
+
+
+\@phdthesis{richmond2004,
+  author = {J. Richmond},
+  title = {Steady State Thermal Conductivity},
+  school = {University of Connecticut},
+  year = {2002},
+  note = {\textbf{\color{red}Dissertation}},
+}
+% ADDITIONAL fields available include:
+% address = {Storrs, CT}, 
+% type = {Sc{D} Thesis},  use to change the type of thesis.
+% doi = {10.1115/1.4042912}, 
+% URL = {https://doi.org/10.1115/1.4042912},
+
+@misc{author2015a,
+  author  = {Author, A. A. and Author, B. B.},
+  title = {Title of document},
+  url = {http://web.com},
+  urldate = {Month day, year},
+  year = {2015},
+  note = {\textbf{\color{red}Nonperiodical Web Document}},
+}
+%  howpublished = {Retrieved month day, year, from \url{http://web.com}},
+
+
+@INCOLLECTION{author2015b,
+  author  = {Author, A. A. and Author, B. B.},
+  title = {Title of Article},
+  booktitle = {Title of book or larger document},
+  chapter = {4.6},
+  url = {http://web.com},
+  urldate = {Month day, year},
+  urltype = {Retrieved},
+  note = {\textbf{\color{red} Chapter or Section of a Web Document}},
+  year = {2015},
+  type = {sect.}
+}
+%% if type = is omitted, it will default to "chap."
+%% Retrieved month day, year, from \url{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+@proceedings{proceedings,
+  title        = {The title of the proceedings},
+  year         = 2015,
+  editor       = {Howard Johnson},
+  volume       = 2,
+  address      = {Address of publisher},
+  organization = {The organization},
+  publisher    = {Name of publisher},
+  note = {\textbf{\color{red}Conference proceedings}},
+}
+%  series       = {Series A,
+
+@techreport{reynolds1958,
+author = {W.~C.~Reynolds and W.~M.~Kays and S.~J.~Kline},
+title = {Heat transfer in the incompressible turbulent boundary layer. {I}--constant wall temperature},
+type = {Memorandum},
+institution = {NASA},
+address = {Washington, D.C.},
+number = {12-1-58W},
+Month={December},
+year = {1958},
+url = {https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19980228020.pdf},
+note = {\textbf{\color{red}Technical report}},
+}
+% if type = is omitted, it will default to "Tech. Rep."
+
+
+@misc{narayan2017,
+  author = {Prakash Narayan Govindan and Steven Lam and Maximus G. {St. John}},
+  title = {Systems including a condensing apparatus such as a bubble column condenser}, 
+  year = {2017},
+  howpublished = {US Patent {\#}9700811},
+  note = {\textbf{\color{red}Patent}},
+}
+%% US Patent
+
+@manual{GSL,
+	title    =	{{GNU} Scientific Library Release 2.4},
+    URL = {https://www.gnu.org/software/gsl/},
+   author = {Mark Galassi 
+	and Jim Davies
+	and James Theiler
+	and Brian Gough
+	and Gerard Jungman
+	and Patrick Alken
+	and Michael Booth
+	and Fabrice Rossi
+	and Rhys Ulerich},
+   year = 2017,
+   organization = {Free Software Foundation},
+   address = {Boston, MA},
+   month = {June},
+   note = {\textbf{\color{red}Technical manual}},
+}
+%% Technical manual
+
+
+                            

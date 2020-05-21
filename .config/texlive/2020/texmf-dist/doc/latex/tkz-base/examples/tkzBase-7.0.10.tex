@@ -1,0 +1,15 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 53 (Section  7.0.10 : Options \tkzname{frac} and \tkzname{trig} with \tkzcname{tkzGrid})
+
+\begin{tikzpicture}
+   \tkzInit[xmax=9,xstep=3,ymax=4]
+   \tkzGrid[xstep=1,ystep=pi/2,sub,
+            subxstep=1,subystep=pi/4]
+   \tkzLabelX[label=$t$,orig=false,frac=3,
+            below=6pt,font=\scriptsize]
+   \tkzLabelY[trig=2,font=\scriptsize]
+\end{tikzpicture}
+
+\end{document}

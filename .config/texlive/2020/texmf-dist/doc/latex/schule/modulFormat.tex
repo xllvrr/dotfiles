@@ -1,0 +1,170 @@
+\section{Format}
+\label{modul:format}
+Dieses Modul definiert einige grundlegende Paketoptionen für die Formatierung von Dokumenten und stellt passende Makros bereit. Außerdem bindet es das Paket \pkg{ulem} für verschiedene Textformatierungen ein.
+
+\subsection{Formatierungen}
+    Über verschiedene Paketoptionen kann das Aussehen der vom Schule-Paket erstellten Dokumente beeinflusst werden. Es sind zudem einige Makros vorhanden, die häufig verwendete Formatierungen und Sonderzeichen bereitstellen.
+
+\subsubsection{Paketoptionen}
+\begin{options}
+    \opt{farbig} aktiviert die farbige Darstellung.
+    \opt{sprache} fügt eine Liste von CSV Sprachen dem Babelpaket hinzu. \texttt{ngerman} ist immer geladen (als Hauptsprache)
+\end{options}
+
+\subsubsection{Befehle}
+\begin{commands}
+    \command{achtung}[\marg{Text}] Der Befehl \cs{achtung} stellt den angegebenen Text mit einem vorangestellte Warnsymbol und einem fettgedruckten \enquote{Achtung:} dar.
+\begin{sidebyside}[gobble=4]
+    \achtung{Dies ist ein Beispiel.}
+\end{sidebyside}
+
+    \command{chb}[\sarg] setzt eine ankreuzbares Kästchen, der optionale Stern markiert dieses.
+\begin{sidebyside}[gobble=4]
+    \chb \chb*
+\end{sidebyside}
+
+    \command{dashuline}[\marg{Text}] Der Befehl \cs{dashuline} stellt den angegebenen Text unterstrichelt dar.
+\begin{sidebyside}[gobble=4]
+    \dashuline{Dies ist ein Beispiel.}
+\end{sidebyside}
+
+    \command{dotuline}[\marg{Text}] Der Befehl \cs{dotuline} stellt den angegebenen Text unterpunktet dar.
+\begin{sidebyside}[gobble=4]
+    \dotuline{Dies ist ein Beispiel.}
+\end{sidebyside}
+
+    \command{hinweis}[\marg{Text}] Der Befehl \cs{hinweis} stellt den angegebenen Text mit einem vorangestellte Warnsymbol und einem fettgedruckten \enquote{Hinweis:} dar.
+\begin{sidebyside}[gobble=4]
+    \hinweis{Dies ist ein Beispiel.}
+\end{sidebyside}
+
+    \command{person}[\marg{Name}] Der Name einer Person wird mit dem Befehl \cs{person}\marg{Name} hervorgehoben.
+\begin{sidebyside}[gobble=4]
+    \person{Einstein}
+\end{sidebyside}
+
+    \command{so}[\marg{Text}] Der Befehl \cs{so} stellt den angegebenen Text durchgestrichen dar und ermöglicht es so in Wertetabellen bzw. Schreibtischtests einzelne Werte durchzustreichen.
+\begin{sidebyside}[gobble=4]
+    \so{Dies ist ein Beispiel.}
+\end{sidebyside}
+
+    \command{uline}[\marg{Text}] Der Befehl \cs{uline} stellt den angegebenen Text unterstrichen dar.
+\begin{sidebyside}[gobble=4]
+    \uline{Dies ist ein Beispiel.}
+\end{sidebyside}
+
+    \command{uuline}[\marg{Text}] Der Befehl \cs{uuline} stellt den angegebenen Text doppelt unterstrichen dar.
+\begin{sidebyside}[gobble=4]
+    \uuline{Dies ist ein Beispiel.}
+\end{sidebyside}
+
+    \command{uwave}[\marg{Text}] Der Befehl \cs{uwave} stellt den angegebenen Text unterschlängelt dar.
+\begin{sidebyside}[gobble=4]
+    \uwave{Dies ist ein Beispiel.}
+\end{sidebyside}
+
+    \command{xout}[\marg{Text}] Der Befehl \cs{xout} stellt den angegebenen Text durchgekreuzt dar.
+\begin{sidebyside}[gobble=4]
+    \xout{Dies ist ein Beispiel.}
+\end{sidebyside}
+
+\end{commands}
+
+\subsection{Kopf- Fußzeilen}
+    Das Modul stellt einige Standardformatierungen für Kopf- und Fußzeilen bereit, die in den Dokumenttypen verwendet werden.
+
+\subsubsection{Paketoptionen}
+\begin{options}
+    \opt{datumAnzeigen} aktiviert die Darstellung des Datums in der Kopfzeile.
+    \opt{namensfeldAnzeigen} aktiviert die Darstellung eines Namensfelds in der Kopfzeile.
+\end{options}
+
+\subsubsection{Befehle}
+\begin{commands}
+    \command{schule@kopfUmbruch} setzt einen Umbruch, wenn die Kopfzeile durch eine gesetzte Option mehrzeilig wird. Kann in Kopfzeilen verwendet werden, um sie gleichmäßig auszurichten.
+    \command{schule@kopfInnen} setzt eine Kopfzeile mit der vollständigen Lerngruppenbezeichnung (Fach, Lerngruppe) und je nach Paketoption einem Namensfeld in der zweiten Zeile. Ein etwaiger Umbruch der anderen Kopfzeilenfelder wird berücksichtigt.
+    \command{schule@kopfMitte} setzt eine Kopfzeile mit dem Titel des Dokuments. Ein etwaiger Umbruch der anderen Kopfzeilenfelder wird berücksichtigt.
+    \command{schule@kopfAussen} setzt eine Kopfzeile mit dem gegebenen Parameter, üblicherweise dem Dokumenttypbezeichner und je nach Paketoption einem Datumsfeld in der zweiten Zeile. Ein etwaiger Umbruch der anderen Kopfzeilenfelder wird berücksichtigt.
+\end{commands}
+
+\subsection{Seitenzahlen}
+    Die Darstellung von Seitenzahlen in Dokumenten kann ebenfalls beeinflusst werden.
+
+\subsubsection{Paketoptionen}
+\begin{options}
+    \keychoice{seitenzahlen}{auto,autoGesamt,immer,immerGesamt,keine} \Default{autoGesamt}
+        legt die Art der Darstellung von Seitenzahlen fest. Die verschiedenen Varianten sind davon abhängig, ob es sich um ein einseitiges oder mehrseitiges Dokument handelt:
+
+        \begin{tabular}{lcc}
+            \toprule
+            \textbf{Variante}& \textbf{einseitig} & \textbf{mehrseitig} \\
+            \midrule
+            auto &  & $1$ \\
+            autoGesamt &  & $1$ von $n$ \\
+            immer & $1$ & $1$ \\
+            immerGesamt & $1$ von $1$ &  $1$ von $n$ \\
+            keine &  &  \\
+            \bottomrule
+        \end{tabular}
+\end{options}
+
+\subsubsection{Befehle}
+\begin{commands}
+     \command{Seitenzahlen} setzt die Seitenzahlen gemäß der über die Paketoption \option{seitenzahlen} gewählten Variante. Dieser Befehl kann in Kopf- oder Fußzeilen verwendet werden.
+\end{commands}
+
+
+\subsection{Strukturelemente}
+    Verschiedene, häufig verwendete Strukturelemente gehören ebenfalls zum Umfang des Pakets. Darunter sind verschiedene Listen und Platzhalter.
+
+\subsubsection{Umgebungen}
+\begin{environments}%
+    \environment{smalldescription} Die Listenumgebung \env{smalldescription} ist identisch zur \env*{description}-Standardumgebungen von \LaTeX, bis auf die Tatsache, dass zwischen den einzelnen Punkten der Abstand verkleinert wurde.
+    \environment{smallenumerate} Die Listenumgebung \env{smallenumerate} ist identisch zur \env*{enumerate}-Standardumgebungen von \LaTeX, bis auf die Tatsache, dass zwischen den einzelnen Punkten der Abstand verkleinert wurde.
+    \environment{smallitemize} Die Listenumgebung \env{smallitemize} ist identisch zur \env*{itemize}-Standardumgebungen von \LaTeX, bis auf die Tatsache, dass zwischen den einzelnen Punkten der Abstand verkleinert wurde.
+
+    Der Unterschied wird besonders dann deutlich, wenn man die Umgebungen nebeneinander sieht:
+\begin{example}[gobble=4]
+    \begin{minipage}[t]{.4\textwidth}
+        \texttt{itemize}-Umgebung:
+        \begin{itemize}
+            \item Punkt
+            \item Punkt
+            \item Punkt
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{.4\textwidth}
+        \texttt{smallitemize}-Umgebung:
+        \begin{smallitemize}
+            \item Punkt
+            \item Punkt
+            \item Punkt
+        \end{smallitemize}
+    \end{minipage}
+\end{example}
+
+\end{environments}
+
+
+\subsection{Wörtliche Rede, Zitate und Anführungszeichen}
+\subsubsection{Paketoptionen}
+\begin{options}
+    \keychoice{zitate}{guillemets,quotes,swiss} \Default{guillemets} Standardmäßig werden die deutschen \enquote{Möwchen}
+    geladen. Über \verb|quotes| können doppelte \glqq Hochkommata\grqq\ (99-66) geladen werden. Die Darstellung
+    von doppelten Hochkommata im ``Modus 66-99'' kann mittels \verb|swiss| erreicht werden.
+\end{options}
+
+\subsubsection{Befehle}
+\begin{commands}
+    \command{enquote}[\marg{Text}] Setzen von Passagen in typographische Anführungszeichen.
+\begin{sidebyside}[gobble=4]
+    \enquote{Beispiel}
+\end{sidebyside}
+
+    \command{diastring}[\marg{Zeichenkette}] Darstellung von Zeichenketten (strings) in Diagrammen usw.
+\begin{sidebyside}[gobble=4]
+    \diastring{Beispiel}
+\end{sidebyside}
+\end{commands}
+
+    \textbf{Hinweis:} Teilweise kann es zu Fehlern kommen, wenn das Paket \pkg{csquotes} mit eigenen Optionen geladen wird.

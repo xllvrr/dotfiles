@@ -1,0 +1,7 @@
+\TrackLangProvidesResource{manx}[2016/10/06 v1.2]
+
+\providecommand*{\manxnames}{%
+  \renewcommand*{\unitname}{Ennym}% not right, but I don't know any Manx!
+}
+
+\TrackLangAddToCaptions\manxnames

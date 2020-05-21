@@ -1,0 +1,27 @@
+name shortmathj
+category Package
+revision 54407
+shortdesc Automatically shortify titles of mathematical journals
+longdesc This small dummy package just contains a simple list of full
+longdesc and short journal names aswritten in AMS standard:
+longdesc https://mathscinet.ams.org/msnhtml/serials.pdf
+containersize 47360
+containerchecksum f0fe218b38efd961d1f67db265797a01ff4fc28daf0df5f23d9eb2f009961449d6dd3ae953c800af377265cf7f77f707cc35b0c413d93b232502d33b60fdc224
+doccontainersize 120008
+doccontainerchecksum d402e9fd56f8567a79158decc200547e4b68a171c4fa53ca2d9efc2377e9ea1aa61155f53e66de6668a4523177464638412adb4b402a8127436826fbacf24ebb
+docfiles size=35
+ texmf-dist/doc/latex/shortmathj/README.md details="Readme"
+ texmf-dist/doc/latex/shortmathj/biblatex-shortmathj-examples.bib
+ texmf-dist/doc/latex/shortmathj/index.js
+ texmf-dist/doc/latex/shortmathj/package.json
+ texmf-dist/doc/latex/shortmathj/shortmathj-biblatex-mwe.pdf details="Package documentation"
+ texmf-dist/doc/latex/shortmathj/shortmathj-biblatex-mwe.tex
+ texmf-dist/doc/latex/shortmathj/shortmathj.template.sty
+runfiles size=108
+ texmf-dist/tex/latex/shortmathj/shortmathj.sty
+catalogue-contact-bugs https://gitlab.com/Nickkolok/latex-shortmathj/issues
+catalogue-contact-repository https://gitlab.com/Nickkolok/latex-shortmathj
+catalogue-ctan /macros/latex/contrib/shortmathj
+catalogue-license lppl1.3c
+catalogue-topics biblatex journalpub
+catalogue-version 0.5.0

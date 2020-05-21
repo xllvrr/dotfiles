@@ -1,0 +1,29 @@
+name uiucthesis
+category Package
+revision 15878
+shortdesc UIUC thesis class
+longdesc The class produces a document that conforms to the format
+longdesc described in the University's Handbook for Graduate Students
+longdesc Preparing to Deposit.
+containersize 5140
+containerchecksum 565b499bcef08716d627e206a53f2f344a10a0e219876eaf4bd82a63accb2eb43c14c8c8b25236d336022900e9a7d5299b5a34d5e40eba0be6d7dc8ee4431490
+doccontainersize 226612
+doccontainerchecksum 798e7428988a622562b94bfd4ae389dcbba3524fda0d427aa4fbdaff0f1a437babb4e68b58350a3229fa078bf11e17af9f5eff61a5c9153960a941783cca623e
+docfiles size=69
+ texmf-dist/doc/latex/uiucthesis/README details="Readme"
+ texmf-dist/doc/latex/uiucthesis/thesis-ex.pdf details="Example of use"
+ texmf-dist/doc/latex/uiucthesis/thesis-ex.tex
+ texmf-dist/doc/latex/uiucthesis/uiucthesis.pdf details="Package documentation"
+srccontainersize 16144
+srccontainerchecksum 3d1eb025e066a311e4ae28292b00e697cf4de63b1038944b41edfbdacbdfd246d5a49bd63f561c5d0d4bfadad8d2a4325a8784245c09308ef5d2380054b966ad
+srcfiles size=16
+ texmf-dist/source/latex/uiucthesis/uiucthesis.dtx
+ texmf-dist/source/latex/uiucthesis/uiucthesis.ins
+runfiles size=10
+ texmf-dist/tex/latex/uiucthesis/uiucthesis.cls
+ texmf-dist/tex/latex/uiucthesis/uiucthesis.sty
+catalogue-also uiucredborder
+catalogue-ctan /macros/latex/contrib/uiucthesis
+catalogue-license lppl
+catalogue-topics dissertation
+catalogue-version 2.25

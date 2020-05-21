@@ -1,0 +1,1516 @@
+% \iffalse meta-comment
+% Copyright 2018 Louis Paternault
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Louis Paternault
+%
+% This work consists of the files graph35.dtx and graph35.ins
+% and the derived file graph35.sty.
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{graph35.dtx}
+%</driver>
+%
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{graph35}
+%<*package>
+    [2018/04/18 v0.1.1 Paquet permettant de dessiner des touches et menus de calculatrices CASIO.]
+%</package>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\usepackage[unicode=true]{hyperref}
+%\PassOptionsToPackage{draft}{pixelart} % Uncomment for quick compilation
+\usepackage{graph35}
+\usetikzlibrary{arrows.meta}
+\usepackage{listings}
+\lstset{
+  language=[LaTeX]TeX,
+  numbers=left,
+  numberstyle=\tiny,
+  backgroundcolor=\color{yellow!20},
+  basicstyle=\small\color{black}\ttfamily,
+  keywordstyle=\color{blue!80}\sffamily,
+  commentstyle=\color{olive},
+  stringstyle=\color{red},
+}
+\usepackage{textcomp}
+\usepackage{fontspec}
+\usepackage{supertabular}
+\usepackage[french]{babel}
+\newcommand{\internationalizedempty}{\emph{Vide}}
+\newcommand{\internationalizedCalculator}{Calculatrice}
+\newcommand{\internationalizedAnchorsKeys}{Ancres des touches}
+\newcommand{\internationalizedAnchorsReplay}{Ancres de la touche \texttt{REPLAY}}
+\newcommand{\internationalizedAnchorsScreen}{Ancres de l'écran}
+\newcommand{\internationalizedAnchorsCase}{Ancres du boîtier}
+\newcommand{\internationalizedKeyview}{Mots-clefs des touches}
+\usepackage[most]{tcolorbox}
+\newtcolorbox{mybox}[2][]{float=htb, title={#2},#1}
+\newcommand{\TikZ}{Ti\emph{k}Z}
+
+\begin{document}
+\DocInput{graph35.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \GetFileInfo{graph35.dtx}
+%
+% \DoNotIndex{\#,\$,\%,\&,\@,\\,\{,\},\^,\_,\~,\ ,\!,\(,\),\,}
+% \DoNotIndex{\begin, \bfseries, \boldsymbol, \boolvalue}
+% \DoNotIndex{\ClassError, \colorlet, \coordinate, \csdef, \csuse}
+% \DoNotIndex{\def, \definecolor, \draw}
+% \DoNotIndex{\end, \else}
+% \DoNotIndex{\fi, \fill, \foreach}
+% \DoNotIndex{\graph@anchor, \graph@color, \setgraphcolor@blackandwhite, \setgraphcolor@default, \setgraphcolor@real, \graph@tempcolor, \graph@type, \graph@tikzshiftalpha, \graph@tikzgenerickeynumber, \graph@tikzgenerickeyACON, \graph@tikzgenerickeyalpha, \graph@tikzgenerickeyexe, \graph@tikzgenerickeyffive, \graph@tikzgenerickeyffour, \graph@tikzgenerickeyfone, \graph@tikzgenerickeyfsix, \graph@tikzgenerickeyfthree, \graph@tikzgenerickeyftwo, \graph@tikzgenerickeymenu, \graph@tikzgenerickeymisc, \graph@tikzgenerickeyreplay, \graph@tikzgenerickeyshift}
+% \DoNotIndex{\i, \if@show, \ifcsdef, \ifdefstring, \ifshow@alpha, \ifshow@shift, \includegraphics}
+% \DoNotIndex{\j}
+% \DoNotIndex{\newcommand, \newif, \node}
+% \DoNotIndex{\pgfkeys, \pgfkeyssetvalue, \pgfkeysvalueof, \ProcessPgfPackageOptions}
+% \DoNotIndex{\RequirePackage}
+% \DoNotIndex{\scriptsize, \sffamily, \small, \strut}
+% \DoNotIndex{\temp@position, \tikzbwpixelart, \tiny, \tikzcalculator@graph35E+}
+% \DoNotIndex{\usepgfmodule, \usetikzlibrary}
+%
+% \title{Graph35\thanks{
+%   Ce document décrit le paquet \textsf{graph35}~\fileversion, publié le \filedate.
+%   Site web, tickets de suivi, etc. sur \url{http://framagit.org/spalax/graph35}.
+%   }\\Paquet permettant de tracer des touches et menus de calculatrices \textsc{Casio}.}
+% \author{Louis Paternault\\ \texttt{spalax+ctan(at)gresille(dot)org}}
+%
+% \maketitle
+%
+% \begin{abstract}
+%   Ce paquet fournit les commandes pour tracer des touches et menus de certaines calculatrices \textsc{Casio} (parmi lesquelles les \textsc{Graph25}, \textsc{Graph35}, \textsc{Graph75} et d'autres…).
+% \end{abstract}
+%
+% \setcounter{tocdepth}{2}
+% \tableofcontents
+%
+% \section{Introduction}
+% Ce document présente le paquet \textsf{graph35}, permettant de tracer des boutons et menus de certaines calculatrices \textsc{Casio}.
+%
+% \subsection{License}
+%
+% This work may be distributed and/or modified under the
+% conditions of the \LaTeX{} Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+%
+% Further information can be found in the |.dtx| file used to build this
+% document.
+%
+% \begin{mybox}{Traduction (sans valeur légale)}
+% L'ensemble de ce travail peut être publié et/ou modifié en respectant les conditions de la \emph{\LaTeX{} Project Public License} (License publique du projet \LaTeX), au choix dans la version 1.3 de cette licence, ou une licence ultérieure.
+% \end{mybox}
+%
+% \subsection{Sommaire}
+%
+% L'installation est décrite dans la partie \ref{sec:install}. Les options et macros sont décrites dans la partie \ref{sec:usage}. La partie \ref{sec:software} décrit quelques logiciels utilisés ou associés à ce paquet. Les annexes \ref{sec:calculators} à \ref{sec:keys} contiennent la liste des calculatrices, touches, menus disponibles, ainsi que des illustrations des différentes macros mises en œuvre dans ce paquet. Enfin, la dernière partie \ref{sec:implementation} contient le code du paquet.
+%
+% \section{Téléchargement et installation}
+% \label{sec:install}
+%
+% \subsection{Distributions \textsc{Gnu}/Linux}
+%
+% Sur les distributions pour lesquelles |graph35| a été empaqueté, la manière la plus simple de l'installer est d'utiliser votre gestionnaire de paquet. Sous Debian (et ses dérivées, comme Ubuntu), il est empaqueté dans le paquet |texlive-pictures| à partir de la version \texttt{2018.20180404-1}. Il est donc possible de l'installer en utilisant la commande suivante.
+%
+% \begin{quote}
+% |sudo apt install texlive-pictures|
+% \end{quote}
+%
+% \subsection{Distribution \LaTeX}
+% 
+% Ce paquet est disponible à la fois dans les distributions \TeX{}Live et MiK\TeX{}. Il peut être installé en utilisant leur gestionnaire de paquets respectif.
+% 
+% \subsection{Installation manuelle}
+%
+% \begin{itemize}
+% \item Télécharger l'archive.
+% \begin{description}
+% \item[Version stable] \url{http://mirrors.ctan.org/graphics/graph35.zip}
+% \item[Version de développement] \url{https://framagit.org/spalax/graph35/repository/archive.zip?ref=master}
+% \end{description}
+% \item Décompresser l'archive.
+% \item Compiler le fichier : |latex graph35.ins|
+% \item Déplacer les fichiers |.sty| dans un répertoire du chemin de \LaTeX{}.
+% \end{itemize}
+%
+% \section{Utilisation}
+% \label{sec:usage}
+%
+% \subsection{Calculatrices prises en charge}
+%
+% \begin{description}
+% \item[Touches et calculatrices] Les macros permettent de dessiner la calculatrice et les touches de la \textsc{Graph35} uniquement.
+% \item[Écran] Les macros permettent de dessiner les éléments de menus affichés à l'écran pour, entre autres, les \textsc{Graph25}, \textsc{Graph35}, \textsc{Graph75}, \textsc{fx-9860gii}, \textsc{fx-9750gii} et sans doute d'autres.
+% \end{description}
+%
+% \subsection{Options du paquet}
+%
+% Le paquet admet une unique option |color|, qui vaut par défaut |color=real|.
+%
+% Cette option peut prendre deux valeurs : |real| et |blackandwhite|, qui définit la couleur par défaut des dessins (calculatrice et touches). Voir la section suivante pour les détails.
+%
+% Ce n'est pas à proprement parler une option du paquet, mais pour accélérer la compilation, il est possible d'ajouter la ligne \lstinline+\PassOptionsToPackage{draft}{pixelart}+ avant de charger le paquet |graph35| : ceci a pour effet de désactiver l'affichage de toutes les images en pixelart (principalement les macros |\function|, voir partie \ref{sec:function}). En effet, la compilation de ces commandes peut être très long, et la désactivation temporaire peut faire gagner du temps\footnote{Par exemple, sur mon ordinateur, ajouter cette option à ce fichier rend la compilation trente fois plus rapide, la faisant passer de huit minutes à 16 secondes.}.
+%
+% \subsection{Couleurs}
+% \label{sec:colors}
+%
+% \subsubsection{Couleurs prédéfinies}
+%
+% Il est possible de personnaliser les couleurs des touches, de la calculatrice, etc. en utilisant des jeux de couleur prédéfinies (ou personnalisées ; voir plus loin). Ces jeux de couleurs prédéfinis sont :
+% \begin{description}
+% \item[real] \key[shift, alpha, color=real]{ACON} Couleur réaliste, mais qui risque d'être difficilement lisible dans un document imprimé en noir et blanc.
+% \item[blackandwhite] \key[shift, alpha, color=blackandwhite]{ACON} Noir et blanc, à fort contraste, qui sera plus lisible à l'impression.
+% \end{description}
+%
+% \subsubsection{Choix des couleurs}
+%
+% Plusieurs méthodes permettent de choisir parmi un jeu de couleur prédéfinies.
+%
+% \begin{itemize}
+% \item L'argument |color| du paquet définit la couleur par défaut à utiliser (qui peut être ensuite modifiée au cas par cas avec l'option |color| des macros). Par exemple, pour que tous les dessins soient en noir et blanc, charger le paquet en utilisant \lstinline|\usepackage[color=blackandwhite]{graph35}|. Par défaut, les couleurs réalistes sont utilisées (|color=real|).
+% \item Les commandes |\key| et |\calculator| acceptent en plus une valeur |color| pour définir la couleur de cette commande uniquement. Par défaut, la couleur définie lors du chargement du paquet est utilisée. Ces commandes acceptent un plus une valeur |color=default|, pour spécifier explicitement l'utilisation de la couleur par défaut.
+% \item
+% \DescribeMacro{\setgraphcolor}
+% Enfin, il est possible de redéfinir la couleur par défaut en utilisant la macro |\setgraphcolor|\marg{color}. Par exemple, si le paquet a été chargé avec l'option |color=blackandwhite|, pour utiliser les couleurs réalistes pour la suite du document, utiliser \lstinline|\setgraphcolor{real}|.
+% \end{itemize}
+%
+% \subsubsection{Couleurs personnalisées}
+%
+% Il est aussi possible d'utiliser des couleurs arbitraires en définissant les couleurs suivantes.
+%
+% \begin{description}
+%   \item |graph35ACON| : Touche |ACON| \key{ACON}.
+%   \item |graph35ACONBORDER| : Bordure de la touche |ACON|.
+%   \item |graph35ALPHA| : Touche |ALPHA| \key{ALPHA}.
+%   \item |graph35ALPHABORDER| : Bordure de la touche |ALPHA|.
+%   \item |graph35SHIFT| : Touche |SHIFT| \key{SHIFT}.
+%   \item |graph35SHIFTBORDER| : Bordure de la touche |SHIFT|.
+%   \item |graph35SCREEN| : Pixels de l'écran.
+%   \item |graph35SCREENBG| : Arrière-plan de l'écran.
+%   \item |graph35CASE| : Boîtier.
+%   \item |graph35CASEBORDER| : Bordure du boîtier.
+%   \item |graph35EXE| : Touche |EXE| \key{EXE}.
+%   \item |graph35EXEBORDER| : Bordure de la touche |EXE|.
+%   \item |graph35NUMBER| : Touches numériques.
+%   \item |graph35NUMBERBORDER| : Bordures des touches numériques.
+%   \item |graph35KEYTEXT| : Texte sur les touches.
+%   \item |graph35ALPHATEXT| : Texte \emph{alpha} au dessus des touches.
+%   \item |graph35SHIFTTEXT| : Texte \emph{shift} au dessus des touches.
+% \end{description}
+%
+% \colorlet{graph35KEYTEXT}{green}
+% \colorlet{graph35SHIFTTEXT}{orange}
+% \definecolor{graph35ALPHATEXT}{RGB}{0, 0, 255}
+% \definecolor{graph35NUMBER}{RGB}{200, 200, 200}
+% \colorlet{graph35NUMBERBORDER}{graph35NUMBER}
+%
+% Ces couleurs sont des noms de couleur au sens du paquet |xcolor|, et peuvent être redéfinies en utilisant les commandes de ce paquet. Par exemple, pour produire la touche \key[shift, alpha]{7}, utiliser le code suivant.
+%
+% \iffalse
+%<*example>
+% \fi
+% \begin{lstlisting}[language=TeX]
+\colorlet{graph35KEYTEXT}{green}
+\colorlet{graph35SHIFTTEXT}{orange}
+\definecolor{graph35ALPHATEXT}{RGB}{0, 0, 255}
+\definecolor{graph35NUMBER}{RGB}{200, 200, 200}
+\colorlet{graph35NUMBERBORDER}{graph35NUMBER}
+
+\key[shift, alpha]{7}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% \setgraphcolor{real}
+%
+% \subsection{Calculatrices}
+%
+% \DescribeMacro{\calculator}
+% Pour le moment, il n'est possible d'afficher qu'un seul modèle de calculatrice : la \textsc{graph35+}. La syntaxe est  \lstinline|\calculator|\oarg{color, scale}\marg{modèle}.
+%
+% \begin{itemize}
+% \item \marg{modèle} Voir la liste des modèles disponibles dans l'annexe \ref{sec:calculators} (page \pageref{sec:calculators}).
+% \item \oarg{color} Permet de changer la couleur du dessin ; voir la partie précédente (\ref{sec:colors}).
+% \item \oarg{scale} Permet de modifier l'échelle du dessin. Le résultat produit n'est pas forcément celui que vous attendiez ; voir la partie \ref{sec:scale} pour plus d'informations.
+% \end{itemize}
+%
+% Par exemple, la commande \lstinline|\calculator[color=real]{graph35+E}| produit une version dix fois plus grande du dessin suivant (une version plus grande est visible dans l'annexe \ref{sec:calculators}, page \pageref{sec:calculators}).
+%
+% \begin{center}
+% \scalebox{.1}{%
+%   \calculator{graph35+E}
+% }
+% \end{center}
+%
+% \DescribeMacro{\tikzcalculator}
+% Il est aussi possible d'inclure une calculatrice dans une figure \TikZ, avec la commande \lstinline|\tikzcalculator|\marg{modèle}. Cette commande ne prend aucun autre argument que le modèle, et trace une calculatrice autour des coordonnées $(0; 0)$. Pour dessiner ailleurs, avec une autre échelle, utilisez un environnement |scope|, comme dans l'exemple suivant.
+%
+% \iffalse
+%<*example>
+% \fi
+% \begin{lstlisting}
+\begin{tikzpicture}
+  \begin{scope}[shift={(1, 2)}, scale=.5]
+    \tikzcalculator{graph35+E}
+  \end{scope}
+\end{tikzpicture}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% Des ancres (\emph{anchors}) sont définies pour chacune des touches, les bords de la calculatrice, ainsi que l'écran, pour pouvoir y faire référence dans vos tracés \TikZ. Voir la partie \ref{sec:anchors} pour plus d'informations.
+%
+% \subsection{Touches}
+%
+% \DescribeMacro{\key}
+% Pour inclure une touche de la calculatrice, utiliser :
+% \begin{center}
+% \lstinline|\key|\oarg{color, prefix, suffix, scale, shift, alpha}\marg{touche}.
+% \end{center}
+%
+% Par exemple \lstinline|\key[color=blackandwhite]{DEL}| produira \key[color=blackandwhite]{DEL} tandis que \lstinline|\key[shift, alpha]{DEL}| produira \key[shift, alpha]{DEL}.
+%
+% Les arguments sont:
+% \begin{itemize}
+% \item \marg{touche} Nom de la touche à afficher (par exemple \lstinline|1| pour \key{1}, ou \lstinline|EXE| pour \key{EXE}). Le nom de la touche est plus ou moins ce qui est écrit dessus. La liste des touches est visible sous forme de liste dans l'annexe \ref{sec:keylist}, ou comme légende d'une calculatrice dans la figure \ref{fig:keyview}.
+% \item \oarg{color, scale} Couleur et échelle de la touche. Ces arguments prennent les mêmes arguments et ont les mêmes limitations que pour la commande \lstinline|calculator| (voir section \ref{sec:colors} pour les couleurs, et \ref{sec:scale} pour l'échelle).
+% \item \oarg{shift, alpha} Ces options affichent ou masquent les textes jaunes et rouges décrivant la fonction de la touche si elle a été pressée après les touches \key{SHIFT} ou \key{ALPHA}. Par défaut, ces textes sont masqués (ce qui est équivalent à \texttt{shift=false, alpha=false}) ; pour l'activer, utiliser \texttt{shift=true} ou \texttt{alpha=true} ou plus simplement \texttt{shift} ou \texttt{alpha}.
+% \item \oarg{prefix, suffix} Des ancres (\emph{anchors}) sont créées avec chaque touche, pour permettre d'y faire référence dans les tracés \TikZ{} (elles sont utilisées par exemple pour tracer la figure \ref{fig:keyview}). Par défaut, ces ancres ont pour nom \texttt{key} suivi du nom de la touche (par exemple \texttt{keyDEL} pour la touche \texttt{DEL}). Ces options permettent de définir le nom de l'ancre, comme dans la figure suivante. Cela permet d'avoir plusieurs fois la même touche sur la même figure, et de faire référence aux deux touches de manière distincte. Ces options contrôlent aussi le nom des ancres définies pour les textes \texttt{SHIFT} et \texttt{ALPHA}.
+% \begin{center}
+% \begin{tikzpicture}[thick]
+% \tikzkey[shift, alpha]{DEL}{(0, 2)}
+% \tikzkey[shift, alpha, prefix=tagada, suffix=tsoin]{DEL}{(0, 0)}
+%
+% \draw (2, 2) node[anchor=west]{Sans options : ancres \texttt{keyDEL}, \texttt{keyDELshift}, \texttt{keyDELalpha}.};
+% \draw (2, 0) node[anchor=west, text width={8cm}]{Avec options \texttt{prefix=tagada, suffix=tsoin} : ancres \texttt{tagadaDELtsoin}, \texttt{tagadaDELtsoinshift}, \texttt{tagadaDELtsoinalpha}.};
+%
+% \draw[dashed] (2, 2) edge[->, bend left=10] (keyDEL);
+% \draw[dashed] (2, 2) edge[->, bend right=40] (keyDELshift.north east);
+% \draw[dashed] (2, 2) edge[->, bend right=15] (keyDELalpha.east);
+% \draw[dashed] (2, 0) edge[->, bend left=10] (tagadaDELtsoin);
+% \draw[dashed] (2, 0) edge[->, bend right=30] (tagadaDELtsoinshift.north east);
+% \draw[dashed] (2, 0) edge[->, bend right=10] (tagadaDELtsoinalpha.east);
+% \end{tikzpicture}
+% \end{center}
+% Ces ancres sont illustrées dans les annexes \ref{sec:anchorskey} et \ref{sec:anchorsreplay}.
+% \item En regardant le code source, vous pouvez voir que d'autres options sont disponibles. Elles ne sont pas décrites ici car elles ne sont pas destinées à être utilisées par l'utilisateur final, et peuvent changer dans une prochaine version sans préavis.
+% \end{itemize}
+%
+% \DescribeMacro{\tikzkey}
+% Comme pour |\calculator| et |\tikzcalculator|, la macro |\tikzkey| a la même fonction que |\key|, sauf qu'elle est prévue pour être appelée à l'intérieur d'en environnement \TikZ. Sa signature est :
+% \begin{center}
+% |\tikzkey|\oarg{options}\marg{touche}\marg{coordonnées}
+% \end{center}
+%
+% Ses arguments sont :
+% \begin{itemize}
+% \item \oarg{options} les mêmes options que pour la commande |\key| ;
+% \item \marg{touche} le nom de la touche à dessiner ;
+% \item \marg{coordonnées} les coordonnées autour desquelles dessiner la touche.
+% \end{itemize}
+%
+% \subsection{Écran}
+%
+% Des macros permettent de tracer des éléments de menu qui apparaissent à l'écran. Il y en a trois : pour tracer les éléments du menu, les légendes des touches de fonction, et le niveau des batteries.
+%
+% \subsubsection{Menus}
+%
+% \DescribeMacro{\menu}
+% La macro |\menu|\marg{icône}\marg{raccourci} affiche l'icône du menu de la calculatrice. Par exemple, |\menu{RUNMAT}{A}| affiche \menu{RUNMAT}{A}. Le raccourci (le caractère apparaissant en bas à droite de l'icône) est indépendant de l'icône car selon le modèle et la mise à jour de la calculatrice, il peut varier.
+%
+% La liste des icônes et raccourcis disponibles est disponible dans l'annexe \ref{sec:menu}.
+%
+% \DescribeMacro{\tikzmenu}
+% La macro |\tikzmenu|, dont la signature est |\tikzmenu|\oarg{options}\marg{icône}\marg{raccourci}\marg{coordonnées}, dessine une icône du menu dans un environnement \TikZ. Ses arguments sont :
+%
+% \begin{itemize}
+% \item \marg{icône} et \marg{raccourci} : mêmes arguments que pour |\menu| ;
+% \item \marg{coordonnées} : coordonnées du coin supérieur gauche du menu ;
+% \item \oarg{options} : options, qui sont passées telles quelles à la macro |\bwpixelart| du paquet |pixelart| ; elles permettent de régler l'échelle et la couleur du tracé (par exemple |scale=.5, color=red|).
+% \end{itemize}
+%
+% \subsubsection{Fonctions}
+%
+% \DescribeMacro{\function}
+% La macro |\function|\marg{fonction} affiche la légende des touches de fonctions \key{F1} à \key{F6} (par exemple \function{aplusbx} ou \function{question-b}). La liste des dessins disponibles se trouve à l'annexe \ref{sec:function}.
+%
+% \DescribeMacro{\tikzfunction}
+% La macro |\tikzfunction|\oarg{options}\marg{fonction}\marg{coordonnées} a la même utilité que la macro |\function|, mais dans un environnement \TikZ. Son argument \marg{fonction} est le même que pour |\function| ; ses arguments \oarg{options} et \marg{coordonnées} sont les mêmes que pour |\tikzmenu|.
+%
+% \subsubsection{Batterie}
+%
+% \DescribeMacro{\battery}
+% La macro |\battery|\marg{charge} affiche le niveau de la batterie (par exemple \battery{medium}). La liste des dessins disponibles se trouve à l'annexe \ref{sec:battery}.
+%
+% \DescribeMacro{\tikzbattery}
+% La macro |\tikzbattery|\oarg{options}\marg{charge}\marg{coordonnées} a la même utilité que la macro |\battery|, mais dans un environnement \TikZ. Son argument \marg{charge} est le même que pour |\battery| ; ses arguments \oarg{options} et \marg{coordonnées} sont les mêmes que pour |\tikzmenu|.
+%
+% \subsection{Changement d'échelle}
+% \label{sec:scale}
+%
+% L'option |scale| utilisée pour modifier la taille des calculatrices et des touches ne modifie pas l'épaisseur des traits ni le rayon des coins arrondis. Ceci a pour effet indésirable le tracé suivant d'une calculatrice à l'échelle $^1/_{10}$ : remarquez que le bord du cadre (en vert) est trop épais, et l'écran est quasiment elliptique.
+% \begin{center}
+% \calculator[scale=.1]{graph35+E}.
+% \end{center}
+%
+% Pour remédier à cela, plusieurs solutions existent, dont aucune n'est idéale, sans quoi elle serait mise en œuvre par défaut.
+%
+% \begin{itemize}
+% \item S'accomoder de ces défauts. En effets, pour des petites mises à l'échelle, ils sont peu visibles.
+% \item Enrober le tracé dans une commande |\scalebox| ou |\resizebox|, comme le code |\resizebox{.1}{\calculator{graph35+E}}| qui produit le tracé suivant.
+% \begin{center}
+% \scalebox{.1}{\calculator{graph35+E}}
+% \end{center}
+% \item Utiliser l'option |transform canvas| de |pgf| (lors de l'appel à \TikZ, comme par exemple |\begin{tikzpicture}[scale=.1, transform canvas={scale=.1}]…|. Ceci réduit correctement l'ensemble du tracé, mais ne change pas les limites dudit tracé, et ne modifie pas les coordonnées en accord (donc les ancres deviennent inutilisables).
+% \end{itemize}
+%
+% Enfin, si vous incluez des tracés dans un environnement |tikzpicture| avec l'option |scale|, n'oubliez pas d'ajouter l'option |transform shape| pour que les contours de l'image soient aussi modifiés, et que votre petite image ne se retrouve pas perdue au milieu d'un grand espace vide.
+%
+% \section{Binaires}
+% \label{sec:software}
+%
+% Quelques logiciels (écrits en Python3) sont maintenus en même temps que ce paquet \LaTeX{}, afin d'aider à son développement. Ils ne sont par contre pas distribués avec ce paquet, et doivent être téléchargés sur la forge logicielle pour être utilisés. Ils sont assez spécialisés pour accompagner le développement de ce paquet, mais si quelqu'un leur trouve une autre utilité, tant mieux.
+%
+% La plupart de ces logiciels manipulent des fichiers au format |.pxl|, qui est un format créé pour l'occasion, codant une image en \emph{pixel art}. Chaque icône de menu, ou fonction, est enregistrée dans un tel fichier avant d'être convertie en code \LaTeX{} et intégrée à ce paquet.
+%
+% \begin{itemize}
+% \item |catpxl| Affiche dans le terminal, de manière lisible, un fichier |.pxl|.
+% \item |completefunctionchars| Si ce n'est pas déjà fait, associe à chaque \emph{pixel art} des touches de fonction la liste des caractères apparaissant dessus (ceci est utile pour ensuite indexer ces \emph{pixel art} dans l'annexe \ref{sec:function}).
+% \item |generate.keys| et |generate.pixelart| À partir de différents fichiers du dépôt, génère le code \LaTeX{} distribué sous la forme de ce paquet, et une partie de la documentation.
+% \item |screenshot2pixelart| Extrait d'une capture d'écran de la calculatrice ses \emph{pixel art}.
+% \end{itemize}
+%
+% \appendix
+%
+% \section{Calculatrices}
+% \label{sec:calculators}
+%
+% Liste des calculatrices représentées, ainsi que leur mot-clef (utilisé comme argument des macros |\calculator| et |\tikzcalculator|).
+%
+% \input{doc/calculators.tex}
+%
+% \section{Ancres}
+% \label{sec:anchors}
+%
+% Illustration des différentes ancres définies sur les différents tracés.
+%
+% \subsection{Ancres des touches}
+% \label{sec:anchorskey}
+%
+% Chaque touche définit les ancres illustrées à la figure \ref{fig:anchors:key}.
+% \input{doc/anchors-key.tex}
+%
+% \subsection{Ancres de la touche \texttt{REPLAY}}
+% \label{sec:anchorsreplay}
+%
+% La touche |REPLAY| définit des ancres supplémentaires, pour chacune des flèches. Elles sont illustrées figure \ref{fig:anchors:replay}.
+%
+% \input{doc/anchors-replay.tex}
+%
+% \subsection{Ancres de l'écran}
+%
+% Il est possible de faire référence à l'écran en utilisant les ancres de la figure \ref{fig:anchors:screen}.
+%
+% \input{doc/anchors-screen.tex}
+%
+% \subsection{Ancres du boîtier}
+%
+% Il est possible de faire référence au boîtier en utilisant les ancres de la figure \ref{fig:anchors:case}.
+%
+% \input{doc/anchors-case.tex}
+%
+% \section{Pixel art}
+% \label{sec:pixelart}
+%
+% \subsection{Menu}
+% \label{sec:menu}
+%
+% En plus des icônes et raccourcis disponibles sur les calculatrices, deux valeurs spéciales sont disponibles : |black|, qui produit une figure de même taille, mais noire ; et |blank|, qui ne produit aucune figure.
+%
+% \subsubsection{Icônes}
+%
+% \begin{multicols}{2}
+% \input{doc/pixelart-menu.tex}
+% \end{multicols}
+%
+% \subsubsection{Raccourcis}
+%
+% \begin{multicols}{2}
+% \input{doc/pixelart-menuchar.tex}
+% \end{multicols}
+%
+% \subsection{Fonctions}
+% \label{sec:function}
+%
+% Les images disponibles sont triées selon les caractères visibles (lettres latines et chiffres). Pour trouver quel code produit l'image que vous désirez, regardez quels caractères sont visibles, et retrouvez votre image dans la partie correspondante de l'index.
+%
+% Par exemple, sur \function{battery} ou \function{GREEK}, aucun caractère n'est visible (en effet, les lettes de \function{GREEK} sont des lettres grecques, pas latines) ; sur \function{Sacn-b}, les lettres |acn| sont visibles ; sur \function{tcomplexpolar-b}, seul la lettre |r| est visible ; etc.
+%
+% \begin{multicols}{3}
+% \input{doc/pixelart-function.tex}
+% \end{multicols}
+%
+% \subsection{Batterie}
+% \label{sec:battery}
+%
+% Liste des indicateurs de charge de batterie.
+%
+% \begin{multicols}{3}
+% \input{doc/pixelart-battery.tex}
+% \end{multicols}
+%
+% \section{Touches}
+% \label{sec:keys}
+%
+% Les touches sont ici classées dans un ordre arbitraire. Pour les retrouver sur la calculatrice, voir la figure \ref{fig:keyview}.
+%
+% \input{doc/key-view.tex}
+%
+% \label{sec:keylist}
+% \begin{multicols}{3}
+% \input{doc/key-list.tex}
+% \end{multicols}
+%
+% \section{Implementation}
+% \label{sec:implementation}
+%
+% Load some packages.
+%    \begin{macrocode}
+\RequirePackage{etoolbox}
+
+\RequirePackage{pixelart}
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\RequirePackage{pgfkeys}
+\RequirePackage{etoolbox}
+\RequirePackage{amssymb}
+\RequirePackage{amsbsy}
+\RequirePackage{sansmath}
+\RequirePackage{letterspace}
+\RequirePackage{pgfopts}
+
+\RequirePackage{graph35-pixelart}
+\RequirePackage{graph35-keys}
+%    \end{macrocode}
+%
+% Define package arguments
+%
+%    \begin{macrocode}
+\pgfkeys{
+  % color option
+  /GRAPH35/.cd,
+  color/.is choice,
+  color/real/.code={\def\graph@color{real}},
+  color/blackandwhite/.code={\def\graph@color{blackandwhite}},
+  color/.value required,
+  color={real},
+}
+\ProcessPgfPackageOptions{/GRAPH35}
+%    \end{macrocode}
+%
+% Define colors.
+%
+%    \begin{macrocode}
+\newcommand{\setgraphcolor@default}{}
+\newcommand{\setgraphcolor@blackandwhite}{
+  \colorlet{graph35ACON}{white}
+  \colorlet{graph35ACONBORDER}{black}
+  \colorlet{graph35SHIFT}{white}
+  \colorlet{graph35SHIFTTEXT}{black}
+  \colorlet{graph35SHIFTBORDER}{black}
+  \colorlet{graph35CASE}{white}
+  \colorlet{graph35CASEBORDER}{black}
+  \colorlet{graph35ALPHA}{white}
+  \colorlet{graph35ALPHATEXT}{black}
+  \colorlet{graph35ALPHABORDER}{black}
+  \colorlet{graph35EXE}{white}
+  \colorlet{graph35EXEBORDER}{black}
+  \colorlet{graph35WHITE}{white}
+  \colorlet{graph35KEYTEXT}{black}
+  \colorlet{graph35SCREEN}{black}
+  \colorlet{graph35NUMBER}{white}
+  \colorlet{graph35NUMBERBORDER}{black}
+  \colorlet{graph35SCREENBG}{white}
+}
+\newcommand{\setgraphcolor@real}{
+  \colorlet{graph35KEYTEXT}{white}
+  \definecolor{graph35ACON}{RGB}{99, 95, 110}
+  \colorlet{graph35ACONBORDER}{graph35ACON}
+  \definecolor{graph35SHIFT}{RGB}{209, 164, 11}
+  \definecolor{graph35SHIFTTEXT}{RGB}{209, 164, 11}
+  \colorlet{graph35SHIFTBORDER}{graph35SHIFT}
+  \definecolor{graph35CASE}{RGB}{236, 236, 236}
+  \definecolor{graph35CASEBORDER}{RGB}{43, 108, 130}
+  \definecolor{graph35ALPHA}{RGB}{220, 89, 1}
+  \definecolor{graph35ALPHATEXT}{RGB}{220, 89, 1}
+  \colorlet{graph35ALPHABORDER}{graph35ALPHA}
+  \definecolor{graph35EXE}{RGB}{86, 78, 177}
+  \colorlet{graph35EXEBORDER}{graph35EXE}
+  \definecolor{graph35WHITE}{RGB}{255, 255, 255}
+  \definecolor{graph35SCREEN}{RGB}{0, 0, 0}
+  \definecolor{graph35NUMBER}{RGB}{44, 44, 54}
+  \colorlet{graph35NUMBERBORDER}{graph35NUMBER}
+  \definecolor{graph35SCREENBG}{RGB}{234,240,241}
+}
+
+\csuse{setgraphcolor@\graph@color}
+%    \end{macrocode}
+%
+% \begin{macro}{\setgraphcolor}
+% Define |\setgraphcolor|, to set default color set.
+%    \begin{macrocode}
+\newcommand{\setgraphcolor}[1]{
+  \csuse{setgraphcolor@#1}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\menu}
+% Define |\menu|, which is basically a call to |\tikzmenu|.
+%
+%    \begin{macrocode}
+\newcommand{\menu}[2]{%
+    \begin{tikzpicture}[baseline=-2.7ex]%
+      \tikzmenu[scale=.03]{#1}{#2}{(0, 0)}
+    \end{tikzpicture}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\tikzmenu}
+% Define |\tikzmenu|, which is a wrapper to the |\tikzmenu@*| macros defined in |graph35-pixelart.sty|.
+%
+%    \begin{macrocode}
+\newcommand{\tikzmenu}[4][]{%
+  \ifcsdef{tikzmenu@#2}{%
+    \csuse{tikzmenu@#2}[#1]{#3}{#4}
+  }{%
+    \ClassError{graph35}{Unknown menu '#2'}{Look for the list of available menus in the package documentation.}%
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\battery}
+% Define |\battery|, which is basically a call to |\tikzbattery|.
+%
+%    \begin{macrocode}
+\newcommand{\battery}[1]{%
+    \begin{tikzpicture}[baseline=-1.3ex]%
+      \tikzbattery[scale=.03]{#1}{(0, 0)}
+    \end{tikzpicture}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\tikzbattery}
+% Define |\tikzbattery|, which is a wrapper to the |\tikzbattery@*| macros defined in |graph35-pixelart.sty|.
+%
+%    \begin{macrocode}
+\newcommand{\tikzbattery}[3][]{%
+  \ifcsdef{tikzbattery@#2}{%
+    \csuse{tikzbattery@#2}[#1]{#3}
+  }{%
+    \ClassError{graph35}{Unknown battery status '#2'}{Look for the list of available battery status in the package documentation.}%
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\function}
+% Define |\function|, which is basically a call to |\tikzfunction|.
+%
+%    \begin{macrocode}
+\newcommand{\function}[1]{%
+    \begin{tikzpicture}[baseline=-1.3ex]%
+      \tikzfunction[scale=.03]{#1}{(0, 0)}
+    \end{tikzpicture}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\tikzfunction}
+% Define |\tikzfunction|, which is a wrapper to the |\tikzfunction@*| macros defined in |graph35-pixelart.sty|.
+%
+%    \begin{macrocode}
+\newcommand{\tikzfunction}[3][]{%
+  \ifcsdef{tikzfunction@#2}{%
+    \csuse{tikzfunction@#2}[#1]{#3}%
+  }{%
+    \ClassError{graph35}{Unknown function menu '#2'}{Look for the list of available function menus in the package documentation.}%
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% Parsing |\key| arguments (and |\graph@tikzshiftalpha|, used in |\key| to draw the shift and alpha texts).
+%
+%    \begin{macrocode}
+\newif\ifshow@shift
+\newif\ifshow@alpha
+\newcommand{\boolvalue}[1]{\csuse{if#1}true\else false\fi}
+\pgfkeys{
+  /GRAPH35/KEY/.is family,
+  /GRAPH35/KEY,
+  prefix/.code={\pgfkeyssetvalue{/GRAPH35/KEY/prefix}{#1}},
+  prefix/.value required,
+  prefix={key},
+  suffix/.code={\pgfkeyssetvalue{/GRAPH35/KEY/suffix}{#1}},
+  suffix/.value required,
+  suffix={},
+  name/.code={\pgfkeyssetvalue{/GRAPH35/KEY/name}{#1}},
+  name/.value required,
+  name={},
+  scale/.code={\pgfkeyssetvalue{/GRAPH35/KEY/scale}{#1}},
+  scale/.value required,
+  scale=1,
+  type/.is choice,
+  type/text/.code={\def\graph@type{text}},
+  type/formula/.code={\def\graph@type{formula}},
+  type/.value required,
+  content/.code={\pgfkeyssetvalue{/GRAPH35/KEY/content}{#1}},
+  content/.value required,
+  content={},
+  shift/.is if=show@shift,
+  shift=false,
+  shift type/.code={\pgfkeyssetvalue{/GRAPH35/KEY/shift type}{#1}},
+  shift type/.value required,
+  shift type={text},
+  shift content/.code={\pgfkeyssetvalue{/GRAPH35/KEY/shift content}{#1}},
+  shift content/.value required,
+  shift content={},
+  shift position/.code={\pgfkeyssetvalue{/GRAPH35/KEY/shift position}{#1}},
+  shift position/.value required,
+  shift position=left,
+  alpha/.is if=show@alpha,
+  alpha=false,
+  alpha type/.code={\pgfkeyssetvalue{/GRAPH35/KEY/alpha type}{#1}},
+  alpha type/.value required,
+  alpha type={text},
+  alpha content/.code={\pgfkeyssetvalue{/GRAPH35/KEY/alpha content}{#1}},
+  alpha content/.value required,
+  alpha content={},
+  alpha position/.code={\pgfkeyssetvalue{/GRAPH35/KEY/alpha position}{#1}},
+  alpha position/.value required,
+  alpha position=right,
+  color/.is choice,
+  color/real/.code={\def\graph@tempcolor{real}},
+  color/blackandwhite/.code={\def\graph@tempcolor{blackandwhite}},
+  color/default/.code={\def\graph@tempcolor{default}},
+  color/.value required,
+  color={default},
+}
+
+\newif\if@show
+\pgfkeys{
+  /GRAPH35/SHIFTALPHA/.is family,
+  /GRAPH35/SHIFTALPHA,
+  show/.is if=@show,
+  show=false,
+  name/.code={\pgfkeyssetvalue{/GRAPH35/SHIFTALPHA/name}{#1}},
+  name/.value required,
+  name={graph35@tempname},
+  type/.is choice,
+  type/text/.code={\def\graph@type{text}},
+  type/formula/.code={\def\graph@type{formula}},
+  type/.value required,
+  content/.code={\pgfkeyssetvalue{/GRAPH35/SHIFTALPHA/content}{#1}},
+  content/.value required,
+  content={},
+  style/.code={\pgfkeyssetvalue{/GRAPH35/SHIFTALPHA/style}{#1}},
+  style/.value required,
+  style={},
+  position/.is choice,
+  position/left/.code={\def\temp@position{left}},
+  position/right/.code={\def\temp@position{right}},
+  position/center/.code={\def\temp@position{center}},
+  node/.code={\pgfkeyssetvalue{/GRAPH35/SHIFTALPHA/node}{#1}},
+  node/.value required,
+  color/.code={\pgfkeyssetvalue{/GRAPH35/SHIFTALPHA/color}{#1}},
+  color/.value required,
+  color=graph35SCREEN,
+}
+%    \end{macrocode}
+%
+% \begin{macro}{\key}
+% Definition of |\key|, which is a wrapper to |\tikzkey|.
+%    \begin{macrocode}
+\newcommand{\key}[2][]{%
+    \begin{tikzpicture}[baseline=(@origin.base), scale=.5, transform shape, every node/.style={transform shape}]%
+      \node (@origin) at (0, 0) {\strut};
+      \tikzkey[#1]{#2}{(0, 0)}%
+    \end{tikzpicture}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\tikzkey}
+% Definition of |\tikzkey|, which is a wrapper to a bunch of |\tikzkey@*| macros, one for each key.
+%    \begin{macrocode}
+\newcommand{\tikzkey}[3][]{%
+  \ifcsdef{tikzkey@#2}{%
+    \csuse{tikzkey@#2}[#1]{#3}%
+  }{%
+    \ClassError{graph35}{Unknown key '#2'}{Look for the list of available keys in the package documentation.}
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% Define |\graph@tikzshiftalpha|, used internally to draw shift and alpha text or symbols.
+%    \begin{macrocode}
+
+\newcommand{\graph@tikzshiftalpha}[1]{{
+  \pgfkeys{/GRAPH35/SHIFTALPHA, #1}
+  \if@show
+    \ifdefstring{\temp@position}{left}{
+      \def\graph@anchor{south west}
+      \coordinate (graph@node) at (\pgfkeysvalueof{/GRAPH35/SHIFTALPHA/node}.north west);
+    }{}
+    \ifdefstring{\temp@position}{right}{
+      \def\graph@anchor{south east}
+      \coordinate (graph@node) at (\pgfkeysvalueof{/GRAPH35/SHIFTALPHA/node}.north east);
+    }{}
+    \ifdefstring{\temp@position}{center}{
+      \def\graph@anchor{south}
+      \coordinate (graph@node) at (\pgfkeysvalueof{/GRAPH35/SHIFTALPHA/node}.north);
+    }{}
+    \ifdefstring{\graph@type}{text}{
+      \node[inner sep=1pt, color=\pgfkeysvalueof{/GRAPH35/SHIFTALPHA/color}, anchor=\graph@anchor] (\pgfkeysvalueof{/GRAPH35/SHIFTALPHA/name}) at (graph@node) {\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/SHIFTALPHA/style}\pgfkeysvalueof{/GRAPH35/SHIFTALPHA/content}};
+    }{
+      \node[inner sep=1pt, color=\pgfkeysvalueof{/GRAPH35/SHIFTALPHA/color}, anchor=\graph@anchor] (\pgfkeysvalueof{/GRAPH35/SHIFTALPHA/name}) at (graph@node) {\pgfkeysvalueof{/GRAPH35/SHIFTALPHA/style}$\boldsymbol{\pgfkeysvalueof{/GRAPH35/SHIFTALPHA/content}}$};
+    }
+    \else\fi
+}}
+%    \end{macrocode}
+%
+% Define number keys (e.g. \key{1}).
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeynumber}[2][]{{
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35NUMBERBORDER, fill=graph35NUMBER] plot [smooth cycle] coordinates {
+      (-.43, .25)
+      (.43, .25)
+      (.43, -.25)
+      (-.43, -.25)
+    };
+    \node[minimum width=1.03cm, minimum height=.59cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (0, 0) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=\pgfkeysvalueof{/GRAPH35/KEY/shift position},
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@alpha},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}alpha},
+      position=\pgfkeysvalueof{/GRAPH35/KEY/alpha position},
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35ALPHATEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/alpha type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/alpha content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |ACON| key \key{ACON}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeyACON}[2][]{{
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35ACONBORDER, fill=graph35ACON] plot [smooth cycle] coordinates {
+      (-.43, .25)
+      (.43, .25)
+      (.43, -.25)
+      (-.43, -.25)
+    };
+    \node[minimum width=1.03cm, minimum height=.59cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (0, 0) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=\pgfkeysvalueof{/GRAPH35/KEY/shift position},
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@alpha},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}alpha},
+      position=\pgfkeysvalueof{/GRAPH35/KEY/alpha position},
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35ALPHATEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/alpha type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/alpha content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |EXE| key \key{EXE}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeyexe}[2][]{{
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35EXEBORDER, fill=graph35EXE] plot [smooth cycle] coordinates {
+      (-.43, .25)
+      (.43, .25)
+      (.43, -.25)
+      (-.43, -.25)
+    };
+    \node[minimum width=1.03cm, minimum height=.59cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (0, 0) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=\pgfkeysvalueof{/GRAPH35/KEY/shift position},
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |SHIFT| key \key{SHIFT}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeyshift}[2][]{{
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35SHIFTBORDER, fill=graph35SHIFT] plot [smooth cycle] coordinates {
+      (-.34, .19)
+      (.34, .19)
+      (.34, -.19)
+      (-.34, -.19)
+    };
+    \node[minimum width=0.8cm, minimum height=.45cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (0, 0) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\scriptsize\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {\scriptsize$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |REPLAY| key \key{REPLAY}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeyreplay}[2][]{{
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35ACONBORDER, fill=graph35ACON] (0, 0) ellipse (.95 and .80);
+    \node[minimum width=0pt, minimum height=0pt, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}left) at (-.64, 0) {};
+    \node[minimum width=0pt, minimum height=0pt, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}right) at (.64, 0) {};
+    \node[minimum width=0pt, minimum height=0pt, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}up) at (0, .48) {};
+    \node[minimum width=0pt, minimum height=0pt, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}down) at (0, -.48) {};
+    \node[minimum width=1.9cm, minimum height=1.6cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (0, 0) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\tiny\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {\tiny$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+    \begin{scope}[rounded corners=1pt, color=graph35KEYTEXT]
+      \fill (.58, .09) -- (.58, -.08) -- (.78, 0) -- cycle;
+      \fill (-.58, .09) -- (-.58, -.08) -- (-.78, 0) -- cycle;
+      \fill (-.08, .41) -- (.09, .41) -- (0, .62) -- cycle;
+      \fill (-.08, -.41) -- (.09, -.41) -- (0, -.62) -- cycle;
+    \end{scope}
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |ALPHA| key \key{ALPHA}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeyalpha}[2][]{{
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35ALPHABORDER, fill=graph35ALPHA] plot [smooth cycle] coordinates {
+      (-.34, .19)
+      (.34, .19)
+      (.34, -.19)
+      (-.34, -.19)
+    };
+    \node[minimum width=0.8cm, minimum height=.45cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (0, 0) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\scriptsize\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {\scriptsize$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=\pgfkeysvalueof{/GRAPH35/KEY/shift position},
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |menu| key \key{MENU}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeymenu}[2][]{{
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35ACONBORDER, fill=graph35ACON] plot [smooth cycle] coordinates {
+      (-.34, .19)
+      (.34, .19)
+      (.34, -.19)
+      (-.34, -.19)
+    };
+    \node[minimum width=.8cm, minimum height=.45cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (0, 0) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\scriptsize\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {\scriptsize$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=\pgfkeysvalueof{/GRAPH35/KEY/shift position},
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@alpha},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}alpha},
+      position=\pgfkeysvalueof{/GRAPH35/KEY/alpha position},
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35ALPHATEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/alpha type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/alpha content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define miscallaenous keys (e.g. \key{log}).
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeymisc}[2][]{{
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35NUMBERBORDER, fill=graph35NUMBER] plot [smooth cycle] coordinates {
+      (-.34, .19)
+      (.34, .19)
+      (.34, -.19)
+      (-.34, -.19)
+    };
+    \node[minimum width=0.8cm, minimum height=.45cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (0, 0) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\scriptsize\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {\scriptsize$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=\pgfkeysvalueof{/GRAPH35/KEY/shift position},
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@alpha},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}alpha},
+      position=\pgfkeysvalueof{/GRAPH35/KEY/alpha position},
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35ALPHATEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/alpha type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/alpha content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |F1| key \key{F1}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeyfone}[2][]{{%
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35ACONBORDER, fill=graph35ACON] plot [smooth cycle] coordinates {
+      (-.3, .25)
+      (.2, .20)
+      (.25, -.18)
+      (.1, -.45)
+      (-.20, -.15)
+    };
+    \node[minimum width=.56cm, minimum height=.70cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (-.03, -.09) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\small\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {\small$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=center,
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |F2| key \key{F2}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeyftwo}[2][]{{%
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35ACONBORDER, fill=graph35ACON] plot [smooth cycle] coordinates {
+      (-.25, .25)
+      (.2, .25)
+      (.25, -.20)
+      (.05, -.46)
+      (-.20, -.20)
+    };
+    \node[minimum width=.52cm, minimum height=.74cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (-.005, -.08) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\small\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {\small$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=center,
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |F3| key \key{F3}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeyfthree}[2][]{{%
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35ACONBORDER, fill=graph35ACON] plot [smooth cycle] coordinates {
+      (.15, .25)
+      (-.25, .25)
+      (-.25, -.20)
+      (.03, -.47)
+      (.20, -.20)
+    };
+    \node[minimum width=.48cm, minimum height=.75cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (-.04, -.085) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\small\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {\small$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=center,
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |F4| key \key{F4}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeyffour}[2][]{{%
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35ACONBORDER, fill=graph35ACON] plot [smooth cycle] coordinates {
+      (-.15, .25)
+      (.25, .25)
+      (.25, -.20)
+      (-.03, -.47)
+      (-.20, -.20)
+    };
+    \node[minimum width=.48cm, minimum height=.75cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (.04, -.085) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\small\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {\small$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=center,
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |F5| key \key{F5}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeyffive}[2][]{{%
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35ACONBORDER, fill=graph35ACON] plot [smooth cycle] coordinates {
+      (.25, .25)
+      (-.2, .25)
+      (-.25, -.20)
+      (-.05, -.46)
+      (.20, -.20)
+    };
+    \node[minimum width=.52cm, minimum height=.74cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (.005, -.08) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\small\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {\small$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=center,
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Define |F6| key \key{F6}.
+%    \begin{macrocode}
+\newcommand{\graph@tikzgenerickeyfsix}[2][]{{%
+  \pgfkeys{/GRAPH35/KEY, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{scope}[shift={#2}, scale=\pgfkeysvalueof{/GRAPH35/KEY/scale}, transform shape, every node/.style={transform shape}]
+    \draw[very thick, color=graph35ACONBORDER, fill=graph35ACON] plot [smooth cycle] coordinates {
+      (.3, .25)
+      (-.2, .20)
+      (-.25, -.18)
+      (-.1, -.45)
+      (.20, -.15)
+    };
+    \node[minimum width=.56cm, minimum height=.70cm, inner sep=0pt] (\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}) at (.03, -.09) {};
+    \ifdefstring{\graph@type}{text}{
+      \node[color=graph35KEYTEXT] {\small\bfseries\sffamily{}\pgfkeysvalueof{/GRAPH35/KEY/content}};
+    }{
+      \node[color=graph35KEYTEXT] {\small$\boldsymbol{\pgfkeysvalueof{/GRAPH35/KEY/content}}$};
+    }
+
+    \graph@tikzshiftalpha{,
+      show=\boolvalue{show@shift},
+      name={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}shift},
+      position=center,
+      node={\pgfkeysvalueof{/GRAPH35/KEY/prefix}\pgfkeysvalueof{/GRAPH35/KEY/name}\pgfkeysvalueof{/GRAPH35/KEY/suffix}},
+      color=graph35SHIFTTEXT,
+      type={\pgfkeysvalueof{/GRAPH35/KEY/shift type}},
+      content={\pgfkeysvalueof{/GRAPH35/KEY/shift content}},
+      style={\tiny},
+    }
+  \end{scope}
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+%
+% Parse |\calculator| and |\tikzcalculator| options.
+%
+%    \begin{macrocode}
+\pgfkeys{
+  /GRAPH35/CALCULATOR/.is family,
+  /GRAPH35/CALCULATOR,
+  scale/.value required,
+  scale/.code={\pgfkeyssetvalue{/GRAPH35/CALCULATOR/scale}{#1}},
+  scale=1,
+  color/.is choice,
+  color/real/.code={\def\graph@tempcolor{real}},
+  color/blackandwhite/.code={\def\graph@tempcolor{blackandwhite}},
+  color/default/.code={\def\graph@tempcolor{default}},
+  color/.value required,
+  color={default},
+}
+%    \end{macrocode}
+%
+% \begin{macro}{\calculator}
+% Define |\calculator|, which is a wrapper to |\tikzcalculator|.
+%    \begin{macrocode}
+\newcommand{\calculator}[2][]{{%
+  \pgfkeys{/GRAPH35/CALCULATOR, #1}%
+  \setgraphcolor{\graph@tempcolor}%
+  \begin{tikzpicture}[scale=\pgfkeysvalueof{/GRAPH35/CALCULATOR/scale}, transform shape]%
+    \tikzcalculator{#2}
+  \end{tikzpicture}%
+  \setgraphcolor{\graph@color}%
+}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\tikzcalculator}
+% Define |\tikzcalculator|, to draw calculators (see annex \ref{sec:calculators}). This is a wrapper to the |\tikzcalculator@*| macros, defined later.
+%    \begin{macrocode}
+\newcommand{\tikzcalculator}[1]{%
+  \ifcsdef{tikzcalculator@#1}{%
+    \csuse{tikzcalculator@#1}%
+  }{%
+    \ClassError{graph35}{Unknown calculator '#1'}{Look for the list of available calculators in the package documentation.}%
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% Define macro to draw the |Graph35+E| calculator.
+%    \begin{macrocode}
+\csdef{tikzcalculator@graph35+E}{%
+  %\node{\includegraphics[scale=.59]{graph35-original}};
+    \draw[color=graph35CASEBORDER, fill=graph35CASE, line width=2pt] plot [smooth cycle] coordinates {
+      (-3.2, 0)
+      (-3.35, 5.5)
+      (-3.2, 7.0)
+      (-2.5, 7.3)
+      (0, 7.4)
+      (2.5, 7.3)
+      (3.2, 7.0)
+      (3.35, 5.5)
+      (3.2, 0)
+      (3.1, -5)
+      (3.0, -6.6)
+      (2.3, -7.3)
+      (0, -7.4)
+      (-2.3, -7.3)
+      (-3.0, -6.6)
+      (-3.1, -5)
+    };
+    \node[minimum width=6.7cm, minimum height=14.8cm, inner sep=0pt] (case) at (0, 0) {};
+    \draw[draw=graph35SCREEN, line width=1.5pt, fill=graph35SCREENBG, rounded corners=5](-2.64, 3) rectangle (2.58, 6.035);
+    \node[minimum width=5.22cm, minimum height=3.035cm, inner sep=0pt] (screen) at (-.003, 4.5175) {};
+    \begin{scope}[shift={(-2.5, 5.8)}, scale=.039]
+      \foreach \i in {0, 3, ..., 33, 94, 97, ..., 103, 121, 124, ..., 127} {
+        \foreach \j in {1, 4, 7} {
+          \fill (\i, {-\j}) rectangle ++(1, 1);
+        }
+      }
+      \foreach \i in {2, 5, ..., 32, 96, 99, ..., 105, 123, 126, ..., 126} {
+        \foreach \j in {2, 5} {
+          \fill (\i, {-\j}) rectangle ++(1, 1);
+        }
+      }
+      \foreach \i in {1, 4, ..., 31, 95, 98, ..., 104, 122, 125, ..., 125} {
+        \foreach \j in {3, 6} {
+          \fill (\i, {-\j}) rectangle ++(1, 1);
+        }
+      }
+      \tikzbwpixelart{(38, 0)}{%
+        1000100111000111001000100000010001011111010001010001
+        1101101000100010001000100000011011010000010001010001
+        1010101000100010001100100000010101010000011001010001
+        1010101111100010001010100000010101011110010101010001
+        1000101000100010001001100000010001010000010011010001
+        1000101000100010001000100000010001010000010001010001
+        1000101000100111001000100000010001011111010001001110
+      }
+      \tikzbattery{high}{(107, 0)}
+    % Row 1
+      \tikzmenu{RUNMAT}{1}{(0, -8)}
+      \tikzmenu{STAT}{2}{(30, -8)}
+      \tikzmenu{GRAPH}{3}{(60, -8)}
+      \tikzmenu{DYNA}{4}{(90, -8)}
+    % Row 2
+      \tikzmenu{TABLE}{5}{(0, -27)}
+      \tikzmenu{RECUR}{6}{(30, -27)}
+      \tikzmenu{CONICS}{7}{(60, -27)}
+      \tikzmenu{EQUA}{8}{(90, -27)}
+    % Row 3
+      \tikzmenu{PRGM}{9}{(0, -46)}
+      \tikzmenu{TVM}{A}{(30, -46)}
+      \tikzmenu{ECON2}{B}{(60, -46)}
+      \tikzmenu{LINK}{C}{(90, -46)}
+    % Right arrow
+      \tikzbwpixelart{(121, -58)}{%
+        00100
+        00100
+        00100
+        00100
+        10101
+        01110
+        00100
+      }
+    \end{scope}
+
+    \tikzkey[shift, alpha]{REPLAY}{(1.97, -.055)}
+
+    \tikzkey[shift, alpha]{SHIFT}{(-2.39, .23)}
+    \tikzkey[shift, alpha]{OPTN}{(-1.43, .23)}
+    \tikzkey[shift, alpha]{VARS}{(-.47, .23)}
+    \tikzkey[shift, alpha]{MENU}{(.47, .23)}
+    \tikzkey[shift, alpha]{ALPHA}{(-2.39, -.61)}
+    \tikzkey[shift, alpha]{square}{(-1.43, -.61)}
+    \tikzkey[shift, alpha]{power}{(-.47, -.61)}
+    \tikzkey[shift, alpha]{EXIT}{(.47, -.61)}
+    \tikzkey[shift, alpha]{XthetaT}{(-2.39, -1.43)}
+    \tikzkey[shift, alpha]{log}{(-1.43, -1.43)}
+    \tikzkey[shift, alpha]{ln}{(-.47, -1.43)}
+    \tikzkey[shift, alpha]{sin}{(.47, -1.43)}
+    \tikzkey[shift, alpha]{cos}{(1.43, -1.43)}
+    \tikzkey[shift, alpha]{tan}{(2.39, -1.43)}
+    \tikzkey[shift, alpha]{fraction}{(-2.39, -2.25)}
+    \tikzkey[shift, alpha]{FD}{(-1.43, -2.25)}
+    \tikzkey[shift, alpha]{openparen}{(-.47, -2.25)}
+    \tikzkey[shift, alpha]{closeparen}{(.47, -2.25)}
+    \tikzkey[shift, alpha]{comma}{(1.43, -2.25)}
+    \tikzkey[shift, alpha]{rightarrow}{(2.39, -2.25)}
+
+    \tikzkey[shift, alpha]{DEL}{(1.16, -3.25)}
+    \tikzkey[shift, alpha]{ACON}{(2.32, -3.25)}
+    \tikzkey[shift, alpha]{times}{(1.16, -4.22)}
+    \tikzkey[shift, alpha]{divide}{(2.32, -4.22)}
+    \tikzkey[shift, alpha]{plus}{(1.16, -5.19)}
+    \tikzkey[shift, alpha]{minus}{(2.32, -5.19)}
+    \tikzkey[shift, alpha]{dot}{(-1.15, -6.159)}
+    \tikzkey[shift, alpha]{opposite}{(1.16, -6.159)}
+    \tikzkey[shift, alpha]{zero}{(-2.294, -6.159)}
+    \tikzkey[shift, alpha]{1}{(-2.294, -5.19)}
+    \tikzkey[shift, alpha]{2}{(-1.15, -5.19)}
+    \tikzkey[shift, alpha]{3}{(.01, -5.19)}
+    \tikzkey[shift, alpha]{4}{(-2.294, -4.22)}
+    \tikzkey[shift, alpha]{5}{(-1.15, -4.22)}
+    \tikzkey[shift, alpha]{6}{(.01, -4.22)}
+    \tikzkey[shift, alpha]{7}{(-2.294, -3.25)}
+    \tikzkey[shift, alpha]{8}{(-1.15, -3.25)}
+    \tikzkey[shift, alpha]{9}{(.01, -3.25)}
+    \tikzkey[shift, alpha]{10}{(.01, -6.159)}
+    \tikzkey[shift, alpha]{EXE}{(2.32, -6.159)}
+
+    \tikzkey[shift, alpha]{F1}{(-2.37, 1.5)}
+    \tikzkey[shift, alpha]{F2}{(-1.43, 1.42)}
+    \tikzkey[shift, alpha]{F3}{(-.45, 1.38)}
+    \tikzkey[shift, alpha]{F4}{(.45, 1.38)}
+    \tikzkey[shift, alpha]{F5}{(1.43, 1.42)}
+    \tikzkey[shift, alpha]{F6}{(2.37, 1.5)}
+}
+%    \end{macrocode}
+%
+% \addcontentsline{toc}{section}{Liste des figures}
+% \listoffigures
+%
+% \changes{v0.1.0}{2018/03/18}{First published version.}
+% \addcontentsline{toc}{section}{Historique des changements}
+% \PrintChanges
+%
+% \StopEventually{%
+% \addcontentsline{toc}{section}{Index}
+% \PrintIndex
+% }
+% \Finale
+\endinput

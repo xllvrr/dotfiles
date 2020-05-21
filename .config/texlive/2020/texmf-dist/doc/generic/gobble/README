@@ -1,0 +1,19 @@
+LaTeX and generic TeX packages 'gobble' and 'gobble-user'
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Copyright (c) 2012-2019 by Martin Scharrer <martin@scharrer-online.de>
+CTAN: http://www.ctan.org/pkg/gobble
+Code repository: https://bitbucket.org/martin_scharrer/gobble
+
+The LaTeX package 'gobble' includes several gobble macros not
+included in the LaTeX kernel. These macros remove a number of 
+arguments after them; a feature regulary used inside other
+macros. This includes gobble macros for optional arguments.
+
+The LaTeX package 'gobble-user' provides these macros to the
+user level, i.e. using names without '@', so that these can be
+used without \makeatletter and \makeatother.
+
+The same macros are provided inside .tex files for use with 
+plain-TeX or other TeX formats.  However, the gobble macros
+for optional macros require \@ifnextchar to be defined.
+

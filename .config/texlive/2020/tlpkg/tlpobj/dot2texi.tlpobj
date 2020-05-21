@@ -1,0 +1,32 @@
+name dot2texi
+category Package
+revision 26237
+shortdesc Create graphs within LaTeX using the dot2tex tool
+longdesc The dot2texi package allows you to embed graphs in the DOT
+longdesc graph description language in your LaTeX documents. The dot2tex
+longdesc tool is used to invoke Graphviz for graph layout, and to
+longdesc transform the output from Graphviz to LaTeX code. The generated
+longdesc code relies on the TikZ and PGF package or the PSTricks
+longdesc package. The process is automated if shell escape is enabled.
+containersize 3740
+containerchecksum 20cc54f907b00e2eb14e4641d5098dd4886ce8d4627f391421bc5e819614dec97e0ec42c92794bacb8ffcb03737cb8736c308fad6984abf13c127f6d1174ee0f
+doccontainersize 216576
+doccontainerchecksum 9e8461946582e0c99ee35437522e25769e2afe5d7051f072937a57c5d4e1a0c8e144509c751f9ddb7ef576f43ca408ffca663f81c8b5e69fb176a4233ff45ea3
+docfiles size=95
+ texmf-dist/doc/latex/dot2texi/README details="Readme"
+ texmf-dist/doc/latex/dot2texi/dot2texi.pdf details="Package documentation"
+ texmf-dist/doc/latex/dot2texi/dot2texi.tex
+ texmf-dist/doc/latex/dot2texi/examples/d2tpstexamples.pdf
+ texmf-dist/doc/latex/dot2texi/examples/d2tpstexamples.tex
+ texmf-dist/doc/latex/dot2texi/examples/d2ttikzexamples.pdf
+ texmf-dist/doc/latex/dot2texi/examples/d2ttikzexamples.tex
+ texmf-dist/doc/latex/dot2texi/examples/docgraphs.pdf
+ texmf-dist/doc/latex/dot2texi/examples/docgraphs.tex
+ texmf-dist/doc/latex/dot2texi/examples/docgraphsorig.pdf
+ texmf-dist/doc/latex/dot2texi/gpl.txt
+runfiles size=3
+ texmf-dist/tex/latex/dot2texi/dot2texi.sty
+catalogue-ctan /macros/latex/contrib/dot2texi
+catalogue-license gpl
+catalogue-topics foreign-import graphics
+catalogue-version 3.0

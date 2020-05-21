@@ -1,0 +1,698 @@
+\documentclass[a4paper,10pt]{article}
+%\usepackage[utf8x]{inputenc}
+\usepackage{fontspec} 
+%\usepackage[T1]{fontenc}
+\usepackage[french]{babel} 
+
+%\usepackage{layout}
+%\usepackage{geometry}
+%\usepackage{setspace}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{eurosym}
+%\usepackage{bookman}
+%\usepackage{charter}
+%\usepackage{newcent}
+\usepackage{lmodern}
+%\usepackage{mathpazo}
+%\usepackage{mathptmx}
+\usepackage[colorlinks=true, urlcolor=magenta]{hyperref}
+%\usepackage{verbatim}
+%\usepackage{moreverb}
+\usepackage{listings}
+%\usepackage{fancyhdr}
+%\usepackage{wrapfig}
+\usepackage{color}
+\usepackage{colortbl}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{mathrsfs}
+%\usepackage{amsthm}
+%\usepackage{makeidx}
+%\usepackage{multirow}
+%\usepackage{graphicx}
+\usepackage{calctab}
+
+\author{\textsc{Sebille} Robert}
+\date{\today} 
+\title{Facture belge simple sans TVA}
+
+\definecolor{grisfonce}{gray}{0.3}
+\definecolor{grisclair}{gray}{0.7}
+
+\definecolor{gristresclair}{gray}{0.97}
+
+\lstset{ 
+basicstyle=\footnotesize,
+numbers=none,
+%numberstyle=\normalsize,
+%numbersep=7pt,
+breakatwhitespace=false, % sets if automatic breaks should only happen at whitespace
+breaklines=true, 
+backgroundcolor=\color{gristresclair}, 
+frame=single,
+}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Documentation de l'extension \og Facture belge simple sans \textsc{TVA} \fg. L'extension comprend deux modèles: article-facture.tex .tex \& article-note-de-frais.tex.
+\end{abstract}
+
+
+\tableofcontents
+\newpage
+
+\section{Généralités}
+\subsection{La déclaration \textbackslash usepackage[Arg]\{facture-belge-simple-sans-tva\}}
+
+\begin{lstlisting}
+La déclaration \usepackage[Arg]{facture-belge-simple-sans-tva} doit comporter au moins 1 argument [Arg] de langue pour babel: french, english, etc.  
+
+L'encodage par defaut pour \usepackage{inputenc} est UTF8, mais vous pouvez utiliser l'option [latin1] pour forcer l'encodage latin1.
+\end{lstlisting}
+
+
+\noindent
+Exemples d'options pour \textbackslash usepackage[Arg]\{facture-belge-simple-sans-tva\}:
+
+\begin{lstlisting}
+% retourne un encodage latin1 en français:
+\usepackage[latin1, french]{facture-belge-simple-sans-tva} 
+
+% retourne un encodage utf8 en français et anglais:
+\usepackage[french, english]{facture-belge-simple-sans-tva}
+
+% retourne un encodage utf8 en français:    
+\usepackage[french]{facture-belge-simple-sans-tva} 
+\end{lstlisting}
+
+\subsection{Quelques unités monétaires courantes}%
+\label{sub:unites_monetaire_courantes}
+
+Attention, le symbole \euro{} exige le package \textbackslash usepackage\{eurosym\}.%
+
+\begin{center}%
+\begin{tabular}{|l|l|c|}%
+\hline%
+\rowcolor{grisclair} \textbf{Unité} & \textbf{Code} & \textbf{Résultat} \\%
+\hline%
+Euro &  \textbackslash euro\{\} & \euro{} \\%
+\hline%
+Livre anglaise & \textbackslash pounds\{\} & \pounds{} \\%
+\hline%
+Dollar américain & \textbackslash \$\{\} & \${} \\%
+\hline%
+Yen japonais & \textbackslash textyen\{\} & \textyen{} \\%
+\hline%
+\end{tabular}%
+\end{center}%
+
+\subsection{Les unités de longueurs}%
+\label{sub:unites_longueurs}
+
+\begin{center}%
+\begin{tabular}{|l|l|l|}%
+\hline%
+\rowcolor{grisclair} \textbf{Nom} & \textbf{Symbole} & \textbf{Valeur} \\%
+\hline%
+point &  pt & 35 mm \\%
+\hline%
+millimètre &  mm & millimètre \\%
+\hline%
+ex &  ex & hauteur d'un \emph{x} dans la fonte courante \\%
+\hline%
+em &  em & largeur d'un \emph{m} dans la fonte courante \\%
+\hline%
+centimètre & cm & centimètre \\%
+\hline%
+pouce & in & 2,54 cm \\%
+\hline%
+\end{tabular}%
+\end{center}%
+
+
+\subsection{Les abréviations de civilités}%
+\label{sub:abreviations_civilites}
+
+\begin{center}%
+\begin{tabular}{|l|l|l|}%
+\hline%
+\rowcolor{grisclair} \textbf{Unité} & \textbf{Code} & \textbf{Résultat} \\%
+\hline%
+madame & M\textbackslash up\{me\} & M\up{me}\\%
+\hline%
+mesdames & M\textbackslash up\{mes\} & M\up{mes}\\%
+\hline%
+mademoiselle & M\textbackslash up\{lle\} & M\up{lle}\\%
+\hline%
+mesdemoiselles & M\textbackslash up\{lles\} & M\up{lles}\\%
+\hline%
+maître & M\textbackslash up\{e\} & M\up{e}\\%
+\hline%
+maîtres & M\textbackslash up\{es\} & M\up{es}\\%
+\hline%
+monsieur & M. & M.\\%
+\hline%
+messieurs & MM. & MM.\\%
+\hline%
+\end{tabular}%
+\end{center}%
+
+
+\subsection{\'{E}crire les nombres en lettres en typographie française}%
+\label{sub:ecrire_nombres_en_lettres}
+Ce résumé est entièrement tiré de l'article \og \href{https://www.francaisfacile.com/exercices/exercice-francais-2/exercice-francais-53446.php}{ÉCRIRE LES NOMBRES EN LETTRES} \fg\ du site \href{https://www.francaisfacile.com/}{Francaisfacile.com}. Veuillez consulter ce site pour toute information complémentaire.
+
+\begin{itemize}
+    \item Les noms des nombres sont (presque tous) invariables en genre et en nombre.
+    \item Les nombres de 0 à 19 sont invariables; dix-sept, dix-huit, dix-neuf prennent un trait d’union;
+    \begin{itemize}
+        \item sauf zéro qui, si il est un nom, prend alors un \og s \fg\ au pluriel (exemple, s'écrire avec deux zéros). 
+        \item Un s'accorde en genre (mais pas en nombre), y compris dans les nombres plus grands que 20.
+    \end{itemize}
+    \item Les nombres de 20 à 99;
+    \begin{itemize}
+        \item Les nombres composés jusqu'à cent prennent un trait d'union sauf lorsqu'il y a \og et \fg.
+        \item Cela vaut pour les particularismes: septante, septante et un, septante-deux.
+    \end{itemize}
+    \item Les nombres de 100 à 999;
+    \begin{itemize}
+        \item comme quatre-vingts, les multiples de cent prennent un \og s \fg;
+        \item pas de « s » à cent devant mille.
+    \end{itemize}
+    \item 1000 et après;
+    \begin{itemize}
+        \item mille est invariable.
+        \item million et milliard s'accordent au pluriel.
+    \end{itemize}
+    \item 1000 et après;
+    \begin{itemize}
+        \item Depuis la réforme de 1990, on peut mettre des traits d'union partout (cent soixante et onze $ \rightarrow $ cent-soixante-et-onze), excepté pour million et milliard.
+        \item On écrit deux cents millions, deux cents milliards mais deux cent mille (pas de \og s \fg\ à \og cent devant mille \fg).
+    \end{itemize}
+\end{itemize}
+
+\section{Résultats des commandes:} 
+Veuillez vous référer aux résultats des modèles article-facture.tex \& article-note-de-frais.tex
+\begin{description}
+    \item [la facture:] article-facture.pdf;
+    \item [la note de frais:] article-note-de-frais.pdf.
+\end{description}
+
+
+\section{Variables disponibles}
+
+Les noms parlent d'eux-mêmes.
+
+\subsection{Communes facture \& note de frais}
+\begin{lstlisting}
+\rsEncodage
+\rsespaceVertical
+\rsuniteMonetaire 
+% \rsuniteMonetaire  est disponible dans la facture mais non 
+% utilisée par le modèle; l'unité monétaire du tableau des produits 
+% de la facture est fixé par \ctcurrency{<\unité>} et non disponible 
+% dans la facture sous cette forme
+\end{lstlisting}
+
+\subsection{Note de frais seulement}
+\begin{lstlisting}
+\rsprenomNomCreancier
+\rssocieteCreancier
+\rsruenoCreancier
+\rscodpostVilleCreancier
+\rspaysCreancier
+\rsemailCreancier
+\rstelephoneCreancier
+
+\rsprenomNomClient
+\rssocieteClient
+\rsciviliteClient
+\rsruenoClient
+\rscodpostVilleClient
+\rspaysClient
+
+\rsmoisAnneeNote
+\rscompteEnBanqueCreancier
+\rstotalEnChiffres
+\rstotalEnLettres
+\end{lstlisting}
+
+\subsection{Système}
+\begin{lstlisting}
+\rsvarname
+\rsvarversion
+\rsvardate
+\rsvarauthor
+\end{lstlisting}
+
+
+\section{Commandes}
+
+Vous aurez peut~être remarqué que toutes les commandes et variables débutent par \textbackslash rs\dots
+
+\begin{lstlisting}
+\rsNomDeLaCommande{}
+\rsnomDeLaVariable
+\end{lstlisting}
+
+Il y a en effet vraiment peu de chance qu'une commande \LaTeX{} commence un jour par 
+un \textbackslash rs\dots, comme dans \og \emph{r}obert \emph{s}ebille \fg.
+
+ 
+\subsection{Communes à la facture \& à la note de frais}
+
+\emph{Vérifier l'encodage UTF-8 ou latin1:}
+\begin{lstlisting}
+\rsEncodage{}
+\end{lstlisting}
+
+\emph{Choisir l'unité monétaire:}
+\begin{lstlisting}
+% L'euro est fixé par défaut:
+\rsChoisirUniteMonetaire\{\euro}
+\end{lstlisting}
+mais vous pouvez aussi choisir une des unités courantes reprises dans cette sous-section de la page \pageref{sub:unites_monetaire_courantes}.
+\begin{lstlisting}
+% Autres unités courantes:
+\$ \pounds \textyen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Rappel pour la facture: %%
+% \rsuniteMonetaire  est disponible dans la facture mais non 
+% utilisée par le modèle; l'unité monétaire du tableau des produits 
+% de la facture est fixé par \ctcurrency{<\unité>} et non disponible 
+% dans la facture sous cette forme
+\end{lstlisting}
+
+\emph{Aérer la page verticalement:}
+\begin{lstlisting}
+% L'aération verticale est fixée par défaut à 0.5cm pour la facture 
+% et à 1cm pour la note de frais:
+\rsAerationVerticale{1cm}
+\end{lstlisting}
+mais vous pouvez aussi choisir une des unités de longueur reprises dans cette sous-section de la page \pageref{sub:unites_longueurs}.
+
+\emph{Ajoute les crédits à l'auteur de cette extension dans le footer:}
+\begin{lstlisting}
+% Par défaut oui, mais vous pouvez commenter;
+% ceci est laissé à votre libre appréciation.
+\rsCredit{}
+\end{lstlisting}
+
+
+\emph{Texte libre:}
+ceci n'est bien sur pas une commande, mais un texte libre à placer à un endroit prévu par le modèle
+\begin{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, DEBUT. %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{lstlisting}
+
+\textit{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla rhoncus est ac viverra lacinia. Etiam pulvinar tempus rutrum. Maecenas vel metus metus. Quisque tempus tempor metus, vitae interdum purus vehicula ac.}
+
+\begin{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, FIN. %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\end{lstlisting}
+
+
+\subsection{Pour la facture seulement}
+
+\emph{Numéro et date de la facture:}
+\begin{lstlisting}
+\rsNoDate{X}{JJ mois AAAA}
+\end{lstlisting}
+où \emph{X} est un nombre représentant le n\up{o} de la facture et \emph{JJ mois AAAA} une chaîne de caractères représentant la date.
+
+\subsubsection{Tableau des adresses: expédition, facturation, livraison}
+
+\emph{On ouvre l'entête du tableau des adresses:}
+\begin{lstlisting}
+% À n'utiliser qu'une seule fois; 
+% on sera bien avisé de ne pas toucher à cette commande.
+\rsEnteteTableauAdresses{}
+\end{lstlisting}
+
+\paragraph{Entrée d'une ligne d'adresses:} \emph{C'est la commande la plus complexe du modèle, c'est pourquoi elle est illustrée par plusieurs exemples, aussi bien dans ce document que dans le modèle.}
+
+\begin{lstlisting}
+% Syntaxe
+\rsLigneTableauAdresses{itemAdresseExpedition}{itemAdresseFacturation}{itemAdresseLivraison}
+\end{lstlisting}
+
+\begin{itemize}
+    \item Il y a 3 types d'adresses: adresse d'expédition;  adresse de facturation;  adresse de livraison.
+    \item Elles sont présentées en tableau, dans l'ordre décrit ci-dessous.
+    \item Chaque argument de la commande reprend un élément d'une adresse.
+\end{itemize}
+
+\emph{Voici un 1\up{er} exemple simple:}
+\begin{lstlisting}
+\rsLigneTableauAdresses{Prénom \textsc{Nom}}{\textsc{Org 1}}{\textsc{Org 2}}
+\rsLigneTableauAdresses{}{Nom organisation 1}{Nom organisation 2}
+\rsLigneTableauAdresses{N\up{o} 1, rue Delarue1}{N\up{o} 2, rue Delarue2}{N\up{o} 3, rue Delarue3}
+\rsLigneTableauAdresses{\textsc{CCC1 Ville1}}{\textsc{CCC2 Ville2}}{\textsc{CCCC Ville3}}
+\end{lstlisting}
+
+qui donnera un résultat semblable au tableau ci-dessous:
+\begin{flushleft}
+\begin{tabular}{p{0.3\textwidth}p{0.3\textwidth}p{0.3\textwidth}}
+\hline
+ Prénom \textsc{Nom} & \textsc{Org 1} & \textsc{Org 2}\\
+ Nom organisation 1 & Nom organisation 2 &  \\
+ N\up{o} 1, rue Delarue1 & N\up{o} 2, rue Delarue2 & N\up{o} 3, rue Delarue3\\
+ \textsc{CCC1 Ville1} & \textsc{CCC2 Ville2} & \textsc{CCC3 Ville3}\\
+\hline
+\end{tabular}
+\end{flushleft}
+
+
+\emph{Voici un 2\up{e} exemple complexe (avec des lignes vides);} c'est celui qui est compilé par défaut dans \og article-facture.pdf \fg.
+\begin{lstlisting}
+\rsLigneTableauAdresses{Prénom \textsc{Nom}}{ \textsc{Fbg}~\textsc{Bgf}}{Voir facturation}
+\rsLigneTableauAdresses{}{Fédération belge de gong}{}
+\rsLigneTableauAdresses{}{Belgische gong federatie}{}
+\rsLigneTableauAdresses{N\up{o}, rue Delarue1}{DelarueStraat, no}{}
+\rsLigneTableauAdresses{\textsc{CCC1 Ville1}}{\textsc{CCC2 Ville2}}{}
+\rsLigneTableauAdresses{\href{mailto:user@domain.tld}{user@domain.tld}}{\textsc{(Entité)}}{}
+\rsLigneTableauAdresses{+32 684 037 078}{}{}
+\end{lstlisting}
+
+qui donnera un résultat semblable au tableau ci-dessous:
+\begin{flushleft}
+\begin{tabular}{p{0.3\textwidth}p{0.3\textwidth}p{0.3\textwidth}}
+\hline
+ \emph{Expédition} & \emph{Facturation} & \emph{Livraison} \\
+ Prénom \textsc{Nom} & \textsc{Fbg Bgf} & Voir facturation \\
+  & Fédération belge de gong &  \\
+  & Belgische gong federatie &  \\
+ N o , rue Delarue1 & DelarueStraat, no &  \\
+ CCC1 Ville1 & CCC1 Ville1 &  \\
+ \href{mailto:user@domain.tld}{user@domain.tld} & (Entité) &  \\
+ +32 684 037 078 &  &  \\ 
+\hline
+\end{tabular}
+\end{flushleft}
+
+
+\emph{Et un 3\up{e}, si ça vous intéresse, un exemple avec des lignes vides:}
+\begin{lstlisting}
+\rsLigneTableauAdresses{}{}{}
+\rsLigneTableauAdresses{}{}{}
+\rsLigneTableauAdresses{}{}{}
+\rsLigneTableauAdresses{}{}{}
+\end{lstlisting}
+qui ne donne évidemment, tel quel, aucun résultat.
+
+
+\emph{Enfin, on ferme le pied du tableau des adresses:}
+\begin{lstlisting}
+% À n'utiliser qu'une seule fois; 
+% on sera bien avisé de ne pas toucher à cette commande.
+\rsPiedTableauAdresses{}
+\end{lstlisting}
+
+\subsubsection{Tableau des produits, avec le package calctab}
+
+On ne va pas réinventer le monde, mais simplement réutiliser les commandes
+simples et efficaces du package calctab, dans son environnement xcalctab. 
+\\
+Les entêtes de tableau de calctab sont en anglais par défaut, 
+ nous en avons besoin en français; ainsi qu'une préposition apparaissant dans les remises (ou la taxes): \og on \fg\ en anglais, \og sur \fg\ en français.
+ 
+\begin{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% D'abord quelques paramètres utiles pour nous:
+%% On fixe les headers en français (anglais par défaut)
+%% \ctcurrency{\euro}, la monnaie est fixée plus haut
+%% près du point "Unité monétaire"
+\ctdescription{Nature}
+\ctontraslation{sur}
+\ctheaderone{Quantité}
+\ctheadertwo{Prix unit.}
+%% Par défaut 2 décimales, c'est plutôt correct, non?
+\nprounddigits{2}
+\end{lstlisting}
+
+Dans la foulée, on crée le tableau des produits; les explications sont simples, représentées ci-dessous et dans le modèle article-facture.tex. Vous pouvez bien sûr lire la documentation\href{https://ctan.org/pkg/calctab}{package calctab} et ajouter des commandes à votre gré, mais normalement, pour une facture belge simple, sans TVA, ces instructions devraient suffire.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Ensuite le tableau des produits avec nature, quantité, coût et éventuelles
+%% remises
+
+\begin{lstlisting}
+% On ouvre l'environnement xcalctab
+\begin{xcalctab}
+%% calctab est en police police sans empattements (sf, pour sans serif), 
+%% on remet en normalfont de ce document
+\normalfont
+%% On ajoute des produits 
+% \amount{nature}{quantité}{prix unitaire}
+%% si amount comporte un id comme ci-dessous, on pourra lui appliquer une remise (-) (ou une taxe (+))
+%% avec la commande \perc[identificateur]{Intitulé}{+/-pourcentage}
+%% une id s'écrit ainsi: [id=identificateur] identificateur = 1 seul mot entier!
+% \amount[id=identificateur]{nature}{quantité}{prix unitaire}
+%%% !!! ATTENTION UN ID EST UN MOT UNIQUE POUR *TOUTE* LA FACTURE !!! %%%
+%% Simple, non?
+
+%% Nous allons prendre un exemple où nous choisissons de donner un id à 
+%% tous les produits, c'est le plus simple.
+\amount[id=nisl]{Produit nisl}{5}{100,0}
+\amount[id=eget]{Produit eget}{2}{1000,0}
+\amount[id=luctus]{Produit luctus}{3}{50,25}
+
+% le total des produits avant remise
+\add[id=prixhrem,nisl,eget,luctus]{Total hors remise:}
+
+% les remises
+\perc[id=rem10,nisl]{Remise 1:}{-10}
+\perc[id=rem20,eget,luctus]{Remise 2:}{-5}
+
+% le total des remises
+\add[id=coutrem,rem10,rem20]{Total remise:}
+
+% le grand total:
+\add[prixhrem,coutrem]{Total}
+
+%% Comme vous voyez, ci-dessus, on détermine  %%
+%% à chaque fois sur quoi porte les calculs]  %%
+%% en utilisant les id                        %%
+
+% Finalement, on ferme l'environnement xcalctab
+\end{xcalctab}
+\end{lstlisting}
+
+\paragraph{Et ci-dessous, le résultat:} le tableau des produits, avec le package calctab.
+
+\emph{Les totaux sont calculés automatiquement!}
+
+\ctcurrency{\euro}
+\ctdescription{Nature}
+\ctontraslation{sur}
+\ctheaderone{Quantité}
+\ctheadertwo{Prix unit.}
+
+
+\begin{xcalctab}
+\amount[id=nisl]{Produit nisl}{5}{100,0}
+\amount[id=eget]{Produit eget}{2}{1000,0}
+\amount[id=luctus]{Produit luctus}{3}{50,25}
+
+\add[id=prixhrem,nisl,eget,luctus]{Total hors remise:}
+
+\perc[id=rem10,nisl]{Remise 1:}{-10}
+\perc[id=rem20,eget,luctus]{Remise 2:}{-5}
+\add[id=coutrem,rem10,rem20]{Total remise:}
+
+\add[prixhrem,coutrem]{Total}
+\end{xcalctab}
+
+
+\subsubsection{Un texte libre sous le tableau des produits}
+
+Par exemple \ldots
+
+\begin{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, DEBUT. %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\paragraph*{Description du produit:}
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla rhoncus est ac viverra lacinia. Etiam pulvinar tempus rutrum. Maecenas vel metus metus. 
+
+\paragraph*{\'{E}tendue des fournitures:}
+\begin{itemize}
+    \item La livraison du produit 1 s'étend sur 5 semaines, du JJ/MM/AAAA au JJ/MM/AAAA, 1 quantité par semaine;
+    \item La livraison du produit eget luctus nisl s'étend sur 2 mois, du JJ/MM/AAAA au JJ/MM/AAAA, 1 quantité par semaine.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, FIN. %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\end{lstlisting}
+
+
+\subsubsection{Entrée du compte bancaire créditeur et de la date limite de paiement:}
+
+\begin{lstlisting}
+\rsCompteBancaireEtDateLimiteDePaiement{BEXX XXXX XXXX XXXX}{JJ mois AAAA}
+\end{lstlisting}
+ou \emph{BEXX XXXX XXXX XXXX} est une chaîne de caractères représentant le n\up{o} \textsc{IBAN}\footnote{International Bank Account Number} du compte créditeur et \emph{JJ mois AAAA} une chaîne de caractères représentant la date.
+
+
+
+\subsection{Pour la note de frais seulement}
+
+\paragraph{Notez bien:} \emph{Le total des frais à rembourser --- le seul, est également calculé automatiquement!}
+
+\subsubsection{Récolte des informations nécessaires} 
+
+\emph{Le créancier:} qui entre la note:
+Seuls les champs non vides seront pris en considération.
+\begin{lstlisting}
+%% créancier (qui entre la note de frais)
+%% prenom nom societe 
+\rsIdentificationCreancier{Jules \textsc{Creancier}}{asbl \textsc{La Créance}}
+
+%% adresse créancier {rue no}{codpost ville}{pays}{email}{téléphone}
+%% format email: \href{mailto:user@domain.tld}{user@domain.tld}
+\rsAdresseCreancier{52, rue Delarue}{4321 \textsc{Brux-aile}}{\textsc{Belgique}}{\href{mailto:user@domain.tld}{user@domain.tld}}{+32 2 123 45 67}
+\end{lstlisting}
+
+
+\emph{Le client:} qui paie la note.
+Pour la documentation de la typographie française des civilités, voyez cette sous-section p. \pageref{sub:abreviations_civilites}. Seuls les champs non vides seront pris en considération.
+\begin{lstlisting}
+%%  client (qui paye la note de frais)
+%% Prenom Nom, societe, civilite
+%% typographie française des civilités, voir la documentation 
+%% facture-belge-simple-sans-tva-doc.pdf 
+\rsIdentificationClient{Léon \textsc{Client}}{\textsc{SA La Cliance}}{M. }
+
+% adresse client {rue no}{codpost ville}{pays}
+\rsAdresseClient{DelarueStraat 25}{4321 \textsc{Brux-aile}}{\textsc{Belgique}}
+\end{lstlisting}
+
+
+\emph{Autres informations:}
+\begin{lstlisting}
+%% mois annee note de frais
+\rsMoisAnneeNote{octobre 1952}
+
+%% numéro de compte créancier (IBAN)
+\rsCompteEnBanqueCreancier{BE01 1234 5678 9012}
+\end{lstlisting}
+
+\subsubsection{Constructeurs} 
+Et maintenant, on commnence à construire le document note de frais à l'aide de 3 constructeurs, dans l'ordre, et dont les noms parlent d'eux-mêmes:
+\begin{lstlisting}
+\rsConstruitAdresseCreancier{}
+\rsConstruitTitreEtDateNote{}
+\rsConstruitAdresseClient{}
+\end{lstlisting}
+
+
+\subsubsection{Tableau des items à rembourser}
+
+La documentation ci-dessous est reprise \og telle quelle \fg\ dans le modèle \og article-note-de-frais.tex \fg.
+
+
+\begin{lstlisting}
+%%  On ouvre l'entête du tableau des items à rembourser; à n'utiliser qu'une seule fois.
+\rsEnteteTableauItemsARembourser{}% Ce commentaire bloque un blanc indésirable.
+%% ATTENTION: retirer le commentaire ci-dessus déstabilisera l'affichage !!!
+
+%% Entrée de lignes d'items à rembourser, dans l'ordre 
+%% no piece, date, nature, montant ttc, moyen de paiement.
+%% le total en chiffre est calculé automatiquement
+%% les montants DOIVENT être en cents: 10€25 = 1025
+%% \rsLigneTableauItemsARembourser{numero}{JJ/MM/AAAA}{Nature}{Montant TTC en cents}{Moyen}
+
+\rsLigneTableauItemsARembourser{1}{04/10/1952}{Gateau d'anniversaire}{2520}{Carte bancaire}
+\rsLigneTableauItemsARembourser{2}{04/10/1952}{Bougie d'anniversaire}{500}{Carte bancaire}
+\rsLigneTableauItemsARembourser{3}{06/10/1952}{Bicarbonate de soude}{125}{Espèces}
+
+
+%%  On ferme le pied du tableau des items à rembourser; le total des frais sera calculé 
+%% automatiquement; à n'utiliser qu'une seule fois.
+\rsPiedTableauItemsARembourser{}
+\end{lstlisting}
+
+\subsubsection{Vérification en chiffres en lettres}
+
+
+A propos des totaux: \textbackslash rsTotalEnChiffres sera construit automatiquement, mais, notez bien 
+\begin{enumerate}
+    \item qu'il est impossible de placer la variable \textbackslash rstotalEnChiffres{} avant le tableau des items à rembourser, car elle est construite dynamiquement en même temps que ce tableau pour obtenir le total chiffres;
+    \item si vous souhaitez un total en lettres, il s'agit d'un affichage, vous devez l'écrire vous même, avec \textbackslash rsTotalEnLettres\{montant en lettres\}.
+\end{enumerate}
+
+Alors, \emph{attention qu'il corresponde au total en chiffres, automatiquement calculé}. Ceci est de votre responsabilité de vérifier et d'écrire le montant correct. Voici, ci-dessous, un outil qui vous aidera; pour le faire apparaître  disparaître, il suffit de le dé  commenter. 
+
+\begin{lstlisting}
+\rsTotalEnLettres{trente et un euros virgule quarante-cinq}
+%% Décommenter pour vérifier les correspondances chiffres - lettres, commentez pour me cacher.
+\textbf{\begin{center} Vérifiez chiffres = lettres, puis commentez-moi pour me faire disparaître\\ \rstotalEnChiffres{}~\rsuniteMonetaire{} = \rstotalEnLettres{} \end{center}}
+\end{lstlisting}
+
+
+\subsubsection{Texte libre}
+S'ensuit un texte libre, par défaut, ceci:
+
+\begin{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, DEBUT. %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Variables utiles:
+%% \rsprenomNomCreancier{}, \rssocieteCreancier{}, \rsprenomNomClient{}
+%% \rssocieteClient{}, \rsciviliteClient{}
+Je soussigné, \rsprenomNomCreancier{}, déclare qu'il m'est dû par \rsciviliteClient{}\rsprenomNomClient{} de la société \rssocieteClient{}, la somme de \rstotalEnChiffres{} \rsuniteMonetaire{} (\rstotalEnLettres{} ) pour les dépenses énoncées dans le tableau ci dessous:
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, FIN. %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\end{lstlisting}
+
+
+\subsubsection{Injonction à payer}
+Maintenant, on enjoint à payer avec un 4\up{e} constructeur, qui présente une \og grosse \fg\  subtilité possible.
+
+\begin{lstlisting}
+% Construit l'injonction à payer; 
+% \rsConstruitInjonctionAPayer{lieu_redaction_note}{date_redaction_note}{oui/non}> Exemple:
+\rsConstruitInjonctionAPayer{\textsc{Brux-aile}}{10 octobre 1952}{oui}
+\end{lstlisting}
+La somme en chiffres et l'IBAN seront ajoutés automatiquement (ils étaient en réserve).
+Les deux 1\up{ers} arguments parlent d'eux-mêmes: lieu\_redaction\_note, date\_redaction\_note.\\
+
+C'est le 3\up{e} argument qui propose une astuce utile.
+En effet, certains clients, par facilité administrative et dans une relation de confiance avec le créancier, acceptent l'usage d'une signature \og image \fg\ en lieu et place d'une
+signature écrite. Si le 3\up{e} parametre = oui \emph{et} qu'un fichier signature.png existe dans le répertoire courant, il sera affiché en tant que signature, sinon la place sera pour une signature manuscrite.
+
+\subsubsection{Texte libre}
+
+\begin{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, DEBUT. %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Les pièces justificatives, numérotées suivant le tableau, sont jointes à la présente note.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Texte libre, FIN. %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\end{lstlisting}
+
+\hrule
+
+\paragraph*{Remarques:} Si vous avez des commentaires, des remarques,
+ ou des erreurs à signaler dans cette documentation, vous pouvez \href{https://gitlab.adullact.net/zenjo/facture-belge-simple-sans-tva/issues}{les signaler ici}. 
+
+\end{document}

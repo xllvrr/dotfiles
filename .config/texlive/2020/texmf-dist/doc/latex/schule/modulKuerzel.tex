@@ -1,0 +1,123 @@
+\section{Kuerzel}
+\label{modul:kuerzel}
+Das Modul \module{Kuerzel} stellt einige Makros bereit, die
+Kurzschreibweisen für häufig verwendete Schreibweisen
+bereitstellen. Sofern relevant, wird dabei die Schreibweise an
+die gewählte Variante des Genderings, im Sinne einer
+geschlechtergerechten Sprache angepasst.
+
+\subsection{Paketoptionen}\begin{options}
+	\keychoice{gendering}{binneni,fem,gap,mas,split,star}\Default{split}
+	Standardmäßig wird die amtlich geforderte Schreibweise des Splittings (etwa Schülerinnen und Schüler) verwendet. 
+	\begin{smallitemize}
+		\item\hspace{1ex} Splitting: \keyis{gendering}{split}
+	\end{smallitemize}
+			
+	Außerdem werden folgende Varianten unterstützt:
+	\begin{smallitemize}
+		\item\hspace{1ex} Gender-Gap: \keyis{gendering}{gap}
+		\item\hspace{1ex} Gender-Star: \keyis{gendering}{star}
+		\item\hspace{1ex} Binnen-I: \keyis{gendering}{binneni}
+	\end{smallitemize}
+			
+	Für spezielle Fälle, kann auch die ausschließliche Nutzung einer Geschlechtsform erzwungen werden:
+	\begin{smallitemize}
+		\item \hspace{1ex}Generisches Femininum: \keyis{gendering}{fem}
+		\item \hspace{1ex}Generisches Maskulinum: \keyis{gendering}{mas}
+	\end{smallitemize}
+	
+\end{options}
+\subsection{Befehle}\hfill
+
+\begin{multicols}{2}
+\begin{commands}
+	\command{Lkr}
+	Lehr\-kraft
+	\command{Lkre}
+	Lehr\-kräf\-te
+	\command{Lpr}
+	Lehr\-per\-son
+	\command{Lprn}
+	Lehr\-per\-so\-nen
+	\command{EuE}
+	El\-tern und Er\-zie\-hungs\-be\-recht\-ig\-te
+	\command{EuEn}
+	El\-tern und Er\-zie\-hungs\-be\-recht\-ig\-ten
+	\command{EK}
+	Er\-wei\-ter\-ungs\-kurs
+	\command{EKe}
+	Er\-wei\-ter\-ungs\-kurse
+	\command{EKen}Er\-wei\-ter\-ungs\-kursen
+	\command{GK}
+	Grund\-kurs
+	\command{GKe}
+	Grund\-kurse
+	\command{GKen}
+	Grund\-kursen
+	\command{LK}
+	Leis\-tungs\-kurs
+	\command{LKe}
+	Leis\-tungs\-kurse
+	\command{LKen}
+	Leis\-tungs\-kursen
+	\command{SuS}
+{\tiny 			\begin{tabular}{ll}
+		\toprule \textbf{Gendering} & \textbf{Ergebnis} \\ 
+		\midrule binneni & SchülerInnen \\ 
+		fem & Schülerinnen \\ 
+		gap & Schüler\_innen \\ 
+		mas & Schüler \\ 
+		split & Schülerinnen und Schüler \\ 
+		star & Schüler*innen \\ 
+		\bottomrule 
+	\end{tabular} }
+	\command{SuSn}
+	{\tiny \begin{tabular}{ll}
+		\toprule \textbf{Gendering} & \textbf{Ergebnis} \\ 
+		\midrule binneni & SchülerInnen \\ 
+		fem & Schülerinnen \\ 
+		gap & Schüler\_innen \\ 
+		mas & Schülern \\ 
+		split & Schülerinnen und Schülern \\ 
+		star & Schüler*innen \\ 
+		\bottomrule 
+	\end{tabular} }
+	
+	\command{LuL}
+	{\tiny \begin{tabular}{ll}
+		\toprule \textbf{Gendering} & \textbf{Ergebnis} \\ 
+		\midrule binneni & LehrerInnen \\ 
+		fem & Lehrerinnen \\ 
+		gap & Lehrer\_innen \\ 
+		mas & Lehrer \\ 
+		split & Lehrerinnen und Lehrer \\ 
+		star & Lehrer*innen \\ 
+		\bottomrule 
+	\end{tabular} }
+	
+	\command{LuLn}
+	{\tiny \begin{tabular}{ll}
+		\toprule \textbf{Gendering} & \textbf{Ergebnis} \\ 
+		\midrule binneni & LehrerInnen \\ 
+		fem & Lehrerinnen \\ 
+		gap & Lehrer\_innen \\ 
+		mas & Lehrern \\ 
+		split & Lehrerinnen und Lehrern \\ 
+		star & Lehrer*innen \\ 
+		\bottomrule 
+	\end{tabular} }
+	
+	\command{KuK}
+	{\tiny \begin{tabular}{ll}
+		\toprule \textbf{Gendering} & \textbf{Ergebnis} \\ 
+		\midrule binneni & KollegInnen \\ 
+		fem & Kolleginnen \\ 
+		gap & Kolleg\_innen \\ 
+		mas & Kollegen \\ 
+		split & Kolleginnen und Kollegen \\ 
+		star & Kolleg*en*innen \\ 
+		\bottomrule 
+	\end{tabular} }
+	
+\end{commands}
+\end{multicols}

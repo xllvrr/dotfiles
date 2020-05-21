@@ -1,0 +1,28 @@
+name tikztosvg
+category TLCore
+revision 55132
+shortdesc A utility for rendering TikZ diagrams to SVG
+longdesc This package provides a bash script that calls XeTeX and
+longdesc pdf2svg to convert TikZ environments to SVG files.
+depend tikztosvg.ARCH
+containersize 1440
+containerchecksum e5546ec16c983c63bed068df4924eff00cca3e0a58dd5891ab90634754c3e042d3e8b4b264ba4448f21f0f1b043d6d93a90ce8824514e912bc0deeda92aa71dc
+doccontainersize 37004
+doccontainerchecksum d332baf010fa94d3b5b48589891553659830b2cf7f195cd9f08c4ab9648a3aeb8ed7ef51e09a9ae8ef37ffa712741f100b31ad88daaef54f289f1d432fd2d9d2
+docfiles size=24
+ texmf-dist/doc/man/man1/tikztosvg.1
+ texmf-dist/doc/man/man1/tikztosvg.man1.pdf
+ texmf-dist/doc/support/tikztosvg/LICENSE
+ texmf-dist/doc/support/tikztosvg/README.md details="Readme"
+ texmf-dist/doc/support/tikztosvg/example.svg
+ texmf-dist/doc/support/tikztosvg/example.tikz
+ texmf-dist/doc/support/tikztosvg/install.sh
+ texmf-dist/doc/support/tikztosvg/man.adoc
+runfiles size=1
+ texmf-dist/scripts/tikztosvg/tikztosvg
+catalogue-contact-bugs https://github.com/GarkGarcia/tikztosvg/issues
+catalogue-contact-repository https://github.com/GarkGarcia/tikztosvg
+catalogue-ctan /support/tikztosvg
+catalogue-license gpl3
+catalogue-topics cvt-other graphics pgf-tikz
+catalogue-version 0.1.0

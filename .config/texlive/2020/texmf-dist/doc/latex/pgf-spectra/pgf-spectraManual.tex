@@ -1,0 +1,266 @@
+\documentclass[a4paper,10pt,oneside,openany,fleqno]{article}
+\usepackage{pgf-spectra}
+\usepackage[english]{babel}
+\addtolength{\textwidth}{3.5cm}
+\addtolength{\textheight}{2.5cm}
+\addtolength{\topmargin}{-1.25cm}
+\setlength{\parindent}{0pt}
+\setlength{\oddsidemargin}{0pt}
+\usepackage[pdfstartview={ },colorlinks=true, linkcolor=black, citecolor=gray, urlcolor=darkgray, hyperindex, plainpages=false,bookmarksopenlevel=2,bookmarksopen=true]{hyperref}%
+\usepackage[ansinew]{inputenc}
+\renewcommand{\rmdefault}{ecverdana}
+\renewcommand{\normalfont}{}
+\usepackage{amsfonts}
+\def\txtspec{\textcolor{blue!50!black}{\textbackslash pgfspectra}}
+\def\txtspecopt[#1]{\textcolor{blue!50!black}{\textbackslash pgfspectra[}\textcolor{red!50!black}{#1}\textcolor{blue!50!black}{]}}
+\def\pack{\large\texttt{pgf-spectra}\normalsize}
+%\def\com#1#2{\newline\tikz{\node[fill=black!20,draw=black!20,rounded corners=1pt,right,text width=\textwidth-.6666em] at (0,0) {\string#1};}\\ [1pt]#2\relax\\ [-6pt] \tikz{\draw[fill=black!20,draw=black!20,rounded corners=1pt] (0,0) rectangle ++(\textwidth,-3pt);}\medskip}
+\def\com#1#2{\tikz{\node[fill=black!20,draw=black!20,rounded corners=1pt,right,text width=\textwidth-.6666em] at (0,0) {#1};}\\ [1pt]#2\relax\\ [-6pt] \tikz{\draw[fill=black!20,draw=black!20,rounded corners=1pt] (0,0) rectangle ++(\textwidth,-3pt);}\smallskip}
+\pgfdeclarelayer{back}
+\pgfsetlayers{back,main}
+\def\option#1#2#3{% option,default,description
+\begin{tikzpicture}%
+\node[below right,font=\small\bfseries] (a) at (0,0) {#1};\pdfbookmark[2]{#1}{pdf#1}
+\node[below left,font=\small] (b) at (\textwidth-.3333em,0) {default: \itshape#2};
+\node[below right,text=black!80,font=\small,text width=\textwidth-.6666em] (c) at (a.south west) {#3};
+\begin{pgfonlayer}{back}
+\path[left color=orange!20,right color=black!30!orange!50,rounded corners=2pt,] (a.north west) rectangle (c.south east);
+\end{pgfonlayer}
+\end{tikzpicture}%
+}%
+\usepackage{listings}
+\lstset{% general command to set parameter(s)
+    basicstyle=\small,%
+    keywordstyle=\color{blue!50!black}\ttfamily,
+    basicstyle=\ttfamily\footnotesize,%
+    commentstyle=\itshape\color{green!50!black},%
+    stringstyle=\ttfamily,%
+    showstringspaces=false,%
+    language=[LaTeX]TeX,%
+    defaultdialect=[LaTeX]TeX,%
+    morekeywords={RequirePackage}%
+}
+\lstdefinestyle{numbers}
+    {numbers=left, stepnumber=1, numberstyle=\tiny, numbersep=10pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\usefont{T1}{verdana}{m}{n}
+\title{Manual for pgf-spectra 1.0}
+\author{Hugo Gomes\\
+  \texttt{hugo.parelho@gmail.com}}
+\date{\today}
+\maketitle
+\begin{center}\pgfspectra[element={B},charge=all,back=visible40,gamma=.6]\end{center}
+\begin{abstract}
+\noindent The purpose of this package is to draw the spectrum of elements in a simple way. It's based on the package \textit{pst-spectra} with similar options, but with some extra options. It relays on the pgf/TikZ to draw the desired spectrum, continuous or discrete. As in \textit{pst-spectra} there are data available for the spectra of 99 elements and their ions (from the NASA database). It also allows the user to draw a spectrum with their own personal data.
+\end{abstract}
+\tableofcontents
+\newpage
+\section{Installation and usage}
+\noindent
+\pack{} is placed under the terms of the \LaTeX{} Project Public License, version 1.3 or later (http://www.latex-project.org/lppl.txt). \pack{} loads and requires the packages \textit{tikz} and \textit{ifthen}.
+\\ You need to put the style file (pgf-spectra.sty) in a location where pdflatex can find them. According to the TDS conventions this may be a subdirectory named tex/latex/pgfspectra/ or tex/latex/misc/ in your (site specific) installation tree (insert your appropriate directory delimiter instead of /, if needed).
+\\ If you are using pdflatex, just can simply include the style file without any option via the \verb|\usepackage| command: \verb|\usepackage{pgf-spectra}|
+\section{The commands}
+There are at this time only two commands available:
+\begin{itemize}\item\txtspec{} or \txtspecopt[options list]\item and \textcolor{blue!50!black}{\textbackslash wlcolor\{}\textcolor{red!50!black}{\textbackslash wavelength}\textcolor{blue!50!black}{\}}\end{itemize}
+\medskip
+The first command is used without options to draw the visible continuous spectrum:
+\\ \com{\txtspec}{\pgfspectra}
+\\ When using options a continuous or discrete spectra in the visible region can be drawn, for ins\-tance:
+\\ [4pt]\com{\txtspecopt[width=.5\textbackslash textwidth,height=1.5cm]}{\pgfspectra[width=.5\textwidth,height=1.5cm]}
+\\ \com{\txtspecopt[width=\textbackslash textwidth,element=Ne]}{\pgfspectra[width=\textwidth,element=Ne]}
+\\ [10pt]The other command is used to convert a wavelength (from 380 to 780 nanometers) to the respective color available as 'wlcolor':
+\\ [10pt]\tikz{\node[fill=black!20,draw=black!20,rounded corners=1pt,right,text width=\textwidth-.6666em] at (0,0) {\begin{verbatim}
+\tikz{\foreach \x in {380,430,...,780}{
+                \wlcolor{\x}
+                \draw[fill=wlcolor] (.02*\x,0) rectangle ++(1,.5)
+                            node[midway,font=\tiny\bfseries,text=black!50] {\x};
+                }
+}
+\end{verbatim}
+};}
+\\ [2pt]\tikz{\foreach \x in {380,430,...,780}{
+                \wlcolor{\x}
+                \draw[fill=wlcolor] (.02*\x,0) rectangle ++(1,.5) node[midway,font=\tiny\bfseries,text=black!50] {\x};
+                }
+}
+\\ [-6pt]\tikz{\draw[fill=black!20,draw=black!20,rounded corners=1pt] (0,0) rectangle ++(\textwidth,-3pt);}
+\section{Options}
+For the command \txtspec{} there are a set of options available to draw the spectrum as described below.
+\\ [10pt]\option{width}{0.9\textbackslash textwidth}{Sets the width of the spectrum.}
+\com{\txtspecopt[width=10cm]}{\pgfspectra[width=10cm]}
+\\ \option{height}{1cm}{Sets the height of the spectrum.}
+\com{\txtspecopt[height=40pt]}{\pgfspectra[height=40pt]}
+\\ \option{element}{NONE}{A single chemical symbol of an element or a list of chemical symbols.}
+\com{\txtspecopt[element=H]}{\pgfspectra[element=H]}
+\com{\txtspecopt[element=\{H,He\}]}{\pgfspectra[element={H,He}]}
+\\ \option{charge}{0}{The charge of the \textit{particle} to draw the spectrum. Use 'all' to get all available lines for the element, i.e, for the atom and all the positive ions that exists in the database.}
+\com{\txtspecopt[element=He]}{\pgfspectra[element=He]}
+\com{\txtspecopt[element=He,charge=1]}{\pgfspectra[element=He,charge=1]}
+\com{\txtspecopt[element=He,charge=2]}{\pgfspectra[element=He,charge=2]}
+\com{\txtspecopt[element=He,charge=all]}{\pgfspectra[element=He,charge=all]}
+\newpage
+\option{Imin}{0}{The minimum intensity of the lines to put in the spectrum. Value from 0 to 1.}
+\com{\txtspecopt[element=He,Imin=.5]}{\pgfspectra[element=He,Imin=.5]}
+\com{\txtspecopt[element=He,Imin=.05]}{\pgfspectra[element=He,Imin=.05]}
+\\ \option{relative intensity}{false}{Draws the lines respecting the intensity of the observed spectrum.}
+\com{\txtspecopt[element=He,relative intensity]}{\pgfspectra[element=He,relative intensity]}
+% relative intensity threshold -> Sets the minimum intensity for the lines... Itresh+(1-Itresh)*Iline/Imax
+\\ \option{relative intensity threshold}{0.25}{Sets the minimum intensity for the lines in the spectrum when using relative intensities. When set to 0.25 a line with real intensity $0$ will have a spectral intensity of $0.25$ and a line with intensity equal to the max intensity observed in that spectrum will have an intensity in the computed spectrum of $1$, assuming of course an overall intensity in the range between 0 and 1.}
+\com{\txtspecopt[element=He,relative intensity,relative intensity threshold=0]}{\pgfspectra[element=He,relative intensity,relative intensity threshold=0]}
+\com{\txtspecopt[element=He,relative intensity,relative intensity threshold=.25]}{\pgfspectra[element=He,relative intensity,relative intensity threshold=.25]}
+\com{\txtspecopt[element=He,relative intensity,relative intensity threshold=.5]}{\pgfspectra[element=He,relative intensity,relative intensity threshold=.5]}
+\com{\txtspecopt[element=He,relative intensity,relative intensity threshold=.75]}{\pgfspectra[element=He,relative intensity,relative intensity threshold=.75]}
+\com{\txtspecopt[element=He,relative intensity,relative intensity threshold=1]}{\pgfspectra[element=He,relative intensity,relative intensity threshold=1]}
+In fact setting the relative intensity threshold to $1$ is equivalent to the spectrum without relative intensities:
+\\ \com{\txtspecopt[element=He]}{\pgfspectra[element=He]}
+\newpage\option{line intensity}{100}{Draws all the lines with the specified intensity between 0 and 100 (as a percentage of the maximum intensity).}
+\com{\txtspecopt[element=He,line intensity=0]}{\pgfspectra[element=He,line intensity=0]}
+\com{\txtspecopt[element=He,line intensity=50]}{\pgfspectra[element=He,line intensity=50]}
+\com{\txtspecopt[element=He,line intensity=100]}{\pgfspectra[element=He,line intensity=100]}
+\com{\txtspecopt[element=He]}{\pgfspectra[element=He]}
+\\ \option{gamma}{0.8}{Gamma color correction: any positive value.}
+\com{\txtspecopt[gamma=.1]}{\pgfspectra[gamma=.1]}
+\com{\txtspecopt[gamma=.8]}{\pgfspectra[gamma=.8]}
+\com{\txtspecopt[gamma=1]}{\pgfspectra[gamma=1]}
+\com{\txtspecopt[gamma=2]}{\pgfspectra[gamma=2]}
+\com{\txtspecopt[gamma=5]}{\pgfspectra[gamma=5]}
+\com{\txtspecopt[gamma=10]}{\pgfspectra[gamma=10]}
+\newpage \option{brightness}{1}{Brightness color correction as in the CMYK color model. Value between 0 and 1. Zero stands for black and one for the maximum bright. \textit{This option only works for the continuous component of the spectra, to change the ``brightness'' of spectral lines use the option 'line intensity'}.}
+\com{\txtspecopt[brightness=.1]}{\pgfspectra[brightness=.1]}
+\com{\txtspecopt[brightness=.5]}{\pgfspectra[brightness=.5]}
+\com{\txtspecopt[brightness=1]}{\pgfspectra[brightness=1]}
+\\ \option{back}{black}{Sets the background color of the spectrum. Only useful when there are spectral lines. Some shorthand are defined to put the visible region in the background: 'visible5', 'visible10', 'visible15', \ldots\ , 'visible100'. This labels combined with the 'brightness' option makes it possible to achieve other values on the background, since the visible amount (5\%,10\%,\ldots) is multiplied by the value of brightness.}
+\com{\txtspecopt[element=He,back=white]}{\pgfspectra[element=He,back=white]}
+\com{\txtspecopt[element=He,back=black!50]}{\pgfspectra[element=He,back=black!50]}
+\com{\txtspecopt[element=He,back=visible50]}{\pgfspectra[element=He,back=visible50]}
+\com{\txtspecopt[element=He,back=visible50,brightness=.26]}{\pgfspectra[element=He,back=visible50,brightness=.26]}
+\\ \option{lines}{\{\}}{A comma separated list of wavelengths in the interval $[380;780]\,nm$.}
+\\ \com{\txtspecopt[lines=\{400,500,550,700\}]}{\pgfspectra[lines={400,500,550,700}]}
+\\ \option{line width}{1pt}{The width of each individual line in the spectrum.}
+\newpage
+\com{\txtspecopt[line width=2pt]}{\pgfspectra[line width=2pt]}
+\com{\txtspecopt[line width=2pt,element=He]}{\pgfspectra[line width=2pt,element=He]}
+\\ \option{begin}{380}{The starting wavelength in nanometers of the spectrum ($380\leq\lambda\leq780$).}
+\com{\txtspecopt[begin=500]}{\pgfspectra[begin=500]}
+\\ \option{end}{780}{The finishing wavelength in nanometers of the spectrum ($380\leq\lambda\leq780$).}
+\com{\txtspecopt[end=500]}{\pgfspectra[end=500]}
+\\ [10pt]\textbf{Remark:} \textit{it's obviously possible to set 'begin' and 'end' at the same time and if desired change the order of the wavelengths.}
+\\ \com{\txtspecopt[begin=500,end=700]}{\pgfspectra[begin=500,end=700]}
+\com{\txtspecopt[begin=700,end=500]}{\pgfspectra[begin=700,end=500]}
+\com{\txtspecopt[begin=780,end=380]}{\pgfspectra[begin=780,end=380]}
+\com{\txtspecopt[begin=780,end=380,element=He]}{\pgfspectra[begin=780,end=380,element=He]}
+\newpage
+\option{absorption}{false}{Draws the absorption spectrum instead of the emission one.}
+\com{\txtspecopt[element=H,absorption]}{\pgfspectra[element=H,absorption]}
+\com{\txtspecopt[element=\{H,He\},absorption]}{\pgfspectra[element={H,He},absorption]}
+\\ \option{axis}{false}{Draws a nanometric axis below the spectrum.}
+\com{\txtspecopt[axis]}{\pgfspectra[axis]}
+\\ \option{axis step}{20}{The increment to use in the axis scale.}
+\com{\txtspecopt[axis,axis step=50]}{\pgfspectra[axis,axis step=50]}
+\\ \option{axis color}{black}{The color of the axis.}
+\com{\txtspecopt[axis,axis color=red!50!green!50!blue!50]}{\pgfspectra[axis,axis color=red!50!green!50!blue!50]}
+\\ \option{axis font}{\textbackslash tiny}{The font specs to use in the axis.}
+\com{\txtspecopt[axis,axis font=\textbackslash fontsize\{3\}\{3\}\textbackslash itshape\textbackslash selectfont]}{\pgfspectra[axis,axis font=\fontsize{3}{3}\itshape\selectfont]}
+\\ \option{axis font color}{white}{The color of the font used in the axis.}
+\com{\txtspecopt[axis,axis font color=blue!50!white]}{\pgfspectra[axis,axis font color=blue!50!white]}
+\\ \option{label}{false}{Puts a label for the spectrum.}
+\com{\txtspecopt[label]}{\pgfspectra[label]}
+\com{\txtspecopt[label,element=He]}{\pgfspectra[label,element=He]}
+\\ \option{label position}{west}{Sets the position of the label according to:}
+\tikz{\path[left color=orange!20,right color=black!30!orange!50,rounded corners=2pt,] (0,0) rectangle ++(\textwidth,2);
+\node[dotted,fill=black!20,opacity=.4] (x) at (.5\textwidth,1) {\vbox to 1cm{\hsize=8cm\vfill\hfil\small\itshape spectrum\hfil\vfill}};
+\tikzset{inner sep=0.1pt}
+\node[left] at (x.west) {west};
+\node[above left] at (x.north west) {north west};
+\node[above] at (x.north) {north};
+\node[above right] at (x.north east) {north east};
+\node[right] at (x.east) {east};
+\node[below right] at (x.south east) {south east};
+\node[below] at (x.south) {south};
+\node[below left] at (x.south west) {south west};}
+\com{\txtspecopt[label,label position=east,element=He]}{\pgfspectra[label,label position=east,element=He]}
+\\ \option{label font}{\textbackslash bfseries\textbackslash small}{The font specs for the label.}
+\com{\txtspecopt[label,label font=\textbackslash footnotesize\textbackslash itshape,element=He]}{\pgfspectra[label,label font=\footnotesize\itshape,element=He]}
+\\ \option{label font color}{black}{The color of the font used in the label.}
+\com{\txtspecopt[label,label font color=blue!50!white,element=He]}{\pgfspectra[label,label font color=blue!50!white,element=He]}
+\\ \option{label before text}{\{\}}{Inserts text before the value stored in the label: if chemical symbols were provided, the label has them stored, otherwise it is empty.}
+\com{\txtspecopt[label,label before text=text\textbackslash\ ,element=He]}{\pgfspectra[label,label before text=text\ ,element=He]}
+\\ [10pt]\textbf{Remark:} \textit{The \textbackslash}\verb*| | \textit{is to insert a space between the text entered by user and the text stored in label.}
+\\ \option{label after text}{\{\}}{Inserts text after the value stored in the label: if chemical symbols were provided, the label has them stored, otherwise it is empty.}
+\com{\txtspecopt[label,label after text=\textbackslash\ text,element=He]}{\pgfspectra[label,label after text=\ text,element=He]}
+\section{Examples}
+Here are some examples for drawing some \textit{eventually useful} spectra:
+\\ \com{\txtspecopt%
+[element=He,axis,label,label position=north west,\\ label after text=\textbackslash\ emission spectrum:]}%
+{\pgfspectra[element=He,axis,label,label position=north west,label after text=\ emission spectrum:]}
+\\ \com{\txtspecopt%
+[element=He,axis,label,label position=north west,label after text=\\ \textbackslash\ emission spectrum:,relative intensity,relative intensity threshold=.5]}%
+{\pgfspectra[element=He,axis,label,label position=north west,label after text=\ emission spectrum:,relative intensity,relative intensity threshold=.5]}
+\\ \com{\txtspecopt%
+[element=He,charge=all,line intensity=50,Imin=.05]}%
+{\pgfspectra[element=He,charge=all,line intensity=50,Imin=.05]}
+\\ \com{\txtspecopt%
+[element=He,absorption,axis,label,label position=north west,label after text=\textbackslash\ absorption spectrum:,relative intensity,relative intensity threshold=.5]}%
+{\pgfspectra[element=He,absorption,axis,label,label position=north west,label after text=\ absorption spectrum:,relative intensity,relative intensity threshold=.5]}
+\\ \com{\txtspecopt%
+[element=He,charge=all,absorption,line intensity=50]}%
+{\pgfspectra[element=He,charge=all,absorption,line intensity=50]}
+\\ \com{\txtspecopt%
+[element=He,charge=all,relative intensity,back=visible75,gamma=2]}%
+{\pgfspectra[element=He,charge=all,relative intensity,back=visible75,gamma=2]}
+\\ \textit{\small When the lines are manually inserted it's possible to use 'label before text' only with personalized text. In the next three examples 'label before text' is used to make labels for a multiple choice problem, omitting evidently the type of luminous font.}
+\\ $\checkmark$ Blue LED
+\\ \com{\txtspecopt%
+[begin=380,end=740,lines=\{450,451,452,453,454,455,456,457,458,459,%
+\\460,461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476,477,478,%
+\\479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,%
+\\498,499,500,501,502,503,504,505,506,507,508,509,510\},line width=1.25pt,width=%
+\\ \mbox{.75\textbackslash linewidth,label,axis,label before text=(A),axis font=\textbackslash fontsize\{4pt\}\{6pt\}\textbackslash selectfont}]}%
+{\pgfspectra[begin=380,end=740,lines={450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499,500,501,502,503,504,505,506,507,508,509,510},line width=1.25pt,width=.75\linewidth,label,axis,label before text=(A),axis font=\fontsize{4pt}{6pt}\selectfont]}%
+\newpage$\checkmark$ Laser He-Ne
+\\ \com{\txtspecopt%
+[begin=380,end=740,lines=\{633\},line width=1.25pt,width=.75\textbackslash linewidth,label,axis,label before text=(B),axis font=\textbackslash fontsize\{4pt\}\{6pt\}\textbackslash selectfont]}%
+{\pgfspectra[begin=380,end=740,lines={633},line width=1.25pt,width=.75\linewidth,label,axis,label before text=(B),axis font=\fontsize{4pt}{6pt}\selectfont]}
+\\ $\checkmark$ Fluorescent lamp
+\\ \com{\txtspecopt%
+[begin=380,end=740,lines=\{380,425,450,525,550,600,625,640,705\},line width=1.25pt,width=.75\textbackslash linewidth,label,axis,label before text=(C),axis font=\textbackslash fontsize\{4pt\}\{6pt\}\textbackslash selectfont]}%
+{\pgfspectra[begin=380,end=740,lines={380,425,450,525,550,600,625,640,705},line width=1.25pt,width=.75\linewidth,label,axis,label before text=(C),axis font=\fontsize{4pt}{6pt}\selectfont]}
+\\ $\checkmark$ Sun like spectrum
+\\ \com{\txtspecopt%
+[element=\{H,Fe,Mg,Na\},absorption,line intensity=40,Imin=.05]}%
+{\pgfspectra[element={H,Fe,Mg,Na},absorption,line intensity=40,Imin=.05]}
+\\ $\checkmark$ Sirius like spectrum
+\\ \com{\txtspecopt%
+[element=\{H,He\},absorption,line intensity=40,Imin=.05]}%
+{\pgfspectra[element={H,He},absorption,line intensity=40,Imin=.05]}
+\\ $\checkmark$ ``Classical'' emission spectra of elements:
+\\ \com{\txtspecopt%
+[element=H,back=visible40,gamma=.6,label,axis,Imin=.05]}%
+{\pgfspectra[element=H,back=visible40,gamma=.6,label,axis,Imin=.05]}
+\\ \com{\txtspecopt%
+[element=He,back=visible40,gamma=.6,label,axis,Imin=.05]}%
+{\pgfspectra[element=He,back=visible40,gamma=.6,label,axis,Imin=.05]}
+\\ \com{\txtspecopt%
+[element=Ne,back=visible40,gamma=.6,label,axis,Imin=.05]}%
+{\pgfspectra[element=Ne,back=visible40,gamma=.6,label,axis,Imin=.05]}
+\newpage
+\section{Recommendations and known issues}
+The code could be a bit slow, so if there are many spectra to draw, the time consumption to get them could be high. In that case it's preferable to compile individual spectrum via the \textit{preview} package, for later inclusion with \verb|\includegraphics{<filename>.pdf}|:
+\begin{lstlisting}
+% <filename>.tex
+\documentclass{article}
+\usepackage{pgf-spectra}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{1pt}%
+%%%%%%%%%%%%%%%%%
+\begin{document}
+\pgfspectra[element=H,width=15cm]
+\end{document}
+\end{lstlisting}
+\section{The code}
+\lstset{style=numbers, breaklines=true,breakindent=10pt}
+\lstinputlisting{pgf-spectra.sty}
+\end{document}

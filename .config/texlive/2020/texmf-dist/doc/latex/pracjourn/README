@@ -1,0 +1,40 @@
+___________________
+The PRACJOURN class
+
+This class file is used for typesetting articles in the PracTeX Journal
+(<http://tug.org/pracjourn>). It is based on the article class with 
+modifications to allow for more flexible front-matter and revision control, 
+among other small changes.
+
+It uses Palatino (12/15.5 pt) for the main text font, and Latin Modern Sans 
+and Typewriter for the companion fonts. It is not essential to have 
+the Latin Modern fonts installed, since the class file will fall back to 
+the older Computer Modern-based versions if necessary.
+
+_____
+USAGE
+
+No class options are necessary. \title, \author, and \abstract metadata is 
+required. Please see pracjourn.pdf for the full documentation.
+
+\documentclass{pracjourn}
+\title{...}
+\author{...}
+\abstract{...}
+\begin{document}
+\maketitle
+...
+\end{document}
+
+_______
+LICENCE
+
+This class is distributed under the GNU General Public License.
+Please see the documented source file pracjourn.dtx for further
+information.
+
+Will Robertson
+Art Ogawa
+Karl Berry
+
+Copyright (C) 2005, 2006, 2007 TeX Users Group

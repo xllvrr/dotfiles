@@ -1,0 +1,431 @@
+% basicex.tex
+% 
+% This file contains some basic examples of commands for
+% installing the AGaramond family of fonts with fontinst v1.9.
+% It is pretty similar to what the \latinfamily command
+% does for these fonts, but the details are not identical.
+% 
+% In case you want to run this file yourself, the metrics for 
+% the AGaramond font family can be downloaded from
+% 
+%   ftp://ftp.adobe.com/pub/adobe/type/win/all/afmfiles/051-100/100/
+% and
+%   ftp://ftp.adobe.com/pub/adobe/type/win/all/afmfiles/101-150/101/
+% 
+% The AFM files found in these directories should then be renamed 
+% as indicated in the Fontname adobe.map file. Also note that 
+% the line endings are Windows-style (CRLF), so you probably need
+% to download as binary and do some conversion before you can use
+% these files comfortably.
+
+\input fontinst.sty
+
+% This tells fontinst to collect information about font 
+% transformations in the file basicex.recs. That file is
+% then used by basicex2.tex.
+\recordtransforms{basicex.recs}
+
+% These commands perform transformations on the metrics of
+% some of the fonts, thereby creating new metrics files for
+% the transformed fonts.
+\transformfont{padr8r}{\reencodefont{8r}{\fromafm{padr8a}}}
+\transformfont{padrc8r}{\reencodefont{8r}{\fromafm{padrc8a}}}
+\transformfont{padri8r}{\reencodefont{8r}{\fromafm{padri8a}}}
+\transformfont{padro8r}{\slantfont{250}{\frommtx{padr8r}}}
+\transformfont{padro8x}{\slantfont{250}{\fromafm{padr8x}}}
+
+% The first three lines of each group reencode fonts 
+% so that TeX can access all glyphs in them.
+\transformfont{pads8r}{\reencodefont{8r}{\fromafm{pads8a}}}
+\transformfont{padsc8r}{\reencodefont{8r}{\fromafm{padsc8a}}}
+\transformfont{padsi8r}{\reencodefont{8r}{\fromafm{padsi8a}}}
+% The last two lines artifically create slanted variants
+% of fonts by skewing them. 250 is the natural slant of
+% the italics in this family.
+\transformfont{padso8r}{\slantfont{250}{\frommtx{pads8r}}}
+\transformfont{padso8x}{\slantfont{250}{\fromafm{pads8x}}}
+
+\transformfont{padb8r}{\reencodefont{8r}{\fromafm{padb8a}}}
+% There is no padbc8a, hence nothing to make a padbc8r from.
+\transformfont{padbi8r}{\reencodefont{8r}{\fromafm{padbi8a}}}
+\transformfont{padbo8r}{\slantfont{250}{\frommtx{padb8r}}}
+\transformfont{padbo8x}{\slantfont{250}{\fromafm{padb8x}}}
+% The DVI driver must be told to make the same transformations 
+% to the actual fonts when a document using them is to be viewed
+% or printed. The information collected in basicex.recs can
+% help with this. The job of basicex2.tex is to translate this
+% information to a format understood by DVI drivers.
+
+
+% The \transformfont commands above generate metric files in MTX 
+% format (for use by the \installfont commands below) and PL 
+% format (for transformation to TFMs that are needed by the DVI
+% driver when interpreting VFs based on these fonts). These PL
+% files are minimal and not suitable for direct use in typesetting
+% since there is no kerning information, ligaturing instructions,
+% or fontdimens, but they are perfectly adequate to serve as
+% base fonts for VFs.
+% 
+% The next bunch of commands generate a new set of PL files for 
+% these fonts (overwriting the previous), and these new files
+% do contain kerning information, ligaturing instructions, and
+% fontdimens. (As a side-effect, these files are also larger than
+% the previous ones.) Since 8r-encoded fonts are not in practice
+% used for typesetting (not much, anyway), it is perfectly 
+% possible to skip this step.
+\installfonts
+  \installrawfont {padr8r}{padr8r,8r}{8r}   {8r}{pad}{m}{n}{}
+  \installrawfont {padrc8r}{padrc8r,8r}{8r} {8r}{pad}{m}{sc}{}
+  \installrawfont {padri8r}{padri8r,8r}{8r} {8r}{pad}{m}{it}{}
+  \installrawfont {padro8r}{padro8r,8r}{8r} {8r}{pad}{m}{sl}{}
+  
+  \installrawfont {pads8r}{pads8r,8r}{8r}   {8r}{pad}{sb}{n}{}
+  \installrawfont {padsc8r}{padsc8r,8r}{8r} {8r}{pad}{sb}{sc}{}
+  \installrawfont {padsi8r}{padsi8r,8r}{8r} {8r}{pad}{sb}{it}{}
+  \installrawfont {padso8r}{padso8r,8r}{8r} {8r}{pad}{sb}{sl}{}
+  
+  \installrawfont {padb8r}{padb8r,8r}{8r}   {8r}{pad}{b}{n}{}
+  \installrawfont {padbi8r}{padbi8r,8r}{8r} {8r}{pad}{b}{it}{}
+  \installrawfont {padbo8r}{padbo8r,8r}{8r} {8r}{pad}{b}{sl}{}
+\endinstallfonts
+
+
+% In the above commands, the commands have been lined up to 
+% visually separate those arguments that have to do with how
+% a font is declared to LaTeX (rightmost) from those arguments 
+% that specify how the font is made and what it should be called.
+
+
+% The following commands make a very basic installation of "pad"
+% families in the OT1, T1, and TS1 encodings; there is not attempt
+% to make use of the -Exp (expert) or -SC (smallcaps) fonts in 
+% the AGaramond family. (One reason for making this distinction
+% is that Adobe sell these other fonts separately, so some people
+% may have the basic set used below and nothing more. Another
+% reason is that for many typefaces, there are no expert or -SC
+% fonts at all. Adapting an example using such fonts to a typeface
+% which do not have them is much too confusing for a beginner.)
+\installfonts
+  \installfamily{OT1}{pad}{}
+  \installfamily{T1}{pad}{}
+  \installfamily{TS1}{pad}{}
+  
+  \installfont {padr8t}{padr8r,newlatin}{t1}                {T1}{pad}{m}{n}{}
+  \installfont {padr7t}{padr8r,newlatin}{ot1}               {OT1}{pad}{m}{n}{}
+  \installfont {padrc8t}{padr8r,newlatin}{t1c}              {T1}{pad}{m}{sc}{}
+  \installfont {padrc7t}{padr8r,newlatin}{ot1c}             {OT1}{pad}{m}{sc}{}
+  \installfont {padr8i}{padr8r,textcomp}{ts1}               {TS1}{pad}{m}{n}{}
+  % There is no difference between the n and the sc shapes 
+  % of TS1 encoded fonts, hence the same TeX font can be
+  % used for both. LaTeX does however need the declarations
+  % to be explicit, hence this \installfontas command.
+  \installfontas{padr8i}                                    {TS1}{pad}{m}{sc}{}
+  % The "option nosc" below is a speed optimization.
+  % newlatin.mtx normally makes sure that a smallcaps 
+  % alphabet is defined (faking it if necessary), 
+  % regardless of whether that alphabet is at all 
+  % going to be used. By passing it the "nosc" option,
+  % one can tell newlatin.mtx to completely skip those 
+  % commands that have to do with smallcaps.
+  \installfont {padri8t}{padri8r,newlatin option nosc}{t1}  {T1}{pad}{m}{it}{}
+  \installfont {padri7t}{padri8r,newlatin option nosc}{ot1} {OT1}{pad}{m}{it}{}
+  \installfont {padri8i}{padri8r,textcomp}{ts1}             {TS1}{pad}{m}{it}{}
+  \installfont {padro8t}{padro8r,newlatin option nosc}{t1}  {T1}{pad}{m}{sl}{}
+  \installfont {padro7t}{padro8r,newlatin option nosc}{ot1} {OT1}{pad}{m}{sl}{}
+  \installfont {padro8i}{padro8r,textcomp}{ts1}             {TS1}{pad}{m}{sl}{}
+  
+  % The reason newlatin is not passed the nosc option when
+  % making the "n" shape fonts here is another (more tricky)
+  % speed optimization. If the metric argument of two
+  % subsequent \installfont commands are identical then the
+  % respective glyph bases will be identical too, and in these 
+  % cases fontinst saves work by not rebuilding the glyph base
+  % at the second command, but instead using the cached 
+  % definitions from the first.
+  \installfont {pads8t}{pads8r,newlatin}{t1}                {T1}{pad}{sb}{n}{}
+  \installfont {pads7t}{pads8r,newlatin}{ot1}               {OT1}{pad}{sb}{n}{}
+  \installfont {padsc8t}{pads8r,newlatin}{t1c}              {T1}{pad}{sb}{sc}{}
+  \installfont {padsc7t}{pads8r,newlatin}{ot1c}             {OT1}{pad}{sb}{sc}{}
+  % Thus the last four commands cause four fonts to be
+  % generated, but the pads8r.mtx and newlatin.mtx files
+  % are only read once.
+  \installfont {pads8i}{pads8r,textcomp}{ts1}               {TS1}{pad}{sb}{n}{}
+  \installfontas{pads8i}                                    {TS1}{pad}{sb}{sc}{}
+  \installfont {padsi8t}{padsi8r,newlatin option nosc}{t1}  {T1}{pad}{sb}{it}{}
+  \installfont {padsi7t}{padsi8r,newlatin option nosc}{ot1} {OT1}{pad}{sb}{it}{}
+  \installfont {padsi8i}{padsi8r,textcomp}{ts1}             {TS1}{pad}{sb}{it}{}
+  \installfont {padso8t}{padso8r,newlatin option nosc}{t1}  {T1}{pad}{sb}{sl}{}
+  \installfont {padso7t}{padso8r,newlatin option nosc}{ot1} {OT1}{pad}{sb}{sl}{}
+  \installfont {padso8i}{padso8r,textcomp}{ts1}             {TS1}{pad}{sb}{sl}{}
+  
+  \installfont {padb8t}{padb8r,newlatin}{t1}                {T1}{pad}{b}{n}{}
+  \installfont {padb7t}{padb8r,newlatin}{ot1}               {OT1}{pad}{b}{n}{}
+  \installfont {padbc8t}{padb8r,newlatin}{t1c}              {T1}{pad}{b}{sc}{}
+  \installfont {padbc7t}{padb8r,newlatin}{ot1c}             {OT1}{pad}{b}{sc}{}
+  \installfont {padb8i}{padb8r,textcomp}{ts1}               {TS1}{pad}{b}{n}{}
+  \installfontas{padb8i}                                    {TS1}{pad}{b}{sc}{}
+  \installfont {padbi8t}{padbi8r,newlatin option nosc}{t1}  {T1}{pad}{b}{it}{}
+  \installfont {padbi7t}{padbi8r,newlatin option nosc}{ot1} {OT1}{pad}{b}{it}{}
+  \installfont {padbi8i}{padbi8r,textcomp}{ts1}             {TS1}{pad}{b}{it}{}
+  \installfont {padbo8t}{padbo8r,newlatin option nosc}{t1}  {T1}{pad}{b}{sl}{}
+  \installfont {padbo7t}{padbo8r,newlatin option nosc}{ot1} {OT1}{pad}{b}{sl}{}
+  \installfont {padbo8i}{padbo8r,textcomp}{ts1}             {TS1}{pad}{b}{sl}{}
+\endinstallfonts
+
+
+% The set of commands above will "fake" an sc shape for the typeface
+% by making dual use of the capitals in the n shape (Regular): both
+% as normal (for the upper case in the sc shape) and shrunk to 80% of
+% their normal size (for the lower case in the sc shape). This works
+% (anyone who looks at it will understand what was intended), but it 
+% does not look good, and therefore it is always better to make use
+% of proper smallcaps when it is available.
+% 
+% The next set of commands is another take at creating the "pad" 
+% families, this time making use of the proper smallcaps in padrc8r
+% and padsc8r. The files created by this set of commands will 
+% completely overwrite the files created by the previous set of
+% commands; in practice one would only include one set of commands,
+% but both are provided here for comparison.
+\installfonts
+  \installfamily{OT1}{pad}{}
+  \installfamily{T1}{pad}{}
+  \installfamily{TS1}{pad}{}
+  
+  % Since the glyph bases used for the n and sc shapes in this
+  % case are different, there is no point in doing the smallcaps
+  % processing when making the n shape fonts.
+  \installfont {padr8t}{padr8r,newlatin option nosc}{t1}    {T1}{pad}{m}{n}{}
+  \installfont {padr7t}{padr8r,newlatin option nosc}{ot1}   {OT1}{pad}{m}{n}{}
+  % There is actually no point in doing that processing for
+  % the sc shape fonts either! This is because the glyph names
+  % used in padrc8r are the same as those used in padr8r (and
+  % padri8r), and thus the smallcaps glyphs will already have
+  % been delt with by the code for lower case glyphs. Another
+  % consequence is that the same ETX files as are used for 
+  % the other shapes should be used for the sc shape.
+  \installfont {padrc8t}{padrc8r,newlatin option nosc}{t1}  {T1}{pad}{m}{sc}{}
+  \installfont {padrc7t}{padrc8r,newlatin option nosc}{ot1} {OT1}{pad}{m}{sc}{}
+  \installfont {padr8i}{padr8r,textcomp}{ts1}               {TS1}{pad}{m}{n}{}
+  \installfontas{padr8i}                                    {TS1}{pad}{m}{sc}{}
+  \installfont {padri8t}{padri8r,newlatin option nosc}{t1}  {T1}{pad}{m}{it}{}
+  \installfont {padri7t}{padri8r,newlatin option nosc}{ot1} {OT1}{pad}{m}{it}{}
+  \installfont {padri8i}{padri8r,textcomp}{ts1}             {TS1}{pad}{m}{it}{}
+  \installfont {padro8t}{padro8r,newlatin option nosc}{t1}  {T1}{pad}{m}{sl}{}
+  \installfont {padro7t}{padro8r,newlatin option nosc}{ot1} {OT1}{pad}{m}{sl}{}
+  \installfont {padro8i}{padro8r,textcomp}{ts1}             {TS1}{pad}{m}{sl}{}
+  
+  \installfont {pads8t}{pads8r,newlatin option nosc}{t1}    {T1}{pad}{sb}{n}{}
+  \installfont {pads7t}{pads8r,newlatin option nosc}{ot1}   {OT1}{pad}{sb}{n}{}
+  \installfont {padsc8t}{padsc8r,newlatin option nosc}{t1}  {T1}{pad}{sb}{sc}{}
+  \installfont {padsc7t}{padsc8r,newlatin option nosc}{ot1} {OT1}{pad}{sb}{sc}{}
+  \installfont {pads8i}{pads8r,textcomp}{ts1}               {TS1}{pad}{sb}{n}{}
+  \installfontas{pads8i}                                    {TS1}{pad}{sb}{sc}{}
+  \installfont {padsi8t}{padsi8r,newlatin option nosc}{t1}  {T1}{pad}{sb}{it}{}
+  \installfont {padsi7t}{padsi8r,newlatin option nosc}{ot1} {OT1}{pad}{sb}{it}{}
+  \installfont {padsi8i}{padsi8r,textcomp}{ts1}             {TS1}{pad}{sb}{it}{}
+  \installfont {padso8t}{padso8r,newlatin option nosc}{t1}  {T1}{pad}{sb}{sl}{}
+  \installfont {padso7t}{padso8r,newlatin option nosc}{ot1} {OT1}{pad}{sb}{sl}{}
+  \installfont {padso8i}{padso8r,textcomp}{ts1}             {TS1}{pad}{sb}{sl}{}
+  
+  % There is however no padbc8r font; hence the sc shape of 
+  % the b series must still be faked, just as above.
+  \installfont {padb8t}{padb8r,newlatin}{t1}                {T1}{pad}{b}{n}{}
+  \installfont {padb7t}{padb8r,newlatin}{ot1}               {OT1}{pad}{b}{n}{}
+  \installfont {padbc8t}{padb8r,newlatin}{t1c}              {T1}{pad}{b}{sc}{}
+  \installfont {padbc7t}{padb8r,newlatin}{ot1c}             {OT1}{pad}{b}{sc}{}
+  \installfont {padb8i}{padb8r,textcomp}{ts1}               {TS1}{pad}{b}{n}{}
+  \installfontas{padb8i}                                    {TS1}{pad}{b}{sc}{}
+  \installfont {padbi8t}{padbi8r,newlatin option nosc}{t1}  {T1}{pad}{b}{it}{}
+  \installfont {padbi7t}{padbi8r,newlatin option nosc}{ot1} {OT1}{pad}{b}{it}{}
+  \installfont {padbi8i}{padbi8r,textcomp}{ts1}             {TS1}{pad}{b}{it}{}
+  \installfont {padbo8t}{padbo8r,newlatin option nosc}{t1}  {T1}{pad}{b}{sl}{}
+  \installfont {padbo7t}{padbo8r,newlatin option nosc}{ot1} {OT1}{pad}{b}{sl}{}
+  \installfont {padbo8i}{padbo8r,textcomp}{ts1}             {TS1}{pad}{b}{sl}{}
+\endinstallfonts
+
+
+% The "pad" family installed above is however still far from perfect. 
+% The `ff', `ffi', and `ffl' ligatures are fakes, since those aren't 
+% available in the fonts used. There are however such glyphs in the 
+% expert (8x) companions of the fonts used above, and hence the 
+% results will be better if these resources can be combined.
+% 
+% One of the great advantages with TeX, virtual fonts, and fontinst 
+% is the ease with which one can combine glyphs from (what the foundry 
+% has packaged as) several different fonts into a single font; 
+% if \installfont is given the metrics of two fonts, and some glyph
+% is available in one font but not the other, then fontinst will 
+% automatically take it from the font where it was available.
+% Hence one can fill in (at least some of) the blanks of one font 
+% by also listing a second font in the metrics argument of 
+% \installfont. It will do the right thing automatically.
+\installfonts
+  \installfamily{OT1}{padx}{}
+  \installfamily{T1}{padx}{}
+  \installfamily{TS1}{padx}{}
+  % The "padx" family name used here is mainly motivated by 
+  % tradition. It has been considered useful to simultaneously 
+  % on a single system have both a family of virtual fonts which 
+  % do not make use of the expert set of base fonts, and a family
+  % of virtual fonts which do make use of the expert set of base 
+  % fonts. For this to work, the different fonts must have
+  % different names. In the Fontname scheme, this is accomplished
+  % by including an "x" variant letter in the names to signify that
+  % the font is "expertized". In LaTeX there is no proper standard
+  % for this, but the custom is to similarly append an "x" to the
+  % basic three letter family name, thus yielding "padx" instead
+  % of "pad".
+  
+  % The Fontname scheme is in this case further complicated by
+  % a desire to avoid names of more than eight characters 
+  % (a limit which is important in many old file systems).
+  % Therefore many of the two-character variants starting with
+  % 9 is a combination of an encoding variant with one or two
+  % other variants (most commonly the "x" variant). The commands
+  % below utilize these abbreviations (but there is no software
+  % involved which would require them to).
+  \installfont {padr9e}{padr8r,padr8x,newlatin}{t1}                 {T1}{padx}{m}{n}{}
+  \installfont {padr9t}{padr8r,padr8x,newlatin}{ot1}                {OT1}{padx}{m}{n}{}
+  % Besides the extra ligatures, the upright 8x fonts also contain 
+  % a proper smallcaps alphabet. This makes it possible to make do 
+  % without the -c8r fonts. The commands below will make a font
+  % using the upper case from padr8r and (as lower case) the
+  % small caps from padr8x.
+  \installfont {padrc9e}{padr8r,padr8x,newlatin}{t1c}               {T1}{padx}{m}{sc}{}
+  \installfont {padrc9t}{padr8r,padr8x,newlatin}{ot1c}              {OT1}{padx}{m}{sc}{}
+  \installfont {padr9i}{padr8r,padr8x,textcomp}{ts1}                {TS1}{padx}{m}{n}{}
+  \installfontas{padr9i}                                            {TS1}{padx}{m}{sc}{}
+  \installfont {padri9e}{padri8r,padri8x,newlatin option nosc}{t1}  {T1}{padx}{m}{it}{}
+  \installfont {padri9t}{padri8r,padri8x,newlatin option nosc}{ot1} {OT1}{padx}{m}{it}{}
+  \installfont {padri9i}{padri8r,padri8x,textcomp}{ts1}             {TS1}{padx}{m}{it}{}
+  \installfont {padro9e}{padro8r,padro8x,newlatin option nosc}{t1}  {T1}{padx}{m}{sl}{}
+  \installfont {padro9t}{padro8r,padro8x,newlatin option nosc}{ot1} {OT1}{padx}{m}{sl}{}
+  \installfont {padro9i}{padro8r,padro8x,textcomp}{ts1}             {TS1}{padx}{m}{sl}{}
+  
+  \installfont {pads9e}{pads8r,pads8x,newlatin}{t1}                 {T1}{padx}{sb}{n}{}
+  \installfont {pads9t}{pads8r,pads8x,newlatin}{ot1}                {OT1}{padx}{sb}{n}{}
+  \installfont {padsc9e}{pads8r,pads8x,newlatin}{t1c}               {T1}{padx}{sb}{sc}{}
+  \installfont {padsc9t}{pads8r,pads8x,newlatin}{ot1c}              {OT1}{padx}{sb}{sc}{}
+  \installfont {pads9i}{pads8r,pads8x,textcomp}{ts1}                {TS1}{padx}{sb}{n}{}
+  \installfontas{pads9i}                                            {TS1}{padx}{sb}{sc}{}
+  \installfont {padsi9e}{padsi8r,padsi8x,newlatin option nosc}{t1}  {T1}{padx}{sb}{it}{}
+  \installfont {padsi9t}{padsi8r,padsi8x,newlatin option nosc}{ot1} {OT1}{padx}{sb}{it}{}
+  \installfont {padsi9i}{padsi8r,padsi8x,textcomp}{ts1}             {TS1}{padx}{sb}{it}{}
+  \installfont {padso9e}{padso8r,padso8x,newlatin option nosc}{t1}  {T1}{padx}{sb}{sl}{}
+  \installfont {padso9t}{padso8r,padso8x,newlatin option nosc}{ot1} {OT1}{padx}{sb}{sl}{}
+  \installfont {padso9i}{padso8r,padso8x,textcomp}{ts1}             {TS1}{padx}{sb}{sl}{}
+  
+  \installfont {padb9e}{padb8r,padb8x,newlatin}{t1}                 {T1}{padx}{b}{n}{}
+  \installfont {padb9t}{padb8r,padb8x,newlatin}{ot1}                {OT1}{padx}{b}{n}{}
+  % The padb8x font does not contain a smallcaps alphabet --
+  % hence in this case the newlatin.mtx file reverts to faking
+  % such an alphabet by shrinking the upper case. The commands
+  % can however be the same as above!
+  \installfont {padbc9e}{padb8r,padb8x,newlatin}{t1c}               {T1}{padx}{b}{sc}{}
+  \installfont {padbc9t}{padb8r,padb8x,newlatin}{ot1c}              {OT1}{padx}{b}{sc}{}
+  \installfont {padb9i}{padb8r,padb8x,textcomp}{ts1}                {TS1}{padx}{b}{n}{}
+  \installfontas{padb9i}                                            {TS1}{padx}{b}{sc}{}
+  \installfont {padbi9e}{padbi8r,padbi8x,newlatin option nosc}{t1}  {T1}{padx}{b}{it}{}
+  \installfont {padbi9t}{padbi8r,padbi8x,newlatin option nosc}{ot1} {OT1}{padx}{b}{it}{}
+  \installfont {padbi9i}{padbi8r,padbi8x,textcomp}{ts1}             {TS1}{padx}{b}{it}{}
+  \installfont {padbo9e}{padbo8r,padbo8x,newlatin option nosc}{t1}  {T1}{padx}{b}{sl}{}
+  \installfont {padbo9t}{padbo8r,padbo8x,newlatin option nosc}{ot1} {OT1}{padx}{b}{sl}{}
+  \installfont {padbo9i}{padbo8r,padbo8x,textcomp}{ts1}             {TS1}{padx}{b}{sl}{}
+\endinstallfonts
+
+
+% Finally we get to my personal favourite -- the families with hanging
+% (a.k.a. oldstyle) figures. From a historical point of view, this is
+% really the most correct appearence of these fonts, because in the 16th
+% century (when Claude Garamond designed the metal types after which the
+% AGaramond fonts where modelled) there was no such thing as lining 
+% figures; all figures were hanging.
+% 
+% The 8x fonts all contain a suitable set of hanging figures. This makes
+% it very straightforward to make use of these instead of the lining
+% digits of the base fonts. One simply has to make use of ETX files
+% which selects these glyphs hanging figure glyphs instead of the
+% lining figure glyphs.
+\installfonts
+  \installfamily{OT1}{padj}{}
+  \installfamily{T1}{padj}{}
+  \installfamily{TS1}{padj}{}
+  % Another custom: a "j" (the Fontname hanging figure variant letter) 
+  % is appended to the LaTeX family name to distinguish between 
+  % lining and hanging figure families.
+  
+  \installfont {padr9d}{padr8r,padr8x,newlatin}{t1j}                 {T1}{padj}{m}{n}{}
+  \installfont {padr9o}{padr8r,padr8x,newlatin}{ot1j}                {OT1}{padj}{m}{n}{}
+  \installfont {padrc9d}{padr8r,padr8x,newlatin}{t1cj}               {T1}{padj}{m}{sc}{}
+  \installfont {padrc9o}{padr8r,padr8x,newlatin}{ot1cj}              {OT1}{padj}{m}{sc}{}
+  \installfont {padr9i}{padr8r,padr8x,textcomp}{ts1}                 {TS1}{padj}{m}{n}{}
+  \installfontas{padr9i}                                             {TS1}{padj}{m}{sc}{}
+  \installfont {padri9d}{padri8r,padri8x,newlatin option nosc}{t1j}  {T1}{padj}{m}{it}{}
+  \installfont {padri9o}{padri8r,padri8x,newlatin option nosc}{ot1j} {OT1}{padj}{m}{it}{}
+  \installfont {padri9i}{padri8r,padri8x,textcomp}{ts1}              {TS1}{padj}{m}{it}{}
+  \installfont {padro9d}{padro8r,padro8x,newlatin option nosc}{t1j}  {T1}{padj}{m}{sl}{}
+  \installfont {padro9o}{padro8r,padro8x,newlatin option nosc}{ot1j} {OT1}{padj}{m}{sl}{}
+  \installfont {padro9i}{padro8r,padro8x,textcomp}{ts1}              {TS1}{padj}{m}{sl}{}
+  
+  \installfont {pads9d}{pads8r,pads8x,newlatin}{t1j}                 {T1}{padj}{sb}{n}{}
+  \installfont {pads9o}{pads8r,pads8x,newlatin}{ot1j}                {OT1}{padj}{sb}{n}{}
+  \installfont {padsc9d}{pads8r,pads8x,newlatin}{t1cj}               {T1}{padj}{sb}{sc}{}
+  \installfont {padsc9o}{pads8r,pads8x,newlatin}{ot1cj}              {OT1}{padj}{sb}{sc}{}
+  \installfont {pads9i}{pads8r,pads8x,textcomp}{ts1}                 {TS1}{padj}{sb}{n}{}
+  \installfontas{pads9i}                                             {TS1}{padj}{sb}{sc}{}
+  \installfont {padsi9d}{padsi8r,padsi8x,newlatin option nosc}{t1j}  {T1}{padj}{sb}{it}{}
+  \installfont {padsi9o}{padsi8r,padsi8x,newlatin option nosc}{ot1j} {OT1}{padj}{sb}{it}{}
+  \installfont {padsi9i}{padsi8r,padsi8x,textcomp}{ts1}              {TS1}{padj}{sb}{it}{}
+  \installfont {padso9d}{padso8r,padso8x,newlatin option nosc}{t1j}  {T1}{padj}{sb}{sl}{}
+  \installfont {padso9o}{padso8r,padso8x,newlatin option nosc}{ot1j} {OT1}{padj}{sb}{sl}{}
+  \installfont {padso9i}{padso8r,padso8x,textcomp}{ts1}              {TS1}{padj}{sb}{sl}{}
+  
+  \installfont {padb9d}{padb8r,padb8x,newlatin}{t1j}                 {T1}{padj}{b}{n}{}
+  \installfont {padb9o}{padb8r,padb8x,newlatin}{ot1j}                {OT1}{padj}{b}{n}{}
+  \installfont {padbc9d}{padb8r,padb8x,newlatin}{t1cj}               {T1}{padj}{b}{sc}{}
+  \installfont {padbc9o}{padb8r,padb8x,newlatin}{ot1cj}              {OT1}{padj}{b}{sc}{}
+  \installfont {padb9i}{padb8r,padb8x,textcomp}{ts1}                 {TS1}{padj}{b}{n}{}
+  \installfontas{padb9i}                                             {TS1}{padj}{b}{sc}{}
+  \installfont {padbi9d}{padbi8r,padbi8x,newlatin option nosc}{t1j}  {T1}{padj}{b}{it}{}
+  \installfont {padbi9o}{padbi8r,padbi8x,newlatin option nosc}{ot1j} {OT1}{padj}{b}{it}{}
+  \installfont {padbi9i}{padbi8r,padbi8x,textcomp}{ts1}              {TS1}{padj}{b}{it}{}
+  \installfont {padbo9d}{padbo8r,padbo8x,newlatin option nosc}{t1j}  {T1}{padj}{b}{sl}{}
+  \installfont {padbo9o}{padbo8r,padbo8x,newlatin option nosc}{ot1j} {OT1}{padj}{b}{sl}{}
+  \installfont {padbo9i}{padbo8r,padbo8x,textcomp}{ts1}              {TS1}{padj}{b}{sl}{}
+\endinstallfonts
+
+% This closes the file opened by \recordtransforms above.
+\endrecordtransforms
+
+\bye
+
+% The installations made by the above commands are certainly not
+% optimal. Some things which can be improved are:
+% 
+%  - Although the padrc9e, padrc9t, padsc9e, padsc9t, padrc9d,
+%    padrc9o, padsc9d, and padsc9o fonts contain proper smallcaps
+%    glyphs, there are no kerns between the smallcaps and 
+%    the upper case in these fonts, because there were no such 
+%    kerns in any of the fonts they are based on. There are 
+%    however such kerning pairs in padrc8r and padsc8r, and it is
+%    quite easy to extract this information using the \reglyphfont
+%    command with the settings in the csckrn2x.tex file.
+%    
+%  - The padrc8t, padrc7t, padsc8t, and padsc7t fonts that are 
+%    based on padrc8r and padsc8r respectively have hanging figures,
+%    whereas the other fonts in the same family have lining figures.
+%    This is only because that is how the foundry packaged the 
+%    glyphs into fonts, and the careful font installer might want
+%    to straighten out this situation. One way to do that is
+%    to make use of the unsetnum.mtx file, another is to make
+%    use of the `suffix' mechanism (new in v1.923).
+%    
+%  - One glyph which is missing from all the fonts made above is
+%    the Euro glyph (and that is kind of awkward these days, although 
+%    as of v1.926 textcomp.mtx fakes this using a C and two rules).
+%    One way to supply a Euro glyph is to provide yet another font 
+%    (besides the -8r's and -8x's) as base font, if that extra 
+%    font contains the missing Euro glyph. The same trick can be used
+%    to get greek capitals for the OT1-encoded fonts.
+

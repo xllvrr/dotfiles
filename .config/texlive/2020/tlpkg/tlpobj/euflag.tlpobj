@@ -1,0 +1,29 @@
+name euflag
+category Package
+revision 49970
+shortdesc A command to reproduce the flag of the European Union
+longdesc This LaTeX package implements a command to reproduce the
+longdesc official flag of the European Union (EU). The flag is
+longdesc reproduced at 1em high based on the current font size, so it
+longdesc can be scaled arbitrarily by changing the font size.
+containersize 1472
+containerchecksum e046d3b4b0de99d6669aa7cb62b4304ea8c2b83bef6dbae7d997355bc97ef07ffbad6ba139a4969c0a99307a43202566a283a40de1a69635d09afd9256ba0a51
+doccontainersize 100864
+doccontainerchecksum e0b58801624084e20083f1c92ee71dd6f53b75954cc2a63c7f99b2453d3925e9d4bb9509e86cf3fec3bcb2b1814ccc6ec27bdb08bc24f23803c0349dbe1a9574
+docfiles size=30
+ texmf-dist/doc/latex/euflag/MANIFEST
+ texmf-dist/doc/latex/euflag/README.md details="Readme"
+ texmf-dist/doc/latex/euflag/VERSION
+ texmf-dist/doc/latex/euflag/classpack.sty
+ texmf-dist/doc/latex/euflag/euflag.pdf details="Package documentation"
+srccontainersize 17804
+srccontainerchecksum 2365d9bf74ff4194060edd03776363d3890c6cb3ea4da741413fb7a2fb03a79bba1c0775b287a82c9b30ec68dcc3db3d778460b44f5e249be5f21e130e7e52cb
+srcfiles size=15
+ texmf-dist/source/latex/euflag/euflag.dtx
+ texmf-dist/source/latex/euflag/euflag.ins
+runfiles size=1
+ texmf-dist/tex/latex/euflag/euflag.sty
+catalogue-ctan /graphics/euflag
+catalogue-license lppl1.3
+catalogue-topics graphics
+catalogue-version 0.4

@@ -1,0 +1,30 @@
+name brandeis-problemset
+category Package
+revision 50991
+shortdesc Document class for COSI Problem sets at Brandeis University (Waltham, MA)
+longdesc Brandeis University's computer science ("COSI") courses often
+longdesc assign "problem sets" which require fairly rigorous formatting.
+longdesc This document class, which extends article, provides a simple
+longdesc way to typeset these problem sets in LaTeX. Although the class
+longdesc is compatible with all LaTeX flavors, XeLaTeX or LuaLaTeX are
+longdesc recommended for fontspec support.
+containersize 6860
+containerchecksum fc5026cefa87e1ab248d9d26466a05e11b112c75bc3908c7e6f123a1436d5f813038176e97e1ed290cc99f93dfc8d024c88c1242b9bb41689bfa0a29153db9da
+doccontainersize 148788
+doccontainerchecksum 0f6857c1ff226d797d6e0dc96bf040e2393564121b54d5d9b1e9e35acb01b7663441e0460cd117a0b015cb768bfdf3f40df142ae93d5a0d77f9a84f31c3e45b1
+docfiles size=51
+ texmf-dist/doc/latex/brandeis-problemset/LICENSE.txt
+ texmf-dist/doc/latex/brandeis-problemset/README.md details="Readme"
+ texmf-dist/doc/latex/brandeis-problemset/brandeis-problemset.pdf details="Package documentation"
+ texmf-dist/doc/latex/brandeis-problemset/brandeis-problemset.tex
+ texmf-dist/doc/latex/brandeis-problemset/example.pdf details="Example of use"
+ texmf-dist/doc/latex/brandeis-problemset/example.tex
+runfiles size=6
+ texmf-dist/tex/latex/brandeis-problemset/brandeis-problemset.cls
+ texmf-dist/tex/latex/brandeis-problemset/brandeis-problemset.sty
+catalogue-contact-bugs https://github.com/9999years/brandeis-problemset/issues
+catalogue-contact-repository https://github.com/9999years/brandeis-problemset
+catalogue-ctan /macros/latex/contrib/brandeis-problemset
+catalogue-license lppl1.3c
+catalogue-topics exercise class
+catalogue-version 0.5.5

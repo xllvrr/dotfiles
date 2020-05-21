@@ -1,0 +1,28 @@
+name context-gantt
+category ConTeXt
+revision 47085
+shortdesc GANTT module for ConTeXt
+longdesc Gantt is a module for drawing Gantt charts via MetaPost or
+longdesc PGF/TikZ.
+depend context
+depend hatching
+containersize 4180
+containerchecksum e0c61179f4ecdf93c13dbfe19f59487fbce55e1a0dece76ac025a88a452e7168c5e3b84e53c01bcae4cc412993be36eb554dc5f7299fc1205f4070aa07a834cf
+doccontainersize 2072
+doccontainerchecksum a5cc76238f8377dc8d06869bf23a1367c880b57ba62ab8c8331886cbed145427e2819ba92965924fc7a78579d28b7c1cf331acf7f199cf72672ccb64962c9367
+docfiles size=8
+ texmf-dist/doc/context/third/gantt/README details="Readme"
+ texmf-dist/doc/context/third/gantt/VERSION
+ texmf-dist/doc/context/third/gantt/examples/gantt-1.tex
+ texmf-dist/doc/context/third/gantt/examples/gantt-2.tex
+ texmf-dist/doc/context/third/gantt/examples/gantt-3.tex
+ texmf-dist/doc/context/third/gantt/examples/gantt-4.tex
+ texmf-dist/doc/context/third/gantt/examples/gantt-5.tex
+ texmf-dist/doc/context/third/gantt/gantt.txt details="Package documentation"
+runfiles size=8
+ texmf-dist/tex/context/third/gantt/gantt-s-mp.tex
+ texmf-dist/tex/context/third/gantt/gantt-s-tikz.tex
+ texmf-dist/tex/context/third/gantt/t-gantt.tex
+catalogue-ctan /macros/context/contrib/context-gantt
+catalogue-license pd
+catalogue-topics diagram gantt

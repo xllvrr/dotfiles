@@ -1,0 +1,190 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<!--meta http-equiv="Content-Script-Type" content="text/javascript"-->
+<TITLE>SVG Examples: Circuit_macros Version XXX</TITLE>
+<style type="text/css">
+</style>
+</HEAD>
+
+<BODY>
+<H2>SVG Circuit_macros examples, Version XXX</H2>
+<hr>
+
+<p>
+  These diagrams are in .svg format.
+  <A HREF="examples.pdf">Pdf</A>
+  and
+  <A HREF="examples.html">png</A>
+  versions are also available.
+  The PDF equivalent can be found in examples.pdf of the distribution.
+</p>
+ <p>
+  Click on the link to view the source of each diagram.
+</p>
+<hr>
+
+define(`cfig',`
+<p>
+<!--[if lt IE 9]><embed src="$1.svg" sinclude($1.siz)><![endif]-->
+
+<!--[if gte IE 9]>
+<object data="$1.svg" sinclude($1.siz) type="image/svg+xml" class="img">
+  </object> <![endif]-->
+
+<!--[if !IE]><!-->
+<object data="$1.svg" sinclude($1.siz) type="image/svg+xml" class="img">
+  </object> <!--<![endif]-->
+
+<br>
+<a href="$1.txt" TYPE="text/plain" TARGET="_blank">$1.m4</a>
+</p>
+<hr>')
+
+define(`m4tt',`<g style="font-family:monospace">')
+
+<!--
+<embed pluginspage="http://www.adobe.com/svg/viewer/install/" />
+-->
+
+<p>
+These diagrams have been adapted from the Circuit_macros examples in
+order to test the <em>experimental</em> svg output of dpic.
+Generating the line art is relatively straightforward, but
+the labeling is not created by a text processor and must, therefore, be
+more basic.
+</p>
+<p>
+<ul>
+  <ul>
+    <li>
+      m4tt`'svg_font(</g>font-face,nominal size[:dptextratio],textoffset,
+         dpic commands`'m4tt)</g>:
+         Change font face and dpic m4tt`'textht</g>, m4tt`'dptextratio</g>,
+         and m4tt`'textoffset</g> parameters.
+         If arg4 is blank, the font is changed and
+         requires m4tt`'command "&lt;/g&gt;"</g> to cancel the font change.
+         <br>
+         Note:
+         Nominal height = text height in drawing units; actual height =
+         nominal ht x m4tt`'dptextratio</g>.
+         <br>
+         Examples: <br>
+         m4tt`'svg_font(Times)</g><br>
+         m4tt`'svg_font(Times,14bp__)</g><br>
+         m4tt`'svg_font(sans-serif,14bp__:0.71)</g><br>
+         m4tt`'svg_font(Times,11bp__,1bp__,"text" at A)</g><br>
+         m4tt`'svg_font(font-family="Times")</g><br>
+         m4tt`'svg_font(font-family="Times" font-style="italic")</g><br>
+         m4tt`'svg_font(style="font-family:Times; font-style:italic")</g>
+    <li>m4tt svgfontratio(</g>font name`'m4tt)</g>;
+         Reasonable m4tt`'dptextratio</g> value for common fonts, used
+         by m4tt`'svg_font</g>.
+    <li>m4tt svg_tspan(</g>text attributes, text`'m4tt)</g>;
+      e.g. m4tt`'svg_tspan(font-style="italic" font-size="75%",XYZ)</g>
+    <li>m4tt svg_it(</g>text`'m4tt)</g>: for italics
+    <li>m4tt svg_tt(</g>text`'m4tt)</g>: for monospace (courier)
+    <li>m4tt svg_norm(</g>text`'m4tt)</g>: for normal text
+    <li>m4tt svg_bf(</g>text`'m4tt)</g>: for bold face
+    <li>m4tt svg_small(</g>text, percent`'m4tt)</g>:
+        to set a smaller text size, default 66
+    <li>m4tt svg_fsize(</g>text, percent`'m4tt)</g>:
+        for setting larger or smaller text size, default 100
+    <li>m4tt svg_sub(</g>text, size percent, y displ, x displ`'m4tt)</g>:
+        subscript
+    <li>m4tt svg_sup(</g>text, size percent, y displ, x displ`'m4tt)</g>:
+        superscript
+    <li>m4tt svg_rot(</g>degrees, "text" [at position]`'m4tt)</g>:
+        Rotate text degrees (default 90) ccw.
+        Requires m4tt`'svg_rot_init(</g>filename`'m4tt)</g> and the source
+        must be processed twice.
+    <li>m4tt svg_rot_init(</g>filename`'m4tt)</g>:
+        filename is the basename of the output of
+        m4tt`'dpic -v filename.pic > filename.svg`'m4tt
+    <li>m4tt svg_symbol(</g>text`'m4tt)</g>: allow quoted pound sign in text,
+          e.g., m4tt`'svg_symbol(10&&#96;&#35;&#39;176;)</g> produces 10&#176;
+    <li>m4tt svgLink(</g>URL, drawing object, m4tt[B])</g>:
+      link to external file using
+      &lt;a xlink:href=...&gt;...&lt;/a&gt; (default is
+      m4tt`'target="_blank"</g> unless
+      arg 3 = B)
+    <li>m4tt svgLinkString</g> as above but for strings attached to objects
+    <li> Greek and other symbols:
+
+<table cellpadding="0" cellspacing="0" width="100%" >
+<tr>
+<td width="8%"> m4tt svg_alpha</g> <td align="left"> changecom(,)&`#'945;changecom(`#')
+<td width="8%"> m4tt svg_beta</g> <td align="left"> changecom(,)&`#'946;changecom(`#')
+<td width="8%"> m4tt svg_Gamma</g> <td align="left"> changecom(,)&`#'915;changecom(`#')
+<td width="8%"> m4tt svg_gamma</g> <td align="left"> changecom(,)&`#'947;changecom(`#')
+<td width="8%"> m4tt svg_Delta</g> <td align="left"> changecom(,)&`#'916;changecom(`#')
+<td width="8%"> m4tt svg_delta</g> <td align="left"> changecom(,)&`#'948;changecom(`#')
+<td width="10%"> m4tt svg_epsilon</g> <td align="left"> changecom(,)&`#'949;changecom(`#')
+<td width="8%"> m4tt svg_zeta</g> <td align="left"> changecom(,)&`#'950;changecom(`#')
+<tr>
+<td width="8%"> m4tt svg_eta</g> <td align="left"> changecom(,)&`#'951;changecom(`#')
+<td width="8%"> m4tt svg_Theta</g> <td align="left"> changecom(,)&`#'920;changecom(`#')
+<td width="8%"> m4tt svg_theta</g> <td align="left"> changecom(,)&`#'952;changecom(`#')
+<td width="8%"> m4tt svg_iota</g> <td align="left"> changecom(,)&`#'953;changecom(`#')
+<td width="8%"> m4tt svg_kappa</g> <td align="left"> changecom(,)&`#'954;changecom(`#')
+<td width="8%"> m4tt svg_Lambda</g> <td align="left"> changecom(,)&`#'923;changecom(`#')
+<td width="8%"> m4tt svg_lambda</g> <td align="left"> changecom(,)&`#'955;changecom(`#')
+<td width="8%"> m4tt svg_mu</g> <td align="left"> changecom(,)&`#'956;changecom(`#')
+<tr>
+<td width="8%"> m4tt svg_nu</g> <td align="left"> changecom(,)&`#'957;changecom(`#')
+<td width="8%"> m4tt svg_Xi</g> <td align="left"> changecom(,)&`#'926;changecom(`#')
+<td width="8%"> m4tt svg_xi</g> <td align="left"> changecom(,)&`#'958;changecom(`#')
+<td width="8%"> m4tt svg_Pi</g> <td align="left"> changecom(,)&`#'928;changecom(`#')
+<td width="8%"> m4tt svg_pi</g> <td align="left"> changecom(,)&`#'960;changecom(`#')
+<td width="8%"> m4tt svg_rho</g> <td align="left"> changecom(,)&`#'961;changecom(`#')
+<td width="8%"> m4tt svg_Sigma</g> <td align="left"> changecom(,)&`#'931;changecom(`#')
+<td width="8%"> m4tt svg_sigma</g> <td align="left"> changecom(,)&`#'963;changecom(`#')
+<tr>
+<td width="8%"> m4tt svg_tau</g> <td align="left"> changecom(,)&`#'964;changecom(`#')
+<td width="10%"> m4tt svg_upsilon</g> <td align="left"> changecom(,)&`#'965;changecom(`#')
+<td width="8%"> m4tt svg_Phi</g> <td align="left"> changecom(,)&`#'934;changecom(`#')
+<td width="8%"> m4tt svg_phi</g> <td align="left"> changecom(,)&`#'966;changecom(`#')
+<td width="8%"> m4tt svg_chi</g> <td align="left"> changecom(,)&`#'967;changecom(`#')
+<td width="8%"> m4tt svg_Psi</g> <td align="left"> changecom(,)&`#'936;changecom(`#')
+<td width="8%"> m4tt svg_psi</g> <td align="left"> changecom(,)&`#'968;changecom(`#')
+<td width="8%"> m4tt svg_Omega</g> <td align="left"> changecom(,)&`#'937;changecom(`#')
+<tr>
+<td width="8%"> m4tt svg_omega</g> <td align="left"> changecom(,)&`#'969;changecom(`#')
+<td width="8%"> m4tt svg_micro</g> <td align="left"> changecom(,)&`#'956;changecom(`#')
+<td width="8%"> m4tt svg_ohm</g> <td align="left"> changecom(,)&`#'937;changecom(`#')
+<td width="8%"> m4tt svg_lt</g> <td align="left"> changecom(,)&`#'60;changecom(`#')
+<td width="8%"> m4tt svg_gt</g> <td align="left"> changecom(,)&`#'62;changecom(`#')
+<td width="8%"> m4tt svg_leq</g> <td align="left"> changecom(,)&`#'8804;changecom(`#')
+<td width="8%"> m4tt svg_geq</g> <td align="left"> changecom(,)&`#'8805;changecom(`#')
+<td width="8%"> m4tt svg_prime</g> <td align="left"> changecom(,)&`#'8242;changecom(`#')
+<tr>
+<td width="8%"> m4tt svg_backsl</g> <td align="left"> changecom(,)&`#'92;changecom(`#')
+<td width="8%"> m4tt svg_pound</g> <td align="left"> changecom(,)&`#'35;changecom(`#')
+<td width="8%"> m4tt svg_comma</g> <td align="left"> changecom(,)&`#'44;changecom(`#')
+<td width="8%"> m4tt svg_lparen</g> <td align="left"> changecom(,)&`#'40;changecom(`#')
+<td width="8%"> m4tt svg_rparen</g> <td align="left"> changecom(,)&`#'41;changecom(`#')
+<td width="8%"> m4tt svg_emsp</g> <td align="left"> |changecom(,)&`#'8195;changecom(`#')|
+<td width="8%"> m4tt svg_ensp</g> <td align="left"> |changecom(,)&`#'8194;changecom(`#')|
+<td width="8%"> m4tt svg_thinsp</g> <td align="left"> |changecom(,)&`#'8201;changecom(`#')|
+</table>
+
+  </ul>
+  <li> Inkscape: It may be efficient to define elements by macro and to
+    place them using a WYSIWYG graphics editor.  A draft page intended
+    for Inkscape is included.  A reasonable variety of elements is defined
+    but should be customized for particular applications.
+  <li> Link experiments: Click on the resistor or source of quickSVG
+    to go to external
+   files in new windows.  Click on "n-port" in NportSVG to replace the diagram
+   and then "back" to return.
+  <li> Some of the assumptions used to create this draft may be naive.  Comments
+   are welcome.
+</ul>
+<hr>
+
+cfig(XXXXX)
+
+</BODY>
+</HTML>

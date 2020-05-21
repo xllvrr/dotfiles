@@ -1,0 +1,9 @@
+name ps2eps.x86_64-linux
+category TLCore
+revision 50281
+shortdesc x86_64-linux files of ps2eps
+containersize 4104
+containerchecksum d6a45e2616bc31d68ec0d5fe1ea8e9eef638bd65908c771dc63219e1c32d5297974cda6d2772877b426d35f499230cba3e7665fbf236e430641f3e5ec267af64
+binfiles arch=x86_64-linux size=4
+ bin/x86_64-linux/bbox
+ bin/x86_64-linux/ps2eps

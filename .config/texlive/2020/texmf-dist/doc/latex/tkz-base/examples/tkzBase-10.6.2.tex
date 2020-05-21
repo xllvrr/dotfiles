@@ -1,0 +1,14 @@
+\input{preamble-standalone.ltx}
+\begin{document}
+
+% Ex. No. 87 (Section 10.6.2 : Second example with \tkzcname{tkzClip})
+
+\begin{tikzpicture}
+ \tkzInit[xmax=3, ymax=3]
+ \tkzGrid
+ \tkzAxeXY
+ \tkzClip
+ \draw[red] (-1,-1)--(5,5);
+\end{tikzpicture}
+
+\end{document}

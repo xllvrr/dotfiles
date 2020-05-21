@@ -1,0 +1,38 @@
+name binarytree
+category Package
+revision 41777
+shortdesc Drawing binary trees using TikZ
+longdesc This package provides an easy but flexible way to draw binary
+longdesc trees using TikZ. A path specification and the setting of
+longdesc various options determine the style for each edge of the tree.
+longdesc There is support for the external library of TikZ which does
+longdesc not affect externalization of the rest of the TikZ figures in
+longdesc the document. There is an option to use automatic file naming:
+longdesc useful if the trees are often moved around.
+containersize 5976
+containerchecksum b2204194393811994915604d428e0b537bf871681ea42a93d1e26a74d01cdee3ccd7817e7705cb6a3b9a1f2a97381e23226db9d671ddc36beb5c478271099cc0
+doccontainersize 447560
+doccontainerchecksum 4ef9f7db1d9cf124112e3f3e5c6db7e0b53bd72a5d7674a9f0ac7c471b88ff72309705b8d3942277a93883ef821907f0119d4dd3f645c8caa098f363612df68a
+docfiles size=119
+ texmf-dist/doc/latex/binarytree/README details="README"
+ texmf-dist/doc/latex/binarytree/binarytree.pdf details="Package documentation"
+ texmf-dist/doc/latex/binarytree/examples/binarytree-ex1.pdf
+ texmf-dist/doc/latex/binarytree/examples/binarytree-ex1.tex
+ texmf-dist/doc/latex/binarytree/examples/binarytree-ex2.pdf
+ texmf-dist/doc/latex/binarytree/examples/binarytree-ex2.tex
+ texmf-dist/doc/latex/binarytree/examples/binarytree-ex3.pdf
+ texmf-dist/doc/latex/binarytree/examples/binarytree-ex3.tex
+ texmf-dist/doc/latex/binarytree/examples/binarytree-ex4.pdf
+ texmf-dist/doc/latex/binarytree/examples/binarytree-ex4.tex
+ texmf-dist/doc/latex/binarytree/examples/btree-5_up_0,0,0_3729359_7458719_655360_0.7_0.7_-lrr-x--_-llrr-x--_-rll-x--_-rrll-x--.pdf
+srccontainersize 18836
+srccontainerchecksum ff1e8ce1d07c2011624086ae5810220af3e28f19eba4dff9e090e757787797afded50d937a7c1f503eb32bdc91cee2b0b1b42486381b725e57a127e5751ae5d7
+srcfiles size=21
+ texmf-dist/source/latex/binarytree/binarytree.dtx
+ texmf-dist/source/latex/binarytree/binarytree.ins
+runfiles size=7
+ texmf-dist/tex/latex/binarytree/binarytree.sty
+catalogue-ctan /graphics/pgf/contrib/binarytree
+catalogue-license lppl1.3
+catalogue-topics graphics-in-tex pgf-tikz tree
+catalogue-version 1.01

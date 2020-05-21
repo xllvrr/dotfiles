@@ -1,0 +1,180 @@
+Bangor University Computer Science Department Thesis Document Class
+
+Cameron Gray <c.gray@bangor.ac.uk>  Octover 5, 2018
+
+Abstract
+
+Starting with the 2014/15 academic year, the Computer Science department at
+Bangor University have standardised the appearance, layout and formatting of all
+thesis/dissertation documents for all levels (undergraduate and postgraduate).
+This package (containing a LATEX document class) is the embodiment of that
+standard. It includes all of the elements of a thesis, and supports a limited
+number of customisation options that individual students may choose (or their
+supervisors may insist upon). It also makes the process of creating a thesis
+very much simpler with the inclusion of several macros (LATEX commands) that
+streamline the process.
+
+1 Usage - Class Options
+
+The document class is activated (or loaded) using the usual LATEX command
+\documentclass{bangorcsthesis}. The class requires at least one of the following
+options to be specified, these dictate what type of thesis the document forms;
+
+[⟨phd⟩] - Doctor of Philosophy / Doctorate
+[(pgcert⟩] - Postgraduate Certificate
+[⟨mphil⟩] - Master of Philosophy
+[(mscres⟩] - Master of Science by Research
+[⟨mres⟩] - Master of Research
+[(msc⟩] - Master of Science (Taught courses)
+[(ba⟩] - [⟨Bachelor of Arts (Undergraduate courses)
+[(bsc⟩] - Bachelor of Science (Undergraduate courses)
+
+For example; an undergraduate dissertation for a Computer Science degree (a
+B.Sc. course) would start with a document class definition as follows:-
+\documentclass[bsc]{bangorcsthesis}.
+
+There are also the following entirely optional modifiers that student’s can
+elect to use;
+
+[⟨noindent⟩] - Suppress indentation of first lines of paragraphs.
+[⟨nohyphen⟩] - Attempt (as far as possible) to prevent LATEX hyphenating words
+at the ends of lines in the output.
+[⟨draft⟩] - Mark the document as draft, this includes adding a watermark to all
+pages. This is highly recommended until the document is final.
+[⟨serif⟩] - Convert the thesis to use serif fonts for the main body text.
+[⟨twoside⟩] - Make the output ‘two-sided’, much like a book. This may only be
+required for the final copy to be deposited in certain libraries.
+[(serifheadings)] - Convert the thesis to use serif fornts for the headings.
+[(nocentredcaptions)] - Make all captions left-aligned, including one line
+captions.
+w
+2 Usage - Preamble Macros
+
+The class includes several macros that must be used in the preamble, the portion
+of the document before \begin{document}. These set several important parameters
+such as the degree scheme, supervisors and author details.
+
+\title{⟨title⟩}
+
+The title of the thesis/dissertation. This macro is not provided by this class
+but is required in the preamble.
+
+\author{⟨author⟩}
+
+The author of the document. Not provided by this class, but required in the
+preamble. It is recommended that the author name is specified as First M.I.
+Last.
+
+\date{⟨date⟩}
+
+The date of the document. It is recommended that the date argument is set to the
+month and year of submission of the thesis in full, e.g. May, 2014. This macro
+is not provided by this class but is required in the preamble.
+
+\degreeScheme{⟨scheme name⟩}
+
+This macro must be used to set the title of the student’s overall degree scheme.
+It has a single parameter, the name will be reproduced (verbatim) on the
+title/cover page of the thesis. Use of this macro is required.
+
+\supervisor{⟨name⟩}
+
+The \supervisor macro adds a named supervisor to the student’s thesis. (In
+theory) an unlimited number of these commands can be used, although LATEX has
+internal memory limits. When there is more than one supervisor defined, the
+title/cover page changes to accommodate them appropriately. At least one
+supervisor must be included.
+
+\bibliographySetup [compressed]
+
+This macro configures BibLaTeX, the successor to BibTeX, to departmental
+standards. The Computer Science department have standardised on IEEE
+referencing, using Name, Year, Title ordering. This means that the first
+citation to appear may not be numbered [1] in the thesis. Use of this macro is
+required. If the |compressed| option is set the bibliography style will be
+altered to produce one set of brackets for multiple citations in one command.
+Please note, this violates the IEEE style guide.
+
+\addbibresource {⟨name.bib⟩}
+
+The \addbibresource macro is not provided by this package, but is required in
+the preamble. The parameter is the name of the BibLaTeX/BibTeX database that
+should be processed for the document.
+
+3 Usage - Other Items
+
+\acknowledgements [⟨quote text⟩] [⟨person quoted⟩] {⟨acknowledgements⟩}
+
+The \acknowledgements macro creates the standard acknowledgments page for the
+front of the thesis. Use of this macro is optional although highly recommended
+as there is usually someone to thank for contributing to your work (including
+your supervisor). You can optionally include an inspirational and/or funny quote
+for the top of the page. If you do not wish to include the quote, simply omit
+the optional arguments.
+
+\statements [(signature image filename)]
+
+This macro creates the required statements page for the front matter of a
+thesis. This must be included, failure to do so can result in the thesis being
+rejected as it cannot be accepted into the University library or other
+depositories. If the signature image filename parameter is included, this image
+is included instead of a white space for you to sign manually.
+
+\tables
+
+The \tables macro creates the appropriate tables (of contents, of figures and of
+tables) for the front matter of the thesis. Tables of figures and tables of
+tables are only included when figures and tables are included in the document
+text respectively. If the thesis includes other items (for example code
+listings), you are responsible for including tables of these items yourself
+after the use of this macro.
+
+\thesisContent
+
+This macro marks the start of the actual ‘content’ of the thesis, separate from
+the ‘front matter’ (contents, etc.) and the appendices. Use of this macro is
+required to maintain correct formatting.
+
+\references [small]
+
+This macro starts the appendices for the thesis and generates an appropriately
+formatted `References' list.  This differs from a Bibliography as it only
+contains items specifically cited in the thesis text whereas a Bibliography
+should contain everything that has been read/used during the preparation of the
+thesis.  If the small parameter is included, the font and spacing are altered
+for the references section to present a more compact form.
+
+4 Document Section Order
+
+The Computer Science Thesis has a very specific section order; this does not
+prescribe the format of your thesis, just the front and back matter.
+
+1. Title/Cover Page 2. Acknowledgments Page 3. Statements Page 4. Contents 5.
+Tables 6. Thesis Content 7. References 8. Other Appendices
+
+5 Skeleton Thesis
+
+A very much skeleton document is provided here as a starting point when using
+this document class.
+
+\documentclass[bsc,noindent,nohyphen]{bangorcsthesis}
+\title{Thesis Title}
+\author{Just A. Student}
+\degreeScheme{Computer Science}
+\date{May, 2015}
+\supervisor{Dr. S.P.R. Visor}
+\bibliographySetup
+\addbibresource{file.bib}
+\begin{document}
+\maketitle
+\acknowledgements[Quote][Person Quoted]{Acknowledgements}
+\statements
+\begin{abstract}
+     ... thesis abstract...
+\end{abstract}
+\tables
+\thesisContent
+     ... document ...
+\references
+     ... other appendices ...
+\end{document}

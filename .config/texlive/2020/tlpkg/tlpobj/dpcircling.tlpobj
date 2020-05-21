@@ -1,0 +1,28 @@
+name dpcircling
+category Package
+revision 54994
+shortdesc Decorated text boxes using TikZ
+longdesc This simple package provides four types of text decorations
+longdesc using TikZ. You can frame your text with circles, rectangles,
+longdesc jagged rectangles, and fan-shapes. The baseline will be
+longdesc adjusted properly according to the surroundings. You can use
+longdesc these decorations both in text mode and in math mode. You can
+longdesc specify line color, line width, width, and height using option
+longdesc keys. Note: The "DP" in the package name stands for "Decorated
+longdesc Packets".
+containersize 2508
+containerchecksum d102312ce1c70eeb9cfb279b065197ebd3ec6d3f54a47de55a5cb9828e76b2e690823a2ea19a935151c972f791783fa41a55adde03aefa54eb2b3fe3da0ea677
+doccontainersize 30880
+doccontainerchecksum b1b01183f3490897b9681927676a7eafd01367eee6ea2fcb82fdfaae59294c67d96036ef67093fab13f0493adb9dce56f4e420b486bdc5f94e8a7801efcffc4a
+docfiles size=11
+ texmf-dist/doc/latex/dpcircling/DPcircling.pdf details="Package documentation"
+ texmf-dist/doc/latex/dpcircling/DPcircling.tex
+ texmf-dist/doc/latex/dpcircling/LICENSE
+ texmf-dist/doc/latex/dpcircling/README.md details="Readme"
+runfiles size=3
+ texmf-dist/tex/latex/dpcircling/DPcircling.sty
+catalogue-contact-repository https://github.com/domperor/DPcircling
+catalogue-ctan /graphics/pgf/contrib/dpcircling
+catalogue-license mit
+catalogue-topics decoration boxing pgf-tikz
+catalogue-version 1.0

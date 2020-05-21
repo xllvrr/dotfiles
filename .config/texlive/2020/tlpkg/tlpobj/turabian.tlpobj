@@ -1,0 +1,22 @@
+name turabian
+category Package
+revision 36298
+shortdesc Create Turabian-formatted material using LaTeX
+longdesc The bundle provides a class file and a template for creating
+longdesc Turabian-formatted projects. The class file supports citation
+longdesc formatting conforming to the Turabian 8th Edition style guide.
+containersize 1792
+containerchecksum fe4ec8291e8b1dfc6130bdc862384b8e7c6ea2d4db6baaf92e0b7b053ab8ed328ec452e0c1efc4da2eecc3f8b6c86e77cfd2100ea66e4f59276fb64683d55a92
+doccontainersize 4272
+doccontainerchecksum 3b4900c67c65ee1b20dedb2ffbc844ff22dc519dde0121b375dd13bcd80a0f2fdf5cef8c4e43a395ebe8fb4c82d463f18ca30ec65fe2be398c181af78ec0a0f7
+docfiles size=4
+ texmf-dist/doc/latex/turabian/README details="Readme"
+ texmf-dist/doc/latex/turabian/turabian.tex
+ texmf-dist/doc/latex/turabian/userguide.txt details="Package documentation"
+runfiles size=1
+ texmf-dist/tex/latex/turabian/turabian.cls
+catalogue-also turabian-formatting
+catalogue-ctan /macros/latex/contrib/turabian
+catalogue-license lppl
+catalogue-topics gen-paper class
+catalogue-version 0.1.0

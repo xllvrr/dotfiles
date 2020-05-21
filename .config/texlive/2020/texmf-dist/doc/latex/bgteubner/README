@@ -1,0 +1,181 @@
+
+Document class for producing books for the Teubner Verlag, Germany
+==================================================================
+
+
+1. Introduction
+---------------
+
+I have programmed the "bgteubner.cls" document class by order of the
+Teubner Verlag (which was renamed via Vieweg+Teubner to Springer Vieweg),
+Wiesbaden, Germany. This has been done to ensure that
+books of this publisher have a unique layout. The publisher has 
+allowed me to distribute the document class with auxilliary files
+and documentation freely. Unfortunately, most of the documentation
+is only available in German.
+
+Since the document class is intended to generate a unique layout, many
+things (layout etc.) are fixed and cannot be altered by the used.
+If you want to use the document class for another purpose than publishing
+with the Teubner Verlag, this may arrise unwanted restrictions
+(For instance, the document class provides only two paper sizes:
+DIN A-5 and 17cm x 24cm; only two font families are supported:
+Times and European Computer Modern). If you want to adapt some files
+you have to rename them before, according to the LPPL license. Please
+do it also according to the additional remarks in the files bgteucls.dtx
+and bgteubner.cls.
+
+When you produce documents using this document class, the PDF file gets
+a "Creator" entry that includes the class name and the name of the
+Teubner Verlag. If you modify a copy of this class, these texts have
+to be preserved. I cannot forbid you (according to LPPL) to overwrite
+this entry in the document itself. But please don't do it since the
+publisher has asked me to preserve that entry.
+
+The document class needs some additional packages, partly relatively
+new ones, partly packages that are not installed on most TeX
+installations. A list of needed packages is contained in usefiles.txt.
+Depending on the class options, not all packages are needes; but I
+will not specify it in more detail.
+
+If you recognize that many packages of your installation are too old
+it may be worth to install a new distribution.
+
+The German documentation files bgteubner-17x24-times.pdf and
+bgteubner-17x24-cm.pdf describe how to use the document class. In 
+addition, they include installation instructions for the TeXLive 8
+distribution.
+
+
+
+2. Files in the distribution and installation
+---------------------------------------------
+
+The distribution of the bgteubner bundle depends on how you got it
+(did you get it from CTAN or as CD by the Teubner-Verlag?).
+
+
+2.1 CTAN version
+----------------
+
+The bundle has following directories:
+
+doc/          Documentation (in German):
+              bgteubner-17x24-times.pdf  Author guidelines (Times font),
+              bgteucls.pdf               Documentation of the document class
+                                         itself (only experts).
+doc/src/      Source code of the documentation.
+hhsubfigure/  Source code of the hhsubfigure package.
+source/       Source code of the document class.
+
+
+To install the document class and the auxilliary files, you have to 
+change to the source/ directory. Run LaTeX on "bgteucls.ins". This
+produces a couple of files that have to be copied to special directories.
+If your TeX installation complies to the TDS the targets for theses files
+are:
+
+  $TEXMFLOCAL/tex/latex/bgteubner/bgteubner.cls 
+  $TEXMFLOCAL/tex/latex/ptmxcomp/ptmxcomp.sty
+  $TEXMFLOCAL/makeindex/bgteubner/bgteubner.ist 
+  $TEXMFLOCAL/makeindex/bgteubner/bgteuglo.ist 
+  $TEXMFLOCAL/makeindex/bgteubner/bgteuglochar.ist 
+  $TEXMFLOCAL/bibtex/bst/bgteubner/bgteupln.bst 
+  $TEXMFLOCAL/bibtex/bst/bgteubner/bgteupln2.bst
+  $TEXMFLOCAL/bibtex/bst/bgteubner/bgteuabbr.bst     
+  $TEXMFLOCAL/bibtex/bst/bgteubner/bgteuabbr2.bst
+
+If you use Unix you simply may use
+  make install
+for everything.
+
+In addition, the hhsubfigure package has to be installed. Therefore, run
+latex on hhsubfigure.ins in the hhsubfigure/ directory. Then, copy
+hhsubfigure.sty to the
+
+  $TEXMFLOCAL/tex/latex/hhsubfigure/
+
+directory. Since usage of the hhsubfigure and the subfigure.sty packages
+is identical, refer to the subfigure documentation.
+
+Surely, more needed packages are not installed on your system. Please have
+a look to usefiles.txt to find out which you still need. You can download
+them from the CTAN servers.
+
+
+2.2 Teubner CD version
+----------------------
+
+If you have a CD of the Teubner Verlag, you have following directories:
+
+doc/          Documentation (in German):
+              bgteubner-17x24-cm.pdf     Author guidelines (European
+                                         Computer Modern font),
+              bgteubner-17x24-times.pdf  Author guidelines (Times font),
+              bgteubner-17x24-mathtime.pdf  Author guidelines (Times font
+                                         with MathTime mathematics),
+              bgteucls.pdf               Documentation of the document class
+                                         itself (only experts).
+doc/src/      Source code of the documentation.
+hhsubfigure/  Source code of the hhsubfigure package.
+source/       Source code of the document class.
+pakete/       Classes and packages that are not contained in TeXLive 8 or 
+              that are too old there.
+alt/          Old versions of the document class.
+
+Since it is unlikely that you get a CD by the Teubner Verlag an don't 
+speak German, there is no separat installation guide here.
+
+
+
+3. Update
+---------
+
+If you are updating from an older version, you can find out the
+changes in the file source/ChangeLog or at the end of the file
+doc/bgteucls.pdf.
+
+Many spacings have been changed from version 1.07 to 1.10. If you are
+nearly ready with producing a document you better postpone the update.
+
+From version 1.14 to 1.21, some margins had to be changed in the
+important(*) and longimportant(*) environments. Thus, changes of the
+line and page breaks are possible there.
+
+
+4. License
+----------
+
+bgteubner class bundle
+
+Copyright 2003--2012 Harald Harders
+
+This program may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3
+of this license or (at your opinion) any later version.
+The latest version of this license is in
+ http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of LaTeX
+version 1999/12/01 or later.
+ 
+This program consists of all files listed in manifest.txt.
+
+harald.harders@gmx.de
+
+
+For the files bgteucls.dtx and bgteubner.cls, there is an additional
+license agreement:
+
+If you modify a renamed copy of the files `bgteubner.cls' or
+`bgteucls.dtx', you have to preserve some information in the
+PDF /Creator entry. The following data have to remain:
+- The name `bgteubner.cls',
+- a hint that this class has been developed for the `Teubner
+  Verlag, Wiesbaden, Germany'.
+
+
+--------------------------------------------------
+
+Harald Harders
+harald.harders@gmx.de
+2012-04-07

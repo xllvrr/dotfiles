@@ -1,0 +1,104 @@
+
+The OFS Macro - Olsak's Font System
+===================================
+
+Files:
+------
+readme.ofs             ... this file
+ofsdoc-e.tex, pdf, ps  ... documentation (English)
+ofsdoc.tex, pdf, ps    ... documentation (Czech language)
+ofs.tex                ... the OFS macro for plain
+ofsdef.tex             ... default declaration file (for plain)
+ofs-8z.tex, ofs-8t.tex ... encodings declaration files (for plain)
+ofs-<encoding>.tex     ... another encodings declaration files (for plain)
+ofstest.tex            ... interactive macro to print samples, 
+                           font catalogues, tables etc.
+a35.tex                ... declaration file for standard 35 fonts
+                           by Adobe (for plain) 
+a117.tex               ... declaration file for standard 117 Adobe fonts
+ofs.sty                ... the OFS macro for LaTeX
+a35.sty                ... declaration file for standard 35 fonts
+                           by Adobe (for LaTeX)
+amsfn.tex              ... math declaration file for AMS fonts
+mtfn.tex, txfn.tex     ... math declaration files for MathTimes and TXfonts
+ofs-slt.tex,ps,pdf     ... the article about OFS from SLT 2002 proceedings
+examples/              ... directory with examples for OFS (for plain)
+storm/                 ... new declaration files for Storm fonts support
+
+License:
+-------
+
+The OFS package may be used by everybody without any licension fees.
+Everybody can re-distribute this package, if no changes in files
+"readme.ofs", "ofs.tex", "ofsdef.tex", "ofs.sty", "ofs-8z.tex",
+"ofs-8t.tex", "a35.tex", "a35.sty", "ofsdoc.tex", "ofsdoc-e.tex",
+are done and all these files are included in the new
+distribution. Only the author has a right to change of these files and
+to change of version of this package. If you need to change the
+contents of some file mentioned above, you have to rename it. This
+package is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY.
+
+Prague 08/16/2001                                      Petr Olsak
+                                                       the author
+
+The master source of this package maintained by author:
+-------------------------------------------------------
+
+ftp://math.feld.cvut.cz/pub/olsak/ofs/
+
+Bug report will be welcome on: 
+olsak@math.feld.cvut.cz
+
+.............................................................................
+
+
+Makro OFS - Olsakuv Fontovy system
+==================================
+
+Soubory:  
+-------
+readme.ofs             ... tento soubor
+ofsdoc.tex, pdf, ps    ... dokumentace (cesky)
+ofsdoc-e.tex, pdf, ps  ... dokumentace (anglicky)
+ofs.tex                ... makro OFS pro plain
+ofsdef.tex             ... defaultni deklaracni soubor (pro plain)
+ofs-8z.tex, ofs-8t.tex ... deklaracni soubory kodovani (pro plain)
+ofs-<kodovani>.tex     ... dalsi deklaracni soubory kodovani (pro plain)
+ofstest.tex            ... interaktivni makro na tisk vzorku, fontovych
+                           katalogu, tabulek atd.
+a35.tex                ... deklaracni soubor pro standardnich 35 fontu
+                           od Adobe pritomnych v kazdem RIPu (pro plain) 
+a117.tex               ... deklaracni soubor pro standardnich 117 Adobe fontu
+ofs.sty                ... makro OFS pro LaTeX
+a35.sty                ... deklaracni soubor pro standardnich 35 fontu
+                           od Adobe pritomnych v kazdem RIPu (pro LaTeX) 
+amsfn.tex              ... deklarace matematiky pro AMS fonty
+mtfn.tex, txfn.tex     ... deklarace matematiky pro MathTimes a TX fonty
+ofs-slt.tex,ps,pdf     ... clanek o OFS ze sborniku SLT 2002
+examples/              ... adresar s priklady pro OFS (pro plain)
+storm/                 ... nove deklaracni soubory pro Stormovy fonty
+
+Licence:
+-------
+
+Balicek OFS muze pouzivat kdokoli bez licencnich poplatku. Kdokoli je
+rovnez muze distribuovat, pokud nezmeni obsah zadneho ze souboru
+"readme.ofs", "ofs.tex", "ofsdef.tex", "ofs.sty", "ofs-8z.tex",
+"ofs-8t.tex", "a35.tex", "a35.sty", "ofsdoc.tex", "ofsdoc-e.tex" a
+vsechny tyto soubory budou v distribuci pritomny. 
+Pravo na zmenu uvedenych souboru a tim zmenu verzi zustava vyhradne 
+autorovi. Pokud potrebujete zmenit obsah nektereho z uvedenych
+souboru, nazvete jej jinak. Balicek je poskytovan s pranim, 
+aby byl uzitecny, ale BEZ JAKEKOLI ZARUKY.
+
+V Praze dne 16. 8. 2001                           autor: Petr Olsak
+
+
+Tento balicek je autorem udrzovan na URL:
+-----------------------------------------
+
+ftp://math.feld.cvut.cz/pub/olsak/ofs/
+
+Prpominky a upozorneni na chyby jsou vitany na:
+olsak@math.feld.cvut.cz

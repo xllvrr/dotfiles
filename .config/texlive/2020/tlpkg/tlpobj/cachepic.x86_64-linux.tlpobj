@@ -1,0 +1,8 @@
+name cachepic.x86_64-linux
+category Package
+revision 15543
+shortdesc x86_64-linux files of cachepic
+containersize 340
+containerchecksum e5a57db9352e67a19408b765724d0edb52d65650df37901ba06c3e22f8548b389b6e6f9ed9133965a1f1c87142f2e03c0d440f56e7bbe734c695ee976b2ab68d
+binfiles arch=x86_64-linux size=1
+ bin/x86_64-linux/cachepic

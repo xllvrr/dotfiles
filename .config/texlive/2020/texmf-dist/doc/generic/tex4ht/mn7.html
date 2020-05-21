@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title></title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<meta name="originator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)" /> 
+<!-- xhtml,th4,index --> 
+<meta name="src" content="mn.tex" /> 
+<meta name="date" content="2004-02-11 18:07:00" /> 
+<link rel="stylesheet" type="text/css" href="mn.css" /> 
+</head><body 
+>
+<!--l. 2554--><p class="noindent"><a 
+ href="mn6.html#mn7-1"  name="mn7-1" >1</a>.   <a 
+  name="index7-24002"></a><span 
+class="cmtt-10">\HCode{...}</span>
+</p><!--l. 2556--><p class="indent">    This command allows only for the expansion of macros, before sending its content to the output. The
+instruction <span 
+class="cmtt-10">\Hnewline </span>may be introduced there for requesting line breaks.
+      </p><div class="ShowCode">
+      <br />&nbsp;<span 
+class="cmtt-10">Two</span>&nbsp;<span 
+class="cmtt-10">lines</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">text</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">\ifHtml</span>&nbsp;<span 
+class="cmtt-10">\HCode{&lt;br</span>&nbsp;<span 
+class="cmtt-10">/&gt;}</span>&nbsp;<span 
+class="cmtt-10">\else</span>&nbsp;<span 
+class="cmtt-10">\hrule</span>&nbsp;<span 
+class="cmtt-10">\fi</span>
+      <br />&nbsp;<span 
+class="cmtt-10">separated</span>&nbsp;<span 
+class="cmtt-10">by</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">horizontal</span>&nbsp;<span 
+class="cmtt-10">line.</span>
+
+      <br />&nbsp;
+      <br />&nbsp;<span 
+class="cmtt-10">You</span>&nbsp;<span 
+class="cmtt-10">probably</span>&nbsp;<span 
+class="cmtt-10">don't</span>&nbsp;<span 
+class="cmtt-10">want</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">`&lt;br&gt;'.</span>
+</div><hr />
+<!--l. 2570--><p class="noindent"><a 
+ href="mn6.html#mn7-2"  name="mn7-2" >2</a>.   <a 
+  name="index7-24004"></a>  <span 
+class="cmtt-10">\HPage{</span><span 
+class="cmti-10">anchor</span><span 
+class="cmtt-10">}</span><span 
+class="cmti-10">content</span><span 
+class="cmtt-10">\EndHPage{}</span>
+</p><!--l. 2572--><p class="indent">    This command dedicates a hypertext page for the specified content, to be accessed through the given
+button.
+</p><!--l. 2575--><p class="indent">    <a 
+  name="index7-24005"></a>The <span 
+class="cmtt-10">\ExitHPage{...} </span>command may be employed within the content to create exit buttons.
+      </p><div class="ShowCode">
+      <br />&nbsp;<span 
+class="cmtt-10">......</span>&nbsp;<span 
+class="cmtt-10">............</span>
+      <br />&nbsp;<span 
+class="cmtt-10">\HPage{in}</span>
+      <br />&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">................</span>
+      <br />&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">[\ExitHPage{out}]</span>
+      <br />&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">................</span>
+      <br />&nbsp;<span 
+class="cmtt-10">\EndHPage{}</span>
+      <br />&nbsp;<span 
+class="cmtt-10">...................</span>
+</div><hr />
+<!--l. 2593--><p class="noindent"><a 
+ href="mn6.html#mn7-3"  name="mn7-3" >3</a>.   <a 
+  name="index7-24007"></a><span 
+class="cmtt-10">\Link[</span><span 
+class="cmti-10">target-file arguments</span><span 
+class="cmtt-10">]{</span><span 
+class="cmti-10">target-loc</span><span 
+class="cmtt-10">}{</span><span 
+class="cmti-10">cur-loc</span><span 
+class="cmtt-10">}</span><span 
+class="cmti-10">anchor</span><span 
+class="cmtt-10">\EndLink</span>
+</p><!--l. 2596--><p class="indent">    This command requests an anchor that links to &#8216;<span 
+class="cmti-10">target-file</span><span 
+class="cmtt-10">#</span><span 
+class="cmti-10">target-loc</span>&#8217;, and marks the current location with the
+name &#8216;<span 
+class="cmti-10">cur-loc</span>&#8217;.
+</p><!--l. 2601--><p class="indent">    The component &#8216;<span 
+class="cmtt-10">[...]</span>&#8217; is optional when it is empty, and the target file need not be mentioned if it is created
+from the current source file.
+      </p><div class="ShowCode">
+      <br />&nbsp;<span 
+class="cmtt-10">\HPage{}</span>
+      <br />&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">......................</span>
+      <br />&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">\Link[http://www.tug.org/]{}{XX}\TeX{}</span>&nbsp;<span 
+class="cmtt-10">Users</span>&nbsp;<span 
+class="cmtt-10">Group</span>
+      <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Home</span>&nbsp;<span 
+class="cmtt-10">Page\EndLink</span>
+      <br />&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">......................</span>
+      <br />&nbsp;<span 
+class="cmtt-10">\EndHPage{}</span>
+      <br />&nbsp;<span 
+class="cmtt-10">......................</span>
+      <br />&nbsp;<span 
+class="cmtt-10">\Link{XX}{}...\EndLink</span>
+</div>
+    <a 
+  name="index7-24008"></a> <a 
+  name="index7-24009"></a> <a 
+  name="index7-24010"></a>The characters &#8216;<span 
+class="cmtt-10">~</span>&#8217;, &#8216;<span 
+class="cmtt-10">_</span>&#8217;, and&nbsp;&#8216;<span 
+class="cmtt-10">%</span>&#8217; can be indirectly included through the code&nbsp;&#8216;<span 
+class="cmtt-10">\string ~</span>&#8217;,&nbsp;&#8216;<span 
+class="cmtt-10">\string _</span>&#8217;,
+and&nbsp;&#8216;<span 
+class="cmtt-10">\%</span>&#8217;, respectively.<hr />
+<!--l. 2630--><p class="noindent"><a 
+ href="mn6.html#mn7-4"  name="mn7-4" >4</a>.   <a 
+  name="index7-24012"></a><span 
+class="cmtt-10">\ifHtml...tex4ht code... \else...non tex4ht code... \fi </span>(or <span 
+class="cmtt-10">\ifHtml\UnDef...non tex4ht code...</span>
+<span 
+class="cmtt-10">\else...tex4ht code... \fi</span>)
+</p><!--l. 2632--><p class="indent">    This command provides the means to conditionally provide content to the HTML and non-HTML modes. The
+<span 
+class="cmtt-10">\else </span>is optional when the false part is empty.
+</p><hr />
+<!--l. 2638--><p class="noindent"><a 
+ href="mn6.html#mn7-5"  name="mn7-5" >5</a>.   <a 
+  name="index7-24014"></a><span 
+class="cmtt-10">\ifOption{...}{</span><span 
+class="cmti-10">true-part</span><span 
+class="cmtt-10">}{</span><span 
+class="cmti-10">false-part</span><span 
+class="cmtt-10">}</span>
+</p>
+
+     
+</body></html> 

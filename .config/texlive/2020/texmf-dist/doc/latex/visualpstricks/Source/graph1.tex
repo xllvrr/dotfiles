@@ -1,0 +1,1079 @@
+%\section{Syntaxe}
+\psset{fillstyle=none,unit=1cm}
+
+\subsection{Environnement}
+
+\SbSbSSCT{Dans un environnement classique }{pspicture}
+ 
+\begin{itemize}
+\item  Axes : Macro \BSS{psaxes} \BSI{psaxes}{pst-plot} 
+\item  Quadrillages : Macro  \BSS{psgrid}  \BSI{psgrid}{pst-plot} 
+\end{itemize}
+
+\SbSbSSCT{Dans un environnement psgraph}{psgraph}
+
+\psset{linecolor=red,arrowscale=2}
+
+
+
+\psset{linecolor=blue}
+\TFRGB{Deux syntaxes}{Two syntaxes} :
+
+\BSS{psgraph}[Options]  \AC{\TFRGB{flèches}{arrows}}(xOrig,yOrig)(xMin,yMin)(xMax,yMax)\AC{\TFRGB{largeur graphe}{graph width}}
+\AC{\TFRGB{hauteur graphe}{graph height}} 
+\BSS{endpsgraph} 
+\BSI{psgraph}{pst-plot}  \BSI{endpsgraph}{pst-plot} 
+
+\TFRGB{ou}{or}
+
+\BSS{begin\AC{psgraph}} [Options]\AC{\TFRGB{flèches}{arrows}}(xOrig,yOrig)(xMin,yMin)(xMax,yMax)
+\AC{\TFRGB{largeur graphe}{graph width}}\AC{\TFRGB{hauteur graphe}{graph height}}
+. . .
+\BSS{end\AC{psgraph}} 
+
+\bigskip
+
+\TFRGB{
+Remarque : 
+\begin{itemize}
+\item  L'indication de la largeur et de la hauteur du graphe permettent la mise à l'échelle automatique
+\item Si hauteur graphe = ! , les deux axes ont la même unité
+\end{itemize}}{
+Remarks : 
+\begin{itemize}
+\item  The indication of the width and height of the graph allow automatic scaling
+\item If graph  height =! , Both axes have the same unit
+\end{itemize}}
+
+%======================================
+
+\SbSSCT{Type de tracé}{Type of graph}
+
+%Option : \RDD{plotstyle} 
+
+\readdata{\dat}{table.dat}
+\psset{xunit=.4cm,yunit=.3cm}
+\psset{linecolor=blue,linewidth=2pt}
+
+
+\begin{tabular}{|c|c|c|} \hline  
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10)
+\listplot[xticksize=0 10,yticksize= 0 8,Dx=1,dy=1,Dy=1,linecolor=red]{\dat}
+\end{pspicture} 
+& 
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10)
+\listplot[plotstyle=dots,xticksize=0 10,yticksize= 0 8,Dx=1,dy=1,Dy=1,linecolor=red]{\dat}
+\end{pspicture}  
+&
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10)
+\listplot[plotstyle=polygon,xticksize=0 10,yticksize= 0 8,Dx=1,dy=1,Dy=1,linecolor=red]{\dat}
+\end{pspicture} 
+ \\  \hline 
+{\blue \dft }: \RDD{plotstyle}=  \BDD{line} \BDI{line}{pst-plot}  \RDI{plotstyle}{pst-plot} & 
+{\red plotstyle}= \BDD{dots} \BDI{dots}{pst-plot} & 
+{\red plotstyle}=  \BDD{polygon} \BDI{polygon }{pst-plot} \\ 
+\hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|c|} \hline  
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10) 
+\listplot[plotstyle=curve,xticksize=0 10,yticksize= 0 8,Dx=1,dy=1,Dy=1,linecolor=red]{\dat}
+\end{pspicture} 
+& 
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10) 
+\listplot[plotstyle=ecurve,xticksize=0 10,yticksize= 0 8,Dx=1,dy=1,Dy=1,linecolor=red]{\dat}
+\end{pspicture} 
+&
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10) 
+\listplot[plotstyle=ccurve,xticksize=0 10,yticksize= 0 8,Dx=1,dy=1,Dy=1,linecolor=red]{\dat}
+\end{pspicture}   
+ \\  \hline 
+{\red plotstyle}= \BDD{curve} \BDI{curve}{pst-plot} &
+{\red plotstyle}=\BDD{ecurve} \BDI{ecurve}{pst-plot} & 
+ {\red plotstyle}= \BDD{ccurve} \BDI{ccurve}{pst-plot} \\ 
+\hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|c|} \hline  
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10)
+\listplot[plotstyle=bar,linecolor=red]{\dat}
+\end{pspicture} 
+& 
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10)
+\listplot[plotstyle=ybar,linecolor=red]{\dat}
+\end{pspicture}  
+&
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10)
+\listplot[plotstyle=dots,linecolor=red]{\dat} 
+\listplot[plotstyle=xvalues]{\dat}
+\end{pspicture} 
+ \\  \hline 
+{\red plotstyle}= \BDD{bar} \BDI{bar}{pst-plot} &
+ {\red plotstyle}= \BDD{ybar} \BDI{ybar}{pst-plot} & 
+ {\red plotstyle}= \BDD{xvalues } \BDI{xvalues }{pst-plot}\\ 
+\hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|c|} \hline  
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10) 
+\listplot[plotstyle=LineToXAxis,linecolor=red]{\dat}
+\end{pspicture} 
+& 
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10) 
+\listplot[plotstyle=LineToYAxis,linecolor=red]{\dat}
+\end{pspicture} 
+&
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10)
+\listplot[plotstyle=dots,linecolor=red]{\dat} 
+\listplot[plotstyle=values]{\dat}
+\end{pspicture}   
+ \\  \hline 
+{\red plotstyle}= \BDD{LineToXAxis} \BDI{LineToXAxis}{pst-plot} & 
+{\red plotstyle}= \BDD{LineToYAxis} \BDI{LineToYAxis}{pst-plot} & 
+{\red plotstyle}=  \BDD{values} \BDI{values}{pst-plot} \\ 
+\hline 
+\end{tabular}
+
+\bigskip
+\begin{tabular}{|c|c|c|} \hline  
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10)
+
+\listplot[Hue=300,plotstyle=colordots]{\dat}
+\end{pspicture} 
+& 
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10) 
+\listplot[plotstyle=dots,linecolor=red]{\dat} 
+\listplot[plotstyle=LSM,linecolor=magenta]{\dat}
+\end{pspicture} 
+&
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10)
+\listplot[shadow=true,plotstyle=bar]{\dat}
+\end{pspicture}   
+ \\  \hline 
+Hue=100,{\red plotstyle}= \BDD{colordots} \BDI{colordots}{pst-plot} & 
+{\red plotstyle}= \BDD{LSM} \BDI{LSM}{pst-plot}  & shadow=true,{\red plotstyle}=\BDD{bar} \BDI{bar}{pst-plot} \\ 
+\hline 
+\end{tabular}
+
+
+%=================================================
+
+\SbSSCT{Les axes }{Axes}
+\SbSbSSCT{Dimensionnement}{Dimensioning}
+ 
+\psset{unit=1cm,linewidth=1pt}
+
+\begin{tabular}{|c|c|} \hline 
+\BSS{psaxes}\AC{<->}\rnode[fillcolor=yellow]{AA}{(0,0)}\rnode[fillcolor=green]{BB}{(-1,-2)}\rnode[fillcolor=cyan]{CC}{(3,3)}
+&
+\textbf{\BS{psaxes}}\AC{->}\rnode[fillcolor=cyan]{DD}{(4,2)} \\
+& \\ \hline
+ 
+\begin{pspicture}[shift=*](-1.5,-3)(4.5,3.5)
+\psaxes[linecolor=black,linewidth=2pt]{<->}(0,0)(-1,-2)(3,3)
+\dotnode[dotstyle=*](0,0){A}
+\dotnode[dotstyle=*](-1,-2){B}
+\dotnode[dotstyle=*](3,3){C}
+\ncarc[angleB=135]{->}{AA}{A}
+\ncbar[angleA=-90,angleB=135]{->}{BB}{B}
+\ncline{->}{CC}{C}
+\end{pspicture}
+&  
+\begin{pspicture}[shift=*](-.5,-.5)(5,2.5)
+\psaxes[linecolor=black,linewidth=2pt]{->}(4.5,2.5)
+\dotnode[dotstyle=*](4,2){D}
+\ncline{->}{DD}{D}
+\end{pspicture}
+\\ \hline  
+\end{tabular} 
+
+%----------------------------------------------------------
+\psset{unit=.7cm}
+\subsubsection{Types d'axes}
+
+
+\psset{unit=.7cm}
+
+\begin{tabular}{|c|c|c|}  \hline 
+\begin{pspicture}(-1,-1)(4,4)
+\psaxes[axesstyle=none]{->}(3,3)
+\end{pspicture} 
+&
+ \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[axesstyle=frame]{->}(3,3)
+\end{pspicture} 
+&  
+\begin{pspicture}(-3,-3)(3,3) 
+ \psaxes[axesstyle=polar]{->}(2,2)
+\end{pspicture} \\ 
+ \hline 
+\RDD{axesstyle}=none \RDI{axesstyle}{pst-plot} & {\red axesstyle}=frame &  {\red axesstyle}=polar\\ \hline 
+ \multicolumn{3}{|c|}{ \blue \dft : {\red axesstyle}=axes  } \\  \hline  
+
+\end{tabular} 
+
+
+%--------------------------------------------------
+\SbSbSSCT{Choix des axes}{choice of axes}
+
+
+\psset{unit=0.5cm}
+\begin{tabular}{|c|c|c|c|} \hline
+ \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[xyAxes=true]{->}(3,3)
+\end{pspicture}  
+& 
+ \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[xyAxes=false]{->}(3,3)
+\end{pspicture}  
+&  \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[xAxis=false]{->}(3,3)
+\end{pspicture} 
+&  \begin{pspicture}(-1,-1)(4,4) 
+ \psaxes[yAxis=false]{->}(3,3)
+\end{pspicture} \\ \hline 
+ \RDD{xyAxes}=true  \RDI{xyAxes}{pst-plot}  &  xyAxes=false &  \RDD{xAxis}=false  \RDI{xAxis}{pst-plot} &  \RDD{yAxis}=false  \RDI{yAxis}{pst-plot} \\ \hline 
+ \multicolumn{4}{|c|}{\blue \dft : xAxis = yAxis = xyAxes = true } \\  \hline  
+\end{tabular} 
+
+%----------------------------------------------------------------
+
+\SbSbSSCT{Espacement des graduations}{Units of the axis}
+
+
+\psset{xunit=.9cm,yunit=.9cm}
+\begin{tabular}{|c|c|c|} \hline 
+
+\begin{pspicture}(-1,-1)(3.5,3.5) 
+ \psaxes[Ox=2,Dx=2.0,Dy=.5]{->}(3,3)
+\end{pspicture}  
+&  
+\begin{pspicture}(-1,-1)(3.5,3.5)
+ \psaxes[Oy=2,dx=.5,dy=1.5]{->}(3,3)
+\end{pspicture} 
+&  
+\begin{pspicture}(-1,-1)(3.5,3.5) 
+ \psaxes[dx=.5,Dx=2,dy=.5,Dy=1.5]{->}(3,3) 
+\end{pspicture} \\  \hline  
+\RDD{Ox}=2 	 \RDI{Ox}{pst-plot} 	&  
+\RDD{Oy}=2   \RDI{Oy}{pst-plot} 	& {\red dx}=.5 {\red Dx}=2   \\ 
+\RDD{Dx}=2.0  \RDI{Dx}{pst-plot} 	&  
+\RDD{dx}=.5  \RDI{dx}{pst-plot} 	&  
+{\red dy}=.5 {\red Dy}= 1.5 \\ 
+\RDD{Dy}=0.5  \RDI{Dy}{pst-plot} 	&  
+\RDD{dy}=1.5 \RDI{dy}{pst-plot} 	&  \\
+\hline 
+\multicolumn{3}{|c|}{ \blue \dft{}:  Ox = Oy= 0 \hspace{1cm} Dx= Dy = 1 }
+\\ \hline
+
+\end{tabular} 
+
+
+%====================================================
+\SbSbSSCT{Origine}{Origin}
+
+
+\begin{tabular}{|c|c|}\hline 
+\begin{pspicture}(-1,-1)(4,4) 
+\psaxes[showorigin=true]{->}(3,3)
+\end{pspicture} 
+&
+\begin{pspicture}(-1,-1)(4,4) 
+\psaxes[showorigin=false]{->}(3,3)
+\end{pspicture} \\
+\hline  
+\RDD{showorigin}=true  \RDI{showorigin}{pst-plot} 	{\blue (\dft)}	& {\red showorigin}=false  	 \\ 
+\hline 
+\end{tabular}
+
+
+%-----------------------------------------------------------------------
+\SbSbSSCT{Titres des axes}{Titles on axes}
+
+%\emph{Commande simple :}
+
+%syntaxe :\BS{}psaxes\AC{flèche}(coordonnée origine)(coordonnée maximale)[titre axe X,position angulaire][titre axe Y,position angulaire]
+%\smallskip
+
+
+
+
+\begin{tabular}{|c|} \hline 
+
+\BS{}psaxes\AC{->}(0,0)(6,5)[$X$,-90][$Y$,180]
+\\ \hline 
+\begin{pspicture*}(-1,-1)(7,3)
+\psaxes{->}(0,0)(6,2.5)[{\red $X$},-90][{\red$Y$},180]
+\end{pspicture*}
+ 
+ \\  \hline 
+\end{tabular} 
+
+
+%\bigskip
+%\emph{Options avancées}
+
+%\smallskip
+%\begin{tabular}{|c|c|c|l|} \hline
+%nom 			& type						& \dft 	&   Rôle \\\hline 
+%\RDD{xAxisLabel}		& texte						&  				& titre axe X \\
+%\RDD{yAxisLabel}		& texte						& 				& titre axe Y 	 \\
+%\RDD{xAxisLabelPos}	& (x,y) (centré si x= c)	&  				& position du titre axe X \\
+%\RDD{yAxisLabelPos}	& (x,y) (centré si y= c)	& 				&  position du titre axe Y \\ \hline
+%\multicolumn{4}{|c|}{correction taille de la boîte contenant le graphique} \\
+%\multicolumn{4}{|c|}{A définir avant la commande \BS{psgraph} grâce à la commande \BS{psset}}
+% \\\hline
+%\RDD{urx}				& dimension					& 0pt			& coin supérieur droit en Y \\
+%\RDD{ury}				& dimension					& 0pt			& coin supérieur droit en X  \\
+%\RDD{llx}				& dimension					& 0pt 			& coin inférieur gauche en X \\
+%\RDD{lly}				& dimension	 				& 0pt			& coin inférieur gauche en Y \\
+%\hline 
+%\end{tabular} 
+%
+%\bigskip
+
+\begin{tabular}{|c|c|} \hline 
+\multicolumn{2}{|c|}{\BS{psset}\AC{\RDD{llx}=0,\RDD{lly}=0,\RDD{urx}=0,\RDD{ury}=0,\RDD{xAxisLabel}=X,\RDD{yAxisLabel}=titre axe Y,\RDD{yAxisLabelPos}=\AC{-1cm,c}}   
+}\\
+\multicolumn{2}{|c|}{\RDI{llx}{pst-plot}  \RDI{lly}{pst-plot} \RDI{urx}{pst-plot}  \RDI{ury}{pst-plot}
+\RDI{xAxisLabel}{pst-plot}  \RDI{yAxisLabel}{pst-plot}  
+\RDI{yAxisLabelPos}{pst-plot}}
+\\
+& \\ \hline
+\rule{6cm}{0pt} & \rule{6cm}{0pt} \\
+
+
+\psframebox[linestyle=dashed,linecolor=red]{
+\psset{llx=0,lly=0,urx=0,ury=0,xAxisLabel=X,yAxisLabel=titre axe Y,yAxisLabelPos={-1cm,c}}
+\begin{psgraph}[axesstyle=frame,](0,0)(3,3){4cm}{3cm}%
+\end{psgraph}} 
+& 
+\psframebox[linestyle=dashed,linecolor=red]{
+\psset{llx=-1cm,lly=-1.25cm,urx=.5cm,ury=.51cm,xAxisLabel=titre axe X, yAxisLabel=Y,xAxisLabelPos={c,-1cm}}
+\begin{psgraph}[axesstyle=frame,](0,0)(3,3){4 cm}{3cm}%
+\end{psgraph}} \\ 
+\rule[-1cm]{6cm}{0pt} 		& \rule{6cm}{0pt} 
+\\ \hline 
+{\red xAxisLabel}=X 					& {\red xAxisLabel}=titre axe X  \\
+{\red yAxisLabel}=titre axe Y 		& {\red yAxisLabel}= Y \\
+{\red llx}=0 						& {\red llx}=-1cm   \\
+{\red lly}=0 						& {\red lly}=-1.25cm  \\
+{\red urx}=0 						& {\red urx}=.5cm   \\
+{\red ury}=0 						& {\red ury}=.5cm  \\ 
+{\red yAxisLabelPos}=\AC{-1cm,c} 	& \RDD{xAxisLabelPos}=\AC{c,-1cm} \RDI{xAxisLabelPos}{pst-plot} \\
+\hline
+\end{tabular}
+
+
+
+\psset{xAxisLabel={} ,yAxisLabel={}}
+
+
+
+%-----------------------------------------------------------
+\SbSSCT{Marques de graduations}{Ticks marks}
+
+\SbSbSSCT{Style des marques de graduation}{Style of the tick marks}
+
+
+\psset{yunit=0.7cm,xunit=0.7cm}
+ 
+\begin{tabular}{|c|c|c|c|} \hline  
+  \begin{pspicture}(-1,-1)(3.5,3.5)
+  \psaxes[tickstyle=full]{->}(3,3)
+  \end{pspicture}
+& 
+\begin{pspicture}(-1,-1)(3.5,3.5) 
+\psaxes[tickstyle=top]{->}(3,3)
+\end{pspicture}
+& 
+\begin{pspicture}(-1,-1)(3.5,3.5)
+\psaxes[tickstyle=bottom]{->}(3,3)
+\end{pspicture} 
+& 
+\begin{pspicture}(-1,-1)(3.5,3.5)  
+\psaxes[axesstyle=frame,tickstyle=inner]{->}(3,3)
+\end{pspicture} 
+ \\  \hline 
+\RDD{tickstyle}=full {\blue (\dft)} \RDI{tickstyle}{pst-plot} & 
+{\red tickstyle}=top  & {\red tickstyle}=bottom 	& {\red tickstyle}=inner 	\\
+							& 						&							& axesstyle=frame 			\\ \hline
+\end{tabular} 
+
+
+
+\SbSbSSCT{Présence des marques de graduation}{Ticks on axes}
+%--------------------------------------------------
+ 
+\psset{yunit=0.7cm,xunit=0.7cm}
+
+\begin{tabular}{|c|c|c|c|} \hline 
+\begin{pspicture}(-1,-1)(3.5,3.5) 
+\psaxes[ticks=all]{->}(3,3)
+\end{pspicture} 
+& 
+\begin{pspicture}(-1,-1)(3.5,3.5) 
+\psaxes[ticks=x]{->}(3,3)
+\end{pspicture} 
+& 
+  \begin{pspicture}(-1,-1)(3.5,3.5)  
+\psaxes[ticks=y]{->}(3,3)
+\end{pspicture} 
+& 
+\begin{pspicture}(-1,-1)(3.5,3.5) 
+\psaxes[ticks=none]{->}(3,3)
+\end{pspicture}  \\  \hline 
+ \RDD{ticks}=all {\blue ( \dft )} \RDI{ticks}{pst-plot} & {\red ticks}=x & {\red ticks}=y & {\red ticks}=none \\ \hline 
+\end{tabular} 
+
+
+%--------------------------------------------------
+
+\SbSbSSCT{Taille des graduations}{Size of ticks marks}
+ 
+
+
+\begin{tabular}{|c|c|c|} \hline  
+  \begin{pspicture}[ticksize=-5pt 10pt](-1,-1)(4,4) 
+ \psaxes{->}(3,3)
+ \end{pspicture} 
+& 
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[xticksize=2,yticksize=2](3,3)
+\end{pspicture} 
+&
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[xticksize=5pt 0pt,yticksize=10pt 0pt](3,3)
+\end{pspicture} 
+ \\  \hline 
+\RDD{ticksize}=5pt 10pt  \RDI{ticksize}{pst-plot} 	& \RDD{xticksize}=2  \RDI{xticksize}{pst-plot} 	& {\red xticksize}=5pt 0pt  \\ \hline 
+							& {\red yticksize}=2	& \RDD{yticksize}=10pt 0pt  \RDI{yticksize}{pst-plot} \\ \hline 
+\multicolumn{3}{|c|}{\blue  \dft : ticksize = xticksize = yticksize = -4pt 4pt} \\  \hline  
+\end{tabular}
+
+
+%--------------------------------------------------
+
+\psset{unit=.7cm}
+\SbSbSSCT{\'Epaisseur des graduations}{Width of ticks marks}
+ 
+\begin{tabular}{|c|c|c|} \hline  
+  \begin{pspicture}[subticks=3,tickwidth=10pt](-1,-1)(4,4) 
+ \psaxes{->}(3,3)
+ \end{pspicture} 
+& 
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[subticks=3,subtickwidth=5pt]{->}(3,3)
+\end{pspicture} 
+&
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[subticks=3,tickwidth=1em,subtickwidth=1ex]{->}(3,3)
+\end{pspicture} 
+ \\  \hline 
+\RDD{tickwidth}=10pt  \RDI{tickwidth}{pst-plot} & \RDD{subtickwidth}=5pt  \RDI{subtickwidth}{pst-plot} & 
+{\red tickwidth}=1em \\ 
+  &  & {\red subtickwidth}=1ex \\ \hline 
+\multicolumn{3}{|c|}{\blue \dft : tickwidth = subtickwidth = 0.5\BS{pslinewidth}} \\  \hline  
+\end{tabular}
+
+
+
+\SbSbSSCT{Nombre de graduations secondaires }{Number of subticks}
+%--------------------------------------------------
+ 
+\begin{tabular}{|c|c|c|} \hline  
+  \begin{pspicture}[subticks=3](-1,-1)(4,4) 
+ \psaxes{->}(3,3)
+ \end{pspicture} 
+& 
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[xsubticks=3]{->}(3,3)
+\end{pspicture} 
+&
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[ysubticks=3]{->}(3,3)
+\end{pspicture} 
+ \\  \hline 
+\RDD{subticks}=2  \RDI{subticks}{pst-plot} & \RDD{xsubticks}=2  \RDI{xsubticks}{pst-plot} & \RDD{ysubticks}=2  \RDI{ysubticks}{pst-plot} \\ \hline 
+\multicolumn{3}{|c|}{\blue \dft  subticks = xsubticks = ysubticks = 0 } \\  \hline 
+
+\end{tabular}
+
+
+%--------------------------------------------------
+\SbSbSSCT{Tailles des marques de graduation secondaires / principales }{Size of subticks}
+ 
+\begin{tabular}{|c|c|c|} \hline  
+  \begin{pspicture}[subticks=3,subticksize	=1](-1,-1)(4,4) 
+ \psaxes{->}(3,3)
+ \end{pspicture} 
+& 
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[xsubticks=3,xsubticksize=.5]{->}(3,3)
+\end{pspicture} 
+&
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[ysubticks=3,ysubticksize=2 ]{->}(3,3)
+\end{pspicture} 
+ \\  \hline 
+\RDD{subticksize}=1   \RDI{subticksize}{pst-plot} & \RDD{xsubticksize}=.5  \RDI{xsubticksize}{pst-plot}  & \RDD{ysubticksize}=2  \RDI{ysubticksize}{pst-plot} \\ \hline 
+\multicolumn{3}{|c|}{\blue \dft{} : subticksize = xsubticksize = subticksize = 0.75 } \\  \hline 
+
+\end{tabular}
+
+
+
+%--------------------------------------------------
+\SbSbSSCT{Couleurs des marques de graduation}{Color of tick marks}
+ 
+\begin{tabular}{|c|c|c|} \hline  
+  \begin{pspicture}[subticks=3,tickcolor=red,subtickcolor=green](-1,-1)(4,4) 
+ \psaxes{->}(3,3)
+ \end{pspicture} 
+& 
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[xsubticks=3,xtickcolor=red,xsubtickcolor=green]{->}(3,3)
+\end{pspicture} 
+&
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[ysubticks=3,ytickcolor=red,ysubtickcolor=green]{->}(3,3)
+\end{pspicture} 
+ \\  \hline 
+\RDD{tickcolor}=red 	 \RDI{tickcolor}{pst-plot} 	& \RDD{xtickcolor}=red 	 \RDI{xtickcolor}{pst-plot} 	& \RDD{ytickcolor}=red 	 \RDI{ytickcolor}{pst-plot} 	\\ 
+\RDD{subtickcolor}=green   \RDI{subtickcolor}{pst-plot} 	& \RDD{xsubtickcolor}=green \RDI{xsubtickcolor}{pst-plot}  & \RDD{ysubtickcolor}=green  \RDI{ysubtickcolor}{pst-plot} \\ \hline 
+\multicolumn{3}{|c|}{ \blue \dft{} : tickcolor = xtickcolor = ytickcolor = black } \\ 
+\multicolumn{3}{|c|}{ \blue subtickcolor = xsubtickcolor = ysubtickcolor = darkgray } \\  \hline 
+\end{tabular}
+
+%--------------------------------------------------
+\SbSbSSCT{Style des marques de graduation}{Style of ticks}
+
+\psset{unit=.7cm}
+
+\begin{tabular}{|c|c|c|} \hline  
+  \begin{pspicture}(-1,-1)(4,4) 
+ \psaxes[ticksize=3,subticksize=1,subticks=3,yticklinestyle=dashed,xticklinestyle	=dotted]
+(3,3)
+ \end{pspicture} 
+& 
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[ticksize=3,subticksize=1,subticks=3,xsubticklinestyle=solid,ysubticklinestyle=none ](3,3)
+\end{pspicture} 
+&
+  \begin{pspicture}(-1,-1)(4,4) 
+\psaxes[ticksize=3,,subticksize=1,subticks=3,ticklinestyle= dotted,subticklinestyle=dashed	 ](3,3)
+\end{pspicture} 
+ \\  \hline 
+\RDD{yticklinestyle}=dashed 
+\RDI{yticklinestyle}{pst-plot} &
+
+ \RDD{xsubticklinestyle}=solid \RDI{xsubticklinestyle}{pst-plot} &
+  
+\RDD{ticklinestyle}= dotted  
+\RDI{ticklinestyle}{pst-plot} \\
+ 
+\RDD{xticklinestyle}=dotted 
+\RDI{xticklinestyle}{pst-plot} &
+
+\RDD{ysubticklinestyle}=none 
+\RDI{ysubticklinestyle}{pst-plot} &
+
+ \RDD{subticklinestyle}=dashed  \RDI{subticklinestyle}{pst-plot} \\ 
+\hline 
+\multicolumn{3}{|c|}{\blue \dft{} : ticklinestyle = xticklinestyle = yticklinestyle = solid }\\
+\multicolumn{3}{|c|}{\blue subticklinestyle = xsubticklinestyle =  ysubticklinestyle = solid } \\ \hline 
+\multicolumn{3}{|c|}{ \textbf{Option} : solid/dashed/dotted/none } \\ \hline 
+\end{tabular}
+
+
+
+
+%--------------------------------------------------
+\SbSSCT{\'Etiquettes de graduation}{Labels on axis}
+\SbSbSSCT{\'Etiquettes}{Choice of axis}
+
+
+\psset{unit=0.5cm}
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+ \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[labels=all]{->}(3,3)
+\end{pspicture}  
+& \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[labels=x]{->}(3,3)
+\end{pspicture}  
+&  \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[labels=y]{->}(3,3)
+\end{pspicture} 
+&  \begin{pspicture}(-1,-1)(4,4) 
+ \psaxes[labels=none]{->}(3,3)
+\end{pspicture} \\ 
+\hline  
+\RDD{labels}= all {\blue (\dft)} \RDI{labels}{pst-plot} & 
+{\red labels}=x  & {\red labels}=y  & {\red labels}=none \\  \hline 
+\end{tabular} 
+
+
+%--------------------------------------------------
+\SbSSCT{Position des étiquettes}{Position of labels}
+
+
+\psset{unit=0.7cm}
+\begin{tabular}{|c|c|c|}
+\hline \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[ylabelPos=axis, xlabelPos=axis,tickcolor=red]{->}(3,3)
+\end{pspicture}  
+&  \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[ylabelPos=right, xlabelPos=bottom,tickcolor=red]{->}(3,3)
+\end{pspicture} 
+&  \begin{pspicture}(-1,-1)(4,4) 
+ \psaxes[ ylabelPos=left, xlabelPos=top,tickcolor=red]{->}(3,3)
+\end{pspicture} \\ 
+\hline  \RDD{xlabelPos}=axis  \RDI{xlabelPos}{pst-plot} 
+&  {\red xlabelPos}=bottom {\blue (\dft)} 
+&  {\red xlabelPos=top} \\ 
+   \RDD{ylabelPos}=axis  \RDI{ylabelPos}{pst-plot} 
+   &  {\red ylabelPos}=right 
+   &  {\red ylabelPos}=left {\blue (\dft)}  \\
+\hline 
+\end{tabular} 
+
+
+
+\bigskip
+\psset{unit=0.7cm}
+\begin{tabular}{|c|c|c|}
+\hline \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[labelsep=.5cm,tickcolor=red]{->}(3,3)
+\end{pspicture}  
+&  \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[xlabelsep=-.5cm, ylabelsep=.5cm,,tickcolor=red]{->}(3,3)
+\end{pspicture} 
+&  \begin{pspicture}(-1,-1)(4,4) 
+ \psaxes[ylabelsep=-.5cm, xlabelsep=.5cm,tickcolor=red]{->}(3,3)
+\end{pspicture} \\ 
+\hline  
+\RDD{labelsep}= .5cm  \RDI{labelsep}{pst-plot} 
+&  
+\RDD{xlabelsep}= -.5cm \RDI{xlabelsep}{pst-plot} 
+&  
+{\red  xlabelsep}= .5cm 
+\\ 
+
+& 
+\RDD{ylabelsep}= .5cm  \RDI{ylabelsep}{pst-plot} 
+&  
+{\red ylabelsep}=-.5cm 
+\\ \hline 
+\multicolumn{3}{|c|}{ \blue \dft{} :  labelsep = 5pt, xlabelsep = 5pt, ylabelsep =5pt } \\ \hline 
+\end{tabular} 
+\bigskip
+
+\psset{unit=0.7cm}
+\begin{tabular}{|c|c|c|}
+\hline \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[xlabelOffset=0.5,tickcolor=red]{->}(3,3)
+\end{pspicture}  
+&  \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[ylabelOffset=0.5,tickcolor=red]{->}(3,3)
+\end{pspicture} 
+&  \begin{pspicture}(-1,-1)(4,4) 
+ \psaxes[ xlabelOffset=-0.5,tickcolor=red]{->}(3,3)
+\end{pspicture} \\ \hline  
+\RDD{xlabelOffset}=0.5  \RDI{xlabelOffset}{pst-plot} 
+&  
+\RDD{ylabelOffset}=0.5  \RDI{ylabelOffset}{pst-plot} 
+&  
+\RDD{xlabelOffset}= -0.5  \RDI{xlabelOffset}{pst-plot}  
+\\ \hline 
+\multicolumn{3}{|c|}{ \blue \dft{} :  xlabelOffset =0 , xlabelOffset = 0 } \\ \hline 
+\end{tabular} 
+
+
+% % % % % % % % % % % % A voir
+%%--------------------------------------------------
+\SbSbSSCT{Taille des étiquettes }{Size of labels}
+
+\psset{unit=0.5cm}
+
+\begin{tabular}{|c|c|c|}
+\hline \begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[labelFontSize=\scriptstyle]{->}(3,3)
+\end{pspicture}  
+& % \psset{mathLabel=false}
+\begin{pspicture}(-1,-1)(4,4)  
+ \psaxes[xlabelFontSize=\footnotesize]{->}(3,3)
+\end{pspicture} 
+& 
+ %\psset{mathLabel=true}
+\begin{pspicture}(-1,-1)(4,4) 
+ \psaxes[ylabelFontSize=\small]{->}(3,3)
+\end{pspicture} \\ 
+\hline 
+\RDD{labelFontSize}=\BS{scriptstyle}  \RDI{labelFontSize}{pst-plot} &
+
+ \RDD{xlabelFontSize}=\BS{}footnotesize \RDI{xlabelFontSize}{pst-plot}  
+& 
+
+\RDD{ylabelFontSize}=\BS{}small
+\RDI{ylabelFontSize}{pst-plot} 
+\\ \hline 
+\end{tabular} 
+%
+%
+%%\psset{mathLabel=false}
+%%--------------------------------------------------
+\SbSbSSCT{\'Etiquette avec extension}{Labels with extra}
+
+\psset{yunit=0.5cm,xunit=1.2cm}
+
+\begin{tabular}{|c|c|}
+\hline 
+\begin{pspicture}(-1.5,-1.5)(3.5,3.5)  
+ \psaxes[xlabelFactor=$$\cdot 10^3 $$,ylabelFactor= V]{->}(3,3)
+\end{pspicture}  
+& 
+\begin{pspicture}(-1.5,-1.5)(3.5,3.5)  
+ \psaxes[ylabelFactor=$$\cdot 10^6$$,xlabelFactor=s]{->}(3,3)
+\end{pspicture} \\  \hline 
+\RDD{xlabelFactor}=\BS{cdot} $10^3$  \RDI{xlabelFactor}{pst-plot} 	& {\red  xlabelFactor}= s \\ 
+{\red  ylabelFactor}= V 				&  \RDD{ylabelFactor}=$\cdot 10^6$ \RDI{ylabelFactor}{pst-plot} 
+\\  \hline 
+
+\end{tabular} 
+
+
+
+%--------------------------------------------------
+\SbSbSSCT{Les décimales dans les étiquettes}{Decimals in labels}
+
+
+\psset{yunit=0.5cm,xunit=0.65cm}
+
+\begin{tabular}{|c|c|c|}
+\hline \begin{pspicture}(-1.5,-1)(4,4)  
+ \psaxes[comma=true,xyDecimals=1]{->}(3,3)
+\end{pspicture}  
+& 
+\begin{pspicture}(-1.5,-1)(4,4)  
+ \psaxes[comma=false,xDecimals=1]{->}(3,3)
+\end{pspicture} 
+& 
+\begin{pspicture}(-1.5,-1)(4,4) 
+ \psaxes[decimalSeparator=h,yDecimals=2]{->}(3,3)
+\end{pspicture} \\ 
+\hline 
+\RDD{comma}=true \RDI{comma}{pst-plot} 
+& {\red comma}= false {\blue (\dft )}
+& \RDD{decimalSeparator}=h   \RDI{decimalSeparator}{pst-plot} \\
+\RDD{xyDecimals}=1 \RDI{xyDecimals}{pst-plot}
+&  \RDD{xDecimals}=1  \RDI{xDecimals}{pst-plot}
+& \RDD{yDecimals}=2  \RDI{yDecimals}{pst-plot}\\ 
+
+\hline 
+\end{tabular} 
+
+%------------------------------------------------------------------------------
+\SbSbSSCT{Liste comme étiquettes de graduations}{List of labels as  axis} 
+
+
+\begin{center}
+\begin{tabular}{|c|} \hline
+ \begin{psgraph}[labels=none](5,4){5cm}{3cm} 
+\TFRGB{\psaxes[xLabels={,un,deux,trois,quatre},xLabelsRot=45,yLabels={,petit,moyen,grand},yLabelsRot=30](5,4)}{\psaxes[xLabels={,one,two,three,four},xLabelsRot=45,yLabels={,small,big,huge},yLabelsRot=30](5,4)}
+\end{psgraph} \\ 
+\\ \hline
+% \BS{}begin\AC{psgraph}[labels=none](5,4)\AC{5cm}\AC{3cm} \\
+\TFRGB{\BS{}psaxes[\RDD{xLabels}=\AC{,un,deux,trois,quatre},\RDD{xLabelsRot}=45,}{\BS{}psaxes[\RDD{xLabels}=\AC{,one,two,three,four},\RDD{xLabelsRot}=45,} 
+ \RDI{xLabels}{pst-plot} \RDI{xLabelsRot}{pst-plot}  \\
+\TFRGB{\RDD{yLabels}=\AC{,petit,moyen,grand},\RDD{yLabelsRot}=30](5,4)}{\RDD{yLabels}=\AC{,small,big,huge},\RDD{yLabelsRot}=30](5,4)}  \RDI{yLabelsRot}{pst-plot} \\ \hline
+\end{tabular}
+\end{center}
+
+
+
+\newpage
+%-----------------------------------------------------------------------
+\SbSSCT{Légende}{Legend}
+\SbSbSSCT{Position de la légende}{Legend position}
+
+%\TFRGB{
+%Syntaxe :  
+%\BS{pslegend}[position] (décalage en x,décalage `en y ) \AC{Légende }}
+%{Syntax :  
+%\BS{pslegend}[position] ( x offset, y offset ) \AC{légend }} 
+
+\begin{tabular}{|c|c|}
+\hline 
+\pslegend[lb]{left bottom}
+  \begin{psgraph}[axesstyle=frame,](0,0)(6,6){6cm}{3cm}
+ \end{psgraph} 
+& 
+\pslegend[lt]{left top}
+\begin{psgraph}[axesstyle=frame,](0,0)(6,6){6cm}{3cm}
+\end{psgraph} 
+\\  \hline 
+\BSS{pslegend}[\RDD{lb}]\AC{left bottom} \BSI{pslegend}{pst-plot} \RDI{lb}{pst-plot}& \BSS{pslegend}[\RDD{ lt}]\AC{left top} \RDI{lt}{pst-plot}
+\\  \hline  
+\pslegend[rb]{right bottom}
+  \begin{psgraph}[axesstyle=frame,](0,0)(6,6){6cm}{3cm}
+ \end{psgraph} 
+&  
+\pslegend[rt]{right top}
+  \begin{psgraph}[axesstyle=frame,](0,0)(6,6){6cm}{3cm}
+ \end{psgraph}
+\\ \hline 
+\BSS{pslegend}[\RDD{rb}]\AC{right bottom}  \RDI{rb}{pst-plot} & 
+\BSS{pslegend}[\RDD{rt}]\AC{right top} {\blue (\dft)}  \RDI{rt}{pst-plot}
+\\  \hline 
+\end{tabular} 
+\bigskip
+
+\begin{tabular}{|c|c|}
+\hline 
+\pslegend[lb](20,10){left bottom}
+  \begin{psgraph}[axesstyle=frame](0,0)(6,6){6cm}{3cm}
+ \end{psgraph} 
+ &
+ \pslegend[lb](10,20){left bottom}
+   \begin{psgraph}[axesstyle=frame](0,0)(6,6){6cm}{3cm}
+  \end{psgraph} 
+  \\ \hline  
+ \BS{pslegend}[lb]{\red (20,10)}\AC{left bottom} &  \BS{pslegend}[lb]{\red (10,20)}\AC{left bottom}
+ \\ \hline  
+\end{tabular} 
+%------------------------------------------------------------------------------
+
+\SbSbSSCT{Aspect de la légende}{Legend style}
+
+
+
+\newpsstyle{legendstyle}{fillstyle=solid,fillcolor=cyan,shadow=true}
+
+\pslegend[lt]{\red\rule[1ex]{2em}{1pt} & courbe 1\\
+\blue\rule[1ex]{2em}{1pt} &  courbe 2\\
+ \green\rule[1ex]{2em}{1pt} & courbe 3}
+ 
+ \begin{center}
+ \begin{tabular}{|c|} \hline
+  \begin{psgraph}[axesstyle=frame,](0,0)(12,6){0.6\linewidth}{3cm}
+ \end{psgraph} \\  \hline
+\BSS{newpsstyle}\AC{\RDD{legendstyle}} \AC{fillstyle=solid,fillcolor=cyan,shadow=true} \\
+ \BS{pslegend}[lt]\AC{\BS{red} \BS{rule}[1ex]\AC{2em} \AC{1pt} \& courbe 1 \BS{}\BS{}  \\
+\BS{blue}  \BS{rule}[1ex]\AC{2em}\AC{1pt} \&  courbe 2 \BS{}\BS{}\\ 
+\BS{green} \BS{rule}[1ex]\AC{2em}\AC{1pt} \& courbe 3
+}  \RDI{legendstyle}{pst-plot} \\  \hline 
+ \end{tabular}
+ \end{center}
+ 
+ 
+ %-----------------------------------------------------------
+\SbSSCT{Points particuliers sur les axes}{Point on axes}
+ 
+ \TFRGB{syntaxe}{syntax} :\\
+\BSS{psxTick} [Options]\AC{rotation}(x position)\AC{label} 
+\BSI{psxTick}{pst-plot}\\
+\BSS{psyTick} [Options]\AC{rotation}(y position)\AC{label} 
+\BSI{psyTick}{pst-plot}\\
+\smallskip
+
+
+\begin{center}
+\begin{tabular}{|l|} \hline
+\psset{llx=-1.5cm,lly=-.5cm,urx=.5cm  ,ury=.5cm  ,dotscale=2}
+ \begin{psgraph}[axesstyle=frame,](0,0)(6,6){0.8\linewidth}{3cm}
+ \psxTick[linecolor=red,labelsep=-20pt ]{45}(3.25){\red X=3.25}
+\psyTick[linecolor=magenta](1.5){\magenta Y=1.5}
+\end{psgraph} \\ \hline
+\textbf{\BS{}psxTick}[linecolor=red,labelsep=-20pt ]\AC{45}(3.25)\AC{\BS{}red X=3.25}\\
+\textbf{\BS{}psyTick}[linecolor=magenta](1.5)\AC{\BS{}magenta Y=1.5} \\
+\hline
+\end{tabular}
+\end{center}
+
+%---------------------------------------------------------
+
+\SbSSCT{Portion de courbe}{Portion of curve }
+
+
+
+\psset{llx=-1cm,lly=-.5cm,urx=.5cm  ,ury=.5cm  ,dotscale=2}
+\begin{center}
+\begin{tabular}{|l|} \hline
+\readdata{\dat}{mesdata.dat}
+ \begin{psgraph}[axesstyle=frame,xticksize=0 4cm,yticksize=0 12cm,subticks=0,Dx=100,Dy=.01](0,0)(750,.12){12cm}{4cm} 
+\listplot[linecolor=black,linewidth=1pt]{\dat}
+\listplot[xStart=200,xEnd=300,linecolor=blue,linewidth=5pt]{\dat}
+\listplot[yStart=0,yEnd=.05,linecolor=red,linewidth=5pt]{\dat}
+\listplot[nStart=200,nEnd=300,linecolor=magenta,linewidth=5pt]{\dat}
+\end{psgraph}\\ \hline
+\BS{}listplot[{\red \RDD{xStart}=200,\RDD{xEnd}=300},linecolor=blue,linewidth=5pt]\AC{\BS{}dat} 
+\RDI{xStart}{pst-plot}   \RDI{xEnd}{pst-plot} \\
+\BS{}listplot[{\red \RDD{yStart}=0,\RDD{yEnd}=.05},linecolor=red,linewidth=5pt]\AC{\BS{}dat} 
+\RDI{yStart}{pst-plot}  \RDI{yEnd}{pst-plot} \\
+\BS{}listplot[{\red \RDD{nStar}t=200,\RDD{nEnd}=300},linecolor=magenta,linewidth=5pt]\AC{\BS{}dat}
+ \RDI{nStar}{pst-plot}  \RDI{nEnd}{pst-plot} \\
+\hline
+
+\end{tabular}
+\end{center}
+
+%--------------------------------------------------
+\SbSSCT{Option yMaxValue et yMinValue}{yMaxValue and yMinValue}
+
+
+\begin{center}
+\begin{tabular}{|l|} \hline
+
+ \begin{psgraph}[axesstyle=frame,dx=100](0,0)(0,-1.2)(13,1.2){12cm}{3cm} 
+ \psset{algebraic=true}
+ \psplot[plotpoints=2000,linecolor=blue,linestyle=dotted]{0}{12.56}{sin(x)}
+\psplot[yMaxValue=.7,yMinValue=-.7,plotpoints=2000,linecolor=red,linewidth=5pt]{0}{12.56}{sin(x)}
+\end{psgraph} \\ \hline
+\BS{}psplot[{\red \RDD{yMaxValue}=.7,\RDD{yMinValue}=-.7},plotpoints=2000,linecolor=red,linewidth=5pt]\AC{0}\AC{12.56}\AC{sin(x)}
+ \RDI{yMaxValue}{pst-plot}  \RDI{yMinValue}{pst-plot}\\
+\hline
+\multicolumn{1}{|c|}{ \blue \dft{}  yMaxValue=  1.e30 \hspace{1cm} yMinValue =  -1.e30 }
+\\ \hline
+
+\end{tabular}
+\end{center}
+
+%--------------------------------------------------
+\SbSSCT{\'Echelle trigonométrique}{Axis with trigonmetrical units}
+
+
+\psset{yunit=0.45cm,xunit=0.45cm}
+
+\begin{tabular}{|c|c|c|}
+\hline \begin{pspicture}(-1.5,-1.5)(7,4)  
+ \psaxes[trigLabels=true,trigLabelBase=3]{->}(\psPiTwo,3)
+\end{pspicture}  
+& 
+\begin{pspicture}(-1.5,-1.5)(7,4)   
+ \psaxes[xtrigLabels=true,dx=\pstRadUnit]{->}(\psPiTwo,3)
+\end{pspicture} 
+& 
+\begin{pspicture}(-1.5,-1.5)(7,4)  
+ \psaxes[ytrigLabels=true,xunit=\pstRadUnit]{->}(\psPi,3)
+\end{pspicture} \\ 
+\hline 
+\RDD{trigLabels}=true  \RDI{trigLabels}{pst-plot} & \RDD{xtrigLabels}=true  \RDI{xtrigLabels}{pst-plot} & \RDD{ytrigLabels}=true  \RDI{ytrigLabels}{pst-plot} \\
+\RDD{trigLabelBase}=3  \RDI{trigLabelBase}{pst-plot} 
+& dx=\BSS{pstRadUnit} \BSI{pstRadUnit}{pst-plot} 
+&xunit=\BS{}pstRadUnit \\ \hline 
+\multicolumn{3}{|c|}{ \blue \dft : {\red trigLabelBase} = 0 , {\red trigLabels} = false , {\red xtrigLabels} = false , {\red ytrigLabels} = false}
+\\ \hline
+\end{tabular} 
+
+\bigskip
+\TFRGB{Constantes prédéfinies}{Trigonometrical constants} 
+
+
+\begin{tabular}{|c|c|c|}
+\hline nom					& valeur 		& math \\ 
+\hline \BS{}psPiFour 		& 12.566371 	& $4 \pi$ \\ 
+\hline \BS{}psPiTwo 		& 6.283185 		& $2 \pi$  \\ 
+\hline \BS{}psPi			& 3.14159265		&  $ \pi$ \\ 
+\hline \BS{}psPiH 			& 1.570796327	& $\pi/2$  \\ 
+\hline \BS{}pstRadUnit 		& 1.047198cm 	& $\pi/3$  \\ 
+\hline \BS{}pstRadUnitInv 	& 0.95493cm 	& $3/\pi$  \\ 
+\hline 
+\end{tabular} 
+ 
+
+%==================================================================
+\SbSSCT{\'Echelle logarithmique}{Logarithmic axis}
+\psset{yunit=.7cm,xunit=.7cm}
+
+
+\begin{tabular}{|c|c|c|} \hline
+\pspicture(-1,-1)(3.5,3.5)
+ \psaxes[subticks=5,xylogBase=10,logLines=all](3,3)
+\endpspicture\hspace{1cm}
+&
+\pspicture(-1,-1)(3.5,3.5)
+ \psaxes[subticks=10,axesstyle=frame,ylogBase=2,xlogBase=10,tickstyle=inner](3,3)
+ \endpspicture
+ & 
+ \pspicture(-1,-1)(3.5,3.5)
+ \psaxes[ylogBase={},logLines=y,xticksize=max,xsubticksize=1,tickcolor=red,subtickcolor=blue,tickwidth=1pt,subticks=5,xsubticks =10](3,3)
+\endpspicture\\  \hline
+\RDD{xylogBase}=10   \RDI{xylogBase}{pst-plot} 	& \RDD{xlogBase}=10    \RDI{xlogBase}{pst-plot} 	& \RDD{ylogBase}=\AC{} \RDI{ylogBase}{pst-plot} \\
+\RDD{logLines}=all   \RDI{logLines}{pst-plot} 	& 
+{\red ylogBase}=2 	& 
+{\red logLines}=all\\
+subticks=5 		& subticks=10,		& subticks=5\\
+ 				&  tickstyle=inner 	& xsubticks =10\\ \hline 
+\end{tabular}
+
+%------------------------------
+\SbSSCT{Coordonnées de l'environnement psgraph}{Coordinates of psgraph }
+
+\begin{tabular}{|c|}
+\hline  
+\psset{llx=-5mm,lly=-.5cm,urx=.5cm  ,ury=.5cm  ,dotscale=2}
+\begin{psgraph}[axesstyle=none,xticksize=2,yticksize=6](0,0)(6,2){6cm}{2cm}
+\psdot[linecolor=red](\psgraphLLx,\psgraphLLy)
+\psdot[linecolor=blue](\psgraphLLx,\psgraphURy)
+\psdot[linecolor=cyan](\psgraphURx,\psgraphLLy)
+ \psdot[linecolor=green](\psgraphURx,\psgraphURy)
+\end{psgraph} 
+\\  \hline 
+\BS{psdot}[linecolor=red](\BS{\BDD{psgraphLLx}},\BS{\BDD{psgraphLLy}}) \BDI{psgraphLLx}{pst-plot} \BDI{psgraphLLy}{pst-plot} \\
+\BS{psdot}[linecolor=blue]({\blue \BS{psgraphLLx}},\BS{\BDD{psgraphURy}})  \BDI{psgraphURy}{pst-plot} \\
+\BS{psdot}[linecolor=cyan](\BDD{psgraphURx},{\blue \BS{psgraphLLy}}) \BDI{psgraphURx}{pst-plot}  \\
+\BS{psdot}[linecolor=green]({\blue \BS{psgraphURx},\BS{psgraphURy}}) \\
+\hline 
+\end{tabular} 
+
+%\subsection{paramètres d'un graphe en barres }
+\SbSSCT{paramètres d'un graphe en barres }{Parameters of a bar graph }
+
+\label{bar}
+\begin{tabular}{|c|} 	\hline  
+\BS{listplot}[plotstyle=bar,\RDD{barwidth}=1]\AC{\BS{dat}} 
+\RDI{barwidth}{pst-plot} \\ \hline  
+\readdata{\dat}{table.dat}
+\begin{pspicture}(-1.5,-1.5)(8.5,11)
+\psaxes(0,0) (8,10) 
+\listplot[plotstyle=bar,barwidth=1]{\dat} 
+\end{pspicture}
+\\ \hline 
+\dft : barwidth = 0.25cm
+\\ \hline 
+\end{tabular} 
+
+
+\begin{tabular}{|c|} 	\hline  
+\BS{listplot}[plotstyle=bar,\RDD{interrupt}=\AC{7,1,5}] \RDI{interrupt}{pst-plot}\\
+\AC{ 0 5 1 17 2 15 3 20 4 1 5 3 6 22 7 1 8 18 } 
+\\ \hline 
+\psset{yunit=.5cm}
+\begin{pspicture}(-1.5,-1.5)(10,19)
+\psaxes(0,0) (10,18) 
+\listplot[plotstyle=bar,barwidth=0.3cm,interrupt={7,1,5}]{
+	0 5 1 17 2 15 3 20 4 1 5 3 6 22 7 1 8 18 }
+\end{pspicture}
+\\ \hline 
+\end{tabular}
+

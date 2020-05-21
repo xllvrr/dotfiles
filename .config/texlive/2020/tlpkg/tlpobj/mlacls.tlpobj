@@ -1,0 +1,36 @@
+name mlacls
+category Package
+revision 51865
+shortdesc LaTeX class for MLA papers
+longdesc In the United States, secondary and undergraduate students are
+longdesc generally expected to adhere to the format prescribed by the
+longdesc Modern Language Association (MLA) for typewritten essays,
+longdesc research papers and writings. This package provides a simple,
+longdesc straightforward LaTeX class for composing papers almost
+longdesc perfectly adherent to the MLA style guide.
+containersize 2604
+containerchecksum 14397d8a4afa0cb4aad0749dd4d4e32c6384d8cc40d302504783ddf86756c65abef878fc7bfcffc150fd5b73c701c6d79a8f5a5a085a7bac00645bfa1b997c30
+doccontainersize 2969948
+doccontainerchecksum fb0c75e2f3a8f9f543af670309ec035e3f539cd642a8d829b88a733c5fc7656b86947c6b56d36dd8b17942f72b4023fd20b21a0415aeacde878b95e6675132dd
+docfiles size=735
+ texmf-dist/doc/latex/mlacls/BUGS.md
+ texmf-dist/doc/latex/mlacls/LICENSE
+ texmf-dist/doc/latex/mlacls/README.md details="Readme"
+ texmf-dist/doc/latex/mlacls/mla-example.bib
+ texmf-dist/doc/latex/mlacls/mla-example.pdf
+ texmf-dist/doc/latex/mlacls/mla-example.tex
+ texmf-dist/doc/latex/mlacls/mla.pdf details="Package documentation"
+srccontainersize 9000
+srccontainerchecksum 4f087636bef5761a97ed2a4c48f207b92e290683d92975a014670194c0e81d598aa2282e266dae2a329d7a47ec777b06754864ba32bda2eddad77635445d922b
+srcfiles size=8
+ texmf-dist/source/latex/mlacls/mla.dtx
+ texmf-dist/source/latex/mlacls/mla.ins
+runfiles size=2
+ texmf-dist/tex/latex/mlacls/mla.cls
+catalogue-also mla-paper
+catalogue-contact-bugs https://gitlab.com/ssterling/mlacls/issues
+catalogue-contact-repository https://gitlab.com/ssterling/mlacls
+catalogue-ctan /macros/latex/contrib/mlacls
+catalogue-license lppl1.3c
+catalogue-topics class gen-paper humanities
+catalogue-version 0.6

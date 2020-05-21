@@ -1,0 +1,44 @@
+INFORMATION
+===========
+
+"articleingud" is a LaTeX class for scientific articles
+published by INGENIERIA review
+(http://revistas.udistrital.edu.co/ojs/index.php/reving),
+Universidad Distrital Francisco Jose de Caldas
+(http://www.udistrital.edu.co/)
+
+"articleingud" is based on the standard LaTeX class "article".
+
+This folder contains the following files:
+  -- articleingud.pdf (documentation)
+  -- articleingud.dtx (documented LaTeX file)
+  -- articleingud.ins (installer)
+  -- articleingud.cls (class file)
+  -- template.tex     (a template in English)
+  -- plantilla.tex    (a template in Spanish)
+  -- readme           (this file)
+
+VERSION
+=======
+0.3
+
+LICENSE
+=======
+
+This work is licensed under the conditions of the
+LaTeX Project Public License, either version 1.2 of
+this license or (at your option) any later version.
+The latest version of this license is in:
+http://www.latex-project.org/lppl.txt
+and version 1.2 or later is part of all distributions of
+LaTeX version 1999/12/01 or later.
+
+CURRENT MAINTAINER
+==================
+
+Omar Salazar
+osalazarm@correo.udistrital.edu.co
+Laboratory for Automation and Computational Intelligence (LAMIC)
+Engineering Department
+Universidad Distrital Francisco Jose de Caldas
+Bogota, Colombia

@@ -1,0 +1,35 @@
+% fontinst v1.931 test
+
+\input finstmsc.sty
+
+
+% %1
+% 
+% \adddriver{dvips}{v1931test.map}
+% \input v1931test.recs
+% \donedrivers
+% 
+% % Expected results in v1931test.map:
+% % 
+% % padr6z AGaramond-Regular <cc-pl.enc <padr8a.pfa " encpcr ReEncodeFont "
+% % padro6z AGaramond-Regular <cc-pl.enc <padr8a.pfa " encpcr ReEncodeFont 0.25 SlantFont "
+
+
+%2
+
+\specifypsfont{AGaramond-Regular}{\fulldownload{gdrg____.pfb}}
+\declarepsencoding{cc-pl-test}{encpcr}{\encodingdownload{cc-pl.enc}}
+
+\adddriver{dvips}{v1931test.map}
+\input v1931test.recs
+\donedrivers
+
+% Expected results in v1931test.map:
+% 
+% padr6z AGaramond-Regular <[cc-pl.enc <<gdrg____.pfb " encpcr ReEncodeFont "
+% padro6z AGaramond-Regular <[cc-pl.enc <<gdrg____.pfb " encpcr ReEncodeFont 0.25 SlantFont "
+
+
+
+\bye
+

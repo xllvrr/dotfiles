@@ -1,0 +1,30 @@
+name umthesis
+category Package
+revision 15878
+shortdesc Dissertations at the University of Michigan
+longdesc The class loads book class, and makes minimal changes to it;
+longdesc its coding aims to be as robust as possible, and as a result it
+longdesc has few conflicts with potential add-on packages.
+containersize 6764
+containerchecksum b2fb90713da6547b9d4cbea4f972144f70d7f1875e325225f0dfb90df1a04b4693c5a3dc651f0066ef7ba6456c7732aeb5272ccfd5e8edc24281c1b1bc9e4e32
+doccontainersize 91508
+doccontainerchecksum fb43c7ab262d2a1eb70b80bf4ad66ae9e022c847451009372e1ee1fcc5250e93b0a4a2195f4208799ae78cbcb5fc24d48de0b2355884721918ae5d4c827c3507
+docfiles size=61
+ texmf-dist/doc/latex/umthesis/PDP.tex
+ texmf-dist/doc/latex/umthesis/README details="Readme"
+ texmf-dist/doc/latex/umthesis/appendix.tex
+ texmf-dist/doc/latex/umthesis/conclusion.tex
+ texmf-dist/doc/latex/umthesis/example.pdf details="Example of use"
+ texmf-dist/doc/latex/umthesis/example.tex
+ texmf-dist/doc/latex/umthesis/exp1.tex
+ texmf-dist/doc/latex/umthesis/exp2.tex
+ texmf-dist/doc/latex/umthesis/exp3.tex
+ texmf-dist/doc/latex/umthesis/felty.bib
+ texmf-dist/doc/latex/umthesis/intro.tex
+ texmf-dist/doc/latex/umthesis/mybibstyle.bst
+runfiles size=6
+ texmf-dist/tex/latex/umthesis/umthesis.cls
+catalogue-ctan /macros/latex/contrib/umthesis
+catalogue-license lppl
+catalogue-topics dissertation
+catalogue-version 0.2

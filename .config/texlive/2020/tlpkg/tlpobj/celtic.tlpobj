@@ -1,0 +1,25 @@
+name celtic
+category Package
+revision 39797
+shortdesc A TikZ library for drawing celtic knots
+longdesc The package provides a TikZ library for drawing celtic knots.
+containersize 3780
+containerchecksum df78495c7a42a60bf40be46bf14c30d97dcd7c7d1b283f487026f7c3b6a680c750d09527cdd578f69234500eca05764792ddc90ae4dc8005126510ae33fcab4a
+doccontainersize 676044
+doccontainerchecksum ed29c2882619bc7f076578c91cfb7e1e83af9e6960ee58af78486c1af6aeeb2b2b6eabdf916fa30ab865991c677955c0fd15a43f128aecb635ee30b3ba514bb3
+docfiles size=172
+ texmf-dist/doc/latex/celtic/README details="Readme"
+ texmf-dist/doc/latex/celtic/celtic.pdf details="Package documentation"
+ texmf-dist/doc/latex/celtic/celtic_code.pdf
+ texmf-dist/doc/latex/celtic/celtic_doc.tex
+srccontainersize 8344
+srccontainerchecksum d60ef14ae649288b8b9484844fc9fbf15ce564209c04249b47c3cb0beb96c209c0401cf3f9200ca3be27ba0417c60a2a7a9780341ea311e1bc836753a2df7882
+srcfiles size=10
+ texmf-dist/source/latex/celtic/celtic.dtx
+ texmf-dist/source/latex/celtic/celtic.ins
+runfiles size=5
+ texmf-dist/tex/latex/celtic/tikzlibraryceltic.code.tex
+catalogue-ctan /graphics/pgf/contrib/celtic
+catalogue-license lppl1.3
+catalogue-topics graphics pgf-tikz
+catalogue-version 1.1

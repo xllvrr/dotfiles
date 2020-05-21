@@ -1,0 +1,25 @@
+name qrcode
+category Package
+revision 36065
+shortdesc Generate QR codes in LaTeX
+longdesc The package generates QR (Quick Response) codes in LaTeX,
+longdesc without the need for PSTricks or any other graphical package.
+containersize 19636
+containerchecksum 65ecc00d46d06f8a36cb1f170c12692cf7ef8c0cf9e68bbdc6a7da6b0a7f5fcda6a2e065b8a474609556518ab07c2d12f19a9fdaa0b6339aba94cf35184e26f9
+doccontainersize 245688
+doccontainerchecksum 406d1cf238b397412a57ed695a39af0ef32de007b94e8650cf591c63882d05d7df18061fbd2b350347c052091202a38de1ceef19f61fa58de38c2e73de6b01b2
+docfiles size=66
+ texmf-dist/doc/latex/qrcode/README details="Readme"
+ texmf-dist/doc/latex/qrcode/qrcode.pdf details="Package documentation"
+srccontainersize 26296
+srccontainerchecksum 3e344af4bcd4e0d2b49638c33177f600f1e3ff24416ad503f55b3376fe7323ab381c7ee695351923cfc06b54c9ba8b3d1f4705f5377164f2b43ee04ccc565955
+srcfiles size=30
+ texmf-dist/source/latex/qrcode/qrcode.dtx
+ texmf-dist/source/latex/qrcode/qrcode.ins
+runfiles size=24
+ texmf-dist/tex/latex/qrcode/qrcode.sty
+catalogue-also pst-barcode
+catalogue-ctan /macros/latex/contrib/qrcode
+catalogue-license lppl1.3
+catalogue-topics barcode qrcode rule
+catalogue-version 1.51

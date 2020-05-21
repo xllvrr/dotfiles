@@ -1,0 +1,28 @@
+\documentclass{standalone}
+\usepackage{binarytree}
+\usetikzlibrary{external}
+\tikzexternalize
+\tikzexternaldisable
+
+\begin{document}
+\btreesetexternal{%
+  use automatic file name,%
+  mode=list and make}
+\btreeset{%
+  top padding=0pt,%
+  left padding=0pt,%
+  right padding=0pt,%
+  bottom padding=0pt,%
+  external=false,separate=true,%
+  label on every edge,%
+  left label anchor=center,%
+  right label anchor=center,%
+  continue after turn=false,%
+  continue at path end=false,%
+  level distance scales=false,%
+  sibling distance scales=false,%
+  scale=0.7}
+
+\BinaryTree{lrr:x,llrr:x,rll:x,rrll:x}{5}%
+\BinaryTree{lrr:x,llrr:x,rll:x,rrll:x}{5}
+\end{document}

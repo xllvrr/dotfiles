@@ -1,0 +1,33 @@
+      IJMART:  LATEX CLASS FOR THE ISRAEL JOURNAL OF MATHEMATICS
+
+The Israel Journal of Mathematics is published by The Hebrew
+University Magnes Press.  This class provides LaTeX support for its
+authors and editors.  It strives to achieve the distinct ``look and
+feel'' of the journal, while having the interface similar to the one
+of the amsart document class.  This will help the authors already
+familiar with amsart to easily submit manuscripts for The Israel
+Journal of Mathematics or to put the preprints in http://www.arxiv.org
+with minimal changes in the LaTeX source.
+
+Changes:
+
+Version 1.1: Added environments namedprop and namedprop* for special
+             named propositions.
+
+Version 1.1a: Minor documentation updates.
+
+Version 1.2: New table of contents formatting.
+
+Version 1.3: Changed the typesetting of proofs that end by a math
+             display.  This involves interface changes.
+             Changed table of contents formatting (again).
+
+Version 1.4: Fixed the bug inherited from amsart:  now appendices
+             do not cause large indentations in table of contents
+
+Version 1.5: Added compatibility with babel
+
+Version 1.6: Bibliography style now understands fjournal field.
+             Documentation update
+
+Version 1.7: Changes in sample file

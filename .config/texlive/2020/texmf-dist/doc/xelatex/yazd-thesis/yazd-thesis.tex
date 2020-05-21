@@ -1,0 +1,36 @@
+% !TEX TS-program = XeLaTeX
+% اگر قصد نوشتن رساله دکتری را دارید، در خط زیر، گزینه msc را پاک کنید. کلیه تنظیمات لازم به طور خودکار اعمال می‌شود.
+% برای عدم نمایش فرم صورت‌جلسه، گزینه minutes را در خط زیر پاک کنید.
+\documentclass[msc,hidelinks,minutes]{yazd-thesis}
+\usepackage{xepersian}
+\settextfont[Scale=1.32]{Yas}
+\setlatintextfont[Scale=1.3]{Times New Roman} 
+% فونت فرم صورت‌جلسه
+\defpersianfont\minutesfont[Scale=1.1]{B Nazanin}
+\setdigitfont[Scale=1.2]{Yas}
+\DeclareMathSizes{10.95}{12}{7.3}{5.5}
+\defpersianfont\ypfont[Scale=1]{Yas}
+\deflatinfont\yefont[Scale=1]{Times New Roman} 
+\SepMark{-}
+\begin{document}
+\baselineskip=1cm
+\input{fainfo}
+\frontmatter
+\tableofcontents
+\listofsymbols%[3em]
+\mainmatter
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+\include{chapter4}
+\include{chapter5}
+\appendix
+\include{appendix1}
+\include{dicfa2en}
+\include{dicen2fa}
+\linespread{1.7}\selectfont
+\bibliographystyle{acm-fa}
+\bibliography{MyReferences}
+\printindex
+\input{eninfo}
+\end{document}

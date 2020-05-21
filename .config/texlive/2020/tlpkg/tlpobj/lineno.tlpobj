@@ -1,0 +1,41 @@
+name lineno
+category Package
+revision 21442
+shortdesc Line numbers on paragraphs
+longdesc Adds line numbers to selected paragraphs with reference
+longdesc possible through the LaTeX \ref and \pageref cross reference
+longdesc mechanism. Line numbering may be extended to footnote lines,
+longdesc using the fnlineno package.
+containersize 62308
+containerchecksum c98bb4c84d6473c3038a359872442ff8387ad8f111ce1d82021728d9bb8e29ca08cc65d5705261bb347a2da2fc27594cbcdc8accbd59aa03c91f0c25312578fb
+doccontainersize 649992
+doccontainerchecksum da4fc0ca69d434c6d97cb87390247b3efd3463f5dcfa7e828d2bc840d2636036c097d6d54bb2e89b5d9b5f2a95a41db89af415d08ceacddbc4642883ebc134dc
+docfiles size=218
+ texmf-dist/doc/latex/lineno/CHANGEs.txt
+ texmf-dist/doc/latex/lineno/COPYING.txt
+ texmf-dist/doc/latex/lineno/README
+ texmf-dist/doc/latex/lineno/README.txt details="Readme"
+ texmf-dist/doc/latex/lineno/SRCFILEs.txt
+ texmf-dist/doc/latex/lineno/fnlineno.pdf
+ texmf-dist/doc/latex/lineno/lineno.pdf details="Package documentation:"
+ texmf-dist/doc/latex/lineno/lnosuppl.pdf details="Supplementary files as PDF"
+ texmf-dist/doc/latex/lineno/ulineno.pdf details="User manual:"
+srccontainersize 44284
+srccontainerchecksum 9598996c2796de011a31a8b8ebd38fa343ce856fc6d291426074da40bc557359e9ff40039cc48faaf6b4a3d039ae091bb7d7dfea530e449a0be3a34dba1c997d
+srcfiles size=40
+ texmf-dist/source/latex/lineno/fnlineno.tex
+ texmf-dist/source/latex/lineno/lineno.tex
+ texmf-dist/source/latex/lineno/lnosuppl.tex
+ texmf-dist/source/latex/lineno/ulineno.tex
+runfiles size=60
+ texmf-dist/tex/latex/lineno/ednmath0.sty
+ texmf-dist/tex/latex/lineno/edtable.sty
+ texmf-dist/tex/latex/lineno/fnlineno.sty
+ texmf-dist/tex/latex/lineno/lineno.sty
+ texmf-dist/tex/latex/lineno/vplref.sty
+catalogue-also numline edmac ledmac ednotes manyfoot poemscol
+catalogue-contact-support http://www.webdesign-bu.de/uwe_lueck/contact.html
+catalogue-ctan /macros/latex/contrib/lineno
+catalogue-license lppl
+catalogue-topics typesetting
+catalogue-version 4.41

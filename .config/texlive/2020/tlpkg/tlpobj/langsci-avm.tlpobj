@@ -1,0 +1,36 @@
+name langsci-avm
+category Package
+revision 54239
+shortdesc Attribute-value matrices and feature structures for use in linguistics
+longdesc This package is aimed at typesetting beautiful feature
+longdesc structures, also known as attribute-value matrices (AVMs), for
+longdesc use in linguistics. The package provides a minimal and easy to
+longdesc read syntax. It depends only on the array package and can be
+longdesc placed almost everywhere, in particular in footnotes or graphs
+longdesc and tree structures. The package is meant as an update to, and
+longdesc serves the same purpose as, Christopher Manning's avm package,
+longdesc but shares no code base with that package. langsci-avm was
+longdesc developed at Language Science Press to help in the production
+longdesc of scientific texts in linguistics, in particular an upcoming
+longdesc HPSG handbook.
+containersize 2908
+containerchecksum cb318867d89d9678a23112fb84167a0ab9c11667f73348a6853228b87d7fcf55790a4400811a1f010139cc3e4ace38649ed7bc91aa5c0c8eef88448d6cc1eea1
+doccontainersize 101092
+doccontainerchecksum f09d96225afef24d669e84a3d950c53cf563fed079992925989f7f598d67532ff77b9b7dc9187ac6c0909ccf7de90366ae058441742f38886da37c568a7feca9
+docfiles size=28
+ texmf-dist/doc/latex/langsci-avm/README details="Readme"
+ texmf-dist/doc/latex/langsci-avm/include/smallcaps-standalone.pdf
+ texmf-dist/doc/latex/langsci-avm/langsci-avm.pdf details="Package documentation"
+srccontainersize 8560
+srccontainerchecksum 1c90123c1cfa69b9e8fd74b02c755691ba20470d571f66b83ee0ef8764cbd85f1becd4274500385c75a8de7715a41b2c5d9946c1734545aa3b32b53c6040ba3e
+srcfiles size=9
+ texmf-dist/source/latex/langsci-avm/langsci-avm.dtx
+ texmf-dist/source/latex/langsci-avm/langsci-avm.ins
+runfiles size=3
+ texmf-dist/tex/latex/langsci-avm/langsci-avm.sty
+catalogue-contact-bugs https://github.com/langsci/langsci-avm/issues
+catalogue-contact-repository https://github.com/langsci/langsci-avm
+catalogue-ctan /macros/latex/contrib/langsci-avm
+catalogue-license lppl1.3c
+catalogue-topics linguistic matrix expl3
+catalogue-version 0.1.0-beta

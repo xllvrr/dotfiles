@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+<title>Filenames for TeX fonts</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Filenames for TeX fonts">
+<meta name="generator" content="makeinfo 4.6">
+<!--
+This document is in the public domain and may be used freely.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+Node:&nbsp;<a name="Filenames%20for%20fonts">Filenames for fonts</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="Long-names.html#Long%20names">Long names</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Introduction.html#Introduction">Introduction</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">Filenames for fonts</h2>
+
+<p>We must limit ourselves to eight character names, for compatibility with
+DOS filesystems and the ISO 9660 standard used for CD-ROM distribution. 
+Names may consist of only the letters (monocase a-z), numerals (0-9),
+and underscore.
+
+   <p>Here is the basic division of the eight characters (the spaces here are
+merely for readability):
+
+<pre class="example">      <var>S</var> <var>TT</var> <var>W</var> [<var>V<small class="dots">...</small></var>] [<var>N</var>] [<var>E</var>] [<var>DD</var>]
+     </pre>
+
+<p>where
+
+     <dl>
+<dt><var>S</var>
+     <dd>represents the supplier of the font.
+
+     <br><dt><var>TT</var>
+     <dd>represents the typeface name.
+
+     <br><dt><var>W</var>
+     <dd>represents the weight.
+
+     <br><dt><var>V<small class="dots">...</small></var>
+     <dd>represents the variant(s), and is omitted if both it and the width are
+normal.  Many fonts have more than one variant.
+
+     <br><dt><var>N</var>
+     <dd>represents the encoding, and is omitted if the encoding is nonstandard. 
+Encodings are subsumed in the section on variants (see <a href="Variants.html#Variants">Variants</a>).
+
+     <br><dt><var>E</var>
+     <dd>represents the width ("expansion"), and is omitted if
+it is normal.
+
+     <br><dt><var>DD</var>
+     <dd>represents the design size (in decimal), and is omitted if the font is
+linearly scaled.  Mittelbach in <cite>TUGboat</cite> 13(1) proposes using
+hexadecimal or base-36 notation.  I don't think the increased range
+makes up for the unreadability of the common sizes (e.g., 10pt
+fonts would have a suffix <code>a</code> (in hex), or <code>j</code> (in base 36)).
+
+   </dl>
+
+   <p>The weight, variants, and width are probably all best taken from the
+original name of the font, instead of trying to relate them to some
+external standard.
+
+<ul class="menu">
+<li><a accesskey="1" href="Suppliers.html#Suppliers">Suppliers</a>: 
+<li><a accesskey="2" href="Typefaces.html#Typefaces">Typefaces</a>: 
+<li><a accesskey="3" href="Weights.html#Weights">Weights</a>: 
+<li><a accesskey="4" href="Variants.html#Variants">Variants</a>: 
+<li><a accesskey="5" href="Widths.html#Widths">Widths</a>: 
+</ul>
+
+   </body></html>
+

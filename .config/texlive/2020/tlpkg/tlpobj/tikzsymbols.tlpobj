@@ -1,0 +1,25 @@
+name tikzsymbols
+category Package
+revision 49975
+shortdesc Some symbols created using TikZ
+longdesc The package provides various emoticons, cooking symbols and
+longdesc trees.
+containersize 14016
+containerchecksum 6061fad290f71257b2496faabc1a11721518274964a18dc1d31d1e530de029c7418668444f868e6b660eea5d85bc440dbb7796fbf6cf181ec190ff34019b5aae
+doccontainersize 541092
+doccontainerchecksum b688b3d4e2ec3352000b7bd8842736bbf52b10b5215725fba7970e048e4e823c0d522d753adf8c65be3ab6d1c091ab9b01b68922ba2796c012c4d948e3958f77
+docfiles size=134
+ texmf-dist/doc/latex/tikzsymbols/README.md details="Readme"
+ texmf-dist/doc/latex/tikzsymbols/tikzsymbols.pdf details="Package documentation"
+srccontainersize 34300
+srccontainerchecksum c7a3d6290a1eb7da4fff7f7f9fb2ef4a8c128c742023da966444be2b662bd98a20e7d3d82ac77637caa0067c2b5ec5ddd84ca224bf793e5b65eb637e8ebbc814
+srcfiles size=50
+ texmf-dist/source/latex/tikzsymbols/tikzsymbols.dtx
+ texmf-dist/source/latex/tikzsymbols/tikzsymbols.ins
+runfiles size=31
+ texmf-dist/tex/latex/tikzsymbols/tikzsymbols.sty
+catalogue-contact-repository https://github.com/Vidabe/tikzsymbols
+catalogue-ctan /graphics/pgf/contrib/tikzsymbols
+catalogue-license lppl1.3c
+catalogue-topics graphics-symb pgf-tikz
+catalogue-version 4.10c

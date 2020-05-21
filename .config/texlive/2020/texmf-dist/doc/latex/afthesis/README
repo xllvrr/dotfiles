@@ -1,0 +1,23 @@
+This is the Air Force Institute of Technology thesis class.
+It is based on the standard LaTeX2e report class and 
+uses the caption2 style from Harald Sommerfeldt to 
+provide nice hung captions.  This was ported to
+LaTeX2e from an archaic nasty latex 209 version.
+
+The afthesis.cls also uses excerpts from doublespace.sty
+as needed to provide clean doublespace support.
+
+usethesis.tex provides some minimal documentation.
+
+
+Those portions of this class not covered by other
+copyrights (like those portions from doublespace)
+are in the public domain.  
+
+This is my first attempt at class writing and
+I appreciate any and all comments.  There is no
+.dtx version.
+
+
+Joel Young
+jdyoung@afit.af.mil

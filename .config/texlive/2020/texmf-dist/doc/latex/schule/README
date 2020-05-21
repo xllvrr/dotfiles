@@ -1,0 +1,92 @@
+PACKAGE `schule'
+========================================================================
+The 'schule' bundle was built to provide packages and commands that
+could be useful for documents in German schools. At the moment its main
+focus lies on documents for informatics as a school subject. An
+extension for physics and history is currently in progress. Extensions
+for other subjects are welcome.
+
+For the time being the whole package splits up into individual packages
+for informatics (including syntax diagrams, Nassi–Shneiderman diagrams,
+sequence diagrams, object diagrams and class diagrams) as well as into
+classes for written exams (tests, quizzes, teaching observations,
+information sheets, worksheets, and answer keys).
+------------------------------------------------------------------------
+Version: 0.8.1
+Last change: 2018/08/22
+
+The package is still a work in progress. Open development steps are
+shown in the documentation.
+------------------------------------------------------------------------
+
+LICENCE
+========================================================================
+Copyright (C)
+2010, 2011, 2012, 2013, 2014, 2018
+Johannes Pieper, André Hilbig, Johannes Kuhaupt, André Hilbig,
+Daniel Spittank, Ludger Humbert, Adrian Salamon
+
+(schulepaket@zfsl.ham.nw.schule.de)
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3
+of this license or (at your option) any later version.
+The latest version of this license is in
+  http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of LaTeX
+version 2005/12/01 or later.
+
+This work has the LPPL maintenance status `maintained'.
+
+The Current Maintainer of this work is Johannes Pieper.
+--------------------------------------------------------------------------
+The main code file of the school package is:
+    schule.sty
+--------------------------------------------------------------------------
+The code files for additional packages are:
+    relaycircuit.sty
+    syntaxdi.sty
+    utfsym.sty
+--------------------------------------------------------------------------
+The code files for old classes and packages that still exist for
+compatibility reasons:
+    schuleab.cls
+    schulealt.pdf
+    schulealt.sty
+    schulein.cls
+    schuleit.cls
+    schulekl.cls
+    schulekl.sty
+    schuleub.cls
+    schuleue.cls
+    schulinf.sty
+    schullsg.cls
+    schullzk.cls
+    schullzk.sty
+    schulphy.sty
+--------------------------------------------------------------------------
+The schule package consists of the documentation files:
+   README
+   schule.tex, schule.pdf
+--------------------------------------------------------------------------
+The schule package consists of the example files:
+    beispiel-ab.tex, beispiel-ab.pdf
+    beispiel-ab-abbott.tex, beispiel-ab-abbott.pdf
+    beispiel-ab-schiefeebene.tex, beispiel-ab-schiefeebene.pdf
+    beispiel-aufgabentemplates.tex, beispiel-aufgabentemplates.pdf
+    beispiel-ib-hieroglyphen.tex, beispiel-ib-hieroglyphen.pdf
+    beispiel-kl.tex, beispiel-kl.pdf
+    beispiel-leitprogramm.tex, beispiel-leitprogramm.pdf
+    bsp-geschichte.tex, bsp-geschichte.pdf
+    bsp-vocab.tex, bsp-vocab.pdf
+    minimal-ab-dev.tex, minimal-ab-dev.pdf
+    minimal-ab.tex, minimal-ab.pdf
+    minimal-ib.tex, minimal-ib.pdf
+    minimal-ka.tex, minimal-ka.pdf
+    minimal-kl-et.tex, minimal-kl-et.pdf
+    minimal-kl.tex, minimal-kl.pdf
+    minimal-kl-teilpunkte.tex, minimal-kl-teilpunkte.pdf
+--------------------------------------------------------------------------
+If you have any ideas, questions, suggestions or bugs to report, please
+feel free to contact me.
+--------------------------------------------------------------------------

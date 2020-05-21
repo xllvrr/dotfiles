@@ -1,0 +1,22 @@
+name context-title
+category ConTeXt
+revision 47085
+shortdesc Place document titles
+longdesc The title module provides the \placetitle command to put a
+longdesc title block into your document. With the command \setuptitle
+longdesc values can be set for \placetitle and change the formatting of
+longdesc the content.
+depend context
+containersize 2208
+containerchecksum bc7d6cbd373cb6d6214489ed97117929ba381626c854a0a5a950bfa44c06214991d7a90290793c825c96e6d22ba1f6807054d4553d1d3980d9d9bc0e6dabafda
+doccontainersize 23088
+doccontainerchecksum 3b910eeca8c8a442939873e082a4025523472b267ed3268e63cbf5fbe0821c9db8d8d183058d139aa02233dfdb6be7e23fb9df360a490f7d551875c59753c7c0
+docfiles size=8
+ texmf-dist/doc/context/third/title/VERSION
+ texmf-dist/doc/context/third/title/title-doc.pdf details="Package documentation"
+runfiles size=2
+ texmf-dist/tex/context/interface/third/t-title.xml
+ texmf-dist/tex/context/third/title/t-title.mkvi
+catalogue-ctan /macros/context/contrib/context-title
+catalogue-license gpl
+catalogue-topics context
