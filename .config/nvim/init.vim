@@ -70,10 +70,9 @@ let g:neoformat_basic_format_retab = 1 " Enable tab to spaces conversion
 let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
 Plug 'terryma/vim-multiple-cursors'
 au BufNewFile *.py 0r ~/.config/nvim/skeleton.py
-command! -nargs=* PT vsplit | terminal ipython
 " Run Python Script
-autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+" autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+" autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
 " Vim CmdLine
 Plug 'jalvesaq/vimcmdline'
@@ -209,7 +208,7 @@ let g:neoformat_enabled_Rnw = ['latexindent']
 let g:neoformat_enabled_tex = ['latexindent']
 let g:neoformat_enabled_xml = ['prettier']
 " Binding
-nnoremap <leader>fs :Neoformat
+nnoremap <leader>ff :Neoformat<CR>
 
 " Highlighting for Rnw files
 augroup filetypedetect
