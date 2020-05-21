@@ -1,10 +1,17 @@
 # DOTFILES
 
-This is a storage of my dotfiles. Currently in this VCM is:
+This is a storage of my dotfiles for my main machine. Currently in this VCM is:
 
 - zsh
 - bash
-- fresh install shell script
+- lf
+- nnn
+- alacritty
+- dunst
+- bspwm
+- sxhkd
+- polybar
+- texlive
 
 Feel free to use them but as my entire setup is a gigantic experiment, be warned that nothing is stable.
 
@@ -15,8 +22,29 @@ Contains my aliases, plugins and such
 ### Bash
 Contains aliases and some ricing
 
-### Fresh Install Script
-Meant to be run on a fresh install of an Arch-based distro to get things rolling. Basically step two of the install process once the fundamentals are done
+### lf
+Configuration for lf file manager
+
+### nnn
+Configuration for nnn file manager (testing currently)
+
+### alacritty
+Configuration for alacritty terminal emulator
+
+### dunst
+Configuration for dunst notification manager
+
+### bspwm
+Configuration for bspwm (tiling window manager)
+
+### sxhkd
+Configuration for sxhkd (simple x hotkey daemon)
+
+### Polybar
+Configuration for polybar
+
+### TexLive
+Configuration for TexLive install
 
 ## License
 These are distributed under the GNU 3.0 GPL
