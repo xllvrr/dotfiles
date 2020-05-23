@@ -2,8 +2,8 @@
 typeset -U PATH path
 path=("$HOME/.local/bin" "$HOME/repos/scripts" "$HOME/repos/scripts/polybar" "$HOME/.config/texlive/2020/bin/x86_64-linux" "$path[@]" "$HOME/.local/bin")
 export PATH
-export MANPATH="/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH"
-export INFOPATH="/usr/local/texlive/2019/texmf-dist/doc/info"
+export MANPATH="$HOME/.config/texlive/2020/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="$HOME/.config/texlive/2020/texmf-dist/doc/info"
 
 # default apps
 export HOME="/home/xllvr"
@@ -32,7 +32,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # nnn settings
 export NNN_PLUG='m:dragdrop;o:fzopen;p:picker;l:launch;i:imgview;c:fzcd;u:getplugs;b:renamer;x:_chmod +x $nnn'
-export NNN_BMS='1:/media/mydisk;2:/media/mydisk/GDrive/School;D:/media/mydisk/GDrive/D&D;L:/media/mydisk/GDrive/Dad Lab/Reference/code;S:/media/mydisk/GDrive/Starfinder'
+export NNN_BMS='1:/media/mydisk;2:/media/mydisk/GDrive/School;D:/media/mydisk/GDrive/D&D;L:/media/mydisk/GDrive/Dad Lab/Reference/code;S:/media/mydisk/GDrive/Starfinder;W:/media/mydisk/GDrive/VimWiki'
 export NNN_COLORS='2'
 
 # lf icons
