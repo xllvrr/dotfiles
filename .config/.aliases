@@ -97,7 +97,7 @@ n ()
     # stty lwrap undef
     # stty lnext undef
 
-    nnn "$@" -He
+    nnn "$@" -H -e
 
     if [ -f "$NNN_TMPFILE" ]; then
             . "$NNN_TMPFILE"
@@ -124,14 +124,3 @@ n ()
 }
 
 bindkey -s '^o' 'lfcd\n'  # zsh
-
-# for quick access to HT folder
-alias ht='cd /media/mydisk/GDrive/School/"Honours Thesis"'
-
-# for school folder
-alias sch='cd /media/mydisk/GDrive/School/"Year 4 Sem 2"'
-
-# create from defaults
-alias rmd='cp ~/repos/templates/default.Rmd .'
-alias rnw='cp ~/repos/templates/default.Rnw .'
-
