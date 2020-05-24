@@ -11,6 +11,7 @@ Plug 'kovetskiy/sxhkd-vim' " Integration with sxhkd
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/fzf.vim' " Fuzzy Search
 Plug 'vimwiki/vimwiki' " Vimwiki
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " Markdown Preview
 
 Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
@@ -82,7 +83,7 @@ let cmdline_follow_colorscheme = 1
 let cmdline_vsplit = 1
 let cmdline_app = {}
 let cmdline_term_width = 120
-let g:cmdline_app = {"python": "ipython --no-autoindent --matplotlib"}
+let g:cmdline_app = {"python": "ipython --no-autoindent --matplotlb"}
 
 call plug#end()
 
@@ -143,9 +144,20 @@ nnoremap <leader>tj <C-W>J
 nnoremap <leader>tl <C-W>L
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path': '/media/mydisk/GDrive/VimWiki',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '/media/mydisk/GDrive/VimWiki','syntax': 'markdown', 'ext': '.md'},
+            \ {'path': '/media/mydisk/GDrive/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/media/mydisk/GDrive/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/media/mydisk/GDrive/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/media/mydisk/GDrive/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
+let g:vimwiki_folding = 'expr'
+let g:vimwiki_global_ext = 0
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
+
+" Markdown Preview
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_browser = "firefox --new-window"
+nnoremap mp :InstantMarkdownPreview<CR>
+nnoremap ms :InstantMarkdownStop<CR>
 
 " Clipboard settings
 vnoremap Y "+y
