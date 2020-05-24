@@ -2,6 +2,7 @@
 bspc rule -r "*"
 
 ###---Autostart---###
+insync &
 dunst &
 xrdb ~/.Xresources &
 compton -b &
