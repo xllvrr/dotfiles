@@ -12,6 +12,7 @@ Plug 'unblevable/quick-scope'
 Plug 'junegunn/fzf.vim' " Fuzzy Search
 Plug 'vimwiki/vimwiki' " Vimwiki
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " Markdown Preview
+Plug 'h-youhei/vim-fcitx' " For fcitx
 
 Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
@@ -55,6 +56,7 @@ augroup ncm2
 augroup END
 Plug 'ervandew/supertab' " Allow tab to autocomplete
 au BufNewFile *.Rnw 0r ~/.config/nvim/skeleton.Rnw
+au BufNewFile *.Rmd 0r ~/.config/nvim/skeleton.Rmd
 
 " Latex
 Plug 'LaTeX-Box-Team/LaTeX-Box' " TeX highlighting and compilation
@@ -70,10 +72,34 @@ let g:neoformat_basic_format_align = 1 " Enable alignment
 let g:neoformat_basic_format_retab = 1 " Enable tab to spaces conversion
 let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
 Plug 'terryma/vim-multiple-cursors'
+Plug 'jmcantrell/vim-virtualenv'
 au BufNewFile *.py 0r ~/.config/nvim/skeleton.py
-" Run Python Script
-" autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-" autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!ipython' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!ipython' shellescape(@%, 1)<CR>
+
+" Vim Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'entombedvirus/ncm2-vim-go'
+let g:go_fmt_command = "goimports"
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>ga :cclose<CR>
+autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
+let g:go_highlight_function_calls = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+" Function for either build or test
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
 
 " Vim CmdLine
 Plug 'jalvesaq/vimcmdline'
@@ -83,7 +109,7 @@ let cmdline_follow_colorscheme = 1
 let cmdline_vsplit = 1
 let cmdline_app = {}
 let cmdline_term_width = 120
-let g:cmdline_app = {"python": "ipython --no-autoindent --matplotlb"}
+let g:cmdline_app = {"python": "ipython --no-autoindent --matplotlib"}
 
 call plug#end()
 
@@ -95,6 +121,7 @@ filetype indent on
 filetype plugin on
 set number relativenumber
 set smartcase
+set autowrite
 set linebreak
 set encoding=utf8
 set autoindent
@@ -162,7 +189,6 @@ nnoremap ms :InstantMarkdownStop<CR>
 " Clipboard settings
 vnoremap Y "+y
 nnoremap Y "+y
-nnoremap P "+p
 
 " Tab navigation
 nnoremap tn :tabnew<Space>
@@ -212,6 +238,7 @@ let g:neomake_R_enabled_makers = ['lintr']
 let g:neomake_Rnw_enabled_makers = ['pdflatex']
 let g:neomake_bib_enabled_makers = ['bibtex']
 let g:neomake_zsh_enabled_makers = ['zsh']
+" let g:neomake_go_enabled_makers = ['golangci-lint', 'gometalinter']
 
 " Neoformat Configuration
 let g:neoformat_enabled_python = ['autopep8']
@@ -219,6 +246,7 @@ let g:neoformat_enabled_R = ['formatR','styler']
 let g:neoformat_enabled_Rnw = ['latexindent']
 let g:neoformat_enabled_tex = ['latexindent']
 let g:neoformat_enabled_xml = ['prettier']
+" let g:neoformat_enabled_go = ['gofmt']
 " Binding
 nnoremap <leader>ff :Neoformat<CR>
 
