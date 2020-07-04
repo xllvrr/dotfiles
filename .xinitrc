@@ -1,4 +1,9 @@
 # Startup
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+fcitx -d &
 polybarlaunch &
 sxhkd & 
 exec bspwm
@@ -26,6 +31,5 @@ if [ -f "$usermodmap" ]; then
 xmodmap "$usermodmap"
 fi
 
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
+# dpms
+xset dpms 0 0 0
