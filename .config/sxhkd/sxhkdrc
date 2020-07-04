@@ -99,27 +99,23 @@ super + alt + c
 alt + space
 	dmenu_run -h 30
 
-# Fcitx
-super + space
-	fcitx-remote -t &
-
 # GUI
 super + a ; {1-7,g,q}
 	{ \
 	$BROWSER, \
 	thunderbird, \
-	joplin-desktop, \
+	$TERMINAL -e nvim -c VimwikiIndex, \
 	messenger, \
 	discord, \
 	darktable, \
 	zoom, \
-	steam, \
+	lutris, \
 	designer-qt5, \
 	}
 
 # File Managers
 super + d ; {t,f}
-	{$TERMINAL -e lf, pcmanfm}
+	{$TERMINAL -e nnn -He, pcmanfm}
 
 # Screenshot
 Print
