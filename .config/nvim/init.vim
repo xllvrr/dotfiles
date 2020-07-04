@@ -122,7 +122,31 @@ function! s:build_go_files()
   endif
 endfunction
 
-" Vim CmdLine
+" Vim Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'entombedvirus/ncm2-vim-go'
+let g:go_fmt_command = "goimports"
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>ga :cclose<CR>
+autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
+let g:go_highlight_function_calls = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+" Function for either build or test
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+"" Vim CmdLine
 Plug 'jalvesaq/vimcmdline'
 let cmdline_map_send = '<LocalLeader>l'
 let cmdline_map_start = '<LocalLeader>s'
@@ -212,11 +236,24 @@ let g:vimwiki_folding = 'expr'
 let g:vimwiki_global_ext = 0
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
 
+<<<<<<< HEAD
 " Markdown Preview
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 0
 nnoremap mp :MarkdownPreview<CR>
 nnoremap ms :MarkdownPreviewStop<CR>
+=======
+" Clipboard settings
+vnoremap Y "+y
+nnoremap Y "+y
+
+" Tab navigation
+nnoremap tn :tabnew<Space>
+nnoremap tk :tabnext<CR>
+nnoremap tj :tabprev<CR>
+nnoremap th :tabfirst<CR>
+nnoremap tl :tablast<CR>
+>>>>>>> 9634b39b (Added skeleton for Rmd and Vim-Go settings)
 
 " Help file on the right
 augroup vimrc_help
