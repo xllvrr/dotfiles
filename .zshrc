@@ -146,5 +146,3 @@ SPACESHIP_JOBS_SHOW=false
 # Spaceship Prompt
 autoload -U promptinit; promptinit
 prompt spaceship
-
-
