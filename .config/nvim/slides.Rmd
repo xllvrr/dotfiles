@@ -1,0 +1,11 @@
+---
+title: "Title"
+author: Daniel Tan
+date: 
+bibliography: 
+output: 
+        beamer_presentation:
+                theme: "Boadilla"
+                includes:
+                    in_header: ~/.config/nvim/beamer.txt
+---

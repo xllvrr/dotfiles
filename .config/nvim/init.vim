@@ -56,7 +56,7 @@ augroup ncm2
 augroup END
 Plug 'ervandew/supertab' " Allow tab to autocomplete
 au BufNewFile *.Rnw 0r ~/.config/nvim/skeleton.Rnw
-au BufNewFile *.Rmd 0r ~/.config/nvim/skeleton.Rmd
+au BufNewFile *.Rmd execute "0r ~/.config/nvim/".input("Template name: ").".Rmd"
 
 " Latex
 Plug 'LaTeX-Box-Team/LaTeX-Box' " TeX highlighting and compilation
@@ -242,7 +242,7 @@ let g:neomake_zsh_enabled_makers = ['zsh']
 
 " Neoformat Configuration
 let g:neoformat_enabled_python = ['autopep8']
-let g:neoformat_enabled_R = ['formatR','styler']
+let g:neoformat_enabled_R = ['formatR']
 let g:neoformat_enabled_Rnw = ['latexindent']
 let g:neoformat_enabled_tex = ['latexindent']
 let g:neoformat_enabled_xml = ['prettier']
