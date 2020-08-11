@@ -1,9 +1,0 @@
-\TrackLangProvidesResource{IM}[2016/10/06 v1.2]
-
-\providecommand*{\IMunits}{%
-  \renewcommand*{\weightunit}{kg}%
-  \renewcommand*{\lengthunit}{mm}%
-  \renewcommand*{\currencyunit}{M\pounds}%
-}
-
-\TrackLangAddToCaptions\IMunits

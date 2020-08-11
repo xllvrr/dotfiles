@@ -1,5 +1,0 @@
-This LaTeX class provides a template for books to be published at Springer Gabler Research, Springer Vieweg Research, Springer Spektrum Research, Springer VS Research or Springer VS Forschung. It can be used to produce monographs in different formats and "several-authors-books" fitting the conditions of the aforementioned publishers.
-
-You find the class documentation in file sr-vorl.pdf. The source code can be found in sr-vorl.dtx and sr-vorl.ins. By compiling sr-vorl.dtx with pdflatex, you get the documentation, while compiling sr-vorl.ins gives you the cls-file and the template files frontmatter_sr-vorl.tex, mainmatter_sr-vorl.tex, backmatter_sr-vorl.tex and hauptdatei_sr-vorl.tex.
-
-All of this ma­te­rial is sub­ject to the LaTeX Project Public Li­cense.

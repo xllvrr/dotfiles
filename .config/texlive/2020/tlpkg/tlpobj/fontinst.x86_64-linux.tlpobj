@@ -1,8 +1,0 @@
-name fontinst.x86_64-linux
-category Package
-revision 53554
-shortdesc x86_64-linux files of fontinst
-containersize 348
-containerchecksum 3ba40e14e26bd712042b60d8b7096a8938228d3877bc4d17a6b4c37e058f9a00c8a107ac7bc3676b4b034385bf246a28b51b0a1f16de33fc09577b7d5f5abb6e
-binfiles arch=x86_64-linux size=1
- bin/x86_64-linux/fontinst

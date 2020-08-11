@@ -1,9 +1,0 @@
-\TrackLangProvidesResource{BE}[2016/10/06 v1.2]
-
-\providecommand*{\BEunits}{%
-  \renewcommand*{\weightunit}{kg}%
-  \renewcommand*{\lengthunit}{mm}%
-  \renewcommand*{\currencyunit}{EUR}%
-}
-
-\TrackLangAddToCaptions\BEunits

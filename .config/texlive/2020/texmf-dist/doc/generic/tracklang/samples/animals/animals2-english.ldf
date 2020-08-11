@@ -1,9 +1,0 @@
-\TrackLangProvidesResource{english}[2016/10/06 v1.2]
-
-\providecommand*{\englishanimals}{%
-  \renewcommand*{\catname}{cat}%
-  \renewcommand*{\dogname}{dog}%
-  \renewcommand*{\ladybirdname}{bishy-barney-bee}%
-}
-
-\TrackLangAddToCaptions\englishanimals

@@ -1,8 +1,0 @@
-This is a set of macros that are a front end to xy-pic that make it
-(relatively) easy to use it to set the kind of diagrams that are
-especially interesting to category theorists.  There are two modes of
-macros: the first kind uses shapes such as squares and various triangles
-that fit together like Lego blocks; the second sets the nodes on an
-xy-grid and labels them and then sets arrows between the nodes.  All the
-arrow types of xy are allowed in either mode.   For the latest upgrade
-(if any) look at http://www.math.mcgill.ca/barr/papers/.

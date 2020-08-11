@@ -1,3 +1,0 @@
-The file "Trigonometry.tex" is released under the Knuthian Licence, the current CTAN entry for which reads along the following lines (amendments to grammar and spelling made in the following text) --
-
-"This soft­ware is copy­right and you are ex­plic­itly granted a li­cence which allows  you, the “user” of the soft­ware, to copy, dis­tribute and/or mod­ify the soft­ware, provided only that if you mod­ify and then re-distribute the soft­ware it must be with a dif­fer­ent name to that of the orig­i­nal soft­ware."

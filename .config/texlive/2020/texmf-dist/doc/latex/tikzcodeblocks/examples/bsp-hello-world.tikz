@@ -1,7 +1,0 @@
-\documentclass{standalone}
-\usepackage{tikzcodeblocks}
-\begin{document}
-	\begin{tikzpicture}[codeblocks]
-		\node[mathe]{Hello World;};
-	\end{tikzpicture}
-\end{document}

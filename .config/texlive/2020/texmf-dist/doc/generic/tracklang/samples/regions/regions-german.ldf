@@ -1,7 +1,0 @@
-\TrackLangProvidesResource{german}[2016/10/06 v1.2]
-
-\providecommand*{\germannames}{%
-  \renewcommand*{\unitname}{Ma\ss einheiten}%
-}
-
-\TrackLangAddToCaptions\germannames

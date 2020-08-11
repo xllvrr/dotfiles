@@ -1,9 +1,0 @@
-\TrackLangProvidesResource{german}[2016/10/06 v1.2]
-
-\providecommand*{\germananimals}{%
-  \renewcommand*{\catname}{Katze}%
-  \renewcommand*{\dogname}{Hund}%
-  \renewcommand*{\ladybirdname}{Marienk\"afer}%
-}
-
-\TrackLangAddToCaptions\germananimals

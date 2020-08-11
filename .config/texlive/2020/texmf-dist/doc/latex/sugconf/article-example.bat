@@ -1,1 +1,0 @@
-pdfLaTeX article-example

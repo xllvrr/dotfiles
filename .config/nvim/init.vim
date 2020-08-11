@@ -9,10 +9,18 @@ Plug 'sbdchd/neoformat'
 Plug 'jiangmiao/auto-pairs' " Auto completion of pairs
 Plug 'kovetskiy/sxhkd-vim' " Integration with sxhkd
 Plug 'unblevable/quick-scope'
-Plug 'junegunn/fzf.vim' " Fuzzy Search
 Plug 'vimwiki/vimwiki' " Vimwiki
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " Markdown Preview
 Plug 'h-youhei/vim-fcitx' " For fcitx
+
+" Fzf
+Plug 'junegunn/fzf.vim' " Fuzzy Search
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+
+" Easy Motion
+Plug 'easymotion/vim-easymotion'
 
 Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
@@ -134,6 +142,7 @@ set mouse=in
 set history=1000
 set foldmethod=syntax
 set foldlevelstart=20
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 " Split direction
 set splitright

@@ -1,1 +1,0 @@
-pdfLaTeX sugconf-example
