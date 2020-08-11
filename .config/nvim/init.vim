@@ -21,6 +21,9 @@ nnoremap <silent> <Leader>f :Rg<CR>
 
 " Easy Motion
 Plug 'easymotion/vim-easymotion'
+nmap <leader><leader>. <Plug>(easymotion-repeat)
+nmap <leader><leader>j <Plug>(easymotion-sol-j)
+nmap <leader><leader>k <Plug>(easymotion-sol-k)
 
 Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
