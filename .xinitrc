@@ -1,12 +1,9 @@
 # Startup
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-
-fcitx -d &
 polybarlaunch &
 sxhkd & 
-exec bspwm
+exec bspwm &
+fcitx &
+insync
 
 # User Resources
 userresources=$HOME/.Xresources
@@ -31,5 +28,6 @@ if [ -f "$usermodmap" ]; then
 xmodmap "$usermodmap"
 fi
 
-# dpms
-xset dpms 0 0 0
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
