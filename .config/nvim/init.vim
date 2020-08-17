@@ -147,6 +147,7 @@ set history=1000
 set foldmethod=syntax
 set foldlevelstart=20
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+set clipboard+=unnamedplus
 
 " Split direction
 set splitright
@@ -184,11 +185,11 @@ nnoremap <leader>tj <C-W>J
 nnoremap <leader>tl <C-W>L
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path': '/media/mydisk/GDrive/VimWiki','syntax': 'markdown', 'ext': '.md'},
-            \ {'path': '/media/mydisk/GDrive/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '/media/mydisk/GDrive/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '/media/mydisk/GDrive/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '/media/mydisk/GDrive/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
+let g:vimwiki_list = [{'path': '/mnt/media/GDrive/VimWiki','syntax': 'markdown', 'ext': '.md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_global_ext = 0
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
@@ -200,8 +201,8 @@ nnoremap mp :InstantMarkdownPreview<CR>
 nnoremap ms :InstantMarkdownStop<CR>
 
 " Clipboard settings
-vnoremap Y "+y
-nnoremap Y "+y
+" vnoremap Y "+y
+" nnoremap Y "+y
 
 " Tab navigation
 nnoremap tn :tabnew<Space>
