@@ -10,8 +10,8 @@ Plug 'jiangmiao/auto-pairs' " Auto completion of pairs
 Plug 'kovetskiy/sxhkd-vim' " Integration with sxhkd
 Plug 'unblevable/quick-scope'
 Plug 'vimwiki/vimwiki' " Vimwiki
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " Markdown Preview
-Plug 'h-youhei/vim-fcitx' " For fcitx
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+Plug 'lilydjwg/fcitx.vim'
 
 " Fzf
 Plug 'junegunn/fzf.vim' " Fuzzy Search
@@ -195,10 +195,10 @@ let g:vimwiki_global_ext = 0
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
 
 " Markdown Preview
-let g:instant_markdown_autostart = 0
-let g:instant_markdown_browser = "firefox --new-window"
-nnoremap mp :InstantMarkdownPreview<CR>
-nnoremap ms :InstantMarkdownStop<CR>
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 0
+nnoremap mp :MarkdownPreview<CR>
+nnoremap ms :MarkdownPreviewStop<CR>
 
 " Clipboard settings
 " vnoremap Y "+y
