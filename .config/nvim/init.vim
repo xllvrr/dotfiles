@@ -14,20 +14,6 @@ Plug 'kovetskiy/sxhkd-vim' " Integration with sxhkd
 Plug 'unblevable/quick-scope' " Navigation and Motions
 Plug 'vimwiki/vimwiki' " Vimwiki
 Plug 'lilydjwg/fcitx.vim' " Write in another language
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-
-" Fzf
-Plug 'junegunn/fzf.vim' " Fuzzy Search
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-nnoremap <silent> <C-f> :Files<CR>
-nnoremap <silent> <Leader>f :Rg<CR>
-
-" Easy Motion
-Plug 'easymotion/vim-easymotion'
-nmap <leader><leader>. <Plug>(easymotion-repeat)
-nmap <leader><leader>j <Plug>(easymotion-sol-j)
-nmap <leader><leader>k <Plug>(easymotion-sol-k)
->>>>>>> 1c174d04 (Syncing with main)
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }} 
@@ -194,14 +180,10 @@ set foldmethod=syntax
 set foldlevelstart=20
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 set clipboard+=unnamedplus
-<<<<<<< HEAD
 
 " For Autocompletion
 set updatetime=300
 set shortmess+=c
-=======
-=======
->>>>>>> 2a9d62fc (Clipboard and markdown preview)
 
 " Split direction
 set splitright
