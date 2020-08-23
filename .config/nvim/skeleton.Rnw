@@ -23,3 +23,9 @@
 \usepackage{booktabs} % formats tables nicely
 \usepackage[doublespacing]{setspace} % allows for double/single spacing
 \usepackage{indentfirst}
+
+%%----------------------%%
+%%     Preferences      %%
+%%----------------------%%
+
+\addbibresource{}
