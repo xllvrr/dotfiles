@@ -69,6 +69,7 @@ Plug 'ervandew/supertab' " Allow tab to autocomplete
 au BufNewFile *.Rnw 0r ~/.config/nvim/skeleton.Rnw
 au BufNewFile *.Rmd execute "0r ~/.config/nvim/".input("Template name: ").".Rmd"
 au BufNewFile *.md execute "0r ~/.config/nvim/".input("Template name: ").".md"
+au BufNewFile *.bib 0r ~/.config/nvim/skeleton.bib
 
 " Latex
 Plug 'LaTeX-Box-Team/LaTeX-Box' " TeX highlighting and compilation

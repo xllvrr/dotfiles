@@ -32,7 +32,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # nnn settings
 export NNN_PLUG='m:dragdrop;o:fzopen;p:picker;l:launch;i:imgview;c:fzcd;u:getplugs;b:renamer;x:_chmod +x $nnn'
-export NNN_BMS='1:/media/mydisk;2:/media/mydisk/GDrive/School;M:/media/mydisk/GDrive/School/Masters;D:/media/mydisk/GDrive/D&D;L:/media/mydisk/GDrive/Dad Lab/GUI;S:/media/mydisk/GDrive/Starfinder;W:/media/mydisk/GDrive/VimWiki;G:/media/mydisk/GDrive'
+export NNN_BMS='1:/mnt/media;2:/mnt/media/GDrive/School;M:/mnt/media/GDrive/School/Masters;D:/mnt/media/GDrive/D&D;L:/mnt/media/GDrive/Dad Lab/GUI;S:/mnt/media/GDrive/Starfinder;W:/mnt/media/GDrive/VimWiki;G:/mnt/media/GDrive'
 export NNN_COLORS='2'
 
 # lf icons

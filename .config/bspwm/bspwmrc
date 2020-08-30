@@ -2,9 +2,10 @@
 bspc rule -r "*"
 
 ###---Autostart---###
-insync &
+insync start &
 safeeyes &
 dunst &
+fcitx &
 xrdb ~/.Xresources &
 compton -b &
 feh --bg-scale --no-fehbf ~/.config/wall.jpg &

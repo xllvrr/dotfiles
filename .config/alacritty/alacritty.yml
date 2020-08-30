@@ -476,7 +476,6 @@ mouse_bindings:
 # at once.
 key_bindings:
   # (Windows, Linux, and BSD only)
-  - { key: P,        mods: Control,       action: Paste            }
   - { key: V,        mods: Alt,           action: Paste            }
   - { key: Insert,   mods: Shift,         action: Paste            }
   - { key: Slash,    mods: Control,       chars: "gc"              }
