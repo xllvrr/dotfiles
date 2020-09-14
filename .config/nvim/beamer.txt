@@ -14,8 +14,3 @@
 \setbeamerfont{subtitle}{size=\small}
 
 \setbeamercovered{transparent}
-
-\AtBeginPart{}
-\AtBeginSection{}
-\AtBeginSubsection{}
-\AtBeginSubsubsection{}
