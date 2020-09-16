@@ -97,7 +97,7 @@ super + alt + c
 =========== Applications ===========
 	# Dmenu
 alt + space
-	dmenu_run -h 30
+	dmenu_run -h 35
 
 # GUI
 super + a ; {1-7,g,q}
