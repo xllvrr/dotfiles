@@ -13,6 +13,15 @@ Plug 'vimwiki/vimwiki' " Vimwiki
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 Plug 'lilydjwg/fcitx.vim'
 
+" Csv Reading
+Plug 'chrisbra/csv.vim'
+" Commenting
+Plug 'tpope/vim-commentary'
+" Linting Code
+Plug 'neomake/neomake'
+" SuperTab
+Plug 'ervandew/supertab'
+
 " Fzf
 Plug 'junegunn/fzf.vim' " Fuzzy Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -29,19 +38,22 @@ Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
 let g:highlightedyank_highlight_duration = 1000 " set highlight duration time to 1000 ms, i.e., 1 second
 
-" Csv Reading
-Plug 'chrisbra/csv.vim'
-" Commenting
-Plug 'tpope/vim-commentary'
-" Syntax Highlighting
-" Plug 'sheerun/vim-polyglot'
-" Linting Code
-Plug 'neomake/neomake'
-" Autocomplete
+" ncm2 for Autocomplete
+Plug 'ncm2/ncm2' " Snippets for ncm-R
+Plug 'roxma/nvim-yarp' " Dependency for ncm2
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
-" SuperTab
-Plug 'ervandew/supertab'
+" For R
+Plug 'gaalcaras/ncm-R' " Code Completion for R
+augroup ncm2
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+    set completeopt=noinsert,menuone,noselect
+    inoremap <c-c> <ESC>
+augroup END
+" " For Python
+Plug 'ncm2/ncm2-jedi'
+" " For Go
+Plug 'entombedvirus/ncm2-vim-go'
 
 " Pandoc
 Plug 'vim-pandoc/vim-pandoc'
@@ -57,15 +69,6 @@ nmap , <Plug>RDSendLine
 vmap , <Plug>RDSendSelection
 vmap ,e <Plug>RESendSelection
 Plug 'jalvesaq/R-Vim-runtime' " Highlighting for Rmd and Rnw code chunks
-Plug 'gaalcaras/ncm-R' " Code Completion for R
-Plug 'roxma/nvim-yarp' " Dependency for ncm2
-Plug 'ncm2/ncm2' " Snippets for ncm-R
-augroup ncm2
-    autocmd BufEnter * call ncm2#enable_for_buffer()
-    set completeopt=noinsert,menuone,noselect
-    inoremap <c-c> <ESC>
-augroup END
-Plug 'ervandew/supertab' " Allow tab to autocomplete
 au BufNewFile *.Rnw 0r ~/.config/nvim/skeleton.Rnw
 au BufNewFile *.Rmd execute "0r ~/.config/nvim/".input("Template name: ").".Rmd"
 au BufNewFile *.md execute "0r ~/.config/nvim/".input("Template name: ").".md"
@@ -79,7 +82,6 @@ let g:LatexBox_latexmk_async = 0
 let g:tex_flavor = 'tex'
 
 " Python
-Plug 'ncm2/ncm2-jedi'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Better highlighting
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:neoformat_basic_format_align = 1 " Enable alignment
@@ -93,7 +95,6 @@ autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!ipython' shellesca
 
 " Vim Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'entombedvirus/ncm2-vim-go'
 let g:go_fmt_command = "goimports"
 map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
@@ -150,6 +151,10 @@ set foldmethod=syntax
 set foldlevelstart=20
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 set clipboard+=unnamedplus
+
+" For Autocompletion
+set updatetime=300
+set shortmess+=c
 
 " Split direction
 set splitright
@@ -254,7 +259,7 @@ let g:neomake_R_enabled_makers = ['lintr']
 let g:neomake_Rnw_enabled_makers = ['pdflatex']
 let g:neomake_bib_enabled_makers = ['bibtex']
 let g:neomake_zsh_enabled_makers = ['zsh']
-" let g:neomake_go_enabled_makers = ['golangci-lint', 'gometalinter']
+let g:neomake_go_enabled_makers = ['golangci-lint', 'gometalinter']
 
 " Neoformat Configuration
 let g:neoformat_enabled_python = ['autopep8']
@@ -262,7 +267,7 @@ let g:neoformat_enabled_R = ['formatR']
 let g:neoformat_enabled_Rnw = ['latexindent']
 let g:neoformat_enabled_tex = ['latexindent']
 let g:neoformat_enabled_xml = ['prettier']
-" let g:neoformat_enabled_go = ['gofmt']
+let g:neoformat_enabled_go = ['gofmt']
 " Binding
 nnoremap <leader>ff :Neoformat<CR>
 
@@ -270,9 +275,4 @@ nnoremap <leader>ff :Neoformat<CR>
 augroup filetypedetect
     au! BufRead,BufNewFile *.r         setfiletype r
     au! BufRead,BufNewFile *.R         setfiletype r
-augroup END
-
-" Autosource Vim Conf on Save
-augroup autosource
-    au! BufWritePost $MYVIMRC source $MYVIMRC
 augroup END

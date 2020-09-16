@@ -8,7 +8,7 @@ dunst &
 fcitx &
 xrdb ~/.Xresources &
 compton -b &
-feh --bg-scale --no-fehbf ~/.config/wall.jpg &
+feh --bg-scale ~/.config/wall.jpg &
 pidof bspswallow || bspswallow &
 
 ###---Monitors---###
