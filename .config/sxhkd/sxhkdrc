@@ -94,6 +94,10 @@ super + p ; {r, s, o, h}
 super + alt + c
 	$TERMINAL -e cfglist
 
+# Change Transparency
+super + t ; {-, =}
+	picom-trans -c {-10, +10}
+
 =========== Applications ===========
 	# Dmenu
 alt + space
