@@ -29,6 +29,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 # Startup
+fcitx -d &
 polybarlaunch &
 sxhkd & 
 exec bspwm 
