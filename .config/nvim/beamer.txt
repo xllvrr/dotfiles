@@ -2,7 +2,6 @@
 \usepackage{rotating}
 \usepackage{hyperref}
 \usepackage{caption}
-\usepackage{wasysym}
 \usepackage{apacite}
 \usepackage{booktabs}
 \usepackage[english]{babel}
@@ -19,4 +18,3 @@
 \AtBeginSection{}
 \AtBeginSubsection{}
 \AtBeginSubsubsection{}
-

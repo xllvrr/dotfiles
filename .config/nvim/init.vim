@@ -21,6 +21,7 @@ Plug 'tpope/vim-commentary'
 Plug 'neomake/neomake'
 " SuperTab
 Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "context"
 
 " Fzf
 Plug 'junegunn/fzf.vim' " Fuzzy Search
@@ -38,22 +39,14 @@ Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
 let g:highlightedyank_highlight_duration = 1000 " set highlight duration time to 1000 ms, i.e., 1 second
 
-" ncm2 for Autocomplete
-Plug 'ncm2/ncm2' " Snippets for ncm-R
-Plug 'roxma/nvim-yarp' " Dependency for ncm2
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-" For R
-Plug 'gaalcaras/ncm-R' " Code Completion for R
-augroup ncm2
-    autocmd BufEnter * call ncm2#enable_for_buffer()
-    set completeopt=noinsert,menuone,noselect
-    inoremap <c-c> <ESC>
-augroup END
-" " For Python
-Plug 'ncm2/ncm2-jedi'
-" " For Go
-Plug 'entombedvirus/ncm2-vim-go'
+" Coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Enter for Confirm Completion
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
 " Pandoc
 Plug 'vim-pandoc/vim-pandoc'
@@ -136,7 +129,6 @@ filetype indent on
 filetype plugin on
 set number relativenumber
 set smartcase
-set autowrite
 set linebreak
 set encoding=utf8
 set autoindent
@@ -207,17 +199,6 @@ let g:mkdp_auto_close = 0
 nnoremap mp :MarkdownPreview<CR>
 nnoremap ms :MarkdownPreviewStop<CR>
 
-" Clipboard settings
-" vnoremap Y "+y
-" nnoremap Y "+y
-
-" Tab navigation
-nnoremap tn :tabnew<Space>
-nnoremap tk :tabnext<CR>
-nnoremap tj :tabprev<CR>
-nnoremap th :tabfirst<CR>
-nnoremap tl :tablast<CR>
-
 " Help file on the right
 augroup vimrc_help
     autocmd!
@@ -238,9 +219,6 @@ tnoremap <Esc> <C-\><C-n>
 command! -nargs=* T split | terminal <args>
 command! -nargs=* VT vsplit | terminal <args>
 command! -nargs=* TT tabnew | terminal <args>
-
-" Quick reference
-command! -nargs=* BibRef tabedit $HOME/repos/templates/bibtemplates.bib
 
 " Auto-center and go by screen lines
 nnoremap j gjzz
