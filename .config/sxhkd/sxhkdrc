@@ -106,7 +106,7 @@ super + a ; {1-7,g,q}
 	thunderbird, \
 	$TERMINAL -e nvim -c VimwikiIndex, \
 	messenger, \
-	discord, \
+	lightcord, \
 	darktable, \
 	zoom, \
 	lutris, \
