@@ -68,7 +68,7 @@ ctrl + super + {h,j,k,l}
 
 	# Restart hotkey damon
 super + shift + x
-	pkill sxhkd && sxhkd &
+	pkill sxhkd && sxhkd
 
 # Reload polybar
 super + shift + o
