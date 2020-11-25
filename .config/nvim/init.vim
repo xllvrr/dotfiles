@@ -41,6 +41,10 @@ let g:highlightedyank_highlight_duration = 1000 " set highlight duration time to
 
 " Coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" coc-rust-analyzer
+" coc-r-lsp
+" coc-python
+" coc-go
 " Enter for Confirm Completion
 if exists('*complete_info')
   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -81,10 +85,17 @@ let g:neoformat_basic_format_align = 1 " Enable alignment
 let g:neoformat_basic_format_retab = 1 " Enable tab to spaces conversion
 let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
 Plug 'terryma/vim-multiple-cursors'
-Plug 'jmcantrell/vim-virtualenv'
 au BufNewFile *.py 0r ~/.config/nvim/skeleton.py
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!ipython' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!ipython' shellescape(@%, 1)<CR>
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'bfredl/nvim-ipy'
+let g:nvim_ipy_perform_mappings = 0
+nmap <silent> <leader>pt :IPython<CR>
+map <leader>pr <Plug>(IPy-Run)
+map <leader>pc <Plug>(IPy-RunCell)
+map <leader>ps <Plug>(IPy-Interrupt)
+au FileType rmd let b:ipy_celldef = ['^```{r}$', '^```$']
 
 " Vim Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
