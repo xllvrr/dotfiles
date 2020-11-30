@@ -1,0 +1,45 @@
+# Minimal configuration for Neomutt and Microsoft Exchange
+
+# Decrypts passwords quietly
+# see: https://wiki.archlinux.org/index.php/Mutt#Passwords_management
+source "gpg -dq ~/.config/neomutt/.my-pwds.gpg |"
+
+# Username and password
+set imap_user = "e0027033@nus.edu.sg"
+# Password assigned from decrypted file
+set imap_pass = $my_s_pass
+
+# Specifies the default location of your mailboxes
+set folder = "imaps://outlook.office365.com:993"
+set hostname = "outlook.office365.com"
+
+# Configure Simple Mail Transfer Protocol for sending mail
+# for Gmail
+set smtp_url = "smtps://e0027033@nus.edu.sg@smtp.office365.com:587"
+set smtp_pass = $my_s_pass
+set smtp_authenticators = "login"
+
+# Set Sending Options
+set realname = "Tan Shao An Daniel"
+set signature="Best Regards,\nTan Shao An Daniel\nNUS Psychology | Year 1\nClass of 2022"
+
+# Connection Options
+set ssl_force_tls = yes
+
+# Location of inbox
+set spoolfile = "+INBOX"
+# Location of drafts
+set postponed = "+Drafts"
+# Location of outgoing mail
+unset record
+set record = "+Sent Items"
+
+# Refresh headers
+unmy_hdr *
+unset use_from
+unset use_domain
+unset user_agent
+
+# Hook
+account-hook $folder "set imap_user=e0027033@nus.edu.sg imap_pass=$my_s_pass"
+

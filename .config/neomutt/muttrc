@@ -1,0 +1,46 @@
+## General Options
+set imap_check_subscribed
+set imap_keepalive = 300
+unset imap_passive
+set mail_check = 60
+set mbox_type = Maildir
+set edit_headers = yes
+# Caches
+set header_cache = "~/.config/neomutt/cache/headers"
+set message_cachedir = "~/.config/neomutt/cache/bodies"
+# Editor Preferences
+set editor = "nvim +':set textwidth=0"
+set send_charset="utf-8"
+# Message Display
+set sort = threads
+set sort_aux = reverse-last-date-received
+set date_format = "%y/%m/%d %I:%M%p"
+# HTML Messages
+set mailcap_path = "~/.config/neomutt/mailcap"
+auto_view text/html
+alternative_order text/plain text/html
+
+# Bindings
+bind index N search-opposite
+bind index <F5> imap-fetch-mail
+
+# Notifications
+set new_mail_command="notify-send --icon='/mnt/media/Downloads/neomutt.png' \
+'New Email' '%n new messages, %u unread.' &"
+
+# Colors
+source "~/.config/neomutt/colors"
+
+# Sidebar
+source "~/.config/neomutt/sidebar"
+
+# Macros
+source "~/.config/neomutt/macros"
+
+## Personal
+source "~/.config/neomutt/personal"
+folder-hook $folder 'source ~/.config/neomutt/personal'
+
+## School
+# source "~/.config/neomutt/school"
+# folder-hook $folder 'source ~/.config/neomutt/school'

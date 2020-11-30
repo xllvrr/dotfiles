@@ -1,0 +1,43 @@
+# Minimal configuration for Neomutt and Gmail
+
+# Decrypts passwords quietly
+# see: https://wiki.archlinux.org/index.php/Mutt#Passwords_management
+source "gpg -dq ~/.config/neomutt/.my-pwds.gpg |"
+
+# Username and password for your Gmail/G Suite account
+set imap_user = "dtsa.tan@gmail.com"
+# Password assigned from decrypted file
+set imap_pass = $my_g_pass
+
+# Specifies the default location of your mailboxes
+set folder = "imaps://imap.gmail.com:993"
+
+# Configure Simple Mail Transfer Protocol for sending mail
+# for Gmail
+set smtp_url = "smtps://dtsa.tan@smtp.gmail.com:587"
+set smtp_pass = $my_g_pass
+
+# Set Sending Options
+set realname = "Daniel Tan"
+set signature="Yours Sincerely,\nDaniel Tan"
+
+# Connection Options
+set ssl_force_tls = yes
+unset ssl_starttls
+
+# Location of inbox
+set spoolfile = "+INBOX"
+# Location of drafts
+set postponed = "+[Gmail]/Drafts"
+
+# Disable saving outgoing mail since Gmail saves them by default.
+set record = ""
+
+# Refresh headers
+unmy_hdr *
+unset use_from
+unset use_domain
+unset user_agent
+
+# Hook
+account-hook $folder "set imap_user=dtsa.tan@gmail.com imap_pass=$my_g_pass"
