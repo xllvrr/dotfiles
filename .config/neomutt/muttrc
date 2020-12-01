@@ -38,9 +38,9 @@ source "~/.config/neomutt/sidebar"
 source "~/.config/neomutt/macros"
 
 ## Personal
-source "~/.config/neomutt/personal"
-folder-hook $folder 'source ~/.config/neomutt/personal'
+# source "~/.config/neomutt/personal"
+# folder-hook $folder 'source ~/.config/neomutt/personal'
 
 ## School
-# source "~/.config/neomutt/school"
-# folder-hook $folder 'source ~/.config/neomutt/school'
+source "~/.config/neomutt/school"
+folder-hook $folder 'source ~/.config/neomutt/school'

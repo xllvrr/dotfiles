@@ -5,26 +5,27 @@
 source "gpg -dq ~/.config/neomutt/.my-pwds.gpg |"
 
 # Username and password
-set imap_user = "e0027033@nus.edu.sg"
+set imap_user = "e0027033"
 # Password assigned from decrypted file
 set imap_pass = $my_s_pass
 
 # Specifies the default location of your mailboxes
-set folder = "imaps://outlook.office365.com:993"
+set folder = "imap://127.0.0.1:1143"
 set hostname = "outlook.office365.com"
 
 # Configure Simple Mail Transfer Protocol for sending mail
 # for Gmail
-set smtp_url = "smtps://e0027033@nus.edu.sg@smtp.office365.com:587"
+set use_from = yes
+set smtp_url = "smtp://$imap_user:$imap_pass@127.0.0.1:1025"
 set smtp_pass = $my_s_pass
-set smtp_authenticators = "login"
 
 # Set Sending Options
 set realname = "Tan Shao An Daniel"
 set signature="Best Regards,\nTan Shao An Daniel\nNUS Psychology | Year 1\nClass of 2022"
 
 # Connection Options
-set ssl_force_tls = yes
+set ssl_force_tls = no
+set ssl_starttls = no
 
 # Location of inbox
 set spoolfile = "+INBOX"
@@ -41,5 +42,5 @@ unset use_domain
 unset user_agent
 
 # Hook
-account-hook $folder "set imap_user=e0027033@nus.edu.sg imap_pass=$my_s_pass"
+account-hook $folder "set imap_user=$imap_user imap_pass=$my_s_pass"
 
