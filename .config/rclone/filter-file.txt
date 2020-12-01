@@ -1,0 +1,27 @@
+- /Applications/**
+- /Backup/**
+- /Church/**
++ /D&D/**
++ /DCIM/**
+- /Dad_Lab/**
+- /Easy Voice Recorder/**
+- /Epson iPrint/**
+- /Family/**
+- /Finances/**
+- /Genshin/**
+- /Misc./**
++ /Notability/**
+- /Notability Archive/**
+- /Path of Exile/**
++ /Procreate/**
++ /Projects/**
++ /R Resources/**
++ /School/**
+- /Slide Templates/**
++ /Starfinder/**
+- /Stories/**
++ /TTRPG/**
+- /Textbook Collection/**
++ /VimWiki/**
+- /Wallpapers/**
+- *
