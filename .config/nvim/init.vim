@@ -176,6 +176,12 @@ set noswapfile
 
 colorscheme codedark
 
+" Reading Mail
+augroup filetypedetect
+  " Mail
+  autocmd BufRead,BufNewFile *mutt-*              setfiletype mail
+augroup END
+
 " Configuring netrw
 let g:netrw_banner = 0
 let g:netrw_browse_split = 2
