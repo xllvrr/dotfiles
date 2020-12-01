@@ -2,7 +2,7 @@
 bspc rule -r "*"
 
 ###---Autostart---###
-insync start &
+rclone clone --filter-from ~/.config/rclone/filter-file.txt --max-age 24h --no-traverse GDrive: /mnt/media/GDrive &
 safeeyes &
 dunst &
 fcitx &
