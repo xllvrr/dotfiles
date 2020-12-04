@@ -2,24 +2,30 @@ let mapleader=" "
 
 call plug#begin('~/repos/plugged')
 
+" Themeing
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tomasiser/vim-code-dark'
-Plug 'sbdchd/neoformat'
+
+" General Use Plugins
+Plug 'sbdchd/neoformat' " Formatting
 Plug 'jiangmiao/auto-pairs' " Auto completion of pairs
 Plug 'kovetskiy/sxhkd-vim' " Integration with sxhkd
-Plug 'unblevable/quick-scope'
+Plug 'unblevable/quick-scope' " Navigation and Motions
 Plug 'vimwiki/vimwiki' " Vimwiki
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-Plug 'lilydjwg/fcitx.vim'
+Plug 'lilydjwg/fcitx.vim' " Write in another language
 
+" Markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }} 
+" Git
+Plug 'tpope/vim-fugitive'
 " Csv Reading
 Plug 'chrisbra/csv.vim'
 " Commenting
 Plug 'tpope/vim-commentary'
 " Linting Code
 Plug 'neomake/neomake'
-" SuperTab
+" Autocompletion
 Plug 'ervandew/supertab'
 let g:SuperTabDefaultCompletionType = "context"
 
@@ -41,10 +47,6 @@ let g:highlightedyank_highlight_duration = 1000 " set highlight duration time to
 
 " Coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" coc-rust-analyzer
-" coc-r-lsp
-" coc-python
-" coc-go
 " Enter for Confirm Completion
 if exists('*complete_info')
   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
