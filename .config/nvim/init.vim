@@ -226,6 +226,7 @@ augroup END
 
 " Autosave TeX before Compiling
 autocmd BufNewFile,BufRead *.tex nnoremap <buffer> <LocalLeader>ll :update!<CR>:Latexmk!<CR>
+autocmd! BufReadPost,BufNewFile *.tex set filetype=tex
 
 " Persistent undo
 set undodir=~/.vim/undodir

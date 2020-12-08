@@ -1,6 +1,5 @@
 # path
 typeset -U PATH path
-
 path=("$HOME/.local/bin" "$HOME/repos/scripts" "$HOME/repos/scripts/polybar" "$HOME/.config/texlive/2020/bin/x86_64-linux" "/usr/lib/python3.8/site-packages" "$path[@]")
 export PATH
 export MANPATH="$HOME/.config/texlive/2020/texmf-dist/doc/man:$MANPATH"
@@ -39,7 +38,11 @@ export NNN_COLORS='2'
 # lf icons
 export LF_ICONS="\
 di=:\
+<<<<<<< HEAD
 fi=:\
+=======
+fi=:\
+>>>>>>> 8865ca45 (Initial Push)
 ln=:\
 or=:\
 ex=:\
