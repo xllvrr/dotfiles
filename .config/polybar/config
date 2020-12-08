@@ -233,11 +233,7 @@ format-padding = 1
 type = custom/script
 exec = bluepower
 interval = 2
-<<<<<<< HEAD
 click-left = bluemenu
-=======
-click-left = exec blueman-manager
->>>>>>> 8865ca45 (Initial Push)
 click-right = exec toggleblue
 format-padding = 1
 format-underline = #268bd2
