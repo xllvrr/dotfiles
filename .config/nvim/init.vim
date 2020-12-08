@@ -227,11 +227,11 @@ nnoremap <leader>tj <C-W>J
 nnoremap <leader>tl <C-W>L
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path': '/mnt/media/GDrive/VimWiki','syntax': 'markdown', 'ext': '.md'},
-            \ {'path': '/mnt/media/GDrive/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '/mnt/media/GDrive/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '/mnt/media/GDrive/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '/mnt/media/GDrive/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
+let g:vimwiki_list = [{'path': 'GDrive/VimWiki','syntax': 'markdown', 'ext': '.md'},
+            \ {'path': 'GDrive/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': 'GDrive/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': 'GDrive/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': 'GDrive/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_global_ext = 0
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
