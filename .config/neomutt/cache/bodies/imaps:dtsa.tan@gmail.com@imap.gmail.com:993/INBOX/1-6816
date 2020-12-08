@@ -1,0 +1,488 @@
+Delivered-To: dtsa.tan@gmail.com
+Received: by 2002:a05:6504:1082:0:0:0:0 with SMTP id l2csp3483086ltm;
+        Tue, 27 Oct 2020 07:27:14 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwneS7f9+H1he029M4hMV2NvHDnoRQY6S/vYZE7bXBr1Yyae2gYH9yqhmMtgd/fdzjhzRMH
+X-Received: by 2002:a17:902:d211:b029:d3:c8b3:4aa4 with SMTP id t17-20020a170902d211b02900d3c8b34aa4mr2628642ply.43.1603808834111;
+        Tue, 27 Oct 2020 07:27:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1603808834; cv=none;
+        d=google.com; s=arc-20160816;
+        b=d6ECehDRUvE1c6ZMG0+Ayp1NCAglxXOlOTaLkj9+WkwBGyu+lFU23YeGrtu1ll5MMw
+         dGZ1saY9AvEP2nPy376lbEbc9bKXxzDc2bT5MXlHxdVVrYMhY9wVkjTLx8x/uBKMYTLf
+         qREdbr147erz3SCwlcy7CVUpv/Cl2Y7PXzHtY+lRH1c45o81LtEh1gkTV4QN6jdnukkj
+         i/st58to/xgSvNzFRDmoGBjz9z/Ce2zK0XZ9JrrdU4dGolY8A5enwVKsRUidyaigMc8b
+         Udmg77PHEi7iVNt2Vv/J0Oi/Yo5FPQ+FE4JQAV9Q6bGGkxgZqZyaK00CMWRPB6cdMgVM
+         3G3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:message-id:date:to:from:subject:mime-version
+         :dkim-signature:dkim-signature;
+        bh=Hrj5G1ODoqaSMiTn+dT/EvpngkfyHnBFuRHk4Z5JvnY=;
+        b=nUk5r3oKvDg4OmVT0+aXLjIhCiu8C6Ep6MQ6GLpHyqzsV7yHXK1DYPJQt4M68ajsgD
+         NTIsi4ZjEB9f7hNlzbTQQdr4yNT7P0hhlkPTR3C13LuxT/Av4GtawD0IUATvnkenK5t5
+         xFSjGrWfY9cJtm/S6k4DfFF/xR3TXq+0jIPSXpOGHTG2/sVlCI3bmYHsgg/R57mcI1HJ
+         JGPpODEdxypEwrYMI7bhuXulmErJK/wSIFSQgfXGbbkGlEkFRVRI4ELUIs/+w0sMnbGI
+         OYit+2HpLukh/vPHS5a9mxx+QNsjE/60BFGrkUiZo3/JYlAk+6gNpPvCl5Y7ttOn8Xah
+         zD4A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@sevenrooms.com header.s=uexz7imjj2ptfhfap3h4lcuush2z7iaa header.b=aXjRVLvg;
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b="XjHvXP/F";
+       spf=pass (google.com: domain of 010101756a74ae53-0903995c-b9e3-49af-8b4c-78ac6cd2cbd2-000000@outbound-contact.sevenrooms.com designates 54.240.62.3 as permitted sender) smtp.mailfrom=010101756a74ae53-0903995c-b9e3-49af-8b4c-78ac6cd2cbd2-000000@outbound-contact.sevenrooms.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sevenrooms.com
+Return-Path: <010101756a74ae53-0903995c-b9e3-49af-8b4c-78ac6cd2cbd2-000000@outbound-contact.sevenrooms.com>
+Received: from a62-3.smtp-out.us-west-2.amazonses.com (a62-3.smtp-out.us-west-2.amazonses.com. [54.240.62.3])
+        by mx.google.com with ESMTPS id o11si1571265pgg.511.2020.10.27.07.27.13
+        for <dtsa.tan@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Tue, 27 Oct 2020 07:27:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 010101756a74ae53-0903995c-b9e3-49af-8b4c-78ac6cd2cbd2-000000@outbound-contact.sevenrooms.com designates 54.240.62.3 as permitted sender) client-ip=54.240.62.3;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@sevenrooms.com header.s=uexz7imjj2ptfhfap3h4lcuush2z7iaa header.b=aXjRVLvg;
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b="XjHvXP/F";
+       spf=pass (google.com: domain of 010101756a74ae53-0903995c-b9e3-49af-8b4c-78ac6cd2cbd2-000000@outbound-contact.sevenrooms.com designates 54.240.62.3 as permitted sender) smtp.mailfrom=010101756a74ae53-0903995c-b9e3-49af-8b4c-78ac6cd2cbd2-000000@outbound-contact.sevenrooms.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sevenrooms.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=uexz7imjj2ptfhfap3h4lcuush2z7iaa; d=sevenrooms.com; t=1603808833;
+	h=Content-Type:MIME-Version:Subject:From:To:Date:Message-ID;
+	bh=F1kaWEa5IA9d9gGNwKCupHdwWp6g7EauJmoDz+fK56E=;
+	b=aXjRVLvg+vsPLdsOzPXcpbOwSgFFNWSFBwydhlcHqdfzxxyh95iRHon2wbpieXX4
+	NwVGCJJpju7P1nx8EfeRCYlp8CSkFZ1MqEQf6C5iO7Oyk4T45FDh+FMjdRzd1FGOtOL
+	m4eK6ecn+ehRi/x5p60UOip4X04RguPuuEgnyFvI=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1603808833;
+	h=Content-Type:MIME-Version:Subject:From:To:Date:Message-ID:Feedback-ID;
+	bh=F1kaWEa5IA9d9gGNwKCupHdwWp6g7EauJmoDz+fK56E=;
+	b=XjHvXP/FWm2CeHxi7xKBKIPO3EKKJyLh68p529b0lDuW7BX+BrkYjtYafYcM2/DP
+	IcVkPTcspKctmQm9vE155Z8274fFHKGAJOVFZ2NvLI4tzcyvJT81r9WR8AicsaHjee2
+	3Y3K8NmfrTwjdIy8TIZOINE08POGfwA7PZjuo/lo=
+Content-Type: multipart/alternative;
+ boundary="===============3433735874316503665=="
+MIME-Version: 1.0
+Subject: Your Reservation at ATLAS | Daniel Tan on 08/12/2020
+From: ATLAS <_ac-prod+5065166416642048e6460638246trsc@sevenrooms.com>
+To: dtsa.tan@gmail.com
+Date: Tue, 27 Oct 2020 14:27:13 +0000
+Message-ID: <010101756a74ae53-0903995c-b9e3-49af-8b4c-78ac6cd2cbd2-000000@us-west-2.amazonses.com>
+X-SES-Outgoing: 2020.10.27-54.240.62.3
+Feedback-ID: 1.us-west-2.fC//YAraJ9AcDqprwZbqN4AT61VL2gmVsNldz7hx2kk=:AmazonSES
+
+--===============3433735874316503665==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+![][1]
+
+Daniel Tan
+
+Tuesday, 8 December 2020
+
+for 2 guests at 15:00
+
+[ modify reservation ][2] | [ cancel reservation ][3]
+
+[ add to calendar ][4]
+
+Contact
+
+Parkview Square, Lobby Level, 600 North Bridge Road
+
+Singapore 188778
+
+[+65 6396 4466][5]
+
+[ map ][6] | [ website ][7]
+
+A note from us
+
+Thank you for your reservation at ATLAS.
+
+Please note that **after 5pm, a dress code of smart casual applies **(no
+shorts or slippers).
+
+Reservations are held for 15 minutes past the reservation time after which
+ATLAS will release the booking. Please contact us if you are running late.
+
+One Afternoon Tea set will be prepared for each guest in the booking. Please
+note ATLAS is unable to prepare dairy free, egg free, or vegan Afternoon Tea.
+
+Afternoon Tea Reservations are for a duration of 2 hours.
+
+Our commitment to your safety during COVID-19
+
+Nothing is more important to us than the safety of our guests. ATLAS will be
+following all government regulations including:
+
+1. Temperature check and SafeEntry on arrival.
+
+2. Masks to be worn at all times, except when dining or drinking.
+
+3. Group size limit of 5 guests. Groups larger than 5 guests will be turned
+away, splitting of tables across multiple tables is not allowed.
+
+4. No intermingling between groups, a safe distance of at least 1 metre
+between all tables is to be adhered to.
+
+5. Alcohol sales and consumption will cease strictly at 10:30pm.
+
+Cancellation Policy
+
+We know plans can change so if you need to cancel please do so as soon as
+possible. Cancellation, no show, or a reduction in the number of tea sets
+reserved within 24 hours of your reservation will incur a fee of $56++ per
+guest.
+
+Your reservation code is JA2FU768
+
+mailed by
+
+![][8]
+
+228 Park Avenue South, PMB 33706, New York, NY 10003
+
+[www.sevenrooms.com][9]
+
+You are receiving this email from ATLAS through SevenRooms
+
+   [1]: 
+https://www.sevenrooms.com/.h/download/AMIfv96Oww9TyIoaTksiuhVJqFhzW9xQhnnfRs7e8U6dBpOiWYbXh7yrl8b5qNaTHunbPKvHXiVWq0Ti1n-xONnAXIHjcG-sfUp0bLxkg23Zn9du0-bIHBUfpdCBwTq0Dw7KYwROOuO8i7g7mU5JS3fICgY7polAg0yVgGsPH-7V37yeOtk9ltyJBP1XYx52Wowx2i-g5StIqXqkpIiEHuV0qTThHbmb5napAVHrzrE_fF7jbvCokWbF7Hwk3QT0uPoL5rXfiLXEFTZGUuxQysebbi5YSVtkJaUh5-vnB0-6IeykjtnlhCO3W1d6cpZvnWl8BTWWWtvAhZuspm7x1ucIlW-HT6wKjI9env8PKDWAyurWypnTIlctD2vpSovh7ZSVnlT26nfSvVmQaYFTSLUt6LLzTT6gSA
+   [2]: 
+https://www.sevenrooms.com/direct/modify-reservation/MTU2MTk5NWE1MzUyNzBjM2ZkYzdkZWZhZWUwZmNlYzQ4NDMzNWVlYzqAAn1xAShVGGFjdHVhbF9jcmVhdGVkX3RpbWVzdGFtcHECVRExNjAzODA4ODI5Ljk1ODE2MFUJYWN0dWFsX2lkcQNVUGFoTnpmbk5sZG1WdWNtOXZiWE10YzJWamRYSmxjaVVMRWh0dWFXZG9kR3h2YjNCZlVtVnpaWEoyWVhScGIyNUJZM1IxWVd3WXBvaldpQmdNcQR1Lg==?lang=en
+   [3]: https://www.sevenrooms.com/direct/cancel-reservation/ahNzfnNldmVucm9vbXMtc2VjdXJlciULEhtuaWdodGxvb3BfUmVzZXJ2YXRpb25BY3R1YWwYpojWiBgM?lang=en
+   [4]: 
+https://calendar.google.com/calendar/render?dates=20201208T070000Z%2F20201208T090000Z&text=Reservation+at+ATLAS&details=Daniel+Tan&action=TEMPLATE&output=xml&sf=true&location=Parkview+Square%2C+Lobby+Level%2C+600+North+Bridge+Road
+   [5]: tel:+65 6396 4466
+   [6]: https://maps.google.com/maps?q=Parkview Square, Lobby Level, 600 North Bridge Road, Singapore 188778
+   [7]: http://atlasbar.sg/
+   [8]: https://www.sevenrooms.com/static/circleci-3b78aa54d1/images/system_emails/7R-Logo-Long.png
+   [9]: https://www.sevenrooms.com
+
+--===============3433735874316503665==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <style type="text/css">
+    @media all and (min-width:376px) {
+        .email-bg-size {
+            width: 600px !important;
+        }
+        .card-size {
+            width: 480px !important;
+        }
+        .email-ad {
+            width: 480px !important;
+        }
+        .card-content {
+            width: 400px !important;
+        }
+        .card-charge {
+            width: 350px !important;
+        }
+        .first-card {
+            margin-top:20px !important;
+        }
+        .inner-card-content {
+            width: 350px !important;
+        }
+        .inner-card-content-right {
+            width: 320px !important;
+        }
+        td, th {
+            border-width: 0px !important;
+        }
+    }
+    @media all and (max-width:375px) {
+        .email-bg-size {
+            width: 375px !important;
+        }
+        .email-ad {
+            width: 355px !important;
+        }
+        .card-size {
+            width: 355px !important;
+        }
+        .card-content {
+            width: 300px !important;
+        }
+        .card-charge {
+            width: 300px !important;
+        }
+        .first-card {
+            margin-top:10px !important;
+        }
+        .inner-card-content {
+            width: 263px !important;
+        }
+        .inner-card-content-right {
+            width: 250px !important;
+        }
+        td, th {
+            border-width: 0px !important;
+        }
+    }
+    </style>
+    </head>
+    <body style="background-color: #F6F6F6;">
+        <table width="600" border="0" cellpadding="0" cellspacing="0" border="0" align="center" class="email-bg-size">
+            <tr>
+                <td align="center">
+                    <div id="mailbody">
+                    <table border="0" cellpadding="0" cellspacing="0" align="center" class="card-size first-card" style="width: 480px; margin-top: 20px;background-color: white;color:black;">
+    <tr>
+        
+            <td align="center" valign="top" style="padding:15px; font-size: 24px; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; line-height:28px; border-bottom: 1px solid #F4F4F4">
+            
+                <img 
+src="https://www.sevenrooms.com/.h/download/AMIfv96Oww9TyIoaTksiuhVJqFhzW9xQhnnfRs7e8U6dBpOiWYbXh7yrl8b5qNaTHunbPKvHXiVWq0Ti1n-xONnAXIHjcG-sfUp0bLxkg23Zn9du0-bIHBUfpdCBwTq0Dw7KYwROOuO8i7g7mU5JS3fICgY7polAg0yVgGsPH-7V37yeOtk9ltyJBP1XYx52Wowx2i-g5StIqXqkpIiEHuV0qTThHbmb5napAVHrzrE_fF7jbvCokWbF7Hwk3QT0uPoL5rXfiLXEFTZGUuxQysebbi5YSVtkJaUh5-vnB0-6IeykjtnlhCO3W1d6cpZvnWl8BTWWWtvAhZuspm7x1ucIlW-HT6wKjI9env8PKDWAyurWypnTIlctD2vpSovh7ZSVnlT26nfSvVmQaYFTSLUt6LLzTT6gSA" 
+width="335.0" height="140" />
+            
+            </td>
+        
+    </tr> 
+</table>
+                    <div id="container">
+                    <table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; 
+background-color:#FFFFFF;">
+    <tr>
+        <td align="center">
+            
+            
+
+            
+            <div class="client-name" style="font-size: 18px;color: #777777; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; margin-top:24px;text-align:center">
+              Daniel Tan 
+              
+            </div>
+
+            <div style="font-size: 16px;color: #535353; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; line-height:28px; text-align:center; margin-top: 7px;">
+            <div class="details">
+    <div style="font-weight: bold">
+        Tuesday, 8 December 2020
+
+        
+
+        <br>
+
+        
+            for 2 guests
+        
+
+        
+
+        
+            at
+        
+
+        
+            
+                15:00
+            
+        
+
+        
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+            </div>
+
+            
+            
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size: 14px; font-family:Avenir-Book, Tahoma, Geneva, sans-serif;" align="center">
+            <div style="margin-top: 13px; margin-bottom: 19px;">
+                
+                    <a 
+href="https://www.sevenrooms.com/direct/modify-reservation/MTU2MTk5NWE1MzUyNzBjM2ZkYzdkZWZhZWUwZmNlYzQ4NDMzNWVlYzqAAn1xAShVGGFjdHVhbF9jcmVhdGVkX3RpbWVzdGFtcHECVRExNjAzODA4ODI5Ljk1ODE2MFUJYWN0dWFsX2lkcQNVUGFoTnpmbk5sZG1WdWNtOXZiWE10YzJWamRYSmxjaVVMRWh0dWFXZG9kR3h2YjNCZlVtVnpaWEoyWVhScGIyNUJZM1IxWVd3WXBvaldpQmdNcQR1Lg==?lang=en" 
+style="text-decoration:none !important;line-height:19px;color:#de9875">
+                    modify reservation
+                    </a>
+                    <span style="margin-left: 15px; color: #878787; line-height:22px;">|</span>
+                    <a href="https://www.sevenrooms.com/direct/cancel-reservation/ahNzfnNldmVucm9vbXMtc2VjdXJlciULEhtuaWdodGxvb3BfUmVzZXJ2YXRpb25BY3R1YWwYpojWiBgM?lang=en" style="text-decoration:none 
+!important;line-height:19px; margin-left: 15px; color:#de9875">
+                    cancel reservation
+                    </a>
+                
+
+                
+                    <div>
+                        
+
+                        <a 
+href="https://calendar.google.com/calendar/render?dates=20201208T070000Z%2F20201208T090000Z&text=Reservation+at+ATLAS&details=Daniel+Tan&action=TEMPLATE&output=xml&sf=true&location=Parkview+Square%2C+Lobby+Level%2C+600+North+Bridge+Road" 
+style="text-decoration:none !important; margin-left: 15px;  line-height:19px; color:#de9875">
+                        add to calendar
+                        </a>
+                    </div>
+                
+
+                
+            </div>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;border-radius: 5px; background-color:#FFFFFF; margin-top:5px;">
+    <tr>
+        <td align="center">
+            <div style="font-family:Avenir-Book, Tahoma, Geneva, sans-serif; font-size: 14px;">
+                <div style="text-align:center; font-weight:bold; color: #535353; line-height: 19px; margin-top: 16px;">
+                    
+                    Contact
+                    
+                </div>
+                
+                <div class="card-content" style="width: 400px;text-align:center; color: #878787; line-height: 22px; margin-top: 7px;">
+                    Parkview Square, Lobby Level, 600 North Bridge Road <br> Singapore 188778
+                </div>
+                
+                
+                <div style="text-align:center; color: #878787; line-height: 22px; margin-top:3px;">
+                    <a style="text-decoration:none !important;line-height:19px;color:#de9875" href="tel:+65 6396 4466">+65 6396 4466</a>
+                </div>
+                
+                <div style="text-align:center; color: #878787; line-height: 22px; margin-bottom: 14px; margin-top: 5px;">
+                    <a style="text-decoration:none !important;color:#de9875" href="https://maps.google.com/maps?q=Parkview Square, Lobby Level, 600 North Bridge Road, Singapore 188778">
+                        
+                            map
+                        
+                    </a>
+                    
+                     |  <a style="text-decoration:none !important;color:#de9875" href="http://atlasbar.sg/">
+                            
+                                website
+                            
+                        </a>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;border-top-left-radius: 5px; border-top-right-radius: 5px; background-color:#FFFFFF; 
+margin-top:5px;">
+    <tr>
+         <td align="center">
+             <div style="font-family:Avenir-Book, Tahoma, Geneva, sans-serif; font-size: 14px;">
+                <div style="text-align:center; font-weight:bold; color: #535353; line-height: 19px; margin-top: 27px;">
+                    
+                    A note from us
+                    
+                </div>
+                <div class="card-content" style="width: 400px;text-align:center; color: #878787; line-height: 22px; margin-top: 6px; width: 400px; margin-bottom: 20px;">
+                    
+                    Thank you for your reservation at ATLAS.
+<P><P>
+Please note that <B>after 5pm, a dress code of smart casual applies </B>(no shorts or slippers). 
+<P><P>
+Reservations are held for 15 minutes past the reservation time after which ATLAS will release the booking. Please contact us if you are running late.
+<P><P>
+One Afternoon Tea set will be prepared for each guest in the booking. Please note ATLAS is unable to prepare dairy free, egg free, or vegan Afternoon Tea.
+<P><P>
+Afternoon Tea Reservations are for a duration of 2 hours.
+                    
+                </div>
+            </div>
+         </td>
+    </tr>
+</table>
+
+
+<table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;border-top-left-radius: 5px; border-top-right-radius: 5px; background-color:#FFFFFF; 
+margin-top:5px;">
+    <tr>
+         <td align="center">
+             <div style="font-family:Avenir-Book, Tahoma, Geneva, sans-serif; font-size: 14px;">
+                 <div style="text-align:center; font-weight:bold; color: #535353; line-height: 19px; margin-top: 27px;">
+                     Our commitment to your safety during COVID-19
+                 </div>
+                 <div class="card-content" style="width: 400px;text-align:center; color: #878787; line-height: 22px; margin-top: 6px; width: 400px; margin-bottom: 20px;">
+                     <p>Nothing is more important to us than the safety of our guests. ATLAS will be following all government regulations including:</p>
+<p>1. Temperature check and SafeEntry on arrival.</p>
+<p>2. Masks to be worn at all times, except when dining or drinking.</p>
+<p>3. Group size limit of 5 guests. Groups larger than 5 guests will be turned away, splitting of tables across multiple tables is not allowed.</p>
+<p>4. No intermingling between groups, a safe distance of at least 1 metre between all tables is to be adhered to.</p>
+<p>5. Alcohol sales and consumption will cease strictly at 10:30pm.</p>
+                 </div>
+            </div>
+         </td>
+    </tr>
+</table>
+
+
+<table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;border-top-left-radius: 5px; border-top-right-radius: 5px; background-color:#FFFFFF; 
+margin-top:5px;">
+    <tr>
+         <td align="center">
+             <div style="font-family:Avenir-Book, Tahoma, Geneva, sans-serif; font-size: 14px;">
+                <div style="text-align:center; font-weight:bold; color: #535353; line-height: 19px; margin-top: 27px;">
+                
+                Cancellation Policy
+                
+                </div>
+                <div class="card-content" style="width: 400px;text-align:center; color: #878787; line-height: 22px; margin-top: 6px; width: 400px; margin-bottom: 20px;">
+                    We know plans can change so if you need to cancel please do so as soon as possible. Cancellation, no show, or a reduction in the number of tea sets reserved within 24 hours of your 
+reservation will incur a fee of $56++ per guest.
+                </div>
+            </div>
+         </td>
+    </tr>
+</table>
+
+                    </div>
+                    
+<table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;background-color:#FFFFFF;">
+    <tr>
+         <td align="center" style="background-color: #DBDBDB; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+             <div style="font-family:Avenir-Book, Tahoma, Geneva, sans-serif; font-size: 14px; padding-top:7px; padding-bottom: 7px;">
+                
+                Your reservation code is JA2FU768
+                
+              </div>
+         </td>
+    </tr>
+</table>
+
+                </div>
+                <table border="0" cellpadding="0" cellspacing="0" class="card-size" align="center" style="width: 480px;margin-top:22px;">
+    <tr>
+        <td align="center" class="footer" style="font-size: 11px; font-family:Avenir-Book, Tahoma, Geneva, sans-serif; color: #A1A1A1">
+            
+<div style="color: #878787; height: 24px;">
+    mailed by
+</div>
+<div class="footer-img" style="margin-top: 4px;">
+    <img width="150" height="16" src="https://www.sevenrooms.com/static/circleci-3b78aa54d1/images/system_emails/7R-Logo-Long.png"/>
+</div>
+<div style="color: #A1A1A1; margin-top: 18px;">
+    228 Park Avenue South, PMB 33706, New York, NY 10003
+</div>
+<div style="margin-top:5px;">
+    <a style="color: #A1A1A1;" href="https://www.sevenrooms.com">www.sevenrooms.com</a>
+</div>
+
+            <div style="margin-top:5px; margin-bottom: 30px;">
+                You are receiving this email from ATLAS through SevenRooms
+            </div>
+        </td>
+    </tr>
+</table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+--===============3433735874316503665==--

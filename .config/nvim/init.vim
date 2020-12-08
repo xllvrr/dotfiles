@@ -2,33 +2,57 @@ let mapleader=" "
 
 call plug#begin('~/repos/plugged')
 
+" Themeing
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tomasiser/vim-code-dark'
-Plug 'sbdchd/neoformat'
+
+" General Use Plugins
+Plug 'sbdchd/neoformat' " Formatting
 Plug 'jiangmiao/auto-pairs' " Auto completion of pairs
 Plug 'kovetskiy/sxhkd-vim' " Integration with sxhkd
-Plug 'unblevable/quick-scope'
-Plug 'junegunn/fzf.vim' " Fuzzy Search
+Plug 'unblevable/quick-scope' " Navigation and Motions
 Plug 'vimwiki/vimwiki' " Vimwiki
+Plug 'lilydjwg/fcitx.vim' " Write in another language
+
+" Markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }} 
+" Git
+Plug 'tpope/vim-fugitive'
+" Csv Reading
+Plug 'chrisbra/csv.vim'
+" Commenting
+Plug 'tpope/vim-commentary'
+" Linting Code
+Plug 'neomake/neomake'
+" Autocompletion
+Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "context"
+
+" Fzf
+Plug 'junegunn/fzf.vim' " Fuzzy Search
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+
+" Easy Motion
+Plug 'easymotion/vim-easymotion'
+nmap <leader><leader>. <Plug>(easymotion-repeat)
+nmap <leader><leader>j <Plug>(easymotion-sol-j)
+nmap <leader><leader>k <Plug>(easymotion-sol-k)
 
 Plug 'machakann/vim-highlightedyank' " For better highlighting in yank
 hi HighlightedyankRegion cterm=reverse gui=reverse
 let g:highlightedyank_highlight_duration = 1000 " set highlight duration time to 1000 ms, i.e., 1 second
 
-" Csv Reading
-Plug 'chrisbra/csv.vim'
-" Commenting
-Plug 'tpope/vim-commentary'
-" Syntax Highlighting
-" Plug 'sheerun/vim-polyglot'
-" Linting Code
-Plug 'neomake/neomake'
-" Autocomplete
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-" SuperTab
-Plug 'ervandew/supertab'
+" Coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Enter for Confirm Completion
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
 " Pandoc
 Plug 'vim-pandoc/vim-pandoc'
@@ -44,25 +68,19 @@ nmap , <Plug>RDSendLine
 vmap , <Plug>RDSendSelection
 vmap ,e <Plug>RESendSelection
 Plug 'jalvesaq/R-Vim-runtime' " Highlighting for Rmd and Rnw code chunks
-Plug 'gaalcaras/ncm-R' " Code Completion for R
-Plug 'roxma/nvim-yarp' " Dependency for ncm2
-Plug 'ncm2/ncm2' " Snippets for ncm-R
-augroup ncm2
-    autocmd BufEnter * call ncm2#enable_for_buffer()
-    set completeopt=noinsert,menuone,noselect
-    inoremap <c-c> <ESC>
-augroup END
-Plug 'ervandew/supertab' " Allow tab to autocomplete
 au BufNewFile *.Rnw 0r ~/.config/nvim/skeleton.Rnw
+au BufNewFile *.Rmd execute "0r ~/.config/nvim/".input("Template name: ").".Rmd"
+au BufNewFile *.md execute "0r ~/.config/nvim/".input("Template name: ").".md"
+au BufNewFile *.bib 0r ~/.config/nvim/skeleton.bib
 
 " Latex
 Plug 'LaTeX-Box-Team/LaTeX-Box' " TeX highlighting and compilation
 let g:LatexBox_show_warnings = 1
 let g:LatexBox_autojump = 1
 let g:LatexBox_latexmk_async = 0
+let g:tex_flavor = 'tex'
 
 " Python
-Plug 'ncm2/ncm2-jedi'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Better highlighting
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:neoformat_basic_format_align = 1 " Enable alignment
@@ -70,10 +88,39 @@ let g:neoformat_basic_format_retab = 1 " Enable tab to spaces conversion
 let g:neoformat_basic_format_trim = 1 " Enable trimmming of trailing whitespace
 Plug 'terryma/vim-multiple-cursors'
 au BufNewFile *.py 0r ~/.config/nvim/skeleton.py
-command! -nargs=* PT vsplit | terminal ipython
-" Run Python Script
-autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!ipython' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!ipython' shellescape(@%, 1)<CR>
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'bfredl/nvim-ipy'
+let g:nvim_ipy_perform_mappings = 0
+nmap <silent> <leader>pt :IPython<CR>
+map <leader>pr <Plug>(IPy-Run)
+map <leader>pc <Plug>(IPy-RunCell)
+map <leader>ps <Plug>(IPy-Interrupt)
+au FileType rmd let b:ipy_celldef = ['^```{r}$', '^```$']
+
+" Vim Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+let g:go_fmt_command = "goimports"
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>ga :cclose<CR>
+autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
+let g:go_highlight_function_calls = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+" Function for either build or test
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
 
 " Vim CmdLine
 Plug 'jalvesaq/vimcmdline'
@@ -107,6 +154,12 @@ set mouse=in
 set history=1000
 set foldmethod=syntax
 set foldlevelstart=20
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+set clipboard+=unnamedplus
+
+" For Autocompletion
+set updatetime=300
+set shortmess+=c
 
 " Split direction
 set splitright
@@ -124,6 +177,12 @@ set nobackup
 set noswapfile
 
 colorscheme codedark
+
+" Reading Mail
+augroup filetypedetect
+  " Mail
+  autocmd BufRead,BufNewFile *mutt-*              setfiletype mail
+augroup END
 
 " Configuring netrw
 let g:netrw_banner = 0
@@ -144,21 +203,20 @@ nnoremap <leader>tj <C-W>J
 nnoremap <leader>tl <C-W>L
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path': '$HOME/GDrive/VimWiki',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '/mnt/media/GDrive/VimWiki','syntax': 'markdown', 'ext': '.md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
+let g:vimwiki_folding = 'expr'
+let g:vimwiki_global_ext = 0
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
 
-" Clipboard settings
-vnoremap Y "+y
-nnoremap Y "+y
-nnoremap P "+p
-
-" Tab navigation
-nnoremap tn :tabnew<Space>
-nnoremap tk :tabnext<CR>
-nnoremap tj :tabprev<CR>
-nnoremap th :tabfirst<CR>
-nnoremap tl :tablast<CR>
+" Markdown Preview
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 0
+nnoremap mp :MarkdownPreview<CR>
+nnoremap ms :MarkdownPreviewStop<CR>
 
 " Help file on the right
 augroup vimrc_help
@@ -181,9 +239,6 @@ command! -nargs=* T split | terminal <args>
 command! -nargs=* VT vsplit | terminal <args>
 command! -nargs=* TT tabnew | terminal <args>
 
-" Quick reference
-command! -nargs=* BibRef tabedit $HOME/repos/templates/bibtemplates.bib
-
 " Auto-center and go by screen lines
 nnoremap j gjzz
 nnoremap k gkzz
@@ -201,23 +256,20 @@ let g:neomake_R_enabled_makers = ['lintr']
 let g:neomake_Rnw_enabled_makers = ['pdflatex']
 let g:neomake_bib_enabled_makers = ['bibtex']
 let g:neomake_zsh_enabled_makers = ['zsh']
+let g:neomake_go_enabled_makers = ['golangci-lint', 'gometalinter']
 
 " Neoformat Configuration
 let g:neoformat_enabled_python = ['autopep8']
-let g:neoformat_enabled_R = ['formatR','styler']
+let g:neoformat_enabled_R = ['formatR']
 let g:neoformat_enabled_Rnw = ['latexindent']
 let g:neoformat_enabled_tex = ['latexindent']
 let g:neoformat_enabled_xml = ['prettier']
+let g:neoformat_enabled_go = ['gofmt']
 " Binding
-nnoremap <leader>fs :Neoformat
+nnoremap <leader>ff :Neoformat<CR>
 
 " Highlighting for Rnw files
 augroup filetypedetect
     au! BufRead,BufNewFile *.r         setfiletype r
     au! BufRead,BufNewFile *.R         setfiletype r
-augroup END
-
-" Autosource Vim Conf on Save
-augroup autosource
-    au! BufWritePost $MYVIMRC source $MYVIMRC
 augroup END

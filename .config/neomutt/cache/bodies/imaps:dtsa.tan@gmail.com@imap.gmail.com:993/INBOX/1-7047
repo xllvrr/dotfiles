@@ -1,0 +1,154 @@
+Delivered-To: dtsa.tan@gmail.com
+Received: by 2002:ab3:5697:0:0:0:0:0 with SMTP id d23csp2685479ltc;
+        Sun, 22 Nov 2020 03:50:06 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxBMv2hUiq/L0Xhf+YhLCWjUZ/o78K+XVFoyikicYJMTe8RZGbCTvJ8My/M12ben6uwT7hK
+X-Received: by 2002:a17:906:11d0:: with SMTP id o16mr15242337eja.25.1606045806298;
+        Sun, 22 Nov 2020 03:50:06 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1606045806; cv=none;
+        d=google.com; s=arc-20160816;
+        b=cWLUdRaVZj9LjLK+G16DD2TTM6+JewE9sH0aC3YHN20xoIoGsPbCT8ukG3u0VwTdyH
+         s2HpZKiFP8Gy1zh/zW4VzjVfSyB6+5BbLY0/TlhSeUT9/aLQjC3Nik22TLzX1/vi6SI9
+         0Y/MyLaSr7jun6OotpVRK3W51CUN/4G+oanNxqgWv213sx1qstfLdisUJY3UjUvquhfp
+         g/wvcAFR/k768DGHcwHEJEtBpvrUaruMh/A/ZgGklHRcnYF807f8+zgikzubCL7uCno1
+         Qm4A/6wRYJfcYlOAzEJXc5+p28n4po3pkGgZIr/LKrbXRNlSg1lwdpNf4V0RsH0ZQtVt
+         GfJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=subject:message-id:to:mime-version:from:date
+         :content-transfer-encoding:dkim-signature:dkim-signature;
+        bh=YjGy8t+DQ5cXXN0RJxTOabY/VewoDs03v//1wT4HfuY=;
+        b=xrhbBcUjtWO1EBkyYNuCpAVAukaSVxkbqwgucTNjaxD2qjAWtaJSFSEKpj+qNmkSxr
+         I9HNmhXXd7LWzhDd4mvDEcFj2Lh27ajr7QjFbKg9WI/A5vZRja6DTsEEWl6b06ONsVGM
+         yvwm+e7QCk7R3r/3kYI85HxaZow4lFWepDZTiWWGX4DR2bbD9cHkAWq73+pTpx5Hx1Lm
+         x8Hi8Sjzbwsw6KI5Ctb6LbLsei7lmyLnjfiW66RzMjeh8EqCJ3Wl0Pkpn1B+jD+snsR6
+         XepqZlEHgSMVj37D8Wx5rWUHrdlqlUt7F6eoebQpuGz91ClxUDIx1jccD5p916PuU9Wd
+         P0NQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@zoom.us header.s=sg header.b=u7N+Dq8n;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b="j/VBc4HW";
+       spf=pass (google.com: domain of bounces+15570388-a602-dtsa.tan=gmail.com@bounce-sg.zoom.us designates 149.72.249.102 as permitted sender) smtp.mailfrom="bounces+15570388-a602-dtsa.tan=gmail.com@bounce-sg.zoom.us";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=zoom.us
+Return-Path: <bounces+15570388-a602-dtsa.tan=gmail.com@bounce-sg.zoom.us>
+Received: from o6.sg.zoom.us (o6.sg.zoom.us. [149.72.249.102])
+        by mx.google.com with ESMTPS id sd28si2352958ejb.474.2020.11.22.03.50.05
+        for <dtsa.tan@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 22 Nov 2020 03:50:06 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+15570388-a602-dtsa.tan=gmail.com@bounce-sg.zoom.us designates 149.72.249.102 as permitted sender) client-ip=149.72.249.102;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@zoom.us header.s=sg header.b=u7N+Dq8n;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b="j/VBc4HW";
+       spf=pass (google.com: domain of bounces+15570388-a602-dtsa.tan=gmail.com@bounce-sg.zoom.us designates 149.72.249.102 as permitted sender) smtp.mailfrom="bounces+15570388-a602-dtsa.tan=gmail.com@bounce-sg.zoom.us";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=zoom.us
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zoom.us; 
+	h=content-transfer-encoding:content-type:from:mime-version:to:subject; 
+	s=sg; bh=YjGy8t+DQ5cXXN0RJxTOabY/VewoDs03v//1wT4HfuY=; b=u7N+Dq8
+	nEUK8qG1foU4NJLg/KFpp+MJ+ngFSJw5M9aWqtCWebS60FjGctpsM2snTdiOQNM6
+	NhqYaJ2/rjsKrCA0jcVzAkyHPwYBRyRmu3T7zJGw+FV+xSgiOm7AvzgENJEzYBfE
+	7iY9CNV54cDBJ9HQvvEDWrTwUnj3CjsnzKDI=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; 
+	d=sendgrid.info; 
+	h=content-transfer-encoding:content-type:from:mime-version:to:subject:x-feedback-id; 
+	s=smtpapi; bh=YjGy8t+DQ5cXXN0RJxTOabY/VewoDs03v//1wT4HfuY=; b=j/
+	VBc4HWxjU62wMB+qMCC2ecxytDZPKyq/+J0QWeIWww9k59D9iFw2Znq1Ys1SfBoq
+	aRz/r5pPsGohf83zDdnFSeL6ZttEHFLBHa2oeVabjlbVv6A1CZky0eF3Zcnsj9R9
+	G3W1McVoyh8TCwa8A3AwccvvcJcHCsBYdvnVViGPQ=
+Received: by filter1506p1iad2.sendgrid.net with SMTP id filter1506p1iad2-25165-5FBA506C-25
+        2020-11-22 11:50:04.836096375 +0000 UTC m=+491911.585572191
+Received: from MTU1NzAzODg (unknown)
+	by geopod-ismtpd-1-8 (SG) with HTTP id oEaAM3jXTlKErLiYZwemvA
+	Sun, 22 Nov 2020 11:50:04.814 +0000 (UTC)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+Date: Sun, 22 Nov 2020 11:50:04 +0000 (UTC)
+From: "Yig Zern Teo" <no-reply@zoom.us>
+Mime-Version: 1.0
+To: dtsa.tan@gmail.com
+Message-ID: <oEaAM3jXTlKErLiYZwemvA@geopod-ismtpd-1-8>
+Subject: Thank you for attending Revelation Revealed -   3 Days
+X-SG-EID: ZoY5D0NI2Zv/9zJ5e0U9N9xU72cEAP2zDZzN/xBNSbGgDVLI0BWjcpPY/AvJag2E52KQW9IiTni5Cm
+ 2JEcvNu+Xa8WtgUvRfVsGjSzRaSlMOhxZzg1kQd6oKe1DfIVrTMI74063X18AINzg3eG+l4RT/h7Xi
+ UqMIyeRVjIy7tgphURdGeTCwaSoQ1eZ93hBn7+hOItMeGfLuDt3FqC0kLNBpYMA4bVbQ9vKJqAndH8
+ M=
+X-SG-ID: FQe39T3hAAZVe+nLebR7eF4z1zICzYSnprHuLPD6htCEQg7l/TCQN2AqGQFsS2jijDH/1yZMRPNpPr
+ ud8WK6rMul2sMxqK9GYJ/nkI3LPdnbnpOaYq0ddtilTvlpIQOPTiZWWP0rtWwc5gaYc/WAeVch9AAm
+ HfZXaYXOOj4siLl3PfdtIyf4rJByRDx7fMnrgYVWOQQ21ccZQSP6I8Xq240NUe2nAysRz5gKwtb0+7
+ NAEmKWRCSuOXpS7Ce/U8BSS+6RtBPzL5ASoUG8i5mrLMEdJ+5FZCua+c7hC17HxKzHL5KcdILeLYfT
+ mJGVHwWZeyGCl1iiHHa2Y7Kz7TbjP5j/ijalfgaZgw28ViJRrZA3uBUOqj7Ovq+IXlFYCq0dZLAFn0
+ nqmnLn5fVCKoN3aSV745IsrQpZfnSwRGSDBNYfA2sTjMQxeMSjX1GA3moyVOibxZXkPInY4RKf2AfX
+ aI4njNXgC81MSDtRQX3Vn5OmpDKSq6Pzq5arNGWShajYpbQoW08ahY1c5YRZaQGbWUhGkG4/HTqEtx
+ MZ78MeCuI=
+X-Entity-ID: mDhfxq9OikvIkQieTwdfQA==
+X-Feedback-ID: 15570388:Uurqdr1pO8QgovenBUEXF3ujE2ekchWZ5iORBorzPoE=:olyyjZJcOGH2FbVritG/OUtMYC2asQE6P8zZPTYv+js=:SG
+
+<html>
+<head>
+	<style>
+	html,body{
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		font-size: 14px;
+		line-height: 22px;
+	}
+	.custom_logo {
+		margin: 0 auto;
+		max-width:640px;
+	}
+	.img-responsive {
+		display: block;
+		height: auto;
+		max-height: 200px;
+		align: middle;
+	}
+	.custom_image {
+		float: right;
+		margin: 10px 0 10px 10px;
+		max-width:100px;
+	}
+	.cssTab{
+	    margin-left:24px;
+	}
+	</style>
+	<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" />
+</head>
+<body>=20
+<table style=3D"width:100%;background-color:#fff">
+<tr style=3D"height:120px">
+	<td><img class=3D"custom_logo img-responsive" src=3D"http://zoom.us/w_p/99=
+485854778/15e5dd06-8a55-4600-b254-c54c2a24b557.png" alt=3D'Webinar banner'/=
+></td>
+</tr>
+<tr style=3D"height:50px">
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td  >Hi Daniel Tan, <br>
+<br>
+Thank you for attending Revelation Revealed -   3 Days. We hope you enjoyed=
+ our event.<br>
+<br>
+Please submit your questions or comments to: teoyz@seachurches.org.<br>
+<br>
+We hope to see you in future sessions.<br><br>You download the copy of the =
+pdf below :<br>https://drive.google.com/file/d/12dFCvcTncJMHnHdFYa0iYMatO3W=
+9zR27/view?usp=3Dsharing<br>
+
+<BR><b>=20
+Please take note that no recordings of these webinars are allowed for perso=
+nal use and/or be posted in any social media platforms, and if such recordi=
+ngs were made, please remove and destroy them immediately. However we shall=
+ post our own recordings on appropriate social media platforms, but the spe=
+cific movie scenes used in webinar shall be removed in compliance with publ=
+ic performance copyright laws. The organisers of this event obtained specia=
+l permission from the studios to screen these movie scenes during our activ=
+ities. We thank you ahead of time for your understanding in this matter and=
+ for being copyright-compliant.=20
+</b> <BR>
+
+<BR>We hope to see you in future sessions.<BR></td>=09
+</tr>
+
+<tr style=3D"height:40px">
+	<td>&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>=

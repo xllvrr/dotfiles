@@ -77,6 +77,11 @@ cdf() {
     file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
 
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
 ################################# Centering ##############################################
 # load terminfo modules to make the associative array $terminfo available
 zmodload zsh/terminfo
@@ -146,5 +151,3 @@ SPACESHIP_JOBS_SHOW=false
 # Spaceship Prompt
 autoload -U promptinit; promptinit
 prompt spaceship
-
-

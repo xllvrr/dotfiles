@@ -25,7 +25,7 @@ alert = #bd2c40
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 25
+height = 35
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0.0
@@ -46,19 +46,19 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = JetBrainsMonoMedium:pixelsize=10;
-font-1 = HackNerdFont:pixelsize=10;
-font-2 = NotoColorEmoji:fontformat=truetype:scale=10:antialias=false;
-font-3 = FontAwesome5Free:pixelsize=10:style=Solid;0
-font-4 = FontAwesome5Free:pixelsize=10:style=Regular;0
-font-5 = FontAwesome5Brands:style=Regular:size=10;0
+font-0 = JetBrainsMonoMedium:pixelsize=13;
+font-1 = HackNerdFont:pixelsize=13;
+font-2 = NotoColorEmoji:fontformat=truetype:scale=13:antialias=false;
+font-3 = FontAwesome5Free:pixelsize=13:style=Solid;0
+font-4 = FontAwesome5Free:pixelsize=13:style=Regular;0
+font-5 = FontAwesome5Brands:style=Regular:size=13;0
 
 modules-left = bspwm 
 modules-right = filesystem battery volume bluetooth wifi time memory cpu 
 
-tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
+; tray-position = right
+; tray-padding = 2
+; tray-background = #0063ff
 
 wm-restack = bspwm
 
@@ -129,10 +129,10 @@ ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;
 ws-icon-5 = 6;
-ws-icon-6 = 7;
+ws-icon-6 = 7;龜
 ws-icon-7 = 8;
 ws-icon-8 = 9;
-ws-icon-9 = 10;
+ws-icon-9 = 10;
 
 ; Separator in between workspaces
 ; label-separator = |
@@ -233,7 +233,8 @@ format-padding = 1
 type = custom/script
 exec = bluepower
 interval = 2
-click-left = exec kcmshell5 bluedevildevices 
+; click-left = exec blueman-manager
+click-left = bluemenu
 click-right = exec toggleblue
 format-padding = 1
 format-underline = #268bd2

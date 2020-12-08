@@ -68,7 +68,7 @@ ctrl + super + {h,j,k,l}
 
 # Restart hotkey damon
 super + shift + x
-	pkill sxhkd && sxhkd &
+	pkill sxhkd && sxhkd
 
 # Reload polybar
 super + shift + o
@@ -94,24 +94,19 @@ super + p ; {r, s, o, h}
 super + alt + c
 	$TERMINAL -e cfglist
 
-
 =========== Applications ===========
 # Dmenu
 alt + space
-	dmenu_run -h 30
-
-# Fcitx
-super + space
-	fcitx-remote -t &
+	dmenu_run -h 35
 
 # GUI
 super + a ; {1-7,g,q}
 	{ \
 	$BROWSER, \
 	thunderbird, \
-	$TERMINAL -e nvim -c 'VimwikiIndex', \
-	rambox, \
-	discord, \
+	$TERMINAL -e nvim -c VimwikiIndex, \
+	messenger, \
+	lightcord, \
 	darktable, \
 	zoom, \
 	lutris, \
@@ -120,7 +115,7 @@ super + a ; {1-7,g,q}
 
 # File Managers
 super + d ; {t,f}
-	{$TERMINAL -e lf, pcmanfm}
+	{$TERMINAL -e nnn -He, pcmanfm}
 
 # Screenshot
 Print

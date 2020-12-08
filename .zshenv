@@ -1,5 +1,6 @@
 # path
 typeset -U PATH path
+
 path=("$HOME/.local/bin" "$HOME/repos/scripts" "$HOME/repos/scripts/polybar" "$HOME/.config/texlive/2020/bin/x86_64-linux" "/usr/lib/python3.8/site-packages" "$path[@]")
 export PATH
 export MANPATH="$HOME/.config/texlive/2020/texmf-dist/doc/man:$MANPATH"
@@ -12,9 +13,10 @@ export EDITOR='nvim'
 export LANG=en_US.UTF-8
 export PAGER='less'
 export READER='zathura'
-export VISUAL='sxiv'
+export VISUAL='nvim'
 export TERMINAL='alacritty'
 export BROWSER='firefox'
+export TEXMFDIST='$HOME/.config/texlive/2020/texmf-dist'
 export R_BROWSER=BROWSER
 
 # man page colors
@@ -29,10 +31,15 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 # exa settings
 # export EXA_COLORS=""
 
+# nnn settings
+export NNN_PLUG='m:dragdrop;o:fzopen;p:picker;l:launch;i:imgview;c:fzcd;u:getplugs;b:renamer;x:_chmod +x $nnn'
+export NNN_BMS='1:/mnt/media;2:/mnt/media/GDrive/School;M:/mnt/media/GDrive/School/Masters;D:/mnt/media/GDrive/D&D;L:/mnt/media/GDrive/Dad Lab/GUI;S:/mnt/media/GDrive/Starfinder;W:/mnt/media/GDrive/VimWiki;G:/mnt/media/GDrive'
+export NNN_COLORS='2'
+
 # lf icons
 export LF_ICONS="\
-di=:\
-fi=:\
+di=:\
+fi=:\
 ln=:\
 or=:\
 ex=:\

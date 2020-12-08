@@ -7,10 +7,8 @@
 \usepackage[english]{babel}
 \usepackage[titles]{tocloft}
 \usepackage{newtxtext, newtxmath}
-\usepackage{amsmath}
 
 \usepackage{graphicx}
-\usepackage[margin=2.54cm]{geometry}
 \usepackage{tabularx}
 \usepackage[flushleft]{threeparttable}
 \usepackage{listings}
@@ -18,8 +16,15 @@
 \usepackage{csquotes}
 \usepackage{subcaption}
 
-\usepackage{amsfonts, amssymb, bm} % math fonts and symbols
+\usepackage{bm} % math fonts and symbols
 \usepackage{dcolumn, multirow} % decimal aligned columns, multi-row entries
 \usepackage{booktabs} % formats tables nicely
 \usepackage[doublespacing]{setspace} % allows for double/single spacing
 \usepackage{indentfirst}
+
+%%----------------------%%
+%%     Preferences      %%
+%%----------------------%%
+
+\addbibresource{}
+\geometry{margin=2.54cm}
