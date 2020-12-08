@@ -29,6 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
+
     geometry = "0x0-20+35"
 
     # Show how many messages are currently hidden (because of geometry).
@@ -109,7 +110,7 @@
     #        specific applications *IS GREATLY DISCOURAGED*.
     #
     # no:    Disable markup parsing, incoming notifications will be treated as
-    #        plain text. Dunst willot advertise that it has the body-markup
+    #        plain text. Dunst willnot advertise that it has the body-markup
     #        capability if this is set as a global setting.
     #
     # It's important to note that markup inside the format option will be parsed

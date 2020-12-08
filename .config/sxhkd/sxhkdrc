@@ -66,7 +66,7 @@ ctrl + super + {h,j,k,l}
 
 =========== System Control ===========
 
-	# Restart hotkey damon
+# Restart hotkey damon
 super + shift + x
 	pkill sxhkd && sxhkd
 
@@ -95,7 +95,7 @@ super + alt + c
 	$TERMINAL -e cfglist
 
 =========== Applications ===========
-	# Dmenu
+# Dmenu
 alt + space
 	dmenu_run -h 35
 
