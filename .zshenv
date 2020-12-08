@@ -12,7 +12,6 @@ export EDITOR='nvim'
 export LANG=en_US.UTF-8
 export PAGER='less'
 export READER='zathura'
-export VISUAL='nvim'
 export TERMINAL='alacritty'
 export BROWSER='firefox'
 export TEXMFDIST='$HOME/.config/texlive/2020/texmf-dist'
@@ -32,7 +31,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # nnn settings
 export NNN_PLUG='m:dragdrop;o:fzopen;p:picker;l:launch;i:imgview;c:fzcd;u:getplugs;b:renamer;x:_chmod +x $nnn'
-export NNN_BMS='1:GDrive/School;M:GDrive/School/Masters;D:GDrive/D&D;L:GDrive/Dad Lab/Reference/code;S:GDrive/Starfinder'
+export NNN_BMS='1:~/GDrive/School;M:~/GDrive/School/Masters;D:~/GDrive/D&D;L:~/GDrive/Dad Lab/Reference/code;S:~/GDrive/Starfinder'
 export NNN_COLORS='2'
 
 # lf icons
