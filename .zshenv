@@ -1,9 +1,10 @@
 # path
 typeset -U PATH path
-path=("$HOME/.local/bin" "$HOME/repos/scripts" "$HOME/repos/scripts/polybar" "$HOME/.config/texlive/2020/bin/x86_64-linux" "$path[@]" "$HOME/.local/bin")
+
+path=("$HOME/.local/bin" "$HOME/repos/scripts" "$HOME/repos/scripts/polybar" "$HOME/.config/texlive/2020/bin/x86_64-linux" "/usr/lib/python3.8/site-packages" "$path[@]")
 export PATH
 export MANPATH="$HOME/.config/texlive/2020/texmf-dist/doc/man:$MANPATH"
-export INFOPATH="$HOME/.config/texlive/2020/texmf-dist/doc/info"
+export INFOPATH="$HOME/.config/texlive/2020/texmf-dist/doc/info:$INFOPATH"
 
 # default apps
 export HOME="/home/xllvr"

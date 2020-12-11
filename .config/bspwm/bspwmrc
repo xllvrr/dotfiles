@@ -7,7 +7,9 @@ safeeyes &
 dunst &
 fcitx &
 xrdb ~/.Xresources &
+polybarlaunch &
 compton -b &
+
 feh --bg-scale ~/.config/wall.jpg &
 pidof bspswallow || bspswallow &
 
