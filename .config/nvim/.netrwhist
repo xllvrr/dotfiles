@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/xllvr/repos/scripts/polybar'
 let g:netrw_dirhist_2='/home/xllvr/repos/scripts'
 let g:netrw_dirhist_1='/home/xllvr/.config/polybar'
 let g:netrw_dirhist_0='/home/xllvr/install'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_7='/home/xllvr'
 let g:netrw_dirhist_6='/home/xllvr/.R'
 let g:netrw_dirhist_5='/home/xllvr/.java'
 let g:netrw_dirhist_4='/home/xllvr/repos'
-let g:netrw_dirhist_3='/home/xllvr/repos/st'
