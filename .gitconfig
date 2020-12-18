@@ -3,3 +3,5 @@
 	name = xllvr
 [gpg]
 	program = gpg2
+[credential]
+	helper = cache
