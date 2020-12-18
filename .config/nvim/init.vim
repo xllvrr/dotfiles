@@ -23,8 +23,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'chrisbra/csv.vim'
 " Commenting
 Plug 'tpope/vim-commentary'
-" Linting Code
-Plug 'neomake/neomake'
 " Autocompletion
 Plug 'ervandew/supertab'
 let g:SuperTabDefaultCompletionType = "context"
@@ -283,15 +281,6 @@ vnoremap j gjzz
 vnoremap k gkzz
 vnoremap n gnzz
 vnoremap N gNzz
-
-" Neomake Maker Configuration
-call neomake#configure#automake('nrwi', 500)
-let g:neomake_python_enabled_makers = ['pep8', 'flake8']
-let g:neomake_R_enabled_makers = ['lintr']
-let g:neomake_Rnw_enabled_makers = ['pdflatex']
-let g:neomake_bib_enabled_makers = ['bibtex']
-let g:neomake_zsh_enabled_makers = ['zsh']
-let g:neomake_go_enabled_makers = ['golangci-lint', 'gometalinter']
 
 " Neoformat Configuration
 let g:neoformat_enabled_python = ['autopep8']
