@@ -9,6 +9,8 @@ fcitx &
 xrdb ~/.Xresources &
 polybarlaunch &
 compton -b &
+$HOME/repos/scripts/messenger desktop=^2 &
+thunderbird &
 
 feh --bg-scale ~/.config/wall.jpg &
 pidof bspswallow || bspswallow &
@@ -46,7 +48,6 @@ bspc config window_gap 9
 ###---Rules---###
 bspc rule -a Zathura state=tiled
 bspc rule -a Screenkey manage=off
-bspc rule -a Rambox desktop=^2 
 bspc rule -a discord desktop=^4
 bspc rule -a Darktable desktop=^3 state=fullscreen
 bspc rule -a Thunderbird desktop=^1
