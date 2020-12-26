@@ -3,3 +3,11 @@
 	name = xllvr
 [gpg]
 	program = gpg2
+[color]
+	ui = true
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
