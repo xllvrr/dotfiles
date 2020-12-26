@@ -1,13 +1,9 @@
 # Minimal configuration for Neomutt and Microsoft Exchange
 
-# Decrypts passwords quietly
-# see: https://wiki.archlinux.org/index.php/Mutt#Passwords_management
-source "gpg -dq ~/.config/neomutt/.my-pwds.gpg |"
-
 # Username and password
 set imap_user = "e0027033"
 # Password assigned from decrypted file
-set imap_pass = $my_s_pass
+set imap_pass = "J#Q7$a4sX6RjN*"
 
 # Specifies the default location of your mailboxes
 set folder = "imap://127.0.0.1:1143"
@@ -17,7 +13,7 @@ set hostname = "outlook.office365.com"
 # for Gmail
 set use_from = yes
 set smtp_url = "smtp://$imap_user:$imap_pass@127.0.0.1:1025"
-set smtp_pass = $my_s_pass
+set smtp_pass = $imap_pass
 
 # Set Sending Options
 set realname = "Tan Shao An Daniel"
@@ -42,5 +38,5 @@ unset use_domain
 unset user_agent
 
 # Hook
-account-hook $folder "set imap_user=$imap_user imap_pass=$my_s_pass"
+account-hook $folder "set imap_user=$imap_user imap_pass=$imap_pass"
 
