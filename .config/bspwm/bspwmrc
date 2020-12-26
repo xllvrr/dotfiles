@@ -9,7 +9,6 @@ fcitx &
 xrdb ~/.Xresources &
 polybarlaunch &
 compton -b &
-$HOME/repos/scripts/messenger desktop=^2 &
 thunderbird &
 
 feh --bg-scale ~/.config/wall.jpg &
