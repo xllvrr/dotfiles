@@ -13,6 +13,7 @@ thunderbird &
 
 feh --bg-scale ~/.config/wall.jpg &
 pidof bspswallow || bspswallow &
+setxkbmap -option caps:escape &
 
 ###---Monitors---###
 bspc monitor HDMI-A-0 -d 1 2 3 4 5 6 7 8 9 10
