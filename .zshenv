@@ -15,7 +15,7 @@ export PAGER='less'
 export READER='zathura'
 export VISUAL='nvim'
 export TERMINAL='alacritty'
-export BROWSER='firefox'
+export BROWSER='chromium'
 export TEXMFDIST='$HOME/.config/texlive/2020/texmf-dist'
 export R_BROWSER=BROWSER
 
