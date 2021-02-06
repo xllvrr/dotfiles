@@ -1,6 +1,6 @@
 00 19 * * * /usr/bin/redshift -P -O 3500
 00 08 * * * /usr/bin/redshift -P -O 6500
 00 * * * * /usr/bin/rclone sync --max-age 2h --no-traverse --filter-from ~/.config/rclone/filter-file.txt /mnt/media/GDrive GDrive:
-15 * * * * /usr/bin/rclone clone --max-age 2h --no-traverse --filter-from ~/.config/rclone/filter-file.txt GDrive: /mnt/media/GDrive
+15 * * * * /usr/bin/rclone copy --max-age 2h --no-traverse --filter-from ~/.config/rclone/filter-file.txt GDrive: /mnt/media/GDrive
 00 00 15 * * /usr/bin/Rscript $HOME/repos/scripts/Rback.R
 00 09 * * 7 $HOME/repos/scripts/CronBack
