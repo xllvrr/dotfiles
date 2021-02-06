@@ -109,11 +109,3 @@ n ()
 }
 
 
-######################## Rclone #####################################3
-function upclone() {
-    rclone sync --filter-from $1 $2 $3
-}
-
-function downclone() {
-    rclone copy --filter-from $1 $2 $3
-}
