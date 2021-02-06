@@ -205,6 +205,12 @@ nnoremap <leader>tk <C-W>K
 nnoremap <leader>tj <C-W>J
 nnoremap <leader>tl <C-W>L
 
+" Hard Mode
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
 " Vimwiki settings
 let g:vimwiki_list = [{'path': '/mnt/media/GDrive/VimWiki','syntax': 'markdown', 'ext': '.md'},
             \ {'path': '/mnt/media/GDrive/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},

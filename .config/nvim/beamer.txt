@@ -2,7 +2,6 @@
 \usepackage{rotating}
 \usepackage{hyperref}
 \usepackage{caption}
-\usepackage{apacite}
 \usepackage{booktabs}
 \usepackage[english]{babel}
 \usepackage{amsmath, amsfonts}
