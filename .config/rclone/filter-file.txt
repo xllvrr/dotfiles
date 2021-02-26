@@ -1,3 +1,4 @@
++ /Japanese/**
 - /Applications/**
 - /Backup/**
 - /Church/**
