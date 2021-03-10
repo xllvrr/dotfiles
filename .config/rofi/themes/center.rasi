@@ -83,4 +83,3 @@
     font:             @prompt-font;
     border-radius:    2px;
 }
-
