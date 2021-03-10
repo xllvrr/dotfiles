@@ -7,6 +7,7 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 
 # merge in defaults and keymaps
+setxkbmap -option caps:escape
 
 if [ -f $sysresources ]; then
 xrdb -merge $sysresources
