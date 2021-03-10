@@ -116,35 +116,11 @@ function! s:build_go_files()
   if l:file =~# '^\f\+_test\.go$'
     call go#test#Test(0, 1)
   elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
+   call go#cmd#Build(0)
   endif
 endfunction
 
-" Vim Go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'entombedvirus/ncm2-vim-go'
-let g:go_fmt_command = "goimports"
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>ga :cclose<CR>
-autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
-autocmd FileType go nmap <leader>gr  <Plug>(go-run)
-autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
-let g:go_highlight_function_calls = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-" Function for either build or test
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-"" Vim CmdLine
+" Vim CmdLine
 Plug 'jalvesaq/vimcmdline'
 let cmdline_map_send = '<LocalLeader>l'
 let cmdline_map_start = '<LocalLeader>s'
@@ -190,6 +166,11 @@ set splitbelow
 " Terminal colors
 set notermguicolors
 
+" VimDiff color scheme
+if &diff
+    colorscheme myscheme
+endif
+
 " Go to paths
 set hidden
 set path+=**
@@ -224,12 +205,18 @@ nnoremap <leader>tk <C-W>K
 nnoremap <leader>tj <C-W>J
 nnoremap <leader>tl <C-W>L
 
+" Hard Mode
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
 " Vimwiki settings
-let g:vimwiki_list = [{'path': 'GDrive/VimWiki','syntax': 'markdown', 'ext': '.md'},
-            \ {'path': 'GDrive/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': 'GDrive/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': 'GDrive/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': 'GDrive/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
+let g:vimwiki_list = [{'path': '/mnt/media/GDrive/VimWiki','syntax': 'markdown', 'ext': '.md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/GDrive/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_global_ext = 0
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
@@ -239,16 +226,6 @@ let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 0
 nnoremap mp :MarkdownPreview<CR>
 nnoremap ms :MarkdownPreviewStop<CR>
-" Clipboard settings
-vnoremap Y "+y
-nnoremap Y "+y
-
-" Tab navigation
-nnoremap tn :tabnew<Space>
-nnoremap tk :tabnext<CR>
-nnoremap tj :tabprev<CR>
-nnoremap th :tabfirst<CR>
-nnoremap tl :tablast<CR>
 
 " Help file on the right
 augroup vimrc_help
@@ -258,7 +235,6 @@ augroup END
 
 " Autosave TeX before Compiling
 autocmd BufNewFile,BufRead *.tex nnoremap <buffer> <LocalLeader>ll :update!<CR>:Latexmk!<CR>
-autocmd! BufReadPost,BufNewFile *.tex set filetype=tex
 
 " Persistent undo
 set undodir=~/.vim/undodir
@@ -296,4 +272,4 @@ nnoremap <leader>ff :Neoformat<CR>
 augroup filetypedetect
     au! BufRead,BufNewFile *.r         setfiletype r
     au! BufRead,BufNewFile *.R         setfiletype r
-augroup END
+augroup END 
