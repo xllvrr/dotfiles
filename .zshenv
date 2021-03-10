@@ -31,7 +31,18 @@ export BW_SESSION="q3ErjTdpigYltyGWBje3u/pB2HS+soC4sZOeXsWwkKvSdsbvPd3sNT68Ey+Ws
 
 # nnn settings
 export NNN_PLUG='m:dragdrop;o:fzopen;p:picker;l:launch;i:imgview;c:fzcd;u:getplugs;b:renamer;x:_chmod +x $nnn'
-export NNN_BMS='1:~/GDrive/School;M:~/GDrive/School/Masters;D:~/GDrive/D&D;L:~/GDrive/Dad Lab/Reference/code;S:~/GDrive/Starfinder'
+export NNN_BMS='1:/mnt/media;2:/mnt/media/GDrive/School;M:/mnt/media/GDrive/School/Masters;D:/mnt/media/GDrive/TTRPG/SDL;V:/mnt/media/GDrive/TTRPG/Vampire the Masquerade;L:/mnt/media/GDrive/Dad Lab/GUI;W:/mnt/media/GDrive/VimWiki;G:/mnt/media/GDrive'
+export NNN_COLORS='2'
+
+# lf icons
+export LF_ICONS="\
+di=:\
+fi=:\
+fi=:\
+ln=:\
+or=:\
+ex=:\
+
 export NNN_COLORS='2'
 
 # lf icons
