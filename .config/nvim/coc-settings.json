@@ -1,3 +1,4 @@
 {
-    "r.lsp.diagnostics": false
+    "r.lsp.diagnostics": false,
+    "latex.lint.onChange": true
 }

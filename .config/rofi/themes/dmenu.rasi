@@ -8,8 +8,8 @@
 * {
     background-color:           #282c34;
     text-color:                 #bbc2cf;
-    font:                       "SauceCodePro Nerd Font Mono 13";
-    prompt-font:                "Ubuntu Bold 13";
+    font:                       "SauceCodePro Nerd Font Mono 10";
+    prompt-font:                "Ubuntu Bold 10";
     prompt-background:          @background-color;
     prompt-foreground:          #74bb80;
     prompt-padding:             9px;
@@ -52,3 +52,4 @@
     background-color: @selected-normal-background;
     text-color:       @selected-normal-foreground;
 }
+
