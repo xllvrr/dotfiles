@@ -77,6 +77,7 @@ let g:LatexBox_show_warnings = 1
 let g:LatexBox_autojump = 1
 let g:LatexBox_latexmk_async = 0
 let g:tex_flavor = 'tex'
+au BufNewFile *.tex 0r ~/.config/nvim/skeleton.tex
 
 " Python
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Better highlighting
