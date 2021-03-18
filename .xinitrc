@@ -7,6 +7,7 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 
 # merge in defaults and keymaps
+setxkbmap -option caps:escape
 
 if [ -f $sysresources ]; then
 xrdb -merge $sysresources
@@ -26,10 +27,10 @@ fi
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-
 export XMODIFIERS=@im=fcitx
 
 # Startup
+fcitx -d &
 polybarlaunch &
 sxhkd & 
 exec bspwm 

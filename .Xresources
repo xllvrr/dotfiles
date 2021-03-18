@@ -35,5 +35,4 @@
 *.color7:       #a8a19f
 *.color15:      #f1efee
 
-/* *.font: JetBrainsMono:pixelsize=14:antialias=true:autohint=true; */
 *.alpha: 0.8

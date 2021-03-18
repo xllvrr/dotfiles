@@ -233,7 +233,6 @@ format-padding = 1
 type = custom/script
 exec = bluepower
 interval = 2
-; click-left = exec blueman-manager
 click-left = bluemenu
 click-right = exec toggleblue
 format-padding = 1

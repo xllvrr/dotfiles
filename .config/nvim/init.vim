@@ -117,7 +117,7 @@ function! s:build_go_files()
   if l:file =~# '^\f\+_test\.go$'
     call go#test#Test(0, 1)
   elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
+   call go#cmd#Build(0)
   endif
 endfunction
 
@@ -273,4 +273,4 @@ nnoremap <leader>ff :Neoformat<CR>
 augroup filetypedetect
     au! BufRead,BufNewFile *.r         setfiletype r
     au! BufRead,BufNewFile *.R         setfiletype r
-augroup END
+augroup END 
