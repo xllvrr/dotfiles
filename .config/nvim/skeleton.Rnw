@@ -34,6 +34,12 @@
 \renewcommand{\cftsecpagefont}{} % Remove \bfseries from section titles' page in ToC
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % for dots between section and page no
 
+\DeclareCaptionLabelSeparator*{spaced}{\\[2ex]}
+\captionsetup[table]{textfont=it,format=plain,justification=justified,
+  singlelinecheck=false,labelsep=spaced,skip=0pt}
+\captionsetup[figure]{labelsep=period,labelfont=it,justification=justified,
+  singlelinecheck=false,font=doublespacing}
+
 %%----------------------%%
 %%       Preamble       %%
 %%----------------------%%
@@ -54,7 +60,7 @@
 
 \maketitle
 
-\tableofcontets
+\tableofcontents
 
 Some text
 
