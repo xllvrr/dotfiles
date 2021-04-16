@@ -46,12 +46,12 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = JetBrainsMonoMedium:pixelsize=13;
-font-1 = HackNerdFont:pixelsize=13;
-font-2 = NotoColorEmoji:fontformat=truetype:scale=13:antialias=false;
-font-3 = FontAwesome5Free:pixelsize=13:style=Solid;0
-font-4 = FontAwesome5Free:pixelsize=13:style=Regular;0
-font-5 = FontAwesome5Brands:style=Regular:size=13;0
+font-0 = JetBrainsMonoMedium:pixelsize=10;
+font-1 = HackNerdFont:pixelsize=10;
+font-2 = NotoColorEmoji:fontformat=truetype:scale=10:antialias=false;
+font-3 = FontAwesome5Free:pixelsize=10:style=Solid;0
+font-4 = FontAwesome5Free:pixelsize=10:style=Regular;0
+font-5 = FontAwesome5Brands:style=Regular:size=10;0
 
 modules-left = bspwm 
 modules-right = filesystem volume bluetooth wifi time memory cpu 
