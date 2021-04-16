@@ -1,6 +1,6 @@
 configuration {
 theme: "~/.config/rofi/themes/dmenu.rasi";
-font: "JetBrainsMono 14";
+font: "JetBrainsMono 10";
 combi-modi: "window,drun,run";
 modi: "window,drun,combi";
 }
