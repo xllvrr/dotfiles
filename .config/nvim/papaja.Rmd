@@ -1,0 +1,37 @@
+---
+title             : "The title"
+shorttitle        : "Title"
+
+author: 
+  - name          : "Tan Shao An Daniel"
+    affiliation   : "1"
+    # corresponding : yes    # Define only one corresponding author
+    # email         : "e0027033@u.nus.edu"
+
+affiliation:
+  - id            : "1"
+    institution   : "National University of Singapore"
+
+authornote: |
+
+abstract: |
+  # One or two sentences providing a **basic introduction** to the field,  comprehensible to a scientist in any discipline.
+  
+keywords          : "keywords"
+wordcount         : "X"
+
+bibliography      : ["r-references.bib"]
+
+floatsintext      : yes
+figurelist        : yes
+tablelist         : yes
+footnotelist      : no
+linenumbers       : no
+mask              : no
+draft             : no
+
+csl               : "apa.csl"
+documentclass     : "apa7"
+classoption       : "man"
+output            : papaja::apa6_pdf
+---

@@ -54,7 +54,7 @@ super + ctrl + m
 
 # Send window to preselection
 super + y
-	bspc node newest.marked.local -n newest.!automatic.local
+	bspc node -n last.!automatic.local
 
 # Focus desktop
 super + {1-9,0}
@@ -114,7 +114,7 @@ super + a ; {1-7,g,q}
 	thunderbird, \
 	$TERMINAL -e nvim -c VimwikiIndex, \
 	messenger, \
-	lightcord, \
+	discord, \
 	darktable, \
 	zoom, \
 	lutris, \
