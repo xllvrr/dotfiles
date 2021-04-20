@@ -54,7 +54,7 @@ font-4 = FontAwesome5Free:pixelsize=10:style=Regular;0
 font-5 = FontAwesome5Brands:style=Regular:size=10;0
 
 modules-left = bspwm 
-modules-right = filesystem volume bluetooth wifi time memory cpu 
+modules-right = filesystem volume bluetooth wifi time memory cpu battery
 
 ; tray-position = right
 ; tray-padding = 2
