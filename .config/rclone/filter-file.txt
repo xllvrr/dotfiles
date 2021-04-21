@@ -1,4 +1,3 @@
 /Procreate/**
 /DCIM/**
 /Notability/**
-/TTRPG/**
