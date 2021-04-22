@@ -1,5 +1,6 @@
 # Turn off scren blanking
-xset s 3600 3600 && xset -dpms
+xset s off && xset -dpms
+setterm -blank 0 -powersave off -powerdown 0
 
 # User Resources
 userresources=$HOME/.Xresources
