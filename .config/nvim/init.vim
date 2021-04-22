@@ -16,7 +16,7 @@ Plug 'vimwiki/vimwiki' " Vimwiki
 Plug 'lilydjwg/fcitx.vim' " Write in another language
 
 " Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }} 
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']} 
 " Git
 Plug 'tpope/vim-fugitive'
 " Csv Reading
@@ -213,11 +213,11 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path': '/mnt/media/GDrive/VimWiki','syntax': 'markdown', 'ext': '.md'},
-            \ {'path': '/mnt/media/GDrive/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '/mnt/media/GDrive/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '/mnt/media/GDrive/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '/mnt/media/GDrive/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
+let g:vimwiki_list = [{'path': '/mnt/media/VimWiki','syntax': 'markdown', 'ext': '.md'},
+            \ {'path': '/mnt/media/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '/mnt/media/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_global_ext = 0
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
@@ -225,8 +225,8 @@ au BufRead,BufNewFile *.wiki set filetype=vimwiki
 " Markdown Preview
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 0
-nnoremap mp :MarkdownPreview<CR>
-nnoremap ms :MarkdownPreviewStop<CR>
+nnoremap <leader>mp :MarkdownPreview<CR>
+nnoremap <leader>ms :MarkdownPreviewStop<CR>
 
 " Help file on the right
 augroup vimrc_help
