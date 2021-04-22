@@ -10,6 +10,7 @@ xrdb ~/.Xresources &
 polybarlaunch &
 compton -b &
 thunderbird &
+syncthing &
 
 feh --bg-scale ~/.config/wall.jpg &
 pidof bspswallow || bspswallow &
