@@ -31,6 +31,6 @@ export BW_SESSION="q3ErjTdpigYltyGWBje3u/pB2HS+soC4sZOeXsWwkKvSdsbvPd3sNT68Ey+Ws
 
 # nnn settings
 export NNN_PLUG='m:dragdrop;o:fzopen;p:picker;l:launch;i:imgview;c:fzcd;u:getplugs;b:renamer;x:_chmod +x $nnn'
-export NNN_BMS='1:~;2:~/Documents/Main Folder/School;M:~/Documents/Main Folder/School/Masters;D:~/Documents/Main Folder/TTRPG/SDL;V:~/Documents/Main Folder/TTRPG/Vampire the Masquerade;W:~/Documents/VimWiki;G:~/Documents'
+export NNN_BMS='1:/home/xllvr;2:/home/xllvr/Documents/Main Folder/School;M:/home/xllvr/Documents/Main Folder/School/Masters;D:/home/xllvr/Documents/Main Folder/TTRPG/SDL;V:/home/xllvr/Documents/Main Folder/TTRPG/Vampire the Masquerade;W:/home/xllvr/Documents/Vimwiki;'
 export NNN_COLORS='2'
 
