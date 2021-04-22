@@ -213,11 +213,11 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " Vimwiki settings
-let g:vimwiki_list = [{'path': '~/Documents/VimWiki','syntax': 'markdown', 'ext': '.md'},
-            \ {'path': '~/Documents/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '~/Documents/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '~/Documents/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
-            \ {'path': '~/Documents/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
+let g:vimwiki_list = [{'path': '~/Documents/Vimwiki','syntax': 'markdown', 'ext': '.md'},
+            \ {'path': '~/Documents/Vimwiki/Christian', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '~/Documents/Vimwiki/DnD', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '~/Documents/Vimwiki/Personal', 'syntax': 'markdown', 'ext':'md'},
+            \ {'path': '~/Documents/Vimwiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_global_ext = 0
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
