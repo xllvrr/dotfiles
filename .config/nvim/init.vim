@@ -121,6 +121,9 @@ function! s:build_go_files()
   endif
 endfunction
 
+" Lua
+Plug 'Alloyed/lua-lsp'
+
 " Vim CmdLine
 Plug 'jalvesaq/vimcmdline'
 let cmdline_map_send = '<LocalLeader>l'
