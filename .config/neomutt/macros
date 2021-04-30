@@ -1,2 +1,0 @@
-macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
-macro attach 'V' "<pipe-entry>iconv -c --to-code=UTF8 > ~/.cache/mutt/mail.html<enter><shell-escape>$BROWSER ~/.cache/mutt/mail.html<enter>"
