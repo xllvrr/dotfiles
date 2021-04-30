@@ -77,8 +77,8 @@ function setwallpaper() {
 }
 
 # rclone sync
-alias quicksync='rclone sync --include-from $HOME/.config/rclone/filter-file.txt /mnt/media/GDrive GDrive:'
-alias quickdown='rclone copy --include-from $HOME/.config/rclone/filter-file.txt GDrive: /mnt/media/GDrive'
+alias quicksync='rclone sync --include-from $HOME/.config/rclone/filter-file.txt /GDrive GDrive:'
+alias quickdown='rclone copy --include-from $HOME/.config/rclone/filter-file.txt GDrive: /GDrive'
 
 # mbsync
 # alias mbsync="mbsync -c \"$HOME/.config/isync/mbsyncrc\""
