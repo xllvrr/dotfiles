@@ -121,6 +121,12 @@ function! s:build_go_files()
   endif
 endfunction
 
+" TypeScript
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+Plug 'jparise/vim-graphql'        " GraphQL syntax
+
 " Vim CmdLine
 Plug 'jalvesaq/vimcmdline'
 let cmdline_map_send = '<LocalLeader>l'

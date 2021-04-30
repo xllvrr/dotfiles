@@ -108,7 +108,7 @@ alt + space
 	rofi -show drun -theme center
 
 # GUI
-super + a ; {1-7,g,q}
+super + a ; {1-7}
 	{ \
 	$BROWSER, \
 	thunderbird, \
@@ -117,8 +117,6 @@ super + a ; {1-7,g,q}
 	discord, \
 	darktable, \
 	zoom, \
-	lutris, \
-	designer-qt5, \
 	}
 
 # File Managers
