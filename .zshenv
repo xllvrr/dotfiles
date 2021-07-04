@@ -31,6 +31,8 @@ export BW_SESSION="q3ErjTdpigYltyGWBje3u/pB2HS+soC4sZOeXsWwkKvSdsbvPd3sNT68Ey+Ws
 
 # nnn settings
 export NNN_PLUG='m:dragdrop;o:fzopen;p:picker;l:launch;i:imgview;c:fzcd;u:getplugs;b:renamer;x:_chmod +x $nnn'
-export NNN_BMS='1:/mnt/media;2:/mnt/media/SyncThing/School;M:/mnt/media/SyncThing/School/Masters;D:/mnt/media/SyncThing/TTRPG/SDL;V:/mnt/media/SyncThing/TTRPG/Vampire the Masquerade;W:/mnt/media/VimWiki;G:/mnt/media/SyncThing'
+case $HOSTNAME in
+    (archmain) export NNN_BMS='1:/mnt/media;2:/mnt/media/SyncThing/School;M:/mnt/media/SyncThing/School/Masters;D:/mnt/media/SyncThing/TTRPG/SDL;V:/mnt/media/SyncThing/TTRPG/Vampire the Masquerade;W:/mnt/media/VimWiki;G:/mnt/media/SyncThing';;
+    (archthink) export NNN_BMS='1:/home/xllvr;2:/home/xllvr/Documents/Main Folder/School;M:/home/xllvr/Documents/Main Folder/School/Masters;D:/home/xllvr/Documents/Main Folder/TTRPG/SDL;V:/home/xllvr/Documents/Main Folder/TTRPG/Vampire the Masquerade;W:/home/xllvr/Documents/Vimwiki;';;
+esac
 export NNN_COLORS='2'
-
