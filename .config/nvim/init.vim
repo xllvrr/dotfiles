@@ -219,13 +219,13 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " Vimwiki settings
-if $HOSTNAME == "archmain"
+if $HOSTNAME == 'archmain'
     let g:vimwiki_list = [{'path': '/mnt/media/VimWiki','syntax': 'markdown', 'ext': '.md'},
                 \ {'path': '/mnt/media/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},
                 \ {'path': '/mnt/media/VimWiki/DnD', 'syntax': 'markdown', 'ext':'md'},
                 \ {'path': '/mnt/media/VimWiki/Personal', 'syntax': 'markdown', 'ext':'md'},
                 \ {'path': '/mnt/media/VimWiki/Projects', 'syntax': 'markdown', 'ext':'md'}]
-elseif $HOSTNAME == "archthink"
+elseif $HOSTNAME == 'archthink'
     let g:vimwiki_list = [{'path': '~/Documents/Vimwiki','syntax': 'markdown', 'ext': '.md'},
                 \ {'path': '~/Documents/Vimwiki/Christian', 'syntax': 'markdown', 'ext':'md'},
                 \ {'path': '~/Documents/Vimwiki/DnD', 'syntax': 'markdown', 'ext':'md'},
