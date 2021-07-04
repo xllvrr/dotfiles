@@ -1,5 +1,6 @@
 {
-    "r.lsp.diagnostics": true
+    "r.lsp.diagnostics": true,
+    "r.lsp.debug": true
 }
 
 

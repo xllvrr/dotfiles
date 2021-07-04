@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/etc/fonts/conf.d'
+let g:netrw_dirhist_5='/home/xllvr/.config/nvim'
 let g:netrw_dirhist_4='/etc/X11/xorg.conf.d'
 let g:netrw_dirhist_3='/home/xllvr/repos/scripts/polybar'
 let g:netrw_dirhist_2='/home/xllvr/repos/scripts'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_0='/home/xllvr/install'
 let g:netrw_dirhist_9='/home/xllvr/.config/bspwm'
 let g:netrw_dirhist_8='/home/xllvr/.config/sxhkd'
 let g:netrw_dirhist_7='/home/xllvr'
-let g:netrw_dirhist_6='/home/xllvr/.R'
-let g:netrw_dirhist_5='/home/xllvr/.java'
