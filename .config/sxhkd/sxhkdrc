@@ -102,6 +102,10 @@ super + p ; {r, s, o, h}
 super + alt + c
 	$TERMINAL -e cfglist
 
+# Backlight
+ctrl + super + {Up, Down, @space}
+	xbacklight -set {100, 0, 50}
+
 =========== Applications ===========
 # Dmenu
 alt + space

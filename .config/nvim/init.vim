@@ -155,7 +155,7 @@ set smarttab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-set mouse=in
+set mouse=n
 set history=1000
 set foldmethod=syntax
 set foldlevelstart=20
