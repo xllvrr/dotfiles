@@ -1,3 +1,4 @@
+" Vimwiki
 if $HOSTNAME == 'archmain'
     let g:vimwiki_list = [{'path': '/mnt/media/VimWiki','syntax': 'markdown', 'ext': '.md'},
                 \ {'path': '/mnt/media/VimWiki/Christian', 'syntax': 'markdown', 'ext':'md'},

@@ -1,3 +1,4 @@
+" Neoformat
 let g:neoformat_enabled_python = ['autopep8']
 let g:neoformat_enabled_R = ['formatR']
 let g:neoformat_enabled_Rnw = ['latexindent']

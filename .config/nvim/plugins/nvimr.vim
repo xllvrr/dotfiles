@@ -8,12 +8,11 @@ nmap , <Plug>RDSendLine
 vmap , <Plug>RDSendSelection
 vmap ,e <Plug>RESendSelection
 Plug 'jalvesaq/R-Vim-runtime' " Highlighting for Rmd and Rnw code chunks
-au BufNewFile *.Rnw 0r ~/.config/nvim/skeleton.Rnw
-au BufNewFile *.Rmd execute "0r ~/.config/nvim/".input("Template name: ").".Rmd"
-au BufNewFile *.md execute "0r ~/.config/nvim/".input("Template name: ").".md"
-au BufNewFile *.bib 0r ~/.config/nvim/skeleton.bib
+au BufNewFile *.Rnw 0r ~/.config/nvim/templates/skeleton.Rnw
+au BufNewFile *.Rmd execute "0r ~/.config/nvim/templates".input("Template name: ").".Rmd"
+au BufNewFile *.md execute "0r ~/.config/nvim/templates".input("Template name: ").".md"
+au BufNewFile *.bib 0r ~/.config/nvim/templates/skeleton.bib
 augroup filetypedetect
     au! BufRead,BufNewFile *.r         setfiletype r
     au! BufRead,BufNewFile *.R         setfiletype r
 augroup END 
-
