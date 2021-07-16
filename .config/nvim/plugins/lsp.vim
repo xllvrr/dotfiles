@@ -3,15 +3,6 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'anott03/nvim-lspinstall'
 Plug 'hrsh7th/nvim-compe'
 
-" Languages
-lua << EOF
-require'lspconfig'.r_language_server.setup{}
-require'lspconfig'.jedi_language_server.setup{}
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.texlab.setup{}
-EOF
-
 " Mappings
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>

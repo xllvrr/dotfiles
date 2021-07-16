@@ -7,8 +7,7 @@ Plug 'terryma/vim-multiple-cursors'
 " Autocommands
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 au BufNewFile *.py 0r ~/.config/nvim/templates/skeleton.py " Load Template
-autocmd FileType python map <buffer> <F9> :w<CR>:exec '!ipython' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!ipython' shellescape(@%, 1)<CR>
+autocmd FileType python map <buffer> <leader>rc :w<CR>:exec '!ipython' shellescape(@%, 1)<CR>
 
 " Mappings
 let g:nvim_ipy_perform_mappings = 0

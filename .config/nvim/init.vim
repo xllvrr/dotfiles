@@ -5,6 +5,7 @@ source ~/.config/nvim/mappings.vim
 call plug#begin('~/repos/plugged')
 source ~/.config/nvim/plugins/general.vim
 source ~/.config/nvim/plugins/fzf.vim
+" source ~/.config/nvim/plugins/lsp.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/nvimr.vim
 source ~/.config/nvim/plugins/latex.vim
@@ -18,4 +19,5 @@ source ~/.config/nvim/themeing.vim
 
 " ---- Plugin Settings -----
 source ~/.config/nvim/plugins/vimwiki.vim
+" luafile ~/.config/nvim/plugins/compe-config.lua
 source ~/.config/nvim/plugins/neoformat.vim

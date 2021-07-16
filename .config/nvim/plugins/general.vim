@@ -14,4 +14,5 @@ Plug 'chrisbra/csv.vim' " CSV
 Plug 'tpope/vim-commentary' " Commenting
 Plug 'machakann/vim-highlightedyank' " For better highlighting when yanking
 Plug 'ervandew/supertab' " Tab Completion
+Plug 'hrsh7th/vim-vsnip' " Snippets
 let g:SuperTabDefaultCompletionType = "context"

@@ -1,5 +1,6 @@
 vim.o.completeopt = "menuone,noselect"
 
+--- Basic Setup ---
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
@@ -65,7 +66,38 @@ _G.s_tab_complete = function()
   end
 end
 
+--- Mappings ---
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<C-Space>", "v:compe#complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<CR>", "v:compe#confirm('<CR>')", {expr = true})
+vim.api.nvim_set_keymap("i", "<C-e>", "v:compe#close('<C-e>')", {expr = true})
+
+--- Snippets ---
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+
+--- Languages ---
+require'lspconfig'.r_language_server.setup{
+    capabilities = capabilities,
+}
+require'lspconfig'.jedi_language_server.setup{
+    capabilities = capabilities,
+}
+require'lspconfig'.tsserver.setup{
+    capabilities = capabilities,
+}
+require'lspconfig'.sumneko_lua.setup{
+    capabilities = capabilities,
+}
+require'lspconfig'.gopls.setup{}
+require'lspconfig'.texlab.setup{}
