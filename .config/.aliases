@@ -60,6 +60,10 @@ alias vhelp='nvim +help' # open help file
 # change visual for crontab
 alias crontab='export VISUAL=nvim; crontab'
 
+# for github access
+alias gitmain='xsel -b < /mnt/media/VimWiki/Personal/Information/Github\ Access.md'
+alias gitthink='xsel -b ~/Documents/Vimwiki/Personal/Information/Github\ Access.md'
+
 ################################# NNN Stuff ##############################################
 n ()
 {
