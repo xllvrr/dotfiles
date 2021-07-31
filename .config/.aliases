@@ -62,7 +62,7 @@ alias crontab='export VISUAL=nvim; crontab'
 
 # for github access
 alias gitmain='xsel -b < /mnt/media/VimWiki/Personal/Information/Github\ Access.md'
-alias gitthink='xsel -b ~/Documents/Vimwiki/Personal/Information/Github\ Access.md'
+alias gitthink='xsel -b < ~/Documents/Vimwiki/Personal/Information/Github\ Access.md'
 
 # for vpn
 alias vpnon='sudo openvpn ~/xllvr.ovpn'
