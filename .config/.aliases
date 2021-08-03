@@ -33,8 +33,8 @@ function configupdate() {
 }
 
 # merge files
-function filemerge() {
-    gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=$1 $2 $3
+function pdfmerge() {
+    gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=$@
 }
 
 # for package management (pacman)
