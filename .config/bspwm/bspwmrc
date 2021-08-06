@@ -11,10 +11,12 @@ compton -b &
 thunderbird &
 syncthing &
 machineconf &
+redshift &
 
 feh --bg-scale ~/.config/wall.jpg &
 pidof bspswallow || bspswallow &
 setxkbmap -option caps:escape &
+/usr/lib/geoclue-2.0/demos/agent &
 
 ###---Monitors---###
 case $HOSTNAME in
