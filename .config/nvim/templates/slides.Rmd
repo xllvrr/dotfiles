@@ -8,5 +8,5 @@ output:
                 theme: "Boadilla"
                 slide_level: 2
                 includes:
-                    in_header: ~/.config/nvim/beamer.txt
+                    in_header: ~/.config/nvim/templates/beamer.txt
 ---

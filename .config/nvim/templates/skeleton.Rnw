@@ -8,6 +8,7 @@
 \usepackage[titles]{tocloft}
 \usepackage{newtxtext, newtxmath}
 \usepackage{hyperref}
+\usepackage{tocbibind}
 
 \usepackage{graphicx}
 \usepackage{tabularx}
@@ -16,6 +17,7 @@
 \usepackage{float}
 \usepackage{csquotes}
 \usepackage{subcaption}
+\usepackage{longtable}
 
 \usepackage{bm} % math fonts and symbols
 \usepackage{dcolumn, multirow} % decimal aligned columns, multi-row entries
@@ -36,7 +38,7 @@
 
 \DeclareCaptionLabelSeparator*{spaced}{\\[2ex]}
 \captionsetup[table]{textfont=it,format=plain,justification=justified,
-  singlelinecheck=false,labelsep=spaced,skip=0pt}
+  singlelinecheck=false,labelsep=spaced,skip=0.5\baselineskip}
 \captionsetup[figure]{labelsep=period,labelfont=it,justification=justified,
   singlelinecheck=false,font=doublespacing}
 

@@ -48,3 +48,6 @@ augroup vimrc_help
     autocmd!
     autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
+
+" Xml Files Autoformat
+au FileType xml :%!tidy -i -xml --show-errors 0 2>/dev/null

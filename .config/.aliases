@@ -10,10 +10,7 @@ alias exl="exa --color automatic -alh --git"
 # system tools
 alias cleanmake='sudo make clean install' # quick alias for make clean install
 alias unmake='sudo make uninstall'        # uninstall make files
-alias lsa='ls -a --color=auto'
-alias pfetch='~/repos/pfetch/pfetch'
 alias xrefresh='xrdb ~/.Xresources'
-alias ffs='sudo !!'
 alias tlmgr='$HOME/.config/texlive/2020/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 alias grep='grep --color'
 alias cp="cp -i"                          # confirm before overwriting something
@@ -48,9 +45,6 @@ alias pexist='pacman -Qs'
 
 # for dotfile management
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-
-# for ls colors
-alias ls='ls --color=auto'
 
 # for nvim to open tabs
 alias vt='nvim -p' # open in tabs
