@@ -61,8 +61,8 @@ alias gitthink='xsel -b < ~/Documents/Vimwiki/Personal/Information/Github\ Acces
 # for vpn
 alias vpnon='sudo openvpn ~/xllvr.ovpn'
 
-# for mbsync
-alias mbsync='mbsync -c ~/.config/isync/mbsyncrc'
+# kill ongoing
+alias killrun='pkill redshift && pkill safeeyes'
 
 ################################# NNN Stuff ##############################################
 n ()
