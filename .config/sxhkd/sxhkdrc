@@ -112,15 +112,13 @@ alt + space
 	rofimenu
 
 # GUI
-super + a ; {1-7}
+super + a ; {1-5}
 	{ \
 	$BROWSER, \
 	thunderbird, \
 	$TERMINAL -e nvim -c VimwikiIndex, \
 	messenger, \
 	discord, \
-	darktable, \
-	zoom, \
 	}
 
 # File Managers
