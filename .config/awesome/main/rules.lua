@@ -23,7 +23,7 @@ function _M.get(clientkeys, clientbuttons)
         keys      = clientkeys,
         buttons   = clientbuttons,
         screen    = awful.screen.preferred,
-        placement = awful.placement.no_overlap+awful.placement.no_offscreen
+        placement = awful.placement.no_overlap+awful.placement.no_offscreen,
       }
     },
 
@@ -59,15 +59,15 @@ function _M.get(clientkeys, clientbuttons)
 
     { rule = { class = "zoom" },
       properties = { screen = 1, tag = "5" }
-    }
+    },
 
     { rule = { class = "Darktable" },
       properties = { screen = 1, tag = "3", fullscreen = true }
-    }
+    },
 
     { rule = { class = "Gimp" },
       properties = { screen = 1, tag = "3", floating = true }
-    }
+    },
 
   }
 

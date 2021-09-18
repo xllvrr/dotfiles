@@ -16,7 +16,7 @@ function _M.get()
         c.fullscreen = not c.fullscreen
         c:raise()
       end,
-      {description = "toggle fullscreen", group = "client"})
+      {description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey, }, "c",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, }, "o",  awful.client.floating.toggle                     ,
@@ -79,6 +79,6 @@ end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-return setmetatable({}, { 
-  __call = function(_, ...) return _M.get(...) end 
+return setmetatable({}, {
+  __call = function(_, ...) return _M.get(...) end
 })

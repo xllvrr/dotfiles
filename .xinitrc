@@ -32,6 +32,7 @@ export XMODIFIERS=@im=fcitx
 
 # Startup
 fcitx -d &
-polybarlaunch &
-sxhkd & 
-exec bspwm 
+# polybarlaunch &
+# sxhkd & 
+# exec bspwm 
+exec awesome

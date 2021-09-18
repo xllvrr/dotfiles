@@ -5,7 +5,7 @@ dunst &
 fcitx &
 xrdb ~/.Xresources &
 compton -b &
-thunderbird &
+Thunderbird &
 syncthing &
 machineconf &
 redshift &

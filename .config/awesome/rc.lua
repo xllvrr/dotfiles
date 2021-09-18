@@ -15,9 +15,8 @@ modkey = RC.vars.modkey
 -- Error handling
 require("main.error-handling")
 
--- Variable definitions
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.wallpaper = RC.vars.wallpaper
+-- Themes
+require("main.theme")
 
 -- -- --
 
@@ -53,9 +52,6 @@ RC.globalkeys = binding.bindtotags(RC.globalkeys)
 root.buttons(binding.globalbuttons())
 root.keys(RC.globalkeys)
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- Statusbar: Wibar
 require("deco.statusbar")
 
@@ -65,6 +61,9 @@ awful.rules.rules = main.rules(
   binding.clientbuttons()
 )
 
+-- Notifications
+require("deco.notifications")
+
 -- Window Snapping
 awful.mouse.snap.edge_enabled = false
 
@@ -72,4 +71,4 @@ awful.mouse.snap.edge_enabled = false
 require("main.signals")
 
 -- Autorun
-awful.spawn.with_shell("~/.config/awesome/main/autorun.sh")
+require("main.autorun")

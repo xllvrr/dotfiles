@@ -11,13 +11,13 @@ function _M.get ()
   local tagpairs = {
       names = {
           "", "", "",
-          " ", " ", " ",
-          "", "", ""},
+          "", "", "",
+          "", "", "9"},
 
       layout = {
           RC.layouts[1], RC.layouts[2], RC.layouts[4],
           RC.layouts[5], RC.layouts[6], RC.layouts[12],
-          RC.layouts[9], RC.layouts[3], RC.layouts[7]
+          RC.layouts[9], RC.layouts[3], RC.layouts[7],
       }
   }
 

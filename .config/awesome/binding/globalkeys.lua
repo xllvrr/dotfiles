@@ -1,4 +1,4 @@
--- Standard awesome library
+-- Standard awesome library 
 local gears = require("gears")
 local awful = require("awful")
 -- local hotkeys_popup = require("awful.hotkeys_popup").widget
@@ -8,6 +8,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local modkey = RC.vars.modkey
 local terminal = RC.vars.terminal
 local browser = RC.vars.browser
+local emailclient = RC.vars.emailclient
+local filemanager = RC.vars.filemanager
 
 local _M = {}
 
@@ -41,70 +43,68 @@ function _M.get()
               {description = "decrease the number of columns", group = "layout"}),
 
     -- Swap Layout
-    awful.key({ modkey, "Mod1"   }, "space", function () awful.layout.inc( 1)                end,
+    awful.key({ modkey, "Control"  }, "space", function () awful.layout.inc( 1)                end,
               {description = "select next", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
-              
+
     -- Standard Programs
     awful.key({ modkey, }, "Return", function () awful.spawn(terminal) end,
               {description="open a terminal", group = "programs"}),
-    awful.key({ "Mod1", }, "Space", function () awful.spawn("rofimenu") end,
-              {description = "launch rofi", group = "programs"})
-    awful.key({ modkey, "a" }, "1", function () awful.spawn(browser) end,
-              {description="launch browser", group = "programs"})
-    awful.key({ modkey, "a" }, "2", function () awful.spawn("Thunderbird") end,
-              {description="launch email", group = "programs"})
-    awful.key({ modkey, "a" }, "3", function () awful.spawn(terminal.." -e nvim -c VimWikiIndex") end,
-              {description="launch vimwiki", group = "programs"})
-    awful.key({ modkey, "a" }, "4", function () awful.spawn("messenger") end,
-              {description="launch messenger script", group = "programs"})
-    awful.key({ modkey, "a" }, "5", function () awful.spawn("discord") end,
-              {description="launch discord", group = "programs"})
-    awful.key({ modkey, "a" }, "6", function () awful.spawn("zoom") end,
-              {description="launch zoom", group = "programs"})
-    awful.key({ modkey, "d" }, "f", function () awful.spawn("pcmanfm") end,
-              {description="launch file manager", group = "programs"})
-    awful.key({ "Print" }, , function () awful.spawn("maimpick") end,
-              {description="screenshot", group = "programs"})
+    awful.key({ "Mod1", }, "space", function () awful.spawn("rofimenu") end,
+              {description = "launch rofi", group = "programs"}),
+    awful.key({ modkey, }, "b", function () awful.spawn(browser) end,
+              {description="launch browser", group = "programs"}),
+    awful.key({ modkey, }, "e", function () awful.spawn(emailclient) end,
+              {description="launch email", group = "programs"}),
+    awful.key({ modkey, "Shift" }, "w", function () awful.spawn(terminal.." -e nvim -c VimwikiIndex") end,
+              {description="launch vimwiki", group = "programs"}),
+    awful.key({ modkey, "Mod1" }, "m", function () awful.spawn("messenger") end,
+              {description="launch messenger script", group = "programs"}),
+    awful.key({ modkey, "Mod1" }, "d", function () awful.spawn("discord") end,
+              {description="launch discord", group = "programs"}),
+    awful.key({ modkey, "Mod1" }, "f", function () awful.spawn(filemanager) end,
+              {description="launch file manager", group = "programs"}),
+    awful.key({  }, "Print", function () awful.spawn("maimpick") end,
+              {description="screenshot", group = "programs"}),
 
     -- System Options
-    awful.key({ modkey, "p" }, "o", function () awful.spawn("systemctl poweroff") end,
-              {description="shutdown pc", group = "system"})
-    awful.key({ modkey, "p" }, "r", function () awful.spawn("systemctl restart") end,
-              {description="restart pc", group = "system"})
-    awful.key({ modkey, "p" }, "s", function () awful.spawn("systemctl suspend") end,
-              {description="suspend pc", group = "system"})
-    awful.key({ modkey, "Mod1" }, "c", function () awful.spawn(terminal.."-e cfglist") end,
-              {description="list configurations", group = "system"})
+    awful.key({ modkey, "Mod1" }, "o", function () awful.spawn("systemctl poweroff") end,
+              {description="shutdown pc", group = "system"}),
+    awful.key({ modkey, "Mod1" }, "r", function () awful.spawn("systemctl restart") end,
+              {description="restart pc", group = "system"}),
+    awful.key({ modkey, "Mod1" }, "s", function () awful.spawn("systemctl suspend") end,
+              {description="suspend pc", group = "system"}),
+    awful.key({ modkey, "Mod1" }, "c", function () awful.spawn(terminal.." -e cfglist") end,
+              {description="list configurations", group = "system"}),
     awful.key({ modkey, "Control" }, "Up", function () awful.spawn("xbacklight -set 100") end,
-              {description="set full brightness", group = "system"})
+              {description="set full brightness", group = "system"}),
     awful.key({ modkey, "Control" }, "Down", function () awful.spawn("xbacklight -set 0") end,
-              {description="set full darkness", group = "system"})
-    awful.key({ modkey, "Control" }, "Space", function () awful.spawn("xbacklight -set 50") end,
-              {description="set half brightness", group = "system"})
+              {description="set full darkness", group = "system"}),
+    awful.key({ modkey, "Control" }, "space", function () awful.spawn("xbacklight -set 50") end,
+              {description="set half brightness", group = "system"}),
 
     -- Resize
-    awful.key({ modkey, "Mod1" }, "j",  
+    awful.key({ modkey, "Mod1" }, "j",
               function () awful.client.moveresize( 0, 0, 0, -20) end),
-    awful.key({ modkey, "Mod1" }, "k",    
+    awful.key({ modkey, "Mod1" }, "k",
               function () awful.client.moveresize( 0, 0, 0,  20) end),
-    awful.key({ modkey, "Mod1" }, "h",  
+    awful.key({ modkey, "Mod1" }, "h",
               function () awful.client.moveresize( 0, 0, -20, 0) end),
-    awful.key({ modkey, "Mod1" }, "l", 
+    awful.key({ modkey, "Mod1" }, "l",
               function () awful.client.moveresize( 0, 0,  20, 0) end),
 
     -- Prompt
-    awful.key({ modkey, "Control" }, "r",
+    awful.key({ modkey, "Shift" }, "r",
               function ()
                   awful.prompt.run {
                     prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
+                    textbox      = awful.screen.focused().promptbox.widget,
                     exe_callback = awful.util.eval,
                     history_path = awful.util.get_cache_dir() .. "/history_eval"
                   }
               end,
-              {description = "lua execute prompt", group = "awesome"}),
+              {description = "lua execute prompt", group = "awesome"})
 
   )
 
