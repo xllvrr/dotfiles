@@ -5,12 +5,13 @@ local nconf = naughty.config
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- Border properties
-nconf.defaults.border_width = 2
+nconf.defaults.border_width = 3
 nconf.defaults.margin = 16
 nconf.defaults.text = "Boo!"
 nconf.defaults.timeout = 3
 nconf.padding = 8
 nconf.spacing = 8
+nconf.opacity = .7
 
 -- Critical alert
 nconf.presets.critical.bg = "#900000"
@@ -25,4 +26,4 @@ nconf.presets.normal.bg = "#222222"
 nconf.presets.normal.fg = "#ffffff"
 
 -- Icon size
-nconf.defaults.icon_size = 20
+nconf.defaults.icon_size = 16

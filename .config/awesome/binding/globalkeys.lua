@@ -71,7 +71,7 @@ function _M.get()
     -- System Options
     awful.key({ modkey, "Mod1" }, "o", function () awful.spawn("systemctl poweroff") end,
               {description="shutdown pc", group = "system"}),
-    awful.key({ modkey, "Mod1" }, "r", function () awful.spawn("systemctl restart") end,
+    awful.key({ modkey, "Mod1" }, "r", function () awful.spawn("systemctl reboot") end,
               {description="restart pc", group = "system"}),
     awful.key({ modkey, "Mod1" }, "s", function () awful.spawn("systemctl suspend") end,
               {description="suspend pc", group = "system"}),

@@ -33,7 +33,7 @@ awful.screen.connect_for_each_screen(function(s)
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
 
-  -- Create an layout widget 
+  -- Create an imagebox widget 
   s.mylayoutbox = awful.widget.layoutbox(s)
   s.mylayoutbox:buttons(gears.table.join(
     awful.button({ }, 1, function () awful.layout.inc( 1) end),
@@ -133,6 +133,7 @@ awful.screen.connect_for_each_screen(function(s)
       volume,
       wibox.widget.systray(),
       mytextclock,
+      s.mylayoutbox,
     },
   }
   

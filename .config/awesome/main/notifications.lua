@@ -9,8 +9,8 @@ nconf.defaults.border_width = 2
 nconf.defaults.margin = 16
 nconf.defaults.text = "Boo!"
 nconf.defaults.timeout = 3
-nconf.padding = 8
-nconf.spacing = 8
+nconf.padding = 4
+nconf.spacing = 4
 
 -- Critical alert
 nconf.presets.critical.bg = "#900000"

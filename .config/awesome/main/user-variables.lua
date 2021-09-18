@@ -11,7 +11,7 @@ local _M = {
   filemanager = "pcmanfm",
 
   -- Default email
-  emailclient = "Thunderbird",
+  emailclient = "thunderbird",
    
   -- Default modkey.
   modkey = "Mod4",

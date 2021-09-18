@@ -14,7 +14,7 @@ local beautiful = require("beautiful")
 client.connect_signal("manage", function (c)
   -- Set the windows at the slave,
   -- i.e. put it at the end of others instead of setting it master.
-  -- if not awesome.startup then awful.client.setslave(c) end
+  if not awesome.startup then awful.client.setslave(c) end
 
   if awesome.startup
     and not c.size_hints.user_position
@@ -40,3 +40,18 @@ client.connect_signal("focus",
                 end
         end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- Enable focus on tag switch
+function focus_client_under_mouse()
+    gears.timer( {  timeout = 0.1,
+                    autostart = true,
+                    single_shot = true,
+                    callback =  function()
+                                    local n = mouse.object_under_pointer()
+                                    if n ~= nil and n ~= client.focus then
+                                        client.focus = n end
+                                    end
+                  } )
+end
+
+screen.connect_signal( "tag::history::update", focus_client_under_mouse )
