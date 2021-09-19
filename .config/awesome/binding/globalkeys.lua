@@ -48,7 +48,7 @@ function _M.get()
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
 
-    -- Standard Programs
+    -- Programs
     awful.key({ modkey, }, "Return", function () awful.spawn(terminal) end,
               {description="open a terminal", group = "programs"}),
     awful.key({ "Mod1", }, "space", function () awful.spawn("rofimenu") end,
@@ -57,6 +57,8 @@ function _M.get()
               {description="launch browser", group = "programs"}),
     awful.key({ modkey, }, "e", function () awful.spawn(emailclient) end,
               {description="launch email", group = "programs"}),
+    awful.key({ modkey, }, "g", function () awful.spawn("lutris") end,
+              {description="launch lutris", group = "programs"}),
     awful.key({ modkey, "Shift" }, "w", function () awful.spawn(terminal.." -e nvim -c VimwikiIndex") end,
               {description="launch vimwiki", group = "programs"}),
     awful.key({ modkey, "Mod1" }, "m", function () awful.spawn("messenger") end,
@@ -65,7 +67,7 @@ function _M.get()
               {description="launch discord", group = "programs"}),
     awful.key({ modkey, "Mod1" }, "f", function () awful.spawn(filemanager) end,
               {description="launch file manager", group = "programs"}),
-    awful.key({  }, "Print", function () awful.spawn("maimpick") end,
+    awful.key({  }, "Print", function () awful.spawn("scrotpick") end,
               {description="screenshot", group = "programs"}),
 
     -- System Options
@@ -104,7 +106,39 @@ function _M.get()
                     history_path = awful.util.get_cache_dir() .. "/history_eval"
                   }
               end,
-              {description = "lua execute prompt", group = "awesome"})
+              {description = "lua execute prompt", group = "awesome"}),
+
+    -- Minimize and Restore Clients
+    awful.key({ modkey,           }, "w",
+	  function()
+	     if cl_menu then
+		cl_menu:hide()
+		cl_menu=nil
+	     else
+		client_list={}
+		local tag = awful.tag.selected()
+		for i=1, #tag:clients() do
+		   cl=tag:clients()[i]
+		   if tag:clients()[i].minimized then
+		      prefix = "_ "
+		   else
+		      prefix = "* "
+		   end
+		   if not awful.rules.match(cl, {class= "Conky"}) then
+		      client_list[i]=
+			 {prefix .. cl.name,
+			  function()
+			     tag:clients()[i].minimized=not tag:clients()[i].minimized
+			  end,
+			  cl.icon
+			 }
+		   end
+		end
+		cl_menu=awful.menu({items = client_list, theme = {width=300}})
+		cl_menu:show()
+	     end
+	  end,
+      {description = "minimize or restore client", group = "client"})
 
   )
 
