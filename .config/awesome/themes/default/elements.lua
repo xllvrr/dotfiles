@@ -14,14 +14,14 @@ then
     theme.taglist_font  = "Jet Brains Mono Medium 16"
     theme.hotkeys_font  = "Jet Brains Mono Medium 13"
     theme.hotkeys_description_font  = "Jet Brains Mono Medium 13"
-    theme.notification_font = "HackNerdFont 11"
+    theme.notification_font = "HackNerdFont 10"
     theme.menu_font  = "Jet Brains Mono Medium 16"
 else
     theme.font          = "Jet Brains Mono Medium 10" -- "Tamsyn 10" -- "Sans 8"
     theme.taglist_font  = "Jet Brains Mono Medium 13"
     theme.hotkeys_font  = "Jet Brains Mono Medium 10"
     theme.hotkeys_description_font  = "Jet Brains Mono Medium 10"
-    theme.notification_font = "HackNerdFont 9"
+    theme.notification_font = "HackNerdFont 8"
     theme.menu_font  = "Jet Brains Mono Medium 13"
 end
 
