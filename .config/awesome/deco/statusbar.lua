@@ -93,28 +93,26 @@ awful.screen.connect_for_each_screen(function(s)
 
   -- Create battery widget
   if(awesome.hostname == "archthink")
-      then 
-          mybattery = lain.widget.bat()
-
-          -- Notifications
-            bat_notification_charged_preset = {
-                    title   = "Battery full",
-                    text    = "You can unplug the cable",
-                    timeout = 15,
-                    fg      = "#202020",
-                    bg      = "#CDCDCD"
-                }
-
-            bat_notification_low_preset = {
-                    title = "Battery low",
-                    text = "Plug the cable!",
-                    timeout = 15,
-                    fg = "#202020",
-                    bg = "#CDCDCD"
-            }
-
-      else
-  end
+      then
+          batticon = wibox.widget.imagebox(beautiful.widget_batt)
+          
+          batttext = lain.widget.bat({
+              settings = function()
+                  local numperc = tonumber(bat_now.perc)
+                  if bat_now.perc == "N/A" then
+                      perc = "AC "
+                      widget:set_markup(markup(gmc.color['blue300'], perc))
+                  elseif numperc > 30 then
+                      perc = bat_now.perc .. "% "
+                      widget:set_markup(markup(gmc.color['white'], perc))
+                  else
+                      perc = bat_now.perc .. "% "
+                      widget:set_markup(markup(gmc.color['red500'], perc))
+                  end
+              end
+          })
+        else
+    end
 
 
   -- Add widgets to the wibox
@@ -128,7 +126,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist, -- Middle widget
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      mybattery,
+      batticon, batttext,
       net,
       volume,
       wibox.widget.systray(),

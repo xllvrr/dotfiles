@@ -33,7 +33,7 @@ theme.bg_systray    = gmc.color['grey700']   .. "cc"
 
 theme.fg_normal     = gmc.color['white']
 theme.fg_focus      = gmc.color['white']
-theme.fg_urgent     = gmc.color['white']
+theme.fg_urgent     = gmc.color['red300']
 theme.fg_minimize   = gmc.color['white']
 
 theme.useless_gap   = dpi(7)
