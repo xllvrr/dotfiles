@@ -59,7 +59,7 @@ alias gitmain='xsel -b < /mnt/media/VimWiki/Personal/Information/Github\ Access.
 alias gitthink='xsel -b < ~/Documents/Vimwiki/Personal/Information/Github\ Access.md'
 
 # for vpn
-alias vpnon='sudo openvpn ~/xllvr.ovpn'
+alias vpnon='echo "musicislife" | sudo -S openvpn ~/xllvr.ovpn'
 
 # kill ongoing
 alias killrun='pkill redshift && pkill safeeyes'
