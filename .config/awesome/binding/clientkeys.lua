@@ -21,6 +21,12 @@ function _M.get()
               {description = "close", group = "client"}),
     awful.key({ modkey, }, "o",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
+    awful.key({ modkey, "Control"   }, "c",
+        function (c)
+            if c.pid then
+                awful.spawn("kill -9 " .. c.pid)
+            end end,
+        {description = "kill", group = "client"}),
 
     -- Layout Control
     awful.key({ modkey, "Shift" }, "m", function (c) c:swap(awful.client.getmaster()) end,

@@ -6,7 +6,7 @@ local nconf = naughty.config
 
 -- Border properties
 nconf.defaults.border_width = 3
-nconf.defaults.margin = 16
+nconf.defaults.margin = 12
 nconf.defaults.text = "Boo!"
 nconf.defaults.timeout = 3
 nconf.padding = 6

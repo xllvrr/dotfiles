@@ -12,7 +12,7 @@ function _M.get ()
       names = {
           "", "", "",
           "", "", "",
-          "", "", "9"},
+          "", "", ""},
 
       layout = {
           RC.layouts[1], RC.layouts[2], RC.layouts[4],
