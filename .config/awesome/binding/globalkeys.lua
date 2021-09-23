@@ -59,6 +59,8 @@ function _M.get()
               {description="launch email", group = "programs"}),
     awful.key({ modkey, }, "g", function () awful.spawn("steam") end,
               {description="launch steam", group = "programs"}),
+    awful.key({ modkey, "Mod1" }, "g", function () awful.spawn("lutris") end,
+              {description="launch lutris", group = "programs"}),
     awful.key({ modkey, "Shift" }, "w", function () awful.spawn(terminal.." -e nvim -c VimwikiIndex") end,
               {description="launch vimwiki", group = "programs"}),
     awful.key({ modkey, "Mod1" }, "m", function () awful.spawn("messenger") end,
@@ -67,7 +69,7 @@ function _M.get()
               {description="launch discord", group = "programs"}),
     awful.key({ modkey, "Mod1" }, "f", function () awful.spawn(filemanager) end,
               {description="launch file manager", group = "programs"}),
-    awful.key({  }, "Print", function () awful.spawn("scrotpick") end,
+    awful.key({  }, "Print", function () awful.spawn("maimpick") end,
               {description="screenshot", group = "programs"}),
 
     -- System Options
