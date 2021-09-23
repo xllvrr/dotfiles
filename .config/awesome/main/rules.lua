@@ -87,6 +87,10 @@ function _M.get(clientkeys, clientbuttons)
       properties = { screen = 1, tag = "3", floating = true }
     },
 
+    { rule = { class = "lutris" },
+      properties = { screen = 1, tag = "6"}
+    },
+
   }
 
   return rules
