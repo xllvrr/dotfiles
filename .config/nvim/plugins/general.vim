@@ -15,4 +15,5 @@ Plug 'tpope/vim-commentary' " Commenting
 Plug 'machakann/vim-highlightedyank' " For better highlighting when yanking
 Plug 'ervandew/supertab' " Tab Completion
 Plug 'hrsh7th/vim-vsnip' " Snippets
+Plug 'jesseleite/vim-noh' " Remove highlighting on cursor move
 let g:SuperTabDefaultCompletionType = "context"
