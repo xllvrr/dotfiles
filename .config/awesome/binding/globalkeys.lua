@@ -79,7 +79,7 @@ function _M.get()
               {description="restart pc", group = "system"}),
     awful.key({ modkey, "Mod1" }, "s", function () awful.spawn("systemctl suspend") end,
               {description="suspend pc", group = "system"}),
-    awful.key({ modkey, "Mod1" }, "c", function () awful.spawn(terminal.." -e cfglist") end,
+    awful.key({ modkey, "Control" }, "c", function () awful.spawn(terminal.." -e cfglist") end,
               {description="list configurations", group = "system"}),
     awful.key({ modkey, "Control" }, "Up", function () awful.spawn("xbacklight -set 100") end,
               {description="set full brightness", group = "system"}),

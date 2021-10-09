@@ -61,22 +61,6 @@ awful.screen.connect_for_each_screen(function(s)
   volume:buttons(awful.util.table.join(
         awful.button({}, 1, function() -- left click
             awful.spawn(terminal.." -e pulsemixer")
-        end),
-        awful.button({}, 2, function() -- middle click
-            os.execute(string.format("pactl set-sink-volume %s 100%%", volume.device))
-            volume.update()
-        end),
-        awful.button({}, 3, function() -- right click
-            os.execute(string.format("pactl set-sink-mute %s toggle", volume.device))
-            volume.update()
-        end),
-        awful.button({}, 4, function() -- scroll up
-            os.execute(string.format("pactl set-sink-volume %s +1%%", volume.device))
-            volume.update()
-        end),
-        awful.button({}, 5, function() -- scroll down
-            os.execute(string.format("pactl set-sink-volume %s -1%%", volume.device))
-            volume.update()
         end)
     ))
 

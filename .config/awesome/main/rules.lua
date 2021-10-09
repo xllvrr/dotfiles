@@ -59,7 +59,7 @@ function _M.get(clientkeys, clientbuttons)
         }
       },
       properties = { 
-        floating = true 
+        floating = true
       }
     },
 
@@ -68,27 +68,27 @@ function _M.get(clientkeys, clientbuttons)
     --   properties = { screen = 1, tag = "2" } },
     
     { rule = { class = "thunderbird" },
-      properties = { screen = 1, tag = "1" }
+      properties = { tag = "1" }
     },
 
     { rule = { class = "discord" },
-      properties = { screen = 1, tag = "4" }
+      properties = { tag = "4" }
     },
 
-    { rule = { class = "zoom" },
-      properties = { screen = 1, tag = "5" }
+    { rule = { instance = "zoom" },
+      properties = { tag = "5" }
     },
 
     { rule = { class = "Darktable" },
-      properties = { screen = 1, tag = "3", fullscreen = true }
+      properties = { tag = "3", fullscreen = true }
     },
 
     { rule = { class = "Gimp" },
-      properties = { screen = 1, tag = "3", floating = true }
+      properties = { tag = "3", floating = true }
     },
 
-    { rule = { class = "lutris" },
-      properties = { screen = 1, tag = "6"}
+    { rule = { class = "Lutris" },
+      properties = { tag = "6" }
     },
 
   }

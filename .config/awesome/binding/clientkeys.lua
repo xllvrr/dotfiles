@@ -21,7 +21,7 @@ function _M.get()
               {description = "close", group = "client"}),
     awful.key({ modkey, }, "o",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
-    awful.key({ modkey, "Control"   }, "c",
+    awful.key({ modkey, "Mod1"   }, "c",
         function (c)
             if c.pid then
                 awful.spawn("kill -9 " .. c.pid)
