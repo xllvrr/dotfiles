@@ -91,6 +91,10 @@ function _M.get(clientkeys, clientbuttons)
       properties = { tag = "" }
     },
 
+    { rule = {class = "Last Epoch.x86_64"},
+      properties = { tag = "", floating = true }
+    },
+
   }
 
   return rules
