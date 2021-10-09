@@ -24,6 +24,7 @@ client.connect_signal("manage", function (c)
   end
 end)
 
+
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
@@ -55,3 +56,4 @@ function focus_client_under_mouse()
 end
 
 screen.connect_signal( "tag::history::update", focus_client_under_mouse )
+

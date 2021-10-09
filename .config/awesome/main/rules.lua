@@ -68,27 +68,27 @@ function _M.get(clientkeys, clientbuttons)
     --   properties = { screen = 1, tag = "2" } },
     
     { rule = { class = "thunderbird" },
-      properties = { tag = "1" }
+      properties = { tag = "" }
     },
 
-    { rule = { class = "discord" },
-      properties = { tag = "4" }
+    { rule = { instance = "discord" },
+      properties = { tag = "" }
     },
 
     { rule = { instance = "zoom" },
-      properties = { tag = "5" }
+      properties = { tag = "" }
     },
 
     { rule = { class = "Darktable" },
-      properties = { tag = "3", fullscreen = true }
+      properties = { tag = "", fullscreen = true }
     },
 
     { rule = { class = "Gimp" },
-      properties = { tag = "3", floating = true }
+      properties = { tag = "", floating = true }
     },
 
     { rule = { class = "Lutris" },
-      properties = { tag = "6" }
+      properties = { tag = "" }
     },
 
   }
