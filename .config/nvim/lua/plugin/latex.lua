@@ -6,8 +6,11 @@ vim.g.tex_flavor = 'tex'
 vim.cmd('au BufNewFile *.tex 0r ~/.config/nvim/templates/skeleton.tex')
 -- Autosave TeX before Compiling
 local autocmd = { autosave = {
-    {'BufNewFile,BufRead *.tex nnoremap <buffer> <LocalLeader>ll :update!<CR>:Latexmk!<CR>'};
-}
+        {'BufNewFile,BufRead *.tex nnoremap <buffer> <LocalLeader>ll :update!<CR>:Latexmk!<CR>'};
+    },
+    filetype = {
+        {'BufNewFile,BufRead *.bib setfiletype bib'}
+    }
 }
 local u = require('utils')
 u.create_augroup(autocmd)
