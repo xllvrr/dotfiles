@@ -151,3 +151,5 @@ SPACESHIP_JOBS_SHOW=false
 # Spaceship Prompt
 autoload -U promptinit; promptinit
 prompt spaceship
+
+alias luamake=/home/xllvr/repos/lua-language-server/3rd/luamake/luamake
