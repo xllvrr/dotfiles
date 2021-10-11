@@ -1,0 +1,21 @@
+" ---- Mappings ----
+source ~/.config/nvim/mappings.vim
+
+" ---- Plugins ----
+call plug#begin('~/repos/plugged')
+source ~/.config/nvim/plugins_vim/general.vim
+source ~/.config/nvim/plugins_vim/fzf.vim
+source ~/.config/nvim/plugins_vim/coc.vim
+source ~/.config/nvim/plugins_vim/nvimr.vim
+source ~/.config/nvim/plugins_vim/latex.vim
+source ~/.config/nvim/plugins_vim/pyvim.vim
+source ~/.config/nvim/plugins_vim/typescript.vim
+call plug#end()
+
+" ---- Basic Settings -----
+source ~/.config/nvim/basic-settings.vim
+source ~/.config/nvim/themeing.vim
+
+" ---- Plugin Settings -----
+source ~/.config/nvim/plugins_vim/vimwiki.vim
+source ~/.config/nvim/plugins_vim/neoformat.vim
