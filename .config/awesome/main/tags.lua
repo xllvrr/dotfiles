@@ -11,7 +11,7 @@ function _M.get ()
   local tagpairs = {
       names = {
           "", "", "",
-          "", "", "",
+          "", "", "",
           "", "", ""},
 
       layout = {
