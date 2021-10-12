@@ -33,7 +33,7 @@ set.softtabstop = 4
 set.tabstop = 4
 
 -- Persistent Undo
-set.undodir = '~/.vim/undodir'
+set.undodir = os.getenv('HOME') .. '/.config/nvim/undodir'
 set.undofile = true
 set.undolevels = 200
 set.undoreload = 2000
@@ -61,18 +61,23 @@ vim.g.netrw_banner = 2
 vim.g.netrw_winsize = 25
 
 -- Help File on Right
-local autocmds = { 
-    helpfile = {
-        { 'BufEnter', '.*txt', 'if &buftype == "help" | wincmd L | endif' };
-    };
-    filetype = {
-        { 'BufRead,BufNewFile *.lua setfiletype lua' }
-    }
-}
+cmd([[
+augroup vimrc_help
+    autocmd!
+    autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+augroup END
+]])
+
+-- Filetype Detection
+cmd([[
+augroup filetypedetect
+    au! BufRead,BufNewFile *.r         setfiletype r
+    au! BufRead,BufNewFile *.R         setfiletype r
+    au! BufRead,BufNewFile *.lua       setfiletype lua
+    au! BufNewFile,BufRead *.bib       setfiletype bib
+augroup END 
+]])
 
 -- XML Files Autoformat
 cmd('au FileType xml :%!tidy -i -xml --show-errors 0 2>/dev/null')
 
--- Create Auto Groups
-local u = require('utils')
-u.create_augroup(autocmds)
