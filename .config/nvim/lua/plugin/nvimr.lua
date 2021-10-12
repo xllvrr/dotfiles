@@ -17,13 +17,3 @@ vim.cmd('au BufNewFile *.Rmd execute "0r ~/.config/nvim/templates/".input("Templ
 vim.cmd('au BufNewFile *.md execute "0r ~/.config/nvim/templates/".input("Template name: ").".md"')
 vim.cmd('au BufNewFile *.bib 0r ~/.config/nvim/templates/skeleton.bib')
 
--- Detect Filetype
-local u = require('utils')
-local autocmds = {
-    filetypedetect = {
-    {'BufRead,BufNewFile *.r setfiletype r'};
-    {'BufRead,BufNewFile *.R setfiletype r'};
-    };
-}
-
-u.create_augroup(autocmds)
