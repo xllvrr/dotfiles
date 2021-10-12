@@ -3,10 +3,10 @@ return {
     -- extension = filetype
     -- example:
     ['jl'] = 'julia',
-    ['.r'] = 'r',
-    ['.R'] = 'r',
-    ['.wiki'] = 'vimwiki',
-    ['.lua'] = 'lua',
+    ['r'] = 'r',
+    ['R'] = 'r',
+    ['wiki'] = 'vimwiki',
+    ['lua'] = 'lua',
   },
   file_name = {
     -- special filenames, likes .bashrc
