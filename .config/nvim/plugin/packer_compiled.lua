@@ -101,6 +101,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/csv.vim"
   },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+  },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+  },
   neoformat = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/neoformat"
@@ -120,6 +128,10 @@ _G.packer_plugins = {
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -158,14 +170,6 @@ _G.packer_plugins = {
   ["typescript-vim"] = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/typescript-vim"
-  },
-  ["vim-airline"] = {
-    loaded = true,
-    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-airline"
-  },
-  ["vim-airline-themes"] = {
-    loaded = true,
-    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-airline-themes"
   },
   ["vim-code-dark"] = {
     loaded = true,
