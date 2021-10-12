@@ -5,7 +5,8 @@ require("settings")
 require("maps")
 
 -- Plugins
-require("plugin/general")
+require("general")
+require("plugin/lualine")
 require("plugin/latex")
 require("plugin/nvimr")
 require("plugin/pyvim")
