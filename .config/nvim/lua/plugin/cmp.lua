@@ -5,12 +5,6 @@ snippet = {
         expand = function(args)
             -- For `vsnip` user.
             vim.fn["vsnip#anonymous"](args.body)
-
-            -- For `luasnip` user.
-            -- require('luasnip').lsp_expand(args.body)
-
-            -- For `ultisnips` user.
-            -- vim.fn["UltiSnips#Anon"](args.body)
         end,
     },
     mapping = {
@@ -24,20 +18,29 @@ snippet = {
     },
     sources = {
         { name = 'nvim_lsp' },
-
-        -- For vsnip user.
         { name = 'vsnip' },
-
-        -- For luasnip user.
-        -- { name = 'luasnip' },
-
-        -- For ultisnips user.
-        -- { name = 'ultisnips' },
-
-        { name = 'buffer' },
+        { name = 'buffer',
+            opts = {
+                -- Get Completion from Visible Buffers
+                get_bufnrs = function()
+                    local bufs = {}
+                    for _, win in ipairs(vim.api.nvim_list_wins()) do
+                        bufs[vim.api.nvim_win_get_buf(win)] = true
+                    end
+                    return vim.tbl_keys(bufs)
+                end
+            }},
     },
     completion = {
         completeopt = 'menu,menuone,noinsert',
+    },
+    formatting = {
+        format = require("lspkind").cmp_format({with_text = true, menu = ({
+            buffer = "[Buffer]",
+            nvim_lsp = "[LSP]",
+            nvim_lua = "[Lua]",
+            latex_symbols = "[Latex]",
+        })}),
     },
 })
 
@@ -54,3 +57,6 @@ for _, lsp in ipairs(servers) do
     }
 end
 
+-- Disable for Latex and Rnw
+vim.cmd([[autocmd FileType rnoweb lua require('cmp').setup.buffer { enabled = false }]])
+vim.cmd([[autocmd FileType tex lua require('cmp').setup.buffer { enabled = false }]])
