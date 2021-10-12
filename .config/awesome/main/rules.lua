@@ -9,6 +9,12 @@ local _M = {}
 -- https://awesomewm.org/apidoc/libraries/awful.rules.html
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+function custom_focus_filter(c)
+    if global_focus_disable then
+        return nil
+    end
+    return awful.client.focus.filter(c)
+end
 
 function _M.get(clientkeys, clientbuttons)
   local rules = {
@@ -18,7 +24,7 @@ function _M.get(clientkeys, clientbuttons)
       properties = {
         border_width = beautiful.border_width,
         border_color = beautiful.border_normal,
-        focus     = awful.client.focus.filter,
+        focus     = custom_focus_filter,
         raise     = true,
         keys      = clientkeys,
         buttons   = clientbuttons,
