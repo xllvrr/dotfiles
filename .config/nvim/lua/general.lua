@@ -20,6 +20,8 @@ return require('packer').startup(function(use)
     use 'vimwiki/vimwiki' -- Vimwiki
     use 'chrisbra/csv.vim' -- CSV
     use 'tpope/vim-commentary' -- Commenting
+    use 'tpope/vim-surround' -- For controlling surroundings
+    use 'tpope/vim-repeat' -- For repeating mappings
     use 'machakann/vim-highlightedyank' -- For better highlighting when yanking
     use 'ervandew/supertab' -- Tab Completion
     use 'jesseleite/vim-noh' -- Remove highlighting on cursor move
