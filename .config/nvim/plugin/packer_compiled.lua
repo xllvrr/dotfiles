@@ -203,6 +203,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-noh"
   },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-repeat"
+  },
+  ["vim-surround"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-surround"
+  },
   ["vim-virtualenv"] = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-virtualenv"
