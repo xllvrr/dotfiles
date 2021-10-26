@@ -6,9 +6,6 @@ options = { noremap = true }
 -- Map Leader
 vim.g.mapleader = " "
 
--- Remap omnicompletion
-map('i', '<Tab>', '<C-n>', options)
-
 -- Split Navigation
 map('n', '<C-J>', '<C-W><C-J>', options)
 map('n', '<C-K>', '<C-W><C-K>', options)
@@ -39,7 +36,11 @@ map('v', 'N', 'gNzz', options)
 map('n', '<leader>nf', ':Neoformat<CR>', options)
 
 -- Yank Citations
-map('n', '<leader>yc', [[:g/^$\|abstract\|language\|keyword\|isbn/d<CR>:w<CR>:%y<CR><C-O>]], options)
+map('n', '<leader>yc', [[:g/^$\|abstract\|language\|keyword\|isbn/d<CR>:w<CR>:%y<CR><C-O><C-O>]], options)
 
 -- Easy Save
 map('n', '<leader>w', ':w<CR>', options)
+
+-- Open Terminals
+map('n', '<leader>vt', ':vs term://zsh', options)
+map('n', '<leader>ht', ':sp term://zsh', options)
