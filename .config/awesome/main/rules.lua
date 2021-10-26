@@ -30,6 +30,9 @@ function _M.get(clientkeys, clientbuttons)
         buttons   = clientbuttons,
         screen    = awful.screen.preferred,
         placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+        maximized_horizontal = false,
+        maximized_vertical = false,
+        maximized = false,
       }
     },
 
@@ -57,6 +60,7 @@ function _M.get(clientkeys, clientbuttons)
         -- and the name shown there might not match defined rules here.
         name = {
           "Event Tester",  -- xev.
+          "VimWiki" -- Vimwiki
         },
         role = {
           "AlarmWindow",  -- Thunderbird's calendar.
