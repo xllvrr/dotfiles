@@ -26,13 +26,15 @@ if [ -f "$usermodmap" ]; then
 xmodmap "$usermodmap"
 fi
 
+# Fcitx Settings
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
+# Gnome Keyring
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
+
 # Startup
 fcitx -d &
-# polybarlaunch &
-# sxhkd & 
-# exec bspwm 
 exec awesome
