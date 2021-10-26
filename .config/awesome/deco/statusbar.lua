@@ -98,6 +98,17 @@ awful.screen.connect_for_each_screen(function(s)
         else
     end
 
+  -- Create Bluetooth Widget
+  blue = wibox.widget.imagebox(beautiful.widget_blue)
+
+  blue:buttons(awful.util.table.join(
+        awful.button({}, 1, function() -- left click
+            awful.spawn(terminal.." -e bluemenu")
+        end),
+        awful.button({}, 3, function() -- right click
+            awful.spawn(terminal.." -e toggleblue")
+        end)
+    ))
 
   -- Add widgets to the wibox
   s.mywibox:setup {
@@ -112,6 +123,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal,
       batticon, batttext,
       net,
+      blue,
       volume,
       wibox.widget.systray(),
       mytextclock,
