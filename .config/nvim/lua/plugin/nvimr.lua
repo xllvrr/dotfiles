@@ -1,6 +1,5 @@
 -- Nvim R
-vim.cmd('let R_in_buffer = 0')
-vim.cmd('let R_term_cmd = "tilix -a session-add-right -e"')
+vim.cmd('let R_external_term = 0')
 vim.g.rout_follow_colorscheme = 1
 vim.g.Rout_more_colors = 1
 
