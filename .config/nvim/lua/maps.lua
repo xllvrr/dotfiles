@@ -42,5 +42,5 @@ map('n', '<leader>yc', [[:g/^$\|abstract\|language\|keyword\|isbn/d<CR>:w<CR>:%y
 map('n', '<leader>w', ':w<CR>', options)
 
 -- Open Terminals
-map('n', '<leader>vt', ':vs term://zsh', options)
-map('n', '<leader>ht', ':sp term://zsh', options)
+map('n', '<leader>vt', ':vs term://zsh<CR>', options)
+map('n', '<leader>ht', ':sp term://zsh<CR>', options)
