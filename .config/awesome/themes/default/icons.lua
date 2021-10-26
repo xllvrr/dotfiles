@@ -15,6 +15,7 @@ theme.widget_vol          = icondir .. "volume-up.png"
 theme.widget_weather      = icondir .. "cloud.png"
 theme.widget_netdown      = icondir .. "download.png"
 theme.widget_netup        = icondir .. "upload.png"
+theme.widget_blue         = icondir .. "bluetooth-b.png"
 
 theme.monitor_disk        = icondir .. "hdd.png"
 theme.monitor_vol         = icondir .. "volume-up.png"
