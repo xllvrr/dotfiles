@@ -149,6 +149,7 @@ _G.packer_plugins = {
     commands = { "UpdateRemotePlugins" },
     loaded = false,
     needs_bufread = false,
+    only_cond = false,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/opt/semshi"
   },
   supertab = {
