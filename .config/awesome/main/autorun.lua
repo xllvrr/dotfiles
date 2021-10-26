@@ -21,7 +21,8 @@ autorunApps =
     "syncthing",
     "machineconf",
     "redshift",
-    "/usr/lib/geoclue-2.0/demos/agent"
+    "/usr/lib/geoclue-2.0/demos/agent",
+    "linuxvid"
 }
 
 if autorun then
