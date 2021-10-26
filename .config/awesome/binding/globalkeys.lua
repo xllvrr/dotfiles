@@ -61,7 +61,7 @@ function _M.get()
               {description="launch steam", group = "programs"}),
     awful.key({ modkey, "Mod1" }, "g", function () awful.spawn("lutris") end,
               {description="launch lutris", group = "programs"}),
-    awful.key({ modkey, "Shift" }, "w", function () awful.spawn(terminal.."-t VimWiki -e nvim -c VimwikiIndex") end,
+    awful.key({ modkey, "Shift" }, "w", function () awful.spawn(terminal.." -e nvim -c VimwikiIndex") end,
               {description="launch vimwiki", group = "programs"}),
     awful.key({ modkey, "Mod1" }, "m", function () awful.spawn("messenger") end,
               {description="launch messenger script", group = "programs"}),
