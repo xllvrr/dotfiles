@@ -27,12 +27,20 @@ function _M.get()
                 awful.spawn("kill -9 " .. c.pid)
             end end,
         {description = "kill", group = "client"}),
+    awful.key({ "Control", "Mod1" }, "m",
+        function (c)
+            c.maximized_horizontal = false
+            c.maximized_vertical = false
+            c.maximized = not c.maximized
+            c:raise()
+        end ,
+        {description = "maximize", group = "client"}),
 
     -- Layout Control
-    awful.key({ modkey, "Shift" }, "m", function (c) c:swap(awful.client.getmaster()) end,
+    awful.key({ "Control", "Shift" }, "m", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
-    awful.key({ modkey, "Shift" }, "s", function (c) c:move_to_screen()               end,
-              {description = "move to screen", group = "client"}),
+    -- awful.key({ "Control", "Shift" }, "s", function (c) c:move_to_screen()               end,
+    --           {description = "move to screen", group = "client"}),
 
     -- Retain Window Focus Between Desktops
     awful.key({ modkey,           }, "j", function (c)
