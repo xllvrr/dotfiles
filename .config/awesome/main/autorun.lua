@@ -14,7 +14,7 @@ autorun = true
 autorunApps =
 {
     "safeeyes",
-    "fcitx",
+    "fcitx5",
     "xrdb ~/.Xresources",
     "compton -b -i 1",
     "thunderbird",
