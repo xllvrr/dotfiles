@@ -4,8 +4,6 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Themeing
-    -- use 'vim-airline/vim-airline'
-    -- use 'vim-airline/vim-airline-themes'
     use {
         'hoob3rt/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
@@ -26,11 +24,6 @@ return require('packer').startup(function(use)
     use 'ervandew/supertab' -- Tab Completion
     use 'jesseleite/vim-noh' -- Remove highlighting on cursor move
     vim.g.SuperTabDefaultCompletionType = "context"
-
-    -- COC
-    -- use {'neoclide/coc.nvim',
-        -- branch = 'release'
-    -- }
 
     -- Telescope
     use {
