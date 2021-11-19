@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/hoob3rt/lualine.nvim"
   },
+  ["mapx.nvim"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/mapx.nvim",
+    url = "https://github.com/b0o/mapx.nvim"
+  },
   neoformat = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/neoformat",
