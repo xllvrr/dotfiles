@@ -23,6 +23,7 @@ return require('packer').startup(function(use)
     use 'machakann/vim-highlightedyank' -- For better highlighting when yanking
     use 'ervandew/supertab' -- Tab Completion
     use 'jesseleite/vim-noh' -- Remove highlighting on cursor move
+    use 'b0o/mapx.nvim' -- Better mapping
     vim.g.SuperTabDefaultCompletionType = "context"
 
     -- Telescope

@@ -1,11 +1,12 @@
 -- Nvim R
 vim.cmd('let R_external_term = 0')
+vim.cmd('let R_auto_start = 1')
 vim.g.rout_follow_colorscheme = 1
 vim.g.Rout_more_colors = 1
 
 -- Mappings for R
 local map = vim.api.nvim_set_keymap
-options = { noremap = true }
+options = { noremap = false }
 map('n', ',', '<Plug>RDSendLine', options)
 map('v', ',', '<Plug>RDSendSelection', options)
 map('v', ',e', '<Plug>RESendSelection', options)
