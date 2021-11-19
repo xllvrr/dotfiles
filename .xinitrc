@@ -37,4 +37,6 @@ export SSH_AUTH_SOCK
 
 # Startup
 fcitx -d &
+# xrandr --setprovideroutputsource modesetting NVIDIA-0
+# xrandr --auto
 exec awesome
