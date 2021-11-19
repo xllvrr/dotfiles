@@ -17,7 +17,7 @@ local _M = {
   modkey = "Mod4",
 
   -- Default browser
-  browser = "firefox",
+  browser = "vivaldi-stable",
 
   -- user defined wallpaper
   wallpaper = home .. ".config/wall.jpg",
