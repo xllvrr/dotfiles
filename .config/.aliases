@@ -61,6 +61,9 @@ alias gitthink='xsel -b < ~/Documents/Vimwiki/Personal/Information/Github\ Acces
 # kill ongoing
 alias killrun='pkill redshift && pkill safeeyes'
 
+# track face
+alias facetrack='cd /home/xllvr/repos/OpenSeeFace && source env/bin/activate && python facetracker.py -c 0 -W 1920 -H 1080 --discard-after 0 --scan-every 0 --no-3d-adapt 1 --max-feature-updates 900'
+
 ################################# NNN Stuff ##############################################
 n ()
 {
