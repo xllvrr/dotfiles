@@ -2,7 +2,6 @@
 local set = vim.opt
 local map = vim.api.nvim_set_keymap
 options = { noremap = true }
-require'mapx'.setup{ global = true }
 
 -- Map Leader
 vim.g.mapleader = " "
