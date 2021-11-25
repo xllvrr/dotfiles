@@ -1,6 +1,6 @@
 # path
 typeset -U PATH path
-path=("$HOME/.local/bin" "$HOME/repos/scripts" "$HOME/repos/scripts/polybar" "$HOME/.config/texlive/2020/bin/x86_64-linux" "/usr/lib/python3.8/site-packages" "$path[@]" "$HOME/.local/bin", "$HOME/.config/nvim", "$HOME/repos/scripts/lastepoch", "$HOME/repos/scripts/jackstuff")
+path=("$HOME/.local/bin" "$HOME/repos/scripts" "$HOME/repos/scripts/polybar" "/usr/lib/python3.8/site-packages" "$path[@]" "$HOME/.local/bin", "$HOME/.config/nvim", "$HOME/repos/scripts/lastepoch")
 export PATH
 export MANPATH="$HOME/.config/texlive/2020/texmf-dist/doc/man:$MANPATH"
 export INFOPATH="$HOME/.config/texlive/2020/texmf-dist/doc/info:$INFOPATH"
@@ -14,7 +14,6 @@ export PAGER='less'
 export READER='zathura'
 export TERMINAL='alacritty'
 export BROWSER='firefox'
-export TEXMFDIST='$HOME/.config/texlive/2020/texmf-dist'
 export R_BROWSER=BROWSER
 export HOSTNAME=$HOST
 
