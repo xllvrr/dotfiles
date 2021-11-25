@@ -11,7 +11,6 @@ alias exl="exa --color automatic -alh --git"
 alias cleanmake='sudo make clean install' # quick alias for make clean install
 alias unmake='sudo make uninstall'        # uninstall make files
 alias xrefresh='xrdb ~/.Xresources'
-alias tlmgr='$HOME/.config/texlive/2020/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 alias grep='grep --color'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
