@@ -20,7 +20,7 @@ snippet = {
         { name = 'nvim_lsp' },
         { name = 'vsnip' },
         { name = 'buffer',
-            opts = {
+            option = {
                 -- Get Completion from Visible Buffers
                 get_bufnrs = function()
                     local bufs = {}
