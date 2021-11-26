@@ -18,6 +18,9 @@ require("main.error-handling")
 -- Themes
 require("main.theme")
 
+-- Autofocus
+require("main.autofocus-custom")
+
 -- -- --
 
 -- Calling All Module Libraries
