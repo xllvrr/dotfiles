@@ -10,12 +10,12 @@ sysresources=/etc/X11/xinit/.Xresources
 # merge in defaults and keymaps
 setxkbmap -option caps:escape
 
-if [ -f $sysresources ]; then
-xrdb -merge $sysresources
+if [ -f "$sysresources" ]; then
+xrdb -merge "$sysresources"
 fi
 
-if [ -f $sysmodmap ]; then
-xmodmap $sysmodmap
+if [ -f "$sysmodmap" ]; then
+xmodmap "$sysmodmap"
 fi
 
 if [ -f "$userresources" ]; then
