@@ -45,7 +45,7 @@ snippet = {
 })
 
 -- Setup lspconfig.
-local servers = { 'pyright', 'tsserver', 'r_language_server', 'gopls' }
+local servers = { 'pyright', 'tsserver', 'gopls' }
 
 for _, lsp in ipairs(servers) do
     require('lspconfig')[lsp].setup {
@@ -56,6 +56,21 @@ for _, lsp in ipairs(servers) do
         capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     }
 end
+
+require'lspconfig'.r_language_server.setup{
+    on_attach = on_attach,
+    flags = {
+        debounce_text_changes = 150
+    },
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    settings = {
+        r = {
+            lsp = {
+                diagnostics = false
+            }
+        }
+    }
+}
 
 -- Disable for Latex and Rnw
 vim.cmd([[autocmd FileType rnoweb lua require('cmp').setup.buffer { enabled = false }]])
