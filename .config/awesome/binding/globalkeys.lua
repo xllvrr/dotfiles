@@ -143,7 +143,6 @@ function _M.get()
 	     end
 	  end,
       {description = "minimize or restore client", group = "client"})
-
   )
 
   return globalkeys
