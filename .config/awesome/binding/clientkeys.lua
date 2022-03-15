@@ -21,6 +21,8 @@ function _M.get()
               {description = "close", group = "client"}),
     awful.key({ modkey, }, "o",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
+    awful.key({ modkey, "Control"}, "s", function (c) c:move_to_screen()               end,
+              {description = "move to screen", group = "client"}),
     awful.key({ modkey, "Mod1"   }, "c",
         function (c)
             if c.pid then
