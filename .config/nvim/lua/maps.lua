@@ -36,7 +36,7 @@ map('v', 'N', 'gNzz', options)
 map('n', '<leader>nf', ':Neoformat<CR>', options)
 
 -- Yank Citations
-map('n', '<leader>yc', [[:g/^$\|abstract\|language\|keyword\|isbn/d<CR>:w<CR>:%y<CR><C-O><C-O>]], options)
+map('n', '<leader>yc', [[:g/^$\|abstract\|language\|keyword\|isbn/d<CR>:w<CR>:%y<CR><C-O><C-O>G]], options)
 
 -- Easy Save
 map('n', '<leader>w', ':w<CR>', options)
