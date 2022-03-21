@@ -7,7 +7,7 @@ vim.cmd('autocmd FileType python map <buffer> <leader>rc :w<CR>:exec "!ipython" 
 vim.g.nvim_ipy_perform_mappings = 0
 local map = vim.api.nvim_set_keymap
 options = { noremap = false }
-map('n', '<silent> <leader>pt', ':IPython<CR>', options)
+
 map('', '<leader>pr', '<Plug>(IPy-Run)', options)
 map('', '<leader>pc', '<Plug>(IPy-RunCell)', options)
 map('', '<leader>ps', '<Plug>(IPy-Interrupt)', options)

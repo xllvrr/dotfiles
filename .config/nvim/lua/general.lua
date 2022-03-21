@@ -62,9 +62,9 @@ return require('packer').startup(function(use)
     use {'numirias/semshi', -- Better Highlighting
         cmd = 'UpdateRemotePlugins'
     }
-    use 'jmcantrell/vim-virtualenv'
     use 'bfredl/nvim-ipy'
     use 'terryma/vim-multiple-cursors'
+    use 'hkupty/iron.nvim'
 
     -- TypeScript
     use 'pangloss/vim-javascript'    -- JavaScript support

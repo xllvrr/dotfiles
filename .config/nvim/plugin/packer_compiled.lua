@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/csv.vim",
     url = "https://github.com/chrisbra/csv.vim"
   },
+  ["iron.nvim"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/iron.nvim",
+    url = "https://github.com/hkupty/iron.nvim"
+  },
   ["lspkind-nvim"] = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
@@ -251,11 +256,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
-  },
-  ["vim-virtualenv"] = {
-    loaded = true,
-    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-virtualenv",
-    url = "https://github.com/jmcantrell/vim-virtualenv"
   },
   ["vim-vsnip"] = {
     loaded = true,
