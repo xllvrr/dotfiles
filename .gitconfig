@@ -16,3 +16,5 @@
 	defaultBranch = main
 [credential]
 	helper = cache
+[http]
+	sslVerify = false
