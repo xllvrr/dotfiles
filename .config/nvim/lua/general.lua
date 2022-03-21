@@ -11,7 +11,6 @@ return require('packer').startup(function(use)
     use 'tomasiser/vim-code-dark'
 
     -- General Use Plugins
-    use 'sbdchd/neoformat' -- Formatting
     use 'jiangmiao/auto-pairs' -- Auto completion of pairs
     use 'kovetskiy/sxhkd-vim' -- Integration with sxhkd
     use 'unblevable/quick-scope' -- Navigation and Motions

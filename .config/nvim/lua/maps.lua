@@ -32,8 +32,9 @@ map('v', 'k', 'gkzz', options)
 map('v', 'v', 'gvzz', options)
 map('v', 'N', 'gNzz', options)
 
--- Neoformat
-map('n', '<leader>nf', ':Neoformat<CR>', options)
+-- Formatting
+map('n', '<leader>nf', '<ESC><cmd>lua vim.lsp.buf.formatting()<CR>', options)
+map('v', '<leader>nf', '<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>', options)
 
 -- Yank Citations
 map('n', '<leader>yc', [[:g/^$\|abstract\|language\|keyword\|isbn/d<CR>:w<CR>:%y<CR><C-O><C-O>G]], options)
