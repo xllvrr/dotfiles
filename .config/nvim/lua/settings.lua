@@ -81,3 +81,11 @@ augroup END
 -- XML Files Autoformat
 cmd('au FileType xml :%!tidy -i -xml --show-errors 0 2>/dev/null')
 
+-- Highlight Yank
+cmd([[
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
+augroup END
+]])
+

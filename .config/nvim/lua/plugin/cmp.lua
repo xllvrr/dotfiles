@@ -45,7 +45,7 @@ snippet = {
 })
 
 -- Setup lspconfig.
-local servers = { 'pyright', 'tsserver', 'gopls' }
+local servers = { 'pylsp', 'tsserver', 'gopls' }
 
 for _, lsp in ipairs(servers) do
     require('lspconfig')[lsp].setup {

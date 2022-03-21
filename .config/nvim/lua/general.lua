@@ -20,7 +20,6 @@ return require('packer').startup(function(use)
     use 'tpope/vim-commentary' -- Commenting
     use 'tpope/vim-surround' -- For controlling surroundings
     use 'tpope/vim-repeat' -- For repeating mappings
-    use 'machakann/vim-highlightedyank' -- For better highlighting when yanking
     use 'ervandew/supertab' -- Tab Completion
     use 'jesseleite/vim-noh' -- Remove highlighting on cursor move
     use 'b0o/mapx.nvim' -- Better mapping
@@ -63,8 +62,8 @@ return require('packer').startup(function(use)
         cmd = 'UpdateRemotePlugins'
     }
     use 'bfredl/nvim-ipy'
-    use 'terryma/vim-multiple-cursors'
     use 'hkupty/iron.nvim'
+    use 'jmcantrell/vim-virtualenv'
 
     -- TypeScript
     use 'pangloss/vim-javascript'    -- JavaScript support

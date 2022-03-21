@@ -19,8 +19,8 @@ iron.core.set_config {
 -- Mappings
 local map = vim.api.nvim_set_keymap
 local options = { noremap = false }
-map('v', '<silent><C-v>', '<Plug>(iron-visual-send)', options)
-map('n', '<localleader>l', '<Plug>(iron-send-line)', options)
+map('v', ',', '<Plug>(iron-visual-send)', options)
+map('n', ',', '<Plug>(iron-send-line)', options)
 map('', '<localleader>ir', ':IronRepl<CR>', options)
 map('', '<localleader>iq', '<Plug>(iron-exit)', options)
 map('', '<localleader>ic', '<Plug>(iron-clear)', options)
