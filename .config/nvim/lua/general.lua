@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
     use 'vimwiki/vimwiki' -- Vimwiki
     use 'chrisbra/csv.vim' -- CSV
     use 'tpope/vim-commentary' -- Commenting
-    use 'tpope/vim-surround' -- For controlling surroundings
+    use 'machakann/vim-sandwich' -- For controlling surroundings
     use 'tpope/vim-repeat' -- For repeating mappings
     use 'ervandew/supertab' -- Tab Completion
     use 'jesseleite/vim-noh' -- Remove highlighting on cursor move
@@ -62,13 +62,14 @@ return require('packer').startup(function(use)
     }
     use 'bfredl/nvim-ipy'
     use 'hkupty/iron.nvim'
-    use 'jmcantrell/vim-virtualenv'
+    use 'HallerPatrick/py_lsp.nvim'
 
     -- TypeScript
     use 'pangloss/vim-javascript'    -- JavaScript support
     use 'leafgarland/typescript-vim' -- TypeScript syntax
     use 'maxmellon/vim-jsx-pretty'   -- JS and JSX syntax
     use 'jparise/vim-graphql'        -- GraphQL syntax
+
 
 end)
 

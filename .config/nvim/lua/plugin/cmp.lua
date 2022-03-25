@@ -45,7 +45,7 @@ snippet = {
 })
 
 -- Setup lspconfig.
-local servers = { 'pylsp', 'tsserver', 'gopls' }
+local servers = { 'tsserver', 'gopls'}
 
 for _, lsp in ipairs(servers) do
     require('lspconfig')[lsp].setup {
@@ -70,6 +70,14 @@ require'lspconfig'.r_language_server.setup{
             }
         }
     }
+}
+
+require'py_lsp'.setup{
+    host_python = "/usr/bin/python"
+}
+
+require'lspconfig'.sqls.setup{
+    cmd = {"go", "run", "github.com/lighttiger2505/sqls"}
 }
 
 -- Disable for Latex and Rnw
