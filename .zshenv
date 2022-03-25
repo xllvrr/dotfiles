@@ -16,7 +16,7 @@ export TERMINAL='alacritty'
 export BROWSER='firefox'
 export R_BROWSER=BROWSER
 export HOSTNAME=$HOST
-export GOPATH='$HOME/go'
+export GOPATH='/home/xllvr/go'
 
 # man page colors
 export LESS_TERMCAP_mb=$'\e[1;32m'
