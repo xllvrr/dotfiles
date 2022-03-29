@@ -20,7 +20,7 @@ local _M = {
   browser = "firefox",
 
   -- user defined wallpaper
-  wallpaper = home .. ".config/wall.jpg",
+  -- wallpaper = home .. ".config/wall.png",
 }
 
 return _M
