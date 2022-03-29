@@ -18,7 +18,6 @@ local taglist_buttons  = deco.taglist()
 local terminal = RC.vars.terminal
 
 markup      = lain.util.markup
-
 local _M = {}
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -28,6 +27,7 @@ local _M = {}
 awful.screen.connect_for_each_screen(function(s)
 
   -- Wallpaper
+  -- theme.set_wallpaper(beautiful.wallpaper, s, beautiful.wallpapers)
   set_wallpaper(s)
 
   -- Create a promptbox for each screen

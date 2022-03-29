@@ -22,7 +22,7 @@ autorunApps =
     "machineconf",
     "redshift",
     "/usr/lib/geoclue-2.0/demos/agent",
-    "linuxvid"
+    "linuxvid",
 }
 
 if autorun then
