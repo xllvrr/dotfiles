@@ -77,7 +77,12 @@ require'py_lsp'.setup{
 }
 
 require'lspconfig'.sqls.setup{
-    cmd = {"go", "run", "github.com/lighttiger2505/sqls"}
+    on_attach = on_attach,
+    flags = {
+        debounce_text_changes = 150
+        },
+    cmd = {"sqls", "-config", "/home/xllvr/.config/sqls/config.yml"},
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
 
 -- Disable for Latex and Rnw
