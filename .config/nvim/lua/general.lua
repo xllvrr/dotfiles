@@ -19,10 +19,8 @@ return require('packer').startup(function(use)
     use 'tpope/vim-commentary' -- Commenting
     use 'machakann/vim-sandwich' -- For controlling surroundings
     use 'tpope/vim-repeat' -- For repeating mappings
-    use 'ervandew/supertab' -- Tab Completion
     use 'jesseleite/vim-noh' -- Remove highlighting on cursor move
     use 'b0o/mapx.nvim' -- Better mapping
-    vim.g.SuperTabDefaultCompletionType = "context"
 
     -- Telescope
     use {
@@ -42,6 +40,7 @@ return require('packer').startup(function(use)
     -- LSP and CMP
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/cmp-nvim-lsp'
+    use 'williamboman/nvim-lsp-installer'
     use 'hrsh7th/cmp-buffer'
     use {'hrsh7th/nvim-cmp',
         requires = {'onsails/lspkind-nvim'}
@@ -70,6 +69,9 @@ return require('packer').startup(function(use)
     use 'maxmellon/vim-jsx-pretty'   -- JS and JSX syntax
     use 'jparise/vim-graphql'        -- GraphQL syntax
 
+    -- SQL
+    use 'tpope/vim-dadbod'
+    use 'kristijanhusak/vim-dadbod-ui' -- UI for SQL
 
 end)
 
