@@ -129,11 +129,6 @@ _G.packer_plugins = {
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/mapx.nvim",
     url = "https://github.com/b0o/mapx.nvim"
   },
-  neoformat = {
-    loaded = true,
-    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/neoformat",
-    url = "https://github.com/sbdchd/neoformat"
-  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -143,6 +138,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/nvim-ipy",
     url = "https://github.com/bfredl/nvim-ipy"
+  },
+  ["nvim-lsp-installer"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -169,6 +169,11 @@ _G.packer_plugins = {
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["py_lsp.nvim"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/py_lsp.nvim",
+    url = "https://github.com/HallerPatrick/py_lsp.nvim"
+  },
   ["quick-scope"] = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/quick-scope",
@@ -181,11 +186,6 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/opt/semshi",
     url = "https://github.com/numirias/semshi"
-  },
-  supertab = {
-    loaded = true,
-    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/supertab",
-    url = "https://github.com/ervandew/supertab"
   },
   ["sxhkd-vim"] = {
     loaded = true,
@@ -217,15 +217,20 @@ _G.packer_plugins = {
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
   },
+  ["vim-dadbod"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-dadbod",
+    url = "https://github.com/tpope/vim-dadbod"
+  },
+  ["vim-dadbod-ui"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-dadbod-ui",
+    url = "https://github.com/kristijanhusak/vim-dadbod-ui"
+  },
   ["vim-graphql"] = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-graphql",
     url = "https://github.com/jparise/vim-graphql"
-  },
-  ["vim-highlightedyank"] = {
-    loaded = true,
-    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
-    url = "https://github.com/machakann/vim-highlightedyank"
   },
   ["vim-javascript"] = {
     loaded = true,
@@ -237,11 +242,6 @@ _G.packer_plugins = {
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-jsx-pretty",
     url = "https://github.com/maxmellon/vim-jsx-pretty"
   },
-  ["vim-multiple-cursors"] = {
-    loaded = true,
-    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-multiple-cursors",
-    url = "https://github.com/terryma/vim-multiple-cursors"
-  },
   ["vim-noh"] = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-noh",
@@ -252,10 +252,10 @@ _G.packer_plugins = {
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
   },
-  ["vim-surround"] = {
+  ["vim-sandwich"] = {
     loaded = true,
-    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-surround",
-    url = "https://github.com/tpope/vim-surround"
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-sandwich",
+    url = "https://github.com/machakann/vim-sandwich"
   },
   ["vim-vsnip"] = {
     loaded = true,

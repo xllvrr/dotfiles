@@ -45,4 +45,3 @@ map('n', '<leader>w', ':w<CR>', options)
 -- Open Terminals
 map('n', '<leader>vt', ':vs term://zsh<CR>', options)
 map('n', '<leader>ht', ':sp term://zsh<CR>', options)
-
