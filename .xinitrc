@@ -37,6 +37,7 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
 # Startup
+sh ~/.screenlayout/default.sh
 fcitx -d &
 # xrandr --setprovideroutputsource modesetting NVIDIA-0
 # xrandr --auto
