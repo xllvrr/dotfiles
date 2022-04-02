@@ -31,6 +31,12 @@ export GTK_IM_MODULE=fcitx5
 export QT_IM_MODULE=fcitx5
 export XMODIFIERS=@im=fcitx5
 
+# Wacom Tablet Settings
+xsetwacom set "wacom Intuos PT M 2 Pad pad" Button 2 key "e"
+xsetwacom set "wacom Intuos PT M 2 Pad pad" Button 3 key "b"
+xsetwacom set "wacom Intuos PT M 2 Pad pad" Button 8 key "control T"
+xsetwacom set "wacom Intuos PT M 2 Pad pad" Button 9 key "h"
+
 # Gnome Keyring
 dbus-update-activation-environment --systemd DISPLAY
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
