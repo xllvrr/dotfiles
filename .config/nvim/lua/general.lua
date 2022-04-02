@@ -37,6 +37,9 @@ return require('packer').startup(function(use)
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     require('telescope').load_extension('fzf')
 
+    -- Refactoring
+    use 'ThePrimeagen/refactoring.nvim'
+
     -- LSP and CMP
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/cmp-nvim-lsp'

@@ -179,6 +179,11 @@ _G.packer_plugins = {
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/quick-scope",
     url = "https://github.com/unblevable/quick-scope"
   },
+  ["refactoring.nvim"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/refactoring.nvim",
+    url = "https://github.com/ThePrimeagen/refactoring.nvim"
+  },
   semshi = {
     commands = { "UpdateRemotePlugins" },
     loaded = false,
