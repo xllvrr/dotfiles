@@ -1,50 +1,17 @@
 # DOTFILES
 
-This is a storage of my dotfiles for my main machine. Currently in this VCM is:
+Configurations contained within Repo:
 
-- zsh
-- bash
-- lf
+- Alacritty
+- Awesomewm
+- bspwm (Not Maintained)
+- dunst (Not Maintained)
 - nnn
-- alacritty
-- dunst
-- bspwm
-- sxhkd
-- polybar
-- texlive
+- nvim (Lua Branch)
+- Polybar (Not Maintained)
+- Rclone (Not Maintained)
+- Redshift
+- sxhkd (Not Maintained)
+- Zathura
 
-Feel free to use them but as my entire setup is a gigantic experiment, be warned that nothing is stable.
-
-## What these do
-### Zsh
-Contains my aliases, plugins and such
-
-### Bash
-Contains aliases and some ricing
-
-### lf
-Configuration for lf file manager
-
-### nnn
-Configuration for nnn file manager (testing currently)
-
-### alacritty
-Configuration for alacritty terminal emulator
-
-### dunst
-Configuration for dunst notification manager
-
-### bspwm
-Configuration for bspwm (tiling window manager)
-
-### sxhkd
-Configuration for sxhkd (simple x hotkey daemon)
-
-### Polybar
-Configuration for polybar
-
-### TexLive
-Configuration for TexLive install
-
-## License
-These are distributed under the GNU 3.0 GPL
+The unmaintained portions are from a previous bswpm setup that I have decided to not continue using but have become too lazy to remove and see whether it might be needed in the future
