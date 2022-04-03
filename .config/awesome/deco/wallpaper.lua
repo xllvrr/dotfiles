@@ -15,6 +15,8 @@ function set_wallpaper(s)
                 wallpaper = tostring(wallpaper[s] or "")
                 gears.wallpaper.maximized(wallpaper_path .. wallpaper, s, true)
             end
+        else
+            gears.wallpaper.maximized(wallpaper_path .. wallpaper, 1, true)
         end
     end
 end
