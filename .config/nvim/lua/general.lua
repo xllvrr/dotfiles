@@ -48,8 +48,8 @@ return require('packer').startup(function(use)
     use {'hrsh7th/nvim-cmp',
         requires = {'onsails/lspkind-nvim'}
     }
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/vim-vsnip' -- Snippets
+    use 'SirVer/ultisnips'
+    use 'quangnguyen30192/cmp-nvim-ultisnips'
 
     -- Latex
     use 'LaTeX-Box-Team/LaTeX-Box'
@@ -67,10 +67,10 @@ return require('packer').startup(function(use)
     use 'HallerPatrick/py_lsp.nvim'
 
     -- TypeScript
-    use 'pangloss/vim-javascript'    -- JavaScript support
-    use 'leafgarland/typescript-vim' -- TypeScript syntax
-    use 'maxmellon/vim-jsx-pretty'   -- JS and JSX syntax
-    use 'jparise/vim-graphql'        -- GraphQL syntax
+    use 'pangloss/vim-javascript'     -- JavaScript support
+    use 'leafgarland/typescript-vim'  -- TypeScript syntax
+    use 'maxmellon/vim-jsx-pretty'    -- JS and JSX syntax
+    use 'jparise/vim-graphql'         -- GraphQL syntax
 
     -- SQL
     use 'tpope/vim-dadbod'

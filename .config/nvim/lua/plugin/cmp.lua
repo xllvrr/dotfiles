@@ -4,7 +4,7 @@ cmp.setup({
 snippet = {
         expand = function(args)
             -- For `vsnip` user.
-            vim.fn["vsnip#anonymous"](args.body)
+            vim.fn["UltiSnips#Anon"](args.body)
         end,
     },
     mapping = {
@@ -18,7 +18,7 @@ snippet = {
     },
     sources = {
         { name = 'nvim_lsp' },
-        { name = 'vsnip' },
+        { name = 'ultisnips' },
         { name = 'buffer',
             option = {
                 -- Get Completion from Visible Buffers
