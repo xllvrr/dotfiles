@@ -1,5 +1,5 @@
 -- Terminal colors
 local set = vim.opt
-set.termguicolors = false
+set.termguicolors = true
 vim.g.airline_theme = 'codedark'
 vim.cmd('colorscheme codedark')
