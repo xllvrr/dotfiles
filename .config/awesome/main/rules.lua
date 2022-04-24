@@ -20,29 +20,29 @@ function _M.get(clientkeys, clientbuttons)
     local rules = {
 
         -- All clients will match this rule.
-    { rule = { },
+        { rule = { },
             properties = {
                 border_width = beautiful.border_width,
-            border_color = beautiful.border_normal,
-            focus     = custom_focus_filter,
-            raise     = true,
-            keys      = clientkeys,
-            buttons   = clientbuttons,
-            screen    = awful.screen.preferred,
-            placement = awful.placement.no_overlap+awful.placement.no_offscreen,
-            maximized_horizontal = false,
-            maximized_vertical = false,
-            maximized = false,
+                border_color = beautiful.border_normal,
+                focus     = custom_focus_filter,
+                raise     = true,
+                keys      = clientkeys,
+                buttons   = clientbuttons,
+                screen    = awful.screen.preferred,
+                placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+                maximized_horizontal = false,
+                maximized_vertical = false,
+                maximized = false,
             }
-            },
+        },
 
         -- Floating clients.
-    { rule_any = {
+        { rule_any = {
             instance = {
                 "DTA",  -- Firefox addon DownThemAll.
                 "copyq",  -- Includes session name in class.
                 "pinentry",
-                },
+            },
             class = {
                 "Arandr",
                 "Blueman-manager",
@@ -65,7 +65,7 @@ function _M.get(clientkeys, clientbuttons)
             -- and the name shown there might not match defined rules here.
             name = {
                 "Event Tester",  -- xev.
-            "VimWiki" -- Vimwiki
+                "VimWiki" -- Vimwiki
             },
             role = {
                 "AlarmWindow",  -- Thunderbird's calendar.
@@ -79,29 +79,31 @@ function _M.get(clientkeys, clientbuttons)
         },
 
         -- Map certain applications to certain tags
-    { rule = { class = "Thunderbird" },
+        { rule = { class = "Thunderbird" },
             properties = { tag = "" }
         },
 
-    { rule = { instance = "discord" },
+        { rule = { instance = "discord" },
             properties = { tag = "" }
         },
 
-    { rule = { instance = "zoom" },
+        { rule = { instance = "zoom" },
             properties = { tag = "" }
         },
 
-    { rule = { class = "Darktable" },
+        { rule = { class = "Darktable" },
             properties = { tag = "", fullscreen = true }
         },
 
-    { rule = { class = "Gimp" },
+        { rule = { class = "Gimp" },
             properties = { tag = "", floating = true }
         },
 
-    { rule = { class = "Lutris" },
+        { rule = { class = "Lutris" },
             properties = { tag = "" }
         },
+
+        -- Configure Icons
 
     }
 
@@ -111,6 +113,6 @@ end
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 return setmetatable(
-{}, 
-{ __call = function(_, ...) return _M.get(...) end }
+    {}, 
+    { __call = function(_, ...) return _M.get(...) end }
 )
