@@ -89,6 +89,8 @@ function _M.get()
               {description="set half brightness", group = "system"}),
     awful.key({ modkey, "Shift" }, "f", function () global_focus_disable = not global_focus_disable end,
               {description="turn off global focus", group = "system"}),
+    awful.key({ modkey, "Shift" }, "a", function() awful.spawn("alsactl init") end,
+              {description="reset alsa", group = "system"}),
 
     -- Resize
     awful.key({ modkey, "Mod1" }, "j",
