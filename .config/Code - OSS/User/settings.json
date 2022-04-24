@@ -1,10 +1,12 @@
 {
     "workbench.startupEditor": "none",
-    "window.zoomLevel": 4,
+    "window.zoomLevel": 3,
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "editor.wordWrap": "on",
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 2000
+    "files.autoSaveDelay": 2000,
+    "sync.autoUpload": true,
+    "sync.autoDownload": true
 }
