@@ -174,11 +174,6 @@ _G.packer_plugins = {
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["py_lsp.nvim"] = {
-    loaded = true,
-    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/py_lsp.nvim",
-    url = "https://github.com/HallerPatrick/py_lsp.nvim"
-  },
   ["quick-scope"] = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/quick-scope",

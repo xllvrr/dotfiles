@@ -65,7 +65,6 @@ return require('packer').startup(function(use)
     }
     use 'bfredl/nvim-ipy'
     use 'hkupty/iron.nvim'
-    use 'HallerPatrick/py_lsp.nvim'
 
     -- TypeScript
     use 'pangloss/vim-javascript'     -- JavaScript support
