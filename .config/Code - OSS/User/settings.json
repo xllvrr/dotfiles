@@ -1,12 +1,27 @@
 {
-    "workbench.startupEditor": "none",
-    "window.zoomLevel": 3,
-    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-    "editor.wordWrap": "on",
-    "files.trimTrailingWhitespace": true,
-    "files.trimFinalNewlines": true,
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 2000,
-    "sync.autoUpload": true,
-    "sync.autoDownload": true
+  "workbench.startupEditor": "none",
+  "window.zoomLevel": 3,
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+  "editor.wordWrap": "on",
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "files.autoSaveDelay": 6000,
+  "sync.autoUpload": true,
+  "sync.autoDownload": true,
+  "sync.gist": "375dfdb94455d717b6a7d0c72b4d8265",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.formatOnSave": true,
+  "git.enableSmartCommit": true,
+  "react-native.packager.port": 19000,
+  "vscode-neovim.useCtrlKeysForInsertMode": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.lineNumbers": "relative",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.lintTask.enable": true,
+  "explorer.confirmDragAndDrop": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "vscode-neovim.useCtrlKeysForNormalMode": false,
+  "workbench.preferredHighContrastLightColorTheme": "Default High Contrast"
 }
