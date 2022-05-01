@@ -21,6 +21,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-repeat' -- For repeating mappings
     use 'jesseleite/vim-noh' -- Remove highlighting on cursor move
     use 'b0o/mapx.nvim' -- Better mapping
+    use 'sbdchd/neoformat' -- Formatting
 
     -- Telescope
     use {
