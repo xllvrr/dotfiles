@@ -16,8 +16,12 @@ export TERMINAL='alacritty'
 export BROWSER='firefox'
 export R_BROWSER=BROWSER
 export HOSTNAME=$HOST
-export GOPATH='/home/xllvr/go'
-export WORKON_HOME='$HOME/.config/pyenvs'
+
+# other applications
+export GOPATH='/home/xllvr/go' # GoLang
+export WORKON_HOME='.config/pyenvs' # VirtualEnvWrapper Python
+source "$HOME/.local/bin/virtualenvwrapper_lazy.sh"
+export SPARK_HOME='/opt/apache-spark' # Apache Spark
 
 # man page colors
 export LESS_TERMCAP_mb=$'\e[1;32m'
@@ -33,6 +37,9 @@ export BW_SESSION="q3ErjTdpigYltyGWBje3u/pB2HS+soC4sZOeXsWwkKvSdsbvPd3sNT68Ey+Ws
 
 # qt settings
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
+
+# pipenv settings
+export PIPENV_VERBOSITY=-1
 
 # nnn settings
 export NNN_PLUG='m:dragdrop;o:fzopen;p:picker;l:launch;i:imgview;c:fzcd;u:getplugs;b:renamer;x:_chmod +x $nnn'

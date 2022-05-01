@@ -153,3 +153,6 @@ autoload -U promptinit; promptinit
 prompt spaceship
 
 alias luamake=/home/xllvr/repos/lua-language-server/3rd/luamake/luamake
+
+################################# VirtualEnv ##############################################
+source "$HOME/.local/bin/virtualenvwrapper_lazy.sh"
