@@ -45,7 +45,7 @@ snippet = {
 })
 
 -- Setup lspconfig.
-local servers = { 'tsserver', 'gopls'}
+local servers = { 'tsserver', 'gopls', 'pylsp'}
 
 for _, lsp in ipairs(servers) do
     require('lspconfig')[lsp].setup {
@@ -70,10 +70,6 @@ require'lspconfig'.r_language_server.setup{
             }
         }
     }
-}
-
-require'py_lsp'.setup{
-    host_python = "/usr/bin/python"
 }
 
 require'lspconfig'.sqls.setup{
