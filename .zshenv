@@ -1,6 +1,9 @@
 # path
 typeset -U PATH path
-path=("$HOME/.local/bin" "$HOME/repos/scripts" "$HOME/repos/scripts/polybar" "/usr/lib/python3.8/site-packages" "$path[@]" "$HOME/.local/bin", "$HOME/.config/nvim", "$HOME/repos/easydl")
+path=("$HOME/.local/bin" "$HOME/repos/scripts" 
+        "/usr/lib/python3.10/site-packages" "$path[@]" 
+        "$HOME/.local/bin" "$HOME/.config/nvim"
+        "$HOME/repos/easydl")
 export PATH
 export MANPATH="$HOME/.config/texlive/2020/texmf-dist/doc/man:$MANPATH"
 export INFOPATH="$HOME/.config/texlive/2020/texmf-dist/doc/info:$INFOPATH"
@@ -21,7 +24,14 @@ export HOSTNAME=$HOST
 export GOPATH='/home/xllvr/go' # GoLang
 export WORKON_HOME='.config/pyenvs' # VirtualEnvWrapper Python
 source "$HOME/.local/bin/virtualenvwrapper_lazy.sh"
-export SPARK_HOME='/opt/apache-spark' # Apache Spark
+
+# apache spark
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
+export SPARK_HOME="/home/xllvr/sparkhadoop"
+export PATH=$PATH:$SPARK_HOME/bin
+export PYTHONPATH=$SPARK_HOME/python:$PYTHONPATH
+export PYSPARK_PYTHON=python3
+export PATH=$PATH:$JAVA_HOME/bin
 
 # man page colors
 export LESS_TERMCAP_mb=$'\e[1;32m'
@@ -48,3 +58,4 @@ case $HOST in
     (archthink) export NNN_BMS='1:/home/xllvr;2:/home/xllvr/Documents/Main Folder/School;M:/home/xllvr/Documents/Main Folder/School/Masters;D:/home/xllvr/Documents/Main Folder/TTRPG/D&D;V:/home/xllvr/Documents/Main Folder/TTRPG/Vampire the Masquerade;W:/home/xllvr/Documents/Vimwiki;';;
 esac
 export NNN_COLORS='2'
+
