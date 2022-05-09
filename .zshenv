@@ -55,7 +55,7 @@ export PIPENV_VERBOSITY=-1
 export NNN_PLUG='m:dragdrop;o:fzopen;p:picker;l:launch;i:imgview;c:fzcd;u:getplugs;b:renamer;x:_chmod +x $nnn'
 case $HOST in
     (archmain) export NNN_BMS='1:/mnt/media;2:/mnt/media/SyncThing/School;M:/mnt/media/SyncThing/School/Masters;D:/mnt/media/SyncThing/TTRPG/D&D;V:/mnt/media/SyncThing/TTRPG/Vampire the Masquerade;W:/mnt/media/VimWiki;G:/mnt/media/SyncThing;P:/mnt/media/SyncThing/Projects;J:/mnt/media/SyncThing/mThree';;
-    (archthink) export NNN_BMS='1:/home/xllvr;2:/home/xllvr/Documents/Main Folder/School;M:/home/xllvr/Documents/Main Folder/School/Masters;D:/home/xllvr/Documents/Main Folder/TTRPG/D&D;V:/home/xllvr/Documents/Main Folder/TTRPG/Vampire the Masquerade;W:/home/xllvr/Documents/Vimwiki;';;
+    (archthink) export NNN_BMS='1:/home/xllvr;2:/home/xllvr/Documents/Main Folder/School;M:/home/xllvr/Documents/Main Folder/School/Masters;D:/home/xllvr/Documents/Main Folder/TTRPG/D&D;V:/home/xllvr/Documents/Main Folder/TTRPG/Vampire the Masquerade;W:/home/xllvr/Documents/Vimwiki;J:/home/xllvr/Documents/Main Folder/mThree';;
 esac
 export NNN_COLORS='2'
 
