@@ -32,7 +32,7 @@ snippet = {
             }},
     },
     completion = {
-        completeopt = 'menu,menuone,noinsert',
+        completeopt = 'menu,menuone,noselect',
     },
     formatting = {
         format = require("lspkind").cmp_format({with_text = true, menu = ({
@@ -45,7 +45,7 @@ snippet = {
 })
 
 -- Setup lspconfig.
-local servers = { 'tsserver', 'gopls', 'pylsp'}
+local servers = { 'tsserver', 'gopls', 'pyright'}
 
 for _, lsp in ipairs(servers) do
     require('lspconfig')[lsp].setup {

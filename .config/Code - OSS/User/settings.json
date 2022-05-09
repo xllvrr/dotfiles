@@ -23,5 +23,6 @@
   "explorer.confirmDragAndDrop": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "vscode-neovim.useCtrlKeysForNormalMode": false,
-  "workbench.preferredHighContrastLightColorTheme": "Default High Contrast"
+  "workbench.preferredHighContrastLightColorTheme": "Default High Contrast",
+  "workbench.colorTheme": "Two Monokai Darker"
 }

@@ -7,9 +7,9 @@ vim.g.Rout_more_colors = 1
 -- Mappings for R
 local map = vim.api.nvim_set_keymap
 options = { noremap = false }
-map('n', ',', '<Plug>RDSendLine', options)
-map('v', ',', '<Plug>RDSendSelection', options)
-map('v', ',e', '<Plug>RESendSelection', options)
+map('n', '<localleader>,', '<Plug>RDSendLine', options)
+map('v', '<localleader>,', '<Plug>RDSendSelection', options)
+map('v', '<localleader>,e', '<Plug>RESendSelection', options)
 
 -- Apply Templates
 vim.cmd('au BufNewFile *.Rnw 0r ~/.config/nvim/templates/skeleton.Rnw')
