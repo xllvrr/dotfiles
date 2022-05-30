@@ -192,6 +192,11 @@ _G.packer_plugins = {
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/opt/semshi",
     url = "https://github.com/numirias/semshi"
   },
+  ["sqls.nvim"] = {
+    loaded = true,
+    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/sqls.nvim",
+    url = "https://github.com/nanotee/sqls.nvim"
+  },
   ["sxhkd-vim"] = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/sxhkd-vim",
@@ -226,16 +231,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
-  },
-  ["vim-dadbod"] = {
-    loaded = true,
-    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-dadbod",
-    url = "https://github.com/tpope/vim-dadbod"
-  },
-  ["vim-dadbod-ui"] = {
-    loaded = true,
-    path = "/home/xllvr/.local/share/nvim/site/pack/packer/start/vim-dadbod-ui",
-    url = "https://github.com/kristijanhusak/vim-dadbod-ui"
   },
   ["vim-graphql"] = {
     loaded = true,
