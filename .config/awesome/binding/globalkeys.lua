@@ -69,7 +69,7 @@ function _M.get()
               {description="launch discord", group = "programs"}),
     awful.key({ modkey, "Mod1" }, "f", function () awful.spawn(filemanager) end,
               {description="launch file manager", group = "programs"}),
-    awful.key({  }, "Print", function () awful.spawn("scrotpick") end,
+    awful.key({  }, "Print", function () awful.spawn("maimpick") end,
               {description="screenshot", group = "programs"}),
 
     -- System Options
