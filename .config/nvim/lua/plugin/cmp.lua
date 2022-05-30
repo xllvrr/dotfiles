@@ -72,15 +72,6 @@ require'lspconfig'.r_language_server.setup{
     }
 }
 
-require'lspconfig'.sqls.setup{
-    on_attach = on_attach,
-    flags = {
-        debounce_text_changes = 150
-        },
-    cmd = {"sqls", "-config", "/home/xllvr/.config/sqls/config.yml"},
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-}
-
 -- Disable for Latex and Rnw
 vim.cmd([[autocmd FileType rnoweb lua require('cmp').setup.buffer { enabled = false }]])
 vim.cmd([[autocmd FileType tex lua require('cmp').setup.buffer { enabled = false }]])

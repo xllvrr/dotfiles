@@ -73,8 +73,7 @@ return require('packer').startup(function(use)
     use 'jparise/vim-graphql'         -- GraphQL syntax
 
     -- SQL
-    use 'tpope/vim-dadbod'
-    use 'kristijanhusak/vim-dadbod-ui' -- UI for SQL
+    use 'nanotee/sqls.nvim' -- SQLS for editor
 
 end)
 
