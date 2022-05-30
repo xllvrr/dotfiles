@@ -34,12 +34,11 @@ function pdfmerge() {
 }
 
 # for package management (pacman)
-alias p='sudo pacman'
-alias ps='sudo pacman -S'
+alias pin='sudo pacman -S'
 alias psearch='pacman -Ss'
 alias pup='sudo pacman -Syu'
 alias porp='sudo pacman -Rs $(pacman -Qtdq)'
-alias pr='sudo pacman -Rns'
+alias prem='sudo pacman -Rns'
 alias pexist='pacman -Qs'
 
 # for dotfile management
@@ -62,6 +61,11 @@ alias killrun='pkill redshift && pkill safeeyes'
 
 # track face
 alias facetrack='cd /home/xllvr/repos/OpenSeeFace && source env/bin/activate && python facetracker.py -c 0 -W 1920 -H 1080 --discard-after 0 --scan-every 0 --no-3d-adapt 1 --max-feature-updates 900'
+
+# pandoc for beamer
+function beamer() {
+    pandoc --to=beamer --slide-level=2 --include-in-header=$HOME/.config/nvim/templates/beamersection.txt -s $1 -o $2
+}
 
 ################################# NNN Stuff ##############################################
 n ()
@@ -91,5 +95,4 @@ n ()
             rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }
-
 
