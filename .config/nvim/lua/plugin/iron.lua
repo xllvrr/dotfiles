@@ -29,7 +29,7 @@ iron.core.setup {
         send_motion = "<space>sc",
         visual_send = "<space>sv",
         send_line = "<space>sl",
-        repeat_cmd = "<space>s.",
+        send_mark = "<space>s.",
         cr = "<space>s<cr>",
         interrupt = "<space>s<space>",
         exit = "<space>sq",
