@@ -57,7 +57,7 @@ function _M.get()
               {description="launch browser", group = "programs"}),
     awful.key({ modkey, }, "e", function () awful.spawn(emailclient) end,
               {description="launch email", group = "programs"}),
-    awful.key({ modkey, "Shift" }, "w", function () awful.spawn(terminal.." -e nvim -c VimwikiIndex") end,
+    awful.key({ modkey, "Shift" }, "w", function () awful.spawn(terminal.." -t Vimwiki -e nvim -c VimwikiIndex") end,
               {description="launch vimwiki", group = "programs"}),
     awful.key({ modkey, "Mod1" }, "d", function () awful.spawn("discord") end,
               {description="launch discord", group = "programs"}),

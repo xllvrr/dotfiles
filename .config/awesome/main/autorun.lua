@@ -13,7 +13,6 @@ local _M = {}
 autorun = true
 autorunApps =
 {
-    "safeeyes",
     "fcitx5",
     "xrdb ~/.Xresources",
     "compton -b -i 1",

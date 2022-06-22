@@ -59,22 +59,3 @@ case $HOST in
     (archthink) export NNN_BMS='1:/home/xllvr;2:/home/xllvr/Documents/Main Folder/School;M:/home/xllvr/Documents/Main Folder/School/Masters;D:/home/xllvr/Documents/Main Folder/TTRPG/D&D;V:/home/xllvr/Documents/Main Folder/TTRPG/Vampire the Masquerade;W:/home/xllvr/Documents/Vimwiki;J:/home/xllvr/Documents/Main Folder/mThree';;
 esac
 export NNN_COLORS='2'
-
-# bemenu
-export BEMENU_OPTS="--tb '#6272a4'\
- --tf '#f8f8f2'\
- --fb '#282a36'\
- --ff '#f8f8f2'\
- --nb '#282a36'\
- --nf '#6272a4'\
- --hb '#44475a'\
- --hf '#50fa7b'\
- --sb '#44475a'\
- --sf '#50fa7b'\
- --scb '#282a36'\
- --scf '#ff79c6'\
- --fn Jet Brains Mono Medium 13\
- --line-height 40\
- --monitor -1\
- --ignorecase
- "

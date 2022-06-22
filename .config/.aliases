@@ -54,10 +54,9 @@ alias crontab='export VISUAL=nvim; crontab'
 
 # for github access
 alias gitmain='xsel -b < /mnt/media/VimWiki/Personal/Information/Github\ Access.md'
+alias gitmainway='wl-copy < /mnt/media/VimWiki/Personal/Information/Github\ Access.md'
 alias gitthink='xsel -b < ~/Documents/Vimwiki/Personal/Information/Github\ Access.md'
-
-# kill ongoing
-alias killrun='pkill redshift && pkill safeeyes'
+alias gitthinkway='wl-copy < ~/Documents/Vimwiki/Personal/Information/Github\ Access.md'
 
 # track face
 alias facetrack='cd /home/xllvr/repos/OpenSeeFace && source env/bin/activate && python facetracker.py -c 0 -W 1920 -H 1080 --discard-after 0 --scan-every 0 --no-3d-adapt 1 --max-feature-updates 900'
