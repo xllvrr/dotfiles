@@ -6,7 +6,7 @@
 }
 
 window#waybar {
-    background: transparent;
+    background: rgba(0,0,0,0.55);
     color: white;
 }
 
@@ -22,7 +22,7 @@ window#waybar {
 
 #workspaces button {
     padding: 0 5px;
-    background: transparent;
+    background: rgba(0,0,0,0.55);
     color: white;
     border-top: 2px solid transparent;
     font-size: 22px;
@@ -46,6 +46,7 @@ window#waybar {
 
 #clock {
     font-weight: bold;
+    border-bottom: 2px solid yellow;
 }
 
 #battery {
@@ -75,12 +76,15 @@ window#waybar {
 }
 
 #cpu {
+    border-bottom: 2px solid coral;
 }
 
 #memory {
+    border-bottom: 2px solid darkseagreen;
 }
 
 #network {
+    border-bottom: 2px solid chartreuse;
 }
 
 #network.disconnected {
@@ -88,12 +92,13 @@ window#waybar {
 }
 
 #pulseaudio {
+    border-bottom: 2px solid aqua;
 }
 
 #pulseaudio.muted {
+    border-bottom: 2px solid red;
 }
 
 #tray {
+    border-bottom: 2px solid firebrick;
 }
-
-
