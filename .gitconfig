@@ -1,10 +1,10 @@
 [user]
 	email = dtsa.tan@gmail.com
-	name = xllvr
+	name = xllvrr
 [gpg]
 	program = gpg2
 [color]
-	ui = true
+	ui = auto
 [diff]
 	tool = vimdiff
 [merge]

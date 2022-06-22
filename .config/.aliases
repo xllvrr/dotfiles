@@ -67,6 +67,9 @@ function beamer() {
     pandoc --to=beamer --slide-level=2 --include-in-header=$HOME/.config/nvim/templates/beamersection.txt -s $1 -o $2
 }
 
+# kubernetes
+alias kubectl="minikube kubectl --"
+
 ################################# NNN Stuff ##############################################
 n ()
 {
