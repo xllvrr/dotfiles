@@ -100,5 +100,5 @@ window#waybar {
 }
 
 #tray {
-    border-bottom: 2px solid firebrick;
+    border-bottom: 2px solid red;
 }

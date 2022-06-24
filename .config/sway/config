@@ -45,9 +45,9 @@ set $ws1 
 set $ws2 
 set $ws3 
 set $ws4 
-set $ws5 
+set $ws5 
 set $ws6 
-set $ws7 
+set $ws7 
 set $ws8 
 set $ws9 
 set $ws10 
@@ -68,18 +68,19 @@ assign [class="Thunderbird"] $ws1
 assign [class="Gimp"] $ws3
 assign [class="Darktable"] $ws3
 assign [class="^Discord"] $ws4
-assign [class="qpwgraph"] $ws9
-assign [class="obs"] $ws10
+assign [app_id="org.rncbc.qpwgraph"] $ws9
+assign [app_id="com.obsproject.Studio"] $ws10
 
 ### Basic configurations
 # Autostart
 exec_always --no-startup-id mako
 exec_always --no-startup-id xrdb -load ~/.Xdefaults
-exec_always --no-startup-id fcitx5 -d --replace
+exec --no-startup-id fcitx5 -d --replace
 exec --no-startup-id gammastep
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id linuxvid
 exec /usr/bin/thunderbird
+exec discord
 exec syncthing
 
 # Input configuration

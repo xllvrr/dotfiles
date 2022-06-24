@@ -47,6 +47,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 export BW_SESSION="q3ErjTdpigYltyGWBje3u/pB2HS+soC4sZOeXsWwkKvSdsbvPd3sNT68Ey+WsJIrS0BrbvzTmatClKwpGs4PXw=="
 
 # qt settings
+export QT_QPA_PLATFORM="wayland;xcb"
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 # pipenv settings
