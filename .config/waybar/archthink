@@ -35,6 +35,11 @@
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
+    "sway/window": {
+        "max-length": 50,
+        "(.*) - Mozilla Firefox": " $1",
+        "(.*) Alacritty": " $1"
+    },
     "tray": {
         "icon-size": 24,
         "spacing": 10
