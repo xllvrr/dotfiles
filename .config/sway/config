@@ -94,6 +94,7 @@ input * {
 # Remember to download swaybg for backgrounds, otherwise it'll just be grey
 output DP-2 bg $background fill pos 0,0 resolution 3440x1440
 output DP-3 bg $background fill pos 760,1440 resolution 1920x1080
+output LVDS-1 bg $background fill pos 760,1440 resolution 1920x1080
 
 ## Key Bindings
 # Shortcuts
