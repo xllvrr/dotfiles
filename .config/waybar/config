@@ -57,12 +57,12 @@
         "format-wifi": "{essid} ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-disconnected": "Disconnected ⚠",
-        "on-click": "nmtui"
+        "on-click": "alacritty -t nmtui -e nmtui"
     },
     "pulseaudio": {
         "format": " {volume}%",
         "format-bluetooth": " {volume}%",
         "format-muted": "",
-        "on-click": "alacritty -e pulsemixer"
+        "on-click": "alacritty -t pulsemixer -e pulsemixer"
     }
 }

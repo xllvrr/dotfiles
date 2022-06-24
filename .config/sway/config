@@ -21,7 +21,7 @@ set $opacity 0.7
 
 set $cl_high #e57373
 set $cl_indi #d9d8d8
-set $cl_text #000000
+set $cl_text #ffffff
 set $cl_back #009ddc
 set $cl_fore #d9d8d8
 set $cl_urge #ee2e24
@@ -167,6 +167,7 @@ bindsym $mod+Mod1+f exec $filemanager
     bindsym $mod+o floating toggle
     floating_modifier $mod normal
     bindsym $mod+a focus parent
+    bindsym $mod+space focus mode_toggle
 
 # Scratchpad:
     # Move the currently focused window to the scratchpad
@@ -199,6 +200,7 @@ for_window [class="Gimp"] floating enable
 for_window [class="Sxiv"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="mpv"] floating enable
+for_window [title="nmtui"] floating enable
 
 # Status Bar:
 # Read `man 5 sway-bar` for more information about this section.
