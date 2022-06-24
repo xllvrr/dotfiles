@@ -13,8 +13,8 @@ set $right l
 set $term alacritty
 set $menu fuzzel -b 282c34ff -s 000000ff -S 74bb80ff -t 74bb80ff -C 74bba4ff
 set $filemanager pcmanfm
-set $primaryscreen "Unknown X340 PRO 144 0x00000000"
-set $secondaryscreen "Lenovo Group Limited LEN T2224dA V5H47316"
+set $primaryscreen "Unknown X340 PRO 144 0x00000000" LVDS-1
+set $secondaryscreen "Lenovo Group Limited LEN T2224dA V5H47316" LVDS-1
 
 set $background $HOME/.config/wall.jpg
 set $opacity 0.7
