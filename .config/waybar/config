@@ -22,9 +22,8 @@
             "": "",
             "": "",
             "": "",
-            "urgent": "",
-            "focused": "",
-            "default": ""
+            "": "",
+            "": ""
         },
         "persistent_workspaces": {
             "": ["Unknown X340 PRO 144 0x00000000", "LVDS-1"],
@@ -37,8 +36,6 @@
     },
     "sway/window": {
         "max-length": 30,
-        "(.*) - Mozilla Firefox": " $1",
-        "(.*) Alacritty": " $1"
     },
     "tray": {
         "icon-size": 24,
