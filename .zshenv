@@ -17,7 +17,8 @@ export LANG=en_US.UTF-8
 export PAGER='less'
 export READER='zathura'
 export TERMINAL='alacritty'
-export BROWSER='firefox'
+# export BROWSER='firefox'
+export BROWSER='chromium'
 export R_BROWSER=BROWSER
 export HOSTNAME=$HOST
 

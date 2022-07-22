@@ -11,6 +11,7 @@ set $up k
 set $right l
 
 set $term alacritty
+set $browser chromium
 set $menu fuzzel -b 282c34ff -s 000000ff -S 74bb80ff -t 74bb80ff -C 74bba4ff
 set $filemanager pcmanfm
 set $primaryscreen "Unknown X340 PRO 144 0x00000000" LVDS-1
@@ -81,7 +82,9 @@ for_window [class="Spotify"] move window to workspace $ws11
 # Autostart
 exec_always --no-startup-id mako
 exec_always --no-startup-id xrdb -load ~/.Xdefaults
-exec --no-startup-id fcitx5 -d --replace
+exec_always --no-startup-id dynamicwall
+exec_always --no-startup-id fcitx5 -d --replace
+exec_always --no-startup-id kanshi
 exec --no-startup-id gammastep
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id linuxvid
@@ -99,9 +102,9 @@ input * {
 ### Output configuration
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 # Remember to download swaybg for backgrounds, otherwise it'll just be grey
-output DP-2 bg $HOME/.config/wallpapers/oshis.jpg fill pos 0,0 resolution 3440x1440
-output DP-3 bg $HOME/.config/wallpapers/nanakotoba.png fill pos 760,1440 resolution 1920x1080
-output LVDS-1 bg $HOME/.config/wallpapers/oshis.jpg fill pos 760,1440 resolution 1920x1080
+# output DP-2 pos 0,0 resolution 3440x1440
+# output DP-3 pos 760,1440 resolution 1920x1080
+# output LVDS-1 pos 0,0 resolution 1920x1080
 
 ## Key Bindings
 # Shortcuts
@@ -121,7 +124,7 @@ bindsym $mod+Mod1+r exec systemctl reboot
 bindsym $mod+Mod1+s exec systemctl suspend
 
 # Applications:
-bindsym $mod+b exec firefox
+bindsym $mod+b exec $browser
 bindsym $mod+Shift+w exec $term -t Vimwiki -e nvim -c VimwikiIndex
 bindsym $mod+Mod1+d exec discord
 bindsym $mod+Mod1+f exec $filemanager

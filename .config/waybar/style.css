@@ -32,6 +32,18 @@ window#waybar {
     border-top: 2px solid #c9545d;
 }
 
+#tags button {
+    padding: 3px 5px;
+    color: white;
+    border-top: 2px solid transparent;
+    font-size: 22px;
+}
+
+#tags button.focused {
+    color: #c9545d;
+    border-top: 2px solid #c9545d;
+}
+
 #mode {
     background: #64727D;
     border-bottom: 3px solid white;
