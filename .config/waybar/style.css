@@ -21,6 +21,7 @@ window#waybar {
 */
 
 #workspaces button {
+    font-family: "Font Awesome 6 Free Solid", "Font Awesome 6 Free Brands", "Font Awesome 6 Free Regular";
     padding: 3px 5px;
     color: white;
     border-top: 2px solid transparent;
@@ -28,21 +29,11 @@ window#waybar {
 }
 
 #workspaces button.focused {
+    font-family: "Font Awesome 6 Free Solid", "Font Awesome 6 Free Brands", "Font Awesome 6 Free Regular";
     color: #c9545d;
     border-top: 2px solid #c9545d;
 }
 
-#tags button {
-    padding: 3px 5px;
-    color: white;
-    border-top: 2px solid transparent;
-    font-size: 22px;
-}
-
-#tags button.focused {
-    color: #c9545d;
-    border-top: 2px solid #c9545d;
-}
 
 #mode {
     background: #64727D;
