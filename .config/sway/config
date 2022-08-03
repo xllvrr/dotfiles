@@ -69,11 +69,13 @@ workspace $ws11 output $secondaryscreen
 workspace $ws12
 
 # Default Workspaces for Apps
-assign [class="Thunderbird"] $ws1
+assign [title="Messenger"] $ws2
 assign [class="Gimp"] $ws3
 assign [class="Darktable"] $ws3
 assign [class="REAPER"] $ws3
 assign [title="Discord"] $ws4
+assign [title="^Zoom.*"] $ws5
+assign [title="^vk.*"] $ws5
 assign [app_id="org.rncbc.qpwgraph"] $ws9
 assign [class="obs"] $ws10
 for_window [class="Spotify"] move window to workspace $ws11
@@ -88,11 +90,8 @@ exec_always --no-startup-id kanshi
 exec --no-startup-id gammastep
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id linuxvid
-exec --no-startup-id /repos/scripts/colorcal
-exec /usr/bin/thunderbird
 exec discord
 exec syncthing
-exec spotify
 
 # Input configuration
 input * {

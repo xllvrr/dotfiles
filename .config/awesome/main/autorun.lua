@@ -16,7 +16,6 @@ autorunApps =
     "fcitx5",
     "xrdb ~/.Xresources",
     "compton -b -i 1",
-    "thunderbird",
     "syncthing",
     "machineconf",
     "redshift",

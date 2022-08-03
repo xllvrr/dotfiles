@@ -47,4 +47,7 @@ sh ~/.screenlayout/default.sh
 fcitx -d &
 # xrandr --setprovideroutputsource modesetting NVIDIA-0
 # xrandr --auto
-exec awesome
+export XDG_SESSION_TYPE=x11
+export GDK_BACKEND=x11
+exec gnome-session
+# exec awesome

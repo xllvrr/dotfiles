@@ -10,14 +10,11 @@ local _M = {
   -- Default file manager
   filemanager = "pcmanfm",
 
-  -- Default email
-  emailclient = "thunderbird",
-   
   -- Default modkey.
   modkey = "Mod4",
 
   -- Default browser
-  browser = "firefox",
+  browser = "chromium",
 
   -- user defined wallpaper
   -- wallpaper = home .. ".config/wall.png",
