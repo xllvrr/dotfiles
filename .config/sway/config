@@ -69,6 +69,7 @@ workspace $ws11 output $secondaryscreen
 workspace $ws12
 
 # Default Workspaces for Apps
+assign [app_id="evolution"] $ws1
 assign [title="Messenger"] $ws2
 assign [class="Gimp"] $ws3
 assign [class="Darktable"] $ws3
@@ -90,6 +91,7 @@ exec_always --no-startup-id kanshi
 exec --no-startup-id gammastep
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id linuxvid
+exec evolution
 exec discord
 exec syncthing
 

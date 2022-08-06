@@ -43,10 +43,9 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
 # Startup
-sh ~/.screenlayout/default.sh
-fcitx -d &
-# xrandr --setprovideroutputsource modesetting NVIDIA-0
-# xrandr --auto
+fcitx5 -d &
+syncthing &
+machineconf &
 export XDG_SESSION_TYPE=x11
 export GDK_BACKEND=x11
 exec gnome-session
