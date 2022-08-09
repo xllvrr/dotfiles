@@ -41,7 +41,7 @@ DeactivateKeys=
 
 [Behavior]
 # Active By Default
-ActiveByDefault=False
+ActiveByDefault=True
 # Share Input State
 ShareInputState=All
 # Show preedit in application

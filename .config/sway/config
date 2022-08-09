@@ -14,7 +14,7 @@ set $term alacritty
 set $browser chromium
 set $menu fuzzel -b 282c34ff -s 000000ff -S 74bb80ff -t 74bb80ff -C 74bba4ff
 set $filemanager pcmanfm
-set $primaryscreen "Unknown X340 PRO 144 0x00000000" LVDS-1
+set $primaryscreen "Hewlett Packard HP E222 6CM6401NJZ" LVDS-1
 set $secondaryscreen "Lenovo Group Limited LEN T2224dA V5H47316" LVDS-1
 
 set $opacity 0.7
@@ -69,7 +69,6 @@ workspace $ws11 output $secondaryscreen
 workspace $ws12
 
 # Default Workspaces for Apps
-assign [app_id="evolution"] $ws1
 assign [title="Messenger"] $ws2
 assign [class="Gimp"] $ws3
 assign [class="Darktable"] $ws3
@@ -91,7 +90,6 @@ exec_always --no-startup-id kanshi
 exec --no-startup-id gammastep
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id linuxvid
-exec evolution
 exec discord
 exec syncthing
 
