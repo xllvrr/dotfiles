@@ -168,8 +168,8 @@ bindsym $mod+Mod1+f exec $filemanager
     bindsym $mod+Shift+F1 move container to workspace $ws11
     bindsym $mod+Shift+F2 move container to workspace $ws12
     # Move workspace to different outputs
-    bindsym $mod+Ctrl+$up move workspace to output up
-    bindsym $mod+Ctrl+$down move workspace to output down
+    bindsym $mod+Ctrl+$left move workspace to output left
+    bindsym $mod+Ctrl+$right move workspace to output right
 
 # Layout stuff:
     bindsym $mod+z splith

@@ -1,150 +1,98 @@
 #!/bin/sh
 
-#######################
-###     Variables   ###
-#######################
+###################################
+#####         SYSTEM         ######
+###################################
 
-set $mod Mod4
-set $left h
-set $down j
-set $up k
-set $right l
-
-set $term alacritty
-set $browser chromium
-set $launcher fuzzel -b 282c34ff -s 000000ff -S 74bb80ff -t 74bb80ff -C 74bba4ff
-set $filemanager pcmanfm
-set $screenshot grimpick
-set $vimwiki $term -t Vimwiki -e nvim -c VimwikiIndex
-
-set $opacity 0.7
-
-#######################
-###      Config     ###
-#######################
-
-# Borders and Gaps
-riverctl background-color 0xab5d1c
-riverctl border-color-focused 0xe57373
-riverctl border-color-focused 0x009ddc
-riverctl border-width 3
-rivertile -view-padding 6 -outer-padding 6
+# Background and Border Colors
+riverctl background-color 0x002b36
+riverctl border-color-focused 0x93a1a1
+riverctl border-color-unfocused 0x586e75
 
 # Keyboard Repeat Rate
 riverctl set-repeat 50 300
 
-# Floating
-riverctl float-filter-add class "Gimp"
-riverctl float-filter-add class "Sxiv"
-riverctl float-filter-add class "Pavucontrol"
-riverctl float-filter-add class "mpv"
-riverctl float-filter-add title "nmtui"
-riverctl float-filter-add title "Vimwiki"
-riverctl float-filter-add title "FX: (.*)"
-riverctl float-filter-add title "Add FX to(.*) (.*)"
+# Exit riverctl
+riverctl map normal Super+Shift Q exit
 
+###################################
+#####        WINDOWS         ######
+###################################
 
-#######################
-###     Autostart   ###
-#######################
+# Close Focused View
+riverctl map normal Super+Alt C close
 
-## Services
-riverctl spawn mako
-riverctl spawn "xrdb -load ~/.Xdefaults"
-riverctl spawn "fcitx5 -d --replace"
-## Graphics
-riverctl spawn gammastep
-riverctl spawn /usr/lib/geoclue-2.0/demos/agent
-riverctl spawn dynamicwall
-riverctl spawn kanshi
-riverctl spawn linuxvid
-riverctl spawn colorcal
-## Programs
-riverctl spawn thunderbird
-riverctl spawn discord
-riverctl spawn syncthing
-riverctl spawn spotify
+# Bump View to Top of Layout Stack
+riverctl map normal Super M zoom
 
-#######################
-###      Mapping    ###
-#######################
+# Focus Next/Previous View in Layout Stack
+riverctl map normal Super J focus-view next
+riverctl map normal Super K focus-view previous
 
-export XKB_DEFAULT_OPTIONS=caps:escape
-## Utilities
-riverctl map normal $mod Return spawn $term    
-riverctl map normal Mod1 space spawn $launcher      
-riverctl map normal None Print spawn $screenshot        
-## System
-riverctl map normal $mod+Shift q exit           # exit river
-riverctl map normal $mod+Mod1 c close           # close focused application
-riverctl map normal $mod+Mod1 o spawn "systemctl poweroff"
-riverctl map normal $mod+Mod1 r spawn "systemctl reboot"
-riverctl map normal $mod+Mod1 s spawn "systemctl suspend"
-riverctl map normal $mod f toggle-fullscreen
-## Applications
-riverctl map normal $mod b spawn $browser
-riverctl map normal $mod+Shift w spawn $vimwiki
-riverctl map normal $mod+Mod1 f spawn $filemanager
+# Swap Focused View with Next/Previous View
+riverctl map normal Super+Shift J swap next
+riverctl map normal Super+Shift K swap previous
 
-## Tags
-### Focusing
+# Toggle Fullscreen
+riverctl map normal Super F toggle-fullscreen
+
+# Toggle Float
+riverctl map normal Super O toggle-float
+
+# Resize/Move Views
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super BTN_RIGHT resize-view
+
+# Change Layout Orientation
+riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
+riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
+riverctl map normal Super Down  send-layout-cmd rivertile "main-location bottom"
+riverctl map normal Super Left  send-layout-cmd rivertile "main-location left"
+
+###################################
+#####          TAGS          ######
+###################################
+
 for i in $(seq 1 9)
 do
     tags=$((1 << ($i - 1)))
 
     # Super+[1-9] to focus tag [0-8]
-    riverctl map normal $mod $i set-focused-tags $tags
+    riverctl map normal Super $i set-focused-tags $tags
 
     # Super+Shift+[1-9] to tag focused view with tag [0-8]
-    riverctl map normal $mod+Shift $i set-view-tags $tags
+    riverctl map normal Super+Shift $i set-view-tags $tags
 
     # Super+Ctrl+[1-9] to toggle focus of tag [0-8]
-    riverctl map normal $mod+Control $i toggle-focused-tags $tags
+    riverctl map normal Super+Control $i toggle-focused-tags $tags
 
     # Super+Shift+Ctrl+[1-9] to toggle tag [0-8] of focused view
-    riverctl map normal $mod+Shift+Control $i toggle-view-tags $tags
+    riverctl map normal Super+Shift+Control $i toggle-view-tags $tags
 done
-### Focus All Tags
+
+# Super+0 to focus all tags
+# Super+Shift+0 to tag focused view with all tags
 all_tags=$(((1 << 32) - 1))
 riverctl map normal Super 0 set-focused-tags $all_tags
 riverctl map normal Super+Shift 0 set-view-tags $all_tags
 
-## View/Output Navigation
-### Focus next/previous view
-riverctl map normal $mod j focus-view next
-riverctl map normal $mod k focus-view previous
-### Swap focused view with next/previous view in stack
-riverctl map normal $mod+Shift j swap next
-riverctl map normal $mod+Shift k swap previous
-### Swap to next/previous output
-riverctl map normal $mod Period focus-output next
-riverctl map normal $mod Comma focus-output previous
-### Send focused view to next/previous output
-riverctl map normal $mod+Shift Period send-to-output next
-riverctl map normal $mod+Shift Comma send-to-output previous
-### Bump focused view to top of layout stack
-riverctl map normal $mod m zoom
+###################################
+#####          APPS          ######
+###################################
 
-## Adjustments
-### Mode Change
-riverctl declare-mode viewadjust
-riverctl map normal $mod+Shift a enter-mode viewadjust
-riverctl map viewadjust None Escape enter-mode normal
-### Size Adjustment
-riverctl map viewadjust None h send-layout-cmd rivertile "main-ratio -0.05" 
-riverctl map viewadjust None l send-layout-cmd rivertile "main-ratio +0.05"
-riverctl map viewadjust Shift h send-layout-cmd rivertile "main-count +1"
-riverctl map viewadjust Shift l send-layout-cmd rivertile "main-count -1"
-### Snap Views
-riverctl map viewadjust $mod+Shift h snap left
-riverctl map viewadjust $mod+Shift j snap down
-riverctl map viewadjust $mod+Shift k snap up
-riverctl map viewadjust $mod+Shift l snap right
-### Move Views with Mouse
-riverctl map-pointer normal $mod BTN_LEFT move-view
-riverctl map-pointer normal $mod BTN_RIGHT resize-view
-### Change Layout Orientation
-riverctl map normal $mod Up    send-layout-cmd rivertile "main-location top"
-riverctl map normal $mod Right send-layout-cmd rivertile "main-location right"
-riverctl map normal $mod Down  send-layout-cmd rivertile "main-location bottom"
-riverctl map normal $mod Left  send-layout-cmd rivertile "main-location left"
+# Keybinds
+riverctl map normal Super Return spawn alacritty
+
+# Floating by Default
+
+
+# App-ID Client Side Decorations
+
+
+# Autostart
+
+###################################
+#####          SPAWN         ######
+###################################
+riverctl default-layout rivertile
+rivertile -view-padding 6 -outer-padding 6
