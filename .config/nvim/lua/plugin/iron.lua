@@ -1,5 +1,6 @@
 ---- IRON-REPL ----------------------------------------------------------------
 local iron = require('iron')
+local view = require('iron.view')
 
 iron.core.setup {
     config = {
@@ -19,9 +20,10 @@ iron.core.setup {
             python = require("iron.fts.python").ipython
         },
         -- Repl position
-        repl_open_cmd = require("iron.view").curry.right(function()
-            return math.ceil(vim.o.columns / 2)
-        end),
+        -- repl_open_cmd = require("iron.view").curry.right(function()
+        --     return math.ceil(vim.o.columns / 2)
+        -- end),
+        repl_open_cmd = view.split(.5),
     },
     -- Iron doesn't set keymaps by default anymore. Set them here
     -- or use `should_map_plug = true` and map from you vim files

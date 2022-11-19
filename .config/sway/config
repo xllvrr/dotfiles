@@ -79,6 +79,8 @@ assign [title="^vk.*"] $ws5
 assign [app_id="org.rncbc.qpwgraph"] $ws9
 assign [class="obs"] $ws10
 for_window [class="Spotify"] move window to workspace $ws11
+for_window [class="tidal-hifi"] move window to workspace $ws11
+for_window [class="Cider"] move window to workspace $ws11
 
 ### Basic configurations
 # Autostart
@@ -109,7 +111,7 @@ input * {
 # Shortcuts
 bindsym $mod+Return exec $term
 bindsym Mod1+space exec $menu
-bindsym Print exec grimpick
+bindsym $mod+Shift+s exec grimpick
 
 bindsym $mod+c kill
 bindsym $mod+Mod1+c exec swaykill

@@ -370,6 +370,7 @@ live_config_reload: true
 # - `mods` (see key bindings)
 mouse_bindings:
   - { mouse: Middle, action: Copy }
+  - { mouse: Right, action: Paste }
 
 # Key bindings
 #

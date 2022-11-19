@@ -1,0 +1,140 @@
+{
+   "checksum": "f5c51ca94844b3a51ef373e5127071a7",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13313341253208828",
+            "date_last_used": "0",
+            "guid": "92715bc3-b721-474a-9173-ea148380e728",
+            "id": "6",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "BoA Sign On",
+            "type": "url",
+            "url": "https://fedsso.bankofamerica.com/bofa-customform-ui/login"
+         }, {
+            "children": [ {
+               "date_added": "13313342205760544",
+               "date_last_used": "0",
+               "guid": "d8762729-d8cc-4769-87d1-5512a7ca617d",
+               "id": "8",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "MangaDex",
+               "type": "url",
+               "url": "https://mangadex.org/"
+            }, {
+               "date_added": "13313342221664262",
+               "date_last_used": "0",
+               "guid": "fb229b2d-3e33-4bda-b6d7-115175c54a60",
+               "id": "10",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "AniMixPlay",
+               "type": "url",
+               "url": "https://animixplay.to/"
+            }, {
+               "date_added": "13313342234705752",
+               "date_last_used": "0",
+               "guid": "4970ebba-dddd-4c65-bbac-506431ec4ef5",
+               "id": "11",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "YouTube",
+               "type": "url",
+               "url": "https://www.youtube.com/"
+            } ],
+            "date_added": "13313342213664931",
+            "date_last_used": "0",
+            "date_modified": "13313342256118595",
+            "guid": "ad5b7f9e-38c3-4560-806e-4d61b632fb8c",
+            "id": "9",
+            "name": "Entertainment",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13313342256118595",
+               "date_last_used": "0",
+               "guid": "6ea3e166-376e-45e3-a86f-a438a187faba",
+               "id": "12",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Jisho",
+               "type": "url",
+               "url": "https://jisho.org/"
+            }, {
+               "date_added": "13313371170188035",
+               "date_last_used": "0",
+               "guid": "d4671a25-668f-4cfe-86c0-2821f3723802",
+               "id": "15",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "My Drive - Google Drive",
+               "type": "url",
+               "url": "https://drive.google.com/drive/my-drive"
+            } ],
+            "date_added": "13313342269714377",
+            "date_last_used": "0",
+            "date_modified": "13313374147123325",
+            "guid": "3f8f58db-c57e-4fe7-bb51-8b9470e7b5c4",
+            "id": "13",
+            "name": "Language",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13313374147123325",
+               "date_last_used": "0",
+               "guid": "f70ca40e-e492-4331-a992-ca5bad54f72c",
+               "id": "16",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Roll20",
+               "type": "url",
+               "url": "https://roll20.net/"
+            } ],
+            "date_added": "13313374157481950",
+            "date_last_used": "0",
+            "date_modified": "13313374157482245",
+            "guid": "c827cfc3-d8d1-44bf-9d07-bf230f7aa665",
+            "id": "17",
+            "name": "Gaming",
+            "type": "folder"
+         } ],
+         "date_added": "13313339182094029",
+         "date_last_used": "0",
+         "date_modified": "13313342213665148",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Bookmarks bar",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13313339182094031",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Other bookmarks",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13313339182094032",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Mobile bookmarks",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}

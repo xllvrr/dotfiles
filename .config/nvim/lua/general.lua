@@ -64,7 +64,7 @@ return require('packer').startup(function(use)
         cmd = 'UpdateRemotePlugins'
     }
     use 'bfredl/nvim-ipy'
-    use 'hkupty/iron.nvim'
+    use {'hkupty/iron.nvim', tag = "v3.0"}
 
     -- TypeScript
     use 'pangloss/vim-javascript'     -- JavaScript support
