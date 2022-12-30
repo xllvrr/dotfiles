@@ -29,11 +29,6 @@ export GTK_IM_MODULE=fcitx5
 export QT_IM_MODULE=fcitx5
 export XMODIFIERS=@im=fcitx5
 
-# Gnome Keyring
-# dbus-update-activation-environment --systemd DISPLAY
-# eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-# export SSH_AUTH_SOCK
-
 # Startup
 fcitx5 -d &
 syncthing &
@@ -42,4 +37,3 @@ gnomepapers &
 export XDG_SESSION_TYPE=x11
 export GDK_BACKEND=x11
 exec gnome-session
-# exec awesome
