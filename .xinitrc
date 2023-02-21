@@ -34,6 +34,7 @@ fcitx5 -d &
 syncthing &
 machineconf &
 gnomepapers &
+greenclip daemon &
 export XDG_SESSION_TYPE=x11
 export GDK_BACKEND=x11
 exec gnome-session

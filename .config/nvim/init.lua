@@ -15,7 +15,7 @@ require("plugin/vimwiki")
 require("plugin/telescope")
 require("plugin/treesitter")
 require("plugin/cmp")
-require("lua-lsp")
+-- require("lua-lsp")
 
 -- Themeing
 require("themeing")
