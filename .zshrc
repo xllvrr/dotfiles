@@ -9,6 +9,11 @@ _comp_options+=(globdots)       # Include hidden files.
 setopt COMPLETE_ALIASES
 source $HOME/.config/.aliases
 
+
+################################# Fuzzy Find ##############################################
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
 ################################### Vi Stuff ################################################
 # vi mode
 bindkey -v

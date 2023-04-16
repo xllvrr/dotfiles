@@ -4,7 +4,8 @@ path=("$HOME/.local/bin" "$HOME/repos/scripts"
         "/usr/lib/python3.10/site-packages" "$path[@]" 
         "$HOME/.local/bin" "$HOME/.config/nvim"
         "$HOME/repos/easydl"
-        "$HOME/go/bin/(go install github.com/lighttiger2505/sqls@latest)")
+        "$HOME/go/bin/(go install github.com/lighttiger2505/sqls@latest)"
+        "$HOME/.config/lsp")
 export PATH
 export MANPATH="$HOME/.config/texlive/2020/texmf-dist/doc/man:$MANPATH"
 export INFOPATH="$HOME/.config/texlive/2020/texmf-dist/doc/info:$INFOPATH"

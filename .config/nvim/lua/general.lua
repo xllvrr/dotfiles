@@ -1,79 +1,84 @@
-return require('packer').startup(function(use)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-    -- Packer
-    use 'wbthomason/packer.nvim'
+require('lazy').setup({
+   
+    { -- LSP
+        'neovim/nvim-lspconfig',
+        dependencies = {
+            'williamboman/mason-lspconfig.nvim',
+            'williamboman/mason.nvim',
+              build = function()
+                pcall(vim.cmd, 'MasonUpdate')
+              end,
+        }
+    },
 
-    -- Themeing
-    use {
-        'hoob3rt/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
-    }
-    use 'tomasiser/vim-code-dark'
+    { -- Autocompletion
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lua',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'saadparwaiz1/cmp_luasnip',
+            'L3MON4D3/LuaSnip',
+            'rafamadriz/friendly-snippets',
+        }
+    },
+
+    { -- NeoTree
+      "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        dependencies = { 
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+          "MunifTanjim/nui.nvim",
+        }
+    },
+
+    { -- Themeing
+    'hoob3rt/lualine.nvim',
+    'tomasiser/vim-code-dark',
+    },
 
     -- General Use Plugins
-    use 'jiangmiao/auto-pairs' -- Auto completion of pairs
-    use 'kovetskiy/sxhkd-vim' -- Integration with sxhkd
-    use 'unblevable/quick-scope' -- Navigation and Motions
-    use 'vimwiki/vimwiki' -- Vimwiki
-    use 'chrisbra/csv.vim' -- CSV
-    use 'tpope/vim-commentary' -- Commenting
-    use 'machakann/vim-sandwich' -- For controlling surroundings
-    use 'tpope/vim-repeat' -- For repeating mappings
-    use 'jesseleite/vim-noh' -- Remove highlighting on cursor move
-    use 'b0o/mapx.nvim' -- Better mapping
-    use 'sbdchd/neoformat' -- Formatting
+    'jiangmiao/auto-pairs', -- Auto completion of pairs
+    'unblevable/quick-scope', -- Navigation and Motions
+    'tpope/vim-commentary', -- Commenting
+    'machakann/vim-sandwich', -- For controlling surroundings
+    'tpope/vim-repeat', -- For repeating mappings
+    'jesseleite/vim-noh', -- Remove highlighting on cursor move
+    'b0o/mapx.nvim', -- Better mapping
+    'sbdchd/neoformat', -- Formatting
+    'lewis6991/gitsigns.nvim', -- Gitsigns
 
-    -- Telescope
-    use {
-      'nvim-telescope/telescope.nvim',
-      requires = {
-          {'nvim-lua/plenary.nvim'},
-          {'nvim-treesitter/nvim-treesitter'}
+    { -- Neorg
+        "nvim-neorg/neorg",
+        build = ":Neorg sync-parsers", -- This is the important bit!
+    },
+
+    { -- Telescope
+        'nvim-telescope/telescope.nvim',
+        dependencies = {
+            {'nvim-lua/plenary.nvim'},
+            {'nvim-treesitter/nvim-treesitter',
+            build = ':TSUpdate'},
+            {'nvim-telescope/telescope-fzf-native.nvim',
+            build = 'make',
+            cond = function()
+                return vim.fn.executable 'make' == 1
+                end}
         }
-    }
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    require('telescope').load_extension('fzf')
-
-    -- Refactoring
-    use 'ThePrimeagen/refactoring.nvim'
-
-    -- LSP and CMP
-    use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'williamboman/nvim-lsp-installer'
-    use 'hrsh7th/cmp-buffer'
-    use {'hrsh7th/nvim-cmp',
-        requires = {'onsails/lspkind-nvim'}
-    }
-    use 'SirVer/ultisnips'
-    use 'quangnguyen30192/cmp-nvim-ultisnips'
-
-    -- Latex
-    use 'LaTeX-Box-Team/LaTeX-Box'
-
-    -- R
-    use 'jalvesaq/Nvim-R' -- R Programming
-    use 'jalvesaq/R-Vim-runtime' -- Highlighting Rmd and Rnw Code Chunks
-
-    -- Python
-    use {'numirias/semshi', -- Better Highlighting
-        cmd = 'UpdateRemotePlugins'
-    }
-    use 'bfredl/nvim-ipy'
-    use {'hkupty/iron.nvim', tag = "v3.0"}
-
-    -- TypeScript
-    use 'pangloss/vim-javascript'     -- JavaScript support
-    use 'leafgarland/typescript-vim'  -- TypeScript syntax
-    use 'maxmellon/vim-jsx-pretty'    -- JS and JSX syntax
-    use 'jparise/vim-graphql'         -- GraphQL syntax
-
-    -- SQL
-    use 'nanotee/sqls.nvim' -- SQLS for editor
-
-end)
-
+    },
+})
