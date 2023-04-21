@@ -1,17 +1,11 @@
 # DOTFILES
 
-Configurations contained within Repo:
+Useful configurations contained within repo:
 
+- Code OSS (VS Code for Certain Languages)
 - Alacritty
-- Awesomewm
-- bspwm (Not Maintained)
-- dunst (Not Maintained)
-- nnn
-- nvim (Lua Branch)
-- Polybar (Not Maintained)
-- Rclone (Not Maintained)
-- Redshift
-- sxhkd (Not Maintained)
-- Zathura
+- Fcitx5
+- Nvim
+- Zsh and its aliases
 
 The unmaintained portions are from a previous bswpm setup that I have decided to not continue using but have become too lazy to remove and see whether it might be needed in the future
