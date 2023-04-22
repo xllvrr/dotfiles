@@ -3,7 +3,6 @@
 
 # applications
 alias v='nvim'                            # vim
-alias dragon='dragon-drag-and-drop'
 alias ex="exa --color automatic -a"
 alias exl="exa --color automatic -alh --git"
 alias tsm="transmission-remote"
@@ -16,31 +15,10 @@ alias grep='grep --color'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 
-# git management
-function lazygit() {
-    git add .
-    git commit -a -m "$1"
-    git push
-}
-
-function configupdate() {
-    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add $1
-    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit -a -m "$2"
-    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME push
-}
-
 # merge files
 function pdfmerge() {
     gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=$@
 }
-
-# for package management (pacman)
-alias pin='sudo pacman -S'
-alias psearch='pacman -Ss'
-alias pup='sudo pacman -Syu'
-alias porp='sudo pacman -Rs $(pacman -Qtdq)'
-alias prem='sudo pacman -Rns'
-alias pexist='pacman -Qs'
 
 # for dotfile management
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
@@ -54,8 +32,7 @@ alias vhelp='nvim +help' # open help file
 alias crontab='export VISUAL=nvim; crontab'
 
 # for github access
-alias gitaccess='xsel -b < /home/xllvr/.config/gitaccess.txt'
-alias gitway='wl-copy < /home/xllvr/.config/gitaccess.txt'
+alias gitaccess='pass -c gitaccess'
 
 # track face
 alias facetrack='cd /home/xllvr/repos/OpenSeeFace && source env/bin/activate && python facetracker.py -c 0 -W 1920 -H 1080 --discard-after 0 --scan-every 0 --no-3d-adapt 1 --max-feature-updates 900'
@@ -64,9 +41,6 @@ alias facetrack='cd /home/xllvr/repos/OpenSeeFace && source env/bin/activate && 
 function beamer() {
     pandoc --to=beamer --slide-level=2 --include-in-header=$HOME/.config/nvim/templates/beamersection.txt -s $1 -o $2
 }
-
-# kubernetes
-alias kubectl="minikube kubectl --"
 
 ################################# NNN Stuff ##############################################
 n ()
