@@ -62,9 +62,6 @@ vim.g.netrw_banner = 0
 vim.g.netrw_banner = 2
 vim.g.netrw_winsize = 25
 
--- Snippets Directory
-cmd('let g:UltiSnipsSnippetDirectories = ["~/.config/nvim/UltiSnips", "UltiSnips"]')
-
 -- Help File on Right
 cmd([[
 augroup vimrc_help
@@ -82,9 +79,6 @@ augroup filetypedetect
     au! BufNewFile,BufRead *.bib       setfiletype bib
 augroup END 
 ]])
-
--- XML Files Autoformat
-cmd('au FileType xml :%!tidy -i -xml --show-errors 0 2>/dev/null')
 
 -- Highlight Yank
 cmd([[

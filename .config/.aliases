@@ -22,6 +22,8 @@ function pdfmerge() {
 
 # for dotfile management
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias lgdot="/usr/bin/lazygit -g $HOME/.dotfiles/ -w $HOME --debug"
+alias lg="/usr/bin/lazygit --debug"
 
 # for nvim to open tabs
 alias vt='nvim -p' # open in tabs
