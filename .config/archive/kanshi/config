@@ -1,0 +1,8 @@
+profile archmain {
+    output DP-2 mode 1920x1080 position 0,0
+    output DP-3 mode 1920x1080 position 1920,0
+}
+
+profile archthink {
+    output LVDS-1 mode 1920x1080 position 0,0
+}

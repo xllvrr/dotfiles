@@ -1,0 +1,10 @@
+2022/05/05-10:50:43.181 11071 Creating DB /home/xllvr/.config/Postman/Partitions/0dc68460-3c0e-4db9-a5db-571647e01666/IndexedDB/file__0.indexeddb.leveldb since it was missing.
+2022/05/05-10:50:43.182 11071 Reusing MANIFEST /home/xllvr/.config/Postman/Partitions/0dc68460-3c0e-4db9-a5db-571647e01666/IndexedDB/file__0.indexeddb.leveldb/MANIFEST-000001
+2022/05/05-10:50:43.217 11033 Level-0 table #5: started
+2022/05/05-10:50:43.218 11033 Level-0 table #5: 492 bytes OK
+2022/05/05-10:50:43.219 11033 Delete type=0 #3
+2022/05/05-10:50:43.219 11033 Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)
+2022/05/05-10:50:43.237 11071 Level-0 table #7: started
+2022/05/05-10:50:43.237 11071 Level-0 table #7: 477 bytes OK
+2022/05/05-10:50:43.239 11071 Delete type=0 #4
+2022/05/05-10:50:43.239 11071 Manual compaction at level-0 from '\x00\x02\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x03\x00\x00\x00' @ 0 : 0; will stop at (end)

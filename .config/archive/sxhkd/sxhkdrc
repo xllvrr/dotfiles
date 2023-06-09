@@ -1,0 +1,130 @@
+#!/bin/sh
+
+=========== Window Management ===========
+	# Quit/restart bspwm
+super + alt + {q,r}
+	{ \
+prompt "Are you sure you want to quit out?" bspc quit, \
+	bspc wm -r \
+}
+
+	# Close/kill focused window
+super + {c,q}
+	bspc node -{c,k}
+
+# Preselect direction
+super + alt + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# Focus on window in specified direction
+super + {h,j,k,l}
+	bspc node -f {west,south,north,east}
+
+# Swap node with neighbor in specified direction
+super + shift + {h,j,k,l}
+	bspc node --swap {west,south,north,east}
+
+# Send window to desktop
+super + shift + {1-9,0}
+	bspc node -d {1-9, 10} && bspunhide
+
+# Send window to desktop and swap to desktop
+super + ctrl + {1-9,0}
+	bspc node -d {1-9, 10} && bspunhide && bspc desktop -f {1-9,10}
+
+# Toggle fullscreen on/off
+super + f
+	bspc node -t \~fullscreen
+
+# Toggle floating on/off
+super + o
+	bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+
+# Toggle hidden on/off
+super + { ,shift} + i
+	{bspc node -g hidden=on, hideoff}
+
+# Rotate node
+super + shift + r
+	bspc node @/ -R 90
+
+# Mark node
+super + ctrl + m
+	bspc node -g marked
+
+# Send window to preselection
+super + y
+	bspc node -n last.!automatic.local
+
+# Focus desktop
+super + {1-9,0}
+	bspc desktop -f {1-9,10}
+
+# Cycle through desktops
+ctrl + super + {Left,Right}
+	bspc desktop -f {prev,next}
+
+# Expand a window by moving one of its side outward
+ctrl + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# Contract a window by moving one of its side inward
+ctrl + super + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+=========== System Control ===========
+
+# Restart hotkey damon
+super + shift + x
+	pkill sxhkd && sxhkd
+
+# Reload polybar
+super + shift + o
+	reloadpolybar
+
+# Terminal
+super + Return
+	$TERMINAL
+
+# Pulse Controls
+super + {Up, Down}
+	pulsevolctrl "output-vol" @DEFAULT_SINK@ {+2%, -2%}
+
+# Mute Audio
+super + m
+	pulsevolctrl "output-mute" @DEFAULT_SINK@
+
+# Power Options
+super + p ; {r, s, o, h}
+	systemctl {reboot, suspend, poweroff, hibernate}
+
+# Configurations
+super + alt + c
+	$TERMINAL -e cfglist
+
+# Backlight
+ctrl + super + {Up, Down, @space}
+	xbacklight -set {100, 0, 50}
+
+=========== Applications ===========
+# Dmenu
+alt + space
+	rofimenu
+
+# GUI
+super + a ; {1-5}
+	{ \
+	$BROWSER, \
+	thunderbird, \
+	$TERMINAL -e nvim -c VimwikiIndex, \
+	messenger, \
+	discord, \
+	}
+
+# File Managers
+super + d ; {t,f}
+	{$TERMINAL -e nnn -He, pcmanfm}
+
+# Screenshot
+Print
+	maimpick

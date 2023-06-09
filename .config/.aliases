@@ -44,6 +44,11 @@ function beamer() {
     pandoc --to=beamer --slide-level=2 --include-in-header=$HOME/.config/nvim/templates/beamersection.txt -s $1 -o $2
 }
 
+# pipewire
+alias pw441="pw-metadata -n settings 0 clock.force-rate 44100"
+alias pw48="pw-metadata -n settings 0 clock.force-rate 48000"
+alias pwreset="pw-metadata -n settings 0 clock.force-rate 0"
+
 ################################# NNN Stuff ##############################################
 n ()
 {

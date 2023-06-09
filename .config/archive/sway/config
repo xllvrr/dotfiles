@@ -1,0 +1,229 @@
+# Default config for sway
+# Copy this to ~/.config/sway/config and edit it to your liking.
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term alacritty
+set $browser chromium
+set $menu fuzzel -b 282c34ff -s 000000ff -S 74bb80ff -t 74bb80ff -C 74bba4ff
+set $filemanager pcmanfm
+set $primaryscreen "Hewlett Packard HP E222 6CM6401NJZ" LVDS-1
+set $secondaryscreen "Lenovo Group Limited LEN T2224dA V5H47316" LVDS-1
+
+set $opacity 0.7
+
+set $cl_high #e57373
+set $cl_indi #d9d8d8
+set $cl_text #ffffff
+set $cl_back #009ddc
+set $cl_fore #d9d8d8
+set $cl_urge #ee2e24
+
+## Visual Settings
+# Colors                border   bg       text     indi     childborder
+client.focused          $cl_high $cl_high $cl_text $cl_indi $cl_high
+client.focused_inactive $cl_back $cl_back $cl_text $cl_back $cl_back
+client.unfocused        $cl_back $cl_back $cl_text $cl_back $cl_back
+client.urgent           $cl_urge $cl_urge $cl_text $cl_urge $cl_urge
+
+## Window Borders
+default_border pixel 3
+default_floating_border normal
+gaps inner 10
+
+# Font
+font pango: Jet Brains Mono Medium 13, Font Awesome 6 13
+
+### Workspaces
+set $ws1 
+set $ws2 
+set $ws3 
+set $ws4 
+set $ws5 
+set $ws6 
+set $ws7 
+set $ws8 
+set $ws9 
+set $ws10 
+set $ws11 
+set $ws12 
+
+workspace $ws1 output $primaryscreen
+workspace $ws2 output $primaryscreen
+workspace $ws3
+workspace $ws4 output $secondaryscreen
+workspace $ws5
+workspace $ws6
+workspace $ws7
+workspace $ws8
+workspace $ws9 output $secondaryscreen
+workspace $ws10 output $secondaryscreen
+workspace $ws11 output $secondaryscreen
+workspace $ws12
+
+# Default Workspaces for Apps
+assign [title="Messenger"] $ws2
+assign [class="Gimp"] $ws3
+assign [class="Darktable"] $ws3
+assign [class="REAPER"] $ws3
+assign [title="Discord"] $ws4
+assign [title="^Zoom.*"] $ws5
+assign [title="^vk.*"] $ws5
+assign [app_id="org.rncbc.qpwgraph"] $ws9
+assign [class="obs"] $ws10
+for_window [class="Spotify"] move window to workspace $ws11
+for_window [class="tidal-hifi"] move window to workspace $ws11
+for_window [class="Cider"] move window to workspace $ws11
+
+### Basic configurations
+# Autostart
+exec_always --no-startup-id mako
+exec_always --no-startup-id xrdb -load ~/.Xdefaults
+exec_always --no-startup-id dynamicwall
+exec_always --no-startup-id fcitx5 -d --replace
+exec_always --no-startup-id kanshi
+exec --no-startup-id gammastep
+exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+exec --no-startup-id linuxvid
+exec discord
+exec syncthing
+
+# Input configuration
+input * {
+    xkb_options caps:escape
+}
+
+### Output configuration
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+# Remember to download swaybg for backgrounds, otherwise it'll just be grey
+# output DP-2 pos 0,0 resolution 3440x1440
+# output DP-3 pos 760,1440 resolution 1920x1080
+# output LVDS-1 pos 0,0 resolution 1920x1080
+
+## Key Bindings
+# Shortcuts
+bindsym $mod+Return exec $term
+bindsym Mod1+space exec $menu
+bindsym $mod+Shift+s exec grimpick
+
+bindsym $mod+c kill
+bindsym $mod+Mod1+c exec swaykill
+bindsym $mod+Shift+r reload
+bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+
+# System Controls
+bindsym $mod+Mod1+o exec systemctl poweroff
+bindsym $mod+Mod1+r exec systemctl reboot
+bindsym $mod+Mod1+s exec systemctl suspend
+
+# Applications:
+bindsym $mod+b exec $browser
+bindsym $mod+Shift+w exec $term -t Vimwiki -e nvim -c VimwikiIndex
+bindsym $mod+Mod1+d exec discord
+bindsym $mod+Mod1+f exec $filemanager
+
+# Moving around:
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+
+# Switching workspaces:
+    # Switch to workspace
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5
+    bindsym $mod+6 workspace $ws6
+    bindsym $mod+7 workspace $ws7
+    bindsym $mod+8 workspace $ws8
+    bindsym $mod+9 workspace $ws9
+    bindsym $mod+0 workspace $ws10
+    bindsym $mod+F1 workspace $ws11
+    bindsym $mod+F2 workspace $ws12
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    bindsym $mod+Shift+2 move container to workspace $ws2
+    bindsym $mod+Shift+3 move container to workspace $ws3
+    bindsym $mod+Shift+4 move container to workspace $ws4
+    bindsym $mod+Shift+5 move container to workspace $ws5
+    bindsym $mod+Shift+6 move container to workspace $ws6
+    bindsym $mod+Shift+7 move container to workspace $ws7
+    bindsym $mod+Shift+8 move container to workspace $ws8
+    bindsym $mod+Shift+9 move container to workspace $ws9
+    bindsym $mod+Shift+0 move container to workspace $ws10
+    bindsym $mod+Shift+F1 move container to workspace $ws11
+    bindsym $mod+Shift+F2 move container to workspace $ws12
+    # Move workspace to different outputs
+    bindsym $mod+Ctrl+$left move workspace to output left
+    bindsym $mod+Ctrl+$right move workspace to output right
+
+# Layout stuff:
+    bindsym $mod+z splith
+    bindsym $mod+v splitv
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+    bindsym $mod+f fullscreen
+    bindsym $mod+o floating toggle
+    floating_modifier $mod normal
+    bindsym $mod+a focus parent
+    bindsym $mod+space focus mode_toggle
+
+# Scratchpad:
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+
+# Resizing containers:
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+    bindsym $mod+r mode "resize"
+
+# Always floating windows
+for_window [title="Vimwiki"] floating enable
+for_window [class="Gimp"] floating enable
+for_window [class="Sxiv"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="mpv"] floating enable
+for_window [title="nmtui"] floating enable
+for_window [title="FX: (.*)"] floating enable
+for_window [title="Add FX to(.*) (.*)"] floating enable
+
+# Status Bar:
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position top
+    swaybar_command waybar
+}
+
+include /etc/sway/config.d/*
