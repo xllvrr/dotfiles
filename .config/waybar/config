@@ -2,59 +2,36 @@
 
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar at the bottom of your screen
-    "height": 30, // Waybar height
+    "height": 40, // Waybar height
     // "width": 1366, // Waybar width
 
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
+    "modules-left": ["wlr/workspaces"],
+    // "modules-center": [],
     "modules-right": ["pulseaudio", "network", "battery", "tray", "clock"],
 
     // Module configuration
-    /* "river/tags": { */
-    /*     "num-tags": 9, */
-    /*     "tag-labels" { */
-    /*         0: "", */
-    /*         1: "", */
-    /*         2: "", */
-    /*         3: "", */
-    /*         4: "", */
-    /*         5: "", */
-    /*         6: "", */
-    /*         7: "", */
-    /*         8: "", */
-    /*         9: "", */
-    /*     } */
-    /* }, */	
-    /* "river/mode": { */
-		/* "format": "Mode: {}" */
-	/* }, */
-    /* "river/window": { */
-    /*     "max-length": 30, */
-    /* }, */
-    "sway/workspaces": {
+    "wlr/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
         "format": "{icon}",
         "format-icons": {
-            "": "",
-            "": "",
-            "": "",
-            "": "",
-            "": "",
-            "": "",
-            "": "",
-            "": "",
-            "": "",
-            "": "",
-            "": "",
-            "": ""
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10",
         },
         "persistent_workspaces": {
-            "": ["Unknown X340 PRO 144 0x00000000", "LVDS-1"],
-            "": ["Unknown X340 PRO 144 0x00000000", "LVDS-1"],
-            "": ["Lenovo Group Limited LEN T2224dA V5H47316", "LVDS-1"],
-        }
+        },
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "on-click": "activate"
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"

@@ -6,6 +6,7 @@ alias v='nvim'                            # vim
 alias ex="exa --color automatic -a"
 alias exl="exa --color automatic -alh --git"
 alias tsm="transmission-remote"
+alias waybar="pkill waybar;waybar &!"
 
 # system tools
 alias cleanmake='sudo make clean install' # quick alias for make clean install
