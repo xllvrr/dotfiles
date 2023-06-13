@@ -17,9 +17,9 @@ window:
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
+  dimensions:
+    columns: 180
+    lines: 35
 
   # Window position (changes require restart)
   #
@@ -260,11 +260,11 @@ colors:
 #  duration: 0
 #  color: '#ffffff'
 
-#selection:
+selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
-  #save_to_clipboard: false
+  save_to_clipboard: true
 
 # Allow terminal applications to change Alacritty's window title.
 #dynamic_title: true

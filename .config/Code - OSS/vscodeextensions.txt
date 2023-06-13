@@ -1,4 +1,0 @@
-asvetliakov.vscode-neovim
-dsznajder.es7-react-js-snippets
-esbenp.prettier-vscode
-msjsdiag.vscode-react-native

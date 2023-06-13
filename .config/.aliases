@@ -46,9 +46,7 @@ function beamer() {
 }
 
 # pipewire
-alias pw441="pw-metadata -n settings 0 clock.force-rate 44100"
-alias pw48="pw-metadata -n settings 0 clock.force-rate 48000"
-alias pwreset="pw-metadata -n settings 0 clock.force-rate 0"
+alias pwreset='systemctl --user restart wireplumber pipewire pipewire-pulse'
 
 ################################# NNN Stuff ##############################################
 n ()
