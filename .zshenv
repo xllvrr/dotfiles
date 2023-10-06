@@ -26,6 +26,7 @@ export HOSTNAME=$HOST
 export GOPATH='/home/xllvr/go' # GoLang
 export WORKON_HOME='.config/pyenvs' # VirtualEnvWrapper Python
 source "$HOME/.local/bin/virtualenvwrapper_lazy.sh"
+export HYPRLAND_HEADERS="$HOME/repos/Hyprland"
 
 # apache spark
 # export JAVA_HOME="/usr/lib/jvm/java-7-openjdk"

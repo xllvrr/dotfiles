@@ -6,12 +6,12 @@
     // "width": 1366, // Waybar width
 
     // Choose the order of the modules
-    "modules-left": ["wlr/workspaces"],
+    "modules-left": ["hyprland/workspaces"],
     // "modules-center": [],
     "modules-right": ["pulseaudio", "network", "battery", "tray", "clock"],
 
     // Module configuration
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
         "format": "{icon}",
@@ -20,12 +20,12 @@
             "2": "",
             "3": "",
             "4": "",
-            "5": "",
-            "6": "",
-            "7": "",
-            "8": "8",
-            "9": "9",
-            "10": "10",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "9": "",
+            "10": "",
         },
         "persistent_workspaces": {
         },
