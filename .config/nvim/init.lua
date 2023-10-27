@@ -7,7 +7,6 @@ require("maps")
 -- Plugins
 require("general")
 require("plugin/lualine")
-require("plugin/neorg")
 require("plugin/telescope")
 require("plugin/treesitter")
 require("plugin/cmp")

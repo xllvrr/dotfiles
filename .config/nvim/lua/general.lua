@@ -63,11 +63,6 @@ require('lazy').setup({
     'sbdchd/neoformat', -- Formatting
     'lewis6991/gitsigns.nvim', -- Gitsigns
 
-    { -- Neorg
-        "nvim-neorg/neorg",
-        build = ":Neorg sync-parsers", -- This is the important bit!
-    },
-
     { -- Telescope
         'nvim-telescope/telescope.nvim',
         dependencies = {
