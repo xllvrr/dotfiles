@@ -76,4 +76,8 @@ require('lazy').setup({
                 end}
         }
     },
+
+    -- R
+    'jalvesaq/Nvim-R',
+
 })

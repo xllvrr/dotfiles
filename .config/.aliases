@@ -3,8 +3,8 @@
 
 # applications
 alias v='nvim'                            # vim
-alias ex="exa --color automatic -a"
-alias exl="exa --color automatic -alh --git"
+alias ex="exa -a"
+alias exl="exa -alh --git"
 alias tsm="transmission-remote"
 alias waybar="pkill waybar;waybar &!"
 
@@ -47,6 +47,8 @@ function beamer() {
 
 # pipewire
 alias pwreset='systemctl --user restart wireplumber pipewire pipewire-pulse'
+alias karaoke='pactl set-default-sink alsa_output.usb-Audient_EVO4-00.analog-surround-40'
+alias listening='pactl set-default-sink alsa_output.pci-0000_0f_00.4.iec958-stereo'
 
 ################################# NNN Stuff ##############################################
 n ()

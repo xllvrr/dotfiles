@@ -13,6 +13,7 @@ require("plugin/cmp")
 require("plugin/mason")
 require("plugin/neotree")
 require("plugin/gitsigns")
+require("plugin/nvimr")
 
 -- Themeing
 require("themeing")

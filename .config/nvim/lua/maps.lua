@@ -5,7 +5,7 @@ options = { noremap = true }
 
 -- Map Leader
 vim.g.mapleader = " "
-vim.g.maplocalleader = ' '
+vim.g.maplocalleader = "\\"
 
 -- Split Navigation
 map('n', '<C-J>', '<C-W><C-J>', options)
@@ -51,3 +51,7 @@ map('n', '<leader>ht', ':sp term://zsh<CR>', options)
 map('n', '<leader>nt', ':Neotree show<CR>', options)
 map('n', '<leader>nc', ':Neotree close<CR>', options)
 map('n', '<leader>gs', ':Neotree float git_status<CR>', options)
+
+-- Deselect
+map('n', '<leader><Space>', ':noh<CR>', options)
+map('v', '<leader><Space>', ':noh<CR>', options)
