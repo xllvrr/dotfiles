@@ -1,0 +1,123 @@
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#766e6b"
+blue = "#407ee7"
+cyan = "#00ad9c"
+green = "#5ab738"
+magenta = "#6666ea"
+red = "#f22c40"
+white = "#f1efee"
+yellow = "#d5911a"
+
+[colors.cursor]
+cursor = "#a8a19f"
+text = "#1b1918"
+
+[colors.normal]
+black = "#1b1918"
+blue = "#407ee7"
+cyan = "#00ad9c"
+green = "#5ab738"
+magenta = "#6666ea"
+red = "#f22c40"
+white = "#a8a19f"
+yellow = "#d5911a"
+
+[colors.primary]
+background = "#1b1918"
+foreground = "#a8a19f"
+
+[colors.selection]
+background = "#a8a19f"
+text = "#1b1918"
+
+[cursor]
+style = "Underline"
+unfocused_hollow = true
+
+[font]
+size = 14
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Medium"
+
+[font.offset]
+x = -1
+y = -1
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Insert"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "gc"
+key = "Slash"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Y"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[[mouse.bindings]]
+action = "Copy"
+mouse = "Middle"
+
+[[mouse.bindings]]
+action = "Paste"
+mouse = "Right"
+
+[selection]
+save_to_clipboard = true
+
+[window]
+opacity = 0.9
+startup_mode = "Maximized"
+
+[window.dimensions]
+columns = 180
+lines = 35
+
+[window.padding]
+x = 8
+y = 0
