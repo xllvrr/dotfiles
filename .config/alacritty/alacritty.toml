@@ -115,7 +115,7 @@ opacity = 0.9
 startup_mode = "Maximized"
 
 [window.dimensions]
-columns = 180
+columns = 160
 lines = 35
 
 [window.padding]
